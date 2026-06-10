@@ -1,0 +1,25 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: v1.3.9
+_src_path: https://github.com/stellarshenson/copier-data-science
+author_name: Konrad Jelen
+custom_config: ''
+dataset_storage: s3
+dependency_file: pyproject.toml
+description: Grounding guardrails for agentic RAG - deterministic claim verification
+docker_support: 'No'
+docs: none
+env_encryption: 'Yes'
+env_name: groundrails
+environment_manager: uv
+git_init: 'Yes'
+jupyter_kernel_support: 'Yes'
+linting_and_formatting: ruff
+module_name: groundrails
+open_source_license: MIT
+package_repository: 'No'
+pydata_packages: none
+python_version_choice: '3.12'
+repo_name: groundrails
+s3_aws_profile: stellars-tech
+s3_bucket: groundrails-data
+testing_framework: pytest
