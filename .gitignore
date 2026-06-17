@@ -13,6 +13,16 @@
 /data/raw/*
 !/data/raw/.gitkeep
 
+# Models - ignore large model artifacts (OpenVINO IR etc.) but keep directory via .gitkeep
+/models/*
+!/models/.gitkeep
+
+# Grounding experiments - private client data, transient caches and run logs (never commit)
+experiments/grounding/private-rag-forensics/
+experiments/grounding/cache/
+experiments/grounding/logs/*
+!experiments/grounding/logs/README.md
+
 # Mac OS-specific storage files
 .DS_Store
 

@@ -22,6 +22,29 @@ dependencies = [
     "typer",
     "python-dotenv",
     "botocore",
+    # --- grounder runtime stack (from parent stellars-claude-code-plugins) ---
+    "numpy",
+    "pandas>=2.0",
+    "scipy",
+    "scikit-learn>=1.3",              # manifold fit path (LogisticRegression)
+    "pyarrow>=14.0",                  # parquet gold read
+    "pyyaml",
+    "rank-bm25>=0.2.2",
+    "rapidfuzz>=3.14.5",
+    "wordfreq>=3.0",                  # length-robust background token rarity
+    "nltk>=3.8",                      # WordNet antonym-flip (corpus fetched lazily)
+    "lingua-language-detector>=2.0",  # per-claim language detection
+    "huggingface_hub>=0.23",          # SaT OpenVINO IR download
+    "openvino>=2025.0",               # native INT8 SaT sentence splitter
+    "tokenizers>=0.20",               # xlm-roberta tokenizer for SaT
+    "argostranslate>=1.9",            # torch-free MT bridge (CTranslate2)
+    "ctranslate2>=4.0",               # MT inference engine
+    "sacremoses>=0.1",                # MT tokenisation
+    "sentencepiece>=0.2",             # MT subword model
+    "subword-nmt>=0.3",               # MT BPE
+    "bambi>=0.13",                    # Bayesian calibration
+    "pymc>=5.10",                     # calibration sampler
+    "arviz>=0.17",                    # calibration diagnostics
 ]
 
 [project.optional-dependencies]
@@ -35,6 +58,13 @@ dev = [
     "pytest-cov",
     "ruff",
     "awscli",
+    "jupyter",
+    "matplotlib",                     # experiment plots (experiments/grounding/plots.py)
+    "jenkspy",                        # max-gap / natural-breaks batch threshold experiment
+    "nncf",                           # INT8 quantization for SaT conversion (notebook 02)
+    "onnxruntime>=1.17",              # SaT model conversion (notebooks 02/04)
+    "wtpsplit-lite",                  # SaT lite splitter (notebooks 02/04) - verify exact dist name
+    "rich",                           # notebook rich output
 ]
 
 [tool.setuptools]
