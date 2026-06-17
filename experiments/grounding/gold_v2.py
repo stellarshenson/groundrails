@@ -198,7 +198,7 @@ def cmd_build() -> None:
     units = json.loads(UNITS.read_text())
     haiku = json.loads(Path(str(RESULTS).format(model="haiku")).read_text())
     sonnet = json.loads(Path(str(RESULTS).format(model="sonnet")).read_text())
-    from stellars_claude_code_plugins.document_processing.lexical import _lingua_lang
+    from groundrails.lexical import _lingua_lang
 
     rows, stats = [], {"inherited": 0, "agreed": 0, "disagreed": 0, "not_a_claim": 0, "unjudged": 0}
     for u in units:
@@ -241,7 +241,7 @@ def cmd_build() -> None:
 
 def _feat_worker(args):
     claim, source, effort = args
-    from stellars_claude_code_plugins.document_processing import lexical as L
+    from groundrails import lexical as L
     return L.extract_lexical_features(str(claim), [str(source)], effort=effort, det_lang=None)
 
 

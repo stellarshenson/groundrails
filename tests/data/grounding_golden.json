@@ -1,0 +1,163 @@
+{
+  "entity_contra": {
+    "agreement_score": 0.0,
+    "bm25_score": 0.0,
+    "bm25_token_recall": 0.0,
+    "combined_score": 0.5652173913,
+    "entities_absent": [
+      "H100",
+      "H100 GPUs"
+    ],
+    "entity_mismatches": [
+      [
+        "H100",
+        "A100"
+      ]
+    ],
+    "exact_score": 0.0,
+    "fuzzy_score": 0.5652173913,
+    "lexical_co_support": true,
+    "match_type": "contradicted",
+    "numeric_mismatches": [],
+    "semantic_ratio": 0.0,
+    "semantic_score": 0.0,
+    "verdict_probability": 0.1771932282,
+    "verdict_uncertainty": 0.0,
+    "verification_needed": false
+  },
+  "hallucination": {
+    "agreement_score": 0.1642857143,
+    "bm25_score": 0.0,
+    "bm25_token_recall": 0.0,
+    "combined_score": 0.8285714286,
+    "entities_absent": [],
+    "entity_mismatches": [],
+    "exact_score": 0.0,
+    "fuzzy_score": 0.8285714286,
+    "lexical_co_support": true,
+    "match_type": "fuzzy",
+    "numeric_mismatches": [],
+    "semantic_ratio": 0.0,
+    "semantic_score": 0.0,
+    "verdict_probability": 0.8702190867,
+    "verdict_uncertainty": 0.0,
+    "verification_needed": true
+  },
+  "numeric_contra": {
+    "agreement_score": 0.0743243243,
+    "bm25_score": 0.0,
+    "bm25_token_recall": 0.0,
+    "combined_score": 0.6486486486,
+    "entities_absent": [],
+    "entity_mismatches": [],
+    "exact_score": 0.0,
+    "fuzzy_score": 0.6486486486,
+    "lexical_co_support": true,
+    "match_type": "contradicted",
+    "numeric_mismatches": [
+      [
+        "512",
+        "1000"
+      ]
+    ],
+    "semantic_ratio": 0.0,
+    "semantic_score": 0.0,
+    "verdict_probability": 0.5029761663,
+    "verdict_uncertainty": 0.0,
+    "verification_needed": false
+  },
+  "support_exact": {
+    "agreement_score": 0.1581632653,
+    "bm25_score": 0.0,
+    "bm25_token_recall": 0.0,
+    "combined_score": 0.8163265306,
+    "entities_absent": [],
+    "entity_mismatches": [],
+    "exact_score": 0.0,
+    "fuzzy_score": 0.8163265306,
+    "lexical_co_support": true,
+    "match_type": "fuzzy",
+    "numeric_mismatches": [],
+    "semantic_ratio": 0.0,
+    "semantic_score": 0.0,
+    "verdict_probability": 0.8980623945,
+    "verdict_uncertainty": 0.0,
+    "verification_needed": true
+  },
+  "support_para": {
+    "agreement_score": 0.0,
+    "bm25_score": 0.0,
+    "bm25_token_recall": 0.0,
+    "combined_score": 0.4324324324,
+    "entities_absent": [],
+    "entity_mismatches": [],
+    "exact_score": 0.0,
+    "fuzzy_score": 0.4324324324,
+    "lexical_co_support": true,
+    "match_type": "none",
+    "numeric_mismatches": [],
+    "semantic_ratio": 0.0,
+    "semantic_score": 0.0,
+    "verdict_probability": 0.4685533389,
+    "verdict_uncertainty": 0.0,
+    "verification_needed": false
+  },
+  "unsupported_novel": {
+    "agreement_score": 0.0,
+    "bm25_score": 0.0,
+    "bm25_token_recall": 0.0,
+    "combined_score": 0.4179104478,
+    "entities_absent": [],
+    "entity_mismatches": [],
+    "exact_score": 0.0,
+    "fuzzy_score": 0.4179104478,
+    "lexical_co_support": true,
+    "match_type": "none",
+    "numeric_mismatches": [],
+    "semantic_ratio": 0.0,
+    "semantic_score": 0.0,
+    "verdict_probability": 0.105676739,
+    "verdict_uncertainty": 0.0,
+    "verification_needed": false
+  },
+  "xling_contra_de": {
+    "agreement_score": 0.0,
+    "bm25_score": 0.0,
+    "bm25_token_recall": 0.0,
+    "combined_score": 0.5483870968,
+    "entities_absent": [
+      "Der Eiffelturm"
+    ],
+    "entity_mismatches": [],
+    "exact_score": 0.0,
+    "fuzzy_score": 0.5483870968,
+    "lexical_co_support": true,
+    "match_type": "fuzzy",
+    "numeric_mismatches": [],
+    "semantic_ratio": 0.0,
+    "semantic_score": 0.0,
+    "verdict_probability": 0.8536854807,
+    "verdict_uncertainty": 0.0,
+    "verification_needed": true
+  },
+  "xling_support_de": {
+    "agreement_score": 0.0,
+    "bm25_score": 0.0,
+    "bm25_token_recall": 0.0,
+    "combined_score": 0.6,
+    "entities_absent": [
+      "Der Eiffelturm"
+    ],
+    "entity_mismatches": [],
+    "exact_score": 0.0,
+    "fuzzy_score": 0.6,
+    "lexical_co_support": true,
+    "match_type": "fuzzy",
+    "numeric_mismatches": [],
+    "semantic_ratio": 0.0,
+    "semantic_score": 0.0,
+    "verdict_probability": 0.9014610324,
+    "verdict_uncertainty": 0.0,
+    "verification_needed": true
+  }
+}

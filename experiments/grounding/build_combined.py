@@ -19,8 +19,8 @@ import json
 from multiprocessing import Pool, cpu_count
 from pathlib import Path
 
-from stellars_claude_code_plugins.document_processing import calibration as C
-from stellars_claude_code_plugins.document_processing import lexical as L
+from groundrails import calibration as C
+from groundrails import lexical as L
 
 REPO = Path(__file__).resolve().parents[2]
 PRIVATE_RAG = Path(__file__).parent / "private-rag-forensics/gold/golden_grounding_evidence_verified.parquet"

@@ -56,7 +56,7 @@ def build_features(use_mt: bool = True, refresh: bool = False) -> list[dict]:
     fp = CACHE / (f"features_{'mt' if use_mt else 'lex'}.json")
     if fp.exists() and not refresh:
         return json.loads(fp.read_text())
-    from stellars_claude_code_plugins.document_processing.nli import NLIGrounder
+    from groundrails.nli import NLIGrounder
 
     nli = NLIGrounder()
     recs = H.load_gold()
@@ -269,7 +269,7 @@ def build_vitaminc(per_label: int = 130, refresh: bool = False) -> list[dict]:
 
     from huggingface_hub import hf_hub_download
 
-    from stellars_claude_code_plugins.document_processing.nli import NLIGrounder
+    from groundrails.nli import NLIGrounder
 
     nli = NLIGrounder()
     p = hf_hub_download("tals/vitaminc", "dev.jsonl", repo_type="dataset")
@@ -904,7 +904,7 @@ def run_bayes() -> None:
     """Production Bayesian calibrator (bambi/PyMC logistic) under LOLO - a hyperplane."""
     import pandas as pd
 
-    from stellars_claude_code_plugins.document_processing.calibration import (
+    from groundrails.calibration import (
         PREDICTORS,
         fit_calibrator,
     )

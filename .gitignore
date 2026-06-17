@@ -216,3 +216,5 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+# experiment-only retrained manifold weights - never the shipped config
+src/groundrails/config_document_processing.experiment.yaml

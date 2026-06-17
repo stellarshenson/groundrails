@@ -24,7 +24,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from stellars_claude_code_plugins.document_processing.extract import (
+from groundrails.extract import (
     _looks_like_claim,
     _split_document,
 )
@@ -56,7 +56,7 @@ _SAT = None
 def _sat():
     global _SAT
     if _SAT is None:
-        from stellars_claude_code_plugins.document_processing.sat import SaTSegmenter
+        from groundrails.sat import SaTSegmenter
 
         _SAT = SaTSegmenter()
     return _SAT
@@ -93,7 +93,7 @@ def diag_a1() -> pd.DataFrame:
     verb gate reject, per language? Anglocentric defect = non-English
     rejection rate far above English.
     """
-    from stellars_claude_code_plugins.document_processing.lexical import _lingua_lang
+    from groundrails.lexical import _lingua_lang
 
     gold = pd.read_parquet(GOLD, columns=["trace_id"])
     rows, missing = [], 0
@@ -203,7 +203,7 @@ def _lang_agnostic_gate(candidate: str) -> bool:
 def _split_paragraphs(text: str) -> list[tuple[int, str]]:
     """Markdown-aware paragraph assembly (same walk as extract._split_document
     but stopping at paragraph granularity so the splitter is pluggable)."""
-    from stellars_claude_code_plugins.document_processing.extract import (
+    from groundrails.extract import (
         _strip_markdown_noise,
     )
 
@@ -257,7 +257,7 @@ def eval_a1(fuzzy_min: float = 90.0) -> dict:
     """
     from rapidfuzz import fuzz
 
-    from stellars_claude_code_plugins.document_processing.lexical import _lingua_lang
+    from groundrails.lexical import _lingua_lang
 
     gold = pd.read_parquet(GOLD, columns=["trace_id", "claim", "lang"])
     variants = {

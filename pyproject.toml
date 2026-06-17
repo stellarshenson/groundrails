@@ -66,9 +66,20 @@ dev = [
     "wtpsplit-lite",                  # SaT lite splitter (notebooks 02/04) - verify exact dist name
     "rich",                           # notebook rich output
 ]
+semantic = [
+    "onnxruntime>=1.17",              # NLI cross-encoder + embedding ONNX runtime
+    "transformers>=4.40",             # tokenizer/model loading for the semantic layer
+    "faiss-cpu>=1.7",                 # embedding retrieval index
+]
+
+[project.scripts]
+groundrails = "groundrails.cli:main"
 
 [tool.setuptools]
 include-package-data = true
+
+[tool.setuptools.package-data]
+groundrails = ["config_*.yaml"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

@@ -21,9 +21,9 @@ warnings.filterwarnings("ignore")
 
 import pandas as pd
 
-from stellars_claude_code_plugins.config import load_document_processing_config
-from stellars_claude_code_plugins.document_processing import calibration as C
-from stellars_claude_code_plugins.document_processing.grounding import extract_features, ground_batch
+from groundrails.config import load_document_processing_config
+from groundrails import calibration as C
+from groundrails.grounding import extract_features, ground_batch
 
 # One shared source corpus (English). nb/fr claims are cross-lingual paraphrases
 # of these facts - the real test of the portable semantic_ratio signal.
@@ -77,7 +77,7 @@ CLAIMS: list[tuple[str, int, str]] = [
 
 def build_evidence() -> pd.DataFrame:
     """Run the real grounding pipeline (semantic ON) and extract features."""
-    from stellars_claude_code_plugins.document_processing.semantic import (
+    from groundrails.semantic import (
         SemanticGrounder,
         is_available,
     )

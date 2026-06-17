@@ -30,7 +30,7 @@ import time
 import numpy as np
 import pandas as pd
 
-from stellars_claude_code_plugins.document_processing import lexical as L
+from groundrails import lexical as L
 
 HERE = Path(__file__).parent
 REPO = HERE.resolve().parents[1]
@@ -38,8 +38,8 @@ GV2 = HERE / "private-rag-forensics/gold/golden_grounding_evidence_v2.parquet"
 CACHE = HERE / "private-rag-forensics/round9_features.parquet"  # gitignored dir
 SYNTH_PARQUET = HERE / "private-rag-forensics/gold/synthetic_mt.parquet"  # Round 10, gitignored
 SYNTH_CACHE = HERE / "private-rag-forensics/round10_synth_features.parquet"
-EXP_CONFIG = REPO / "src/stellars_claude_code_plugins/config_document_processing.experiment.yaml"
-SHIPPED_CONFIG = REPO / "src/stellars_claude_code_plugins/config_document_processing.yaml"
+EXP_CONFIG = REPO / "src/groundrails/config_document_processing.experiment.yaml"
+SHIPPED_CONFIG = REPO / "src/groundrails/config_document_processing.yaml"
 
 FEATS = L.HIGH_FEATURES
 

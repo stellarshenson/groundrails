@@ -43,13 +43,13 @@ from rank_bm25 import BM25Okapi
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
 
 # --- reuse production primitives ---------------------------------------------
-from stellars_claude_code_plugins.document_processing.chunking import recursive_chunk
-from stellars_claude_code_plugins.document_processing.entity_check import (
+from groundrails.chunking import recursive_chunk
+from groundrails.entity_check import (
     find_absent_entities,
     find_mismatches,
     list_claim_entities,
 )
-from stellars_claude_code_plugins.document_processing.grounding import _tokenize
+from groundrails.grounding import _tokenize
 
 GOLD = Path(__file__).parent / "private-rag-forensics/gold/golden_grounding_evidence_verified.parquet"
 
@@ -814,7 +814,7 @@ def cmd_residual(recs: list[Record], use_mt: bool = True) -> str:
     chunk (selected via the translated claim); hypothesis = original claim
     (mDeBERTa NLI is multilingual). Ensemble = recall(MT, fixed tau) OR NLI-entail.
     """
-    from stellars_claude_code_plugins.document_processing.nli import NLIGrounder
+    from groundrails.nli import NLIGrounder
 
     nli = NLIGrounder()
     labels = [r.label for r in recs]

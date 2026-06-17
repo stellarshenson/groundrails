@@ -13,10 +13,10 @@ from pathlib import Path
 
 import yaml
 
-from stellars_claude_code_plugins.document_processing import lexical as L
+from groundrails import lexical as L
 
 REPO = Path(__file__).resolve().parents[2]
-CONFIG = REPO / "src/stellars_claude_code_plugins/config_document_processing.yaml"
+CONFIG = REPO / "src/groundrails/config_document_processing.yaml"
 PRIVATE_RAG = Path(__file__).parent / "private-rag-forensics/gold/golden_grounding_evidence_verified.parquet"
 
 

@@ -25,7 +25,7 @@ import warnings
 
 from huggingface_hub import hf_hub_download
 
-from stellars_claude_code_plugins.document_processing.grounding import ground
+from groundrails.grounding import ground
 
 warnings.filterwarnings("ignore")
 
@@ -56,7 +56,7 @@ def main(n: int = 600, engine: str = "lexical") -> int:
 
     nli = None
     if engine == "nli":
-        from stellars_claude_code_plugins.document_processing.nli import NLIGrounder
+        from groundrails.nli import NLIGrounder
 
         nli = NLIGrounder()  # multilingual cross-encoder, ONNX, cached after first use
 
