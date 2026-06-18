@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: lint (ruff)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.12"
+          enable-cache: true
+      - name: ruff check
+        run: uvx ruff check src/groundrails tests
+      - name: ruff format --check
+        run: uvx ruff format --check src/groundrails tests
+
+  test:
+    name: tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.12"
+          enable-cache: true
+      - name: install (core + dev)
+        run: uv pip install --system -e ".[dev]"
+      - name: fetch WordNet (HIGH-tier antonym feature; small, non-HF)
+        run: python -m nltk.downloader -q wordnet omw-1.4
+      - name: pytest
+        # Offline + no local SaT/argos models: model/integration tests skip cleanly
+        # (importorskip + try/except-network); the deterministic grounder + guard
+        # tests run. The equivalence golden runs its English items, skips de.
+        env:
+          HF_HUB_OFFLINE: "1"
+        run: pytest tests -q
+
+  build:
+    name: build (wheel + sdist)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.12"
+          enable-cache: true
+      - name: build
+        run: uv build
+      - name: verify the wheel ships the config yaml
+        run: |
+          python -m zipfile -l dist/*.whl | grep -q 'config_document_processing.yaml' \
+            && echo "config yaml present in wheel" || (echo "config yaml MISSING from wheel" && exit 1)
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/*

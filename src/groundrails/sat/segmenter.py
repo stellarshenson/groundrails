@@ -7,6 +7,7 @@ instead of onnxruntime. Defaults reproduce wtpsplit's ``SaT("sat-3l-sm").split(t
 threshold 0.25, stride 64, block size 512.
 """
 
+from loguru import logger
 import numpy as np
 
 from groundrails.sat._config import SubwordXLMConfig
@@ -30,6 +31,10 @@ class SaTSegmenter:
     """Sentence-splits text with the INT8 OpenVINO SaT. ``split`` mirrors wtpsplit's API."""
 
     def __init__(self, ir_xml: str | None = None):
+        logger.info(
+            "loading SaT sentence segmenter (downloads config / tokenizer / INT8 model "
+            "from Hugging Face on first run, cached after)"
+        )
         self.config = SubwordXLMConfig.from_pretrained(CONFIG_REPO)
         self.tokenizer = XLMRobertaTokenizerFast.from_pretrained(TOKENIZER_REPO)
         self.model = OVSegModel(self.config, ir_xml or resolve_ir())

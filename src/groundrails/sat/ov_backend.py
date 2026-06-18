@@ -9,6 +9,7 @@ target (not throughput). No onnxruntime."""
 import os
 from pathlib import Path
 
+from loguru import logger
 import numpy as np
 
 # IR source: a local override (set SAT_OV_IR to a local .xml) wins; otherwise the
@@ -29,14 +30,30 @@ def resolve_ir() -> str:
         return str(local)
     from huggingface_hub import hf_hub_download
 
+    # Announce the fetch only when the IR is not already cached, so first-run
+    # downloads are explicit (HF shows tqdm progress bars) and warm runs stay quiet.
+    cached = True
+    try:
+        hf_hub_download(OV_HF_REPO, OV_IR_XML, local_files_only=True)
+    except Exception:
+        cached = False
+    if not cached:
+        logger.info(
+            "downloading SaT OpenVINO INT8 segmenter from Hugging Face ({}) - "
+            "progress below; cached after first run",
+            OV_HF_REPO,
+        )
     try:
         hf_hub_download(OV_HF_REPO, OV_IR_BIN)  # cache the weights next to the graph
-        return hf_hub_download(OV_HF_REPO, OV_IR_XML)
+        path = hf_hub_download(OV_HF_REPO, OV_IR_XML)
     except Exception as exc:
         raise RuntimeError(
             f"could not download SaT OpenVINO IR from Hugging Face ({OV_HF_REPO}): {exc}; "
             f"set {OV_IR_ENV}=path/to/{OV_IR_XML} to bypass the HF download"
         ) from exc
+    if not cached:
+        logger.info("SaT OpenVINO segmenter downloaded and cached")
+    return path
 
 
 def _compiled(ir_xml: str):
