@@ -59,7 +59,7 @@ dev = [
     "ruff",
     "awscli",
     "jupyter",
-    "matplotlib",                     # experiment plots (experiments/grounding/plots.py)
+    "matplotlib",                     # experiment plots (experiments/grounding-lexical/plots.py)
     "jenkspy",                        # max-gap / natural-breaks batch threshold experiment
     "nncf",                           # INT8 quantization for SaT conversion (notebook 02)
     "onnxruntime>=1.17",              # SaT model conversion (notebooks 02/04)
@@ -70,6 +70,16 @@ semantic = [
     "onnxruntime>=1.17",              # NLI cross-encoder + embedding ONNX runtime
     "transformers>=4.40",             # tokenizer/model loading for the semantic layer
     "faiss-cpu>=1.7",                 # embedding retrieval index
+]
+# Semantic grounder research leg (experiments/grounding-semantic). The deployable
+# grounder serves three int8 OpenVINO IRs (bge-m3 pre-filter + bge-reranker + mDeBERTa-NLI,
+# pulled from HF) via the transformers tokenizer; the cached-score ensemble/eval reads the
+# gold parquet with polars. openvino + huggingface_hub + scikit-learn + pyarrow are already
+# core deps. torch is dev-only (the GPU reference scoring that built the cached .npy) - not
+# needed to serve the IRs or run the cached-score eval.
+semantic-grounder = [
+    "transformers>=4.44",             # tokenizer for the OpenVINO int8 IRs
+    "polars>=1.30",                   # gold parquet read in the eval / ensemble
 ]
 
 [project.scripts]

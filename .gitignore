@@ -18,10 +18,14 @@
 !/models/.gitkeep
 
 # Grounding experiments - private client data, transient caches and run logs (never commit)
-experiments/grounding/private-rag-forensics/
-experiments/grounding/cache/
-experiments/grounding/logs/*
-!experiments/grounding/logs/README.md
+experiments/grounding-lexical/private-rag-forensics/
+experiments/grounding-lexical/cache/
+experiments/grounding-lexical/logs/*
+!experiments/grounding-lexical/logs/README.md
+experiments/grounding-semantic/private-rag-forensics/
+experiments/grounding-semantic/cache/
+experiments/grounding-semantic/logs/*
+!experiments/grounding-semantic/logs/README.md
 
 # Mac OS-specific storage files
 .DS_Store
