@@ -360,6 +360,30 @@ def _lingua_lang(text: str, min_len: int = 25) -> str:
     return iso
 
 
+def detect_lang_confident(text: str, min_len: int = 25, min_conf: float = 0.65) -> str:
+    """Detected ISO code only when lingua is confident (>= ``min_conf``), else 'und'.
+
+    The grounder's unsupported-language guard uses this rather than
+    :func:`_lingua_lang` so short/ambiguous English is not hard-blocked - lingua
+    frequently misreads keyword lists or Latin-root English ("mitochondria ...
+    cell") as Latin at confidence < 0.55, whereas genuine non-English sentences
+    score >= 0.9. Returns 'und' when too short, the detector is absent, or the top
+    language's confidence is below ``min_conf``.
+    """
+    if len(text.strip()) < min_len:
+        return "und"
+    _lingua_lang(text)  # primes the lazily-built detector + cache
+    det = _LINGUA.get("det")
+    if det is None:
+        return "und"
+    lg = det.detect_language_of(text)
+    if lg is None:
+        return "und"
+    if det.compute_language_confidence(text, lg) < min_conf:
+        return "und"
+    return lg.iso_code_639_1.name.lower()
+
+
 def _wn_antonyms(w: str) -> set:
     """WordNet antonyms of a word; empty set on missing nltk/WordNet. Port of lab._wn_antonyms."""
     if "mod" not in _WN:

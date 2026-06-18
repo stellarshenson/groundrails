@@ -661,6 +661,24 @@ def _config_lexical_verdict(cfg):
     )
 
 
+class UnsupportedLanguageError(ValueError):
+    """Raised by :func:`ground` / :func:`ground_batch` when a claim's detected
+    language is non-English and has no installed argos ``<lang>->en`` model.
+
+    Cross-lingual grounding cannot run for such a claim, so it is blocked rather
+    than scored - unsupported languages must not pollute grounding metrics. Install
+    the model (``argospm install translate-<lang>_en``) to enable it. ``lang`` holds
+    the offending ISO-639-1 code.
+    """
+
+    def __init__(self, lang: str):
+        self.lang = lang
+        super().__init__(
+            f"claim language {lang!r} has no installed argos model; grounding blocked "
+            f"(run `argospm install translate-{lang}_en` to enable cross-lingual grounding)"
+        )
+
+
 def ground(
     claim: str,
     sources: Sequence[SourceInput],
@@ -699,6 +717,12 @@ def ground(
         ``bm25_score`` plus locations. ``match_type`` priority: exact > fuzzy
         (above threshold) > bm25 (token-recall above threshold) > none.
         ``combined_score`` = ``max(all three)``.
+
+    Raises:
+        UnsupportedLanguageError: at the HIGH effort tier, the claim's language is
+            confidently detected as non-English with no installed argos
+            ``<lang>->en`` model (hard-block so unsupported languages cannot
+            pollute scoring).
     """
     cfg = (config if config is not None else load_config()).overlay(
         fuzzy_threshold=fuzzy_threshold,
@@ -709,6 +733,17 @@ def ground(
         context_chars=context_chars,
         semantic_top_k=semantic_top_k,
     )
+    # Unsupported-language hard-block (HIGH tier only - the tier with the MT
+    # bridge): refuse to score a claim whose language is confidently non-English
+    # and has no installed argos model. Confidence-gated so lingua misreads of
+    # short / keyword English are not blocked; LOW/MEDIUM stay monolingual.
+    if cfg.lexical_effort == "high":
+        from groundrails import lexical as _lx
+        from groundrails import lexical_mt as _mt
+
+        _claim_lang = _lx.detect_lang_confident(claim)
+        if not _mt.has_model(_claim_lang):
+            raise UnsupportedLanguageError(_claim_lang)
     # Bind resolved values to local names so the body reads unchanged.
     fuzzy_threshold = cfg.fuzzy_threshold
     bm25_threshold = cfg.bm25_threshold

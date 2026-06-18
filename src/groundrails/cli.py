@@ -20,7 +20,12 @@ from pathlib import Path
 import sys
 
 from groundrails import settings as settings_mod
-from groundrails.grounding import GroundingMatch, ground, ground_batch
+from groundrails.grounding import (
+    GroundingMatch,
+    UnsupportedLanguageError,
+    ground,
+    ground_batch,
+)
 
 
 # --- optional semantic / NLI layer (opt-in via --semantic) -----------------
@@ -188,19 +193,23 @@ def cmd_ground(args: argparse.Namespace) -> int:
 
     if getattr(args, "manifest", None):
         claims = _read_claims_manifest(args.manifest)
-        matches = ground_batch(
-            claims,
-            sources,
-            fuzzy_threshold=args.threshold,
-            bm25_threshold=args.bm25_threshold,
-            semantic_threshold=args.semantic_threshold,
-            semantic_threshold_percentile=args.semantic_threshold_percentile,
-            semantic_grounder=grounder,
-            nli_grounder=nli_grounder,
-            calibrated_verdict=verdict,
-            primary_source=args.primary_source,
-            max_workers=args.workers,
-        )
+        try:
+            matches = ground_batch(
+                claims,
+                sources,
+                fuzzy_threshold=args.threshold,
+                bm25_threshold=args.bm25_threshold,
+                semantic_threshold=args.semantic_threshold,
+                semantic_threshold_percentile=args.semantic_threshold_percentile,
+                semantic_grounder=grounder,
+                nli_grounder=nli_grounder,
+                calibrated_verdict=verdict,
+                primary_source=args.primary_source,
+                max_workers=args.workers,
+            )
+        except UnsupportedLanguageError as exc:
+            print(f"ERROR: {exc} (an unsupported-language claim is in the batch)", file=sys.stderr)
+            return 3
         if args.json:
             report = json.dumps([asdict(m) for m in matches], indent=2, default=str)
         else:
@@ -212,17 +221,21 @@ def cmd_ground(args: argparse.Namespace) -> int:
             print(report)
         return 0
 
-    m = ground(
-        args.claim,
-        sources,
-        fuzzy_threshold=args.threshold,
-        bm25_threshold=args.bm25_threshold,
-        semantic_threshold=args.semantic_threshold,
-        semantic_threshold_percentile=args.semantic_threshold_percentile,
-        semantic_grounder=grounder,
-        nli_grounder=nli_grounder,
-        calibrated_verdict=verdict,
-    )
+    try:
+        m = ground(
+            args.claim,
+            sources,
+            fuzzy_threshold=args.threshold,
+            bm25_threshold=args.bm25_threshold,
+            semantic_threshold=args.semantic_threshold,
+            semantic_threshold_percentile=args.semantic_threshold_percentile,
+            semantic_grounder=grounder,
+            nli_grounder=nli_grounder,
+            calibrated_verdict=verdict,
+        )
+    except UnsupportedLanguageError as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 3
     if args.json:
         print(json.dumps(asdict(m), indent=2, default=str))
     else:

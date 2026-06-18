@@ -109,3 +109,17 @@ def translate(text: str, src_iso: str) -> str:
             merged = " ".join(res[0].hypotheses[0]).replace("@@ ", "").replace("@@", "")
             out.append(m["detok"].detokenize(merged.split()).strip())
     return " ".join(o for o in out if o).strip() or text
+
+
+def has_model(src_iso: str) -> bool:
+    """True when the claim's language can reach English for grounding.
+
+    English / undetermined (``en``/``und``/``""``) need no bridge and always pass;
+    any other language passes only when an installed argos ``<src>->en`` model
+    exists (after the ``no``/``nn`` -> ``nb`` mapping in ``_ISO``). The grounder's
+    unsupported-language guard blocks claims for which this returns False.
+    """
+    code = _ISO.get(src_iso, src_iso)
+    if code in ("en", "und", ""):
+        return True
+    return _find_pkg(code) is not None

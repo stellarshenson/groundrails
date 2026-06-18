@@ -11,8 +11,9 @@ lazy-imported - ``import groundrails`` does NOT load torch, transformers, or fai
 from groundrails.grounding import (
     GroundingMatch,
     Location,
+    UnsupportedLanguageError,
     ground,
     ground_batch,
 )
 
-__all__ = ["GroundingMatch", "Location", "ground", "ground_batch"]
+__all__ = ["GroundingMatch", "Location", "UnsupportedLanguageError", "ground", "ground_batch"]
