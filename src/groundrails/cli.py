@@ -329,6 +329,30 @@ def cmd_config(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_download(args: argparse.Namespace) -> int:
+    """Pre-fetch the semantic cascade int8 IRs into the HuggingFace cache.
+
+    These are the only model weights groundrails downloads; the lexical tiers need
+    none. Hard-fail (exit 2) if the cascade extras are missing - the pull needs
+    huggingface_hub.
+    """
+    if not semantic_ov.is_available():
+        print(
+            "ERROR: downloading the cascade models needs the cascade extras "
+            "(openvino + transformers + huggingface_hub).\n" + semantic_ov.install_hint(),
+            file=sys.stderr,
+        )
+        return 2
+    print(
+        "Pre-fetching the semantic cascade int8 IRs (~1.4 GB) into the HuggingFace cache:",
+        file=sys.stderr,
+    )
+    for name, repo, d in semantic_ov.download_models():
+        print(f"  {name:<18} {repo} -> {d}", file=sys.stderr)
+    print("done - the next `--semantic 1` run loads from cache.", file=sys.stderr)
+    return 0
+
+
 def cmd_setup(args: argparse.Namespace) -> int:
     if settings_mod.settings_exist() and not args.force:
         cfg = settings_mod.load()
@@ -409,9 +433,12 @@ def _build_parser() -> argparse.ArgumentParser:
     )
     g.add_argument(
         "--semantic",
-        action="store_true",
-        help="Switch on the OpenVINO cascade: escalates the uncertain band of the --effort "
-        "tier to bge-reranker + mDeBERTa-NLI, fused by the joint head. Default off.",
+        type=int,
+        choices=[0, 1],
+        default=0,
+        metavar="{0,1}",
+        help="Switch on (1) the OpenVINO cascade: escalates the uncertain band of the --effort "
+        "tier to bge-reranker + mDeBERTa-NLI, fused by the joint head. Default 0 (off).",
     )
     g.add_argument(
         "--primary-source",
@@ -475,6 +502,18 @@ def _build_parser() -> argparse.ArgumentParser:
         "--force", action="store_true", help="Re-prompt even if settings already exist"
     )
     su.set_defaults(func=cmd_setup)
+
+    dl = sub.add_parser(
+        "download",
+        help="Pre-download the semantic cascade models (~1.4 GB) into the HuggingFace cache.",
+        description=(
+            "Fetch the int8 OpenVINO IRs the --semantic cascade needs (bge-m3 + "
+            "bge-reranker + mDeBERTa-NLI) so the first --semantic run is warm. These are "
+            "the only model weights groundrails downloads; the lexical tiers need none. "
+            "Requires the [semantic-grounder] extra."
+        ),
+    )
+    dl.set_defaults(func=cmd_download)
 
     return parser
 

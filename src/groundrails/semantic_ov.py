@@ -59,6 +59,22 @@ def install_hint() -> str:
     )
 
 
+def download_models():
+    """Pre-fetch the int8 cascade IRs into the HuggingFace cache so the first
+    ``--semantic 1`` run is warm instead of paying a ~1.4 GB download.
+
+    Yields ``(short_name, repo_id, local_dir)`` as each IR finishes downloading.
+    These are the only model weights groundrails downloads - the lexical tiers need
+    none. Requires the ``semantic-grounder`` extra; raises ImportError otherwise.
+    """
+    if not is_available():
+        raise ImportError(install_hint())
+    from huggingface_hub import snapshot_download
+
+    for name, repo in HF_REPOS.items():
+        yield name, repo, snapshot_download(repo)
+
+
 def _feed(cm, enc):
     names = {i.get_any_name() for i in cm.inputs}
     return {n: enc[n].astype(np.int64) for n in enc if n in names}

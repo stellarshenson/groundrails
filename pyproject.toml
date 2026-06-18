@@ -81,6 +81,12 @@ semantic-grounder = [
     "transformers>=4.44",             # tokenizer for the OpenVINO int8 IRs
     "polars>=1.30",                   # gold parquet read in the eval / ensemble
 ]
+# Everything a user might want: the E5/NLI ONNX path + the OpenVINO cascade switch.
+# Dev tooling stays in `dev`, not here.
+all = [
+    "groundrails[semantic]",
+    "groundrails[semantic-grounder]",
+]
 
 [project.scripts]
 groundrails = "groundrails.cli:main"

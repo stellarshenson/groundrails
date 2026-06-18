@@ -146,6 +146,6 @@ def test_cli_semantic_hardfails_without_deps(monkeypatch, capsys, tmp_path):
     monkeypatch.setattr(semantic_ov, "is_available", lambda: False)
     src = tmp_path / "s.txt"
     src.write_text("hello world", encoding="utf-8")
-    rc = cli.main(["ground", "--claim", "x", "--source", str(src), "--semantic"])
+    rc = cli.main(["ground", "--claim", "x", "--source", str(src), "--semantic", "1"])
     assert rc == 2
     assert "cascade extras" in capsys.readouterr().err

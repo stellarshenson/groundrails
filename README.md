@@ -29,13 +29,46 @@ Agentic RAG can assert things its sources never said. The usual fix - a second L
 - **Cross-lingual grounding** - a claim in one language against evidence in another, via a torch-free MT bridge (argos / CTranslate2) and a SaT sentence segmenter (OpenVINO INT8)
 - **Self-consistency** - intra-document divergence check (same entity or number category, different values)
 - **Frozen-weight verdict** - a logistic manifold over 18 features at the `high` tier; deterministic, no per-call sampling
-- **Optional semantic layer** - embedding retrieval + NLI entailment behind the `[semantic]` extra; off by default, keeps the core torch-free
+- **Optional semantic switch** - an OpenVINO int8 cross-encoder cascade (bge-reranker relevance + mDeBERTa NLI entailment) that escalates only the claims the lexical tier is unsure about; off by default, keeps the core torch-free
 
 ## Install
 
 ```bash
-pip install groundrails              # core grounder (torch-free)
-pip install "groundrails[semantic]"  # add the optional embedding + NLI layer
+pip install groundrails                       # core grounder (torch-free)
+pip install "groundrails[semantic-grounder]"  # add the OpenVINO semantic cascade switch
+pip install "groundrails[all]"                # everything (semantic ONNX path + cascade switch)
+```
+
+The semantic cascade needs ~1.4 GB of int8 model IRs. They download lazily on first use, or fetch them up front with `groundrails download` (the only model weights the tool pulls; the lexical tiers need none).
+
+## Quickstart
+
+You have a generated answer (`answer.md`) and the source it should be grounded in (`evidence.txt`). groundrails pulls the claims out of the answer and verifies them all against the source in one pass - no hand-typing claims:
+
+```bash
+pip install groundrails
+
+groundrails extract-claims --document answer.md --output claims.json   # answer → claim list
+groundrails ground --manifest claims.json --source evidence.txt        # verify every claim
+# each claim → a verdict line (match type, per-layer scores); ungrounded claims are flagged
+```
+
+To escalate the uncertain claims to the semantic cascade, install the extra and add `--semantic 1`:
+
+```bash
+pip install "groundrails[semantic-grounder]"
+groundrails ground --manifest claims.json --source evidence.txt --semantic 1
+```
+
+From Python:
+
+```python
+from groundrails import ground_batch
+
+claims = ["The Eiffel Tower is in Paris.", "It was built in 1756."]
+sources = ["The Eiffel Tower is located in Paris, France. It was completed in 1889."]
+for m in ground_batch(claims, sources):
+    print(m.match_type, m.verdict_probability)
 ```
 
 ## CLI
@@ -55,8 +88,14 @@ groundrails ground --claim "The Eiffel Tower is in Paris." --source doc.txt
 - `groundrails check-consistency --document doc.md` - intra-document divergence report
 - `groundrails config` - print the resolved config + calibration block
 - `groundrails setup` - first-run semantic model/cache config
+- `groundrails download` - pre-fetch the semantic cascade models into the HuggingFace cache
 
-`--semantic` adds the optional embedding + NLI bundle to `ground`.
+`--effort {low,medium,high}` picks the lexical tier (default `high`). `--semantic {0,1}` is an orthogonal switch (default `0`, off) that turns on the cascade on top of the selected tier:
+
+```bash
+groundrails ground --claim "..." --source doc.txt --effort high               # lexical only
+groundrails ground --claim "..." --source doc.txt --effort high --semantic 1  # + cascade escalation
+```
 
 ## Python API
 
@@ -71,6 +110,16 @@ print(m.match_type, m.combined_score, m.verdict_probability)
 ```
 
 `ground_batch(claims, sources, ...)` runs many claims against the same sources and returns a list of verdicts.
+
+## Semantic switch
+
+An orthogonal on/off switch (`--semantic 1`, or `calibration.mode: semantic`) that composes the OpenVINO semantic cascade with whichever `--effort` tier is selected - it is not a fourth effort tier. The lexical verdict decides whenever its win is clear; only the uncertain band, and cross-lingual claims the lexical tier cannot ground, escalate to the cascade. The two are fused by a frozen joint logistic (no scikit-learn at inference).
+
+- **Cascade** - bge-m3 bi-encoder pre-filter → bge-reranker (relevance) + mDeBERTa NLI (entailment), all OpenVINO int8 on CPU; cosine-gate and cascade-band early-exits keep most claims off the cross-encoders
+- **Escalation** - lexical when the win is clear, the cascade when it is not; the escalation band is the cost lever
+- **Measured** - on the 2,752-claim verified gold, the switch lifts macro-F1 from **0.759** (lexical-only, high) to **0.822** (+0.06), recovering the supported claims the conservative lexical manifold over-flags
+- **Cost** - the cascade pulls ~1.4 GB of int8 IRs from the HuggingFace Hub on first use; needs the `[semantic-grounder]` extra (openvino + transformers). The core lexical path stays torch-free
+- **Reproduce** - `python experiments/grounding-semantic/joint_wirings.py` → `reports/grounding_joint_wirings.md`; the frozen tier is `calibration.semantic`
 
 ## Language support
 
@@ -112,6 +161,7 @@ Cross-lingual grounding needs an argos `<lang>→en` model for the claim's langu
 The `docs/` tree carries the concept, the calibration method, and the full research history behind the shipped weights.
 
 - **Concept** - [`docs/grounding_concept.md`](docs/grounding_concept.md) - what grounding means here and how a verdict is assembled
+- **Calibration howto** - [`docs/calibration-howto.md`](docs/calibration-howto.md) - prepare a labelled dataset, run the calibration, and what to expect from a retrain
 - **Calibration** - [`docs/grounding_calibration.md`](docs/grounding_calibration.md) - how the frozen weights and thresholds were fit
 - **Experiments log** - [`docs/experiments/lexical-grounding-experiments.md`](docs/experiments/lexical-grounding-experiments.md) - Rounds 1-12, what moved the metrics and what did not
 - **State of the art** - [`docs/experiments/lexical-grounding-sota.md`](docs/experiments/lexical-grounding-sota.md) - how the deterministic cascade compares to published grounding methods
@@ -119,8 +169,8 @@ The `docs/` tree carries the concept, the calibration method, and the full resea
 
 ## Project layout
 
-- `src/groundrails/` - the grounder (`grounding`, `lexical`, `lexical_mt`, `entity_check`, `consistency`, `calibration`, `chunking`, `extract`, `sat/`, `config` + the shipped `config_document_processing.yaml`)
-- `experiments/grounding/` - research harness (Rounds 1-12)
-- `notebooks/` - calibration, SaT / OpenVINO conversion, manifold retraining
+- `src/groundrails/` - the grounder (`grounding`, `lexical`, `lexical_mt`, `entity_check`, `consistency`, `calibration`, `chunking`, `extract`, `sat/`, the semantic switch `joint` + `semantic_ov`, `config` + the shipped `config_document_processing.yaml`)
+- `experiments/grounding-lexical/` - lexical research harness (Rounds 1-12); `experiments/grounding-semantic/` - the semantic cascade + wiring benchmark
+- `notebooks/grounding-lexical/`, `notebooks/grounding-semantic/` - calibration, SaT / OpenVINO conversion, manifold retraining, the joint-wiring benchmark
 - `tests/` - grounder tests + the exact-equivalence golden
 - `data/`, `models/`, `references/` - datasets, OpenVINO IR, papers (large/private content gitignored)

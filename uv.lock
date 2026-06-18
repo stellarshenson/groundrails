@@ -859,6 +859,12 @@ dependencies = [
 ]
 
 [package.optional-dependencies]
+all = [
+    { name = "faiss-cpu" },
+    { name = "onnxruntime" },
+    { name = "polars" },
+    { name = "transformers" },
+]
 dev = [
     { name = "awscli" },
     { name = "build" },
@@ -897,6 +903,8 @@ requires-dist = [
     { name = "build", marker = "extra == 'dev'" },
     { name = "ctranslate2", specifier = ">=4.0" },
     { name = "faiss-cpu", marker = "extra == 'semantic'", specifier = ">=1.7" },
+    { name = "groundrails", extras = ["semantic"], marker = "extra == 'all'" },
+    { name = "groundrails", extras = ["semantic-grounder"], marker = "extra == 'all'" },
     { name = "huggingface-hub", specifier = ">=0.23" },
     { name = "ipykernel", marker = "extra == 'dev'" },
     { name = "ipython", marker = "extra == 'dev'" },
@@ -938,7 +946,7 @@ requires-dist = [
     { name = "wordfreq", specifier = ">=3.0" },
     { name = "wtpsplit-lite", marker = "extra == 'dev'" },
 ]
-provides-extras = ["dev", "semantic", "semantic-grounder"]
+provides-extras = ["dev", "semantic", "semantic-grounder", "all"]
 
 [[package]]
 name = "h11"
