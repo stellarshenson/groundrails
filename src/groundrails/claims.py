@@ -16,14 +16,17 @@ from pydantic import BaseModel, ConfigDict, Field, TypeAdapter
 
 
 class Claim(BaseModel):
-    """One claim to ground. ``claim`` text is required and non-empty; ``id`` and
-    ``line_number`` are carried through from extract-claims when present."""
+    """One claim to ground. ``claim`` text is required and non-empty; ``id``,
+    ``line_number`` and the ``char_start`` / ``char_end`` span locate the claim in the
+    answer document - all carried through from extract-claims when present."""
 
     model_config = ConfigDict(extra="ignore")
 
     claim: str = Field(min_length=1)
     id: str | None = None
     line_number: int | None = None
+    char_start: int | None = None  # 0-based offset of the claim in the answer document
+    char_end: int | None = None  # 0-based exclusive end offset
 
 
 _ADAPTER = TypeAdapter(list[Claim])

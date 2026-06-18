@@ -12,8 +12,18 @@ from groundrails.grounding import (
     GroundingMatch,
     Location,
     UnsupportedLanguageError,
+    build_grounding_document,
     ground,
     ground_batch,
+    grounding_document,
 )
 
-__all__ = ["GroundingMatch", "Location", "UnsupportedLanguageError", "ground", "ground_batch"]
+__all__ = [
+    "GroundingMatch",
+    "Location",
+    "UnsupportedLanguageError",
+    "build_grounding_document",
+    "ground",
+    "ground_batch",
+    "grounding_document",
+]

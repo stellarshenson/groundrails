@@ -185,6 +185,41 @@ schemes on the frozen v1 head. `experiments/grounding-semantic/perlang_honest.py
 - **R1-H3 reconciled** - the mechanism (per-language operating points) was right; the in-sample 0.831 was optimistic, but the honest coarse form (EN vs non-EN) still clears the bar over the global baseline. The earlier Null verdict was for the in-sample per-language cut, not this
 - **Cost to ship** - two scalar thresholds plus the language flag the lexical layer already detects; deterministic, no new model, no retraining
 
+## Round 4: joint-premise NLI (the SummaC aggregation)
+
+Rounds 1-3 closed the recalibration lever; Round 4 opens a signal lever - a fix to how the
+cascade aggregates NLI. The cascade computes `nli_ent` / `nli_contra` as **max-over-chunks**:
+each source chunk is graded against the claim independently and the max is taken. That is the
+single-premise failure mode the SummaC multi-premise pattern (Laban et al., TACL 2022) was
+built for - a supported claim that fuses several source sentences is entailed by none of them
+alone, so the max stays low and the claim reads as unsupported. A sibling internal experiment
+on the identical `bge-reranker-v2-m3` + `mdeberta-v3-base-mnli-xnli` int8 stack ported SummaC
+(top-3 reranked source statements joined into one premise) and moved its information-loss
+residual 0.206 → 0.130 (to gold level) while holding fabrication.
+
+Empirical anchor (gold v4 - the 800-row VitaminC contrastive slice folded onto gold v3,
+`role=eval_vitaminc`): the combined grounder lifts only 0.701 → 0.715 over lexical-only (within
+the noise band), and the per-signal AUC shows why - reranker `rr_max` 0.482 (random; both
+contrastive claims share one evidence sentence) and `nli_ent` 0.382 (inverted), with only
+`nli_contra` 0.649 and the lexical verdict `lex_p` 0.766 carrying signal. The cascade's NLI is
+mis-firing on evidence it should grade - the case for fixing the aggregation, not the model.
+Note VitaminC is single-sentence, so R4-H1 targets the multi-chunk gold v3 / RAG regime, not it.
+
+### R4-H1 top-3 joint-premise NLI
+
+Because a supported claim can be entailed only by combining several source chunks, and the
+cascade grades each chunk independently then takes the max, replacing max-over-chunks NLI with
+the entailment of the claim against the top-3 reranked chunks joined into one premise will raise
+supported-recall on multi-chunk-evidence claims and lift gold v3 macro-F1 without a new model.
+
+- **Prediction** - gold v3 eval macro-F1 +>= 0.014 over the matched-threshold baseline (honest global 0.808), driven by English supported-recall on multi-chunk claims; English not regressed; synthetic cross-lingual TNR held
+- **Bar** - macro-F1 lift >= 0.014 (clears the noise band) AND English macro within +/-0.005 AND synthetic TNR >= 0.88 (the joint premise must not over-confirm); the lift must survive stacking with the Round 3 EN/non-EN split
+- **Kill-gate** - on a 300-row supported-eval sample, the fraction whose 2nd-ranked chunk carries reranker relevance within 0.10 of the top chunk is >= 15% (enough genuinely multi-chunk support to join), AND on the currently under-graded supported claims (low `nli_ent`, high `lex_p`) the joined-premise `nli_ent` rises >= 0.10 over the max-over-chunks value; if support almost always sits in one chunk, there is nothing to join - kill before the full re-score
+- **Method** - add a joint-premise path to the cascade scorer (rank chunks by the reranker, join the top-3 into one premise, one NLI pass → `nli_ent_joint`, `nli_contra_joint`), swap these into `JOINT_FEATURES`, re-evaluate through the Round 3 honest harness (GroupKFold leave-one-source-out + leave-one-fold-out thresholds); re-scores gold v3 eval only (5,857 rows), reuses the shipped int8 models, no new download
+- **Caveat to measure** - groundrails chunks at 1100/200 chars, larger than docdistance's sentence statements, so one chunk often already spans several sentences and the multi-chunk gain is smaller than the sentence-level result; the kill-gate quantifies the real multi-chunk support density before committing the re-score
+- **Companion throughput lever** - length-bucketing the reranker grid (sort pairs by length, tighten `max_length` to the per-call percentile) cut the same int8 reranker ~43% at bit-identical scores in the sibling experiment; fold it into the re-score to offset the joint-premise NLI cost
+- **Verdict** - **Planned** (pre-registered; not yet run)
+
 ## Lessons learned
 
 - **Macro-F1 on a supported-heavy slice misleads** - the non-EN macro (0.639) reads like a model failure but is mostly class imbalance: few native hallucinations, so the hallucination-class F1 dominates the average. The synthetic negatives are the right instrument - on them the head rejects 90.4%
@@ -207,5 +242,6 @@ schemes on the frozen v1 head. `experiments/grounding-semantic/perlang_honest.py
 - **Integrate the EN/non-EN operating point (Round 3 winner)** - fold the two honest thresholds into the serving calibration (one English cut, one non-English cut, keyed by the lexical layer's language detector) and validate macro 0.829 holds end-to-end; pending explicit approval to touch `config_document_processing.yaml`
 - **Strengthen the negatives (next, after the null resampling probe)** - the synthetic negatives are off-topic or clearly-unsupported translations (easy rejects), so the 90.4% TNR may flatter the head. Generate hard near-miss negatives per language: minimal edits to a SUPPORTED translated claim that flip its truth - numeric perturbation (42 -> 43), entity swap, negation, scope or quantifier change - so the claim stays topically and lexically close to its evidence but is false. Re-measure cross-lingual TNR on these; a head holding 0.90 on easy negatives may collapse on near-miss ones, separating real entailment-checking from lexical-overlap luck
 - **Balance native negatives per language** - harvest or synthesise hallucinations in the native eval languages so non-EN macro stops being imbalance-dominated and becomes a fair readout rather than a tiny-class average
+- **Run Round 4 (joint-premise NLI)** - the pre-registered SummaC aggregation above; kill-gate first (multi-chunk support density on a 300-row supported sample), then re-score gold v3 eval with the top-3 joint premise and evaluate stacked with the Round 3 EN/non-EN split. This is a new signal (R4-H1), addressing the "max-over-chunks mis-grades multi-sentence support" failure - the one form of new feature the next bullet calls for
 - **New cross-lingual signals, not re-routing** - R1-H1/H5 show the existing cascade and lexical signals do not separate the non-EN slice; a lift needs a new feature (e.g. a cross-lingual entailment model that actually fires), not a different combination of the current ones
 - **Refuted, do not revisit** - native cascade AUC as a cross-lingual readout (R1-H1, thin negative class); `nli_ent` as the cross-lingual rejection mechanism (R1-H2, 0.523); head reweighting to close the non-EN gap (R1-H4, -0.005); class / language over-under-sampling in training (Round 2, macro flat 0.810 -> 0.811); language-aware escalation into the cascade (R1-H5, 0.800 < 0.809)

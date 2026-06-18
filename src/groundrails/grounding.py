@@ -192,6 +192,50 @@ class GroundingMatch:
     reranker_score: float = 0.0
     """Max bge-reranker relevance over chunks when the semantic cascade ran (0 otherwise)."""
 
+    @property
+    def grounded(self) -> bool:
+        """True when a layer supports the claim (``none`` = unsupported, ``contradicted`` = conflict)."""
+        return self.match_type not in ("none", "contradicted")
+
+    @property
+    def support(self) -> dict | None:
+        """Winning-layer support provenance - the quote and its location in the evidence -
+        or ``None`` when the claim is not grounded. A cascade verdict (``match_type`` =
+        ``semantic``) carries no native location, so it falls back to the best lexical
+        passage, flagged ``support_via = "lexical"``, so an agent always gets a place to look."""
+        if not self.grounded:
+            return None
+        layers = {
+            "exact": (self.exact_location, self.exact_matched_text),
+            "fuzzy": (self.fuzzy_location, self.fuzzy_matched_text),
+            "bm25": (self.bm25_location, self.bm25_matched_text),
+            "semantic": (self.semantic_location, self.semantic_matched_text),
+        }
+        via = None
+        loc, text = layers.get(self.match_type, (None, ""))
+        if loc is None or loc.char_start < 0:
+            for layer in ("bm25", "fuzzy", "exact"):
+                cand_loc, cand_text = layers[layer]
+                if cand_loc.char_start >= 0:
+                    loc, text, via = cand_loc, cand_text, "lexical"
+                    break
+        if loc is None or loc.char_start < 0:
+            return None
+        out = {
+            "source_index": loc.source_index,
+            "source_path": loc.source_path,
+            "matched_text": text,
+            "char_start": loc.char_start,
+            "char_end": loc.char_end,
+            "line_start": loc.line_start,
+            "line_end": loc.line_end,
+            "paragraph": loc.paragraph,
+            "page": loc.page,
+        }
+        if via:
+            out["support_via"] = via
+        return out
+
 
 def _normalize_whitespace(text: str) -> str:
     """Collapse runs of whitespace to a single space, strip ends."""
@@ -1448,3 +1492,82 @@ def ground_batch(
                     )
 
     return matches
+
+
+# -- grounding document (business-end provenance report) ----------------------
+
+
+def _final_score(m: GroundingMatch) -> float:
+    """The single headline score: the calibrated verdict probability if it ran, else the
+    max-over-layers combined score."""
+    return m.verdict_probability if m.verdict_probability >= 0 else m.combined_score
+
+
+def _contradiction(m: GroundingMatch) -> dict | None:
+    """Numeric / named-entity disagreements with the winning passage, or None."""
+    if not (m.numeric_mismatches or m.entity_mismatches):
+        return None
+    return {
+        "numeric": [list(t) for t in m.numeric_mismatches],
+        "entity": [list(t) for t in m.entity_mismatches],
+    }
+
+
+def _claim_location(claim_obj) -> dict | None:
+    """Where the claim sits in the answer document, from a ``claims.Claim`` (or None)."""
+    if claim_obj is None:
+        return None
+    line = getattr(claim_obj, "line_number", None)
+    cs = getattr(claim_obj, "char_start", None)
+    ce = getattr(claim_obj, "char_end", None)
+    if line is None and cs is None:
+        return None
+    return {"line": line, "char_start": cs, "char_end": ce}
+
+
+def build_grounding_document(matches, claims=None, sources=None) -> dict:
+    """Assemble the business-end grounding document from already-computed matches: per claim
+    its verdict, the single final score, and the support provenance - no per-scorer internals.
+
+    ``claims`` (optional, aligned to ``matches``) supplies each claim's location in the answer
+    document (id, line, char span) as written by extract-claims; ``sources`` lists the evidence
+    paths. The result is JSON-serialisable - the dict the API and ``--json`` return."""
+    entries = []
+    for i, m in enumerate(matches):
+        c = claims[i] if claims and i < len(claims) else None
+        entries.append(
+            {
+                "id": getattr(c, "id", None),
+                "claim": m.claim,
+                "claim_location": _claim_location(c),
+                "grounded": m.grounded,
+                "match_type": m.match_type,
+                "score": round(_final_score(m), 4),
+                "support": m.support,
+                "contradiction": _contradiction(m),
+            }
+        )
+    doc = {
+        "summary": {
+            "total": len(matches),
+            "grounded": sum(1 for m in matches if m.grounded),
+            "ungrounded": sum(1 for m in matches if not m.grounded),
+        },
+        "claims": entries,
+    }
+    if sources is not None:
+        paths = [s[0] for s in sources if isinstance(s, tuple)]
+        if paths:
+            doc = {"sources": paths, **doc}
+    return doc
+
+
+def grounding_document(claims, sources, **kwargs) -> dict:
+    """Ground every claim and return the grounding document (a dict). ``claims`` may be plain
+    strings or objects carrying ``id`` / ``line_number`` / ``char_start`` / ``char_end`` (e.g.
+    ``claims.Claim`` from extract-claims), which become each claim's answer-document location.
+    Extra keyword arguments pass through to :func:`ground_batch`."""
+    texts = [c if isinstance(c, str) else c.claim for c in claims]
+    objs = [None if isinstance(c, str) else c for c in claims]
+    matches = ground_batch(texts, sources, **kwargs)
+    return build_grounding_document(matches, claims=objs, sources=sources)

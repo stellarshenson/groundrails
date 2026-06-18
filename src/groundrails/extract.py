@@ -36,11 +36,16 @@ import re
 
 @dataclass
 class ExtractedClaim:
-    """A single candidate claim with stable ID + source line number."""
+    """A single candidate claim with stable ID, source line, and char span.
+
+    ``char_start`` / ``char_end`` are the claim's 0-based offsets in the answer document
+    (``-1`` when the sentence could not be relocated after markdown stripping)."""
 
     id: str
     claim: str
     line_number: int
+    char_start: int = -1
+    char_end: int = -1
 
 
 # Sentence-end regex. Splits on ``. ! ?`` followed by whitespace and a
@@ -122,25 +127,51 @@ def _split_document(text: str) -> list[tuple[int, str]]:
     return out
 
 
+def _line_offsets(text: str) -> list[int]:
+    """0-based char offset where each 1-indexed line starts (index 0 unused)."""
+    offs = [0, 0]
+    for ln in text.splitlines(keepends=True):
+        offs.append(offs[-1] + len(ln))
+    return offs
+
+
+def _relocate(text: str, sentence: str, search_from: int = 0) -> tuple[int, int]:
+    """Best-effort char span of ``sentence`` in ``text``, whitespace-flexible so the
+    markdown-stripped, paragraph-joined sentence still matches the original. Returns
+    ``(-1, -1)`` when it cannot be located."""
+    words = sentence.split()
+    if not words:
+        return (-1, -1)
+    pat = re.compile(r"\s+".join(re.escape(w) for w in words))
+    m = pat.search(text, max(search_from - 1, 0)) or pat.search(text)
+    return (m.start(), m.end()) if m else (-1, -1)
+
+
 def extract_claims(document_text: str) -> list[ExtractedClaim]:
     """Extract candidate claims from document text.
 
     Heuristic: split into sentences, drop fragments that lack verb-shaped
-    content, assign stable IDs in order of appearance.
+    content, assign stable IDs in order of appearance. Each claim carries its
+    char span in the document (relocated whitespace-flexibly; ``-1`` if unfound).
     """
     sentences = _split_document(document_text)
     candidates: list[tuple[int, str]] = [
         (line_no, s) for line_no, s in sentences if _looks_like_claim(s)
     ]
 
+    offs = _line_offsets(document_text)
     pad = max(2, len(str(len(candidates))))
     out: list[ExtractedClaim] = []
     for i, (line_no, claim_text) in enumerate(candidates, start=1):
+        anchor = offs[line_no] if 0 < line_no < len(offs) else 0
+        cs, ce = _relocate(document_text, claim_text, anchor)
         out.append(
             ExtractedClaim(
                 id=f"c{i:0{pad}d}",
                 claim=claim_text,
                 line_number=line_no,
+                char_start=cs,
+                char_end=ce,
             )
         )
     return out
