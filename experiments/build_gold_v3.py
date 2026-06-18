@@ -58,6 +58,11 @@ def build():
     base = pd.read_parquet(EVAL_SRC).copy()
     synth = pd.read_parquet(SYNTH_SRC).copy()
 
+    # Drop redundant golden rows: a repeat of (claim, source_text, label) carries no new
+    # signal (identical grounding features) and would double-weight the example in both
+    # training and the eval metric. Keep the first occurrence.
+    base = base.drop_duplicates(subset=["claim", "source_text", "label"], keep="first").reset_index(drop=True)
+
     base["role"] = "eval"
     base["lang_norm"] = _lang_norm(base["lang"])
     base["group_id"] = _group_id(base["source_text"])
@@ -92,8 +97,9 @@ def main() -> None:
     linked = aug["group_id"].isin(eg).sum()
     gtop = golden["lang_norm"].value_counts()
 
+    dropped = pd.read_parquet(EVAL_SRC).shape[0] - len(golden)
     print(f"wrote {OUT_EVAL.relative_to(ROOT)}  (golden / verified, role=eval)")
-    print(f"  rows      : {len(golden)}")
+    print(f"  rows      : {len(golden)}  (dropped {dropped} redundant claim/source/label rows)")
     print(f"  label     : {dict(golden['label'].value_counts().sort_index())}  (0=hallucination, 1=supported)")
     print(f"  origin    : {dict(golden['origin'].value_counts())}")
     print(f"  groups    : {golden['group_id'].nunique()} distinct source blobs (GroupKFold unit)")
