@@ -29,6 +29,7 @@ dependencies = [
     "scikit-learn>=1.3",              # manifold fit path (LogisticRegression)
     "pyarrow>=14.0",                  # parquet gold read
     "pyyaml",
+    "pydantic>=2",                    # claims-file schema validation
     "rank-bm25>=0.2.2",
     "rapidfuzz>=3.14.5",
     "wordfreq>=3.0",                  # length-robust background token rarity

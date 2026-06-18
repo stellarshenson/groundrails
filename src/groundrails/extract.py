@@ -1,8 +1,8 @@
-"""Claim extraction: turn a document into a claims.json for `ground --manifest`.
+"""Claim extraction: turn a document into a claims.json to feed `ground`.
 
 The grounding tool's heaviest manual step is producing the claims list.
 This module provides a deterministic sentence-per-line heuristic extractor
-that emits JSON compatible with ``ground --manifest``:
+that emits JSON conforming to the ``groundrails.claims.Claim`` schema:
 
     [
         {"id": "c01", "claim": "We observed 42 concurrent sessions."},

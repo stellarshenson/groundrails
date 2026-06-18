@@ -12,6 +12,10 @@ Grounding guardrails for agentic RAG - deterministic, torch-free claim verificat
 
 groundrails checks whether a claim is supported by source text and flags hallucinations and contradictions, with no LLM in the loop. It runs on CPU, returns a structured verdict per claim, and is the library extracted from the lexical-grounding research line (Rounds 1-12).
 
+<p align="center">
+  <img src=".resources/groundrails-banner-v2.svg" alt="groundrails - deterministic claim grounding" width="640">
+</p>
+
 ## Why
 
 Agentic RAG can assert things its sources never said. The usual fix - a second LLM grading each answer - is non-deterministic, costs a model call per claim, and gives no auditable reason for its verdict. groundrails is the deterministic gate that runs before output reaches the user.
@@ -36,10 +40,19 @@ Agentic RAG can assert things its sources never said. The usual fix - a second L
 ```bash
 pip install groundrails                       # core grounder (torch-free)
 pip install "groundrails[semantic-grounder]"  # add the OpenVINO semantic cascade switch
-pip install "groundrails[all]"                # everything (semantic ONNX path + cascade switch)
+pip install "groundrails[all]"                # both semantic extras (OpenVINO cascade + legacy ONNX E5/FAISS)
 ```
 
 The semantic cascade needs ~1.4 GB of int8 model IRs. They download lazily on first use, or fetch them up front with `groundrails download` (the only model weights the tool pulls; the lexical tiers need none).
+
+## Models
+
+All model weights are OpenVINO INT8 IRs published on the HuggingFace Hub - no base model or torch at inference. The semantic cascade pulls the first three; the lexical tier's sentence segmenter uses the fourth.
+
+- [`stellars/bge-m3-openvino-int8`](https://huggingface.co/stellars/bge-m3-openvino-int8) - bi-encoder pre-filter (cosine)
+- [`stellars/bge-reranker-v2-m3-openvino-int8`](https://huggingface.co/stellars/bge-reranker-v2-m3-openvino-int8) - cross-encoder reranker (relevance)
+- [`stellars/mdeberta-v3-base-mnli-xnli-openvino-int8`](https://huggingface.co/stellars/mdeberta-v3-base-mnli-xnli-openvino-int8) - multilingual NLI (entailment, contradiction)
+- [`stellars/sat-3l-sm-openvino-int8`](https://huggingface.co/stellars/sat-3l-sm-openvino-int8) - SaT sentence segmenter (cross-lingual chunking)
 
 ## Quickstart
 
@@ -49,7 +62,7 @@ You have a generated answer (`answer.md`) and the source it should be grounded i
 pip install groundrails
 
 groundrails extract-claims --document answer.md --output claims.json   # answer → claim list
-groundrails ground --manifest claims.json --source evidence.txt        # verify every claim
+groundrails ground claims.json evidence.txt                            # verify every claim
 # each claim → a verdict line (match type, per-layer scores); ungrounded claims are flagged
 ```
 
@@ -57,7 +70,7 @@ To escalate the uncertain claims to the semantic cascade, install the extra and 
 
 ```bash
 pip install "groundrails[semantic-grounder]"
-groundrails ground --manifest claims.json --source evidence.txt --semantic 1
+groundrails ground claims.json evidence.txt --semantic 1
 ```
 
 From Python:
@@ -82,13 +95,16 @@ groundrails ground --claim "The Eiffel Tower is in Paris." --source doc.txt
 # → exit 0 (grounded); prints the match type, per-layer scores, and matched text
 ```
 
-- `groundrails ground --claim "<claim>" --source doc.txt` - ground one claim; exit 0 if grounded, 1 if not
-- `groundrails ground --manifest claims.json --source doc.txt [--json]` - batch over many claims
-- `groundrails extract-claims --document doc.md` - heuristic sentence-to-claim extractor
+- `groundrails ground claims.json doc.txt [--json]` - the simple form: a claims file then a source; grounds every claim, exit 0 if all grounded, 1 if any is not
+- `groundrails ground --claim "<claim>" --source doc.txt` - ground a single inline claim
+- `groundrails ground --claims claims.json --source doc.txt` - claims file by flag (same as the positional form)
+- `groundrails extract-claims --document doc.md --output claims.json` - heuristic sentence-to-claim extractor; produces a claims.json to feed `ground`
 - `groundrails check-consistency --document doc.md` - intra-document divergence report
 - `groundrails config` - print the resolved config + calibration block
 - `groundrails setup` - first-run semantic model/cache config
 - `groundrails download` - pre-fetch the semantic cascade models into the HuggingFace cache
+
+A claims file is a JSON list of strings or `{claim, ...}` objects (as `extract-claims` writes), or plain text with one claim per line - validated against a pydantic schema.
 
 `--effort {low,medium,high}` picks the lexical tier (default `high`). `--semantic {0,1}` is an orthogonal switch (default `0`, off) that turns on the cascade on top of the selected tier:
 

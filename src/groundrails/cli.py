@@ -116,22 +116,27 @@ def _read_sources(paths: list[str]) -> list[tuple[str, str]]:
     return out
 
 
-def _read_claims_manifest(path_str: str) -> list[str]:
-    """Read a claims manifest: a JSON list of strings or ``{claim, ...}`` objects."""
-    claims_path = Path(path_str)
-    if not claims_path.is_file():
-        print(f"ERROR: claims manifest not found: {path_str}", file=sys.stderr)
+def _read_claims(path_str: str) -> list[str]:
+    """Read + validate a claims file against the Claim schema (``groundrails.claims``)."""
+    from pydantic import ValidationError
+
+    from groundrails.claims import load_claims
+
+    try:
+        claims = load_claims(path_str)
+    except FileNotFoundError:
+        print(f"ERROR: claims file not found: {path_str}", file=sys.stderr)
+        raise SystemExit(1) from None
+    except ValidationError as exc:
+        print(f"ERROR: claims file does not conform to the Claim schema:\n{exc}", file=sys.stderr)
+        raise SystemExit(1) from None
+    except ValueError as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        raise SystemExit(1) from None
+    if not claims:
+        print(f"ERROR: claims file has no claims: {path_str}", file=sys.stderr)
         raise SystemExit(1)
-    raw = json.loads(claims_path.read_text(encoding="utf-8"))
-    if isinstance(raw, list) and all(isinstance(x, str) for x in raw):
-        return raw
-    if isinstance(raw, list) and all(isinstance(x, dict) and "claim" in x for x in raw):
-        return [x["claim"] for x in raw]
-    print(
-        "ERROR: claims manifest must be a JSON list of strings or objects with a 'claim' key",
-        file=sys.stderr,
-    )
-    raise SystemExit(1)
+    return [c.claim for c in claims]
 
 
 def _loc_str(loc) -> str:
@@ -183,9 +188,38 @@ def _match_line(m: GroundingMatch) -> str:
 
 # --- command handlers -------------------------------------------------------
 def cmd_ground(args: argparse.Namespace) -> int:
-    sources = _read_sources(args.source)
+    # Resolve claims and source from the positional `CLAIMS SOURCE` form or the flags.
+    # Claims come from --claim (inline), --claims (file), or the first positional; sources
+    # from --source (repeatable) and/or the remaining positionals.
+    paths = list(args.paths)
+    src = list(args.source)
+    claim_single = args.claim
+    claims_file = args.claims_file
+    if claim_single is not None or claims_file is not None:
+        src += paths  # claims came from a flag -> every positional is a source
+    elif paths:
+        if not src:  # positional form: `ground CLAIMS SOURCE`
+            if len(paths) < 2:
+                print(
+                    "ERROR: need a claims file and a source: `ground CLAIMS SOURCE`, "
+                    "or --claim/--claims with --source",
+                    file=sys.stderr,
+                )
+                return 2
+            claims_file, src = paths[0], paths[1:]
+        else:  # source via --source -> the positional is the claims file
+            claims_file, src = paths[0], src + paths[1:]
+    else:
+        print(
+            "ERROR: provide claims and a source: `ground CLAIMS SOURCE`, "
+            "or --claim/--claims with --source",
+            file=sys.stderr,
+        )
+        return 2
+
+    sources = _read_sources(src)
     if not sources:
-        print("ERROR: no readable --source provided (see warnings above)", file=sys.stderr)
+        print("ERROR: no readable source provided (see warnings above)", file=sys.stderr)
         return 1
     # --semantic is the orthogonal switch: it turns on the OpenVINO cascade that
     # escalates the uncertain band of whatever --effort tier is selected. Deps present
@@ -202,50 +236,53 @@ def cmd_ground(args: argparse.Namespace) -> int:
     if getattr(args, "effort", None):
         cfg = cfg.overlay(lexical_effort=args.effort)
 
-    if getattr(args, "manifest", None):
-        claims = _read_claims_manifest(args.manifest)
+    # single-claim mode: one match line, exit 0 if grounded
+    if claim_single is not None:
         try:
-            matches = ground_batch(
-                claims,
+            m = ground(
+                claim_single,
                 sources,
                 fuzzy_threshold=args.threshold,
                 bm25_threshold=args.bm25_threshold,
                 config=cfg,
                 semantic=semantic,
-                primary_source=args.primary_source,
-                max_workers=args.workers,
             )
         except UnsupportedLanguageError as exc:
-            print(f"ERROR: {exc} (an unsupported-language claim is in the batch)", file=sys.stderr)
+            print(f"ERROR: {exc}", file=sys.stderr)
             return 3
         if args.json:
-            report = json.dumps([asdict(m) for m in matches], indent=2, default=str)
+            print(json.dumps(asdict(m), indent=2, default=str))
         else:
-            report = "\n".join(f"{i + 1}. {_match_line(m)}" for i, m in enumerate(matches))
-        if args.output:
-            Path(args.output).write_text(report, encoding="utf-8")
-            print(f"wrote {len(matches)} results to {args.output}", file=sys.stderr)
-        else:
-            print(report)
-        return 0
+            print(_match_line(m))
+        return 0 if m.match_type != "none" else 1
 
+    # batch mode: ground every claim in the file, one report line each
+    claims = _read_claims(claims_file)
     try:
-        m = ground(
-            args.claim,
+        matches = ground_batch(
+            claims,
             sources,
             fuzzy_threshold=args.threshold,
             bm25_threshold=args.bm25_threshold,
             config=cfg,
             semantic=semantic,
+            primary_source=args.primary_source,
+            max_workers=args.workers,
         )
     except UnsupportedLanguageError as exc:
-        print(f"ERROR: {exc}", file=sys.stderr)
+        print(f"ERROR: {exc} (an unsupported-language claim is in the batch)", file=sys.stderr)
         return 3
     if args.json:
-        print(json.dumps(asdict(m), indent=2, default=str))
+        report = json.dumps([asdict(m) for m in matches], indent=2, default=str)
     else:
-        print(_match_line(m))
-    return 0 if m.match_type != "none" else 1
+        report = "\n".join(f"{i + 1}. {_match_line(m)}" for i, m in enumerate(matches))
+    if args.output:
+        Path(args.output).write_text(report, encoding="utf-8")
+        print(f"wrote {len(matches)} results to {args.output}", file=sys.stderr)
+    else:
+        print(report)
+    # `ground` is a gate: exit 1 if any claim is not grounded
+    return 0 if all(m.match_type != "none" for m in matches) else 1
 
 
 def cmd_extract_claims(args: argparse.Namespace) -> int:
@@ -266,7 +303,12 @@ def cmd_extract_claims(args: argparse.Namespace) -> int:
         )
         return 2
 
-    payload = [{"id": c.id, "claim": c.claim, "line_number": c.line_number} for c in extracted]
+    from groundrails.claims import Claim
+
+    # emit through the shared Claim schema so the written claims.json is conformant
+    payload = [
+        Claim(id=c.id, claim=c.claim, line_number=c.line_number).model_dump() for c in extracted
+    ]
     if args.output:
         out = Path(args.output)
         out.parent.mkdir(parents=True, exist_ok=True)
@@ -276,7 +318,7 @@ def cmd_extract_claims(args: argparse.Namespace) -> int:
         print(json.dumps(payload, indent=2))
     print(
         "NOTE: extract-claims uses a heuristic. Review claims.json before "
-        "running `ground --manifest` - short/ambiguous sentences may need rewording.",
+        "running `ground claims.json <source>` - short/ambiguous sentences may need rewording.",
         file=sys.stderr,
     )
     return 0
@@ -381,25 +423,32 @@ def _build_parser() -> argparse.ArgumentParser:
         "ground",
         help="Ground claims against source text (regex + Levenshtein + BM25; --semantic adds the bundle).",
         description=(
-            "One claim via --claim, or many via --manifest (a claims file). Three "
-            "lexical layers always run - regex exact, Levenshtein partial-ratio, BM25 "
-            "token-recall; all scores reported. --semantic adds the embedding + NLI "
-            "entailment + calibrated-verdict bundle. Single-claim mode prints one match "
-            "line (exit 0 if grounded, 1 if not); manifest mode writes a report."
+            "Ground claims against a source. Simple form: `ground CLAIMS SOURCE` (a claims "
+            "file then a source file). Single claim: `--claim TEXT --source SRC`. Claims file "
+            "by flag: `--claims FILE --source SRC`. Three lexical layers always run - regex "
+            "exact, Levenshtein partial-ratio, BM25 token-recall; `--semantic 1` adds the "
+            "OpenVINO cascade. Exit 0 if grounded, 1 if any claim is not."
         ),
     )
-    claim_src = g.add_mutually_exclusive_group(required=True)
-    claim_src.add_argument("--claim", help="A single claim to locate (single-claim mode)")
-    claim_src.add_argument(
-        "--manifest",
-        help="Claims manifest path (JSON list of strings or {claim,...}); batch mode -> report",
+    g.add_argument(
+        "paths",
+        nargs="*",
+        metavar="CLAIMS SOURCE",
+        help="Positional form: a claims file then a source file (`ground claims.json evidence.txt`)",
+    )
+    g.add_argument(
+        "--claim", help="A single claim to ground against the source (instead of a claims file)"
+    )
+    g.add_argument(
+        "--claims",
+        dest="claims_file",
+        help="Claims file: JSON list / {claim,...} objects (from extract-claims), or text one-per-line",
     )
     g.add_argument(
         "--source",
         action="append",
         default=[],
-        required=True,
-        help="Source text file path (repeatable; read as UTF-8)",
+        help="Source/evidence file (repeatable; flag form of the positional SOURCE)",
     )
     g.add_argument(
         "--threshold",
@@ -444,10 +493,10 @@ def _build_parser() -> argparse.ArgumentParser:
         "--primary-source",
         dest="primary_source",
         default=None,
-        help="Manifest mode: the source expected to ground the claims (cross-source flag).",
+        help="Batch mode: the source expected to ground the claims (cross-source flag).",
     )
     g.add_argument(
-        "--output", help="Manifest mode: write the report to this path instead of stdout"
+        "--output", help="Batch mode: write the report to this path instead of stdout"
     )
     g.add_argument(
         "--json", action="store_true", help="Emit JSON instead of the match line / report"
@@ -456,13 +505,13 @@ def _build_parser() -> argparse.ArgumentParser:
         "--workers",
         type=int,
         default=5,
-        help="Manifest mode: worker threads for per-claim grounding (default 5; 1 = serial)",
+        help="Batch mode: worker threads for per-claim grounding (default 5; 1 = serial)",
     )
     g.set_defaults(func=cmd_ground)
 
     ex = sub.add_parser(
         "extract-claims",
-        help="Heuristic sentence-to-claim extractor; emits claims.json for `ground --manifest`.",
+        help="Heuristic sentence-to-claim extractor; emits claims.json to feed `ground`.",
         description=(
             "Walk a markdown/text document and emit claim candidates with stable IDs. "
             "LOSSY - review claims.json before grounding."
