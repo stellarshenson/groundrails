@@ -21,6 +21,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 import json
+import os
 from pathlib import Path
 
 import numpy as np
@@ -137,10 +138,14 @@ class SemanticCascade:
 
             d = Path(snapshot_download(HF_REPOS[name]))
             tok = AutoTokenizer.from_pretrained(d, fix_mistral_regex=False)
+            cfg = {"PERFORMANCE_HINT": self.hint}
+            n_threads = os.environ.get("GROUNDRAILS_OV_THREADS")
+            if n_threads:
+                cfg["INFERENCE_NUM_THREADS"] = int(n_threads)
             cm = core.compile_model(
                 core.read_model(str(d / "openvino_model.xml")),
                 "CPU",
-                {"PERFORMANCE_HINT": self.hint},
+                cfg,
             )
             return cm, tok, d
 
