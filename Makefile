@@ -204,6 +204,15 @@ build: clean install test
 	@echo "$(MSG_PREFIX) building $(MODULE_NAME)"
 	$(PROJECT_DIR)/.venv/bin/python -m build --wheel
 
+## Install, build (wheel + sdist) and publish to PyPI with twine (increments version)
+.PHONY: publish
+publish: install build
+	@echo "$(MSG_PREFIX) building source distribution"
+	$(PROJECT_DIR)/.venv/bin/python -m build --sdist
+	@echo "$(MSG_PREFIX) uploading $(MODULE_NAME) to PyPI with twine"
+	uvx twine upload dist/*
+	@echo "$(OK_STYLE)>>> $(MODULE_NAME) published to PyPI$(NO_STYLE)"
+
 ## Increment build number (skip with SKIP_VERSION_INCREMENT=1)
 increment_version_number:
 	@if [ "$(SKIP_VERSION_INCREMENT)" = "1" ]; then \

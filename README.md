@@ -34,14 +34,20 @@ Agentic RAG can assert things its sources never said. The usual fix - a second L
 ## Install
 
 ```bash
-pip install -e .                 # core grounder (torch-free)
-pip install -e ".[semantic]"     # add the optional embedding + NLI layer
-make install                     # full uv env with dev extras
+pip install groundrails              # core grounder (torch-free)
+pip install "groundrails[semantic]"  # add the optional embedding + NLI layer
 ```
 
 ## CLI
 
 The `groundrails` command verifies claims against source text read as plain UTF-8.
+
+```bash
+# put the evidence in a file, then ground a claim against it
+echo "The Eiffel Tower is located in Paris, France." > doc.txt
+groundrails ground --claim "The Eiffel Tower is in Paris." --source doc.txt
+# → exit 0 (grounded); prints the match type, per-layer scores, and matched text
+```
 
 - `groundrails ground --claim "<claim>" --source doc.txt` - ground one claim; exit 0 if grounded, 1 if not
 - `groundrails ground --manifest claims.json --source doc.txt [--json]` - batch over many claims
