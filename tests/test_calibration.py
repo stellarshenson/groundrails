@@ -224,19 +224,32 @@ class TestConfigTransferRoundtrip:
     """E6: train -> config set-calibrator -> ground() auto-uses the weights."""
 
     def test_train_then_config_then_ground(self, tmp_path, monkeypatch):
+        from dataclasses import asdict
+
         import yaml
 
-        from groundrails import cli
+        from groundrails.config import load_document_processing_config
 
         # 1. train + save a profile
         v = C.fit_calibrator(_fixture_df(), draws=DRAWS, tune=TUNE, random_seed=0)
         prof = tmp_path / "cal.json"
         v.save(prof)
 
-        # 2. transfer learned weights into a project config under a temp CWD
+        # 2. transfer learned weights into a project config under a temp CWD. The
+        #    groundrails CLI is grounding-only (no set-calibrator command), so write
+        #    the calibrated block via the calibration API directly.
         monkeypatch.chdir(tmp_path)
-        assert cli.main(["config", "set-calibrator", "--profile", str(prof)]) == 0
+        cal = C.CalibratedVerdict.load(prof)
+        weights = {n: round(mu, 6) for n, (mu, _sd) in cal.posterior_summary().items()}
+        d = asdict(load_document_processing_config())
+        d["calibration"] = {
+            "engine": "calibrated",
+            "threshold": float(cal.threshold),
+            "weights": weights,
+        }
         cfgfile = tmp_path / ".stellars-plugins" / "config_document_processing.yaml"
+        cfgfile.parent.mkdir(parents=True, exist_ok=True)
+        cfgfile.write_text(yaml.safe_dump(d, sort_keys=False))
         assert cfgfile.is_file()
         block = yaml.safe_load(cfgfile.read_text())["calibration"]
         assert block["engine"] == "calibrated" and block["weights"]

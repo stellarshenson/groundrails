@@ -16,6 +16,7 @@ from groundrails.chunking import (
     recursive_chunk,
 )
 from groundrails.cli import main as cli_main
+from groundrails.lexical_mt import has_model
 
 
 @pytest.fixture
@@ -942,6 +943,7 @@ class TestNLIGrounding:
 
     SRC = [("e.txt", "The estate has three walled gardens and an orchard.")]
 
+    @pytest.mark.skipif(not has_model("fr"), reason="argos fr->en model not installed")
     def test_entailment_grounds(self):
         from groundrails.grounding import ground
 
