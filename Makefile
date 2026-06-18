@@ -14,7 +14,7 @@ PYTHON_INTERPRETER = python
 SKIP_VERSION_INCREMENT ?= 0
 
 # AWS S3 configuration
-S3_BUCKET = groundrails-data
+S3_BUCKET = general-purpose/groundrails
 AWS_PROFILE = stellars-tech
 AWS_OPTS =
 

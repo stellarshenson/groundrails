@@ -21,5 +21,5 @@ pydata_packages: none
 python_version_choice: '3.12'
 repo_name: groundrails
 s3_aws_profile: stellars-tech
-s3_bucket: groundrails-data
+s3_bucket: general-purpose/groundrails
 testing_framework: pytest
