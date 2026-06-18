@@ -1,8 +1,26 @@
 # groundrails
 
+[![CI](https://github.com/stellarshenson/groundrails/actions/workflows/ci.yml/badge.svg)](https://github.com/stellarshenson/groundrails/actions/workflows/ci.yml)
+[![PyPI version](https://img.shields.io/pypi/v/groundrails.svg)](https://pypi.org/project/groundrails/)
+[![Total PyPI downloads](https://static.pepy.tech/badge/groundrails)](https://pepy.tech/project/groundrails)
+[![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Brought To You By KOLOMOLO](https://img.shields.io/badge/Brought%20To%20You%20By-KOLOMOLO-00ffff?style=flat)](https://kolomolo.com)
+[![Donate PayPal](https://img.shields.io/badge/Donate-PayPal-blue?style=flat)](https://www.paypal.com/donate/?hosted_button_id=B4KPBJDLLXTSA)
+
 Grounding guardrails for agentic RAG - deterministic, torch-free claim verification.
 
 groundrails checks whether a claim is supported by source text and flags hallucinations and contradictions, with no LLM in the loop. It runs on CPU, returns a structured verdict per claim, and is the library extracted from the lexical-grounding research line (Rounds 1-12).
+
+## Why
+
+Agentic RAG can assert things its sources never said. The usual fix - a second LLM grading each answer - is non-deterministic, costs a model call per claim, and gives no auditable reason for its verdict. groundrails is the deterministic gate that runs before output reaches the user.
+
+- **No LLM in the loop** - frozen logistic weights over lexical features → same input gives the same verdict on every run
+- **Cheap** - CPU-only, torch-free core; milliseconds per claim, no GPU, no API call
+- **Auditable** - every verdict carries per-layer scores and the exact numeric or entity mismatch that triggered a flag
+- **Cross-lingual offline** - claim-vs-evidence language gap is bridged by an on-device MT bridge, no translation API
+- **Research-backed** - distilled from the lexical-grounding experiments (Rounds 1-12); see [Documentation](#documentation)
 
 ## What it does
 
@@ -60,6 +78,16 @@ Cross-lingual grounding needs an argos `<lang>→en` model for the claim's langu
 - **Unsupported** - a non-English claim with no installed model → `ground()` raises `UnsupportedLanguageError`; the claim is hard-blocked, not scored, so unsupported languages cannot pollute metrics (batch callers wrap per claim)
 - **Add a language** - `argospm install translate-<code>_en` installs the model; the bridge picks it up automatically
 - **Region tags** - the detector strips the region before lookup (`it-IT` → `it`, `nb-NO` → `nb`)
+
+## Documentation
+
+The `docs/` tree carries the concept, the calibration method, and the full research history behind the shipped weights.
+
+- **Concept** - [`docs/grounding_concept.md`](docs/grounding_concept.md) - what grounding means here and how a verdict is assembled
+- **Calibration** - [`docs/grounding_calibration.md`](docs/grounding_calibration.md) - how the frozen weights and thresholds were fit
+- **Experiments log** - [`docs/experiments/lexical-grounding-experiments.md`](docs/experiments/lexical-grounding-experiments.md) - Rounds 1-12, what moved the metrics and what did not
+- **State of the art** - [`docs/experiments/lexical-grounding-sota.md`](docs/experiments/lexical-grounding-sota.md) - how the deterministic cascade compares to published grounding methods
+- **Positional analysis** - [`docs/lost_in_the_middle_grounding_analysis.md`](docs/lost_in_the_middle_grounding_analysis.md) - lost-in-the-middle behaviour over long evidence
 
 ## Project layout
 
