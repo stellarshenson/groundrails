@@ -206,7 +206,7 @@ semantic_top_k: 3                # top-K semantic alternatives reported
 # semantic_ratio. Prior intent: word overlap OR a strong semantic_ratio
 # confirms; weak topical signal and entity-absent fabrications do not.
 calibration:
-  mode: lexical                    # lexical (default) | semantic (reserved)
+  mode: lexical                    # lexical (default) | semantic (the OV cascade switch, see `semantic:` below)
   threshold: 0.5
   prior:
     Intercept:          {mu: -3.0, sigma: 1.0}
@@ -219,6 +219,32 @@ calibration:
     entity_absent:      {mu: -3.0, sigma: 1.5}
     nli_entail:         {mu:  5.0, sigma: 2.0}
     nli_contra:         {mu: -5.0, sigma: 2.0}
+  # ---- semantic switch (mode: semantic) ------------------------------------
+  # The orthogonal on/off switch (`mode: semantic`, or `--semantic` on the CLI) composes
+  # the OpenVINO cross-encoder cascade with whatever `lexical_effort` tier is selected -
+  # it is NOT itself an effort tier. The lexical verdict decides whenever its P(grounded)
+  # is OUTSIDE escalation_band; the uncertain band - and cross-lingual claims the lexical
+  # tier cannot ground - escalate to the bge-m3 pre-filter + bge-reranker + mDeBERTa-NLI
+  # cascade (cosine_gate / cascade_band early-exits), fused by the frozen joint logistic
+  # below: sigmoid(Intercept + Σ w·feature), no scikit-learn at inference. Fit OOF on the
+  # 2752 gold (W1 escalation wiring, macro-F1 0.822 vs 0.759 lexical-only). Regenerate via
+  # experiments/grounding-semantic/joint_wirings.py; see reports/grounding_joint_wirings.md.
+  semantic:
+    feature_order: [lex_p, rr_max, nli_ent, cos_max, nli_contra, lex_contra, lex_blocked]
+    weights:
+      Intercept: -5.186199
+      lex_p: 5.300125
+      rr_max: 1.037737
+      nli_ent: 2.216246
+      cos_max: 3.751941
+      nli_contra: -0.897544
+      lex_contra: -0.630457
+      lex_blocked: 2.914284
+    threshold: 0.579798
+    escalation_band: [0.129863, 0.986142]
+    cosine_gate: [0.493, 0.739]
+    cascade_band: [0.01, 0.66]
+    top_k: 8
   # ---- solution-tier manifolds (mode=lexical) ------------------------------
   # Per-tier frozen-weight logistic verdicts. In lexical mode, grounding loads
   # the tier named by the top-level `lexical_effort` key and scores

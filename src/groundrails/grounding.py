@@ -189,6 +189,8 @@ class GroundingMatch:
     """The feature vector fed to the calibrator (audit trail)."""
     nli_scores: dict = field(default_factory=dict)
     """Cross-encoder NLI softmax {entailment, neutral, contradiction} when the NLI layer ran."""
+    reranker_score: float = 0.0
+    """Max bge-reranker relevance over chunks when the semantic cascade ran (0 otherwise)."""
 
 
 def _normalize_whitespace(text: str) -> str:
@@ -695,6 +697,7 @@ def ground(
     primary_source: str | None = None,
     calibrated_verdict=None,
     nli_grounder=None,
+    semantic: bool | None = None,
 ) -> GroundingMatch:
     """Ground a single claim against one or more sources.
 
@@ -733,6 +736,19 @@ def ground(
         context_chars=context_chars,
         semantic_top_k=semantic_top_k,
     )
+    # Semantic switch (orthogonal to effort): when on, the OV cascade escalates the
+    # uncertain band of the lexical tier. Resolved from config (calibration.mode:
+    # semantic) when not passed. The legacy E5 seam (semantic_grounder=) bypasses it;
+    # semantic=False short-circuits (the inner lexical call in joint.ground_semantic
+    # passes it to avoid re-dispatch).
+    if semantic is None and semantic_grounder is None:
+        from groundrails.joint import switch_on
+
+        semantic = switch_on()
+    if semantic and semantic_grounder is None:
+        from groundrails import joint
+
+        return joint.ground_semantic(claim, sources, cfg=cfg, primary_source=primary_source)
     # Unsupported-language hard-block (HIGH tier only - the tier with the MT
     # bridge): refuse to score a claim whose language is confidently non-English
     # and has no installed argos model. Confidence-gated so lingua misreads of
@@ -1255,6 +1271,7 @@ def ground_batch(
     nli_grounder=None,
     calibrated_verdict=None,
     max_workers: int = 1,
+    semantic: bool | None = None,
 ) -> list[GroundingMatch]:
     """Batch version of :func:`ground`.
 
@@ -1287,6 +1304,39 @@ def ground_batch(
         context_chars=context_chars,
         semantic_top_k=semantic_top_k,
     )
+
+    # Semantic switch: build the cascade + joint head once and reuse across claims.
+    # Run serially - one OpenVINO compiled model is not safe to share across threads,
+    # and the escalation gate sends only a fraction of claims to the cascade anyway.
+    if semantic is None and semantic_grounder is None:
+        from groundrails.joint import switch_on
+
+        semantic = switch_on()
+    if semantic and semantic_grounder is None:
+        from groundrails import joint
+
+        block = joint.load_semantic_block()
+        jv = joint.JointVerdict.from_config(block) if block else None
+        casc = None
+        if block and jv is not None:
+            from groundrails.semantic_ov import SemanticCascade
+
+            casc = SemanticCascade(
+                top_k=int(block.get("top_k", 8)),
+                gate=tuple(block.get("cosine_gate", (0.493, 0.739))),
+                band=tuple(block.get("cascade_band", (0.01, 0.66))),
+            )
+        return [
+            joint.ground_semantic(
+                c,
+                sources,
+                cfg=cfg,
+                cascade=casc,
+                joint_verdict=jv,
+                primary_source=primary_source,
+            )
+            for c in claims
+        ]
 
     # Eagerly index sources once for the semantic layer if supplied
     if semantic_grounder is not None:

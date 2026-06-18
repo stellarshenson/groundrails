@@ -19,7 +19,9 @@ import json
 from pathlib import Path
 import sys
 
+from groundrails import semantic_ov
 from groundrails import settings as settings_mod
+from groundrails.config import load_document_processing_config
 from groundrails.grounding import (
     GroundingMatch,
     UnsupportedLanguageError,
@@ -185,11 +187,20 @@ def cmd_ground(args: argparse.Namespace) -> int:
     if not sources:
         print("ERROR: no readable --source provided (see warnings above)", file=sys.stderr)
         return 1
-    enabled = bool(getattr(args, "semantic", False))
-    cfg = settings_mod.ensure_loaded(auto_prompt=False) if enabled else None
-    grounder = _build_semantic_grounder(cfg, enabled)
-    nli_grounder = _build_nli_grounder(cfg, enabled)
-    verdict = _nli_calibrated_verdict() if enabled else None
+    # --semantic is the orthogonal switch: it turns on the OpenVINO cascade that
+    # escalates the uncertain band of whatever --effort tier is selected. Deps present
+    # -> run; deps missing -> hard fail (exit 2), never silent degradation.
+    semantic = bool(getattr(args, "semantic", False))
+    if semantic and not semantic_ov.is_available():
+        print(
+            "ERROR: --semantic needs the cascade extras (openvino + transformers).\n"
+            + semantic_ov.install_hint(),
+            file=sys.stderr,
+        )
+        return 2
+    cfg = load_document_processing_config()
+    if getattr(args, "effort", None):
+        cfg = cfg.overlay(lexical_effort=args.effort)
 
     if getattr(args, "manifest", None):
         claims = _read_claims_manifest(args.manifest)
@@ -199,11 +210,8 @@ def cmd_ground(args: argparse.Namespace) -> int:
                 sources,
                 fuzzy_threshold=args.threshold,
                 bm25_threshold=args.bm25_threshold,
-                semantic_threshold=args.semantic_threshold,
-                semantic_threshold_percentile=args.semantic_threshold_percentile,
-                semantic_grounder=grounder,
-                nli_grounder=nli_grounder,
-                calibrated_verdict=verdict,
+                config=cfg,
+                semantic=semantic,
                 primary_source=args.primary_source,
                 max_workers=args.workers,
             )
@@ -227,11 +235,8 @@ def cmd_ground(args: argparse.Namespace) -> int:
             sources,
             fuzzy_threshold=args.threshold,
             bm25_threshold=args.bm25_threshold,
-            semantic_threshold=args.semantic_threshold,
-            semantic_threshold_percentile=args.semantic_threshold_percentile,
-            semantic_grounder=grounder,
-            nli_grounder=nli_grounder,
-            calibrated_verdict=verdict,
+            config=cfg,
+            semantic=semantic,
         )
     except UnsupportedLanguageError as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
@@ -397,9 +402,16 @@ def _build_parser() -> argparse.ArgumentParser:
         help="Percentile threshold; overrides --semantic-threshold when set.",
     )
     g.add_argument(
+        "--effort",
+        choices=["low", "medium", "high"],
+        default=None,
+        help="Lexical solution tier (default from config; low/medium/high). Orthogonal to --semantic.",
+    )
+    g.add_argument(
         "--semantic",
         action="store_true",
-        help="Enable the semantic bundle (embedding + NLI + calibrated verdict); default off",
+        help="Switch on the OpenVINO cascade: escalates the uncertain band of the --effort "
+        "tier to bge-reranker + mDeBERTa-NLI, fused by the joint head. Default off.",
     )
     g.add_argument(
         "--primary-source",
