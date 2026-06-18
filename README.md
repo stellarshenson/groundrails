@@ -70,9 +70,31 @@ print(m.match_type, m.combined_score, m.verdict_probability)
 
 Cross-lingual grounding needs an argos `<lang>→en` model for the claim's language. English is native and needs no bridge. Nine non-English languages have models installed.
 
-| Supported (MT bridge) | Not supported (no model) |
-|---|---|
-| Danish `da`, German `de`, Spanish `es`, French `fr`, Italian `it`, Norwegian Bokmal `nb`, Dutch `nl`, Portuguese `pt`, Swedish `sv` | Nynorsk `nn`, and any language without an installed argos model (`la`, `yo`, `et`, `eo`, `ts`, `tl`, `ca`, `cs`, `hu`, `tn`, ...) |
+| Language | Code | Grounding |
+|---|:---:|:---:|
+| English | `en` | ✓ |
+| Danish | `da` | ✓ |
+| German | `de` | ✓ |
+| Spanish | `es` | ✓ |
+| French | `fr` | ✓ |
+| Italian | `it` | ✓ |
+| Norwegian Bokmål | `nb` | ✓ |
+| Dutch | `nl` | ✓ |
+| Portuguese | `pt` | ✓ |
+| Swedish | `sv` | ✓ |
+| Norwegian Nynorsk | `nn` | ✗ |
+| Latin | `la` | ✗ |
+| Yoruba | `yo` | ✗ |
+| Estonian | `et` | ✗ |
+| Esperanto | `eo` | ✗ |
+| Tsonga | `ts` | ✗ |
+| Tagalog | `tl` | ✗ |
+| Catalan | `ca` | ✗ |
+| Czech | `cs` | ✗ |
+| Hungarian | `hu` | ✗ |
+| Tswana | `tn` | ✗ |
+
+`✓` grounded - English native, others via the argos MT bridge · `✗` no installed argos model → `UnsupportedLanguageError` (any language not listed defaults to `✗`)
 
 - **Supported** - full cross-lingual grounding: the claim is translated to English, then recall-matched against the evidence
 - **Unsupported** - a non-English claim with no installed model → `ground()` raises `UnsupportedLanguageError`; the claim is hard-blocked, not scored, so unsupported languages cannot pollute metrics (batch callers wrap per claim)

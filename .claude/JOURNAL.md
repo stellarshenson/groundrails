@@ -210,3 +210,6 @@ This journal tracks substantive work on documents, diagrams, and documentation c
 
 69. **Task - README marketplace badges + Why + docs index** (v1.0.28): added the house badge row, a Why section, and a Documentation index to the README<br>
     **Result**: per user request to match the jupyterlab-solution README banners, added the standard shields row - CI (`ci.yml`), Python 3.12, MIT licence, Brought-To-You-By KOLOMOLO, Donate PayPal, plus the PyPI version + total pepy downloads badges (user confirmed publishing; they read "not found" until the first `make publish`). Wrote a "Why" section in technical-documentation style framing groundrails as the deterministic gate against agentic-RAG hallucination: no LLM in the loop, CPU-cheap, auditable per-layer scores, offline cross-lingual, research-backed. Added a Documentation section linking the five core `docs/` files (concept, calibration, experiments log, SOTA, lost-in-the-middle). No code change; doc links verified present in `docs/`.
+
+70. **Task [Short] - Language table as per-language ✓/✗ rows** (v1.0.28): reformatted the README language-support table from two comma-list columns into one row per language with ✓/✗ marks<br>
+    **Result**: 10 supported (English native + 9 MT-bridge) and 11 listed unsupported languages, plus a legend; behaviour unchanged.
