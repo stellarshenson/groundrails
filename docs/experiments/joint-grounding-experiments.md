@@ -8,12 +8,14 @@ asks whether the semantic / joint grounder does better, on the same enriched dat
 artefacts: `experiments/grounding-semantic/{score_enriched,lex_v3,joint_xlingual}.py`; gold
 in the gitignored `data/processed/golden_v3*.parquet`; report `reports/grounding_joint_xlingual.md`.
 
-> Rounds 1-3 complete. The five Round-1 hypotheses were pre-registered (mechanism, prediction,
+> Rounds 1-4 complete. The five Round-1 hypotheses were pre-registered (mechanism, prediction,
 > bar, kill-gate) before the cascade was scored; Round 2 probed resampling; Round 3 found the
 > fix. Outcome: a language-split operating point - one threshold for English, one for non-English,
 > both chosen out-of-fold - lifts the frozen v1 head from macro-F1 0.808 to **0.829** on gold v3,
 > recovering and exceeding the original-gold 0.822/0.826. The Round-1 hypotheses (cascade-as-MT,
 > retraining, escalation, resampling) were null; the win is recalibration, not new signals.
+> Round 4 (joint-premise NLI, the SummaC aggregation) also ran null - no aggregate lift
+> (-0.002), though it raised non-EN macro +0.019 and synthetic TNR +0.047 at a small English cost.
 
 ## Problem overview
 
@@ -51,6 +53,7 @@ proper instrument - the 2,119 synthetic cross-lingual negatives - the joint head
 | R1-H3 | per-language joint calibration | gold v3 (n >= 40) | macro 0.831 via in-sample per-language cuts (not OOF-fair) | Null (optimistic) |
 | R1-H4 | joint head retrained on enriched gold | gold v3 | non-EN macro 0.639 -> 0.634 (lift -0.005); EN held | Dropped |
 | R1-H5 | language-aware escalation band | gold v3 | fused macro 0.800 < 0.825 bar; v1 was 0.809 | Dropped |
+| R4-H1 | top-3 joint-premise NLI (SummaC aggregation) | gold v3 (3,218 fired) | eval macro 0.825 -> 0.823 (lift -0.002); non-EN +0.019, synthetic TNR 0.852 -> 0.899; EN -0.006 | Null/Refuted |
 
 Joint-solution benchmark (gold v3 eval, GroupKFold leave-one-source-out; thresholds chosen
 out-of-fold where noted):
@@ -218,7 +221,14 @@ supported-recall on multi-chunk-evidence claims and lift gold v3 macro-F1 withou
 - **Method** - add a joint-premise path to the cascade scorer (rank chunks by the reranker, join the top-3 into one premise, one NLI pass → `nli_ent_joint`, `nli_contra_joint`), swap these into `JOINT_FEATURES`, re-evaluate through the Round 3 honest harness (GroupKFold leave-one-source-out + leave-one-fold-out thresholds); re-scores gold v3 eval only (5,857 rows), reuses the shipped int8 models, no new download
 - **Caveat to measure** - groundrails chunks at 1100/200 chars, larger than docdistance's sentence statements, so one chunk often already spans several sentences and the multi-chunk gain is smaller than the sentence-level result; the kill-gate quantifies the real multi-chunk support density before committing the re-score
 - **Companion throughput lever** - length-bucketing the reranker grid (sort pairs by length, tighten `max_length` to the per-call percentile) cut the same int8 reranker ~43% at bit-identical scores in the sibling experiment; fold it into the re-score to offset the joint-premise NLI cost
-- **Verdict** - **Planned** (pre-registered; not yet run)
+- **Result** - re-scored the 3,218 cascade-fired rows (top-3 reranked chunks joined into one premise, `joint_premise_score.py` → `golden_v3_joint_premise.parquet`) and re-ran the Round 3 honest harness with the joint-premise NLI swapped in for the max-over-chunks NLI (`r4_premise_eval.py`). Eval macro-F1 0.825 (baseline) → 0.823 joint-premise: lift -0.002, far below the +0.014 bar; English macro 0.833 → 0.828 (-0.006, breaks the +/-0.005 control). The mechanism did fire - on under-graded supported rows (low sentence-max entailment, high `lex_p`, n=238) the joined premise raised entailment >= 0.10 on 21.0% (mean +0.051) - and it helped where predicted: non-EN macro 0.650 → 0.669 (+0.019) and synthetic TNR 0.852 → 0.899 (+0.047, the strongest single move, the joint premise over-confirms less). But that is a cross-lingual rejection effect traded against a small English regression, netting flat on the aggregate
+
+| head | eval macro-F1 | EN macro | non-EN macro | synthetic TNR |
+|---|---|---|---|---|
+| R3 baseline (max-over-chunks NLI) | 0.825 | 0.833 | 0.650 | 0.852 |
+| R4 joint-premise NLI | 0.823 | 0.828 | 0.669 | 0.899 |
+
+- **Verdict** - **Null/Refuted** (no headline macro-F1 lift; the SummaC aggregation improves non-EN rejection, not gold v3 macro - the chunking caveat held, 1100/200-char chunks already span several sentences so the multi-chunk gain is small)
 
 ## Lessons learned
 
@@ -242,6 +252,5 @@ supported-recall on multi-chunk-evidence claims and lift gold v3 macro-F1 withou
 - **Integrate the EN/non-EN operating point (Round 3 winner)** - fold the two honest thresholds into the serving calibration (one English cut, one non-English cut, keyed by the lexical layer's language detector) and validate macro 0.829 holds end-to-end; pending explicit approval to touch `config_document_processing.yaml`
 - **Strengthen the negatives (next, after the null resampling probe)** - the synthetic negatives are off-topic or clearly-unsupported translations (easy rejects), so the 90.4% TNR may flatter the head. Generate hard near-miss negatives per language: minimal edits to a SUPPORTED translated claim that flip its truth - numeric perturbation (42 -> 43), entity swap, negation, scope or quantifier change - so the claim stays topically and lexically close to its evidence but is false. Re-measure cross-lingual TNR on these; a head holding 0.90 on easy negatives may collapse on near-miss ones, separating real entailment-checking from lexical-overlap luck
 - **Balance native negatives per language** - harvest or synthesise hallucinations in the native eval languages so non-EN macro stops being imbalance-dominated and becomes a fair readout rather than a tiny-class average
-- **Run Round 4 (joint-premise NLI)** - the pre-registered SummaC aggregation above; kill-gate first (multi-chunk support density on a 300-row supported sample), then re-score gold v3 eval with the top-3 joint premise and evaluate stacked with the Round 3 EN/non-EN split. This is a new signal (R4-H1), addressing the "max-over-chunks mis-grades multi-sentence support" failure - the one form of new feature the next bullet calls for
-- **New cross-lingual signals, not re-routing** - R1-H1/H5 show the existing cascade and lexical signals do not separate the non-EN slice; a lift needs a new feature (e.g. a cross-lingual entailment model that actually fires), not a different combination of the current ones
-- **Refuted, do not revisit** - native cascade AUC as a cross-lingual readout (R1-H1, thin negative class); `nli_ent` as the cross-lingual rejection mechanism (R1-H2, 0.523); head reweighting to close the non-EN gap (R1-H4, -0.005); class / language over-under-sampling in training (Round 2, macro flat 0.810 -> 0.811); language-aware escalation into the cascade (R1-H5, 0.800 < 0.809)
+- **New cross-lingual signals, not re-routing** - R1-H1/H5 show the existing cascade and lexical signals do not separate the non-EN slice; a lift needs a new feature (e.g. a cross-lingual entailment model that actually fires), not a different combination of the current ones. Round 4 confirmed this from the other side: the joint-premise aggregation moved non-EN rejection (TNR +0.047) but not the aggregate, so the missing lift is signal quality, not NLI aggregation
+- **Refuted, do not revisit** - native cascade AUC as a cross-lingual readout (R1-H1, thin negative class); `nli_ent` as the cross-lingual rejection mechanism (R1-H2, 0.523); head reweighting to close the non-EN gap (R1-H4, -0.005); class / language over-under-sampling in training (Round 2, macro flat 0.810 -> 0.811); language-aware escalation into the cascade (R1-H5, 0.800 < 0.809); joint-premise (SummaC top-3) NLI aggregation as a gold v3 macro-F1 lift (R4-H1, -0.002 - it improves non-EN synthetic TNR +0.047 but trades English and nets flat)
