@@ -63,6 +63,45 @@ def test_support_none_when_ungrounded():
     assert GroundingMatch(claim="x", match_type="none").support is None
 
 
+def test_grounding_document_cross_source_provenance():
+    """With several evidence sources, the support points at the source that actually backs the
+    claim - its source_index / source_path - and the document lists every source path."""
+    sources = [
+        ("furniture.txt", "This document is about office furniture procurement."),
+        ("landmark.txt", "The Eiffel Tower is located in Paris, France."),
+    ]
+    doc = grounding_document(["The Eiffel Tower is in Paris."], sources)
+    assert doc["sources"] == ["furniture.txt", "landmark.txt"]
+    entry = doc["claims"][0]
+    assert entry["grounded"] is True
+    sup = entry["support"]
+    assert sup["source_index"] == 1 and sup["source_path"] == "landmark.txt"
+
+
+def test_final_score_prefers_calibrated_verdict_and_rounds():
+    """The document's single score is the calibrated verdict probability when it ran (>= 0),
+    else the max-over-layers combined score - rounded to 4 dp either way."""
+    calibrated = GroundingMatch(claim="a", match_type="bm25")
+    calibrated.verdict_probability = 0.9123456
+    calibrated.combined_score = 0.4
+    lexical = GroundingMatch(claim="b", match_type="fuzzy")  # verdict_probability defaults to -1.0
+    lexical.combined_score = 0.5
+    doc = build_grounding_document([calibrated, lexical])
+    assert doc["claims"][0]["score"] == 0.9123  # calibrated probability wins, rounded
+    assert doc["claims"][1]["score"] == 0.5  # falls back to combined_score
+
+
+def test_grounding_document_reports_contradiction():
+    """A contradicted claim is ungrounded, carries no support, and surfaces the conflicting
+    value pair under contradiction.numeric so an agent can cite the disagreement."""
+    m = GroundingMatch(claim="The model has 512 layers.", match_type="contradicted")
+    m.numeric_mismatches = [("512", "1000")]
+    entry = build_grounding_document([m])["claims"][0]
+    assert entry["grounded"] is False
+    assert entry["support"] is None
+    assert entry["contradiction"]["numeric"] == [["512", "1000"]]
+
+
 def test_support_fallback_to_lexical_for_cascade_verdict():
     """A cascade verdict (match_type=semantic) has no native location, so support falls back to
     the best lexical passage, flagged support_via=lexical - the agent always gets a place to look."""

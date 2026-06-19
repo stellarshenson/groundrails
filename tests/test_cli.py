@@ -78,6 +78,20 @@ def test_extract_claims_char_span(tmp_path, capsys):
     assert text[c0["char_start"] : c0["char_end"]] == c0["claim"]
 
 
+def test_extract_claims_relocates_across_line_wrap(tmp_path, capsys):
+    """_relocate is whitespace-flexible: a sentence wrapped across a newline (joined with a
+    single space during extraction) still locates back to the original span, newline and all."""
+    doc = tmp_path / "d.md"
+    doc.write_text("The system processes\n1000 records per second.", encoding="utf-8")
+    rc = main(["extract-claims", "--document", str(doc)])
+    assert rc == 0
+    c0 = json.loads(capsys.readouterr().out)[0]
+    text = doc.read_text(encoding="utf-8")
+    located = text[c0["char_start"] : c0["char_end"]]
+    assert "\n" in located  # the span bridges the wrapped line, not just one line
+    assert " ".join(located.split()) == c0["claim"]  # whitespace-normalises back to the claim
+
+
 def test_ground_json_grounding_document(tmp_path, capsys):
     """--json emits the business-end document: verdict + final score + support location, no per-scorer internals."""
     src = tmp_path / "evidence.txt"
