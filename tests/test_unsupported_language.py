@@ -42,11 +42,21 @@ def test_detect_lang_confident_genuine_nonenglish():
 
 
 def test_ground_blocks_unsupported_language(monkeypatch):
-    monkeypatch.setattr(lx, "detect_lang_confident", lambda *a, **k: "la")
+    # cross-lingual: claim "la", evidence "en", no MT model -> the bridge is needed but absent -> block
+    monkeypatch.setattr(lx, "detect_lang_confident", lambda text, *a, **k: "la" if "Lorem" in text else "en")
     monkeypatch.setattr(mt, "has_model", lambda iso: False)
     with pytest.raises(UnsupportedLanguageError) as exc:
         ground("Lorem ipsum dolor sit amet consectetur adipiscing elit.", ["english source text"])
     assert exc.value.lang == "la"
+
+
+def test_same_language_evidence_not_blocked(monkeypatch):
+    """Claim and evidence in the SAME non-English language need no MT bridge - the lexical
+    layers match the raw text directly, so the HIGH-tier guard must not block."""
+    monkeypatch.setattr(lx, "detect_lang_confident", lambda *a, **k: "la")  # claim AND evidence "la"
+    monkeypatch.setattr(mt, "has_model", lambda iso: False)
+    m = ground("Gallia est omnis divisa in partes.", ["Gallia est omnis divisa in partes tres."])
+    assert m.match_type is not None  # scored directly, not blocked
 
 
 def test_ground_passes_supported_language(monkeypatch):

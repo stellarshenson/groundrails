@@ -8,6 +8,9 @@ Optional semantic grounding (NLI / cross-encoder + FAISS) lives in
 lazy-imported - ``import groundrails`` does NOT load torch, transformers, or faiss.
 """
 
+from importlib.metadata import PackageNotFoundError
+from importlib.metadata import version as _pkg_version
+
 from groundrails.grounding import (
     GroundingMatch,
     Location,
@@ -18,10 +21,16 @@ from groundrails.grounding import (
     grounding_document,
 )
 
+try:
+    __version__ = _pkg_version("groundrails")
+except PackageNotFoundError:  # source tree without installed metadata
+    __version__ = "0.0.0"
+
 __all__ = [
     "GroundingMatch",
     "Location",
     "UnsupportedLanguageError",
+    "__version__",
     "build_grounding_document",
     "ground",
     "ground_batch",

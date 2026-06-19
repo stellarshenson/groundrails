@@ -284,6 +284,7 @@ def cmd_ground(args: argparse.Namespace) -> int:
             semantic=semantic,
             primary_source=args.primary_source,
             max_workers=args.workers,
+            ignore_language=getattr(args, "ignore_language", False),
         )
     except UnsupportedLanguageError as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
@@ -518,6 +519,13 @@ def _build_parser() -> argparse.ArgumentParser:
         choices=["low", "medium", "high"],
         default=None,
         help="Lexical solution tier (default from config; low/medium/high). Orthogonal to --semantic.",
+    )
+    g.add_argument(
+        "--ignore-language",
+        dest="ignore_language",
+        action="store_true",
+        help="Skip the HIGH-tier non-English hard-block: score every claim as-is instead of "
+        "refusing claims whose language is detected as non-English with no installed MT model.",
     )
     g.add_argument(
         "--semantic",

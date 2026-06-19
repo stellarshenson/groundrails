@@ -742,6 +742,7 @@ def ground(
     calibrated_verdict=None,
     nli_grounder=None,
     semantic: bool | None = None,
+    ignore_language: bool = False,
 ) -> GroundingMatch:
     """Ground a single claim against one or more sources.
 
@@ -792,18 +793,28 @@ def ground(
     if semantic and semantic_grounder is None:
         from groundrails import joint
 
-        return joint.ground_semantic(claim, sources, cfg=cfg, primary_source=primary_source)
+        return joint.ground_semantic(
+            claim, sources, cfg=cfg, primary_source=primary_source, ignore_language=ignore_language
+        )
     # Unsupported-language hard-block (HIGH tier only - the tier with the MT
     # bridge): refuse to score a claim whose language is confidently non-English
     # and has no installed argos model. Confidence-gated so lingua misreads of
     # short / keyword English are not blocked; LOW/MEDIUM stay monolingual.
-    if cfg.lexical_effort == "high":
+    if cfg.lexical_effort == "high" and not ignore_language:
         from groundrails import lexical as _lx
         from groundrails import lexical_mt as _mt
 
         _claim_lang = _lx.detect_lang_confident(claim)
         if not _mt.has_model(_claim_lang):
-            raise UnsupportedLanguageError(_claim_lang)
+            # The MT bridge only matters cross-lingually: it translates a non-English claim
+            # to reach English evidence. When the evidence is in the same language as the
+            # claim, the lexical layers match the raw text directly - no bridge needed - so
+            # only block when the claim and evidence languages actually differ.
+            _ev_lang = _lx.detect_lang_confident(
+                " ".join(t for _, _, t in _unpack_sources(sources))[:2000]
+            )
+            if _ev_lang != _claim_lang:
+                raise UnsupportedLanguageError(_claim_lang)
     # Bind resolved values to local names so the body reads unchanged.
     fuzzy_threshold = cfg.fuzzy_threshold
     bm25_threshold = cfg.bm25_threshold
@@ -1316,6 +1327,7 @@ def ground_batch(
     calibrated_verdict=None,
     max_workers: int = 1,
     semantic: bool | None = None,
+    ignore_language: bool = False,
 ) -> list[GroundingMatch]:
     """Batch version of :func:`ground`.
 
@@ -1370,17 +1382,27 @@ def ground_batch(
                 gate=tuple(block.get("cosine_gate", (0.493, 0.739))),
                 band=tuple(block.get("cascade_band", (0.01, 0.66))),
             )
-        return [
-            joint.ground_semantic(
-                c,
-                sources,
-                cfg=cfg,
-                cascade=casc,
-                joint_verdict=jv,
-                primary_source=primary_source,
-            )
-            for c in claims
-        ]
+        sem_out: list[GroundingMatch] = []
+        for c in claims:
+            try:
+                sem_out.append(
+                    joint.ground_semantic(
+                        c,
+                        sources,
+                        cfg=cfg,
+                        cascade=casc,
+                        joint_verdict=jv,
+                        primary_source=primary_source,
+                        ignore_language=ignore_language,
+                    )
+                )
+            except Exception as exc:
+                # Per-claim isolation: one failed claim must not abort the batch.
+                logger.warning(
+                    "semantic grounding failed for claim %r: %s - returned ungrounded", c[:80], exc
+                )
+                sem_out.append(GroundingMatch(claim=c, match_type="none"))
+        return sem_out
 
     # Eagerly index sources once for the semantic layer if supplied
     if semantic_grounder is not None:
@@ -1403,15 +1425,23 @@ def ground_batch(
     )
 
     def _ground_one(c: str) -> GroundingMatch:
-        return ground(
-            c,
-            sources,
-            semantic_grounder=semantic_grounder,
-            config=cfg,
-            primary_source=primary_source,
-            calibrated_verdict=verdict,
-            nli_grounder=nli_grounder,
-        )
+        try:
+            return ground(
+                c,
+                sources,
+                semantic_grounder=semantic_grounder,
+                config=cfg,
+                primary_source=primary_source,
+                calibrated_verdict=verdict,
+                nli_grounder=nli_grounder,
+                ignore_language=ignore_language,
+            )
+        except UnsupportedLanguageError:
+            raise  # deliberate refusal - surface it (use ignore_language to bypass)
+        except Exception as exc:
+            # Per-claim isolation: a per-claim bug must not abort the batch.
+            logger.warning("grounding failed for claim %r: %s - returned ungrounded", c[:80], exc)
+            return GroundingMatch(claim=c, match_type="none")
 
     workers = min(max(1, max_workers), len(claims)) if claims else 1
     if workers > 1:

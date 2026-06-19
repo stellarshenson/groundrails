@@ -26,6 +26,7 @@ from dataclasses import dataclass
 import logging
 import math
 import re
+import threading
 import unicodedata
 
 logger = logging.getLogger(__name__)
@@ -94,6 +95,7 @@ _NUM_RE = re.compile(r"\d[\d.,   ]*\d|\d")
 # Lazy caches for the optional-dependency helpers (lingua detector, WordNet).
 _LINGUA: dict = {}
 _WN: dict = {}
+_WN_LOCK = threading.Lock()  # NLTK's zip-backed WordNet reader is not re-entrant; serialise access
 _LANG_CACHE: dict = {}  # text -> ISO code; detection is the per-row hot path
 
 
@@ -385,34 +387,47 @@ def detect_lang_confident(text: str, min_len: int = 25, min_conf: float = 0.65) 
 
 
 def _wn_antonyms(w: str) -> set:
-    """WordNet antonyms of a word; empty set on missing nltk/WordNet. Port of lab._wn_antonyms."""
-    if "mod" not in _WN:
-        try:
-            import nltk
-            from nltk.corpus import wordnet as wn
+    """WordNet antonyms of a word; empty set on missing nltk/WordNet or a reader error.
 
+    Serialised under ``_WN_LOCK`` and wrapped defensively: NLTK's zip-backed corpus
+    reader (``OpenOnDemandZipFile``) is not re-entrant, so concurrent ``synsets`` calls
+    from ``ground_batch``'s thread pool raise ``AssertionError`` (``self.fp is None``)
+    deep in the reader. The antonym-flip is a secondary contradiction signal - it must
+    never crash grounding, so the lock prevents the race and any residual reader error
+    degrades to "no antonyms"."""
+    with _WN_LOCK:
+        if "mod" not in _WN:
             try:
-                wn.synsets("test")
-            except LookupError:
-                nltk.download("wordnet", quiet=True)
-            _WN["mod"], _WN["cache"] = wn, {}
-        except ImportError:
-            _WN["mod"], _WN["cache"] = None, {}
-            logger.warning(
-                "nltk not importable - WordNet antonym feature neutralised; "
-                "it ships with the package, so reinstall stellars-claude-code-plugins"
-            )
-    if _WN["mod"] is None:
-        return set()
-    cache = _WN["cache"]
-    if w not in cache:
-        ant: set[str] = set()
-        for s in _WN["mod"].synsets(w):
-            for lemma in s.lemmas():
-                for a in lemma.antonyms():
-                    ant.add(a.name().replace("_", " ").lower())
-        cache[w] = ant
-    return cache[w]
+                import nltk
+                from nltk.corpus import wordnet as wn
+
+                try:
+                    wn.synsets("test")
+                except LookupError:
+                    nltk.download("wordnet", quiet=True)
+                _WN["mod"], _WN["cache"] = wn, {}
+            except ImportError:
+                _WN["mod"], _WN["cache"] = None, {}
+                logger.warning(
+                    "nltk not importable - WordNet antonym feature neutralised; "
+                    "it ships with the package, so reinstall stellars-claude-code-plugins"
+                )
+        if _WN["mod"] is None:
+            return set()
+        cache = _WN["cache"]
+        if w not in cache:
+            ant: set[str] = set()
+            try:
+                for s in _WN["mod"].synsets(w):
+                    for lemma in s.lemmas():
+                        for a in lemma.antonyms():
+                            ant.add(a.name().replace("_", " ").lower())
+            except Exception as exc:
+                # NLTK zip-reader re-entrancy / corpus errors must not crash grounding.
+                logger.warning("WordNet lookup failed for %r: %s - antonym skipped", w, exc)
+                return set()
+            cache[w] = ant
+        return cache[w]
 
 
 def _wn_antonym_flip(claim_en: str, best: str) -> int:

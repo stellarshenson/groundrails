@@ -88,7 +88,16 @@ def _chunk_texts(sources, cfg) -> list[str]:
     return out or [s[1] if isinstance(s, tuple) else s for s in sources]
 
 
-def ground_semantic(claim, sources, *, cfg, cascade=None, joint_verdict=None, primary_source=None):
+def ground_semantic(
+    claim,
+    sources,
+    *,
+    cfg,
+    cascade=None,
+    joint_verdict=None,
+    primary_source=None,
+    ignore_language=False,
+):
     """Lexical tier first; escalate the uncertain band to the OV cascade; fuse.
 
     The lexical verdict at ``cfg.lexical_effort`` decides directly when its P(grounded)
@@ -107,14 +116,28 @@ def ground_semantic(claim, sources, *, cfg, cascade=None, joint_verdict=None, pr
     jv = joint_verdict or (JointVerdict.from_config(block) if block else None)
     # switch on but unconfigured -> just run the lexical tier (no cascade)
     if block is None or jv is None:
-        return ground(claim, sources, config=cfg, primary_source=primary_source, semantic=False)
+        return ground(
+            claim,
+            sources,
+            config=cfg,
+            primary_source=primary_source,
+            semantic=False,
+            ignore_language=ignore_language,
+        )
 
     a, b = float(block["escalation_band"][0]), float(block["escalation_band"][1])
 
     # 1. lexical tier (semantic=False so we do not re-dispatch into this function)
     blocked = False
     try:
-        m = ground(claim, sources, config=cfg, primary_source=primary_source, semantic=False)
+        m = ground(
+            claim,
+            sources,
+            config=cfg,
+            primary_source=primary_source,
+            semantic=False,
+            ignore_language=ignore_language,
+        )
         lex_p = m.verdict_probability if m.verdict_probability >= 0 else m.agreement_score
     except UnsupportedLanguageError:
         m = GroundingMatch(claim=claim)

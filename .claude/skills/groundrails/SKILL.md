@@ -18,7 +18,7 @@ Deterministic claim grounder: it checks whether a claim is supported by source t
 
 ## Install
 
-Check first, ask the tier, then install with uv (preferred) or pip.
+**MANDATORY** - `groundrails` is a PyPI package, not bundled; install it before any grounding: `uv pip install groundrails` for the lexical tier, `uv pip install "groundrails[semantic-grounder]"` for semantic. Check first, ask the tier, then install with uv (preferred) or pip.
 
 - **Check** - `python3 -c "import groundrails" 2>/dev/null && echo INSTALLED || echo MISSING`
 - **Ask the tier** - if MISSING, ask the user lexical vs semantic (full) with AskUserQuestion
