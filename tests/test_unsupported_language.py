@@ -42,12 +42,23 @@ def test_detect_lang_confident_genuine_nonenglish():
 
 
 def test_ground_blocks_unsupported_language(monkeypatch):
-    # cross-lingual: claim "la", evidence "en", no MT model -> the bridge is needed but absent -> block
+    # cross-lingual: claim "la", evidence "en", no MT model and on-demand install fails -> block
     monkeypatch.setattr(lx, "detect_lang_confident", lambda text, *a, **k: "la" if "Lorem" in text else "en")
     monkeypatch.setattr(mt, "has_model", lambda iso: False)
+    monkeypatch.setattr(mt, "ensure_model", lambda iso: False)
     with pytest.raises(UnsupportedLanguageError) as exc:
         ground("Lorem ipsum dolor sit amet consectetur adipiscing elit.", ["english source text"])
     assert exc.value.lang == "la"
+
+
+def test_ground_cross_lingual_on_demand_install_unblocks(monkeypatch):
+    """A cross-lingual claim with no installed model is NOT blocked when the on-demand argos
+    install succeeds - ensure_model returns True so the bridge is expected to work."""
+    monkeypatch.setattr(lx, "detect_lang_confident", lambda text, *a, **k: "la" if "Lorem" in text else "en")
+    monkeypatch.setattr(mt, "has_model", lambda iso: False)
+    monkeypatch.setattr(mt, "ensure_model", lambda iso: True)  # install-on-demand succeeds
+    m = ground("Lorem ipsum dolor sit amet consectetur.", ["english source text"])
+    assert m.match_type is not None  # scored, not blocked
 
 
 def test_same_language_evidence_not_blocked(monkeypatch):
@@ -81,3 +92,38 @@ def test_ground_english_not_blocked():
         ["The Eiffel Tower is located in Paris, France."],
     )
     assert m.match_type is not None
+
+
+def test_auto_install_enabled_default_and_gates(monkeypatch):
+    """On-demand install is on by default, off when offline or explicitly disabled."""
+    monkeypatch.delenv("HF_HUB_OFFLINE", raising=False)
+    monkeypatch.delenv("GROUNDRAILS_ARGOS_AUTO_INSTALL", raising=False)
+    assert mt._auto_install_enabled() is True
+    monkeypatch.setenv("HF_HUB_OFFLINE", "1")  # offline never downloads
+    assert mt._auto_install_enabled() is False
+    monkeypatch.delenv("HF_HUB_OFFLINE", raising=False)
+    monkeypatch.setenv("GROUNDRAILS_ARGOS_AUTO_INSTALL", "0")  # explicit opt-out
+    assert mt._auto_install_enabled() is False
+
+
+def test_ensure_model_installs_on_demand(monkeypatch):
+    """ensure_model installs a missing pair when auto-install is enabled."""
+    calls = []
+    monkeypatch.setattr(mt, "_find_pkg", lambda code: None)  # nothing installed
+    monkeypatch.setattr(mt, "_auto_install_enabled", lambda: True)
+    monkeypatch.setattr(mt, "install_model", lambda code: calls.append(code) or True)
+    assert mt.ensure_model("xx") is True
+    assert calls == ["xx"]
+
+
+def test_ensure_model_offline_does_not_install(monkeypatch):
+    """Offline / disabled: ensure_model falls back to the pure check, never reaching the network."""
+    monkeypatch.setattr(mt, "_find_pkg", lambda code: None)
+    monkeypatch.setattr(mt, "_auto_install_enabled", lambda: False)
+
+    def _boom(code):
+        raise AssertionError("install_model must not be called when auto-install is disabled")
+
+    monkeypatch.setattr(mt, "install_model", _boom)
+    assert mt.ensure_model("xx") is False
+    assert mt.ensure_model("en") is True  # english still passes with no install

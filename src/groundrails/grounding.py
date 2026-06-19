@@ -813,7 +813,9 @@ def ground(
             _ev_lang = _lx.detect_lang_confident(
                 " ".join(t for _, _, t in _unpack_sources(sources))[:2000]
             )
-            if _ev_lang != _claim_lang:
+            # cross-lingual and no model: try an on-demand argos install before refusing;
+            # block only if the model is still unavailable (offline / no such package)
+            if _ev_lang != _claim_lang and not _mt.ensure_model(_claim_lang):
                 raise UnsupportedLanguageError(_claim_lang)
     # Bind resolved values to local names so the body reads unchanged.
     fuzzy_threshold = cfg.fuzzy_threshold

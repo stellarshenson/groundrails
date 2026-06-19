@@ -161,9 +161,10 @@ def test_ground_unsupported_language_blocked(tmp_path, capsys, monkeypatch):
     from groundrails import lexical as lx
     from groundrails import lexical_mt as mt
 
-    # cross-lingual: claim "la", english evidence, no MT model -> bridge needed but absent -> block
+    # cross-lingual: claim "la", english evidence, no MT model and on-demand install fails -> block
     monkeypatch.setattr(lx, "detect_lang_confident", lambda text, *a, **k: "la" if "Lorem" in text else "en")
     monkeypatch.setattr(mt, "has_model", lambda iso: False)
+    monkeypatch.setattr(mt, "ensure_model", lambda iso: False)
     src = tmp_path / "s.txt"
     src.write_text("some english source text about geography", encoding="utf-8")
     rc = main(

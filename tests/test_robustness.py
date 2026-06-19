@@ -52,9 +52,10 @@ def test_ignore_language_bypasses_high_tier_block(monkeypatch):
     from groundrails import lexical as lx
     from groundrails import lexical_mt as mt
 
-    # cross-lingual: claim "xx" (no model), english evidence -> would block without the flag
+    # cross-lingual: claim "xx" (no model, install fails), english evidence -> blocks without the flag
     monkeypatch.setattr(lx, "detect_lang_confident", lambda text, *a, **k: "xx" if "obcym" in text else "en")
     monkeypatch.setattr(mt, "has_model", lambda iso: False)
+    monkeypatch.setattr(mt, "ensure_model", lambda iso: False)
     cfg = cfg_mod.load_document_processing_config().overlay(lexical_effort="high")
 
     with pytest.raises(UnsupportedLanguageError):

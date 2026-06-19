@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 from pathlib import Path
 
 logger = logging.getLogger(__name__)
@@ -85,10 +86,13 @@ def translate(text: str, src_iso: str) -> str:
     if code in ("en", "und", ""):
         return text
     m = _load(code)
+    if m is None and ensure_model(code):  # not loaded - try an on-demand argos install
+        m = _load(code)
     if m is None:
         logger.warning(
-            "argos model for %s->en not installed - translate-then-recall skipped "
-            "for this claim; run `argospm install translate-%s_en` to enable",
+            "argos model for %s->en unavailable (auto-install skipped offline or no such "
+            "package) - translate-then-recall skipped for this claim; install manually with "
+            "`argospm install translate-%s_en`",
             code,
             code,
         )
@@ -123,3 +127,69 @@ def has_model(src_iso: str) -> bool:
     if code in ("en", "und", ""):
         return True
     return _find_pkg(code) is not None
+
+
+def _auto_install_enabled() -> bool:
+    """On-demand argos install is on by default, off when offline or explicitly disabled.
+
+    Disabled when ``GROUNDRAILS_ARGOS_AUTO_INSTALL=0`` or when ``HF_HUB_OFFLINE`` is set
+    (an offline run must never reach the network), so CI / offline test runs keep the
+    pure-check behaviour and download nothing.
+    """
+    if os.environ.get("GROUNDRAILS_ARGOS_AUTO_INSTALL", "1") == "0":
+        return False
+    if os.environ.get("HF_HUB_OFFLINE"):
+        return False
+    return True
+
+
+def install_model(src_iso: str) -> bool:
+    """Download and install the argos ``<src>->en`` model on demand. Returns availability.
+
+    No-op (True) for English / undetermined and for an already-installed pair. Network
+    failures and absent packages degrade to a warning + False - never raise.
+    """
+    code = _ISO.get(src_iso, src_iso)
+    if code in ("en", "und", ""):
+        return True
+    if _find_pkg(code) is not None:
+        return True
+    try:
+        import argostranslate.package as _pkg
+
+        _pkg.update_package_index()
+        match = next(
+            (
+                p
+                for p in _pkg.get_available_packages()
+                if p.from_code == code and p.to_code == "en"
+            ),
+            None,
+        )
+        if match is None:
+            logger.warning("no argos %s->en package available to install", code)
+            return False
+        logger.info("installing argos %s->en model on demand", code)
+        _pkg.install_from_path(match.download())
+        _MODELS.pop(code, None)  # drop any cached None so _load re-resolves
+        return _find_pkg(code) is not None
+    except Exception as exc:
+        logger.warning("on-demand argos %s->en install failed: %s", code, exc)
+        return False
+
+
+def ensure_model(src_iso: str) -> bool:
+    """True when the ``<src>->en`` bridge is available, installing it on demand if missing.
+
+    Same contract as :func:`has_model` (English / undetermined always pass, others need an
+    installed pair) but, when the pair is missing and auto-install is enabled, it downloads
+    the argos model first. Offline / disabled falls back to the pure check.
+    """
+    code = _ISO.get(src_iso, src_iso)
+    if code in ("en", "und", ""):
+        return True
+    if _find_pkg(code) is not None:
+        return True
+    if not _auto_install_enabled():
+        return False
+    return install_model(code)
