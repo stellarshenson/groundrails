@@ -826,7 +826,7 @@ wheels = [
 
 [[package]]
 name = "groundrails"
-version = "1.0.31"
+version = "1.0.32"
 source = { editable = "." }
 dependencies = [
     { name = "argostranslate" },
