@@ -20,6 +20,48 @@ groundrails checks whether each claim in an answer is backed by your source, and
 
 Agentic RAG can assert things its sources never said. The usual fix - a second LLM grading each claim - is slow, costs a model call per claim, is non-deterministic, and gives no reason for its verdict. groundrails is the deterministic gate that runs before the answer reaches the user: milliseconds per claim, no GPU, no API call, and an auditable pointer to the exact supporting passage.
 
+## Principle of operation
+
+groundrails grounds each claim by recall, not by an LLM judgment: a fast deterministic lexical pass decides most claims, and only the ones it is unsure about escalate to an optional model cascade.
+
+```mermaid
+flowchart LR
+    CL[Claims] --> LEX[Lexical grounder]
+    EV[Evidence] --> LEX
+    LEX -->|confident| V[Verdict + support location]
+    LEX -.->|unsure or cross-lingual| SEM[Semantic cascade]
+    SEM --> V
+
+    style CL stroke:#0284c7,stroke-width:2px
+    style EV stroke:#0284c7,stroke-width:2px
+    style LEX stroke:#10b981,stroke-width:3px
+    style SEM stroke:#a855f7,stroke-width:2px
+    style V stroke:#3b82f6,stroke-width:3px
+```
+
+Inside the lexical grounder, a single verdict forms like this:
+
+```mermaid
+flowchart LR
+    C[Claim + evidence] --> R[Recall layers<br/>exact / fuzzy / BM25]
+    R --> M[Frozen logistic]
+    M --> S{Score vs threshold}
+    S -->|above| G[Grounded]
+    S -->|below| H[Hallucination]
+
+    style C stroke:#0284c7,stroke-width:2px
+    style R stroke:#10b981,stroke-width:2px
+    style M stroke:#10b981,stroke-width:3px
+    style S stroke:#f59e0b,stroke-width:2px
+    style G stroke:#3b82f6,stroke-width:2px
+    style H stroke:#3b82f6,stroke-width:2px
+```
+
+- **Lexical grounder** - exact, fuzzy, and BM25 recall fused by a frozen logistic; decides most claims on CPU in ~165 ms, no model call
+- **Escalation** - only an unsure or cross-lingual claim escalates to the opt-in `--semantic` cascade (embed → rerank → NLI, OpenVINO int8)
+- **Verdict** - a 0-to-1 score above the threshold is grounded, below it a hallucination; a value conflict like `512` vs `1000` is a contradiction
+- **Deterministic** - frozen weights, identical verdict every run
+
 ## Quickstart
 
 ```bash
@@ -110,7 +152,8 @@ Two layers: a fast deterministic lexical grounder, and an optional model-based c
 
 ## Documentation
 
-- [`docs/api-reference.md`](docs/api-reference.md) - the functions, the grounding-document fields, and the CLI
+- [`docs/api-reference.md`](docs/api-reference.md) - the Python functions and the grounding-document fields
+- [`docs/cli-reference.md`](docs/cli-reference.md) - the `groundrails` CLI commands, flags, and exit code
 - [`docs/grounding_concept.md`](docs/grounding_concept.md) - what grounding means here and how a verdict is assembled
 - the two SOTA docs above, plus the full research history under [`docs/experiments/`](docs/experiments/)
 

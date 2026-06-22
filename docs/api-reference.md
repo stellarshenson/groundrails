@@ -1,6 +1,6 @@
 # API reference
 
-The public surface of `groundrails` - the Python functions, the grounding-document shape, and the CLI. The core needs no extras; `semantic=True` / `--semantic 1` needs `groundrails[semantic-grounder]`.
+The Python surface of `groundrails` - the functions, the grounding-document shape, and the result dataclasses. The CLI lives in [`cli-reference.md`](cli-reference.md). The core needs no extras; `semantic=True` needs `groundrails[semantic-grounder]`.
 
 ## Python API
 
@@ -22,7 +22,7 @@ Imported from the top-level package: `from groundrails import ground, ground_bat
 
 ## Grounding document
 
-The dict `grounding_document` returns and `--json` prints - the business end, one entry per claim, no per-scorer internals.
+The dict `grounding_document` returns - the business end, one entry per claim, no per-scorer internals.
 
 | Field | Type | Meaning |
 |---|---|---|
@@ -46,42 +46,52 @@ The dict `grounding_document` returns and `--json` prints - the business end, on
 | `line_start`, `line_end`, `paragraph`, `page` | its position |
 | `support_via` | `lexical` when a cascade verdict fell back to the best lexical passage |
 
-## CLI
-
-| Command | What it does |
-|---|---|
-| `groundrails ground DOCUMENT EVIDENCE...` | extract claims from the one document, ground them against the evidence |
-| `groundrails ground --claims FILE EVIDENCE...` | ground a structured claims file |
-| `groundrails ground --claim TEXT [--claim TEXT] EVIDENCE...` | ground inline claim(s), repeatable |
-| `groundrails extract-claims --document DOC` | pull claims (with their locations) from a document |
-| `groundrails check-consistency --document DOC` | intra-document contradiction report |
-| `groundrails config` / `download` / `setup` | print config / fetch the cascade models / first-run setup |
-
-- **Flags** - `--json` (grounding document), `--full-output` (per-scorer detail), `--semantic 1` (add the cascade), `--effort {low,medium,high}`
-- **Exit code** - 0 if every claim is grounded, 1 if any is not
-
 ## Examples
 
-```python
-from groundrails import ground, grounding_document
+One claim against one source - a `GroundingMatch`:
 
-# one claim → a GroundingMatch
+```python
+from groundrails import ground
+
 m = ground("The tower opened in 1889.", ["The Eiffel Tower opened in 1889."])
 print(m.grounded, m.match_type, m.support)
+```
 
-# many claims → the agent-facing document
+Many claims → the agent-facing document, with provenance carried by `(path, text)` sources:
+
+```python
+from groundrails import grounding_document
+
 doc = grounding_document(
     ["The tower is in Paris.", "It is 2000 m tall."],
     [("evidence.txt", "The Eiffel Tower is in Paris, France. It is 330 m tall.")],
 )
+print(doc["summary"])  # {'total': 2, 'grounded': 1, 'ungrounded': 1}
 for c in doc["claims"]:
     print(c["claim"], c["grounded"], c["support"])
 ```
 
-```bash
-# default: extract claims from the answer, check against evidence, emit the document
-groundrails ground answer.md evidence.txt --json
+Batch grounding, then build the document from the matches you already have:
 
-# inline claims, repeatable; positionals are evidence
-groundrails ground --claim "The tower is in Paris." --claim "It is 330 m tall." evidence.txt
+```python
+from groundrails import ground_batch, build_grounding_document
+
+claims = ["The tower is in Paris.", "It is 330 m tall."]
+sources = [("evidence.txt", "The Eiffel Tower is in Paris, France. It is 330 m tall.")]
+
+matches = ground_batch(claims, sources, max_workers=5)
+doc = build_grounding_document(matches, claims=claims, sources=sources)
+```
+
+Opt-in semantic cascade for a deeper check and cross-lingual claims (needs `groundrails[semantic-grounder]`); a claim in a language with no MT model raises:
+
+```python
+from groundrails import ground, UnsupportedLanguageError
+
+m = ground("La tour est à Paris.", ["The Eiffel Tower is in Paris."], semantic=True)
+
+try:
+    ground("Tårnet er i Paris.", ["The Eiffel Tower is in Paris."])
+except UnsupportedLanguageError as e:
+    print("install the MT model first:", e)
 ```

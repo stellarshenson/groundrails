@@ -95,5 +95,6 @@ for c in doc["claims"]:
 
 ## Reference
 
-- **API, fields, CLI** - `docs/api-reference.md` in the groundrails repo
+- **Python API, fields** - `docs/api-reference.md` in the groundrails repo
+- **CLI commands, flags** - `docs/cli-reference.md` in the groundrails repo
 - **Design and benchmarks** - the two SOTA docs under `docs/experiments/` (`lexical-grounding-sota.md`, `semantic-grounding-sota.md`)
