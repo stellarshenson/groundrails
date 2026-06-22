@@ -20,7 +20,11 @@ groundrails checks whether each claim in an answer is backed by your source, and
 
 ## Why
 
-Agentic RAG can assert things its sources never said. The usual fix - a second LLM grading each claim - is slow, costs a model call per claim, is non-deterministic, and gives no reason for its verdict. groundrails is the deterministic gate that runs before the answer reaches the user: milliseconds per claim, no GPU, no API call, and an auditable pointer to the exact supporting passage.
+Agentic RAG asserts things its sources never said; groundrails is the deterministic gate that catches it before the answer reaches the user.
+
+- **LLM-judge cost** - a second model grading each claim is slow, one model call per claim, non-deterministic, no reason for the verdict
+- **groundrails** - milliseconds per claim, no GPU, no API call at decision time
+- **Auditable** - every verdict points to the exact supporting passage
 
 ## Principle of operation
 
@@ -28,12 +32,16 @@ groundrails grounds each claim by recall, not by an LLM judgment: a fast determi
 
 ```mermaid
 flowchart LR
-    CL[Claims] --> LEX[Lexical grounder]
+    ANS[Answer] --> EXT[Claim extraction]
+    EXT --> CL[Claims list]
+    CL --> LEX[Lexical grounder]
     EV[Evidence] --> LEX
     LEX -->|confident| V[Verdict + support location]
     LEX -.->|unsure or cross-lingual| SEM[Semantic cascade]
     SEM --> V
 
+    style ANS stroke:#0284c7,stroke-width:2px
+    style EXT stroke:#10b981,stroke-width:2px
     style CL stroke:#0284c7,stroke-width:2px
     style EV stroke:#0284c7,stroke-width:2px
     style LEX stroke:#10b981,stroke-width:3px
@@ -131,7 +139,11 @@ You get back a **grounding document**: per claim, a verdict, a confidence score,
 }
 ```
 
-A typical run mixes all three outcomes: a grounded claim points at its supporting passage; a hallucination is `grounded: false` with `support: null` - the evidence never made the claim; a contradiction is `grounded: false` but still locates the passage it disagrees with and names the conflicting value (`2000` vs `330`).
+A typical run mixes all three outcomes:
+
+- **Grounded** - points at its supporting passage
+- **Hallucination** - `grounded: false`, `support: null`; the evidence never made the claim
+- **Contradiction** - `grounded: false` but still locates the passage it disagrees with and names the conflicting value (`2000` vs `330`)
 
 Read it like this:
 
@@ -182,11 +194,21 @@ Cross-lingual claims and a deeper semantic check are opt-in: install `groundrail
 
 ## Languages
 
-English is native. Nine more work through an on-device translation bridge: Danish, German, Spanish, French, Italian, Norwegian Bokmål, Dutch, Portuguese, Swedish. The bridge model for a language is downloaded automatically the first time a cross-lingual claim needs it - this is the default. With auto-install turned off (`GROUNDRAILS_ARGOS_AUTO_INSTALL=0`) or offline (`HF_HUB_OFFLINE`), a claim whose model is not already installed fails with an explicit `language not installed` error rather than being silently mis-scored - install it ahead of time with `argospm install translate-<code>_en`. A claim in a language outside the supported set is blocked the same way.
+English is native; nine more ground through an on-device translation bridge.
+
+- **Supported** - Danish, German, Spanish, French, Italian, Norwegian Bokmål, Dutch, Portuguese, Swedish
+- **Auto-install** - the bridge model downloads on first cross-lingual use (default)
+- **Offline / disabled** - with `GROUNDRAILS_ARGOS_AUTO_INSTALL=0` or `HF_HUB_OFFLINE`, a claim whose model is not installed fails with an explicit `language not installed` error, never silently mis-scored
+- **Preinstall** - `argospm install translate-<code>_en`
+- **Unsupported language** - blocked the same way
 
 ## Calibration
 
-groundrails ships with frozen weights fit on a verified gold set, so it grounds correctly out of the box. Recalibrate only when your domain drifts from that gold - a different document style, entity vocabulary, or language mix - and you have your own labelled claims. Calibration re-fits the frozen logistic weights and leaves the deterministic recall layers untouched; inference stays a single logistic evaluation, same input → same verdict.
+Frozen weights fit on a verified gold set ground correctly out of the box; recalibrate only on domain drift with your own labelled claims.
+
+- **When** - document style, entity vocabulary, or language mix drifts from the gold set
+- **What it touches** - re-fits the frozen logistic weights; the deterministic recall layers are untouched
+- **Inference** - stays a single logistic evaluation, same input → same verdict
 
 ```bash
 # write the active calibration to the JSON a deployment provisions via init
@@ -197,10 +219,17 @@ See [`docs/calibration-reference.md`](docs/calibration-reference.md) for the dat
 
 ## How it works & how it performs
 
-Two layers: a fast deterministic lexical grounder, and an optional model-based cascade (`--semantic`) that escalates only the claims the fast path is unsure about. On a verified gold set the lexical grounder reaches macro-F1 0.76, and the semantic switch lifts it to 0.82. The full design, benchmarks, and comparison to published methods live in the two SOTA write-ups:
+Two layers: a fast deterministic lexical grounder, and an optional model-based cascade (`--semantic`) that escalates only the claims the fast path is unsure about.
 
-- [`lexical-grounding-sota.md`](docs/experiments/lexical-grounding-sota.md) - the deterministic lexical grounder
-- [`semantic-grounding-sota.md`](docs/experiments/semantic-grounding-sota.md) - the optional model-based cascade
+| Path | macro-F1 | Avg latency / claim | Models in verdict |
+|------|----------|---------------------|-------------------|
+| **Lexical** (default) | 0.76 | ~165 ms | none |
+| **+ Semantic** (`--semantic`) | 0.82 | ~585 ms (258 ms median) | bge-m3 → reranker → NLI, OV int8 |
+
+- **CPU, single-thread** - figures on a 2752-claim verified gold set; semantic latency is warm (chunk vectors precomputed)
+- **Full design + benchmarks** - the two SOTA write-ups, with comparison to published methods:
+  - [`lexical-grounding-sota.md`](docs/experiments/lexical-grounding-sota.md) - the deterministic lexical grounder
+  - [`semantic-grounding-sota.md`](docs/experiments/semantic-grounding-sota.md) - the optional model-based cascade
 
 ## Documentation
 
