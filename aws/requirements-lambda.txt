@@ -1,0 +1,13 @@
+# Lean runtime deps for the lexical-only grounder Lambda.
+# The package is installed with --no-deps; these are the only modules the
+# lexical (low/medium) inference path imports. The openvino / ctranslate2 /
+# argos / pymc / bambi heavies are core deps of groundrails but are lazy and
+# unused for lexical grounding, so they are deliberately omitted here.
+numpy
+rank-bm25
+rapidfuzz
+wordfreq
+pydantic>=2
+pyyaml
+loguru
+botocore

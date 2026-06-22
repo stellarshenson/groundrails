@@ -76,6 +76,24 @@ def download_models():
         yield name, repo, snapshot_download(repo)
 
 
+def _resolve_repo_dir(name: str) -> str:
+    """Local dir holding the int8 IR for ``name``.
+
+    Prefers a local mirror at ``$GROUNDRAILS_MODELS_DIR/<name>`` (populated by
+    ``groundrails.init`` from S3 or a local folder) so a Lambda / offline run
+    loads the cascade with no HuggingFace call; falls back to a HuggingFace
+    snapshot (downloading on first use).
+    """
+    mirror = os.environ.get("GROUNDRAILS_MODELS_DIR")
+    if mirror:
+        cand = Path(mirror) / name
+        if cand.is_dir():
+            return str(cand)
+    from huggingface_hub import snapshot_download
+
+    return snapshot_download(HF_REPOS[name])
+
+
 def _feed(cm, enc):
     names = {i.get_any_name() for i in cm.inputs}
     return {n: enc[n].astype(np.int64) for n in enc if n in names}
@@ -134,9 +152,7 @@ class SemanticCascade:
         core = ov.Core()
 
         def load(name):
-            from huggingface_hub import snapshot_download
-
-            d = Path(snapshot_download(HF_REPOS[name]))
+            d = Path(_resolve_repo_dir(name))
             tok = AutoTokenizer.from_pretrained(d, fix_mistral_regex=False)
             cfg = {"PERFORMANCE_HINT": self.hint}
             n_threads = os.environ.get("GROUNDRAILS_OV_THREADS")

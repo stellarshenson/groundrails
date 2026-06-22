@@ -428,9 +428,25 @@ def load_calibration_from_config(path: str | Path | None = None) -> dict | None:
     ``lexical``/``semantic`` -> the lexical verdict (semantic runs lexical until
     the heavy stage ships).
     """
+    import os
+
     import yaml
 
     from groundrails.config import _resolve_config_path
+
+    # Provisioned-JSON front door: a calibration JSON (an explicit ``.json``
+    # ``path``, or ``GROUNDRAILS_CALIBRATION_JSON`` set by ``groundrails.init``)
+    # is the calibration block itself and wins over the bundled YAML.
+    jp = None
+    if path is not None and str(path).endswith(".json") and Path(path).is_file():
+        jp = Path(path)
+    else:
+        env_json = os.environ.get("GROUNDRAILS_CALIBRATION_JSON")
+        if env_json and Path(env_json).is_file():
+            jp = Path(env_json)
+    if jp is not None:
+        block = json.loads(jp.read_text(encoding="utf-8"))
+        return _ensure_engine(block) if isinstance(block, dict) else None
 
     p = _resolve_config_path("document_processing", path)
     if not Path(p).is_file():
@@ -439,11 +455,38 @@ def load_calibration_from_config(path: str | Path | None = None) -> dict | None:
     block = raw.get("calibration")
     if not isinstance(block, dict):
         return None
-    if "engine" not in block:
-        block = dict(block)
-        mode = block.get("mode", "lexical")
-        block["engine"] = "lexical" if mode in ("lexical", "semantic") else "deterministic"
+    return _ensure_engine(block)
+
+
+def _ensure_engine(block: dict) -> dict:
+    """Derive the internal ``engine`` head selector from ``mode`` when absent."""
+    if "engine" in block:
+        return block
+    block = dict(block)
+    mode = block.get("mode", "lexical")
+    block["engine"] = "lexical" if mode in ("lexical", "semantic") else "deterministic"
     return block
+
+
+def export_calibration(path: str | Path, *, source: str | Path | None = None) -> Path:
+    """Write the active calibration block to a JSON file - the provisioned artifact.
+
+    Reads the current calibration (a provisioned JSON / project-or-user override
+    / the bundled YAML block, in that precedence) and serialises it to ``path``
+    as JSON. This is the file ``groundrails.init`` provisions from S3 / a local
+    folder / a URL; the calibration / fit path calls it to *produce* that file.
+    """
+    block = load_calibration_from_config(source)
+    if not block:
+        raise RuntimeError(
+            "no calibration block to export - the bundled config and any override "
+            "lack a `calibration:` block"
+        )
+    p = Path(path)
+    if str(p.parent):
+        p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(json.dumps(block, indent=2), encoding="utf-8")
+    return p
 
 
 def verdict_from_config(path: str | Path | None = None) -> CalibratedVerdict | None:

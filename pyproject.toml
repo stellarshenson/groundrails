@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "groundrails"
-version = "1.0.33"
+version = "1.0.34"
 description = "Grounding guardrails for agentic RAG - deterministic claim verification"
 authors = [
     { name = "Konrad Jelen" },

@@ -11,6 +11,7 @@ lazy-imported - ``import groundrails`` does NOT load torch, transformers, or fai
 from importlib.metadata import PackageNotFoundError
 from importlib.metadata import version as _pkg_version
 
+from groundrails.bootstrap import export_calibration, init
 from groundrails.grounding import (
     GroundingMatch,
     Location,
@@ -20,6 +21,7 @@ from groundrails.grounding import (
     ground_batch,
     grounding_document,
 )
+from groundrails.settings import NotInitializedError
 
 try:
     __version__ = _pkg_version("groundrails")
@@ -29,10 +31,13 @@ except PackageNotFoundError:  # source tree without installed metadata
 __all__ = [
     "GroundingMatch",
     "Location",
+    "NotInitializedError",
     "UnsupportedLanguageError",
     "__version__",
     "build_grounding_document",
+    "export_calibration",
     "ground",
     "ground_batch",
     "grounding_document",
+    "init",
 ]

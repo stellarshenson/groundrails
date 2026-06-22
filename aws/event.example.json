@@ -1,0 +1,10 @@
+{
+  "claims": [
+    "The Eiffel Tower is in Paris.",
+    "The tower is 2000 metres tall."
+  ],
+  "sources": [
+    ["evidence.txt", "The Eiffel Tower is a wrought-iron lattice tower in Paris, France. It is 330 metres tall."]
+  ],
+  "effort": "low"
+}

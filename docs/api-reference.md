@@ -4,18 +4,22 @@ The Python surface of `groundrails` - the functions, the grounding-document shap
 
 ## Python API
 
-Imported from the top-level package: `from groundrails import ground, ground_batch, grounding_document, GroundingMatch, Location`.
+Imported from the top-level package: `from groundrails import init, ground, ground_batch, grounding_document, export_calibration, GroundingMatch, Location, NotInitializedError`.
 
 | Symbol | Signature | Returns | Purpose |
 |---|---|---|---|
+| `init` | `init(source=None, *, calibration=None, models=None, languages=None, aws_profile=None, aws_endpoint_url=None, home=None, ...)` | `dict` | provision calibration + models (S3 / local / HF); required before grounding |
 | `ground` | `ground(claim, sources, *, semantic=False, ...)` | `GroundingMatch` | check one claim against the sources |
 | `ground_batch` | `ground_batch(claims, sources, *, semantic=False, max_workers=5, ...)` | `list[GroundingMatch]` | check many claims |
 | `grounding_document` | `grounding_document(claims, sources, **kw)` | `dict` | ground, then return the agent-facing document |
 | `build_grounding_document` | `build_grounding_document(matches, claims=None, sources=None)` | `dict` | build the document from matches you already have |
+| `export_calibration` | `export_calibration(path, *, source=None)` | `Path` | write the active calibration block to a provisioned JSON |
 | `GroundingMatch` | dataclass | - | per-claim result: `.grounded`, `.support`, `.match_type`, `.verdict_probability`, per-layer scores and locations |
 | `Location` | dataclass | - | a span in a source: `source_index`, `char_start/end`, `line_start/end`, `paragraph`, `page` |
 | `UnsupportedLanguageError` | exception | - | raised when a non-English claim has no installed MT model |
+| `NotInitializedError` | exception | - | raised when grounding runs before `init()` |
 
+- **initialize first** - call `groundrails.init()` once before any grounding; `ground` / `ground_batch` / `grounding_document` raise `NotInitializedError` until it has run
 - **sources** - a list of strings, or `(path, text)` tuples to carry provenance into the support location
 - **claims** (for `grounding_document`) - strings, or objects with `id` / `line_number` / `char_start` / `char_end` (the `Claim` objects extract-claims writes) to carry each claim's location in the answer document
 - **determinism** - same input → same verdict; no sampling
@@ -47,6 +51,15 @@ The dict `grounding_document` returns - the business end, one entry per claim, n
 | `support_via` | `lexical` when a cascade verdict fell back to the best lexical passage |
 
 ## Examples
+
+Initialize once - provision calibration + models (S3 / local / HuggingFace); grounding raises `NotInitializedError` until this runs:
+
+```python
+import groundrails
+
+groundrails.init()                                     # built-in defaults (bundled calibration, lazy HF)
+groundrails.init(source="s3://groundrails-data/prod")  # pull calibration + models from S3
+```
 
 One claim against one source - a `GroundingMatch`:
 

@@ -218,6 +218,16 @@ def _match_line(m: GroundingMatch) -> str:
 
 # --- command handlers -------------------------------------------------------
 def cmd_ground(args: argparse.Namespace) -> int:
+    # Hard gate: grounding requires `groundrails init` first (main() loads groundrails.json,
+    # which marks the grounder ready). No file -> not ready -> refuse rather than grounding
+    # with un-provisioned defaults.
+    if not settings_mod.is_ready():
+        print(
+            "ERROR: groundrails is not initialized - run `groundrails init` first "
+            "(it provisions resources and writes groundrails.json)",
+            file=sys.stderr,
+        )
+        return 2
     # Resolve the claim source - exactly one of: a positional DOCUMENT (claims extracted from
     # it), --claims FILE (a structured claims file), or one-or-more --claim TEXT (inline) - plus
     # the evidence (the remaining positionals and any --source). A claims.json goes through
@@ -431,19 +441,49 @@ def cmd_download(args: argparse.Namespace) -> int:
 
 
 def cmd_setup(args: argparse.Namespace) -> int:
-    if settings_mod.settings_exist() and not args.force:
-        cfg = settings_mod.load()
-        print(
-            f"Settings already present at {settings_mod.settings_path()}.\n"
-            f"  semantic_model   = {cfg.semantic_model}\n"
-            f"  semantic_device  = {cfg.semantic_device}\n"
-            f"  cache_dir        = {cfg.cache_dir}\n"
-            "Semantic grounding (+ NLI) is opt-in per call via '--semantic'.\n"
-            "Re-run with --force to reconfigure.",
-            file=sys.stderr,
-        )
-        return 0
-    settings_mod.prompt_first_run()
+    """Show the built-in runtime settings (no file is written)."""
+    cfg = settings_mod.get()
+    print(
+        "groundrails settings are built in - configure them per call via CLI flags or "
+        "`groundrails init` (no settings.json is written).\n"
+        f"  semantic_model  = {cfg.semantic_model}\n"
+        f"  cache_dir       = {cfg.resolved_cache_dir()}\n"
+        f"  calibration     = {cfg.calibration_path or '(bundled default)'}\n"
+        f"  models_dir      = {cfg.models_dir or '(HuggingFace cache)'}\n"
+        "Semantic grounding (+ NLI) is opt-in per call via '--semantic'.",
+        file=sys.stderr,
+    )
+    return 0
+
+
+def cmd_init(args: argparse.Namespace) -> int:
+    """Provision calibration + models from S3 / local / HuggingFace in one call."""
+    from groundrails.bootstrap import init as _init
+
+    langs = [s.strip() for s in args.languages.split(",") if s.strip()] if args.languages else None
+    summary = _init(
+        source=args.source,
+        calibration=args.calibration,
+        models=args.models,
+        languages=langs,
+        wordnet=not args.no_wordnet,
+        semantic_model=args.semantic_model,
+        cache_dir=args.cache_dir,
+        aws_profile=args.aws_profile,
+        aws_endpoint_url=args.aws_endpoint_url,
+        aws_region=args.aws_region,
+        home=args.home,
+    )
+    print(json.dumps(summary, indent=2))
+    return 0
+
+
+def cmd_calibration_export(args: argparse.Namespace) -> int:
+    """Export the active calibration block to a JSON file - the provisioned artifact."""
+    from groundrails.calibration import export_calibration
+
+    p = export_calibration(args.output, source=args.source)
+    print(f"calibration exported -> {p}", file=sys.stderr)
     return 0
 
 
@@ -597,14 +637,11 @@ def _build_parser() -> argparse.ArgumentParser:
 
     su = sub.add_parser(
         "setup",
-        help="First-run setup: write the semantic model/cache config.",
+        help="Show the built-in runtime settings (no file written).",
         description=(
-            "Write .stellars-plugins/settings.json with the semantic model / cache "
-            "config. Semantic grounding (+ NLI) is opt-in per call via --semantic."
+            "Print the resolved built-in runtime settings. groundrails writes no "
+            "settings.json - configure per call via CLI flags or `groundrails init`."
         ),
-    )
-    su.add_argument(
-        "--force", action="store_true", help="Re-prompt even if settings already exist"
     )
     su.set_defaults(func=cmd_setup)
 
@@ -620,12 +657,71 @@ def _build_parser() -> argparse.ArgumentParser:
     )
     dl.set_defaults(func=cmd_download)
 
+    ini = sub.add_parser(
+        "init",
+        help="Provision calibration + models from S3 / local / HuggingFace in one call.",
+        description=(
+            "One-call bootstrap for offline / Lambda use. Every required resource resolves "
+            "S3 -> local folder -> HuggingFace, each overridable by a flag. Writes the "
+            "provisioned calibration JSON + a local model mirror under GROUNDRAILS_HOME; "
+            "no settings.json is written."
+        ),
+    )
+    ini.add_argument(
+        "--source", help="Default base for the chain: s3://bucket/prefix or a local dir"
+    )
+    ini.add_argument(
+        "--calibration", help="Calibration override: s3://… | https://… | /local/calibration.json"
+    )
+    ini.add_argument(
+        "--models", help="Model source: s3://…/models | /local/models | 'hf' | 'none'"
+    )
+    ini.add_argument("--languages", help="Comma-separated argos MT langs to prefetch (e.g. fr,de)")
+    ini.add_argument(
+        "--no-wordnet", action="store_true", help="Skip ensuring the NLTK WordNet corpus"
+    )
+    ini.add_argument(
+        "--semantic-model", dest="semantic_model", help="Override the semantic bi-encoder model id"
+    )
+    ini.add_argument("--cache-dir", dest="cache_dir", help="Parquet cache dir override")
+    ini.add_argument(
+        "--aws-profile", dest="aws_profile", help="botocore profile for S3 (omit in Lambda)"
+    )
+    ini.add_argument(
+        "--aws-endpoint-url",
+        dest="aws_endpoint_url",
+        help="S3-compatible endpoint URL (e.g. RustFS)",
+    )
+    ini.add_argument("--aws-region", dest="aws_region", help="AWS region for S3")
+    ini.add_argument(
+        "--home", help="GROUNDRAILS_HOME for fetched assets (default ~/.cache/groundrails)"
+    )
+    ini.set_defaults(func=cmd_init)
+
+    ca = sub.add_parser(
+        "calibration", help="Calibration utilities (export the active calibration to JSON)."
+    )
+    ca_sub = ca.add_subparsers(dest="cal_cmd", required=True)
+    ca_exp = ca_sub.add_parser(
+        "export",
+        help="Write the active calibration block to a JSON file (the provisioned artifact).",
+    )
+    ca_exp.add_argument("-o", "--output", required=True, help="Path to write calibration.json")
+    ca_exp.add_argument(
+        "--source", help="Read calibration from this override instead of the active one"
+    )
+    ca_exp.set_defaults(func=cmd_calibration_export)
+
     return parser
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = _build_parser()
     args = parser.parse_args(argv)
+    # Load a provisioned groundrails.json (written by `groundrails init`) so grounding
+    # commands run ready; `init` itself writes the file, so it is skipped here.
+    if getattr(args, "func", None) is not cmd_init:
+        settings_mod.load_config_file()
     return args.func(args)
 
 

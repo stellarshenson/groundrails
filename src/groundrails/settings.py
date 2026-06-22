@@ -1,138 +1,192 @@
-"""User settings for document-processing plugin.
+"""Built-in runtime settings for groundrails - no settings file.
 
-Settings live in ``.stellars-plugins/settings.json`` next to ``.claude/``. When
-the file does not exist the first CLI invocation that needs a setting calls
-:func:`prompt_first_run` (or the caller may pre-seed via :func:`save`).
+Settings are code defaults configured at runtime via the CLI (`groundrails`
+flags), :func:`groundrails.init`, or environment variables. Nothing is read
+from or written to ``.stellars-plugins/settings.json`` - a persisted settings
+file is the wrong fit for a stateless / Lambda deployment, so configuration
+lives in-process for the life of the call.
 
-Project-local takes precedence over home:
-
-    1. ``./.stellars-plugins/settings.json`` (project root, cwd-rooted)
-    2. ``~/.stellars-plugins/settings.json``
-
-Whether semantic grounding runs is NOT a persisted setting - it is a per-call
-flag on the grounder, controlled by ``--semantic`` (default off). The
-settings file only holds the semantic *model configuration* used when that flag
-turns the layer on. An old file that still carries a ``semantic_enabled`` key is
-loaded harmlessly: unknown keys are filtered out on read.
-
-Keys (all optional; defaults applied on read):
-
-    - ``semantic_model`` (str) — HF model id with a pre-exported
-      ``onnx/model.onnx``. Default ``intfloat/multilingual-e5-small``.
-    - ``semantic_device`` (str) — accepted for backward compatibility; the
-      ONNX Runtime path runs on CPU regardless of value.
-    - ``cache_dir`` (str) — parquet cache for chunks + embeddings. Default
-      ``./.stellars-plugins/cache``.
+Resource provisioning (the calibration JSON + model weights, from S3 / a local
+folder / the HuggingFace Hub) is handled by :mod:`groundrails.bootstrap`
+(``groundrails.init``); this module only holds the resolved knobs the grounder
+reads and the env vars the engines look at.
 """
 
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, fields, replace
 import json
+import os
 from pathlib import Path
-import sys
 
-SETTINGS_DIR_NAME = ".stellars-plugins"
-SETTINGS_FILE_NAME = "settings.json"
+DEFAULT_SEMANTIC_MODEL = "intfloat/multilingual-e5-small"
+
+# Env vars the engines read; ``configure`` / ``init`` set them so a provisioned
+# calibration JSON and a local model mirror survive into the lazy model loaders.
+ENV_HOME = "GROUNDRAILS_HOME"
+ENV_CALIBRATION = "GROUNDRAILS_CALIBRATION_JSON"
+ENV_MODELS_DIR = "GROUNDRAILS_MODELS_DIR"
+ENV_CONFIG = "GROUNDRAILS_CONFIG"
+
+CONFIG_FILENAME = "groundrails.json"
+
+
+def default_home() -> Path:
+    """``GROUNDRAILS_HOME`` - where init writes the calibration JSON + mirrored models.
+
+    Defaults to ``~/.cache/groundrails`` (use ``/tmp/groundrails`` in Lambda by
+    exporting ``GROUNDRAILS_HOME``).
+    """
+    env = os.environ.get(ENV_HOME)
+    return Path(env) if env else Path.home() / ".cache" / "groundrails"
 
 
 @dataclass
-class Settings:
-    semantic_model: str = "intfloat/multilingual-e5-small"
+class RuntimeConfig:
+    """In-process settings - built-in defaults, overridden by CLI / ``init``."""
+
+    semantic_model: str = DEFAULT_SEMANTIC_MODEL
     semantic_device: str = "auto"
-    cache_dir: str = ""  # resolved on load
+    cache_dir: str = ""  # parquet cache for chunks/embeddings; resolved under home when empty
+    calibration_path: str = ""  # provisioned calibration JSON; empty -> bundled default
+    models_dir: str = ""  # local mirror dir for model IRs; empty -> HuggingFace cache
+
+    def resolved_cache_dir(self) -> str:
+        return self.cache_dir or str(default_home() / "cache")
 
 
-def _project_root() -> Path:
-    """Return the nearest ancestor containing a ``.claude`` directory, else cwd."""
-    cwd = Path.cwd().resolve()
-    for p in [cwd, *cwd.parents]:
-        if (p / ".claude").is_dir():
-            return p
-    return cwd
+# Back-compat alias: older callers/tests refer to ``Settings``.
+Settings = RuntimeConfig
+
+_RUNTIME = RuntimeConfig()
+
+# Readiness gate: the grounder refuses to run until ``init`` (or a loaded
+# ``groundrails.json``) has marked it ready. A stateless Lambda calls
+# ``groundrails.init`` in-process; the CLI provisions once and persists
+# ``groundrails.json``, which a later ``groundrails ground`` process loads.
+_READY = False
 
 
-def _candidate_paths() -> list[Path]:
-    """Ordered list of settings file paths to probe."""
-    project = _project_root() / SETTINGS_DIR_NAME / SETTINGS_FILE_NAME
-    home = Path.home() / SETTINGS_DIR_NAME / SETTINGS_FILE_NAME
-    return [project, home]
+def get() -> RuntimeConfig:
+    """The active runtime config (built-in defaults unless configured)."""
+    return _RUNTIME
 
 
-def settings_path(prefer: str = "project") -> Path:
-    """Return the preferred settings file path (for writes).
+# Back-compat: ``load`` returned a Settings object; now it returns the runtime
+# config (no file is read). Callers that only need the model/cache knobs keep
+# working unchanged.
+load = get
 
-    ``prefer`` is ``"project"`` (default) or ``"home"``.
+
+def configure(**overrides) -> RuntimeConfig:
+    """Override runtime settings in place (``None`` values are ignored).
+
+    Also exports the env vars the lazy model loaders read, so a provisioned
+    calibration JSON (``calibration_path``) and a local model mirror
+    (``models_dir``) take effect for the rest of the process.
     """
-    if prefer == "home":
-        return Path.home() / SETTINGS_DIR_NAME / SETTINGS_FILE_NAME
-    return _project_root() / SETTINGS_DIR_NAME / SETTINGS_FILE_NAME
+    global _RUNTIME
+    valid = {f.name for f in fields(RuntimeConfig)}
+    changes = {k: v for k, v in overrides.items() if k in valid and v is not None}
+    _RUNTIME = replace(_RUNTIME, **changes)
+    if _RUNTIME.calibration_path:
+        os.environ[ENV_CALIBRATION] = _RUNTIME.calibration_path
+    if _RUNTIME.models_dir:
+        os.environ[ENV_MODELS_DIR] = _RUNTIME.models_dir
+    return _RUNTIME
 
 
-def load() -> Settings:
-    """Load settings. Falls back to defaults for missing file or keys."""
-    for path in _candidate_paths():
-        if path.is_file():
-            try:
-                raw = json.loads(path.read_text(encoding="utf-8"))
-            except json.JSONDecodeError:
-                continue
-            s = Settings(**{k: v for k, v in raw.items() if k in Settings.__annotations__})
-            if not s.cache_dir:
-                s.cache_dir = str(path.parent / "cache")
-            return s
-    # No settings file — return defaults pointing at project-local cache
-    default_base = _project_root() / SETTINGS_DIR_NAME
-    return Settings(cache_dir=str(default_base / "cache"))
+def reset() -> None:
+    """Reset to built-in defaults and clear readiness (test helper)."""
+    global _RUNTIME, _READY
+    _RUNTIME = RuntimeConfig()
+    _READY = False
 
 
-def save(settings: Settings, *, prefer: str = "project") -> Path:
-    """Write settings to disk. Returns the path written."""
-    path = settings_path(prefer)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    payload = asdict(settings)
-    # Don't persist auto-computed cache_dir if it's the default
-    path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
-    return path
+# --- readiness gate --------------------------------------------------------
 
 
-def settings_exist() -> bool:
-    return any(p.is_file() for p in _candidate_paths())
+class NotInitializedError(RuntimeError):
+    """Raised when the grounder runs before ``groundrails.init`` has provisioned it."""
+
+    def __init__(self) -> None:
+        super().__init__(
+            "groundrails is not initialized - call groundrails.init() (Python) or run "
+            "`groundrails init` (CLI, writes groundrails.json) before grounding"
+        )
 
 
-def prompt_first_run(*, stream=sys.stderr, input_fn=input) -> Settings:
-    """Write a default settings file (model + cache config) and return it.
+def mark_ready() -> None:
+    """Mark the grounder ready - set by ``init`` and by loading ``groundrails.json``."""
+    global _READY
+    _READY = True
 
-    Semantic grounding is no longer a persisted on/off setting - it is enabled
-    per call via ``--semantic`` (which also brings the NLI entailment layer
-    online). So there is nothing to ask: this just seeds the model/cache config
-    and notes how to turn the layer on. ``input_fn`` is retained for signature
-    compatibility but unused.
+
+def is_ready() -> bool:
+    """True once ``init`` has run (or a ``groundrails.json`` has been loaded)."""
+    return _READY
+
+
+def require_ready() -> None:
+    """Raise :class:`NotInitializedError` unless the grounder has been initialized."""
+    if not _READY:
+        raise NotInitializedError()
+
+
+# --- groundrails.json (the init-written runtime config) ---------------------
+
+
+def config_file_path(explicit: str | None = None) -> Path:
+    """Where ``groundrails.json`` is written / read: an explicit path, then
+    ``GROUNDRAILS_CONFIG``, then ``$GROUNDRAILS_HOME/groundrails.json``, else
+    ``./groundrails.json`` in the current directory (when ``GROUNDRAILS_HOME``
+    is unset)."""
+    if explicit:
+        return Path(explicit)
+    env = os.environ.get(ENV_CONFIG)
+    if env:
+        return Path(env)
+    home_env = os.environ.get(ENV_HOME)
+    if home_env:
+        return Path(home_env) / CONFIG_FILENAME
+    return Path.cwd() / CONFIG_FILENAME
+
+
+def save_config_file(explicit: str | None = None) -> Path | None:
+    """Persist the active runtime config to ``groundrails.json`` (best-effort).
+
+    Returns the path written, or ``None`` when the location is not writable (a
+    read-only task root in Lambda, where readiness is in-process anyway).
     """
-    s = Settings()
-    s.cache_dir = str(_project_root() / SETTINGS_DIR_NAME / "cache")
-    path = save(s)
-    print(
-        f"Saved settings → {path}\n"
-        "Semantic grounding (+ NLI entailment) is opt-in per call: pass "
-        "'--semantic' to any grounding command. Requires the optional "
-        "extras:\n" + semantic_install_hint(),
-        file=stream,
-    )
-    return s
+    p = config_file_path(explicit)
+    try:
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text(json.dumps(asdict(_RUNTIME), indent=2), encoding="utf-8")
+        return p
+    except OSError:
+        return None
 
 
-def ensure_loaded(*, auto_prompt: bool = True) -> Settings:
-    """Load settings; if none exist and ``auto_prompt`` is True, run the prompt."""
-    if settings_exist():
-        return load()
-    if auto_prompt:
-        return prompt_first_run()
-    return load()
+def load_config_file(explicit: str | None = None) -> bool:
+    """Load ``groundrails.json`` into the runtime config and mark ready.
+
+    Returns ``True`` when a file was found and loaded, ``False`` when none exists.
+    """
+    p = config_file_path(explicit)
+    if not p.is_file():
+        return False
+    data = json.loads(p.read_text(encoding="utf-8"))
+    valid = {f.name for f in fields(RuntimeConfig)}
+    configure(**{k: v for k, v in data.items() if k in valid})
+    mark_ready()
+    return True
+
+
+# --- semantic optional-deps helpers (kept; used by the CLI) ----------------
 
 
 def is_semantic_available() -> bool:
-    """Check if the semantic-grounding optional deps are importable."""
+    """Check if the (legacy ONNX) semantic-grounding optional deps are importable."""
     for mod in ("onnxruntime", "transformers", "faiss", "pyarrow", "huggingface_hub"):
         try:
             __import__(mod)
@@ -144,7 +198,7 @@ def is_semantic_available() -> bool:
 def semantic_install_hint() -> str:
     return (
         "Semantic grounding requires optional dependencies. Install with:\n"
-        "  pip install 'stellars-claude-code-plugins[semantic]'\n"
+        "  pip install 'groundrails[semantic-grounder]'\n"
         "or individually:\n"
         "  pip install onnxruntime transformers faiss-cpu pyarrow huggingface_hub\n"
     )

@@ -772,6 +772,9 @@ def ground(
             ``<lang>->en`` model (hard-block so unsupported languages cannot
             pollute scoring).
     """
+    from groundrails import settings as _gr_settings
+
+    _gr_settings.require_ready()
     cfg = (config if config is not None else load_config()).overlay(
         fuzzy_threshold=fuzzy_threshold,
         bm25_threshold=bm25_threshold,
@@ -1353,6 +1356,9 @@ def ground_batch(
     classifier rank-based and therefore portable across embedding models
     with different absolute-score distributions.
     """
+    from groundrails import settings as _gr_settings
+
+    _gr_settings.require_ready()
     cfg = (config if config is not None else load_config()).overlay(
         fuzzy_threshold=fuzzy_threshold,
         bm25_threshold=bm25_threshold,

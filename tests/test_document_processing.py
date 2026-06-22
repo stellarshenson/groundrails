@@ -380,40 +380,30 @@ class TestChunking:
 
 
 class TestSettings:
-    """Settings load/save/prompt — zero-dep."""
+    """Built-in runtime settings - configured in-process, never persisted to a file."""
 
-    def test_defaults_when_no_file(self, tmp_path, monkeypatch):
-        monkeypatch.chdir(tmp_path)
-        monkeypatch.setenv("HOME", str(tmp_path))
+    def test_defaults(self):
+        settings_mod.reset()
         cfg = settings_mod.load()
         assert cfg.semantic_model == "intfloat/multilingual-e5-small"
         assert cfg.semantic_device == "auto"
 
-    def test_save_then_load_roundtrip(self, tmp_path, monkeypatch):
+    def test_configure_overrides_in_process_no_file(self, tmp_path, monkeypatch):
         monkeypatch.chdir(tmp_path)
         monkeypatch.setenv("HOME", str(tmp_path))
-        # Create project root marker
-        (tmp_path / ".claude").mkdir()
-        s = settings_mod.Settings(semantic_model="custom/model")
-        path = settings_mod.save(s)
-        assert path.exists()
-        loaded = settings_mod.load()
-        assert loaded.semantic_model == "custom/model"
+        settings_mod.reset()
+        settings_mod.configure(semantic_model="custom/model")
+        assert settings_mod.get().semantic_model == "custom/model"
+        assert not list(tmp_path.rglob("settings.json"))  # nothing persisted
+        settings_mod.reset()
 
-    def test_obsolete_semantic_enabled_key_is_ignored(self, tmp_path, monkeypatch):
-        # Old settings files may still carry semantic_enabled - it must load
-        # without error and simply be dropped (unknown keys filtered on read).
-        monkeypatch.chdir(tmp_path)
-        monkeypatch.setenv("HOME", str(tmp_path))
-        (tmp_path / ".claude").mkdir()
-        d = tmp_path / ".stellars-plugins"
-        d.mkdir()
-        (d / "settings.json").write_text(
-            json.dumps({"semantic_enabled": True, "semantic_model": "m/x"})
-        )
-        loaded = settings_mod.load()
-        assert loaded.semantic_model == "m/x"
-        assert not hasattr(loaded, "semantic_enabled")
+    def test_configure_ignores_unknown_keys(self):
+        settings_mod.reset()
+        settings_mod.configure(semantic_enabled=True, semantic_model="m/x")  # unknown key dropped
+        cfg = settings_mod.get()
+        assert cfg.semantic_model == "m/x"
+        assert not hasattr(cfg, "semantic_enabled")
+        settings_mod.reset()
 
 
 class TestSemanticOnContract:
@@ -465,18 +455,17 @@ class TestSemanticOnContract:
 
 
 class TestCLISetup:
-    """CLI setup subcommand."""
+    """CLI setup subcommand - prints the built-in runtime settings, writes no file."""
 
-    def test_setup_shows_current_if_present(self, tmp_path, monkeypatch, capsys):
+    def test_setup_prints_runtime_settings(self, tmp_path, monkeypatch, capsys):
         monkeypatch.chdir(tmp_path)
         monkeypatch.setenv("HOME", str(tmp_path))
-        (tmp_path / ".claude").mkdir()
-        # Pre-seed settings
-        settings_mod.save(settings_mod.Settings())
+        settings_mod.reset()
         code = cli_main(["setup"])
         assert code == 0
         err = capsys.readouterr().err
         assert "semantic_model" in err
+        assert not list(tmp_path.rglob("settings.json"))
 
 
 # -------------------------------------------------------------------------

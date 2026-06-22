@@ -16,6 +16,8 @@ groundrails checks whether each claim in an answer is backed by your source, and
   <img src=".resources/groundrails-banner-v2.svg" alt="groundrails - deterministic claim grounding" width="640">
 </p>
 
+**In plain terms**: groundrails is a fact-checker for AI answers. For every sentence the answer states, it searches your source documents for the passage that backs it up - if it finds one it points to the exact spot, if it does not it flags the sentence as made up or contradicted. It does this by matching words and, optionally, a couple of small on-device models, so there is no second AI grading the answer, no internet call at decision time, and the same verdict every run.
+
 ## Why
 
 Agentic RAG can assert things its sources never said. The usual fix - a second LLM grading each claim - is slow, costs a model call per claim, is non-deterministic, and gives no reason for its verdict. groundrails is the deterministic gate that runs before the answer reaches the user: milliseconds per claim, no GPU, no API call, and an auditable pointer to the exact supporting passage.
@@ -39,18 +41,29 @@ flowchart LR
     style V stroke:#3b82f6,stroke-width:3px
 ```
 
-Inside the lexical grounder, a single verdict forms like this:
+Inside the lexical grounder, a same-language claim is recalled directly; a cross-lingual one is segmented by SaT and translated first, then a single verdict forms:
 
 ```mermaid
 flowchart LR
-    C[Claim + evidence] --> R[Recall layers<br/>exact / fuzzy / BM25]
-    R --> M[Frozen logistic]
+    C[Claim] --> LD{Same language<br/>as evidence?}
+    LD -->|yes| REC[Recall layers<br/>exact / fuzzy / BM25]
+    LD -->|no, cross-lingual| SAT
+    subgraph MTB[MT bridge - cross-lingual only]
+        direction LR
+        SAT[SaT splits claim<br/>into sentences] --> MT[CTranslate2 int8<br/>translate each to English]
+    end
+    MT --> REC
+    REC --> M[Frozen logistic]
     M --> S{Score vs threshold}
     S -->|above| G[Grounded]
     S -->|below| H[Hallucination]
 
     style C stroke:#0284c7,stroke-width:2px
-    style R stroke:#10b981,stroke-width:2px
+    style LD stroke:#f59e0b,stroke-width:2px
+    style MTB stroke:#a855f7,stroke-width:3px
+    style SAT stroke:#6b7280,stroke-width:2px
+    style MT stroke:#a855f7,stroke-width:2px
+    style REC stroke:#10b981,stroke-width:2px
     style M stroke:#10b981,stroke-width:3px
     style S stroke:#f59e0b,stroke-width:2px
     style G stroke:#3b82f6,stroke-width:2px
@@ -58,6 +71,7 @@ flowchart LR
 ```
 
 - **Lexical grounder** - exact, fuzzy, and BM25 recall fused by a frozen logistic; decides most claims on CPU in ~165 ms, no model call
+- **Cross-lingual** - a same-language claim is recalled directly; a claim in another language is split into sentences by the SaT model and translated to English (CTranslate2 int8) before recall, no translation when the languages match
 - **Escalation** - only an unsure or cross-lingual claim escalates to the opt-in `--semantic` cascade (embed → rerank → NLI, OpenVINO int8)
 - **Verdict** - a 0-to-1 score above the threshold is grounded, below it a hallucination; a value conflict like `512` vs `1000` is a contradiction
 - **Deterministic** - frozen weights, identical verdict every run
@@ -66,6 +80,7 @@ flowchart LR
 
 ```bash
 pip install groundrails
+groundrails init                  # provision + write groundrails.json under $GROUNDRAILS_HOME (or ./ if unset)
 
 # extract the claims from an answer, check each against the evidence
 groundrails ground answer.md evidence.txt --json
@@ -78,7 +93,7 @@ You get back a **grounding document**: per claim, a verdict, a confidence score,
 
 ```json
 {
-  "summary": {"total": 12, "grounded": 9, "ungrounded": 3},
+  "summary": {"total": 3, "grounded": 1, "ungrounded": 2},
   "claims": [
     {
       "claim": "The tower was completed in 1889.",
@@ -89,11 +104,34 @@ You get back a **grounding document**: per claim, a verdict, a confidence score,
         "source_path": "evidence.txt",
         "matched_text": "the Eiffel Tower was completed in 1889",
         "line_start": 12, "char_start": 210, "char_end": 248
-      }
+      },
+      "contradiction": null
+    },
+    {
+      "claim": "It draws 50 million visitors a year.",
+      "claim_location": {"line": 6, "char_start": 153, "char_end": 189},
+      "grounded": false,
+      "score": 0.08,
+      "support": null,
+      "contradiction": null
+    },
+    {
+      "claim": "The tower is 2000 metres tall.",
+      "claim_location": {"line": 7, "char_start": 190, "char_end": 220},
+      "grounded": false,
+      "score": 0.0,
+      "support": {
+        "source_path": "evidence.txt",
+        "matched_text": "It is 330 metres tall",
+        "line_start": 13, "char_start": 250, "char_end": 271
+      },
+      "contradiction": {"numeric": [[2000, 330]]}
     }
   ]
 }
 ```
+
+A typical run mixes all three outcomes: a grounded claim points at its supporting passage; a hallucination is `grounded: false` with `support: null` - the evidence never made the claim; a contradiction is `grounded: false` but still locates the passage it disagrees with and names the conflicting value (`2000` vs `330`).
 
 Read it like this:
 
@@ -122,7 +160,10 @@ A `claims.json` is what `extract-claims` writes - a list of `{claim, ...}` objec
 Drop `--json` for a readable line per claim; add `--full-output` for the per-scorer detail. From Python:
 
 ```python
+import groundrails
 from groundrails import grounding_document
+
+groundrails.init()  # provision once; grounding raises NotInitializedError until this runs
 
 doc = grounding_document(
     ["The Eiffel Tower is in Paris."],
@@ -141,7 +182,18 @@ Cross-lingual claims and a deeper semantic check are opt-in: install `groundrail
 
 ## Languages
 
-English is native. Nine more work through an on-device translation bridge: Danish, German, Spanish, French, Italian, Norwegian Bokmål, Dutch, Portuguese, Swedish. A claim in any other language is blocked rather than silently mis-scored; add one with `argospm install translate-<code>_en`.
+English is native. Nine more work through an on-device translation bridge: Danish, German, Spanish, French, Italian, Norwegian Bokmål, Dutch, Portuguese, Swedish. The bridge model for a language is downloaded automatically the first time a cross-lingual claim needs it - this is the default. With auto-install turned off (`GROUNDRAILS_ARGOS_AUTO_INSTALL=0`) or offline (`HF_HUB_OFFLINE`), a claim whose model is not already installed fails with an explicit `language not installed` error rather than being silently mis-scored - install it ahead of time with `argospm install translate-<code>_en`. A claim in a language outside the supported set is blocked the same way.
+
+## Calibration
+
+groundrails ships with frozen weights fit on a verified gold set, so it grounds correctly out of the box. Recalibrate only when your domain drifts from that gold - a different document style, entity vocabulary, or language mix - and you have your own labelled claims. Calibration re-fits the frozen logistic weights and leaves the deterministic recall layers untouched; inference stays a single logistic evaluation, same input → same verdict.
+
+```bash
+# write the active calibration to the JSON a deployment provisions via init
+groundrails calibration export -o calibration.json
+```
+
+See [`docs/calibration-reference.md`](docs/calibration-reference.md) for the dataset format, the retrain commands, and how `init` loads the JSON.
 
 ## How it works & how it performs
 
