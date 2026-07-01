@@ -42,6 +42,7 @@ A purely lexical model (translate the claim, then lexical recall) is the best, b
 | R10 synthetic non-EN negatives by `claude -p` translation | gold v2 + 1,053 synthetic | single global threshold reaches real non-EN TNR 0.683, LOLO 0.60-0.79 | **Validated offline** - weights learn the boundary; ship gated on EN guard |
 | R11 synthetic data doubling + de back-translation | gold v2 + 2,119 synthetic | TNR 0.683 → 0.712 (+0.029, diminishing); de bridge installed, null on metric (no de in eval) | scales but bends - next gain is source diversity, not volume |
 | R12 ship the durable fix: single global cut | gold v2 + 2,119 synthetic | global 0.50: gold_en F1 0.803→0.810, non-EN TNR 0.78, VitaminC/articles hold, English e2e green | **Ships** - synthetic-retrained weights retire `threshold_non_en` |
+| R13 extraction axis: SaT vs regex admission | gold v2 5,857 / 636 answers | admission gap real (SaT 99.5% vs regex 88.9%, regex drops it 69%); macro-F1 0.766 vs 0.773 reuses the SaT-calibrated verdict | **Confounded** - admission gap valid; macro-F1 not fairly attributable (verdict is SaT-calibrated, regex never re-grounded); fair re-run pending |
 
 ![Progressive gains across hypothesis rounds - VitaminC climbs 0.53 to 0.69 as deterministic contradiction features are added while private RAG holds ~0.85, then round 3 plateaus at lexical saturation](images/progressive-gains.svg)
 
@@ -291,6 +292,25 @@ Results - real gold v2, shipped single global threshold 0.50 (synthetic-retraine
 | vitaminc F1 | 0.695 | **0.699** |
 | articles F1 | 0.797 | **0.816** |
 
+## Extraction axis, round 13: does SaT admission lift grounding macro-F1? (admission gap measured; macro-F1 confounded by the SaT-calibrated verdict)
+
+Round 8 confirmed the shipped regex extractor (`extract_claims`, English verb/copula gate) over-drops non-English sentences, and the round's LLM-as-judge favoured SaT extraction quality 15 / 1. This round asks the downstream question on the full gold v2: holding the grounding verdict fixed, does SaT's higher claim admission lift macro-F1? The answer separates two things the "SaT preferred" verdict conflated - extraction *quality* (real, SaT wins) and extraction as a *macro-F1 lever*. The macro-F1 arm turns out **confounded**: the verdict it reuses (`lex_p`, frozen weights, the 0.50 cut) is itself calibrated on the SaT-extracted gold v2, and the regex segments are never re-grounded - so this round measures the admission gap cleanly but cannot fairly attribute macro-F1 to the extractor (see Limitation).
+
+- **Setup** - the 636 real-conversation answers were reconstructed into a raw-answers corpus (`data/raw/raw_v5`, the gold parquets hold only individuated claims) and re-segmented two ways: regex `extract_claims` vs a SaT extractor (`SaTSegmenter().split` + a language-agnostic gate, ≥3 alphabetic tokens). Each gold claim carries its shipped lexical verdict cached in `golden_v5.lex_p` (eval rows, cut 0.50); a claim is *admitted* by an extractor when rapidfuzz `partial_ratio ≥ 90` to that extractor's segmentation of the answer. An admitted claim takes its cached verdict; a dropped claim defaults to a supported pass (a gate that never sees a claim cannot flag it). macro-F1 over (label, per-extractor verdict) isolates admission - grounding is byte-identical for both arms. `scripts/sat_vs_regex_extraction.py`
+- **R13-H1 SaT admission lifts macro-F1, concentrated on the non-English tail** - because the regex English gate drops non-English claims (R8: nb 50% / it 86% rejected) and a dropped hallucination slips through, predict SaT lifts macro-F1 ≥ +0.01 overall and ≥ +0.02 non-EN while English holds. **Measured: refuted.** SaT admits 99.5% vs regex 88.9% (the over-drop reproduces - regex admits it 31% / nb 74% / sv 72% / de 76% / nl 75%), but macro-F1 is 0.766 (SaT) vs **0.773** (regex) overall, and 0.564 vs **0.615** non-EN; SaT wins English only (+0.011)
+- **Why coverage is not the lever** - the all-admitted ceiling is macro-F1 0.767 overall but **0.564 non-EN**: the lexical verdict is structurally weak cross-lingual (the R9-R12 fix lifts non-EN *TNR*, not the per-claim `lex_p` separation), so the extra non-English claims SaT admits are mis-scored, and admitting them catches no more hallucinations than regex's accidental supported-default on a supported-heavy non-EN slice. Extraction cannot beat the verdict's own ceiling - the bottleneck is the cross-lingual verdict, not segmentation
+- **Verdict** - **Inconclusive / confounded** on the macro-F1 question; **valid** on the admission gap. The reused verdict (frozen weights + the 0.50 cut) is calibrated on the SaT-extracted gold v2, and the regex segments are never actually re-grounded, so the regex arm is scored at SaT's operating point on SaT's claim granularity - the macro-F1 cannot be fairly attributed to the extractor. What stands: the admission gap is large (SaT ~99.5% vs regex 88.9%, regex over-dropping non-EN), and admission *pattern alone* with the SaT-calibrated verdict held fixed does not lift macro-F1. SaT remains the preferred segmenter for extraction *quality* and the MT-bridge; whether it lifts grounding macro-F1 needs the fair re-run below
+- **Limitation (why a fair re-run is required)** - two confounds the protocol cannot escape: (1) verdicts are reused from the gold claim, so the regex segments are never grounded - boundary / atomicity effects are invisible; (2) the manifold weights and the 0.50 threshold are fit on the SaT-extracted gold v2, so the operating point is tuned to SaT's claim granularity and the regex arm is scored on a cut never calibrated for it. A fair comparison must re-ground each segmentation with the real `ground()` and re-fit the threshold per extractor - ideally re-calibrate the manifold per extractor (the gold-v2 methodology, run once for regex and once for SaT)
+
+Results - real gold v2, grounding held fixed at the shipped lexical verdict (`lex_p ≥ 0.50`):
+
+| slice | regex `extract_claims` | SaT + lang-agnostic gate | all-admitted ceiling |
+|---|---|---|---|
+| ALL (n=5857) | **0.773** | 0.766 | 0.767 |
+| EN (4524) | 0.794 | **0.805** | 0.806 |
+| non-EN (1333) | **0.615** | 0.564 | 0.564 |
+| admission % (ALL) | 88.9 | 99.5 | 100 |
+
 ## Lessons learned
 
 - **Features beat model class** - the gain came from the lexical recall + claim-intrinsic features, not from a nonlinear learner; a regularised logistic is the right head for these few-context data
@@ -327,4 +347,5 @@ Results - real gold v2, shipped single global threshold 0.50 (synthetic-retraine
 - **Get real de negatives into the eval slice** - the gold v2 non-English negatives carry zero de; the de synthetic training rows and bridge are untestable on the honest slice until de hallucinations are judged into gold, so de coverage is currently a train-side correctness claim only
 - **Recover the non-English support recall (R12 follow-on)** - the durable fix trades non-English TPR down to 0.66 (rejects 34% of supported non-English claims) for the single global cut; better MT on the abstractive es/pt tail or a non-English support-side feature could lift it without re-splitting the threshold
 - **Engineering** - lingua-py for language ID, a faster per-language MT engine if throughput matters
+- **Fair SaT-vs-regex extraction re-run (R13 follow-on)** - R13 measured the admission gap cleanly but reused the SaT-calibrated verdict and never re-grounded the regex segments, so it cannot fairly attribute macro-F1 to the extractor. The proper test re-grounds each segmentation with the real `ground()`, transfers gold labels to the segments, and re-fits the threshold (ideally re-calibrates the manifold) per extractor - the gold-v2 methodology run once for regex and once for SaT - which also captures the boundary / atomicity axis the verdict-reuse hides
 - **Refuted, do not revisit without more data** - NLI in the verdict, claim decomposition, cross-corpus transfer, deep trees, OPUS-MT

@@ -12,6 +12,7 @@ from importlib.metadata import PackageNotFoundError
 from importlib.metadata import version as _pkg_version
 
 from groundrails.bootstrap import export_calibration, init
+from groundrails.calibration import calibrate
 from groundrails.grounding import (
     GroundingMatch,
     Location,
@@ -35,6 +36,7 @@ __all__ = [
     "UnsupportedLanguageError",
     "__version__",
     "build_grounding_document",
+    "calibrate",
     "export_calibration",
     "ground",
     "ground_batch",

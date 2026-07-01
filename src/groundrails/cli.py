@@ -487,6 +487,99 @@ def cmd_calibration_export(args: argparse.Namespace) -> int:
     return 0
 
 
+def _read_records(
+    path: str,
+    *,
+    claim_col: str,
+    source_col: str,
+    label_col: str,
+    lang_col: str | None,
+) -> list[dict]:
+    """Load labeled records from a parquet / jsonl / json / csv file.
+
+    Maps the named columns to the canonical ``claim`` / ``source_text`` /
+    ``label`` (+ optional ``lang``) the calibration API expects.
+    """
+    import pandas as pd
+
+    p = Path(path)
+    if p.suffix == ".parquet":
+        df = pd.read_parquet(p)
+    elif p.suffix in (".jsonl", ".ndjson"):
+        df = pd.read_json(p, lines=True)
+    elif p.suffix == ".json":
+        df = pd.read_json(p)
+    elif p.suffix == ".csv":
+        df = pd.read_csv(p)
+    else:
+        raise SystemExit(f"unsupported records format: {p.suffix} (use parquet/jsonl/json/csv)")
+    missing = [c for c in (claim_col, source_col, label_col) if c not in df.columns]
+    if missing:
+        raise SystemExit(f"input missing column(s): {missing}; have {list(df.columns)}")
+    rename = {claim_col: "claim", source_col: "source_text", label_col: "label"}
+    if lang_col and lang_col in df.columns:
+        rename[lang_col] = "lang"
+    df = df.rename(columns=rename)
+    cols = ["claim", "source_text", "label"] + (["lang"] if "lang" in df.columns else [])
+    return df[cols].to_dict("records")
+
+
+def cmd_calibration_fit(args: argparse.Namespace) -> int:
+    """Re-calibrate the manifold from labeled records; write the calibration JSON."""
+    from groundrails.calibration import calibrate, verdict_to_block
+
+    records = _read_records(
+        args.input,
+        claim_col=args.claim_col,
+        source_col=args.source_col,
+        label_col=args.label_col,
+        lang_col=args.lang_col,
+    )
+    if not records:
+        raise SystemExit("no records to calibrate on")
+    verdict = calibrate(
+        records,
+        semantic=args.semantic,
+        threshold=args.threshold,
+        balance=args.balance,
+        draws=args.draws,
+        tune=args.tune,
+        random_seed=args.seed,
+    )
+    block = verdict_to_block(verdict, mode="semantic" if args.semantic else "lexical")
+    out = Path(args.output)
+    if str(out.parent):
+        out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(block, indent=2), encoding="utf-8")
+    print(f"calibrated on {len(records)} records -> {out}", file=sys.stderr)
+    print(json.dumps(block, indent=2))
+    return 0
+
+
+def cmd_calibration_eval(args: argparse.Namespace) -> int:
+    """Evaluate a calibration JSON against labeled records (macro-F1 + per-class P/R/F1)."""
+    from groundrails.calibration import CalibratedVerdict, build_feature_frame, evaluate
+
+    block = json.loads(Path(args.calibration).read_text(encoding="utf-8"))
+    if not block.get("weights"):
+        raise SystemExit(f"{args.calibration} has no `weights` block to evaluate")
+    verdict = CalibratedVerdict.from_weights(
+        block["weights"], threshold=float(block.get("threshold", 0.5))
+    )
+    records = _read_records(
+        args.input,
+        claim_col=args.claim_col,
+        source_col=args.source_col,
+        label_col=args.label_col,
+        lang_col=args.lang_col,
+    )
+    frame = build_feature_frame(records, semantic=args.semantic)
+    group = "lang" if "lang" in frame.columns else None
+    metrics = evaluate(verdict, frame, group_col=group)
+    print(json.dumps(metrics, indent=2))
+    return 0
+
+
 def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="groundrails",
@@ -699,7 +792,8 @@ def _build_parser() -> argparse.ArgumentParser:
     ini.set_defaults(func=cmd_init)
 
     ca = sub.add_parser(
-        "calibration", help="Calibration utilities (export the active calibration to JSON)."
+        "calibration",
+        help="Calibration utilities: export the active block, or re-calibrate (fit) and eval from labeled records.",
     )
     ca_sub = ca.add_subparsers(dest="cal_cmd", required=True)
     ca_exp = ca_sub.add_parser(
@@ -711,6 +805,64 @@ def _build_parser() -> argparse.ArgumentParser:
         "--source", help="Read calibration from this override instead of the active one"
     )
     ca_exp.set_defaults(func=cmd_calibration_export)
+
+    def _add_record_args(p: argparse.ArgumentParser) -> None:
+        p.add_argument(
+            "--input", required=True, help="Labeled records: parquet / jsonl / json / csv"
+        )
+        p.add_argument("--claim-col", default="claim", help="Claim-text column (default: claim)")
+        p.add_argument(
+            "--source-col",
+            default="source_text",
+            help="Evidence-text column (default: source_text)",
+        )
+        p.add_argument(
+            "--label-col",
+            default="label",
+            help="Label column, 1=grounded/0=hallucination (default: label)",
+        )
+        p.add_argument(
+            "--lang-col",
+            default="lang",
+            help="Optional per-language column for the eval breakdown (default: lang)",
+        )
+        p.add_argument(
+            "--semantic", action="store_true", help="Run the OV semantic cascade during grounding"
+        )
+
+    ca_fit = ca_sub.add_parser(
+        "fit",
+        help="Re-calibrate the manifold from labeled records (re-grounds each, fits, writes the JSON block).",
+    )
+    _add_record_args(ca_fit)
+    ca_fit.add_argument(
+        "-o", "--output", required=True, help="Path to write the calibration JSON block"
+    )
+    ca_fit.add_argument(
+        "--threshold", type=float, default=0.5, help="Decision threshold (default: 0.5)"
+    )
+    ca_fit.add_argument(
+        "--balance",
+        choices=("none", "balanced"),
+        default="none",
+        help="Oversample the minority label class before fitting (default: none)",
+    )
+    ca_fit.add_argument("--draws", type=int, default=1000, help="Posterior draws (default: 1000)")
+    ca_fit.add_argument("--tune", type=int, default=1000, help="Tuning steps (default: 1000)")
+    ca_fit.add_argument("--seed", type=int, default=0, help="Random seed (default: 0)")
+    ca_fit.set_defaults(func=cmd_calibration_fit)
+
+    ca_eval = ca_sub.add_parser(
+        "eval",
+        help="Evaluate a calibration JSON against labeled records (re-grounds each; macro-F1 + per-class P/R/F1).",
+    )
+    _add_record_args(ca_eval)
+    ca_eval.add_argument(
+        "--calibration",
+        required=True,
+        help="Calibration JSON block to evaluate (from `calibration fit`)",
+    )
+    ca_eval.set_defaults(func=cmd_calibration_eval)
 
     return parser
 

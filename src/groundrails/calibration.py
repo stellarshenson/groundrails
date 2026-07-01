@@ -340,6 +340,89 @@ def update_calibrator(prior_verdict: CalibratedVerdict, df, **fit_kwargs) -> Cal
     return fit_calibrator(df, prior_spec=spec, **fit_kwargs)
 
 
+# ---------------------------------------------------------------------------
+# Re-calibration from labeled records - the self-contained, in-library path the
+# CLI ``calibration fit`` drives. Re-grounds labeled claims, then fits.
+# ---------------------------------------------------------------------------
+
+
+def build_feature_frame(records, *, semantic: bool = False, config=None):
+    """Feature frame for calibration, built by RE-GROUNDING labeled records.
+
+    ``records`` is an iterable of mappings, each with ``claim`` (text),
+    ``source_text`` (evidence string, or a list of strings) and ``label`` (1 =
+    grounded/supported, 0 = hallucination, or a soft probability). Every record
+    is grounded through :func:`groundrails.ground` and reduced to the
+    :data:`PREDICTORS` vector via :func:`groundrails.grounding.extract_features`,
+    so the calibrator learns the boundary from the same signals the deployed
+    verdict sees - not a cached score. An optional ``lang`` is carried through
+    for per-language evaluation.
+
+    Returns a DataFrame with the :data:`PREDICTORS` columns plus ``grounded``
+    (and ``lang`` when present) - the input :func:`fit_calibrator` and
+    :func:`evaluate` expect.
+    """
+    import pandas as pd
+
+    from groundrails.grounding import extract_features, ground, load_config
+
+    cfg = config if config is not None else load_config()
+    rows = []
+    for r in records:
+        src = r["source_text"]
+        sources = list(src) if isinstance(src, (list, tuple)) else [src]
+        match = ground(r["claim"], sources, semantic=semantic, config=cfg)
+        feat = extract_features(match, cfg=cfg)
+        feat[RESPONSE] = float(r["label"])
+        lang = r.get("lang")
+        if lang is not None:
+            feat["lang"] = lang
+        rows.append(feat)
+    return pd.DataFrame(rows)
+
+
+def calibrate(
+    records,
+    *,
+    semantic: bool = False,
+    threshold: float = 0.5,
+    balance: str = "none",
+    include_anchor: bool = False,
+    config=None,
+    **fit_kwargs,
+) -> CalibratedVerdict:
+    """Re-calibrate the manifold from labeled ``(claim, source_text, label)`` records.
+
+    The self-contained, in-library re-calibration path the CLI ``calibration
+    fit`` drives: re-grounds every record (:func:`build_feature_frame`) and fits
+    the Bayesian calibrator (:func:`fit_calibrator`). Returns the fitted
+    :class:`CalibratedVerdict`; serialise it with :func:`verdict_to_block` to the
+    config ``calibration:`` block so ``groundrails.init`` /
+    :func:`verdict_from_config` run on the fitted weights with no re-fit.
+    """
+    frame = build_feature_frame(records, semantic=semantic, config=config)
+    return fit_calibrator(
+        frame, threshold=threshold, balance=balance, include_anchor=include_anchor, **fit_kwargs
+    )
+
+
+def verdict_to_block(verdict: CalibratedVerdict, *, mode: str = "lexical") -> dict:
+    """Serialise a fitted verdict to the config ``calibration:`` block shape.
+
+    Emits ``{"engine": "calibrated", "mode", "threshold", "weights"}`` with
+    posterior-mean point weights - the exact shape :func:`verdict_from_config`
+    and ``groundrails.init`` consume. Closes the dogfood loop: fit -> block ->
+    the deployed verdict decides on the fitted weights with no re-fit.
+    """
+    weights = {name: round(mean, 6) for name, (mean, _sd) in verdict.posterior_summary().items()}
+    return {
+        "engine": "calibrated",
+        "mode": mode,
+        "threshold": float(verdict.threshold),
+        "weights": weights,
+    }
+
+
 def _anchor_frame():
     """Small synthetic anchor set encoding the prior's intended behaviour.
 
@@ -403,6 +486,7 @@ def evaluate(verdict: CalibratedVerdict, df, *, group_col: str | None = "lang") 
     y_pred = [1 if p >= verdict.threshold else 0 for p in proba]
     y_true = [1 if float(g) >= 0.5 else 0 for g in df[RESPONSE].tolist()]
     metrics = _prf(y_true, y_pred)
+    metrics["f1_macro"] = _macro_f1(y_true, y_pred)
     if group_col and group_col in df.columns:
         groups: dict[str, dict] = {}
         for g, yt, yp in zip(df[group_col].tolist(), y_true, y_pred):
@@ -504,6 +588,20 @@ def verdict_from_config(path: str | Path | None = None) -> CalibratedVerdict | N
     return CalibratedVerdict.from_weights(
         block["weights"], threshold=float(block.get("threshold", 0.5))
     )
+
+
+def _macro_f1(y_true: list[int], y_pred: list[int]) -> float:
+    """Mean of supported-class and hallucination-class F1 - the imbalance-robust headline."""
+
+    def _f1(pos: int) -> float:
+        tp = sum(1 for t, p in zip(y_true, y_pred) if t == pos and p == pos)
+        fp = sum(1 for t, p in zip(y_true, y_pred) if t != pos and p == pos)
+        fn = sum(1 for t, p in zip(y_true, y_pred) if t == pos and p != pos)
+        prec = tp / (tp + fp) if (tp + fp) else 0.0
+        rec = tp / (tp + fn) if (tp + fn) else 0.0
+        return 2 * prec * rec / (prec + rec) if (prec + rec) else 0.0
+
+    return round((_f1(1) + _f1(0)) / 2, 4)
 
 
 def _prf(y_true: list[int], y_pred: list[int]) -> dict:
