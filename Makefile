@@ -13,9 +13,10 @@ PYTHON_INTERPRETER = python
 # Set SKIP_VERSION_INCREMENT=1 to skip auto-bumping the patch version in install/build
 SKIP_VERSION_INCREMENT ?= 0
 
-# AWS S3 configuration (kolomolo account)
-S3_BUCKET = groundrails-dev
-AWS_PROFILE = kolomolo
+# AWS S3 configuration (stellars-tech account)
+S3_BUCKET = general-purpose
+S3_PREFIX = groundrails
+AWS_PROFILE = stellars-tech
 AWS_OPTS =
 
 #################################################################################
@@ -106,22 +107,22 @@ test:
 ## Download data from storage system
 sync_data_down:
 	@echo "$(MSG_PREFIX) downloading data from storage"
-	aws s3 sync s3://$(S3_BUCKET)/data/ data/ --profile $(AWS_PROFILE) --exclude "*.ipynb_checkpoints/*" --exclude "*.gitkeep" --exclude "*.gitattributes" --exclude "*.gitignore" $(AWS_OPTS)
+	aws s3 sync s3://$(S3_BUCKET)/$(S3_PREFIX)/data/ data/ --profile $(AWS_PROFILE) --exclude "*.ipynb_checkpoints/*" --exclude "*.gitkeep" --exclude "*.gitattributes" --exclude "*.gitignore" $(AWS_OPTS)
 
 ## Upload data to storage system
 sync_data_up:
 	@echo "$(MSG_PREFIX) uploading data to storage"
-	aws s3 sync data/ s3://$(S3_BUCKET)/data/ --profile $(AWS_PROFILE) --exclude "*.ipynb_checkpoints/*" --exclude "*.gitkeep" --exclude "*.gitattributes" --exclude "*.gitignore" $(AWS_OPTS)
+	aws s3 sync data/ s3://$(S3_BUCKET)/$(S3_PREFIX)/data/ --profile $(AWS_PROFILE) --exclude "*.ipynb_checkpoints/*" --exclude "*.gitkeep" --exclude "*.gitattributes" --exclude "*.gitignore" $(AWS_OPTS)
 
 ## Download models from storage system
 sync_models_down:
 	@echo "$(MSG_PREFIX) downloading models from storage"
-	aws s3 sync s3://$(S3_BUCKET)/models/ models/ --profile $(AWS_PROFILE) --exclude "*.ipynb_checkpoints/*" --exclude "*.gitkeep" --exclude "*.gitattributes" --exclude "*.gitignore" $(AWS_OPTS)
+	aws s3 sync s3://$(S3_BUCKET)/$(S3_PREFIX)/models/ models/ --profile $(AWS_PROFILE) --exclude "*.ipynb_checkpoints/*" --exclude "*.gitkeep" --exclude "*.gitattributes" --exclude "*.gitignore" $(AWS_OPTS)
 
 ## Upload models to storage system
 sync_models_up:
 	@echo "$(MSG_PREFIX) uploading models to storage"
-	aws s3 sync models/ s3://$(S3_BUCKET)/models/ --profile $(AWS_PROFILE) --exclude "*.ipynb_checkpoints/*" --exclude "*.gitkeep" --exclude "*.gitattributes" --exclude "*.gitignore" $(AWS_OPTS)
+	aws s3 sync models/ s3://$(S3_BUCKET)/$(S3_PREFIX)/models/ --profile $(AWS_PROFILE) --exclude "*.ipynb_checkpoints/*" --exclude "*.gitkeep" --exclude "*.gitattributes" --exclude "*.gitignore" $(AWS_OPTS)
 #################################################################################
 # UV ENVIRONMENT MANAGEMENT                                                     #
 #################################################################################
