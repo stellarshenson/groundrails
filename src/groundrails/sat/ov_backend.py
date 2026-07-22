@@ -30,6 +30,9 @@ def resolve_ir() -> str:
         return str(local)
     from huggingface_hub import hf_hub_download
 
+    from groundrails import settings
+
+    settings.warn_if_no_hf_token()
     # Announce the fetch only when the IR is not already cached, so first-run
     # downloads are explicit (HF shows tqdm progress bars) and warm runs stay quiet.
     cached = True

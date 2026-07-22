@@ -45,6 +45,7 @@ A cross-encoder reranker (`BAAI/bge-reranker-v2-m3`) is the best single groundin
 | G round 2 | H12 - pre-filter cosine gate (stage 0) | int8 pairs + cosine cache | 22% of claims skip both cross-encoders, FP 245/FN 216 vs 248/217 | **adopted** - strictly fewer errors, zero added compute |
 | G round 2 | H13 - rank-ordered early-exit reranker | latency bench n=150 | mean 4.8/8 pairs scored; verdicts exactly equal | **adopted** - verdict-invariant by construction |
 | G round 2 | H14 - fused-evidence single-forward cross-encoders | fused cache 2,752 x 2 x 2 | macro-F1 0.714-0.784 (-0.012..-0.081) | **rejected** - max-over-chunks is load-bearing |
+| H round 3 (pre-reg) | R3-H1..H7 - tiny fine-tuned faithfulness checker (persona fanout) | gold 2,752 + 111,800-pair cache | pre-registered predictions/bars; governed by the R3-H1 zero-shot-AUC gate | **pending** - see Hypothesis round 3 |
 
 - **Best single signal** - `bge-reranker-v2-m3`, **AUC 0.841** (out-of-fold), macro-F1 0.757; decisively above every bi-encoder (~0.53-0.73) and the raw lexical rule (~0.5)
 - **Best model** - a decision hyperplane over the six per-model scores + a lexical contradiction flag: **out-of-fold AUC 0.913, macro-F1 0.824** (vs 0.757 best single, 0.417 majority baseline), no fine-tuning
@@ -246,3 +247,85 @@ Three more mechanism-targeting hypotheses against the cascade-adopted grounder (
 - **Push the int8 IRs to HuggingFace** - the `models/ov/` IRs are push-ready (IR + config + tokenizer); publish under the org for reuse and CI
 - **Confirm top-k macro-F1 on full gold (done)** - the full adopted serving path (gate + cascade + early-exit, deployed calibration frozen) runs end-to-end over the 2,752 gold at **macro-F1 0.789** (within fold noise of the 0.797 OOF simulation; error mix shifts toward recall - FP 328/FN 172 - because serving maxes are over the top-8 pre-filtered chunks, not all chunks), warm mean 585 ms / median 258 ms per claim (`scripts/run_grounder_full.py`). Re-fit thresholds on serving-derived scores before fixing the deployment operating point
 - **CPU serving levers measured (done)** - `LATENCY` compile hint is 2.1× over `THROUGHPUT` for inline serving (now the default); `max_length` has no headroom below 512 (refuted); length-bucketing kept. The reranker-first cascade (−28%), the pre-filter cosine gate and the early-exit reranker (round 2, cumulative **−45% warm mean vs always-both, 662 ms/claim**) are measured and adopted. Next mechanical lever: an answer-level batched scorer. The remaining bigger win is GPU fp16 (~0.15-0.4 s/claim)
+
+## Hypothesis round 3 - fine-tuned tiny faithfulness checker (pre-registered)
+
+The deferred lever from Next steps ("fine-tune a cross-encoder ... target the overlap residual") opened as a full phase. Six independent hypothesiser lenses (architecture, distillation, quantization, data, methodology, integration) were run as a fanout; this section is the deduped **pre-registration** - predictions and pass/fail bars fixed BEFORE any run. No verdicts yet.
+
+The thesis, unanimous across the fanout: **replace the mDeBERTa-NLI (and possibly the reranker) with a purpose-built faithfulness checker on a small standard-attention encoder**. Two facts make it a compound win the current architecture structurally cannot get:
+
+- **Head shape** - gold hallucinations are omissions / unsupported-additions, not contradictions (H9), so the incumbent borrows a 3-label MNLI/XNLI entailment logit as a faithfulness proxy (AUC 0.806); a 2-way {supported, unsupported} head trained on faithfulness targets that boundary directly
+- **Quantization** - mDeBERTa's disentangled attention gives int8 no speedup (footprint-only, 318 MB); a standard encoder (RoBERTa / MiniLM / ModernBERT) int8-accelerates (1.34x compiled, 1.0 ms bs=1), so moving off DeBERTa cuts params AND unlocks real int8 latency
+
+This is NOT the refuted E-deploy "NLI replacement search" (MiniLM-L6/L12, XLM-R → stacks 0.758-0.765): that swapped in zero-shot 3-label NLI checkpoints. R3 swaps both the head shape (2-way) and the training data (in-domain faithfulness) - the falsifiable difference. That prior result is exactly what caps optimism, so R3-H1 measures whether a faithfulness-TRAINED checker transfers before any fine-tune is spent.
+
+**"One model total" is a fiction.** Max-over-chunks is load-bearing (H10/H14) and warm-cached ranking needs a cheap bi-encoder to cut ~50 chunks to top-8; the honest floor is TWO small models - a bi-encoder pre-filter/gate (kept, 38 ms warm, doubles as the 22%-resolving stage-0 gate) plus ONE small cross-encoder checker replacing the two 889 MB cross-encoders.
+
+### Methodology - the R3 ship-contract and honest-split protocol
+
+"Tiniest that does the job" is made falsifiable by a pre-registered contract; a tiny fine-tuned model can memorise the gold, so the splits are group- and language-disjoint.
+
+- **Ship-contract (conjunction of three)** - macro-F1 ≥ 0.775 (deployed 0.789 − one fold-std 0.014, non-inferiority) AND warm-CPU mean ≤ 200 ms AND int8 footprint ≤ 100 MB; among passers ship the fewest-params; declared relaxation ≤ 150 MB if the smallest passer is base-size (~110M)
+- **Honest split** - the gold is **619 sources / 636 traces, not 5,857 rows**; the ship readout is leave-one-source-out (GroupKFold on `group_id`) plus a held-out-language slice, with a pre-registered train − holdout gap ≤ 0.05 (memorisation gate) and held-out-language macro-F1 ≥ 0.637 (no cross-lingual regression vs the frozen cascade)
+- **Nested honest re-fit** - a student emits a new score scale, so its verdict head and operating threshold are fit only on folds it never scores (the joint track caught a +0.023 phantom from in-sample threshold selection); harness-validated by reproducing the frozen cascade at 0.789 ± 0.014 before any student number is believed
+- **Two-sided error-count parity** - macro-F1 is FP↔FN-invariant, so a passer must also hold FP ≤ cascade + 2σ AND FN ≤ cascade + 2σ at a recall-matched threshold (reference two-CE OOF point FP 266 / FN 203, σ ≈ √n)
+
+### Pre-registration - predictions and bars fixed before the run
+
+| ID | mechanism | prediction | PASS bar (two-sided) | first kill-gate |
+|---|---|---|---|---|
+| R3-H1 | zero-shot faithfulness-checker upper anchor (MiniCheck-RoBERTa-Large 355M, standard attention, max-over-top-8) | OOF AUC 0.82-0.86 vs incumbent NLI 0.806 | AUC ≥ 0.806 unlocks the ladder; ≥ 0.86 → collapse both | AUC &lt; 0.79 on the cached gold pairs → whole round killed |
+| R3-H2 | 2-way faithfulness head replaces the NLI, keep bge-reranker (ModernBERT / RoBERTa-base) | stack macro-F1 0.79-0.80 at ~150 MB, NLI-stage int8 &gt; 1.2x | macro-F1 ≥ 0.789 AND (≤ 200 MB OR NLI-stage ≤ 450 ms) | R3-H1 AUC ≥ 0.806 (faithfulness transfers at all) |
+| R3-H3 | collapse both cross-encoders into ONE base checker, keep bge-m3 pre-filter (3→2) | warm ~150-230 ms, ~700 MB, macro-F1 0.78-0.80 | warm mean ≤ 300 ms AND macro-F1 ≥ 0.786 | single-head standalone AUC ≥ 0.86 (else fall back to R3-H2) |
+| R3-H4 | cascade self-distillation into a ≤33M student (free per-pair teacher labels; ladder to ~22M) | macro-F1 0.76-0.79 at 22-33M, ≤ 100 MB, warm ≤ 120 ms | macro-F1 ≥ 0.785 AND ≤ 100 MB AND ≤ 120 ms | student-teacher per-pair Spearman ≥ 0.85 on the 111,800-pair cache |
+| R3-H5 | addition/omission hard-negative fine-tune (not contradiction) + atomic-claim decomposition | slip-through ≥ 30% headroom, then macro-F1 ≥ 0.789 | macro-F1 ≥ 0.789 AND FN ≤ 203 AND FP ≤ 266 | Haiku-mint 200 addition/omission + 200 contradiction controls; slip-through ≥ 30% AND &gt; controls |
+| R3-H6 | cross-lingual near-miss weight fine-tune (multilingual student) | non-EN macro-F1 0.637 → ≥ 0.70, EN held | non-EN ≥ 0.70 AND aggregate ≥ 0.789 AND near-miss TNR ≥ 0.85 | cascade over-accepts near-miss negatives (&lt; 85% rejected) → real headroom |
+| R3-H7 | escalation economics - widen the switch_on band / cascade-of-cascades, current stack as hard floor | system macro-F1 +0.005..+0.02 at flat blended latency | macro-F1 ≥ current + 0.005 AND blended latency ≤ current | checker flip-rate on the lexical-clear band ≥ 2% |
+
+### The hypotheses
+
+**R3-H1 zero-shot faithfulness-checker upper anchor** - because MiniCheck-RoBERTa-Large is an encoder-only 2-way head trained on decomposed-doc faithfulness (the exact job the incumbent's entailment-index-0 proxies), scoring it frozen over the cached top-8 pairs and re-fitting the logistic will read OOF AUC 0.82-0.86 vs the incumbent NLI's 0.806 - the gate that governs the whole round
+
+- Mechanism - the incumbent optimises MNLI, not faithfulness; a faithfulness objective should separate omission / fabrication from support on the same frozen chunks. RoBERTa-large is standard attention (int8-accelerable), but at 355M it is the CEILING PROBE, not the deploy target
+- Probe / artifacts - one OOF pass, zero training; `data/interim/model_scores/pairs/full_pairs.npz` + `lytang/MiniCheck-RoBERTa-Large`; reuses the single-signal harness
+- Verdict space - Killed-at-gate (whole round) if AUC &lt; 0.79; unlocks R3-H2 if 0.806-0.86; unlocks the R3-H3 collapse if ≥ 0.86; Ships as a 355 MB reference only if ≥ 0.876
+
+**R3-H2 2-way faithfulness head replaces the NLI** - because the 3-label softmax wastes two logits this gold never exercises (H9 +0.004) and DeBERTa int8 has no speedup, a 2-way {supported, unsupported} head on a base standard encoder (ModernBERT / RoBERTa-base) fine-tuned on faithfulness data, dropped in for ONLY the NLI stage while keeping bge-reranker, holds stack macro-F1 ≥ 0.789 at ~150 MB with a real int8 latency cut
+
+- Mechanism - all head capacity goes to support-vs-not; ModernBERT-base's 8k context also removes the ~6.5% pair truncation at 512; DeBERTa-v3-base-EN is the same-family fallback if the standard encoder underfits
+- Probe / artifacts - one FT run on MiniCheck synthetic, score gold top-8 OOF, re-fit the logistic; ModernBERT `reference_compile=False` (repo HF quirk); NNCF int8 IR via `scripts/build_ov_grounder.py`
+- Verdict space - Ships ≥ 0.789 at ≤ 200 MB with a latency cut; Kept 0.783-0.789 (footprint+speed at quality parity); Refuted &lt; 0.78 (confirms mDeBERTa uniquely strong even vs a trained faithfulness head)
+
+**R3-H3 collapse both cross-encoders into one base checker** - because a faithfulness objective subsumes the reranker's relevance (AUC 0.841) and the NLI's entailment (0.806), one base checker over the bge-m3 top-8 could match the two-CE stack's OOF AUC 0.876, collapsing the 889 MB cross-encoder pair to one ~150 MB model at warm ~150-230 ms while the cheap pre-filter/gate stays
+
+- Mechanism - the pre-filter is load-bearing only as the free 22%-resolving stage-0 gate (38 ms warm), not as latency, so it stays; the expensive half is the two cross-encoders. Stretch: shrink bge-m3 to a MiniLM-class embedder → a two-tiny-model ~200-300 MB floor, gated on top-8 recall parity ≥ 98%
+- Probe / artifacts - reuse R3-H1's frozen scores as a STANDALONE signal (reranker+NLI dropped), OOF AUC vs 0.876; then a ranking-recall pass for the pre-filter-shrink stretch
+- Verdict space - Ships (one checker + pre-filter) if standalone AUC ≥ 0.876; Kept (drop NLI only → R3-H2) if 0.841-0.876; Dropped if &lt; 0.841
+
+**R3-H4 cascade self-distillation into a tiny student** - because the frozen cascade emits a calibrated per-pair grounded-probability for any (claim, chunk) with zero human labels, distilling a ≤33M standard-encoder student to regress it (then max-over-chunks + one threshold) holds macro-F1 0.76-0.79 while collapsing 3 models → 1 and cutting footprint to ≤ 100 MB int8 and warm to ≤ 120 ms
+
+- Mechanism - the teacher's grounded-prob already fuses reranker + NLI (logistic weights +1.14 / +0.87), so one student regressing that per-pair target learns both. Scale the pool from the 111,800-pair cache to a class-balanced trace pool (prod is ~94% grounded / bimodal) to shrink the retention gap; ladder down to ~22M (MiniLM-L6 / DeBERTa-v3-xsmall) to locate the floor, adding TinyBERT attention-transfer or soft-label KD on the κ-0.50 overlap residual if output-KD saturates
+- Probe / artifacts - distil on the EXISTING cache (no cascade re-run), measure student-teacher Spearman + OOF macro-F1 first; `full_pairs.npz` + `data/processed/golden_grounding_evidence_verified.parquet`
+- Verdict space - Ships ≥ 0.785 at ≤ 100 MB / ≤ 120 ms; Kept 0.757-0.785 (size/speed-favourable point); Killed-at-gate if Spearman &lt; 0.85; Null if OOF &lt; 0.757 (below reranker-alone → distillation added nothing)
+
+**R3-H5 addition/omission hard-negative data program** - because the gold's hallucinations are unsupported additions / silent-evidence omissions (even the 102 numeric misses are evidence-absent specs, not contradicted values) and the incumbent is generic MNLI, minting in-domain negatives by perturbing SUPPORTED gold with evidence-absent additions / dropped-support omissions (single-atom where claims decompose) and fine-tuning the small head holds macro-F1 ≥ 0.789 in the overlap residual a frozen model cannot separate
+
+- Mechanism - the residual (FN ~160-203, FP ~248-266) is where a relevance reranker and generic entailment over-confirm topically-close-but-unsupported claims; a head trained on the "is this specific assertion present?" boundary targets it. Atomic-claim decomposition makes maximally-hard negatives (all-but-one atom still supported) - the claim-side lever, orthogonal to the refuted evidence-side aggregation (H10/H14)
+- Probe / artifacts - Haiku-mint 200 addition/omission + 200 contradiction controls, run the deployed `semantic_ov.SemanticCascade.score`, confirm slip-through ≥ 30% AND &gt; controls (the probe IS the kill-gate, minutes, zero training); perturb `golden_v3` supported rows
+- Verdict space - Ships if a standalone head ≥ 0.789; Kept if NLI-replacement ≥ 0.789; Killed-at-gate if slip-through &lt; 30% or below the contradiction control (no headroom on this axis)
+
+**R3-H6 cross-lingual near-miss weight fine-tune** - because R1-H2 was refuted for the frozen joint GATE (nli_ent cross-lingual feature near-chance, 0.523) not for a fine-tuned head, fine-tuning a multilingual student's WEIGHTS on bilingual near-miss negatives creates cross-lingual faithfulness features the frozen mDeBERTa lacks, lifting non-EN macro-F1 above the cascade's AUC-0.584 floor
+
+- Mechanism - the cascade fails non-EN because its frozen features do not separate the slice (R1-H1 0.584; R1-H4 head-reweighting −0.005 = a signal gap, not a weighting gap); training weights on in-language near-miss negatives checks support across the language boundary directly - the "new signal, not re-routing" the joint track named as still open
+- Probe / artifacts - mint ~150 near-miss cross-lingual negatives from the base sentences, run the cascade; real headroom = the cascade over-accepts them (&lt; 85% rejected vs the easy-TNR 0.904); `golden_v3_synth_aug.parquet`, GroupKFold on `group_id` (translations stay in-fold)
+- Verdict space - Ships if non-EN ≥ 0.70 and near-miss TNR ≥ 0.85 with no EN regression; Null if non-EN &lt; 0.66 (matches refuted R1-H4); Killed-at-gate if the cascade already rejects near-miss ≥ 85%
+
+**R3-H7 escalation economics** - because a tiny checker cuts the escalated per-claim cost ~585 → ~150 ms, the lexical→semantic escalation band in `joint.py` can widen to route more of the lexical residual through the checker at flat blended latency (catching paraphrased fabrications the lexical tier scores as grounded), predicting system macro-F1 +0.005..+0.02; alternatively the current stack is kept as a hard floor behind the tiny checker (cascade-of-cascades)
+
+- Mechanism - escalation is gated today only because the cascade is expensive; the band is a cost valve, not a quality-optimal boundary. At ~150 ms/escalation, checking ~2x more claims is still cheaper than today, and the new claims are the omission-type ones the stack's non-entailment signal catches. The cascade-of-cascades variant guarantees macro-F1 ≥ 0.789 as a floor (the stack overrides the checker only on its low-confidence band) at +1 model
+- Probe / artifacts - run the R3 checker on the lexical-CLEAR band, count verdict flips vs gold; re-sweep `[a, b]` on the OOF frontier; depends on a shipped R3 checker
+- Verdict space - Ships if macro-F1 ≥ +0.01 at flat latency; Kept if +0.005; Null if flip-rate &lt; 2% (band already clean); cascade-of-cascades Kept if the confident band ≥ 85% at warm ≤ 350 ms
+
+### Sequencing
+
+The round runs as a gated ladder, not a parallel sweep. **R3-H1 is the one probe to run this week** - a single frozen OOF pass over the existing 111,800-pair cache, zero training - and it routes everything: AUC &lt; 0.79 stops the program (mDeBERTa stays); 0.806-0.86 → R3-H2 (swap the NLI only); ≥ 0.86 → R3-H3 (collapse both cross-encoders). R3-H4 (distil to the tiniest) and R3-H5 (in-domain data) are the size-and-accuracy pushes that an R3-H1 pass unlocks; R3-H6 (cross-lingual) and R3-H7 (pipeline economics) are the follow-ons. Every model number above is a prediction pending measurement under the R3 ship-contract and honest-split protocol.

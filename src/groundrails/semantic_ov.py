@@ -72,6 +72,9 @@ def download_models():
         raise ImportError(install_hint())
     from huggingface_hub import snapshot_download
 
+    from groundrails import settings
+
+    settings.warn_if_no_hf_token()
     for name, repo in HF_REPOS.items():
         yield name, repo, snapshot_download(repo)
 
@@ -91,6 +94,9 @@ def _resolve_repo_dir(name: str) -> str:
             return str(cand)
     from huggingface_hub import snapshot_download
 
+    from groundrails import settings
+
+    settings.warn_if_no_hf_token()
     return snapshot_download(HF_REPOS[name])
 
 

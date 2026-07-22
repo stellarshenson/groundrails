@@ -98,9 +98,10 @@ def configure(**overrides) -> RuntimeConfig:
 
 def reset() -> None:
     """Reset to built-in defaults and clear readiness (test helper)."""
-    global _RUNTIME, _READY
+    global _RUNTIME, _READY, _HF_TOKEN_WARNED
     _RUNTIME = RuntimeConfig()
     _READY = False
+    _HF_TOKEN_WARNED = False
 
 
 # --- readiness gate --------------------------------------------------------
@@ -202,3 +203,40 @@ def semantic_install_hint() -> str:
         "or individually:\n"
         "  pip install onnxruntime transformers faiss-cpu pyarrow huggingface_hub\n"
     )
+
+
+# --- HuggingFace token check ------------------------------------------------
+
+_HF_TOKEN_WARNED = False
+
+
+def warn_if_no_hf_token() -> bool:
+    """Warn once when no HuggingFace token is set before a Hub model download.
+
+    Anonymous Hub downloads are bandwidth-throttled; an authenticated token lifts
+    the cap, so groundrails' model IRs (the ~1.4 GB int8 cascade + the SaT IR)
+    pull far faster with ``HF_TOKEN`` set. Called at the genuine Hub-fetch entry
+    points; no-op when ``HF_HUB_OFFLINE`` is set (nothing is fetched) or a token is
+    already configured. Fires at most once per process. Returns True iff it warned.
+    """
+    global _HF_TOKEN_WARNED
+    if _HF_TOKEN_WARNED or os.environ.get("HF_HUB_OFFLINE"):
+        return False
+    try:
+        from huggingface_hub import get_token
+
+        token = get_token()  # HF_TOKEN env, then the huggingface-cli login cache
+    except Exception:  # noqa: BLE001 - hub not importable; fall back to the env vars
+        token = os.environ.get("HF_TOKEN") or os.environ.get("HUGGING_FACE_HUB_TOKEN")
+    if token:
+        return False
+    from loguru import logger
+
+    logger.warning(
+        "No HuggingFace token set (HF_TOKEN) - anonymous Hub downloads are "
+        "bandwidth-throttled, so groundrails' model IRs will download slowly. Set "
+        "HF_TOKEN (or run `huggingface-cli login`) to lift the limit; provision the "
+        "models from S3 / a local mirror to skip the Hub entirely."
+    )
+    _HF_TOKEN_WARNED = True
+    return True

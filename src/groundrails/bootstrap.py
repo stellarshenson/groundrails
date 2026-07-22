@@ -190,6 +190,7 @@ def _mirror_one(name: str, s3_base, local_base, force_hf, models_dir: Path, clie
 
         from groundrails import semantic_ov
 
+        settings.warn_if_no_hf_token()
         snapshot_download(semantic_ov.HF_REPOS[name])
     except Exception as exc:  # noqa: BLE001
         logger.warning("HF prefetch of {} skipped: {}", name, exc)
