@@ -406,53 +406,6 @@ class TestSettings:
         settings_mod.reset()
 
 
-class TestSemanticOnContract:
-    """Semantic grounding is opt-in per call via the boolean ``--semantic``:
-
-    - ``enabled=True`` + deps present -> grounder built
-    - ``enabled=True`` + deps missing -> hard fail (sys.exit 2)
-    - ``enabled=False`` -> None (no semantic), and the deps check is never
-      reached. There is no persisted enable setting.
-    """
-
-    def test_semantic_on_with_deps_missing_exits_2(self, monkeypatch, capsys):
-        """--semantic with the extras missing must hard-fail, never degrade
-        silently (silent degradation produced misleading 0.000 semantic rows).
-        """
-        from groundrails.cli import (
-            _build_semantic_grounder,
-        )
-
-        monkeypatch.setattr(settings_mod, "is_semantic_available", lambda: False)
-
-        with pytest.raises(SystemExit) as exc_info:
-            _build_semantic_grounder(settings_mod.Settings(), True)
-        assert exc_info.value.code == 2
-
-        err = capsys.readouterr().err
-        assert "ERROR: --semantic requires the [semantic] extras" in err
-        assert "pip install" in err
-
-    def test_semantic_not_requested_returns_none_without_deps_check(self, monkeypatch):
-        """enabled=False -> no semantic layer, and the deps check is never reached
-        (the layer is purely opt-in, no config default to honour).
-        """
-        from groundrails.cli import (
-            _build_nli_grounder,
-            _build_semantic_grounder,
-        )
-
-        sentinel_called = []
-        monkeypatch.setattr(
-            settings_mod,
-            "is_semantic_available",
-            lambda: sentinel_called.append(True) or False,
-        )
-        cfg = settings_mod.Settings()
-        assert _build_semantic_grounder(cfg, False) is None
-        assert _build_nli_grounder(cfg, False) is None
-        assert sentinel_called == []  # deps-check never invoked
-
 
 class TestCLISetup:
     """CLI setup subcommand - prints the built-in runtime settings, writes no file."""

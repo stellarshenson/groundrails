@@ -29,6 +29,9 @@ import re
 
 _NUMBER_RE = re.compile(
     r"""
+    (?:(?<![\w.,)])(?P<sign>-))?          # signed value (-36%); a hyphen inside
+                                          # a range (2010-2015) is preceded by a
+                                          # word char and is NOT a sign
     (?P<value>
         \d{1,3}(?:,\d{3})+(?:\.\d+)?      # 1,234 / 1,234,567.89
         |
@@ -36,21 +39,25 @@ _NUMBER_RE = re.compile(
     )
     \s*
     (?P<unit>
-        %|percent|                         # percentages
-        k|K|m|M|b|B|                       # SI suffix (word-boundary anchored below)
-        GB|MB|KB|TB|                       # storage
-        ms|s|sec|seconds|min|h|hours|      # time
-        px|em|rem|pt|                      # typography
-        kg|g|lbs|                          # mass
-        km|cm|mm|                          # distance
-        USD|EUR|                           # currencies
+        %                                  # percentages (no letter follows)
+        |
+        (?:
+            percent|seconds|hours|         # word units
+            sec|min|lbs|USD|EUR|           # 3-letter (before their prefixes)
+            GB|MB|KB|TB|                   # storage
+            ms|px|em|rem|pt|               # time / typography
+            kg|km|cm|mm|                   # mass / distance
+            k|K|m|M|b|B|g|s|h              # 1-letter SI/time - LAST, or they
+                                           # shadow every longer unit above
+        )(?![A-Za-z])                      # word-boundary: "5 meters" is not
+                                           # unit "m", "5 sec" is not unit "s"
         )?
     """,
     re.VERBOSE,
 )
 
-# Context word: a following noun like "nodes", "users", "GPUs" etc.
-_CONTEXT_WORD_RE = re.compile(r"\s*([A-Za-z][A-Za-z\-]{2,})")
+# Context word: a noun like "nodes", "users", "GPUs", "SD" near the number.
+_CONTEXT_WORD_RE = re.compile(r"[A-Za-z][A-Za-z\-]+")
 
 # Function words that are never a meaningful numeric context (a number followed
 # by one of these has no real "context noun"). Dropping them lets year/category
@@ -140,30 +147,54 @@ def _normalise_unit(raw: str | None) -> str:
 def extract_numbers(text: str) -> list[tuple[str, str, str]]:
     """Return list of ``(value, unit, context_word)`` triples.
 
-    Captures optional unit immediately after the number and the next word as
-    context (e.g. "42 nodes" -> ``("42", "", "nodes")``). ``context_word`` is
-    lowercased; ``value`` and ``unit`` preserve normalisation.
+    Captures an optional sign and unit, plus a context word: the first
+    content word (skipping stopwords) within the same sentence after the
+    number, falling back to the nearest preceding content word (e.g.
+    "42 nodes" -> ``("42", "", "nodes")``; "sums to 100%" ->
+    ``("100", "%", "sums")``). ``context_word`` is lowercased; ``value``
+    and ``unit`` preserve normalisation.
     """
     out: list[tuple[str, str, str]] = []
     if not text:
         return out
     for m in _NUMBER_RE.finditer(text):
-        value = _normalise_value(m.group("value"))
+        value = _normalise_value((m.group("sign") or "") + m.group("value"))
         unit = _normalise_unit(m.group("unit"))
-        # Context word: look at up to ~20 chars after the match
-        tail = text[m.end() : m.end() + 40]
-        cw_match = _CONTEXT_WORD_RE.match(tail)
-        context_word = cw_match.group(1).lower() if cw_match else ""
-        # A function word ("and", "the", ...) is not a real context noun - drop
-        # it so the number can key on its unit/year category instead.
-        if context_word in _STOPWORDS:
-            context_word = ""
-        # If this number looks like a year and has no other unit/context, tag
-        # it "year" so claim-vs-passage years compare even when both appear
-        # bare. Value-based (not span-based): _NUMBER_RE consumes trailing
-        # whitespace, so a span lookup into year_spans misses "1820 and ...".
-        if not unit and not context_word and re.fullmatch(r"1[5-9]\d{2}|20\d{2}", value):
+        # Context word: first content word (skipping stopwords) within ~40
+        # chars AFTER the number, falling back to the nearest content word
+        # BEFORE it. The look-behind matters for trailing-position numbers
+        # ("sums to 100%") whose only descriptor precedes them - without it
+        # they key context-free and collide with every other same-unit number.
+        context_word = ""
+        # Clip both context windows at sentence punctuation: "increased by 40.
+        # Managers said..." must not key 40 on "managers" from the NEXT
+        # sentence (divergent keys would silently skip the comparison).
+        tail = re.split(r"[.!?;]", text[m.end() : m.end() + 40], maxsplit=1)[0]
+        following = _CONTEXT_WORD_RE.findall(tail)[:3]
+        # The IMMEDIATE following content word wins ("1820 nodes" keys on
+        # "nodes"); a year-shaped bare number whose immediate neighbour is a
+        # stopword stays a year ("1820 and restored" must not key on
+        # "restored" two words later). Only then scan further/backwards.
+        if following and following[0].lower() not in _STOPWORDS:
+            context_word = following[0].lower()
+        elif not unit and re.fullmatch(r"1[5-9]\d{2}|20\d{2}", value):
             context_word = "year"
+        else:
+            for w in following[1:]:
+                if w.lower() not in _STOPWORDS:
+                    context_word = w.lower()
+                    break
+            if not context_word:
+                # Preceding-word fallback: trailing-position numbers
+                # ("sums to 100%") whose only descriptor precedes them
+                # must not key context-free and collide with every other
+                # same-unit number. Clipped at sentence punctuation so the
+                # fallback never reaches into the PREVIOUS sentence.
+                head = re.split(r"[.!?;]", text[max(0, m.start() - 40) : m.start()])[-1]
+                for w in reversed(_CONTEXT_WORD_RE.findall(head)):
+                    if w.lower() not in _STOPWORDS:
+                        context_word = w.lower()
+                        break
         # Filter noise: single-digit years-like tokens without unit or context are uninformative
         if not unit and not context_word and len(value) <= 1:
             continue
@@ -356,8 +387,13 @@ def find_numeric_mismatches(claim: str, passage: str) -> list[tuple[str, str]]:
     for v, u, cw in passage_nums:
         key_full = (u, cw)
         pass_by_key.setdefault(key_full, []).append(v)
-        # Also index by just-unit and just-context to allow partial key match
-        if u:
+        # Partial just-unit key ONLY for numbers with no context of their own:
+        # the bare-unit bucket means "underspecified quantity of this unit".
+        # Pooling context-bearing numbers into it made every same-unit pair
+        # comparable - "sums to 100%" vs "-36% of a SD" collided on ('%','')
+        # and tripped a false CONTRADICTED. Distinct measured quantities must
+        # not meet through the bare-unit bucket.
+        if u and not cw:
             pass_by_key.setdefault((u, ""), []).append(v)
         if cw:
             pass_by_key.setdefault(("", cw), []).append(v)

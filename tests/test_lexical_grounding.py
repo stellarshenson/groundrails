@@ -215,7 +215,7 @@ class TestVitaminCMediumTierEndToEnd:
         sample = by["SUPPORTS"][:per] + by["REFUTES"][:per]
         assert len(sample) == 2 * per  # fixed, deterministic slice
 
-        valid = {"exact", "fuzzy", "bm25", "semantic", "contradicted", "none"}
+        valid = {"exact", "fuzzy", "bm25", "semantic", "nli", "contradicted", "none"}
         cfg = _lexical_cfg("medium")
         try:
             seen = collections.Counter()

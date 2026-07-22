@@ -107,6 +107,10 @@ def test_support_fallback_to_lexical_for_cascade_verdict():
     the best lexical passage, flagged support_via=lexical - the agent always gets a place to look."""
     m = GroundingMatch(claim="x", match_type="semantic")
     m.bm25_matched_text = "the supporting passage"
+    # real invariant: a located lexical span always carries a positive score
+    # (the round-7 origin picker guards on score > 0 AND char_start >= 0 so
+    # a zero-clamped semantic hit is never cited as support)
+    m.bm25_score = 0.3
     m.bm25_location = Location(
         source_index=2,
         source_path="ev.txt",

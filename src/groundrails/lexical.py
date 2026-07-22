@@ -125,19 +125,41 @@ def _an_charngram(text: str, lo: int = CHARNGRAM_LO, hi: int = CHARNGRAM_HI) -> 
     return grams
 
 
+# Chunking depends only on (source, operating point) but ran per claim.
+_CHUNK_CACHE: dict = {}
+_CHUNK_CACHE_MAX = 8
+_CHUNK_CACHE_LOCK = threading.Lock()
+
+
 def _chunk(text: str, max_chars: int, overlap_ratio: float) -> list[str]:
-    """Recursive-chunk the text at the lexical operating point; reuse chunking.recursive_chunk."""
+    """Recursive-chunk the text at the lexical operating point; reuse chunking.recursive_chunk.
+
+    Cached on content + operating point: a batch grounds every claim against
+    the same source, and re-chunking it per claim is pure waste."""
     from groundrails.chunking import recursive_chunk
 
     if not text:
         return []
     if max_chars <= 0 or max_chars >= len(text):
         return [text] if text.strip() else []
-    return [
+    key = (hash(text), len(text), max_chars, overlap_ratio)
+    with _CHUNK_CACHE_LOCK:
+        hit = _CHUNK_CACHE.get(key)
+        if hit is not None:  # LRU touch - avoid FIFO thrash on round-robin sources
+            _CHUNK_CACHE.pop(key, None)
+            _CHUNK_CACHE[key] = hit
+    if hit is not None:
+        return hit
+    chunks = [
         c.text
         for c in recursive_chunk(text, max_chars=max_chars, overlap_ratio=overlap_ratio)
         if c.text.strip()
     ]
+    with _CHUNK_CACHE_LOCK:
+        if len(_CHUNK_CACHE) >= _CHUNK_CACHE_MAX:
+            _CHUNK_CACHE.pop(next(iter(_CHUNK_CACHE)))
+        _CHUNK_CACHE[key] = chunks
+    return chunks
 
 
 # ── background (population) token rarity + recall helpers ────────────────────
@@ -162,11 +184,51 @@ def _bg_idf(tok: str, lang: str = "en") -> float:
         except ImportError:
             logger.warning(
                 "wordfreq not importable - recall floor + distinctive-content neutralised; "
-                "it ships with the package, so reinstall stellars-claude-code-plugins"
+                "it ships with the package, so reinstall groundrails"
             )
             v = 0.0
         _BG_CACHE[key] = v
     return v
+
+
+# Analyzed-corpus cache: chunk analysis (word tokens / char n-grams), the
+# per-chunk token SETS and the BM25 index depend only on (chunks, analyzer),
+# yet were recomputed for every claim - the dominant lexical cost in a batch
+# (profiled: >50% of post-config runtime, mostly re-analyzing chunks and
+# rebuilding sets). Keyed on chunk content + analyzer name; small bound
+# because a batch grounds many claims against few source sets.
+_CORPUS_CACHE: dict = {}
+_CORPUS_CACHE_MAX = 8
+_CORPUS_CACHE_LOCK = threading.Lock()
+
+
+def _analyzed_corpus(chunks: list[str], analyzer):
+    """(raw_chunks, corpus_tokens, per-chunk token sets, BM25 index) for
+    ``chunks`` under ``analyzer``, cached on content. Entries are read-only;
+    the BM25 index is safe to share across threads (``get_scores`` allocates
+    locally)."""
+    from rank_bm25 import BM25Okapi
+
+    # Length components harden the 64-bit hash() against collision; the
+    # analyzer key is its qualified name - the two analyzers in this module
+    # are named module-level functions (a lambda/partial here would be a bug).
+    key = (hash(tuple(chunks)), len(chunks), sum(map(len, chunks)), analyzer.__qualname__)
+    with _CORPUS_CACHE_LOCK:
+        hit = _CORPUS_CACHE.get(key)
+        if hit is not None:  # LRU touch - avoid FIFO thrash on round-robin sources
+            _CORPUS_CACHE.pop(key, None)
+            _CORPUS_CACHE[key] = hit
+    if hit is not None:
+        return hit
+    pairs = [(c, a) for c in chunks if (a := analyzer(c))]
+    raw = [c for c, _ in pairs]
+    corpus = [a for _, a in pairs]
+    entry = (raw, corpus, [set(a) for a in corpus], BM25Okapi(corpus) if corpus else None)
+    with _CORPUS_CACHE_LOCK:
+        if len(_CORPUS_CACHE) >= _CORPUS_CACHE_MAX:
+            _CORPUS_CACHE.pop(next(iter(_CORPUS_CACHE)))
+        _CORPUS_CACHE[key] = entry
+    return entry
 
 
 def _chunk_recalls(claim: str, chunks: list[str], analyzer, bg_lang: str | None = None):
@@ -179,17 +241,13 @@ def _chunk_recalls(claim: str, chunks: list[str], analyzer, bg_lang: str | None 
     single-chunk source where the in-context IDF degenerates.
     """
     import numpy as np
-    from rank_bm25 import BM25Okapi
 
     cl = analyzer(claim)
     if not cl:
         return [], None, ""
-    pairs = [(c, a) for c in chunks if (a := analyzer(c))]
-    if not pairs:
+    raw, corpus, doc_sets, bm = _analyzed_corpus(chunks, analyzer)
+    if not corpus:
         return [], None, ""
-    raw = [c for c, _ in pairs]
-    corpus = [a for _, a in pairs]
-    bm = BM25Okapi(corpus)
     scores = np.maximum(bm.get_scores(cl), 0.0)
     idf = bm.idf
     max_idf = max(idf.values()) if idf else 1.0
@@ -204,8 +262,12 @@ def _chunk_recalls(claim: str, chunks: list[str], analyzer, bg_lang: str | None 
         def w(t: str) -> float:
             return max(0.0, idf.get(t, max_idf), BG_BLEND_LAMBDA * _bg_idf(t, bg_lang))
 
-    den = sum(w(t) for t in claim_set) or 1.0
-    recalls = [sum(w(t) for t in claim_set if t in set(doc)) / den for doc in corpus]
+    # Per-token weights computed once; membership tested against the cached
+    # per-chunk sets (the old inline ``set(doc)`` rebuilt the set for EVERY
+    # claim token x chunk - quadratic, and the profiler's top entry).
+    wt = {t: w(t) for t in claim_set}
+    den = sum(wt.values()) or 1.0
+    recalls = [sum(v for t, v in wt.items() if t in ds) / den for ds in doc_sets]
     arg = int(scores.argmax()) if float(scores.max()) > 0 else 0
     return recalls, arg, raw[arg]
 
@@ -351,7 +413,7 @@ def _lingua_lang(text: str, min_len: int = 25) -> str:
             _LINGUA["det"] = None
             logger.warning(
                 "lingua-language-detector not importable - language features neutralised; "
-                "it ships with the package, so reinstall stellars-claude-code-plugins"
+                "it ships with the package, so reinstall groundrails"
             )
     det = _LINGUA["det"]
     if det is None:
@@ -410,7 +472,7 @@ def _wn_antonyms(w: str) -> set:
                 _WN["mod"], _WN["cache"] = None, {}
                 logger.warning(
                     "nltk not importable - WordNet antonym feature neutralised; "
-                    "it ships with the package, so reinstall stellars-claude-code-plugins"
+                    "it ships with the package, so reinstall groundrails"
                 )
         if _WN["mod"] is None:
             return set()
@@ -561,8 +623,7 @@ def _default_translate(text: str, src_iso: str) -> str:
     except ImportError as exc:
         raise ImportError(
             "high-tier MT recall needs the MT stack (argostranslate, ctranslate2, "
-            "wtpsplit-lite); it ships with the package, so reinstall "
-            "stellars-claude-code-plugins"
+            "wtpsplit-lite); it ships with the package, so reinstall groundrails"
         ) from exc
     return translate(text, src_iso)
 

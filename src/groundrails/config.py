@@ -42,6 +42,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, fields
 from pathlib import Path
+import threading
 from typing import Literal, Type, TypeVar, get_args, get_origin, get_type_hints
 
 import yaml
@@ -71,6 +72,38 @@ class ConfigError(RuntimeError):
     """
 
 
+# Parsed-YAML cache keyed on (path, mtime_ns, size). ``ground()`` resolves
+# config (and the calibration block) per call, which re-read and re-parsed
+# the same yaml for every claim - profiled at ~50% of per-claim runtime on
+# a batch. The stat-stamp key keeps override semantics: touching or editing
+# any config file invalidates its entry on the next call. Callers must not
+# mutate the returned mapping. Unbounded by design: growth is one small
+# parsed mapping per DISTINCT config path (4 layers per plugin in normal
+# use); only a caller looping over many explicit per-tenant paths grows it.
+_RAW_YAML_CACHE: dict[str, tuple[tuple[int, int], object]] = {}
+_RAW_YAML_LOCK = threading.Lock()
+
+
+def load_raw_yaml(path: Path) -> object:
+    """Parse ``path`` as YAML with an mtime/size-keyed cache.
+
+    Returns whatever the yaml contains (mapping, ``None`` for an empty
+    file, ...) - callers keep their own shape checks. Raises the underlying
+    ``OSError`` / ``yaml.YAMLError``; wrapping is the caller's concern.
+    """
+    st = path.stat()
+    key = str(path)
+    stamp = (st.st_mtime_ns, st.st_size)
+    with _RAW_YAML_LOCK:
+        hit = _RAW_YAML_CACHE.get(key)
+        if hit is not None and hit[0] == stamp:
+            return hit[1]
+    raw = yaml.safe_load(path.read_text(encoding="utf-8"))
+    with _RAW_YAML_LOCK:
+        _RAW_YAML_CACHE[key] = (stamp, raw)
+    return raw
+
+
 # --- document-processing schema -------------------------------------------
 
 
@@ -90,8 +123,32 @@ class GroundingConfig:
     bm25_threshold: float
     """BM25 token-recall in [0, 1] above which match_type=bm25."""
 
+    bm25_min_claim_tokens: int
+    """Minimum unique claim tokens for the BM25 layer to confirm on its own.
+
+    Token recall over a tiny claim saturates - a 3-token claim has a 3-term
+    denominator, so a single passage can clear ``bm25_threshold`` on almost
+    no evidence. Below this floor the BM25 layer still scores (features,
+    agreement) but cannot set ``match_type="bm25"`` by itself; the claim
+    falls through to fuzzy/semantic/agreement, which need real overlap."""
+
     semantic_threshold: float
     """Absolute cosine above which match_type=semantic (pre-percentile)."""
+
+    nli_entailment_min: float
+    """Minimum entailment probability for NLI to confirm in the cascade.
+
+    The NLI verdict is decisive only when confident: argmax entailment below
+    this floor (e.g. 0.34 on a near-uniform distribution) is a shrug, not
+    evidence, and falls through to the lexical ladder instead of confirming
+    past every lexical threshold."""
+
+    nli_contradiction_min: float
+    """Minimum contradiction probability for NLI to contradict.
+
+    Same confidence principle as ``nli_entailment_min``, other arm: an argmax
+    contradiction by a nose must not refuse a claim that strong lexical
+    evidence confirms."""
 
     semantic_threshold_percentile: float
     """Top fraction of random chunk-pair distribution for semantic match."""
@@ -249,7 +306,7 @@ def _load_typed_config(
         )
 
     try:
-        raw = yaml.safe_load(effective_path.read_text(encoding="utf-8"))
+        raw = load_raw_yaml(effective_path)
     except yaml.YAMLError as exc:
         raise ConfigError(f"failed to parse {effective_path}: {exc}") from exc
 

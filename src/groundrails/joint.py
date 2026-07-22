@@ -108,6 +108,8 @@ def ground_semantic(
     from groundrails.grounding import (
         GroundingMatch,
         UnsupportedLanguageError,
+        _populate_match_metadata,
+        _tokenize,
         _winning_layer_label,
         ground,
     )
@@ -141,12 +143,19 @@ def ground_semantic(
         lex_p = m.verdict_probability if m.verdict_probability >= 0 else m.agreement_score
     except UnsupportedLanguageError:
         m = GroundingMatch(claim=claim)
+        # DEF-4 floor input: this match never passes through ground(), which
+        # otherwise sets the count unconditionally - without it every blocked
+        # cross-lingual claim would read as sub-floor (count 0) and the joint
+        # head's confirmation would be withheld regardless of claim length.
+        m.bm25_claim_token_count = len(set(_tokenize(claim)))
         lex_p = 0.0
         blocked = True
     lex_contra = bool(m.numeric_mismatches or m.entity_mismatches)
 
-    # 2. clear win -> the lexical verdict stands (outside the uncertainty band)
-    if not blocked and (lex_p <= a or lex_p >= b):
+    # 2. clear win -> the lexical verdict stands: outside the uncertainty
+    # band, or already resolved exact/contradicted (verdicts the joint head
+    # is not allowed to change - running the cascade for them is dead work)
+    if not blocked and (m.match_type in ("exact", "contradicted") or lex_p <= a or lex_p >= b):
         return m
 
     # 3. escalate: score the cascade and fuse with the joint head
@@ -160,8 +169,21 @@ def ground_semantic(
         )
     sem = cascade.score(claim, _chunk_texts(sources, cfg))
     m.reranker_score = sem.rr_max
+    # NOTE: semantic_score now carries the cascade's bge-m3 cosine alongside
+    # the legacy embedding space's scores - two distributions in one field.
+    # cfg.semantic_threshold (tuned on the legacy space) gates both; the
+    # cascade's own cosine_gate is the score's native operating range.
     m.semantic_score = max(m.semantic_score, sem.cos_max)
-    m.nli_scores = {"entailment": sem.nli_ent, "contradiction": sem.nli_contra}
+    # full 3-key softmax shape, same contract as nli.NLIGrounder.scores -
+    # but ONLY when the cascade's NLI stage actually ran: fabricating
+    # {neutral: 1.0} from the zeroed defaults is indistinguishable from
+    # "the model read it and said neutral" downstream
+    if sem.ran_nli:
+        m.nli_scores = {
+            "entailment": sem.nli_ent,
+            "contradiction": sem.nli_contra,
+            "neutral": max(0.0, 1.0 - sem.nli_ent - sem.nli_contra),
+        }
 
     feat = {
         "lex_p": lex_p,
@@ -174,11 +196,47 @@ def ground_semantic(
     }
     p = jv.predict_proba(feat)
     m.verdict_probability = p
-    lex_fired = m.exact_score >= 1.0 or m.fuzzy_score > 0 or m.bm25_score > 0
+    # Deliberate divergence from _verdict_preamble's ``and has_any_signal``
+    # guard: reaching this point means the claim was escalated (uncertain or
+    # blocked), and the numeric/entity mismatch that set lex_contra is itself
+    # the signal - a full-source fallback mismatch counts here.
     if lex_contra and not blocked:
         m.match_type = "contradicted"
+    elif m.exact_score >= 1.0:
+        # Policy parity with grounding._verdict_preamble: a verbatim exact
+        # match is not an uncertain case - the joint head must not un-ground
+        # it. UNREACHABLE on every current path (a non-blocked exact resolves
+        # in the inner ground() and early-returns above; the blocked path
+        # builds a fresh match with exact_score 0), kept only as defence in
+        # depth. If a future change makes it live, thread exact_window_text
+        # into the _populate_match_metadata call below so reason (d') is not
+        # silently skipped for the escalated exact confirm.
+        m.match_type = "exact"
     elif p >= jv.threshold:
-        m.match_type = _winning_layer_label(m) if lex_fired else "semantic"
+        # Same labelling + DEF-4 floor as every other engine. No lexical-
+        # evidence special case: a sub-floor claim must clear fuzzy/semantic
+        # thresholds whether or not some lexical layer carries a nonzero
+        # score - otherwise MORE lexical evidence would face a STRICTER bar.
+        # cfg thresholds ARE this tier's operating point (the joint tier has
+        # no percentile machinery; see also the two-score-space note above).
+        m.match_type = _winning_layer_label(m, cfg)
     else:
         m.match_type = "none"
+    # The cascade + head may have flipped match_type relative to the inner
+    # ground() call - re-run WI#3/#5/#6 metadata (grounded_source,
+    # lexical_co_support, verification_needed) against the final verdict,
+    # exactly as the adaptive_gap reclassifier does after its flips.
+    _populate_match_metadata(
+        m,
+        cfg=cfg,
+        primary_source=primary_source,
+        fuzzy_threshold=cfg.fuzzy_threshold,
+        bm25_threshold=cfg.bm25_threshold,
+        effective_semantic_threshold=cfg.semantic_threshold,
+    )
+    # Borderline flag, mirroring the lexical and calibrated engines: a fused
+    # verdict within proximity of the joint threshold is cheap to second-guess.
+    if m.match_type in ("exact", "fuzzy", "bm25", "semantic"):
+        if abs(p - jv.threshold) < cfg.verification_threshold_proximity:
+            m.verification_needed = True
     return m

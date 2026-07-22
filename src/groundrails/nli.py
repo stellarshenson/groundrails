@@ -86,12 +86,17 @@ class NLIGrounder:
         p = ex / ex.sum()
         return {self._id2label[i]: float(p[i]) for i in range(len(p))}
 
-    def verdict(self, evidence: str, claim: str) -> str:
-        """grounded (entailment) / contradicted / unconfirmed (neutral)."""
+    def verdict(self, evidence: str, claim: str, min_confidence: float = 0.5) -> str:
+        """grounded (confident entailment) / contradicted (confident
+        contradiction) / unconfirmed.
+
+        Same confidence principle as the cascade's ``nli_entailment_min`` /
+        ``nli_contradiction_min``: a near-uniform argmax is a shrug, not a
+        verdict."""
         s = self.scores(evidence, claim)
         top = max(s, key=s.get)
-        return {
-            "entailment": "grounded",
-            "contradiction": "contradicted",
-            "neutral": "unconfirmed",
-        }.get(top, "unconfirmed")
+        if top == "entailment" and s[top] >= min_confidence:
+            return "grounded"
+        if top == "contradiction" and s[top] >= min_confidence:
+            return "contradicted"
+        return "unconfirmed"

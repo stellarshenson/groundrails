@@ -10,7 +10,7 @@ and callers gracefully skip the layer.
 
 Install:
 
-    pip install 'stellars-claude-code-plugins[semantic]'
+    pip install 'groundrails[semantic]'
 
 Or:
 
@@ -65,7 +65,7 @@ def install_hint() -> str:
     return (
         "Semantic grounding requires: onnxruntime, transformers, faiss-cpu, "
         "pyarrow, huggingface_hub.\n"
-        "Install via:  pip install 'stellars-claude-code-plugins[semantic]'"
+        "Install via:  pip install 'groundrails[semantic]'"
     )
 
 

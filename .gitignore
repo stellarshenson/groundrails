@@ -222,3 +222,6 @@ cython_debug/
 .pypirc
 # experiment-only retrained manifold weights - never the shipped config
 src/groundrails/config_document_processing.experiment.yaml
+
+# local `groundrails init` runtime config (per-machine, not release content)
+groundrails.json

@@ -4,23 +4,23 @@
 #
 # Every tunable magic number used by the grounding pipeline lives here. The
 # values below are the DEFAULTS that produced the best composite score on
-# the reference BENCHMARK.md as of v1.3.27 (Liu 14-claim perfect, numeric
-# seed perfect, cross-layer agreement gap >= 0.10, skill rules present).
+# the reference benchmark (Liu 14-claim perfect, numeric seed perfect,
+# cross-layer agreement gap >= 0.10).
 #
-# Override order (first match wins):
-#   1. Explicit keyword argument to ground() / ground_batch() / etc
-#   2. ./.stellars-plugins/config.yaml in the project root
-#   3. This bundled default (shipped with the plugin)
-#
-# Tune via scripts/calibrate.py — it grid-searches the benchmark against
-# per-field value lists and returns the highest-scoring combination.
+# Override order (first match wins; same filename in every location):
+#   1. Explicit path argument to the load function
+#   2. ./.stellars-plugins/config_document_processing.yaml (project-local)
+#   3. ~/.stellars-plugins/config_document_processing.yaml (user-level)
+#   4. This bundled default (shipped with the package)
 #
 # Sections map 1:1 to fields on GroundingConfig (see config.py).
 # ============================================================================
 
 # ---- match_type classification thresholds ----------------------------------
-# These gate which match_type a claim resolves to. Priority: exact > fuzzy
-# > bm25 > semantic > agreement-fallback > none. A layer must be ABOVE its
+# These gate which match_type a claim resolves to. Priority: contradicted >
+# confident NLI entailment (deterministic cascade only - the head engines
+# consume NLI as features/contradiction guard instead) > exact > fuzzy >
+# bm25 > semantic > agreement-fallback > none. A layer must be ABOVE its
 # threshold to "fire"; otherwise the next priority is tried.
 
 # Partial-ratio Levenshtein score required for match_type=fuzzy.
@@ -32,9 +32,20 @@ fuzzy_threshold: 0.85
 # unique tokens are present.
 bm25_threshold: 0.5
 
+# Minimum unique claim tokens before the BM25 layer may confirm alone.
+# Recall over a 3-token claim saturates on a single passage; short claims
+# must be confirmed by fuzzy/semantic/agreement instead.
+bm25_min_claim_tokens: 4
+
 # Raw cosine similarity required for match_type=semantic in ABSOLUTE mode
 # (when percentile mode is disabled or the percentile is below this floor).
 semantic_threshold: 0.6
+
+# Minimum entailment / contradiction probability for the NLI layer to be
+# decisive in the deterministic cascade. Below the floor (near-uniform
+# output, argmax by a nose) NLI is a shrug and the lexical ladder decides.
+nli_entailment_min: 0.5
+nli_contradiction_min: 0.5
 
 # Fraction of the random chunk-pair cosine distribution that qualifies as
 # "top-tier semantic" for match_type=semantic in PERCENTILE mode. 0.02 =
@@ -185,8 +196,9 @@ semantic_top_k: 3                # top-K semantic alternatives reported
 #   mode       - the grounder mode (public knob):
 #                "lexical" (default) - the frozen-weight lexical-mode manifolds
 #                   decide CONFIRMED at the tier named by `lexical_effort`.
-#                "semantic" - reserved for the heavy entailment stage; runs
-#                   lexical until that stage ships.
+#                "semantic" - compose the OpenVINO cross-encoder cascade with
+#                   the lexical tier by escalation; parameters in the
+#                   `semantic:` block below.
 #                The deterministic cascade and the bambi calibrated head are
 #                   internal verdict heads, not modes - reach them only via an
 #                   explicit `engine:` override (back-compat) or the
@@ -200,11 +212,12 @@ semantic_top_k: 3                # top-K semantic alternatives reported
 #                Absent until you calibrate locally. When present and
 #                engine=calibrated, grounding scores sigma(weights . features).
 #
-# Coefficients: Intercept + the seven features
+# Coefficients: Intercept + the nine features
 # (exact, fuzzy, bm25_recall, semantic, voters, lexical_cosupport,
-# entity_absent). `semantic` is the ramped, model/language-portable
-# semantic_ratio. Prior intent: word overlap OR a strong semantic_ratio
-# confirms; weak topical signal and entity-absent fabrications do not.
+# entity_absent, nli_entail, nli_contra). `semantic` is the ramped,
+# model/language-portable semantic_ratio. Prior intent: word overlap OR a
+# strong semantic_ratio confirms; weak topical signal, entity-absent
+# fabrications and NLI contradiction do not.
 calibration:
   mode: lexical                    # lexical (default) | semantic (the OV cascade switch, see `semantic:` below)
   threshold: 0.5

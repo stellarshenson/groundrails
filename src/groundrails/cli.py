@@ -25,69 +25,11 @@ from groundrails.config import load_document_processing_config
 from groundrails.grounding import (
     GroundingMatch,
     UnsupportedLanguageError,
+    _located_support,
+    _origin_fallback,
     build_grounding_document,
     ground_batch,
 )
-
-
-# --- optional semantic / NLI layer (opt-in via --semantic) -----------------
-def _build_semantic_grounder(cfg, enabled: bool):
-    """Return a SemanticGrounder, or None when the layer is not requested.
-
-    ``--semantic`` is an explicit contract: deps present -> run, deps missing ->
-    hard fail (exit 2). Silent degradation would produce misleading grounding
-    reports (rows labelled ``(semantic)`` with score 0.000).
-    """
-    if not enabled:
-        return None
-    if not settings_mod.is_semantic_available():
-        print(
-            "ERROR: --semantic requires the [semantic] extras, but "
-            "dependencies are missing. Install and rerun:\n"
-            + settings_mod.semantic_install_hint(),
-            file=sys.stderr,
-        )
-        sys.exit(2)
-    from groundrails.semantic import SemanticGrounder
-
-    return SemanticGrounder(
-        model_name=cfg.semantic_model,
-        device=cfg.semantic_device,
-        cache_dir=cfg.cache_dir,
-    )
-
-
-def _build_nli_grounder(cfg, enabled: bool):
-    """Return an NLIGrounder when semantic grounding is requested, else None.
-
-    NLI rides with semantic (no separate switch). The NLI deps are a subset of
-    the semantic extras; we still guard and return None if they are missing.
-    """
-    if not enabled:
-        return None
-    from groundrails import nli
-
-    if not nli.is_available():
-        return None
-    return nli.NLIGrounder(model_name=getattr(cfg, "nli_model", None) or nli.DEFAULT_MODEL)
-
-
-def _nli_calibrated_verdict():
-    """Calibrated verdict used when NLI is active so the entailment signal is
-    weighed against the other layers rather than hard-overriding the cascade.
-
-    Prefers config-trained weights (``calibration.engine: calibrated``); falls
-    back to the prior means. Built from point weights - no per-call PyMC sampling.
-    """
-    from groundrails import calibration as C
-
-    trained = C.verdict_from_config()
-    if trained is not None:
-        return trained
-    spec = C.load_prior_spec()
-    return C.CalibratedVerdict.from_weights(
-        {k: mu for k, (mu, _sd) in spec.items()}, threshold=0.5
-    )
 
 
 # --- source / claim / match helpers ----------------------------------------
@@ -192,17 +134,31 @@ def _match_line(m: GroundingMatch) -> str:
     elif m.match_type == "bm25":
         loc, winning = _loc_str(m.bm25_location), m.bm25_matched_text
     elif m.match_type == "semantic":
-        loc, winning = _loc_str(m.semantic_location), m.semantic_matched_text
-    elif m.match_type == "contradicted":
-        if m.semantic_score > 0:
+        # a cascade-driven semantic verdict can carry no located span -
+        # fall back exactly like the nli arm (shared _origin_fallback)
+        if m.semantic_location.char_start >= 0:
             loc, winning = _loc_str(m.semantic_location), m.semantic_matched_text
-        elif m.bm25_score > 0:
-            loc, winning = _loc_str(m.bm25_location), m.bm25_matched_text
         else:
-            loc, winning = _loc_str(m.fuzzy_location), m.fuzzy_matched_text
+            hit = _origin_fallback(m)
+            loc, winning = (
+                (_loc_str(hit[0]), hit[1]) if hit else ("(no span - cascade verdict)", "")
+            )
+    elif m.match_type == "nli":
+        # NLI has no span of its own - show the closest located layer; a
+        # full-join premise has no located layer at all, so say so instead
+        # of printing L-1:C-1
+        hit = _origin_fallback(m)
+        loc, winning = (_loc_str(hit[0]), hit[1]) if hit else ("(no span - NLI verdict)", "")
+    elif m.match_type == "contradicted":
+        # shared located-span picker (exact-first, then _origin_fallback);
+        # no located layer -> say so instead of printing L-1:C-1
+        hit = _located_support(m)
+        loc, winning = (
+            (_loc_str(hit[0]), hit[1]) if hit else ("(no span - contradicted verdict)", "")
+        )
     else:
         loc = "(no match)"
-        winning = m.semantic_matched_text or m.bm25_matched_text or m.fuzzy_matched_text
+        winning = m.bm25_matched_text or m.semantic_matched_text or m.fuzzy_matched_text
 
     mismatch_info = ""
     if m.numeric_mismatches or m.entity_mismatches:
@@ -270,9 +226,18 @@ def cmd_ground(args: argparse.Namespace) -> int:
         print("ERROR: no readable evidence provided (see warnings above)", file=sys.stderr)
         return 1
     # --semantic is the orthogonal switch: it turns on the OpenVINO cascade that escalates the
-    # uncertain band of whatever --effort tier is selected. Deps present -> run; missing -> hard
-    # fail (exit 2), never silent degradation.
-    semantic = bool(getattr(args, "semantic", False))
+    # uncertain band of whatever --effort tier is selected. When the flag is ABSENT (None) the
+    # yaml SSoT decides via calibration.mode (joint.switch_on) - the same "flag absent -> config
+    # wins" contract as --threshold/--bm25-threshold (DEF-11); an explicit 0/1 overrides. Deps
+    # present -> run; missing -> hard fail (exit 2), never silent degradation. The is_available
+    # check runs AFTER resolution so a config-driven switch-on is gated too.
+    semantic_arg = getattr(args, "semantic", None)
+    if semantic_arg is None:
+        from groundrails.joint import switch_on
+
+        semantic = switch_on()
+    else:
+        semantic = bool(semantic_arg)
     if semantic and not semantic_ov.is_available():
         print(
             "ERROR: --semantic needs the cascade extras (openvino + transformers).\n"
@@ -290,6 +255,8 @@ def cmd_ground(args: argparse.Namespace) -> int:
             sources,
             fuzzy_threshold=args.threshold,
             bm25_threshold=args.bm25_threshold,
+            semantic_threshold=args.semantic_threshold,
+            semantic_threshold_percentile=args.semantic_threshold_percentile,
             config=cfg,
             semantic=semantic,
             primary_source=args.primary_source,
@@ -319,7 +286,9 @@ def cmd_ground(args: argparse.Namespace) -> int:
     else:
         print(report)
     # `ground` is a gate: exit 1 if any claim is not grounded
-    return 0 if all(m.match_type != "none" for m in matches) else 1
+    # grounded is the canonical predicate: "none" AND "contradicted" fail -
+    # a contradicted claim is the loudest failure, not a success
+    return 0 if all(m.grounded for m in matches) else 1
 
 
 def cmd_extract_claims(args: argparse.Namespace) -> int:
@@ -626,20 +595,26 @@ def _build_parser() -> argparse.ArgumentParser:
     g.add_argument(
         "--threshold",
         type=float,
-        default=0.85,
-        help="Levenshtein ratio threshold for 'fuzzy' (default 0.85)",
+        default=None,
+        help="Levenshtein ratio threshold for 'fuzzy' (config default 0.85). "
+        "Gates VERDICTS on the deterministic cascade; on the default "
+        "trained-head engine the head owns the verdict and above the DEF-4 "
+        "floor the label is the strongest positive layer regardless of this "
+        "value - it then gates only the sub-floor label withhold and the "
+        "reason-(c) proximity flag",
     )
     g.add_argument(
         "--bm25-threshold",
         type=float,
-        default=0.5,
-        help="BM25 token-recall threshold for 'bm25' (default 0.5)",
+        default=None,
+        help="BM25 token-recall threshold for 'bm25' (config default 0.5). "
+        "Same engine caveat as --threshold",
     )
     g.add_argument(
         "--semantic-threshold",
         type=float,
-        default=0.6,
-        help="Semantic cosine threshold for 'semantic' (default 0.6)",
+        default=None,
+        help="Semantic cosine threshold for 'semantic' (config default 0.6)",
     )
     g.add_argument(
         "--semantic-threshold-percentile",
@@ -664,10 +639,11 @@ def _build_parser() -> argparse.ArgumentParser:
         "--semantic",
         type=int,
         choices=[0, 1],
-        default=0,
+        default=None,
         metavar="{0,1}",
-        help="Switch on (1) the OpenVINO cascade: escalates the uncertain band of the --effort "
-        "tier to bge-reranker + mDeBERTa-NLI, fused by the joint head. Default 0 (off).",
+        help="Switch on (1) / off (0) the OpenVINO cascade: escalates the uncertain band of the "
+        "--effort tier to bge-reranker + mDeBERTa-NLI, fused by the joint head. Omitted -> the "
+        "config decides (calibration.mode: semantic), so a project/user override is honoured.",
     )
     g.add_argument(
         "--primary-source",

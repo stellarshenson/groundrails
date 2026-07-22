@@ -19,6 +19,7 @@ features from a :class:`grounding.GroundingMatch`.
 
 from __future__ import annotations
 
+import copy
 from dataclasses import dataclass
 import json
 from pathlib import Path
@@ -55,15 +56,13 @@ def load_prior_spec(path: str | Path | None = None) -> dict[str, tuple[float, fl
     back to the bundled config (still yaml, never a Python hardcode). Raises if
     no config carries it.
     """
-    import yaml
-
-    from groundrails.config import PACKAGE_ROOT
+    from groundrails.config import PACKAGE_ROOT, load_raw_yaml
 
     block = load_calibration_from_config(path)
     prior = (block or {}).get("prior")
     if not prior:
         bundled = PACKAGE_ROOT / "config_document_processing.yaml"
-        raw = yaml.safe_load(bundled.read_text(encoding="utf-8")) or {}
+        raw = load_raw_yaml(bundled) or {}
         prior = (raw.get("calibration") or {}).get("prior")
     if not prior:
         raise RuntimeError(
@@ -505,18 +504,19 @@ def load_calibration_from_config(path: str | Path | None = None) -> dict | None:
     resolution as :func:`config.load_document_processing_config`, so a
     project-local override wins over the bundled default.
 
-    The public knob is ``mode`` (``lexical`` default, ``semantic`` reserved);
+    The public knob is ``mode`` (``lexical`` default, or ``semantic``);
     ``engine`` is an internal verdict-head selector derived from it. An explicit
     ``engine`` still wins for back-compat (older configs, and the calibrated
-    bambi head, set ``engine`` directly); otherwise ``mode`` maps to its head -
-    ``lexical``/``semantic`` -> the lexical verdict (semantic runs lexical until
-    the heavy stage ships).
+    bambi head, set ``engine`` directly); otherwise ``mode`` maps to its inner
+    head - both ``lexical`` and ``semantic`` resolve ``engine`` to the lexical
+    verdict. ``mode: semantic`` additionally arms the OV cascade escalation
+    (see :func:`joint.switch_on`): the lexical tier still decides confident
+    claims, and the uncertain band is escalated to the reranker + NLI cascade
+    and fused by the joint head.
     """
     import os
 
-    import yaml
-
-    from groundrails.config import _resolve_config_path
+    from groundrails.config import _resolve_config_path, load_raw_yaml
 
     # Provisioned-JSON front door: a calibration JSON (an explicit ``.json``
     # ``path``, or ``GROUNDRAILS_CALIBRATION_JSON`` set by ``groundrails.init``)
@@ -535,11 +535,14 @@ def load_calibration_from_config(path: str | Path | None = None) -> dict | None:
     p = _resolve_config_path("document_processing", path)
     if not Path(p).is_file():
         return None
-    raw = yaml.safe_load(Path(p).read_text(encoding="utf-8")) or {}
+    raw = load_raw_yaml(Path(p)) or {}
     block = raw.get("calibration")
     if not isinstance(block, dict):
         return None
-    return _ensure_engine(block)
+    # Deep-copy before returning: ``raw`` is a shared cache entry, and handing
+    # out a live sub-dict lets any caller mutation poison every subsequent
+    # load process-wide until the file's stat stamp changes.
+    return _ensure_engine(copy.deepcopy(block))
 
 
 def _ensure_engine(block: dict) -> dict:

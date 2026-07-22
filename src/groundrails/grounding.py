@@ -55,12 +55,13 @@ from groundrails.entity_check import (
     extract_numbers,
     find_absent_entities,
     find_mismatches,
+    find_numeric_mismatches,
     list_claim_entities,
 )
 
 logger = logging.getLogger(__name__)
 
-MatchType = Literal["exact", "fuzzy", "bm25", "semantic", "contradicted", "none"]
+MatchType = Literal["exact", "fuzzy", "bm25", "semantic", "nli", "contradicted", "none"]
 
 SourceInput = str | tuple[str, str]
 """A source is either raw text or a ``(path, text)`` pair for provenance."""
@@ -133,6 +134,7 @@ class GroundingMatch:
     bm25_score: float = 0.0  # Normalised [0, 1] - best passage vs max in corpus
     bm25_raw_score: float = 0.0  # Raw BM25 Okapi score (unbounded, clamped >= 0)
     bm25_token_recall: float = 0.0  # Fraction of unique claim tokens in best passage
+    bm25_claim_token_count: int = 0  # Unique claim tokens (recall denominator size)
     bm25_matched_text: str = ""
     bm25_location: Location = field(default_factory=Location)
     # Semantic (ModernBERT + FAISS) layer — optional, off unless enabled
@@ -202,7 +204,11 @@ class GroundingMatch:
         """Winning-layer support provenance - the quote and its location in the evidence -
         or ``None`` when the claim is not grounded. A cascade verdict (``match_type`` =
         ``semantic``) carries no native location, so it falls back to the best lexical
-        passage, flagged ``support_via = "lexical"``, so an agent always gets a place to look."""
+        passage, flagged ``support_via = "lexical"``; an ``nli`` verdict likewise has no
+        span of its own and falls back to the premise's origin layer, flagged
+        ``support_via = "nli-premise"``. Rarely (grounded ``nli`` on a near-empty
+        source where NO layer carries a located span) the fallback finds nothing and
+        a grounded match returns ``None`` - callers must handle it."""
         if not self.grounded:
             return None
         layers = {
@@ -213,12 +219,17 @@ class GroundingMatch:
         }
         via = None
         loc, text = layers.get(self.match_type, (None, ""))
+        if self.match_type == "semantic" and self.semantic_score <= 0:
+            # a zero-clamped located semantic hit is not evidence - force the
+            # fallback picker (guards on score > 0) rather than cite it directly
+            loc = None
         if loc is None or loc.char_start < 0:
-            for layer in ("bm25", "fuzzy", "exact"):
-                cand_loc, cand_text = layers[layer]
-                if cand_loc.char_start >= 0:
-                    loc, text, via = cand_loc, cand_text, "lexical"
-                    break
+            # ONE fallback picker shared with _winning_location / the WI#6
+            # passage picker / the CLI - see _origin_fallback
+            hit = _origin_fallback(self)
+            if hit is not None:
+                loc, text = hit
+                via = "nli-premise" if self.match_type == "nli" else "lexical"
         if loc is None or loc.char_start < 0:
             return None
         out = {
@@ -243,12 +254,23 @@ def _normalize_whitespace(text: str) -> str:
 
 
 def _exact_match(claim: str, source: str) -> tuple[int, int] | None:
-    """Find the claim inside ``source`` ignoring whitespace + case differences."""
+    """Find the claim inside ``source`` ignoring whitespace + case differences.
+
+    Word-bounded: the match may not start or end in the middle of a source
+    word (``"um to a"`` must not hit inside ``"sums to a"``). It is still a
+    substring match across whole words - a claim that is a verbatim
+    sub-phrase of a longer (even negating) sentence matches; see
+    docs/defects.md known limitations."""
     norm_claim = _normalize_whitespace(claim)
     if not norm_claim:
         return None
     tokens = norm_claim.split(" ")
-    pattern = r"\s+".join(re.escape(t) for t in tokens)
+    # Boundary lookarounds only where the claim edge is itself a word char:
+    # a claim ending in punctuation ("...40%.") must still match a source
+    # where the next sentence follows without a space ("...40%.The next").
+    prefix = r"(?<!\w)" if re.match(r"\w", tokens[0]) else ""
+    suffix = r"(?!\w)" if re.search(r"\w$", tokens[-1]) else ""
+    pattern = prefix + r"\s+".join(re.escape(t) for t in tokens) + suffix
     m = re.search(pattern, source, flags=re.IGNORECASE)
     if m:
         return (m.start(), m.end())
@@ -257,6 +279,15 @@ def _exact_match(claim: str, source: str) -> tuple[int, int] | None:
 
 def _unpack_sources(sources: Sequence[SourceInput]) -> list[tuple[int, str, str]]:
     """Normalise heterogeneous source inputs to ``(index, path, text)`` tuples."""
+    # A bare str is itself a Sequence[str], so it type-checks yet iterates into
+    # per-CHARACTER sources - rapidfuzz then treats a 1-char source as a needle
+    # and scores partial_ratio 1.0, silently CONFIRMING a fabricated claim
+    # against unrelated evidence. Fail loud instead of grounding garbage.
+    if isinstance(sources, str):
+        raise TypeError(
+            "sources must be a sequence of source texts or (path, text) tuples, "
+            "not a single str - wrap it as [text] or [(path, text)]"
+        )
     out: list[tuple[int, str, str]] = []
     for i, src in enumerate(sources):
         if isinstance(src, tuple):
@@ -325,17 +356,53 @@ def _locate(
 
 _TOKEN_RE = re.compile(r"\w+", re.UNICODE)
 
+# Half-width of the evidence window taken around an exact span - both the NLI
+# premise widening and the WI#6 reason (d') restated-conflict scan read the
+# same "surrounding context of the quoted span" concept, so they share one
+# radius rather than two literals that could drift apart.
+_EVIDENCE_WINDOW_CHARS = 300
+
 
 def _tokenize(text: str) -> list[str]:
     """Lowercase word tokenisation."""
     return _TOKEN_RE.findall(text.lower())
 
 
+def _snap_to_word_bounds(text: str, start: int, end: int) -> tuple[int, int]:
+    """Expand ``[start, end)`` outward so it never cuts a word in half.
+
+    Also trims leading/trailing whitespace inside the span. Bounds are
+    clamped to the text; a degenerate span is returned unchanged."""
+    n = len(text)
+    start = max(0, min(start, n))
+    end = max(start, min(end, n))
+    if start == end:
+        return start, end
+    while start > 0 and text[start - 1].isalnum() and start < n and text[start].isalnum():
+        start -= 1
+    while end < n and text[end].isalnum() and text[end - 1].isalnum():
+        end += 1
+    while start < end and text[start].isspace():
+        start += 1
+    while end > start and text[end - 1].isspace():
+        end -= 1
+    return start, end
+
+
+# NOTE: deliberately NOT abbreviation-guarded like extract._split_sentences -
+# this regex only splits BM25 passages on the single-mega-passage fallback,
+# where a shattered citation fragment merges back into its neighbour via the
+# min-passage-chars pass below; claim extraction is where the guard matters.
 _SENT_SPLIT_RE = re.compile(r"(?<=[.!?])\s+(?=[A-Z0-9])")
-_MIN_PASSAGE_CHARS = 40
+_MIN_PASSAGE_CHARS = 40  # fallback when no config is threaded through
+_SINGLE_PASSAGE_FALLBACK_LEN = 1500
 
 
-def _split_passages(text: str) -> list[tuple[int, int, str]]:
+def _split_passages(
+    text: str,
+    min_passage_chars: int = _MIN_PASSAGE_CHARS,
+    single_passage_fallback_length: int = _SINGLE_PASSAGE_FALLBACK_LEN,
+) -> list[tuple[int, int, str]]:
     """Split text into passages by blank-line boundaries.
 
     Returns ``[(start, end, passage_text), ...]`` with char offsets into the
@@ -344,7 +411,9 @@ def _split_passages(text: str) -> list[tuple[int, int, str]]:
     Falls back to sentence splitting when blank-line splitting produces a
     single mega-passage on long texts (common with ``pdftotext`` output that
     uses single-newline line breaks). Prevents BM25 from degenerating into a
-    1-doc corpus where IDF is meaningless.
+    1-doc corpus where IDF is meaningless. Both operating points come from
+    ``GroundingConfig`` (``min_passage_chars``,
+    ``single_passage_fallback_length``) when called via the grounding path.
     """
     if not text:
         return []
@@ -357,7 +426,7 @@ def _split_passages(text: str) -> list[tuple[int, int, str]]:
 
     # Fallback: on long single-passage texts, split on sentence boundaries so
     # BM25 has a corpus to rank against.
-    if len(passages) == 1 and len(text) > 1500:
+    if len(passages) == 1 and len(text) > single_passage_fallback_length:
         start_0, _, body = passages[0]
         sentence_passages: list[tuple[int, int, str]] = []
         cursor = 0
@@ -378,7 +447,7 @@ def _split_passages(text: str) -> list[tuple[int, int, str]]:
             if pending is None:
                 pending = (s, e, p)
                 continue
-            if len(pending[2]) < _MIN_PASSAGE_CHARS:
+            if len(pending[2]) < min_passage_chars:
                 pending = (pending[0], e, pending[2] + " " + p)
             else:
                 merged.append(pending)
@@ -402,61 +471,127 @@ class _BM25Hit:
     raw_score: float
     normalised_score: float
     token_recall: float
+    claim_token_count: int = 0
+
+
+# BM25 corpus cache: passage splitting + tokenisation + the BM25Okapi index
+# depend only on the sources, yet were rebuilt per claim - the dominant
+# lexical cost in ``ground_batch`` (O(claims x corpus)). The index is
+# read-only after construction (``get_scores`` allocates locally), so one
+# instance is safely shared across worker threads. Keyed by content hash;
+# tiny bound because callers ground many claims against few source sets.
+_BM25_CACHE: dict[
+    tuple, tuple[list[list[str]], list[tuple[int, str, int, int, str]], BM25Okapi]
+] = {}
+_BM25_CACHE_LOCK = threading.Lock()
+_BM25_CACHE_MAX = 8
+
+
+_BM25_EMPTY = object()  # cached marker for an empty corpus (still a cache hit)
+
+
+def _bm25_corpus(
+    pairs: list[tuple[int, str, str]],
+    min_passage_chars: int = _MIN_PASSAGE_CHARS,
+    single_passage_fallback_length: int = _SINGLE_PASSAGE_FALLBACK_LEN,
+) -> tuple[list[list[str]], list[tuple[int, str, int, int, str]], BM25Okapi] | None:
+    """Build (or fetch cached) tokenised corpus + BM25 index for ``pairs``.
+
+    The split operating points are part of the cache key: a cached corpus is
+    only valid for the parameters it was split with, so a config override
+    can never be served a cross-config corpus."""
+    key = (
+        (min_passage_chars, single_passage_fallback_length),
+        *((idx, path, len(text), hash(text)) for idx, path, text in pairs),
+    )
+    with _BM25_CACHE_LOCK:
+        hit = _BM25_CACHE.get(key)
+        if hit is not None:
+            # LRU touch: reinsertion moves the entry to the dict's end so
+            # round-robin over >MAX source sets does not evict the entry
+            # just before its reuse (FIFO thrash).
+            _BM25_CACHE.pop(key, None)
+            _BM25_CACHE[key] = hit
+    if hit is not None:
+        return None if hit is _BM25_EMPTY else hit
+
+    corpus_tokens: list[list[str]] = []
+    provenance: list[tuple[int, str, int, int, str]] = []  # (src_idx, path, start, end, text)
+    for idx, path, text in pairs:
+        for start, end, passage in _split_passages(
+            text, min_passage_chars, single_passage_fallback_length
+        ):
+            tokens = _tokenize(passage)
+            if tokens:
+                corpus_tokens.append(tokens)
+                provenance.append((idx, path, start, end, passage))
+
+    entry = (corpus_tokens, provenance, BM25Okapi(corpus_tokens)) if corpus_tokens else _BM25_EMPTY
+    with _BM25_CACHE_LOCK:
+        if len(_BM25_CACHE) >= _BM25_CACHE_MAX:
+            _BM25_CACHE.pop(next(iter(_BM25_CACHE)))
+        _BM25_CACHE[key] = entry
+    return None if entry is _BM25_EMPTY else entry
 
 
 def _bm25_match(
     claim: str,
     pairs: list[tuple[int, str, str]],
+    cfg: GroundingConfig | None = None,
 ) -> _BM25Hit | None:
     """Rank passages across all sources with BM25 Okapi. Return best hit."""
     claim_tokens = _tokenize(claim)
     if not claim_tokens:
         return None
 
-    # Gather passages across all sources, track provenance
-    corpus_tokens: list[list[str]] = []
-    provenance: list[tuple[int, str, int, int, str]] = []  # (src_idx, path, start, end, text)
-    for idx, path, text in pairs:
-        for start, end, passage in _split_passages(text):
-            tokens = _tokenize(passage)
-            if tokens:
-                corpus_tokens.append(tokens)
-                provenance.append((idx, path, start, end, passage))
-
-    if not corpus_tokens:
+    corpus = (
+        _bm25_corpus(pairs, cfg.min_passage_chars, cfg.single_passage_fallback_length)
+        if cfg is not None
+        else _bm25_corpus(pairs)
+    )
+    if corpus is None:
         return None
+    corpus_tokens, provenance, bm25 = corpus
 
-    bm25 = BM25Okapi(corpus_tokens)
     scores = bm25.get_scores(claim_tokens)
     scores = np.maximum(scores, 0.0)  # BM25 can go negative on tiny corpora
     max_score = float(scores.max())
-    if max_score == 0.0:
-        return None
 
-    best_idx = int(scores.argmax())
-    raw = float(scores[best_idx])
-    normalised = raw / max_score  # relative to top passage = 1.0 for winner
-
-    # Token recall: IDF-weighted fraction of unique claim tokens present in the
-    # winner passage. Weighting by IDF stops corpus-ubiquitous words (e.g. the
-    # domain topic word that appears in every passage) from inflating recall,
-    # and gives full weight to distinctive claim tokens that are ABSENT (a claim
-    # whose specific terms are missing should not count as grounded). Tokens not
-    # in the corpus are treated as maximally distinctive.
     claim_set = set(claim_tokens)
-    passage_set = set(corpus_tokens[best_idx])
     idf = bm25.idf
     max_idf = max(idf.values()) if idf else 1.0
 
     def _w(tok: str) -> float:
         return max(0.0, idf.get(tok, max_idf))
 
-    den = sum(_w(t) for t in claim_set)
-    if den > 0:
-        recall = sum(_w(t) for t in claim_set if t in passage_set) / den
-    else:
+    def _recall(passage_idx: int) -> float:
+        """IDF-weighted fraction of unique claim tokens present in the passage.
+
+        Weighting by IDF stops corpus-ubiquitous words (e.g. the domain topic
+        word that appears in every passage) from inflating recall, and gives
+        full weight to distinctive claim tokens that are ABSENT (a claim whose
+        specific terms are missing should not count as grounded). Tokens not
+        in the corpus are treated as maximally distinctive."""
+        passage_set = set(corpus_tokens[passage_idx])
+        den = sum(_w(t) for t in claim_set)
+        if den > 0:
+            return sum(_w(t) for t in claim_set if t in passage_set) / den
         # Degenerate IDF (all claim tokens ubiquitous) -> fall back to raw recall.
-        recall = len(claim_set & passage_set) / len(claim_set) if claim_set else 0.0
+        return len(claim_set & passage_set) / len(claim_set) if claim_set else 0.0
+
+    if max_score == 0.0:
+        # Tiny corpora (2-3 passages) can push EVERY BM25 score negative -
+        # common tokens get negative IDF. The layer is absent there. A
+        # recall-argmax fallback was tried and REVERTED: bm25_score feeds the
+        # calibrated verdict features, and resurrecting the layer on tiny
+        # corpora shifts the pinned golden score distribution (equivalence
+        # guard failed). Revisit only together with a recalibration.
+        return None
+
+    best_idx = int(scores.argmax())
+    raw = float(scores[best_idx])
+    normalised = raw / max_score  # relative to top passage = 1.0 for winner
+    recall = _recall(best_idx)
 
     src_idx, path, start, end, text = provenance[best_idx]
     return _BM25Hit(
@@ -468,6 +603,7 @@ def _bm25_match(
         raw_score=raw,
         normalised_score=normalised,
         token_recall=recall,
+        claim_token_count=len(claim_set),
     )
 
 
@@ -660,11 +796,63 @@ def _config_calibrated_verdict():
     return v
 
 
-def _winning_layer_label(m: GroundingMatch) -> MatchType:
-    """Provenance label for a calibrated CONFIRMED verdict: the strongest layer."""
+def _verdict_preamble(
+    m: GroundingMatch, has_contradiction: bool, has_any_signal: bool
+) -> MatchType | None:
+    """Engine-independent verdict policy, ONE copy for all three engines.
+
+    ``contradicted`` beats everything; a verbatim exact match beats any
+    probabilistic head (a claim found byte-for-byte in the evidence is not
+    an uncertain case - adjacent distractor numbers must not push a trained
+    head below threshold and un-ground it). Returns ``None`` when the
+    engine-specific logic should decide.
+
+    One deliberate carve-out: the deterministic cascade ranks a CONFIDENT
+    NLI entailment above the exact returned here (see the cascade branch in
+    ``ground``) - on the head engines NLI enters as features instead, so
+    exact-beats-head stands there."""
+    if has_contradiction and has_any_signal:
+        return "contradicted"
+    if m.exact_score == 1.0:
+        return "exact"
+    return None
+
+
+def _winning_layer_label(
+    m: GroundingMatch,
+    cfg: GroundingConfig | None = None,
+    *,
+    fuzzy_threshold: float | None = None,
+    semantic_threshold: float | None = None,
+) -> MatchType:
+    """Provenance label for a calibrated CONFIRMED verdict: the strongest layer.
+
+    Applies the DEF-4 specificity floor when ``cfg`` is given: on a claim
+    below ``bm25_min_claim_tokens`` EVERY lexical statistic is computed over
+    a degenerate token set (recall saturates, fuzzy alignment is trivially
+    partial), so a head confirmation is only honoured when some layer clears
+    its own independent threshold - exact (handled above), fuzzy >=
+    ``fuzzy_threshold`` or semantic >= ``semantic_threshold``. Otherwise the
+    confirmation is withheld ("none") - on ANY engine, not just the
+    deterministic cascade. Claims at or above the floor keep the historical
+    strongest-positive-layer labelling.
+
+    The keyword thresholds override the cfg values so the floor gates
+    against the SAME effective thresholds the verdict used (per-call
+    ``fuzzy_threshold`` argument, percentile-derived semantic threshold) -
+    otherwise the label and the verdict could disagree about what "clears
+    threshold" means."""
     if m.exact_score >= 1.0:
         return "exact"
     cands = {"fuzzy": m.fuzzy_score, "bm25": m.bm25_score, "semantic": m.semantic_score}
+    if cfg is not None and m.bm25_claim_token_count < cfg.bm25_min_claim_tokens:
+        fuzzy_thr = fuzzy_threshold if fuzzy_threshold is not None else cfg.fuzzy_threshold
+        sem_thr = semantic_threshold if semantic_threshold is not None else cfg.semantic_threshold
+        if m.fuzzy_score >= fuzzy_thr:
+            return "fuzzy"
+        if m.semantic_score >= sem_thr:
+            return "semantic"
+        return "none"
     best = max(cands, key=lambda k: cands[k])
     return best if cands[best] > 0 else "semantic"
 
@@ -692,7 +880,14 @@ def _config_lexical_verdict(cfg):
     m = block["lexical_manifolds"].get(effort)
     if not m:
         return None
-    key = (effort, tuple(sorted((m.get("weights") or {}).items())), float(m.get("threshold", 0.5)))
+    key = (
+        effort,
+        tuple(sorted((m.get("weights") or {}).items())),
+        float(m.get("threshold", 0.5)),
+        # part of the key: an override editing only the non-EN threshold must
+        # not be served a stale verdict for the process lifetime
+        m.get("threshold_non_en"),
+    )
     v = _LEXICAL_VERDICT_CACHE.get(key)
     if v is None:
         v = _lx.LexicalVerdict.from_config(block, effort)
@@ -757,14 +952,20 @@ def ground(
             classify the best fuzzy alignment as ``"fuzzy"``
         bm25_threshold: token-recall in [0,1] required to classify the best
             BM25 passage as ``"bm25"``. Token-recall = fraction of unique
-            claim tokens present in the winning passage
+            claim tokens present in the winning passage. The claim must also
+            carry at least ``config.bm25_min_claim_tokens`` unique tokens -
+            recall over a tiny token set saturates on a single passage
+            (DEF-4), so short claims cannot be confirmed by BM25 alone
         context_chars: max chars of surrounding context per location
 
     Returns:
         :class:`GroundingMatch` with ``exact_score`` / ``fuzzy_score`` /
-        ``bm25_score`` plus locations. ``match_type`` priority: exact > fuzzy
-        (above threshold) > bm25 (token-recall above threshold) > none.
-        ``combined_score`` = ``max(all three)``.
+        ``bm25_score`` plus locations. ``match_type`` priority: contradicted
+        > confident NLI entailment (deterministic cascade only - the head
+        engines consume NLI as features/contradiction guard instead) > exact
+        > fuzzy (above threshold) > bm25 (token-recall above threshold) >
+        semantic > agreement fallback > none. ``combined_score`` =
+        ``max(all three)``.
 
     Raises:
         UnsupportedLanguageError: at the HIGH effort tier, the claim's language is
@@ -853,19 +1054,27 @@ def ground(
         align = partial_ratio_alignment(claim, text)
         ratio = align.score / 100.0
         if ratio > result.fuzzy_score:
+            # partial_ratio_alignment optimises edit distance, not readability -
+            # its spans routinely start/end mid-word ("nt variance to other").
+            # Snap to word boundaries so the cited evidence is usable verbatim.
+            f_start, f_end = _snap_to_word_bounds(text, align.dest_start, align.dest_end)
             result.fuzzy_score = ratio
-            result.fuzzy_matched_text = text[align.dest_start : align.dest_end]
+            result.fuzzy_matched_text = text[f_start:f_end]
             result.fuzzy_location = _locate(
                 text,
-                align.dest_start,
-                align.dest_end,
+                f_start,
+                f_end,
                 source_index=idx,
                 source_path=path,
                 context_chars=context_chars,
             )
 
-    # BM25 pass — rank passages across all sources
-    bm25_hit = _bm25_match(claim, pairs)
+    # BM25 pass — rank passages across all sources. The claim token count is
+    # a property of the CLAIM, not of the hit - set it unconditionally so the
+    # DEF-4 specificity floor never misreads "layer absent" (count 0) as
+    # "claim short".
+    result.bm25_claim_token_count = len(set(_tokenize(claim)))
+    bm25_hit = _bm25_match(claim, pairs, cfg)
     if bm25_hit is not None:
         result.bm25_score = bm25_hit.token_recall  # headline score: agent-interpretable
         result.bm25_raw_score = bm25_hit.raw_score
@@ -1027,31 +1236,61 @@ def ground(
     # the entailment/truth signal that lexical overlap and cosine similarity miss.
     nli_scores = None
     if nli_grounder is not None:
-        premise = (
-            result.bm25_matched_text
-            or result.semantic_matched_text
-            or result.exact_matched_text
-            or "\n".join(t for _, _, t in pairs)
-        )
+        premise = result.bm25_matched_text or result.semantic_matched_text
+        if not premise and result.exact_matched_text and result.exact_location.char_start >= 0:
+            # NEVER feed the claim's own verbatim span back as the premise -
+            # premise == claim entails trivially, so NLI would rubber-stamp
+            # every exact match. Widen to the surrounding source window so
+            # the model can see negation/retraction around the quoted span.
+            _, _, src_text = pairs[result.exact_location.source_index]
+            s, e = result.exact_location.char_start, result.exact_location.char_end
+            lo, _ = _snap_to_word_bounds(src_text, max(0, s - _EVIDENCE_WINDOW_CHARS), s)
+            _, hi = _snap_to_word_bounds(src_text, e, e + _EVIDENCE_WINDOW_CHARS)
+            premise = src_text[lo:hi]
+        if not premise:
+            premise = "\n".join(t for _, _, t in pairs)
         try:
             nli_scores = nli_grounder.scores(premise, claim)
             result.nli_scores = nli_scores
         except Exception as exc:
             logger.warning("NLI layer failed (claim=%r): %s", claim[:80], exc)
 
-    # NLI verdict (argmax) is a first-class grounding signal when present: its
-    # contradiction folds into the contradiction guard, and it counts as signal
-    # so a cross-lingual entailment (zero lexical) can still confirm.
+    # NLI verdict is a first-class grounding signal only when CONFIDENT:
+    # argmax contradiction folds into the contradiction guard; entailment
+    # confirms only at probability >= cfg.nli_entailment_min (a near-uniform
+    # distribution is a shrug, not evidence - argmax at 0.34 must not bypass
+    # every lexical threshold). Neutral or unconfident output is NOT a veto:
+    # the lexical cascade decides, so NLI enabled can never refuse a claim
+    # that strong lexical evidence confirms.
     nli_verdict = None
     if nli_scores is not None:
-        nli_verdict = {
-            "entailment": "grounded",
-            "contradiction": "contradicted",
-            "neutral": "unconfirmed",
-        }.get(max(nli_scores, key=nli_scores.get), "unconfirmed")
-        has_any_signal = True
-        if nli_verdict == "contradicted":
+        top = max(nli_scores, key=nli_scores.get)
+        if top == "contradiction" and nli_scores["contradiction"] >= cfg.nli_contradiction_min:
+            # same confidence principle as the entailment arm: an argmax
+            # contradiction by a nose (0.34) must not refuse a claim that
+            # strong lexical evidence confirms
+            nli_verdict = "contradicted"
             has_contradiction = True
+            has_any_signal = True
+        elif top == "entailment" and nli_scores["entailment"] >= cfg.nli_entailment_min:
+            nli_verdict = "grounded"
+            has_any_signal = True
+        # a neutral/unconfident NLI run is a shrug - it is NOT "signal" and
+        # must not arm the contradiction preamble on its own
+
+    # Surrounding window of an exact hit, EXCLUDING the claim's own span -
+    # WI#6 reason (d') checks it for restated conflicting quantities (the
+    # span itself always agrees with itself).
+    exact_window_text = ""
+    if result.exact_score >= 1.0 and result.exact_location.char_start >= 0:
+        _, _, _src_text = pairs[result.exact_location.source_index]
+        _s, _e = result.exact_location.char_start, result.exact_location.char_end
+        # snap the OUTER edges to word bounds so a truncated window never
+        # bisects a number ("counted 1,234 nodes" clipped to "34 nodes"),
+        # which would fabricate a value for the reason (d') conflict scan
+        _lo, _ = _snap_to_word_bounds(_src_text, max(0, _s - _EVIDENCE_WINDOW_CHARS), _s)
+        _, _hi = _snap_to_word_bounds(_src_text, _e, _e + _EVIDENCE_WINDOW_CHARS)
+        exact_window_text = _src_text[_lo:_s] + " " + _src_text[_e:_hi]
 
     # Lexical mode (mode=lexical + shipped manifolds): a per-tier frozen-weight
     # logistic owns the verdict. Tried only when no explicit calibrated_verdict was
@@ -1071,10 +1310,16 @@ def ground(
         )
         result.verdict_features = feat
         result.verdict_probability = lv.predict_proba(feat)
-        if has_contradiction and has_any_signal:
-            result.match_type = "contradicted"
+        pre = _verdict_preamble(result, has_contradiction, has_any_signal)
+        if pre is not None:
+            result.match_type = pre
         elif result.verdict_probability >= lv.threshold_for(feat):
-            result.match_type = _winning_layer_label(result)
+            result.match_type = _winning_layer_label(
+                result,
+                cfg,
+                fuzzy_threshold=fuzzy_threshold,
+                semantic_threshold=effective_semantic_threshold,
+            )
         else:
             result.match_type = "none"
         _populate_match_metadata(
@@ -1084,7 +1329,17 @@ def ground(
             fuzzy_threshold=fuzzy_threshold,
             bm25_threshold=bm25_threshold,
             effective_semantic_threshold=effective_semantic_threshold,
+            exact_window_text=exact_window_text,
         )
+        # Borderline flag, mirroring the calibrated engine below: a lexical
+        # verdict within the proximity band of its own threshold is cheap to
+        # second-guess and should say so.
+        if result.match_type in ("exact", "fuzzy", "bm25", "semantic"):
+            if (
+                abs(result.verdict_probability - lv.threshold_for(feat))
+                < cfg.verification_threshold_proximity
+            ):
+                result.verification_needed = True
         return result
 
     verdict = (
@@ -1101,27 +1356,58 @@ def ground(
         result.verdict_probability = float(p[0] if hasattr(p, "__len__") else p)
         result.verdict_uncertainty = float(unc[0] if hasattr(unc, "__len__") else unc)
         result.verdict_features = feat
-        if has_contradiction and has_any_signal:
-            result.match_type = "contradicted"
+        pre = _verdict_preamble(result, has_contradiction, has_any_signal)
+        if pre is not None:
+            result.match_type = pre
         elif result.verdict_probability >= verdict.threshold:
-            result.match_type = _winning_layer_label(result)
+            result.match_type = _winning_layer_label(
+                result,
+                cfg,
+                fuzzy_threshold=fuzzy_threshold,
+                semantic_threshold=effective_semantic_threshold,
+            )
         else:
             result.match_type = "none"
     else:
         # Deterministic cascade (default / back-compat):
-        # priority: contradicted > NLI verdict (if present) > exact > fuzzy > bm25 ...
-        if has_contradiction and has_any_signal:
-            result.match_type = "contradicted"
-        elif nli_verdict is not None:
-            # NLI is the strongest grounding signal when the layer ran.
-            result.match_type = (
-                _winning_layer_label(result) if nli_verdict == "grounded" else "none"
-            )
-        elif result.exact_score == 1.0:
-            result.match_type = "exact"
+        # priority: contradicted > confident NLI entailment > exact > fuzzy >
+        # bm25 > semantic > agreement > none. Confident entailment confirms
+        # past the DEF-4 floor (it is not a degenerate lexical statistic);
+        # NLI-read contradiction lands via the contradiction guard above.
+        # Anything else NLI says (neutral, unconfident entailment) falls
+        # through to the lexical ladder - NLI never vetoes.
+        pre = _verdict_preamble(result, has_contradiction, has_any_signal)
+        if pre == "contradicted":
+            result.match_type = pre
+        elif nli_verdict == "grounded":
+            # Honest provenance: a layer label only when that layer cleared
+            # its OWN threshold; otherwise the verdict is labelled "nli" -
+            # a saturated sub-floor bm25 max must not masquerade as lexical
+            # recall evidence on an NLI-driven confirm.
+            if result.exact_score >= 1.0:
+                result.match_type = "exact"
+            elif result.fuzzy_score >= fuzzy_threshold:
+                result.match_type = "fuzzy"
+            elif (
+                result.bm25_score >= bm25_threshold
+                and result.bm25_claim_token_count >= cfg.bm25_min_claim_tokens
+            ):
+                result.match_type = "bm25"
+            elif result.semantic_score >= effective_semantic_threshold:
+                result.match_type = "semantic"
+            else:
+                result.match_type = "nli"
+        elif pre is not None:
+            result.match_type = pre
         elif result.fuzzy_score >= fuzzy_threshold:
             result.match_type = "fuzzy"
-        elif result.bm25_score >= bm25_threshold:
+        elif (
+            result.bm25_score >= bm25_threshold
+            and result.bm25_claim_token_count >= cfg.bm25_min_claim_tokens
+        ):
+            # Specificity floor: recall over a tiny claim token set saturates
+            # on a single passage, so short claims cannot be confirmed by
+            # BM25 alone - they fall through to semantic/agreement.
             result.match_type = "bm25"
         elif result.semantic_score >= effective_semantic_threshold:
             result.match_type = "semantic"
@@ -1151,6 +1437,7 @@ def ground(
         fuzzy_threshold=fuzzy_threshold,
         bm25_threshold=bm25_threshold,
         effective_semantic_threshold=effective_semantic_threshold,
+        exact_window_text=exact_window_text,
     )
 
     # Calibrated borderline -> flag for second-guess (P within proximity of tau).
@@ -1169,6 +1456,72 @@ def ground(
 # ---------------------------------------------------------------------------
 
 
+def _origin_fallback(m: GroundingMatch) -> tuple[Location, str] | None:
+    """Closest LOCATED layer in the premise-origin preference order.
+
+    THE one fallback picker for every consumer that needs a place to look
+    when the winning layer carries no span of its own (``nli`` verdicts, and
+    cascade-driven ``semantic`` verdicts whose cosine came without a
+    location). bm25/semantic passages first; exact points into the window
+    the premise widened; fuzzy is a last-resort locator the premise itself
+    never used. Guard: positive score AND a located span - four hand-rolled
+    copies of this loop drifted apart once already."""
+    for score, loc, text in (
+        (m.bm25_score, m.bm25_location, m.bm25_matched_text),
+        (m.semantic_score, m.semantic_location, m.semantic_matched_text),
+        (m.exact_score, m.exact_location, m.exact_matched_text),
+        (m.fuzzy_score, m.fuzzy_location, m.fuzzy_matched_text),
+    ):
+        if score > 0 and loc.char_start >= 0:
+            return loc, text
+    return None
+
+
+def _located_support(m: GroundingMatch) -> tuple[Location, str] | None:
+    """Located-span picker for a CONTRADICTED verdict - the one shared copy.
+
+    The verbatim exact span first (the strongest locator when the claim is
+    quoted then refuted), else the closest located layer via ``_origin_fallback``.
+    The guard matters: on the joint path the cascade folds its cosine into
+    ``semantic_score`` with NO location before the contradicted verdict is set,
+    so a hand-rolled ``semantic_score > 0 -> semantic_location`` arm would cite
+    an unlocated span (the ``L-1:C-1`` bug the nli arm was cured of) over a
+    located bm25/fuzzy layer that actually carries the conflict."""
+    if m.exact_score >= 1.0 and m.exact_location.char_start >= 0:
+        return m.exact_location, m.exact_matched_text
+    return _origin_fallback(m)
+
+
+def _restated_numeric_conflict(
+    claim_numbers: list[tuple[str, str, str]],
+    passage_numbers: list[tuple[str, str, str]],
+) -> bool:
+    """True when claim and passage share a (unit, context) key but carry
+    DIFFERENT value sets under it - a restated conflict beside the agreement
+    ("42 nodes" confirmed, "12 nodes" also present under the same key).
+
+    Verification-only: the verdict is untouched. ``find_numeric_mismatches``
+    (which drives CONTRADICTED) deliberately reads this shape as a supported
+    subset overlap - the moment the claim value is restated anywhere it stops
+    looking - so this second-guess flag makes the competing value visible
+    without un-grounding the claim. Fires in EITHER direction - a value the
+    claim carries that the passage lacks, or one the passage carries beside
+    the agreed value - so the exact-window (d') and non-exact (d) reasons
+    treat the same shape identically."""
+    claim_by_key: dict = {}
+    for v, u, cw in claim_numbers:
+        if u or cw:
+            claim_by_key.setdefault((u, cw), set()).add(v)
+    passage_by_key: dict = {}
+    for v, u, cw in passage_numbers:
+        if u or cw:
+            passage_by_key.setdefault((u, cw), set()).add(v)
+    for key in claim_by_key.keys() & passage_by_key.keys():
+        if claim_by_key[key] != passage_by_key[key]:
+            return True
+    return False
+
+
 def _winning_location(m: GroundingMatch) -> Location | None:
     """Return the Location corresponding to the winning match_type."""
     if m.match_type == "exact":
@@ -1178,18 +1531,22 @@ def _winning_location(m: GroundingMatch) -> Location | None:
     if m.match_type == "bm25":
         return m.bm25_location
     if m.match_type == "semantic":
-        return m.semantic_location
-    if m.match_type == "contradicted":
-        # Pick the layer with the strongest signal so the reader can
-        # navigate to the passage that triggered the contradiction.
-        if m.exact_score == 1.0:
-            return m.exact_location
-        if m.semantic_score > 0:
+        # a cascade-driven semantic verdict can carry a cosine with no
+        # located span (joint path) - fall back like the nli arm below. The
+        # score guard mirrors _origin_fallback: a zero-clamped located
+        # semantic hit is not evidence and must not be cited directly.
+        if m.semantic_score > 0 and m.semantic_location.char_start >= 0:
             return m.semantic_location
-        if m.bm25_score > 0:
-            return m.bm25_location
-        if m.fuzzy_score > 0:
-            return m.fuzzy_location
+        hit = _origin_fallback(m)
+        return hit[0] if hit else None
+    if m.match_type == "nli":
+        hit = _origin_fallback(m)
+        return hit[0] if hit else None
+    if m.match_type == "contradicted":
+        # Navigate to the passage that triggered the contradiction - the one
+        # shared located-span picker (exact-first, then _origin_fallback).
+        hit = _located_support(m)
+        return hit[0] if hit else None
     return None
 
 
@@ -1201,6 +1558,7 @@ def _populate_match_metadata(
     fuzzy_threshold: float,
     bm25_threshold: float,
     effective_semantic_threshold: float,
+    exact_window_text: str = "",
 ) -> None:
     """Fill WI#3 (cross-source provenance) + WI#5 (lexical co-support) +
     WI#6 (verification_needed, claim_attributes) on an already-scored match.
@@ -1243,16 +1601,19 @@ def _populate_match_metadata(
             passage_text = m.bm25_matched_text
         elif m.match_type == "semantic":
             passage_text = m.semantic_matched_text
+            if not passage_text:
+                hit = _origin_fallback(m)
+                passage_text = hit[1] if hit else ""
+        elif m.match_type == "nli":
+            # Mirror the winning-location picker (closest located layer;
+            # the exact arm is the bare span, narrower than the +-300
+            # window the entailment saw - diagnostic-only difference).
+            hit = _origin_fallback(m)
+            passage_text = hit[1] if hit else ""
         elif m.match_type == "contradicted":
-            # Mirror the winning-location picker above.
-            if m.exact_score == 1.0:
-                passage_text = m.exact_matched_text
-            elif m.semantic_score > 0:
-                passage_text = m.semantic_matched_text
-            elif m.bm25_score > 0:
-                passage_text = m.bm25_matched_text
-            else:
-                passage_text = m.fuzzy_matched_text
+            # Mirror the winning-location picker above (shared _located_support).
+            hit = _located_support(m)
+            passage_text = hit[1] if hit else ""
 
     claim_numbers = extract_numbers(m.claim)
     claim_entities = extract_entities(m.claim)
@@ -1268,17 +1629,18 @@ def _populate_match_metadata(
 
     # --- WI#6: verification_needed -------------------------------------
     # A CONFIRMED match carries verification_needed=True when any of these
-    # second-guess signals fire. Applies only to the four confirmed
-    # verdicts (exact / fuzzy / bm25 / semantic); contradicted is already
+    # second-guess signals fire. Applies only to the confirmed verdicts
+    # (exact / fuzzy / bm25 / semantic / nli); contradicted is already
     # a loud signal and unconfirmed/none needs no further flagging.
-    if m.match_type not in ("exact", "fuzzy", "bm25", "semantic"):
+    if m.match_type not in ("exact", "fuzzy", "bm25", "semantic", "nli"):
         m.verification_needed = False
         return
 
     reasons: list[bool] = []
 
-    # (a) semantic-only without lexical support
-    if m.match_type == "semantic" and not m.lexical_co_support:
+    # (a) semantic-only / NLI-only without lexical support (an nli verdict
+    # BY CONSTRUCTION has no lexical layer above threshold)
+    if m.match_type in ("semantic", "nli") and not m.lexical_co_support:
         reasons.append(True)
 
     # (b) cross-source pollution: grounded source != caller's primary
@@ -1294,21 +1656,50 @@ def _populate_match_metadata(
         winning_score_floor = (m.bm25_score, bm25_threshold)
     elif m.match_type == "semantic":
         winning_score_floor = (m.semantic_score, effective_semantic_threshold)
+    elif m.match_type == "nli" and m.nli_scores:
+        winning_score_floor = (m.nli_scores.get("entailment", 0.0), cfg.nli_entailment_min)
     if winning_score_floor is not None:
         score, floor = winning_score_floor
         if score - floor < proximity:
             reasons.append(True)
 
-    # (d) deterministic numeric-mismatch pass was empty, but both claim and
-    # passage have numbers on the same side of a unit/context boundary. The
-    # specificity gate in find_numeric_mismatches suppresses legitimate
-    # multi-value range contradictions; flag for human second-guess.
-    if not m.numeric_mismatches and claim_numbers and passage_numbers:
-        # Share at least one (unit, context) family - a shallow co-presence
-        # signal that says "both sides are quantifying the same thing".
-        claim_keys = {(u, cw) for _, u, cw in claim_numbers if u or cw}
-        passage_keys = {(u, cw) for _, u, cw in passage_numbers if u or cw}
-        if claim_keys & passage_keys:
+    # (d) deterministic numeric-mismatch pass was empty, but claim and
+    # passage carry DIFFERENT values under a shared (unit, context) key -
+    # i.e. the specificity gate in find_numeric_mismatches suppressed a
+    # comparison (multi-value ranges, or the claim value restated beside a
+    # competing one). Agreeing values under a shared key are the NORMAL shape
+    # of a correct numeric confirm and must not flag. Symmetric: a competing
+    # value on EITHER side fires (the passage-extra "42 confirmed, 12 also
+    # present" case is the same restated conflict (d') catches on exact).
+    # Skipped for exact matches: there the picked passage IS the claim's own
+    # verbatim span, a vacuous self-comparison; reason (d') below covers
+    # exact confirms against their surrounding window instead.
+    if m.match_type != "exact" and not m.numeric_mismatches and claim_numbers and passage_numbers:
+        if _restated_numeric_conflict(claim_numbers, passage_numbers):
+            reasons.append(True)
+
+    # (d') exact confirms: the verbatim span always agrees with itself, but
+    # the SURROUNDING window can restate the same quantity with another
+    # value ("...has 42 nodes. A later audit counted 12 nodes..."). The
+    # verdict stays exact (DEF-9 policy - distractors must not un-ground a
+    # verbatim claim); the restated conflict flags for second-guessing. The
+    # _restated_numeric_conflict arm also catches the value restated BESIDE
+    # the conflict ("...12 nodes, though the spec still lists 42..."), which
+    # find_numeric_mismatches reads as supported the moment 42 reappears.
+    if m.match_type == "exact" and exact_window_text:
+        window_numbers = extract_numbers(exact_window_text)
+        if find_numeric_mismatches(m.claim, exact_window_text) or _restated_numeric_conflict(
+            claim_numbers, window_numbers
+        ):
+            reasons.append(True)
+
+    # (e) NLI leaned toward contradiction but stayed below its decisive
+    # floor, so the confirm stands on lexical evidence alone. That sub-floor
+    # band is exactly what the confidence gate trades away - make it
+    # observable instead of silent.
+    if m.nli_scores:
+        contra = m.nli_scores.get("contradiction", 0.0)
+        if contra >= cfg.nli_contradiction_min - proximity or contra >= max(m.nli_scores.values()):
             reasons.append(True)
 
     m.verification_needed = any(reasons)
@@ -1426,8 +1817,7 @@ def ground_batch(
 
     # Resolve the calibrated verdict once (cached); reused for every claim so a
     # batch builds the bambi model at most once. An explicit ``calibrated_verdict``
-    # (e.g. the CLI's prior-mean verdict when NLI is active) takes precedence over
-    # the config-driven one.
+    # argument takes precedence over the config-driven one.
     verdict = (
         calibrated_verdict if calibrated_verdict is not None else _config_calibrated_verdict()
     )
@@ -1473,7 +1863,13 @@ def ground_batch(
             for i, m in enumerate(matches)
             if m.exact_score < cfg.voter_exact
             and m.fuzzy_score < cfg.fuzzy_threshold
-            and m.bm25_score < cfg.bm25_threshold
+            # bm25 "cleared" now also requires the DEF-4 specificity floor;
+            # a short saturated claim refused by the floor must still be
+            # eligible for the semantic-zone rescue, not stranded.
+            and (
+                m.bm25_score < cfg.bm25_threshold
+                or m.bm25_claim_token_count < cfg.bm25_min_claim_tokens
+            )
             and not m.numeric_mismatches
             and not m.entity_mismatches
         ]
@@ -1519,7 +1915,10 @@ def ground_batch(
                     # Re-run WI#3/#5/#6 metadata - match_type just changed
                     # from "none" to "semantic" so verification_needed and
                     # grounded_source need fresh computation against the
-                    # semantic layer's location and threshold.
+                    # semantic layer's location and threshold. cfg thresholds
+                    # here, not the per-claim percentile-effective one (not
+                    # retained across the batch); affects only the diagnostic
+                    # proximity flag, never the verdict.
                     _populate_match_metadata(
                         m,
                         cfg=cfg,
@@ -1537,7 +1936,19 @@ def ground_batch(
 
 def _final_score(m: GroundingMatch) -> float:
     """The single headline score: the calibrated verdict probability if it ran, else the
-    max-over-layers combined score."""
+    max-over-layers combined score.
+
+    Exact matches report the layer score, not the head probability: the exact
+    short-circuit can confirm BELOW the head's threshold, and a document
+    saying ``grounded: true, match_type: exact, score: 0.31`` while the
+    deterministic engine reports 1.0 for the same claim is one verdict with
+    two score semantics."""
+    if m.match_type == "exact":
+        return max(m.verdict_probability, m.combined_score)
+    if m.match_type == "nli" and m.nli_scores:
+        # the deciding evidence IS the entailment probability - the lexical
+        # combined_score is sub-threshold by construction on this verdict
+        return float(m.nli_scores.get("entailment", 0.0))
     return m.verdict_probability if m.verdict_probability >= 0 else m.combined_score
 
 
