@@ -67,7 +67,8 @@ def _load(src: str):
         from sacremoses import MosesDetokenizer, MosesTokenizer
         from subword_nmt.apply_bpe import BPE
 
-        bpe = BPE(open(d / "bpe.model", encoding="utf-8"))
+        with open(d / "bpe.model", encoding="utf-8") as fh:
+            bpe = BPE(fh)  # BPE reads the codes at construction, so closing here is safe
         _MODELS[src] = {
             "tr": tr,
             "kind": "bpe",
@@ -138,9 +139,7 @@ def _auto_install_enabled() -> bool:
     """
     if os.environ.get("GROUNDRAILS_ARGOS_AUTO_INSTALL", "1") == "0":
         return False
-    if os.environ.get("HF_HUB_OFFLINE"):
-        return False
-    return True
+    return not os.environ.get("HF_HUB_OFFLINE")
 
 
 def install_model(src_iso: str) -> bool:
@@ -173,7 +172,7 @@ def install_model(src_iso: str) -> bool:
         _pkg.install_from_path(match.download())
         _MODELS.pop(code, None)  # drop any cached None so _load re-resolves
         return _find_pkg(code) is not None
-    except Exception as exc:
+    except Exception as exc:  # noqa: BLE001 - deliberate broad catch
         logger.warning("on-demand argos %s->en install failed: %s", code, exc)
         return False
 

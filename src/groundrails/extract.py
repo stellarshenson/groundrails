@@ -50,6 +50,10 @@ class ExtractedClaim:
     line_number: int
     char_start: int = -1
     char_end: int = -1
+    # Why this sentence cannot be a claim ABOUT the sources (``None`` when it can).
+    # Set by :func:`out_of_scope`; the claim is still extracted and still grounded -
+    # this only records that a grounding verdict on it carries no information.
+    out_of_scope_reason: str | None = None
 
 
 # Sentence-end regex. Splits on ``. ! ?`` followed by whitespace and a
@@ -218,11 +222,83 @@ def _looks_like_claim(candidate: str) -> bool:
         return False
     if _COPULA_RE.search(candidate):
         return True
-    if (_VERB_SUFFIX_RE.search(candidate) or _IRREGULAR_PAST_RE.search(candidate)) and len(
-        _WORD_RE.findall(candidate)
-    ) >= 4:
-        return True
-    return False
+    return (
+        bool(_VERB_SUFFIX_RE.search(candidate) or _IRREGULAR_PAST_RE.search(candidate))
+        and len(_WORD_RE.findall(candidate)) >= 4
+    )
+
+
+# --- out-of-scope classification -----------------------------------------
+#
+# A sentence can be perfectly well-formed, carry a verb and still be
+# ungroundable IN PRINCIPLE, because it is not an assertion about the source
+# corpus at all. On prose documents (executive summaries, proposals, reports)
+# this class is large - it was 27 of 74 claims on the labelled prose set - and
+# every one of them runs the full lexical tier and then escalates to the
+# OpenVINO cascade before failing, which is the dominant per-document waste.
+#
+# The rules below are deliberately narrow. A false positive here is the
+# DANGEROUS direction (a real claim skipped by the cascade), so each rule was
+# tuned to zero false positives against the 24 claims on that set which a human
+# verified as groundable or which the lexical tier actually confirmed. Recall
+# is 16/27 (59%) - the residue (evaluative and commercial judgements such as
+# "it is the single most consequential question in the engagement") needs
+# semantics the deterministic tier does not have, and is left alone.
+
+# 1. Hypothetical. A conditional or a leading disjunction asserts a branch, not
+#    a fact. Both anchored at sentence start: an EMBEDDED "either ... or" is a
+#    real claim's internal disjunction ("at 50-100 m either a long focal length
+#    is specified or the GSD target moves"), not a hypothetical.
+_COND_OPENER_RE = re.compile(r"^\s*(?:if|unless)\b", re.IGNORECASE)
+_EITHER_OPENER_RE = re.compile(r"^\s*either\b.*?\bor\b", re.IGNORECASE | re.DOTALL)
+
+# 2. Document self-reference. The sentence describes this document's own
+#    structure or artefacts rather than the world the sources describe.
+_SELF_REF_RE = re.compile(
+    r"\bthis\s+(?:summary|document|report|round|note|section|memo|paper|analysis)\b"
+    r"|\bthe\s+(?:full\s+)?pre-?registration\b"
+    r"|\bregistered\s+(?:set|hypothes[ei]s)\b",
+    re.IGNORECASE,
+)
+# A backticked relative path or filename is this document pointing at its own files.
+_SELF_PATH_RE = re.compile(r"`[^`]*(?:/|\.md|\.json|\.ya?ml)[^`]*`")
+
+# 3. Directive. A recommendation about what to do, not a statement of fact.
+#    "Note that ..." / "See ..." are deliberately EXCLUDED - they front real
+#    assertions ("Note too that derived crack dimensions carry relative errors
+#    from -35% to +120%").
+_DIRECTIVE_OPENER_RE = re.compile(r"^\s*(?:sell|buy|avoid|prefer|do\s+not|don't)\b", re.IGNORECASE)
+_DEONTIC_RE = re.compile(
+    r"\bthe\s+(?:correct|right|only\s+defensible|obvious)\s+(?:move|offer|vehicle|answer)\b"
+    r"|\bshould\s+(?:not\s+)?be\s+(?:proposed|scoped|sold|offered|written)\b",
+    re.IGNORECASE,
+)
+
+
+def out_of_scope(claim: str) -> str | None:
+    """Why ``claim`` cannot be an assertion about a source corpus, else ``None``.
+
+    Returns one of ``"hypothetical"``, ``"self-reference"``, ``"directive"``.
+    Purely a function of the sentence text, so both the extractor and the
+    grounder can call it without threading state between them.
+
+    This never means "false" and never means "drop it" - an out-of-scope claim
+    is still extracted and still grounded. It means a verdict on this sentence
+    is uninformative, so it should not be counted as a grounding failure and
+    should not pay for a semantic-cascade escalation that cannot succeed.
+    """
+    # A conditional carrying a DIGIT has a checkable consequent ("If hardware
+    # sits inside the EUR 50-80k envelope, between zero and EUR 40k of
+    # engineering remains") - keep it in scope.
+    if not any(ch.isdigit() for ch in claim) and (
+        _COND_OPENER_RE.match(claim) or _EITHER_OPENER_RE.match(claim)
+    ):
+        return "hypothetical"
+    if _SELF_REF_RE.search(claim) or _SELF_PATH_RE.search(claim):
+        return "self-reference"
+    if _DIRECTIVE_OPENER_RE.match(claim) or _DEONTIC_RE.search(claim):
+        return "directive"
+    return None
 
 
 _HEADING_RE = re.compile(r"^\s*(#{1,6})\s+(.*)$")
@@ -362,6 +438,7 @@ def extract_claims(document_text: str) -> list[ExtractedClaim]:
                 line_number=line_no,
                 char_start=cs,
                 char_end=ce,
+                out_of_scope_reason=out_of_scope(claim_text),
             )
         )
     return out

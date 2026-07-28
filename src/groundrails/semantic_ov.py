@@ -52,6 +52,21 @@ def is_available() -> bool:
     return True
 
 
+def require_available() -> None:
+    """Raise unless the cascade can run - fail hard, never degrade silently.
+
+    ONE policy site for every public entry point that turns the semantic switch on
+    (``ground``, ``ground_batch``, the CLI). Readiness is checked before any claim is
+    scored: a component that was asked for and is not there is an environment fault,
+    and returning an all-ungrounded batch instead dresses it up as a verdict about
+    the document. Callers who want the cheap tier must pass ``semantic=False``.
+    """
+    if not is_available():
+        from groundrails.settings import ComponentNotReadyError
+
+        raise ComponentNotReadyError("the semantic cascade", install_hint())
+
+
 def install_hint() -> str:
     return (
         "The semantic cascade needs openvino (core) + transformers + huggingface_hub. "

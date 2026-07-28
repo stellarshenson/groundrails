@@ -51,7 +51,7 @@ class JointVerdict:
         return self.predict_proba(feat) >= self.threshold
 
     @classmethod
-    def from_config(cls, block: dict) -> "JointVerdict | None":
+    def from_config(cls, block: dict) -> JointVerdict | None:
         """Build from the ``calibration.semantic`` block; None when weights absent."""
         if not block or not block.get("weights"):
             return None
@@ -105,6 +105,7 @@ def ground_semantic(
     in-band claims and the cross-lingual claims the lexical tier cannot ground are scored
     by the cascade and resolved by the joint head.
     """
+    from groundrails.extract import out_of_scope as extract_out_of_scope
     from groundrails.grounding import (
         GroundingMatch,
         UnsupportedLanguageError,
@@ -156,6 +157,19 @@ def ground_semantic(
     # band, or already resolved exact/contradicted (verdicts the joint head
     # is not allowed to change - running the cascade for them is dead work)
     if not blocked and (m.match_type in ("exact", "contradicted") or lex_p <= a or lex_p >= b):
+        return m
+
+    # 2b. out-of-scope claims never reach the cascade. A hypothetical, a
+    # self-reference or a directive is not an assertion about the corpus, so no
+    # amount of retrieval can confirm it - escalating one buys a guaranteed
+    # miss at full cascade price (bge-m3 over every chunk, then the reranker,
+    # then NLI). On the labelled prose set this is 16 of 74 claims, and prose
+    # documents are exactly where the escalation band is widest. The lexical
+    # verdict stands unchanged; the reason is recorded so a report can separate
+    # "unsupported" from "was never a source claim".
+    reason = extract_out_of_scope(claim)
+    if reason is not None:
+        m.out_of_scope_reason = reason
         return m
 
     # 3. escalate: score the cascade and fuse with the joint head
@@ -236,7 +250,9 @@ def ground_semantic(
     )
     # Borderline flag, mirroring the lexical and calibrated engines: a fused
     # verdict within proximity of the joint threshold is cheap to second-guess.
-    if m.match_type in ("exact", "fuzzy", "bm25", "semantic"):
-        if abs(p - jv.threshold) < cfg.verification_threshold_proximity:
-            m.verification_needed = True
+    if (
+        m.match_type in ("exact", "fuzzy", "bm25", "semantic")
+        and abs(p - jv.threshold) < cfg.verification_threshold_proximity
+    ):
+        m.verification_needed = True
     return m

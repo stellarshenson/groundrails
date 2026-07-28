@@ -43,7 +43,7 @@ from __future__ import annotations
 from dataclasses import dataclass, fields
 from pathlib import Path
 import threading
-from typing import Literal, Type, TypeVar, get_args, get_origin, get_type_hints
+from typing import Literal, TypeVar, get_args, get_origin, get_type_hints
 
 import yaml
 
@@ -287,7 +287,7 @@ def _resolve_config_path(plugin_name: str, explicit_path: Path | str | None) -> 
 
 
 def _load_typed_config(
-    schema: Type[T],
+    schema: type[T],
     plugin_name: str,
     path: Path | str | None = None,
 ) -> T:
@@ -354,10 +354,10 @@ load_config = load_document_processing_config
 
 
 __all__ = [
-    "GroundingConfig",
-    "ConfigError",
-    "load_document_processing_config",
-    "load_config",
     "PACKAGE_ROOT",
     "PROJECT_OVERRIDE_DIR",
+    "ConfigError",
+    "GroundingConfig",
+    "load_config",
+    "load_document_processing_config",
 ]

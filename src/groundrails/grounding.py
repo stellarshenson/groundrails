@@ -33,12 +33,13 @@ Location semantics:
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
 import logging
 import re
 import threading
-from typing import Literal, Sequence
+from typing import Literal
 
 import numpy as np
 from rank_bm25 import BM25Okapi
@@ -178,6 +179,12 @@ class GroundingMatch:
     """True when the match carries one or more second-guess signals (see ground())."""
     claim_attributes: dict = field(default_factory=dict)
     """Side-by-side attribute summary: numbers/entities in claim vs winning passage."""
+    out_of_scope_reason: str | None = None
+    """Set when the claim is not an assertion about a corpus at all (see
+    ``extract.out_of_scope``): a hypothetical, a self-reference or a directive.
+    The verdict is untouched - this records that the verdict is uninformative, so
+    a report can hold the claim out of the grounding denominator, and it is why
+    the semantic cascade was skipped."""
     # Resolution
     match_type: MatchType = "none"
     combined_score: float = 0.0  # max of all enabled layers
@@ -995,8 +1002,9 @@ def ground(
 
         semantic = switch_on()
     if semantic and semantic_grounder is None:
-        from groundrails import joint
+        from groundrails import joint, semantic_ov
 
+        semantic_ov.require_available()  # fail hard before scoring anything
         return joint.ground_semantic(
             claim, sources, cfg=cfg, primary_source=primary_source, ignore_language=ignore_language
         )
@@ -1140,9 +1148,9 @@ def ground(
                     self_score = semantic_grounder.self_score(claim)
                     if self_score > 0:
                         result.semantic_ratio = result.semantic_score / self_score
-                except Exception as exc:
+                except Exception as exc:  # noqa: BLE001 - deliberate broad catch
                     logger.warning("semantic self_score failed (claim=%r): %s", claim[:80], exc)
-        except Exception as exc:
+        except Exception as exc:  # noqa: BLE001 - deliberate broad catch
             logger.warning(
                 "semantic layer failed (claim=%r): %s - lexical-only result returned",
                 claim[:80],
@@ -1252,7 +1260,7 @@ def ground(
         try:
             nli_scores = nli_grounder.scores(premise, claim)
             result.nli_scores = nli_scores
-        except Exception as exc:
+        except Exception as exc:  # noqa: BLE001 - deliberate broad catch
             logger.warning("NLI layer failed (claim=%r): %s", claim[:80], exc)
 
     # NLI verdict is a first-class grounding signal only when CONFIDENT:
@@ -1334,12 +1342,12 @@ def ground(
         # Borderline flag, mirroring the calibrated engine below: a lexical
         # verdict within the proximity band of its own threshold is cheap to
         # second-guess and should say so.
-        if result.match_type in ("exact", "fuzzy", "bm25", "semantic"):
-            if (
-                abs(result.verdict_probability - lv.threshold_for(feat))
-                < cfg.verification_threshold_proximity
-            ):
-                result.verification_needed = True
+        if (
+            result.match_type in ("exact", "fuzzy", "bm25", "semantic")
+            and abs(result.verdict_probability - lv.threshold_for(feat))
+            < cfg.verification_threshold_proximity
+        ):
+            result.verification_needed = True
         return result
 
     verdict = (
@@ -1441,12 +1449,13 @@ def ground(
     )
 
     # Calibrated borderline -> flag for second-guess (P within proximity of tau).
-    if verdict is not None and result.match_type in ("exact", "fuzzy", "bm25", "semantic"):
-        if (
-            abs(result.verdict_probability - verdict.threshold)
-            < cfg.verification_threshold_proximity
-        ):
-            result.verification_needed = True
+    if (
+        verdict is not None
+        and result.match_type in ("exact", "fuzzy", "bm25", "semantic")
+        and abs(result.verdict_probability - verdict.threshold)
+        < cfg.verification_threshold_proximity
+    ):
+        result.verification_needed = True
 
     return result
 
@@ -1566,6 +1575,16 @@ def _populate_match_metadata(
     Kept as a separate function so ``ground`` stays readable and the
     post-score bookkeeping has a single clear home.
     """
+    # --- DEF-20: out-of-scope label --------------------------------------
+    # Labelled here, in the one helper every engine funnels through, so a
+    # scope-aware score works on the cheap lexical-only tier too and not just
+    # when the semantic switch is on. This is the LABEL; joint.ground_semantic
+    # runs the same check itself as the escalation GATE, because that gate must
+    # hold on the blocked cross-lingual path, which never reaches this helper.
+    from groundrails.extract import out_of_scope
+
+    m.out_of_scope_reason = out_of_scope(m.claim)
+
     # --- WI#3: grounded_source + is_primary_source -----------------------
     winning = _winning_location(m)
     if winning is not None and winning.source_path:
@@ -1674,9 +1693,14 @@ def _populate_match_metadata(
     # Skipped for exact matches: there the picked passage IS the claim's own
     # verbatim span, a vacuous self-comparison; reason (d') below covers
     # exact confirms against their surrounding window instead.
-    if m.match_type != "exact" and not m.numeric_mismatches and claim_numbers and passage_numbers:
-        if _restated_numeric_conflict(claim_numbers, passage_numbers):
-            reasons.append(True)
+    if (
+        m.match_type != "exact"
+        and not m.numeric_mismatches
+        and claim_numbers
+        and passage_numbers
+        and _restated_numeric_conflict(claim_numbers, passage_numbers)
+    ):
+        reasons.append(True)
 
     # (d') exact confirms: the verbatim span always agrees with itself, but
     # the SURROUNDING window can restate the same quantity with another
@@ -1768,7 +1792,18 @@ def ground_batch(
 
         semantic = switch_on()
     if semantic and semantic_grounder is None:
-        from groundrails import joint
+        from groundrails import joint, semantic_ov
+        from groundrails.settings import ComponentNotReadyError
+
+        # PREFLIGHT, once, before any work. Readiness is a batch-level property, so
+        # a missing extra is discovered here rather than re-discovered per claim -
+        # the old behaviour raised, caught and logged the SAME ImportError once for
+        # every claim, then returned an all-ungrounded batch that was
+        # indistinguishable from a genuine "nothing in this document is supported".
+        # Fail hard instead: a component that was asked for and is not there is an
+        # environment fault, never a verdict. Callers wanting the cheap tier must
+        # pass semantic=False explicitly.
+        semantic_ov.require_available()
 
         block = joint.load_semantic_block()
         jv = joint.JointVerdict.from_config(block) if block else None
@@ -1782,6 +1817,7 @@ def ground_batch(
                 band=tuple(block.get("cascade_band", (0.01, 0.66))),
             )
         sem_out: list[GroundingMatch] = []
+        sem_errors = 0
         for c in claims:
             try:
                 sem_out.append(
@@ -1795,12 +1831,41 @@ def ground_batch(
                         ignore_language=ignore_language,
                     )
                 )
-            except Exception as exc:
-                # Per-claim isolation: one failed claim must not abort the batch.
+            except UnsupportedLanguageError:
+                raise  # deliberate refusal - surface it (use ignore_language to bypass)
+            except Exception as exc:  # noqa: BLE001 - deliberate broad catch
+                # Per-claim isolation covers a bad CLAIM, not a broken COMPONENT: the
+                # preflight above already proved the cascade importable, so keep going
+                # but NEVER discard evidence. The old code appended a blank match here,
+                # throwing away the fully-scored lexical verdict ground_semantic had
+                # already computed at its step 1 - that is what turned a 17-fuzzy /
+                # 5-bm25 run into 0 / 0. Re-run the lexical tier and keep its verdict.
                 logger.warning(
-                    "semantic grounding failed for claim %r: %s - returned ungrounded", c[:80], exc
+                    "semantic grounding failed for claim %r: %s - falling back to lexical",
+                    c[:80],
+                    exc,
                 )
-                sem_out.append(GroundingMatch(claim=c, match_type="none"))
+                sem_errors += 1
+                try:
+                    sem_out.append(
+                        ground(
+                            c,
+                            sources,
+                            config=cfg,
+                            primary_source=primary_source,
+                            semantic=False,
+                            ignore_language=ignore_language,
+                        )
+                    )
+                except Exception:  # noqa: BLE001 - lexical failed too; nothing left to keep
+                    sem_out.append(GroundingMatch(claim=c, match_type="none"))
+        if sem_errors and sem_errors == len(claims):
+            # Every single claim failed. That is never a finding about the document -
+            # it is a broken environment wearing a plausible 0% score. Fail hard.
+            raise ComponentNotReadyError(
+                f"the semantic cascade (all {sem_errors} claims errored)",
+                "the batch produced no semantic verdict at all; the last error was logged above",
+            )
         return sem_out
 
     # Eagerly index sources once for the semantic layer if supplied
@@ -1808,7 +1873,7 @@ def ground_batch(
         try:
             pairs = _unpack_sources(sources)
             semantic_grounder.index_sources(pairs)
-        except Exception as exc:
+        except Exception as exc:  # noqa: BLE001 - deliberate broad catch
             logger.error(
                 "semantic index_sources failed: %s - disabling semantic layer for this batch",
                 exc,
@@ -1836,7 +1901,7 @@ def ground_batch(
             )
         except UnsupportedLanguageError:
             raise  # deliberate refusal - surface it (use ignore_language to bypass)
-        except Exception as exc:
+        except Exception as exc:  # noqa: BLE001 - deliberate broad catch
             # Per-claim isolation: a per-claim bug must not abort the batch.
             logger.warning("grounding failed for claim %r: %s - returned ungrounded", c[:80], exc)
             return GroundingMatch(claim=c, match_type="none")
@@ -1889,7 +1954,7 @@ def ground_batch(
                 (scored[j + 1][0] - scored[j][0], j)
                 for j in range(min(len(scored) - 1, bottom_half_cutoff))
             ]
-            largest_gap, gap_idx = max(candidate_gaps)
+            _largest_gap, gap_idx = max(candidate_gaps)
             adaptive_thr = (scored[gap_idx][0] + scored[gap_idx + 1][0]) / 2
             # In adaptive_gap mode the agreement_threshold config value acts
             # as an absolute FLOOR only when the adaptive gap is meaningless

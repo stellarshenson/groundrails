@@ -23,6 +23,7 @@ experiments/grounding-lexical/cache/
 experiments/grounding-lexical/logs/*
 !experiments/grounding-lexical/logs/README.md
 experiments/grounding-semantic/private-rag-forensics/
+experiments/grounding-semantic/private-prose-forensics/
 experiments/grounding-semantic/cache/
 experiments/grounding-semantic/logs/*
 !experiments/grounding-semantic/logs/README.md

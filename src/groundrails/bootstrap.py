@@ -32,7 +32,7 @@ from loguru import logger
 from groundrails import settings
 from groundrails.calibration import export_calibration  # re-export
 
-__all__ = ["init", "export_calibration"]
+__all__ = ["export_calibration", "init"]
 
 
 # --- source-scheme helpers -------------------------------------------------
@@ -90,7 +90,7 @@ def _fetch_to(uri: str, dest: str | Path, *, client=None) -> bool:
         import urllib.request
 
         try:
-            with urllib.request.urlopen(uri) as resp:  # noqa: S310 - explicit user URL
+            with urllib.request.urlopen(uri) as resp:
                 data = resp.read()
         except Exception as exc:  # noqa: BLE001
             logger.debug("URL fetch miss {}: {}", uri, exc)

@@ -117,6 +117,21 @@ class NotInitializedError(RuntimeError):
         )
 
 
+class ComponentNotReadyError(RuntimeError):
+    """Raised when a requested component cannot run - fail hard, never degrade.
+
+    A component that is asked for and is not there is an ENVIRONMENT fault, not a
+    result. Degrading silently turns it into one: the semantic cascade missing its
+    extra used to return an all-ungrounded batch and exit 0, which reads as "this
+    document is unsupported" rather than "the tool never ran". Callers that want a
+    lexical-only run must ask for one explicitly (``semantic=False``).
+    """
+
+    def __init__(self, component: str, hint: str = "") -> None:
+        msg = f"{component} was requested but is not ready - refusing to degrade silently."
+        super().__init__(f"{msg}\n{hint}" if hint else msg)
+
+
 def mark_ready() -> None:
     """Mark the grounder ready - set by ``init`` and by loading ``groundrails.json``."""
     global _READY

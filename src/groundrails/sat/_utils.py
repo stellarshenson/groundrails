@@ -1,7 +1,6 @@
 """SaT utilities (token->char probs, sentence reconstruction). Vendored from wtpsplit-lite
 (MIT, Superlinear); see LICENSE. Trimmed to the subword-SaT split path - the language-table
 and punctuation properties (unused on this path) are dropped."""
-# ruff: noqa: N802, N806
 
 import numpy as np
 
@@ -72,6 +71,6 @@ def token_to_char_probs(text, tokens, token_logits, tokenizer, offsets_mapping):
     char_probs = np.full((len(text), token_logits.shape[1]), -np.inf)
     valid_indices, valid_offsets = get_token_spans(tokenizer, offsets_mapping, tokens)
     for i in range(valid_offsets.shape[0]):
-        start, end = valid_offsets[i]
+        _start, end = valid_offsets[i]
         char_probs[end - 1] = token_logits[valid_indices[i]]
     return char_probs

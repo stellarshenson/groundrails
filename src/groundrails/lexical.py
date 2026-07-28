@@ -293,7 +293,7 @@ def _gap_rarity(claim: str, best: str, lang: str = "en") -> tuple[float, float]:
 
 
 def _num_variants(s: str) -> set[str]:
-    base = s.strip(" .,  ")
+    base = s.strip(" .,")  # a char SET, not a suffix - the duplicate spaces were noise
     return {
         v
         for v in {
@@ -338,7 +338,7 @@ def _anchor(claim: str, full_source: str, best: str) -> tuple[float, float]:
     absent = set(find_absent_entities(claim, full_source))
     num_rec, _ = _number_recall(claim, full_source)
     aden = len(ents) + (1 if num_rec >= 0 else 0)
-    ahit = sum(1 for e in ents if e not in absent) + (num_rec if num_rec >= 0 else 0)
+    ahit = sum(1 for e in ents if e not in absent) + (max(num_rec, 0))
     anchor = (ahit / aden) if aden else 0.0
     nmm, emm = find_mismatches(claim, best) if best else ([], [])
     _, num_mm = _number_recall(claim, best) if best else (-1.0, False)
@@ -484,7 +484,7 @@ def _wn_antonyms(w: str) -> set:
                     for lemma in s.lemmas():
                         for a in lemma.antonyms():
                             ant.add(a.name().replace("_", " ").lower())
-            except Exception as exc:
+            except Exception as exc:  # noqa: BLE001 - deliberate broad catch
                 # NLTK zip-reader re-entrancy / corpus errors must not crash grounding.
                 logger.warning("WordNet lookup failed for %r: %s - antonym skipped", w, exc)
                 return set()
@@ -675,7 +675,7 @@ class LexicalVerdict:
         return self.predict_proba(feat) >= self.threshold_for(feat)
 
     @classmethod
-    def from_config(cls, block: dict, effort: str) -> "LexicalVerdict | None":
+    def from_config(cls, block: dict, effort: str) -> LexicalVerdict | None:
         """Build from ``block['lexical_manifolds'][effort]``; None when absent.
 
         The manifold block carries ``threshold, feature_order, weights,
@@ -729,7 +729,10 @@ def short_source_augment(rows: list[dict], per_class: int | None = None) -> list
         if len(sents) < 2:
             continue
         ctoks = set(_an_word(str(r["claim"])))
-        ov = lambda s: len(ctoks & set(_an_word(s)))  # noqa: E731
+
+        def ov(s, ct=ctoks):  # ct bound per iteration - a late-binding closure here
+            return len(ct & set(_an_word(s)))  # would score every row against the last claim
+
         sent = max(sents, key=ov) if int(r["label"]) == 1 else min(sents, key=ov)
         out.append(
             {

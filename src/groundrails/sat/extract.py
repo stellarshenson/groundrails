@@ -2,7 +2,6 @@
 LICENSE. The onnxruntime backend (`SaTORTWrapper`) and the tqdm progress bar are removed - the
 model is any callable exposing ``config`` and ``__call__(input_ids, attention_mask) -> {"logits"}``
 (see ``ov_backend.OVSegModel``)."""
-# ruff: noqa: C901, PLR0913, PLR0912, PLR0915, PLR2004, B905
 
 import math
 import sys

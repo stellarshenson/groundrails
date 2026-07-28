@@ -131,6 +131,11 @@ def test_switch_off_never_constructs_cascade(monkeypatch):
 
 
 def test_ground_dispatches_when_semantic_true(monkeypatch):
+    from groundrails import semantic_ov
+
+    # This test is about DISPATCH, not readiness. CI installs no semantic extra, so
+    # without this the fail-hard preflight would raise before dispatch is reached.
+    monkeypatch.setattr(semantic_ov, "is_available", lambda: True)
     monkeypatch.setattr(
         joint, "load_semantic_block", lambda path=None: dict(BLOCK, escalation_band=[0.0, 1.0])
     )

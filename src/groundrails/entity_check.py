@@ -340,11 +340,7 @@ def extract_entities(text: str) -> list[str]:
         # A plain word like "Simply", "Where", "Models" does not qualify.
         if len(parts) == 1:
             tok = parts[0]
-            if re.search(r"\d", tok):
-                pass
-            elif "-" in tok:
-                pass
-            elif any(c.isupper() for c in tok[1:]):
+            if re.search(r"\d", tok) or "-" in tok or any(c.isupper() for c in tok[1:]):
                 pass
             else:
                 continue
@@ -546,11 +542,11 @@ def find_mismatches(
 
 
 __all__ = [
-    "extract_numbers",
     "extract_entities",
-    "find_numeric_mismatches",
-    "find_entity_mismatches",
+    "extract_numbers",
     "find_absent_entities",
-    "list_claim_entities",
+    "find_entity_mismatches",
     "find_mismatches",
+    "find_numeric_mismatches",
+    "list_claim_entities",
 ]

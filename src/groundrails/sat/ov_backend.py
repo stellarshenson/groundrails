@@ -38,7 +38,7 @@ def resolve_ir() -> str:
     cached = True
     try:
         hf_hub_download(OV_HF_REPO, OV_IR_XML, local_files_only=True)
-    except Exception:
+    except Exception:  # noqa: BLE001 - deliberate broad catch
         cached = False
     if not cached:
         logger.info(
@@ -87,4 +87,4 @@ class OVSegModel:
                 "attention_mask": attention_mask.astype(np.float32),
             }
         )
-        return {"logits": list(res.values())[0]}
+        return {"logits": next(iter(res.values()))}

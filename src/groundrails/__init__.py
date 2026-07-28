@@ -22,7 +22,7 @@ from groundrails.grounding import (
     ground_batch,
     grounding_document,
 )
-from groundrails.settings import NotInitializedError
+from groundrails.settings import ComponentNotReadyError, NotInitializedError
 
 try:
     __version__ = _pkg_version("groundrails")
@@ -30,6 +30,7 @@ except PackageNotFoundError:  # source tree without installed metadata
     __version__ = "0.0.0"
 
 __all__ = [
+    "ComponentNotReadyError",
     "GroundingMatch",
     "Location",
     "NotInitializedError",

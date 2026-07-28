@@ -1,5 +1,7 @@
 # Grounding the RAG assistant - model-based experiments
 
+**Canonical Experiments Document**
+
 The full grounding investigation for the a production RAG assistant: can a non-LLM grounder catch hallucination in real answers, which signal does it best, and how should it be used. The arc ran in four research phases - an adversarial probe (where deterministic lexical won), building a verified gold from production traffic, a signal comparison on that gold (where lexical flips and the cross-encoder wins), and a score-stacking meta-classifier that beats any single signal without fine-tuning - followed by deployment consolidation (two cross-encoders, single-engine OpenVINO int8) and two hypothesis rounds (H9-H11, one adoption: the reranker-first cascade; H12-H14, two adoptions: the pre-filter cosine gate and the early-exit reranker, taking the warm claim to 662 ms at slightly better quality). This is the model-based counterpart to the deterministic lexical track in `lexical-grounding-experiments.md` / `lexical-grounding-sota.md` (this repo); both run on the same private gold and reach comparable macro-F1 from opposite mechanisms. Final design in `semantic-grounding-sota.md`.
 
 > Gold/meta figures are the 2,752-record run (organic-majority). Probe-phase figures are stable (size-independent).
@@ -46,6 +48,7 @@ A cross-encoder reranker (`BAAI/bge-reranker-v2-m3`) is the best single groundin
 | G round 2 | H13 - rank-ordered early-exit reranker | latency bench n=150 | mean 4.8/8 pairs scored; verdicts exactly equal | **adopted** - verdict-invariant by construction |
 | G round 2 | H14 - fused-evidence single-forward cross-encoders | fused cache 2,752 x 2 x 2 | macro-F1 0.714-0.784 (-0.012..-0.081) | **rejected** - max-over-chunks is load-bearing |
 | H round 3 (pre-reg) | R3-H1..H7 - tiny fine-tuned faithfulness checker (persona fanout) | gold 2,752 + 111,800-pair cache | pre-registered predictions/bars; governed by the R3-H1 zero-shot-AUC gate | **pending** - see Hypothesis round 3 |
+| I round 4 (pre-reg) | R4-H1..H7 - knowledge-free reasoning models as the grounding head (SAN / SYNTH / Needle transfer) | gold 2,752 + 111,800-pair cache | pre-registered; governed by the R4-H1 tokenizer gate then the R4-H3 mechanism test | **pending** - see Hypothesis round 4 |
 
 - **Best single signal** - `bge-reranker-v2-m3`, **AUC 0.841** (out-of-fold), macro-F1 0.757; decisively above every bi-encoder (~0.53-0.73) and the raw lexical rule (~0.5)
 - **Best model** - a decision hyperplane over the six per-model scores + a lexical contradiction flag: **out-of-fold AUC 0.913, macro-F1 0.824** (vs 0.757 best single, 0.417 majority baseline), no fine-tuning
@@ -329,3 +332,96 @@ This is NOT the refuted E-deploy "NLI replacement search" (MiniLM-L6/L12, XLM-R 
 ### Sequencing
 
 The round runs as a gated ladder, not a parallel sweep. **R3-H1 is the one probe to run this week** - a single frozen OOF pass over the existing 111,800-pair cache, zero training - and it routes everything: AUC &lt; 0.79 stops the program (mDeBERTa stays); 0.806-0.86 → R3-H2 (swap the NLI only); ≥ 0.86 → R3-H3 (collapse both cross-encoders). R3-H4 (distil to the tiniest) and R3-H5 (in-domain data) are the size-and-accuracy pushes that an R3-H1 pass unlocks; R3-H6 (cross-lingual) and R3-H7 (pipeline economics) are the follow-ons. Every model number above is a prediction pending measurement under the R3 ship-contract and honest-split protocol.
+
+## Hypothesis round 4 - knowledge-free reasoning models as the grounding head (pre-registered)
+
+R3 asked what to train. R4 asks a prior question: **what must the model know?** Grounding supplies its own evidence in the prompt, so the head needs no parametric world knowledge - only the ability to route between a claim and a passage. That is exactly the regime where attention-only and knowledge-free models are measured strongest, and exactly the axis (parametric recall) they give up. This section is the **pre-registration** - predictions and pass/fail bars fixed BEFORE any run. No verdicts yet.
+
+The source evidence is a controlled study, not a vendor claim ([digest](../../references/papers/[paper%20digest]%20simple%20attention%20networks%20controlled%20study.md), [arXiv 2607.18363](https://arxiv.org/abs/2607.18363)):
+
+- **FFN is ~2/3 of non-embedding parameters** and deleting it in place costs 0.470 nats - but reallocating that budget into attention depth costs only **0.006 nats (0.27% of loss)** at matched parameters, reproducible to 1e-4 across clean seed pairs
+- **The residual gap localises to parametric recall, not to capability** - three independent measurements (token regions, task types, zero-shot benchmarks) agree; by 105B tokens the attention-only arm leads on every answer region and the deficit survives only on low-context query tokens (+0.038)
+- **The closest public analogue of grounding favours attention-only, and the margin grows** - Sciq (the answer sits in a provided support passage) goes 0.725 → 0.742 for the SAN across 31B → 105B while the FFN arm regresses 0.702 → 0.661, seed ranges non-overlapping. The knowledge benchmark (Lambada) moves the other way at every budget
+- **The applied product exists** - `cactus-compute/needle`, from the same authors: 26M params / 14 MB, attention-only encoder (12 layers, no FFN) + 8-layer decoder, d=512, 8-head/4-KV GQA, RoPE, ZCRMSNorm, tied embeddings, **8,192-token BPE vocabulary**; it outperforms FunctionGemma-270M, Qwen-0.6B, Granite-350M and LFM2.5-350M on single-shot function calling, post-trained in **45 minutes on 2B tokens**, minimum **120 examples per class**. MIT licence
+- **Off-the-shelf knowledge-free checkpoints exist**, so the 16 x TPU-v6e / 27-hour pretraining is not on the critical path - `PleIAs/Monad` (56.7M, 64 layers, ~8k vocab, decoder-only, Apache 2.0, 200B tokens of SYNTH) and `PleIAs/Baguettotron` (0.3B). Monad scores MMLU ~30% / GSM8K 8% **by design** - it trades world knowledge for reasoning traces, which is the property under test, not a defect
+
+**Why this is not R3 again.** R3 keeps the discriminative cross-encoder paradigm and changes the head shape and training data on a standard 100-355M encoder. R4 changes the **model class**: pretrained-to-reason-without-knowledge, 26-300M, potentially generative. The two are complements, not rivals - R3-H4 (self-distillation into a standard encoder) is the control R4-H5 must beat to justify a new architecture.
+
+**Three ways this round is wrong, stated in advance.** The evidence is next-token loss on 6-87M decoder LMs, not a fine-tuned pairwise entailment head, so transfer is an assumption to test. Monad is **strictly monolingual English** while the gold is cross-lingual and the non-EN slice is already the cascade's weak point (AUC 0.584). And the paper is explicit that a task's storage-versus-routing identity is **relative to the training distribution**, so the SYNTH-trained split may not survive a move to technical prose.
+
+### Methodology - carried-forward bars and the R4 additions
+
+The R3 ship-contract and honest-split protocol carry forward unchanged; R4 adds one gate and one scope rule.
+
+- **Naive baseline (unchanged)** - majority predictor, macro-F1 **0.417**, AUC **0.50**, hallucination-F1 0.000; every R4 number is reported as a delta against it AND against the deployed cascade (end-to-end macro-F1 **0.789**, two-CE OOF **0.796**, warm mean 585 ms, 318 MB int8 NLI stage)
+- **Ship-contract (carried from R3)** - macro-F1 ≥ **0.775** AND warm-CPU mean ≤ **200 ms** AND int8 footprint ≤ **100 MB**, two-sided at FP ≤ 266+2σ and FN ≤ 203+2σ; among passers ship the fewest params
+- **Honest split (carried from R3)** - leave-one-source-out GroupKFold on `group_id` (619 sources / 636 traces, not 5,857 rows), held-out-language slice, train − holdout gap ≤ 0.05, nested re-fit of any new score scale on folds it never scores
+- **NEW - representation gate** - a knowledge-free model with an 8k SYNTH-trained vocabulary may not be able to *see* the evidence; tokenizer fertility and context overflow are measured before any inference (R4-H1)
+- **NEW - scope rule** - Monad-class candidates are pre-declared **English-slice only**; any aggregate number must be reported blended with the incumbent serving the non-EN slice, never as if the head were multilingual
+
+### Pre-registration - predictions and bars fixed before the run
+
+| ID | mechanism | prediction | PASS bar (two-sided) | first kill-gate |
+|---|---|---|---|---|
+| R4-H1 | representation feasibility - 8k SYNTH BPE over technical prose | EN fertility 1.6-2.2x mDeBERTa, non-EN ≥ 3x; EN context overflow &lt; 10% | EN fertility ≤ 2.5x AND EN overflow ≤ 20% | fertility &gt; 2.5x OR overflow &gt; 20% → round killed pre-inference |
+| R4-H2 | zero-shot knowledge-free reasoner as grounding judge (Monad 56.7M, Baguettotron 0.3B, frozen) | Monad OOF AUC 0.62-0.74, Baguettotron 0.70-0.80, both &lt; incumbent 0.806 | Baguettotron ≥ 0.75 unlocks round; Monad ≥ 0.70 unlocks the tiny track | best of the two &lt; 0.65 → no zero-shot transfer; fall through to R4-H4/H5 only |
+| R4-H3 | **the mechanism test** - context-grounded vs knowledge-dependent split | AUC deficit vs mDeBERTa ≤ 0.03 on self-contained pairs, ≥ 0.10 on knowledge-dependent | (deficit_knowledge − deficit_selfcontained) ≥ 0.07 | needs R4-H2 scores only - free re-analysis, no new compute |
+| R4-H4 | post-train Monad as a 2-way grounding head (Needle recipe, cascade labels) | EN macro-F1 0.74-0.80 at ~57 MB int8, warm ≤ 150 ms | macro-F1 ≥ 0.775 AND ≤ 100 MB AND warm ≤ 200 ms AND FP/FN parity | R4-H2 Monad AUC ≥ 0.70 |
+| R4-H5 | attention-only cross-encoder trained from scratch (SAN, QK-norm, domain BPE) | 10-25M params, ≤ 30 MB int8, macro-F1 0.72-0.78 | macro-F1 ≥ 0.757 (reranker-alone) at ≤ 30 MB | must beat R3-H4 distillation at matched footprint, else Null |
+| R4-H6 | reasoning trace vs single-token verdict (serving shape) | trace +0.02-0.04 macro-F1 at 8-20x CPU latency | trace ships only if ≥ +0.02 macro-F1 AND ≤ 200 ms warm | trace latency measured on 50 pairs before any quality run |
+| R4-H7 | English-only scope gate (EN → knowledge-free head, non-EN → incumbent) | blended macro-F1 ≥ 0.789 at 40-60% lower blended latency | blended macro-F1 ≥ 0.789 AND blended warm ≤ 350 ms | depends on a shipped R4-H4 or R4-H5 head |
+
+### The hypotheses
+
+**R4-H1 representation feasibility gate** - because Monad's 8,192-token BPE was trained exclusively on English synthetic SYNTH text while the gold is multilingual technical prose, measuring tokenizer fertility and context overflow before any inference will show EN fertility 1.6-2.2x mDeBERTa's 250k multilingual vocabulary and EN context overflow below 10%, while non-EN fertility exceeds 3x
+
+- Lever - tokenizer only; model weights untouched, no inference run. Held fixed: the gold pairs and the top-8 pre-filter
+- Mechanism - an 8k vocabulary trained on one distribution shatters out-of-distribution words into many subword pieces; past ~2.5x fertility the evidence no longer fits the context and the model literally cannot see what it must ground against. This is a representation failure, not a capability failure, and it is cheap to detect
+- Probe / artifacts - encode `data/processed/golden_grounding_evidence_verified.parquet` claims + their top-8 chunks with `PleIAs/Monad` and `mDeBERTa-v3-base` tokenizers; report tokens/word by language and the overflow fraction. Minutes, CPU only, zero GPU
+- Verdict space - Killed-at-gate (whole round) if EN fertility &gt; 2.5x or EN overflow &gt; 20%; Kept if EN passes and non-EN fails (activates the R4 scope rule); Ships-forward if both pass
+
+**R4-H2 zero-shot knowledge-free reasoner as a grounding judge** - because SYNTH-pretrained models are trained on reasoning traces rather than fact memorisation, scoring `PleIAs/Monad` (56.7M) and `PleIAs/Baguettotron` (0.3B) frozen over the cached top-8 gold pairs will read OOF AUC 0.62-0.74 and 0.70-0.80 respectively - below the incumbent NLI's 0.806, but far enough above chance to establish that grounding transfers without world knowledge
+
+- Lever - the judge model; the pre-filter, the top-8 chunk set and the max-over-chunks aggregation are held fixed at the deployed configuration
+- Mechanism - the verdict is read as the length-normalised log-probability of a `supported` vs `unsupported` continuation given (claim, chunk), so no head is trained and no gradient is taken; this is the same frozen-anchor design as R3-H1 and its number is directly comparable
+- Probe / artifacts - one OOF pass over `data/interim/model_scores/pairs/full_pairs.npz` restricted to the EN slice per the scope rule; re-fit only the logistic on folds it never scores
+- Verdict space - Killed-at-gate if the better model reads &lt; 0.65 (no zero-shot transfer; only the trained tracks R4-H4/H5 survive); Kept 0.65-0.75; unlocks the tiny track if Monad ≥ 0.70; Ships as a reference anchor only if either ≥ 0.806
+
+**R4-H3 the mechanism test - context-grounded versus knowledge-dependent** - because the source paper localises the entire attention-only deficit to parametric recall and measures attention-only models AHEAD on passage-supplied answers (Sciq 0.742 vs 0.661 at 105B), partitioning the gold into self-contained pairs (adjudicable from the supplied chunk alone) and knowledge-dependent pairs (needing a fact absent from the chunk) will show the knowledge-free models' AUC deficit versus mDeBERTa at ≤ 0.03 on the first and ≥ 0.10 on the second
+
+- Lever - the evaluation partition only; identical scores, identical models, re-analysed. Nothing is trained and no new inference runs
+- Mechanism - this is the round's crux and its cheapest experiment. If the deficit is uniform across the partition, the "grounding needs no knowledge" premise is false FOR THIS TASK and R4's rationale collapses to "it is a small model", which R3 already pursues with better-suited architectures. If the deficit splits as predicted, the mechanism transfers from next-token loss to pairwise grounding and the round is justified on evidence rather than analogy
+- Probe / artifacts - partition by whether the human rationale in the verified gold cites only the supplied chunk; adjudicate ~200 pairs per side to keep the partition honest, blind to model scores. Reuses R4-H2's scores at zero marginal compute
+- Verdict space - Confirmed if (deficit_knowledge − deficit_selfcontained) ≥ 0.07; Refuted if &lt; 0.03 (premise dead - record it and stop the round here rather than spending training budget); Null in between
+
+**R4-H4 post-train Monad as a 2-way grounding head** - because the frozen cascade emits a calibrated per-pair grounded-probability for any (claim, chunk) at zero labelling cost and Needle demonstrates that 45 minutes over 2B tokens specialises a knowledge-free base into a narrow structured task, post-training Monad on the 111,800-pair cache will hold EN macro-F1 0.74-0.80 at ~57 MB int8 and warm ≤ 150 ms
+
+- Lever - the post-training corpus and objective; the base checkpoint, the pre-filter and the top-8 aggregation are fixed
+- Mechanism - Needle's result is that a knowledge-free base plus a short task-specific post-train beats general models 5-25x larger on the narrow task, and the minimum-data rule (120 examples per class) is exceeded by three orders of magnitude here. The 8k vocabulary and absent FFN are what make 56.7M affordable at 64 layers
+- Probe / artifacts - teacher labels from `full_pairs.npz`; post-train per the needle recipe (`needle finetune`, JSONL with query/tools/answers adapted to claim/evidence/verdict); NNCF int8 IR via `scripts/build_ov_grounder.py`; evaluate under the carried-forward R3 honest-split protocol
+- Verdict space - Ships if macro-F1 ≥ 0.775 at ≤ 100 MB and ≤ 200 ms with FP/FN parity; Kept 0.757-0.775 (a size/latency point below the contract); Dropped &lt; 0.757 (below reranker-alone - the knowledge-free base added nothing a standard encoder does not)
+
+**R4-H5 attention-only cross-encoder trained from scratch** - because the FFN holds two thirds of non-embedding parameters and its deletion costs 0.006 nats at matched parameters, an encoder-only SAN cross-encoder (12-20 attention-only layers, d=512, QK-normalization, a domain BPE of 8-16k) trained directly on the cascade-labelled pair cache will reach macro-F1 0.72-0.78 at 10-25M parameters and ≤ 30 MB int8 - a size class below anything R3 can reach
+
+- Lever - the architecture; the training data, labels and split protocol are identical to R4-H4 so the two are directly comparable
+- Mechanism - the paper's trainability finding is specific and load-bearing: QK-normalization, not the FFN and not residual gating, is what keeps deep attention-only stacks trainable, so it is a precondition of the build rather than a tuning option. Pairwise grounding never queries weight-stored facts, so the one measured weakness is not exercised
+- Probe / artifacts - build on the needle reference implementation (MIT); train a domain BPE on the gold corpus; train on `full_pairs.npz` cascade targets; compare against R3-H4's distilled standard encoder at MATCHED footprint - that comparison, not the absolute number, is what justifies a new architecture
+- Verdict space - Ships if macro-F1 ≥ 0.757 at ≤ 30 MB; Kept if it beats R3-H4 at matched footprint; Null if R3-H4 matches or beats it (distillation into a standard encoder is simpler and already in flight); Dropped if training does not converge without the FFN at this data scale
+
+**R4-H6 reasoning trace versus single-token verdict** - because Monad's distinguishing feature is that it emits an intermediary reasoning trace and CPU decode cost scales linearly with emitted tokens, generating a trace before the verdict will add +0.02-0.04 macro-F1 while costing 8-20x the latency of a single-token verdict, failing the 200 ms bar
+
+- Lever - the decode length; model, prompt and data fixed
+- Mechanism - a trace is only worth its cost if the grounding decision needs multi-step composition. Most gold hallucinations are omissions (H9), which a single comparison resolves; if the trace helps, it should help disproportionately on the multi-hop subset, which is the diagnostic to record alongside the aggregate
+- Probe / artifacts - latency first on 50 pairs (minutes) to establish the multiplier, then quality only if the multiplier leaves headroom under 200 ms
+- Verdict space - Ships the trace only if ≥ +0.02 macro-F1 AND ≤ 200 ms warm; Kept as an explainability-only mode (off the serving path) if it adds quality but breaks latency; Dropped if it adds &lt; 0.01
+
+**R4-H7 English-only scope gate** - because Monad is strictly monolingual English while the non-EN slice is already the cascade's weakest (AUC 0.584, non-EN macro-F1 0.637), routing EN claims to a shipped knowledge-free head and leaving non-EN on the incumbent will hold blended macro-F1 ≥ 0.789 at 40-60% lower blended latency
+
+- Lever - the routing rule; both heads are fixed, already-measured artefacts
+- Mechanism - the language detector already runs in the lexical tier, so routing is free. This converts Monad's monolingual limitation from a blocker into a scope decision, and it is the only honest way to report an aggregate number for an English-only head
+- Probe / artifacts - blend R4-H4/H5 EN verdicts with the deployed cascade's non-EN verdicts over the 2,752 gold; report blended macro-F1, blended warm latency, and the per-language table
+- Verdict space - Ships if blended macro-F1 ≥ 0.789 at ≤ 350 ms; Kept if latency wins at macro-F1 ≥ 0.775; Dropped if the routing boundary itself costs more than it saves
+
+### Sequencing
+
+A gated ladder, cheapest-decisive-first. **R4-H1 is minutes on CPU and can kill the round before a single forward pass** - an 8k SYNTH vocabulary that cannot represent the evidence ends it there. R4-H2 is one frozen scoring pass. **R4-H3 then costs nothing** - it re-analyses R4-H2's scores - and it is the decision point: it tests the round's premise directly rather than inferring it from the source paper's next-token results, and a refutation there should stop the round before any training budget is spent. Only on a confirmed mechanism do R4-H4 (post-train the 56.7M base) and R4-H5 (build the attention-only head) run, and R4-H5's verdict is explicitly relative to R3-H4 at matched footprint. R4-H6 and R4-H7 are serving-shape decisions that presuppose a shipped head. Every number above is a prediction pending measurement under the carried-forward R3 ship-contract and honest-split protocol.

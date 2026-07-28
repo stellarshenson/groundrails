@@ -35,7 +35,12 @@ _ADAPTER = TypeAdapter(list[Claim])
 def parse_claims(raw: object) -> list[Claim]:
     """Validate already-loaded data (a list of strings or ``{claim,...}`` objects)."""
     if not isinstance(raw, list):
-        raise ValueError("claims must be a JSON list of strings or {claim,...} objects")
+        # ValueError is the published contract here, pinned by
+        # test_parse_claims_rejects_non_list; TypeError is not a subclass of it,
+        # so switching would break any caller already catching ValueError.
+        raise ValueError(  # noqa: TRY004
+            "claims must be a JSON list of strings or {claim,...} objects"
+        )
     items = [{"claim": x} if isinstance(x, str) else x for x in raw]
     return _ADAPTER.validate_python(items)
 
