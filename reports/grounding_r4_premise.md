@@ -1,4 +1,4 @@
-# R4-H1: joint-premise NLI (SummaC aggregation) - honest evaluation
+# R4-H22: joint-premise NLI (SummaC aggregation) - honest evaluation
 
 Joint-premise scored on 3218 cascade-fired rows; gold v3 eval 5857 rows, 7 calibrated languages. EN/non-EN leave-one-fold-out thresholds on GroupKFold leave-one-source-out OOF probabilities (the Round 3 honest harness).
 

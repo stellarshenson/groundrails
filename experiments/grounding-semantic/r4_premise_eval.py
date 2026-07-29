@@ -1,4 +1,4 @@
-"""R4-H1 evaluation: does swapping the SummaC-style joint-premise NLI in for the max-over-chunks
+"""R4-H22 evaluation: does swapping the SummaC-style joint-premise NLI in for the max-over-chunks
 NLI lift gold v3 eval macro-F1 through the Round 3 honest harness?
 
 The joint-premise re-score (`joint_premise_score.py`) wrote `nli_ent_joint`/`nli_contra_joint`
@@ -93,7 +93,7 @@ def main() -> None:
     )
 
     L = [
-        "# R4-H1: joint-premise NLI (SummaC aggregation) - honest evaluation",
+        "# R4-H22: joint-premise NLI (SummaC aggregation) - honest evaluation",
         "",
         f"Joint-premise scored on {int(fired.sum())} cascade-fired rows; gold v3 eval {int(ev.sum())} "
         f"rows, {len(langs)} calibrated languages. EN/non-EN leave-one-fold-out thresholds on "

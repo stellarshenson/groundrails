@@ -53,7 +53,7 @@ proper instrument - the 2,119 synthetic cross-lingual negatives - the joint head
 | R1-H3 | per-language joint calibration | gold v3 (n >= 40) | macro 0.831 via in-sample per-language cuts (not OOF-fair) | Null (optimistic) |
 | R1-H4 | joint head retrained on enriched gold | gold v3 | non-EN macro 0.639 -> 0.634 (lift -0.005); EN held | Dropped |
 | R1-H5 | language-aware escalation band | gold v3 | fused macro 0.800 < 0.825 bar; v1 was 0.809 | Dropped |
-| R4-H1 | top-3 joint-premise NLI (SummaC aggregation) | gold v3 (3,218 fired) | eval macro 0.825 -> 0.823 (lift -0.002); non-EN +0.019, synthetic TNR 0.852 -> 0.899; EN -0.006 | Null/Refuted |
+| R4-H22 | top-3 joint-premise NLI (SummaC aggregation) | gold v3 (3,218 fired) | eval macro 0.825 -> 0.823 (lift -0.002); non-EN +0.019, synthetic TNR 0.852 -> 0.899; EN -0.006 | Null/Refuted |
 
 Joint-solution benchmark (gold v3 eval, GroupKFold leave-one-source-out; thresholds chosen
 out-of-fold where noted):
@@ -206,9 +206,9 @@ the noise band), and the per-signal AUC shows why - reranker `rr_max` 0.482 (ran
 contrastive claims share one evidence sentence) and `nli_ent` 0.382 (inverted), with only
 `nli_contra` 0.649 and the lexical verdict `lex_p` 0.766 carrying signal. The cascade's NLI is
 mis-firing on evidence it should grade - the case for fixing the aggregation, not the model.
-Note VitaminC is single-sentence, so R4-H1 targets the multi-chunk gold v3 / RAG regime, not it.
+Note VitaminC is single-sentence, so R4-H22 targets the multi-chunk gold v3 / RAG regime, not it.
 
-### R4-H1 top-3 joint-premise NLI
+### R4-H22 top-3 joint-premise NLI
 
 Because a supported claim can be entailed only by combining several source chunks, and the
 cascade grades each chunk independently then takes the max, replacing max-over-chunks NLI with
@@ -253,4 +253,4 @@ supported-recall on multi-chunk-evidence claims and lift gold v3 macro-F1 withou
 - **Strengthen the negatives (next, after the null resampling probe)** - the synthetic negatives are off-topic or clearly-unsupported translations (easy rejects), so the 90.4% TNR may flatter the head. Generate hard near-miss negatives per language: minimal edits to a SUPPORTED translated claim that flip its truth - numeric perturbation (42 -> 43), entity swap, negation, scope or quantifier change - so the claim stays topically and lexically close to its evidence but is false. Re-measure cross-lingual TNR on these; a head holding 0.90 on easy negatives may collapse on near-miss ones, separating real entailment-checking from lexical-overlap luck
 - **Balance native negatives per language** - harvest or synthesise hallucinations in the native eval languages so non-EN macro stops being imbalance-dominated and becomes a fair readout rather than a tiny-class average
 - **New cross-lingual signals, not re-routing** - R1-H1/H5 show the existing cascade and lexical signals do not separate the non-EN slice; a lift needs a new feature (e.g. a cross-lingual entailment model that actually fires), not a different combination of the current ones. Round 4 confirmed this from the other side: the joint-premise aggregation moved non-EN rejection (TNR +0.047) but not the aggregate, so the missing lift is signal quality, not NLI aggregation
-- **Refuted, do not revisit** - native cascade AUC as a cross-lingual readout (R1-H1, thin negative class); `nli_ent` as the cross-lingual rejection mechanism (R1-H2, 0.523); head reweighting to close the non-EN gap (R1-H4, -0.005); class / language over-under-sampling in training (Round 2, macro flat 0.810 -> 0.811); language-aware escalation into the cascade (R1-H5, 0.800 < 0.809); joint-premise (SummaC top-3) NLI aggregation as a gold v3 macro-F1 lift (R4-H1, -0.002 - it improves non-EN synthetic TNR +0.047 but trades English and nets flat)
+- **Refuted, do not revisit** - native cascade AUC as a cross-lingual readout (R1-H1, thin negative class); `nli_ent` as the cross-lingual rejection mechanism (R1-H2, 0.523); head reweighting to close the non-EN gap (R1-H4, -0.005); class / language over-under-sampling in training (Round 2, macro flat 0.810 -> 0.811); language-aware escalation into the cascade (R1-H5, 0.800 < 0.809); joint-premise (SummaC top-3) NLI aggregation as a gold v3 macro-F1 lift (R4-H22, -0.002 - it improves non-EN synthetic TNR +0.047 but trades English and nets flat)
