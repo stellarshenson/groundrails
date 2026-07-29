@@ -1294,3 +1294,69 @@ Chasing the leak to its root produced a more consequential result than the leak 
 - **This is the strongest argument in the log for acquiring more private traces - for measurability, not accuracy.** We currently cannot evaluate generalisation on our own data at any sample size, and no modelling choice fixes that
 
 **Caveats carried forward** - one run at one seed (measured noise 0.0023, so the margins are ~60x it, but a seed sweep is owed); RAGTruth test is in-domain-adjacent since training used its train split, so the honest external number remains R7-H49 on LLM-AggreFact, still blocked on Hub auth; and R8-H61 established that roughly a third of the non-English test labels are machine-translation noise, so 0.8407 is measured against imperfect ground truth.
+
+**R8-H77 the unseen arena - we LOSE on genuinely blind data**
+
+RAGBench, ten subsets of enterprise-shaped documents, in NEITHER model's training data. `lettucedect-v2` trains on RAGTruth + translations + LettuceDetect-prose; our student on our gold + RAGTruth + translations. This is the first blind test for both and the first number in the log that measures generalisation rather than specialisation.
+
+| subset | ours (R8-H62) | lettucedect-v2 | delta | base rate |
+|---|---|---|---|---|
+| finqa | **0.3974** | 0.7170 | **-0.3196** | 0.920 |
+| delucionqa | 0.5325 | 0.7929 | **-0.2604** | 0.935 |
+| tatqa | 0.5118 | 0.6156 | -0.1038 | 0.944 |
+| hagrid | 0.5416 | 0.5992 | -0.0576 | 0.848 |
+| covidqa | 0.6916 | 0.7355 | -0.0439 | 0.841 |
+| pubmedqa | 0.5665 | 0.5162 | +0.0503 | 0.692 |
+| emanual | 0.6495 | 0.5999 | +0.0496 | 0.894 |
+| hotpotqa | 0.6514 | 0.5976 | +0.0538 | 0.932 |
+| techqa | 0.6985 | 0.6363 | +0.0622 | 0.564 |
+| expertqa | 0.7148 | 0.6503 | +0.0645 | 0.468 |
+| **mean** | **0.5956** | **0.6461** | **-0.0505** | 5/10 won |
+
+- **Verdict - REFUTED for generalisation.** The R8-H62 3/3 win stands as recorded but is bounded to corpora we had training exposure to. On blind data LettuceDetect generalises better by 0.0505
+- **`finqa` at 0.3974 is BELOW chance** - anti-predictive, not merely weak. That is a capability failure, not a calibration one
+- **Truncation was hypothesised and REFUTED.** Our student trains at max_length 512 against LettuceDetect's 4096, which looked like the obvious mechanical cause. Re-scoring at 2048 moved finqa only 0.398 → 0.428, left tatqa and hagrid unchanged, and made **techqa WORSE** (0.703 → 0.641) - and techqa carries the LONGEST documents in the benchmark at 3,730 chars while being one of our wins. Length is not the variable
+- **Content type is.** The four worst subsets are financial tables (finqa, tatqa), a car manual and multi-document wiki. **`tatqa` documents average 399 characters and still score at chance**, which rules out context entirely: the model does not know what to do with a TABLE. Our training mix is RAG prose plus news summaries and carries no tabular or numeric-reasoning supervision at all
+- **Where we DO win is informative** - expertqa (base 0.468) and techqa (0.564) are the two subsets with balanced classes, and we take both. The five losses all sit at base rates 0.84-0.94, where a handful of negatives decide the AUC
+- Caveat - labels are GPT-4o rather than human, which caps the absolute numbers, but it biases both models identically so the comparison holds
+- Harness `experiments/grounding-semantic/R8-H77_unseen_arena.py` takes `--model` so every later incarnation runs the identical gate and successive students stay directly comparable
+
+**R8-H78 incarnation 2 (running)** - adds RAGBench TRAIN across all ten domains (~30k pairs) to close the tabular gap. **Note the consequence, recorded before the result exists: once we train on RAGBench-train, RAGBench-test is no longer blind for us while LettuceDetect still has not seen it.** R8-H77 is therefore demoted to an in-domain reading and the fair arena MOVES to HaluEval (24,507 rows, unseen by both). Reporting a RAGBench-test win after training on RAGBench-train would be the same home-field error this round was built to avoid.
+
+### Amendment - the adversarial terms, re-scoped after R8-H77
+
+Append-only. R8-H77 inverted which adversarial term is worth running, so the earlier registrations are re-stated rather than left to be read against obsolete bars.
+
+**The principle that decides it: gradient reversal substitutes for supervision you cannot obtain.**
+
+- **Language (R8-H74) - CLOSED, and correctly so.** We could obtain the labels. RAGTruth's seven translations supplied them, plain supervision took the EN/non-EN spread to 0.003, and no adversarial machinery was needed. Running it now would be running it for completeness
+- **Domain (R8-H75) - PROMOTED to the round's primary architectural hypothesis.** We can never obtain labels for the NEXT unseen domain, which is exactly what R8-H77 measured: RAGBench blind, mean 0.5956 against 0.6461, `finqa` below chance at 0.3974. Supervision cannot reach a domain we have not met, and that is the precise condition adversarial invariance exists for
+
+The term also changes shape. Two domains is domain ADAPTATION; we have roughly twelve source domains (our private traces, RAGTruth news/QA/summary, and RAGBench's ten), which makes this multi-source domain GENERALISATION - an N-way discriminator rather than a binary one.
+
+| id | persona | technique | prediction | acceptance bar |
+|---|---|---|---|---|
+| R8-H79 | heretical | N-way DOMAIN discriminator through a gradient reversal layer, ~12 source domains | domain-invariant features transfer to corpora never seen in training | blind-arena mean ≥ 0.68 (beats 0.6461) with our gold holding ≥ 0.84 |
+| R8-H80 | hybridizer | both terms - domain GRL and language GRL, separate lambdas | language is already solved, so this must beat R8-H79 to justify its cost | ≥ +0.01 over R8-H79 alone, or the language branch is dropped |
+| R8-H81 | mechanist | GroupDRO instead of adversarial - minimise WORST-domain loss, not average | targets the actual failure (catastrophic collapse on finqa) without a discriminator or a lambda | worst-subset AUC ≥ 0.55 with mean ≥ 0.68 |
+| R8-H73 | hybridizer | two heads on one trunk - score regression + token-span tagging | RE-STATED against new bars: must now beat 0.8531 / 0.8434 / 0.8407 AND lift the blind arena | blind mean ≥ 0.68 while all three in-domain bars hold |
+
+**Why GroupDRO is registered alongside, and why it may be the better bet.** The adversarial framing assumes the problem is that features ENCODE domain. GroupDRO makes a different assumption - that the problem is the loss being AVERAGED over domains, so a domain the model handles badly is drowned out by nine it handles well. That is a literal description of R8-H77: mean 0.5956 hides a 0.3974. GroupDRO optimises the worst group directly, needs no discriminator, no gradient reversal and no lambda schedule, and cannot collapse the representation. If it matches R8-H79 it should be preferred on simplicity alone.
+
+**The failure mode to watch on R8-H79/H80, stated before the run.** An adversarial objective strong enough to erase domain also erases meaning: the expected failure is a trunk that is beautifully domain-invariant and grounding-blind, with the domain discriminator at chance AND task AUC collapsed. Lambda is therefore the load-bearing hyperparameter and a sweep is part of the experiment, not a follow-up. Diagnostic: the discriminator should decay toward 1/12 = 0.083 while task AUC holds; a discriminator BELOW chance means the reversal has pushed the trunk into anti-predicting, which is its own pathology.
+
+**Ordering.** R8-H81 (GroupDRO) first - no discriminator, no lambda, and it targets the measured failure most directly. R8-H79 second. R8-H80 only if R8-H79 wins, since it is the only way to attribute the language branch. R8-H73's two heads run last and must now clear the R8-H62 bars, not the pre-H62 ones.
+
+**R8-H82 GroupDRO and DANN composed (pre-registered)**
+
+They compose cleanly because they modify different parts of the objective rather than competing for the same one:
+
+L = Σ_g q_g · L_task,g − λ · L_domain
+
+GroupDRO changes how the task loss is AGGREGATED (worst-group weighting via the exponentiated-gradient weights q_g); DANN adds a SEPARATE reversed term through a gradient reversal layer. Both read the same group labels - corpus of origin - so the combination costs no extra annotation.
+
+- Hypothesis - because the two target different failure modes and R8-H77 exhibits BOTH, composing them will beat either alone: GroupDRO handles seen-but-hard groups (after R8-H78, `finqa` is a group we have trained on and are still bad at), while DANN targets transfer to groups never seen at all
+- Prediction - the composition beats the better single method by 0.01-0.03 on the blind arena; below 0.01 it is not worth the hyperparameter surface
+- Acceptance bar - must beat max(R8-H79, R8-H81) by ≥ 0.01 on the HaluEval blind arena while our gold holds ≥ 0.84
+- **Runs LAST, and the ordering is not negotiable.** Three reasons, each of which has already cost this project a round: attribution is impossible if a composed run wins (the reason R8-H62 was deliberately single-head); the hyperparameter surface is lambda x eta_q x regularisation strength, and GroupDRO REQUIRES strong regularisation while lambda is already DANN's load-bearing knob, so each dimension can silently mask the others; and R8-H78 - plain ERM over thirteen domains - may make both unnecessary, in which case this is a sweep run for its own sake
+- **The tension to watch.** GroupDRO up-weights the hardest domain; DANN erases domain identity. One says pay special attention to finqa, the other says forget you are looking at finqa. They can coexist, but at high lambda the DRO reweighting may have nothing left to grip - so the diagnostic is whether the group weights q_g still differentiate once the discriminator has decayed toward chance. Flat q_g plus a chance-level discriminator means the composition has degenerated into plain ERM with extra steps

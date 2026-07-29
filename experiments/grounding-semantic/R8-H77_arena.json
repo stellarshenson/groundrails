@@ -1,0 +1,89 @@
+{
+  "per_subset": {
+    "covidqa": {
+      "n": 245,
+      "grounded_rate": 0.841,
+      "R8-H78_auc": 0.6513,
+      "R8-H78_f1": 0.5632,
+      "lettuce_auc": 0.7355,
+      "lettuce_f1": 0.5231
+    },
+    "delucionqa": {
+      "n": 184,
+      "grounded_rate": 0.935,
+      "R8-H78_auc": 0.679,
+      "R8-H78_f1": 0.5354,
+      "lettuce_auc": 0.7929,
+      "lettuce_f1": 0.6275
+    },
+    "emanual": {
+      "n": 132,
+      "grounded_rate": 0.894,
+      "R8-H78_auc": 0.668,
+      "R8-H78_f1": 0.5307,
+      "lettuce_auc": 0.5999,
+      "lettuce_f1": 0.5312
+    },
+    "expertqa": {
+      "n": 203,
+      "grounded_rate": 0.468,
+      "R8-H78_auc": 0.749,
+      "R8-H78_f1": 0.7243,
+      "lettuce_auc": 0.6503,
+      "lettuce_f1": 0.6386
+    },
+    "finqa": {
+      "n": 250,
+      "grounded_rate": 0.92,
+      "R8-H78_auc": 0.7433,
+      "R8-H78_f1": 0.6137,
+      "lettuce_auc": 0.717,
+      "lettuce_f1": 0.6137
+    },
+    "hagrid": {
+      "n": 250,
+      "grounded_rate": 0.848,
+      "R8-H78_auc": 0.6993,
+      "R8-H78_f1": 0.5847,
+      "lettuce_auc": 0.5992,
+      "lettuce_f1": 0.5
+    },
+    "hotpotqa": {
+      "n": 250,
+      "grounded_rate": 0.932,
+      "R8-H78_auc": 0.6459,
+      "R8-H78_f1": 0.6055,
+      "lettuce_auc": 0.5976,
+      "lettuce_f1": 0.481
+    },
+    "pubmedqa": {
+      "n": 250,
+      "grounded_rate": 0.692,
+      "R8-H78_auc": 0.6346,
+      "R8-H78_f1": 0.5883,
+      "lettuce_auc": 0.5162,
+      "lettuce_f1": 0.5291
+    },
+    "tatqa": {
+      "n": 250,
+      "grounded_rate": 0.944,
+      "R8-H78_auc": 0.7788,
+      "R8-H78_f1": 0.6867,
+      "lettuce_auc": 0.6156,
+      "lettuce_f1": 0.5623
+    },
+    "techqa": {
+      "n": 250,
+      "grounded_rate": 0.564,
+      "R8-H78_auc": 0.7922,
+      "R8-H78_f1": 0.7753,
+      "lettuce_auc": 0.6363,
+      "lettuce_f1": 0.5673
+    }
+  },
+  "mean_ours": 0.70414,
+  "mean_lettuce": 0.64605,
+  "wins": 8,
+  "model": "models/R8-H78-mmbert-tabular",
+  "tag": "R8-H78"
+}

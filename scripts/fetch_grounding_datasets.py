@@ -145,7 +145,11 @@ DATASETS = {
         "(Hallucination / Entailment / Generic)",
         "why": "The only corpus here where BOTH sides of the conversation are human, and the "
         "negatives are hallucinations a person actually wrote rather than a model.",
-        "caveats": "Small and English-only. Wikipedia-snippet evidence.",
+        "caveats": "Small and English-only. Wikipedia-snippet evidence. **Not currently "
+        "fetchable** - `McGill-NLP/FaithDial` ships a loading SCRIPT (`FaithDial.py`) "
+        "and `datasets` 5.x removed script support, so it fails with 'Dataset scripts "
+        "are no longer supported'. Needs a parquet mirror or a manual download from "
+        "the project's GitHub before it can be used.",
         "mapping": "utterance -> claim; knowledge snippet -> evidence; BEGIN label -> verdict",
     },
     "nomiracl": {
@@ -168,6 +172,11 @@ DATASETS = {
     "halueval": {
         "title": "HaluEval",
         "hf": ["pminervini/HaluEval"],
+        # HaluEval ships no default config, so the names are explicit. `qa` and
+        # `summarization` are the two that carry a knowledge/document field and
+        # therefore map onto our task; `dialogue` and `general` are kept for
+        # completeness but have no retrievable evidence to ground against.
+        "subsets": ["qa", "summarization", "dialogue", "general"],
         "licence": "MIT",
         "size": "~35k - 5k real ChatGPT user queries plus 30k task-specific",
         "languages": "English",
