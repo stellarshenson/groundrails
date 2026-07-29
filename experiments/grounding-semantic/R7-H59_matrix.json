@@ -1,0 +1,12 @@
+{
+  "our cascade (bge-reranker-v2-m3)": {
+    "auc": 0.6432,
+    "macro_f1": 0.5947,
+    "threshold": 0.9831
+  },
+  "lettucedect-v2-mmbert-base": {
+    "auc": 0.7039,
+    "macro_f1": 0.6381,
+    "threshold": 0.2319
+  }
+}

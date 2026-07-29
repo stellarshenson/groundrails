@@ -1,0 +1,38 @@
+[
+  {
+    "name": "mmBERT-base-22L",
+    "params_M": 307.5,
+    "auc": 0.8502,
+    "macro_f1": 0.783,
+    "train_s": 1162,
+    "threshold": 0.3068,
+    "infer_ms_per_pair": 9.2
+  },
+  {
+    "name": "mmBERT-base-11L",
+    "params_M": 252.4,
+    "auc": 0.8183,
+    "macro_f1": 0.751,
+    "train_s": 633,
+    "threshold": 0.2288,
+    "infer_ms_per_pair": 5.38
+  },
+  {
+    "name": "mmBERT-base-6L",
+    "params_M": 227.3,
+    "auc": 0.7332,
+    "macro_f1": 0.6645,
+    "train_s": 374,
+    "threshold": 0.2961,
+    "infer_ms_per_pair": 3.16
+  },
+  {
+    "name": "mmBERT-base-3L",
+    "params_M": 212.2,
+    "auc": 0.6093,
+    "macro_f1": 0.5996,
+    "train_s": 206,
+    "threshold": 0.2281,
+    "infer_ms_per_pair": 1.75
+  }
+]

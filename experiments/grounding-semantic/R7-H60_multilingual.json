@@ -1,0 +1,66 @@
+{
+  "en": {
+    "n": 600,
+    "grounded_rate": 0.65,
+    "cascade_auc": 0.6537,
+    "cascade_f1": 0.5527,
+    "lettuce_auc": 0.703,
+    "lettuce_f1": 0.6568
+  },
+  "de": {
+    "n": 600,
+    "grounded_rate": 0.65,
+    "cascade_auc": 0.5791,
+    "cascade_f1": 0.4988,
+    "lettuce_auc": 0.6032,
+    "lettuce_f1": 0.5503
+  },
+  "fr": {
+    "n": 600,
+    "grounded_rate": 0.65,
+    "cascade_auc": 0.565,
+    "cascade_f1": 0.4957,
+    "lettuce_auc": 0.6118,
+    "lettuce_f1": 0.5867
+  },
+  "es": {
+    "n": 600,
+    "grounded_rate": 0.65,
+    "cascade_auc": 0.5986,
+    "cascade_f1": 0.5172,
+    "lettuce_auc": 0.5912,
+    "lettuce_f1": 0.5778
+  },
+  "it": {
+    "n": 600,
+    "grounded_rate": 0.65,
+    "cascade_auc": 0.5386,
+    "cascade_f1": 0.4724,
+    "lettuce_auc": 0.5901,
+    "lettuce_f1": 0.5595
+  },
+  "pl": {
+    "n": 600,
+    "grounded_rate": 0.65,
+    "cascade_auc": 0.5503,
+    "cascade_f1": 0.4345,
+    "lettuce_auc": 0.602,
+    "lettuce_f1": 0.5292
+  },
+  "hu": {
+    "n": 600,
+    "grounded_rate": 0.65,
+    "cascade_auc": 0.5758,
+    "cascade_f1": 0.5017,
+    "lettuce_auc": 0.6032,
+    "lettuce_f1": 0.5342
+  },
+  "cn": {
+    "n": 600,
+    "grounded_rate": 0.625,
+    "cascade_auc": 0.531,
+    "cascade_f1": 0.5138,
+    "lettuce_auc": 0.6653,
+    "lettuce_f1": 0.617
+  }
+}
