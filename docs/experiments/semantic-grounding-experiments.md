@@ -91,6 +91,10 @@ A cross-encoder reranker (`BAAI/bge-reranker-v2-m3`) is the best single groundin
 | L round 7 | R7-H50 depth probe - mmBERT-base truncated 22L/11L/6L/3L | same held-out traces | 22L 0.8502 @ 9.2 ms → 11L 0.8183 @ 5.38 ms | **in progress** - depth costs 0.032 AUC, buys 1.7x |
 | L round 7 | R7-H57 - public-trained verifier on our gold | 159 held-out traces | control AUC 1.0000; our gold 0.7095 vs our 0.8619 | **PARTIAL** - public data does not transfer to us |
 | L round 7 | R7-H59 - cross-domain matrix, both models on both corpora | gold + RAGTruth 1,200 | ours 0.8619→0.6432 off-domain; theirs 0.7095↔0.7039 flat | **both directions fail** - our number is domain specialisation |
+| M round 8 | R8-H61 - are the machine-translated labels reliable? | 300 human-verified DE rows | EN→DE drop 0.0999 (MT labels) vs 0.0680 (verified) | **gap is REAL** - ~1/3 label noise, 2/3 capability |
+| M round 8 | R8-H64 - ensemble headroom, ours vs the public verifier | 10 corpora, per-example scores | Spearman -0.046..+0.083 everywhere; fusion 0.7479 EN / 0.6212 non-EN | **orthogonal** - fusion beats both untrained, but is 875M |
+| M round 8 | **R8-H62 - multi-corpus distillation, one 307M student** | gold + RAGTruth EN + 7 translations | **gold 0.8531 / EN 0.8434 / non-EN 0.8407 vs 0.7095 / 0.7039 / 0.6095** | **WIN 3/3 DECISIVE** - RAGTruth cells clean, gold caveated |
+| M round 8 | R8 leak audit + `R8_splits.py` | 2,752 claims, 4 split units tried | only a connected-component split over shared chunks reaches 0 overlap; 1 component holds 92% of the corpus | **our gold cannot measure generalisation** - ~39 independent units |
 | L round 7 (pre-reg) | R7-H49 - external calibration on LLM-AggreFact | 11 subsets, stratified | predicts 63-72 vs our private-gold ~82-85 | **blocked** - gated dataset, needs Hub auth |
 | L round 7 (pre-reg) | R7-H53 - MICE-style split encoder, document side cached | teacher corpus | 0.298 ms vs 2.707 ms measured; AUC deficit unknown | **pending** - needs R7-H50 |
 
@@ -1243,3 +1247,50 @@ Per-example scores from the R8 substrate, rank-normalised before fusing because 
 - **It is NOT the deliverable** - 568M + 307M fails the sub-400M single-model requirement outright. What it establishes is that the signal to beat the incumbent exists, is complementary, and is individually learnable. That is what R8-H73 tries to place inside one trunk
 - **Defect found and recorded: the `gold` rows of this analysis are VOID.** `R8_score_substrate.our_gold()` sliced `chunk[:semantic_top_k]` - the first three chunks in dataframe order, i.e. arbitrary evidence rather than retrieved evidence - and read the cascade at 0.6739 against the 0.8619 R7-H50 measured by taking max over ALL of a claim's chunks. Gold claims carry a mean of **36.3** chunks, so the cascade was given 8% of its evidence. Fixed to use every chunk; the gold cells above are excluded rather than corrected in place, and the substrate is being re-scored
 - This is the same class of error as the R7-H50 claim-level leak: a harness detail that silently changes the task rather than failing loudly
+
+### Round 8 results - part 2: the distillation run
+
+**R8-H62 multi-corpus distillation - WIN CONDITION MET on the trace split, with one corpus caveated**
+
+mmBERT-base (307.5M, under the 400M ceiling and size-matched to the incumbent), trained one epoch over 40,000 private pairs carrying SOFT teacher labels mixed with ~43,000 public pairs carrying HARD human labels (RAGTruth EN 15k + 4k per translation), evaluated on all three corpora with the R7-H59 / R7-H60 harness unchanged. Checkpoint at `models/R8-H62-mmbert-multicorpus` - R7-H50 deleted every student it trained, this one persists.
+
+| corpus | ours | lettucedect-v2 | delta | decisive bar | |
+|---|---|---|---|---|---|
+| private gold | **0.8531** | 0.7095 | **+0.1436** | 0.76 | DECISIVE |
+| RAGTruth EN | **0.8434** | 0.7039 | **+0.1395** | 0.75 | DECISIVE |
+| RAGTruth non-EN, mean of 7 | **0.8407** | 0.6095 | **+0.2312** | 0.66 | DECISIVE |
+
+Per language: de 0.8325, fr 0.8336, es 0.8419, it 0.8472, pl 0.8402, hu 0.8279, cn 0.8614.
+
+- **The multilingual gap did not close - it vanished.** English 0.8434 against a non-English mean of 0.8407, a spread of 0.003. Our cascade sat at 0.5626 non-English hours earlier, barely above chance. R8-H74's gradient-reversal adversarial trunk was registered specifically to attack that gap and is now very likely unnecessary: **plain multilingual supervision was sufficient**, and the gap was a training-data problem rather than a representation-geometry one. mmBERT's 256k multilingual vocabulary carried the rest
+- **Domain specialisation survived generalisation.** The stated risk was that public data would erode the +0.152 advantage on our own gold; it moved to +0.1436 while RAGTruth EN went from -0.061 to +0.1395. The two objectives moved TOGETHER rather than trading off, which the pre-registration did not predict
+- **The student is broadly better than its own teacher.** The 568M reranker reads 0.8619 on gold and collapses to 0.6432 on RAGTruth; this 307M student reads 0.8531 and 0.8434. It gives up 0.009 on the teacher's home ground at 54% the size and gains 0.200 everywhere else
+
+**Leak audit, run after the result rather than assumed - and it qualifies one corpus**
+
+| surface | finding | verdict |
+|---|---|---|
+| RAGTruth EN train vs test | 0 context overlap, 2,514 train / 450 test contexts | **clean** |
+| RAGTruth translations | split boundaries identical to English (15,090 / 2,700), 0 prompt overlap | **clean** |
+| private gold, trace split | 0 trace overlap, but **29 exact (claim, chunk) pairs** shared of 15,313 test pairs (0.19%), 10 claim texts repeated, and **95.8% of test claims carry at least one chunk seen in training** (42% of their chunks on average) | **caveated** |
+
+- **The two bars we were losing are the clean ones.** RAGTruth EN and non-EN carry no measurable contamination, so +0.1395 and +0.2312 stand without qualification. That is the substantive result
+- **The gold figure is not apples-to-apples against LettuceDetect.** Exact-pair leakage at 0.19% is too small to move an AUC of 0.85, but our model has seen these documents and the incumbent never has. In deployment that is the CORRECT condition - a grounder serves one corpus repeatedly - but as a head-to-head it flatters us, and the number is recorded with that attached rather than quoted bare
+
+**The deeper finding: our gold cannot measure generalisation at all**
+
+Chasing the leak to its root produced a more consequential result than the leak itself. Three splits were tried and audited:
+
+| split unit | chunk overlap | pair overlap | note |
+|---|---|---|---|
+| claim | severe | severe | INVERTED the R7-H50 capacity ordering, worth 0.050 AUC |
+| trace (639 units) | 759 | 29 | different traces retrieve the same passage |
+| source document (619 units) | 815 | 125 | distinct source texts share identical passages - boilerplate, repeated sections |
+| **connected component over shared chunks (39 units)** | **0** | **0** | the only split with no leakage |
+
+- The leak unit is the **chunk**, not the claim, the trace or the document. `R8_splits.py` computes the transitive closure of "shares a chunk" by union-find, which is the smallest unit that can be split cleanly, and it is now the single definition imported everywhere - the trace-split failure was caused by two implementations of "the same" split drifting apart
+- **The corpus is one interconnected mass: a single component holds 2,534 of 2,752 claims (92%).** The effective independent sample is ~39 units, not 639 traces or 619 documents. A clean split therefore leaves 218 test claims and NO validation set
+- **Consequence, stated plainly: every number this project has produced on its own gold has been measured under evidence overlap**, today's 0.8531 included. That is the deployment condition and not a broken experiment, but it is not a measurement of generalisation to unseen documents and must stop being read as one
+- **This is the strongest argument in the log for acquiring more private traces - for measurability, not accuracy.** We currently cannot evaluate generalisation on our own data at any sample size, and no modelling choice fixes that
+
+**Caveats carried forward** - one run at one seed (measured noise 0.0023, so the margins are ~60x it, but a seed sweep is owed); RAGTruth test is in-domain-adjacent since training used its train split, so the honest external number remains R7-H49 on LLM-AggreFact, still blocked on Hub auth; and R8-H61 established that roughly a third of the non-English test labels are machine-translation noise, so 0.8407 is measured against imperfect ground truth.
