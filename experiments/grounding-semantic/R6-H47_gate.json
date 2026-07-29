@@ -1,0 +1,20 @@
+{
+  "PleIAs/Monad": {
+    "h47": "FAIL - 4/4 missing",
+    "h46_single": "PASS",
+    "h46_multi": "PASS",
+    "initial_token": "<|begin_of_text|>"
+  },
+  "PleIAs/Baguettotron": {
+    "h47": "PASS",
+    "h46_single": "PASS",
+    "h46_multi": "PASS",
+    "initial_token": "<|end_of_text|>"
+  },
+  "PleIAs/Pleias-RAG-350M": {
+    "h47": "PASS",
+    "h46_single": "PASS",
+    "h46_multi": "PASS",
+    "initial_token": "<|end_of_text|>"
+  }
+}

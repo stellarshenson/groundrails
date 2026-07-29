@@ -1,0 +1,6 @@
+{
+  "loglik_0shot": 0.2545,
+  "loglik_5shot": 0.226,
+  "chatml_gen": 0.14333333333333334,
+  "chatml_parse_rate": 0.67
+}
