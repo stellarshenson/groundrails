@@ -3,6 +3,11 @@
 !/data/external/
 /data/external/*
 !/data/external/.gitkeep
+# Dataset sidecars describe provenance and licence - small, and worth tracking.
+# The .zip archives they describe stay ignored.
+!/data/external/datasets/
+/data/external/datasets/*
+!/data/external/datasets/*.md
 !/data/interim/
 /data/interim/*
 !/data/interim/.gitkeep
