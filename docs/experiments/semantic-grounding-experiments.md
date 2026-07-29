@@ -28,6 +28,8 @@ A margin of +0.05 is roughly 20x the measured run-to-run noise (0.0023 across th
 - **Inference and deployment are deliberately deferred** - GPU is fine for now; the torch-free OpenVINO int8 CPU path is a later problem and must not filter candidates today
 - **Honest measurement is a precondition, not a formality** - macro-F1 0.824 is measured on our own private gold with our own labels and has never been calibrated against anything public. Until R7-H49 lands it may not be quoted as a comparable number
 
+> **ERRATUM - 2026-07-29, the "shipped cascade" macro-F1.** Rounds 5-8 repeatedly write "the shipped cascade, macro-F1 **0.824**". That is wrong and the log's own Phase D and E records say so: **0.824 is the six-model score-stack plus a lexical contradiction flag**, which was the best model measured and was NOT deployed. What ships is the two-cross-encoder consolidation at **macro-F1 0.796 out-of-fold**, and **0.789 end-to-end** once the round-1 and round-2 skip mechanisms are applied. Every comparison written against 0.824 therefore set the bar roughly 0.03 too high, against ourselves. Impact on recorded verdicts: **none reverse.** Rounds 7 and 8 were adjudicated on AUC bars (reranker 0.8619, incumbent 0.7095 / 0.7039 / 0.6095 / 0.6461), which are unaffected. R6-H45's "loses to the shipped cascade by -0.313" should read -0.278 against 0.789 and remains a loss. The individual lines are left as recorded per the append-only rule; this note is the correction, and 0.789 / 0.796 are the figures to use from here.
+
 **Standing rules this log enforces**, each earned by a failure recorded below: every hypothesis is pre-registered here before it runs; every new scorer passes a positive control on trivially separable pairs before it scores anything real; every candidate's declared prompt format is audited against its own vocabulary before inference; and a vendor's published number is a claim until someone else reproduces it.
 
 ## Situational overview
@@ -1360,3 +1362,48 @@ GroupDRO changes how the task loss is AGGREGATED (worst-group weighting via the 
 - Acceptance bar - must beat max(R8-H79, R8-H81) by ≥ 0.01 on the HaluEval blind arena while our gold holds ≥ 0.84
 - **Runs LAST, and the ordering is not negotiable.** Three reasons, each of which has already cost this project a round: attribution is impossible if a composed run wins (the reason R8-H62 was deliberately single-head); the hyperparameter surface is lambda x eta_q x regularisation strength, and GroupDRO REQUIRES strong regularisation while lambda is already DANN's load-bearing knob, so each dimension can silently mask the others; and R8-H78 - plain ERM over thirteen domains - may make both unnecessary, in which case this is a sweep run for its own sake
 - **The tension to watch.** GroupDRO up-weights the hardest domain; DANN erases domain identity. One says pay special attention to finqa, the other says forget you are looking at finqa. They can coexist, but at high lambda the DRO reweighting may have nothing left to grip - so the diagnostic is whether the group weights q_g still differentiate once the discriminator has decayed toward chance. Flat q_g plus a chance-level discriminator means the composition has degenerated into plain ERM with extra steps
+
+**R8-H78 incarnation 2 - result. The diagnosis was right, and the result is NOT countable**
+
+Adds RAGBench TRAIN across all ten domains (~30k pairs) to the R8-H62 mix. Checkpoint `models/R8-H78-mmbert-tabular`.
+
+In-domain, against the round's three bars:
+
+| corpus | R8-H62 | R8-H78 | delta | bar |
+|---|---|---|---|---|
+| private gold | 0.8531 | 0.8314 | -0.0217 | 0.7095 - held |
+| RAGTruth EN | 0.8434 | 0.8373 | -0.0061 | 0.7039 - held |
+| RAGTruth non-EN | 0.8407 | 0.8415 | +0.0008 | 0.6095 - held |
+
+On the arena, re-run through the identical `--model` gate:
+
+| subset | R8-H62 | R8-H78 | lettucedect-v2 | delta vs incumbent |
+|---|---|---|---|---|
+| **finqa** | **0.3974** | **0.7433** | 0.7170 | +0.0263 |
+| **tatqa** | 0.5118 | **0.7788** | 0.6156 | +0.1632 |
+| techqa | 0.6985 | 0.7922 | 0.6363 | +0.1559 |
+| pubmedqa | 0.5665 | 0.6346 | 0.5162 | +0.1184 |
+| hagrid | 0.5416 | 0.6993 | 0.5992 | +0.1001 |
+| expertqa | 0.7148 | 0.7490 | 0.6503 | +0.0987 |
+| emanual | 0.6495 | 0.6680 | 0.5999 | +0.0681 |
+| hotpotqa | 0.6514 | 0.6459 | 0.5976 | +0.0483 |
+| delucionqa | 0.5325 | 0.6790 | 0.7929 | **-0.1139** |
+| **mean** | **0.5956** | **0.7041** | 0.6461 | +0.0581, 8/10 |
+
+- **The diagnosis is confirmed: tabular grounding was a COVERAGE gap, not a capability gap.** `finqa` moved +0.3459 from below chance to beating the incumbent, and `tatqa` +0.2670, purely from direct supervision. R8-H77's reading - that the model did not know what to do with a table - was correct
+- **DomainBed's prediction held.** Plain ERM over thirteen domains produced the entire gain. No discriminator, no lambda, no gradient reversal. R8-H79/H81/H82 must now beat **0.7041**, not the 0.5956 they were registered against
+- **Verdict - NOT COUNTABLE as a win.** Training on RAGBench-train makes RAGBench-test no longer blind for us while the incumbent has still never seen it. The +0.0581 is an in-domain reading against a blind one, which is the exact home-field error R8-H77 was built to expose. Recorded for the mechanism it proves, not as evidence of generalisation
+- **`delucionqa` is the honest residual** - still -0.1139 WITH direct supervision, and the only subset where more data did not help. It is the one remaining candidate for a genuine capability gap rather than a coverage gap
+- In-domain cost of the diversity was small but real: gold -0.0217, and all three bars held
+
+**R8-H84 incarnation 4 - VitaminC, the near-miss negatives (pre-registered)**
+
+`tals/vitaminc`, 370,653 train rows, labels SUPPORTS 185,714 / REFUTES 131,958 / NOT ENOUGH INFO 52,981 - close to balanced, which nothing else in the mix is.
+
+- Hypothesis - because every other corpus in the mix carries topically DISTANT negatives at base rates of 0.65-0.94, the model can partly learn the prior instead of the boundary; VitaminC's negatives are real Wikipedia revisions where a single factual edit flips the verdict, so a negative differs from its positive by one number, entity or qualifier and nothing else, and training on them will lift the blind arena and specifically the extreme-base-rate subsets where a handful of negatives decide the AUC
+- Lever - the negative construction; the rest of the R8-H83 mix and the recipe are unchanged so the contribution is attributable
+- Prediction - blind arena +0.02-0.05 over R8-H83, concentrated in delucionqa, tatqa, hotpotqa and covidqa (base rates 0.93-0.94); our gold within 0.02 of R8-H83
+- Acceptance bar - blind mean ≥ R8-H83 + 0.02 with all three in-domain bars held
+- Risk - Wikipedia register, English only. The dataset survey deprioritised VitaminC on DOMAIN, never on quality, and named it the fallback if domain-matched data underdelivered. It may teach a discrimination that does not transfer to conversational RAG
+- **Runs AFTER R8-H83 rather than folded into it**, so VitaminC's contribution is separable from the HaluEval and PsiloQA diversity gain. Folding both into one run would make the round's central question - which data source buys generalisation - unanswerable
+- Licence - CC-BY-SA-3.0, Wikipedia-derived, and it must be VERIFIED before any model trained on it ships
