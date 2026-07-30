@@ -97,6 +97,7 @@ A cross-encoder reranker (`BAAI/bge-reranker-v2-m3`) is the best single groundin
 | M round 8 | R8-H64 - ensemble headroom, ours vs the public verifier | 10 corpora, per-example scores | Spearman -0.046..+0.083 everywhere; fusion 0.7479 EN / 0.6212 non-EN | **orthogonal** - fusion beats both untrained, but is 875M |
 | M round 8 | **R8-H62 - multi-corpus distillation, one 307M student** | gold + RAGTruth EN + 7 translations | **gold 0.8531 / EN 0.8434 / non-EN 0.8407 vs 0.7095 / 0.7039 / 0.6095** | **WIN 3/3 DECISIVE** - RAGTruth cells clean, gold caveated |
 | M round 8 | R8 leak audit + `R8_splits.py` | 2,752 claims, 4 split units tried | only a connected-component split over shared chunks reaches 0 overlap; 1 component holds 92% of the corpus | **our gold cannot measure generalisation** - ~39 independent units |
+| M round 8 | R8-H83 - diversity without the test set (HaluEval + PsiloQA, RAGBench out) | blind arena, 10 subsets | blind mean 0.6161 vs incumbent 0.6461; +0.0205 over H62, still -0.0300 | **REFUTED** - generic diversity buys a fifth of in-domain; failure is negative-class, not domain |
 | L round 7 (pre-reg) | R7-H49 - external calibration on LLM-AggreFact | 11 subsets, stratified | predicts 63-72 vs our private-gold ~82-85 | **blocked** - gated dataset, needs Hub auth |
 | L round 7 (pre-reg) | R7-H53 - MICE-style split encoder, document side cached | teacher corpus | 0.298 ms vs 2.707 ms measured; AUC deficit unknown | **pending** - needs R7-H50 |
 
@@ -1407,3 +1408,32 @@ On the arena, re-run through the identical `--model` gate:
 - Risk - Wikipedia register, English only. The dataset survey deprioritised VitaminC on DOMAIN, never on quality, and named it the fallback if domain-matched data underdelivered. It may teach a discrimination that does not transfer to conversational RAG
 - **Runs AFTER R8-H83 rather than folded into it**, so VitaminC's contribution is separable from the HaluEval and PsiloQA diversity gain. Folding both into one run would make the round's central question - which data source buys generalisation - unanswerable
 - Licence - CC-BY-SA-3.0, Wikipedia-derived, and it must be VERIFIED before any model trained on it ships
+
+**R8-H83 incarnation 3 - diversity WITHOUT the test set. REFUTED, and the negative result is the finding**
+
+Adds HaluEval (~24k balanced claims from identical evidence) and PsiloQA (20k, 14 languages) to the R8-H62 mix. RAGBench excluded entirely so the arena stays blind. Checkpoint `models/R8-H83-mmbert-diverse`.
+
+In-domain, all three bars held: gold 0.8438, RAGTruth EN 0.8097, non-EN 0.8303 (per-language de 0.8298 fr 0.8199 es 0.8291 it 0.8317 pl 0.8206 hu 0.8228 cn 0.8581).
+
+On the blind arena:
+
+| subset | H62 | **H83** | H78 (not countable) | lettucedect-v2 | H83 delta | base |
+|---|---|---|---|---|---|---|
+| covidqa | 0.6916 | 0.7526 | - | 0.7355 | +0.0171 | 0.841 |
+| expertqa | 0.7148 | 0.7212 | 0.7490 | 0.6503 | +0.0709 | **0.468** |
+| techqa | 0.6985 | 0.6638 | 0.7922 | 0.6363 | +0.0275 | **0.564** |
+| emanual | 0.6495 | 0.5866 | 0.6680 | 0.5999 | -0.0133 | 0.894 |
+| hotpotqa | 0.6514 | 0.5790 | 0.6459 | 0.5976 | -0.0186 | 0.932 |
+| tatqa | 0.5118 | 0.5863 | 0.7788 | 0.6156 | -0.0293 | 0.944 |
+| pubmedqa | 0.5665 | **0.4783** | 0.6346 | 0.5162 | -0.0379 | 0.692 |
+| hagrid | 0.5416 | 0.5602 | 0.6993 | 0.5992 | -0.0390 | 0.848 |
+| delucionqa | 0.5325 | 0.7292 | 0.6790 | 0.7929 | -0.0637 | 0.935 |
+| finqa | 0.3974 | 0.5038 | 0.7433 | 0.7170 | **-0.2132** | 0.920 |
+| **mean** | 0.5956 | **0.6161** | 0.7041 | **0.6461** | **-0.0300** | 3/10 won |
+
+- **Verdict - REFUTED.** Blind mean 0.6161 against the incumbent's 0.6461. The bar was "beat 0.6461"; we improved on R8-H62 by +0.0205 and still lose by 0.0300
+- **Generic diversity buys roughly a fifth of what in-domain data buys, from MORE rows.** 44k rows of HaluEval + PsiloQA moved the mean +0.0205; 30k rows of the actual test domain moved it +0.1085. `finqa` tells the story cleanly across three incarnations: **0.3974 → 0.5038 → 0.7433**. Public diversity lifted it off anti-predictive; only real financial tables made it competent
+- **DomainBed's prediction fails here.** Well-tuned ERM with diverse data was given a fair, well-resourced attempt and did not close the gap. That is what promotes R8-H81 (GroupDRO) and R8-H79 (DANN) from optional to motivated - **and their bar is now 0.6161, not the 0.5956 they were registered against**
+- **The failure is a NEGATIVE-CLASS problem, not a domain problem.** We win exactly the balanced subsets - expertqa (base 0.468) +0.0709, techqa (0.564) +0.0275, covidqa (0.841) +0.0171 - and lose every extreme-base-rate one. Where a handful of negatives decide the AUC, we fail
+- **`pubmedqa` REGRESSED below chance**, 0.5665 → 0.4783. Adding Wikipedia-register supervision actively harmed biomedical grounding, which is a direct warning against treating "more public data" as monotonically good
+- **This diagnosis is what R8-H84 (VitaminC) was registered for** - it is the only corpus in the survey with genuinely near-miss negatives, real Wikipedia revisions where a single edit flips the verdict, and our losses concentrate precisely where the negative class is thin
