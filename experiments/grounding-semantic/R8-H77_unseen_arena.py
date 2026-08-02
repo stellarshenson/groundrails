@@ -95,8 +95,104 @@ def load_subsets():
 
 
 @torch.inference_mode()
+def _load_twohead(path):
+    """R8-H73 checkpoints carry twohead.pt (trunk + score/token heads) instead of a
+    plain sequence-classification model. Only the scorer changes - the fused
+    per-pair probability (score head + 1 - max halluc-token) IS the hypothesis;
+    data, chunking and metric stay identical to every other incarnation."""
+    from torch import nn
+    from transformers import AutoModel
+
+    state = torch.load(pathlib.Path(path) / "twohead.pt", map_location="cpu")
+    trunk = AutoModel.from_pretrained(str(pathlib.Path(path) / "trunk")).cuda().eval()
+    d = trunk.config.hidden_size
+    score_head = nn.Linear(d, 1)
+    score_head.load_state_dict(state["score_head"])
+    token_head = nn.Linear(d, 2)
+    token_head.load_state_dict(state["token_head"])
+    return trunk, score_head.cuda().eval(), token_head.cuda().eval()
+
+
+@torch.inference_mode()
 def score_student(path, claims, chunk_lists):
     tok = AutoTokenizer.from_pretrained(str(path))
+    if (pathlib.Path(path) / "dann_student.pt").exists():
+        # R8-H79 checkpoints carry trunk/ (plain AutoModel) + heads in
+        # dann_student.pt; the task head is the scorer, the domain head is
+        # training-only. Data, chunking and metric identical to every branch.
+        from torch import nn
+        from transformers import AutoModel
+
+        # weights_only=False: the checkpoint pickles a ModernBertConfig alongside
+        # the state dicts, and it is our own artifact - trusted by construction.
+        state = torch.load(
+            pathlib.Path(path) / "dann_student.pt", map_location="cpu", weights_only=False
+        )
+        trunk = AutoModel.from_pretrained(str(pathlib.Path(path) / "trunk")).cuda().eval()
+        task_head = nn.Linear(trunk.config.hidden_size, 1)
+        task_head.load_state_dict(state["task_head"])
+        task_head = task_head.cuda().eval()
+        flat_c, flat_k, owner = [], [], []
+        for i, (c, ks) in enumerate(zip(claims, chunk_lists, strict=True)):
+            for k in ks:
+                flat_c.append(c)
+                flat_k.append(k[: M59.CFG.chunk_max_chars])
+                owner.append(i)
+        s = np.zeros(len(flat_c), dtype=np.float32)
+        with torch.inference_mode():
+            for i in range(0, len(flat_c), 64):
+                enc = tok(
+                    flat_c[i : i + 64],
+                    flat_k[i : i + 64],
+                    return_tensors="pt",
+                    padding=True,
+                    truncation=True,
+                    max_length=512,
+                )
+                enc = {k: v.cuda() for k, v in enc.items()}
+                cls = trunk(**enc).last_hidden_state[:, 0]
+                s[i : i + 64] = torch.sigmoid(task_head(cls).float().squeeze(-1)).cpu().numpy()
+        owner = np.array(owner)
+        agg = np.array([s[owner == i].max() for i in range(len(claims))])
+        del trunk, task_head
+        torch.cuda.empty_cache()
+        return agg
+    if (pathlib.Path(path) / "twohead.pt").exists():
+        trunk, score_head, token_head = _load_twohead(path)
+        flat_c, flat_k, owner = [], [], []
+        for i, (c, ks) in enumerate(zip(claims, chunk_lists, strict=True)):
+            for k in ks:
+                flat_c.append(c)
+                flat_k.append(k[: M59.CFG.chunk_max_chars])
+                owner.append(i)
+        s = np.zeros(len(flat_c), dtype=np.float32)
+        with torch.inference_mode():
+            for i in range(0, len(flat_c), 64):
+                enc = tok(
+                    flat_c[i : i + 64],
+                    flat_k[i : i + 64],
+                    return_tensors="pt",
+                    padding=True,
+                    truncation=True,
+                    max_length=512,
+                )
+                seq0 = torch.tensor(
+                    [
+                        [enc.sequence_ids(r)[j] == 0 for j in range(enc["input_ids"].shape[1])]
+                        for r in range(enc["input_ids"].shape[0])
+                    ]
+                )
+                enc = {k: v.cuda() for k, v in enc.items()}
+                h = trunk(**enc).last_hidden_state
+                p_sc = torch.sigmoid(score_head(h[:, 0]).float().squeeze(-1)).cpu()
+                halluc = torch.softmax(token_head(h).float(), dim=-1)[:, :, 1].cpu()
+                halluc[~seq0] = 0.0
+                s[i : i + 64] = ((p_sc + 1.0 - halluc.max(dim=1).values) / 2.0).numpy()
+        owner = np.array(owner)
+        agg = np.array([s[owner == i].max() for i in range(len(claims))])
+        del trunk, score_head, token_head
+        torch.cuda.empty_cache()
+        return agg
     model = (
         AutoModelForSequenceClassification.from_pretrained(str(path), dtype=torch.float16)
         .cuda()
@@ -164,8 +260,18 @@ def score_lettuce(claims, chunk_lists):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", default=str(STUDENT), help="student checkpoint to score")
-    ap.add_argument("--tag", default="R8-H62", help="name for this incarnation in the table")
+    # No silent default: a run that forgets --tag would otherwise be recorded
+    # under "R8-H62" regardless of which checkpoint it scored (that is how the
+    # R8-H84 arena numbers were first written into R8-H77_arena.json with the
+    # wrong tag). Defaulting to the model dir name keeps the tag honest.
+    ap.add_argument(
+        "--tag",
+        default=None,
+        help="name for this incarnation in the table (default: model dir name)",
+    )
     args = ap.parse_args()
+    if args.tag is None:
+        args.tag = pathlib.Path(args.model).name
 
     print(f"GPU: {torch.cuda.get_device_name(0)}", flush=True)
     subs = load_subsets()

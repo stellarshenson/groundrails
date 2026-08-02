@@ -98,6 +98,24 @@ A cross-encoder reranker (`BAAI/bge-reranker-v2-m3`) is the best single groundin
 | M round 8 | **R8-H62 - multi-corpus distillation, one 307M student** | gold + RAGTruth EN + 7 translations | **gold 0.8531 / EN 0.8434 / non-EN 0.8407 vs 0.7095 / 0.7039 / 0.6095** | **WIN 3/3 DECISIVE** - RAGTruth cells clean, gold caveated |
 | M round 8 | R8 leak audit + `R8_splits.py` | 2,752 claims, 4 split units tried | only a connected-component split over shared chunks reaches 0 overlap; 1 component holds 92% of the corpus | **our gold cannot measure generalisation** - ~39 independent units |
 | M round 8 | R8-H83 - diversity without the test set (HaluEval + PsiloQA, RAGBench out) | blind arena, 10 subsets | blind mean 0.6161 vs incumbent 0.6461; +0.0205 over H62, still -0.0300 | **REFUTED** - generic diversity buys a fifth of in-domain; failure is negative-class, not domain |
+| M round 8 | R8-H84 - near-miss negatives (VitaminC, RAGBench still out) | blind arena, 10 subsets | blind mean 0.6450 vs incumbent 0.6461; +0.0289 over H83, -0.0011 short, 7/10 won | **Kept, not a win** - passes its own bar, ties but does not beat the incumbent; finqa/tatqa residual is coverage |
+| M round 8 | R8-H81 - GroupDRO worst-domain loss (H84 mix, loss aggregation only) | blind arena, 10 subsets | blind mean 0.6103, worst subset 0.4425; in-domain 3/3 decisive but gold 0.8177 &lt; 0.84 guardrail | **REFUTED** - q collapsed onto 2 seen groups (97%), starved the rest; worst-seen does not predict unseen |
+| M round 8 | R8-H79 v1 - DANN domain-adversarial (H84 mix, lambda 0.1) | blind arena, 10 subsets | blind mean 0.6320, 6/10 won; emanual +0.1150, first tatqa win; discriminator anti-predicts (0.000 vs chance 0.083) | **Refuted at v1 point** - redistributes rather than lifts; complementarity with H84 motivates H88; v2 lambda 0.02 queued |
+| M round 8 | R8-H85 - context coverage (windowed inference) | length probe, arena docs | Spearman(deficit, hidden mass) -0.128 p=0.73; techqa longest docs yet won, tatqa shortest yet lost | **Killed-at-gate** - truncation does not explain the residual; content, not coverage |
+| M round 8 | R8-H86 - prose-parity (lettucedetect-prose) | provenance check, train parquet | 78,882 rows = 63,792 psiloqa + 15,090 ragtruth, nothing else | **Killed-at-gate** - repackaging of two upstreams already in the mix; H83's exclusion confirmed |
+| M round 8 | **R8-H88 - ERM+DANN ensemble, unweighted mean (diagnostic)** | blind arena, 10 subsets | **blind mean 0.6470 vs incumbent 0.6461, 7/10 won, none below chance** | **Confirmed** - FIRST blind result above the incumbent; residual is variance, not capability; feeds H89/H90/H91 |
+| M round 8 | **R8-H92 - decomposed scoring: min over sentences of max over chunks** | blind arena, 10 subsets | **ens 0.6893, H84 alone 0.6820, H79 alone 0.6856 vs incumbent 0.6461; 7/10 won** | **CONFIRMED** - largest lift of the campaign, formula only; first legal SINGLE-model blind beats; min becomes the primary read |
+| M round 8 | R8-H94 - soft aggregation tuned on RAGTruth (softmin tau 2.0, frozen shot) | blind arena, 10 subsets | 0.6613 vs pure min 0.6893; delucionqa clause confirmed (+0.0814), 8 subsets regressed | **REFUTED** - aggregation preference is corpus-dependent; RAGTruth not a valid proxy for it; min stays primary |
+| M round 8 | R8-H73 - two-head trunk (score + token span, fused) | 3 in-domain corpora + blind arena | gold 0.8843 RECORD (token head 0.8896); blind whole 0.6366, decomposed-min 0.6607 (7/10) | **Kept** - in-domain champion, blind mid-pack; double-AND over-sharpens; token head best-ever tatqa 0.7013 |
+| M round 8 | R8-H97 - three-member decomposed-min ensemble (+H73) | blind arena, 10 subsets | 0.6871 vs bar 0.6920 and H92's 0.6893; 8/10 subsets won | **REFUTED** by its own branch - third member dilutes the mean; H92 two-member stands |
+| M round 8 | R8-H93 - DANN lambda geometry under LOCO(HaluEval), Optuna TPE 22 trials | LOCO sweep, 60k subsamples | ERM 0.6278 ranks 19/22; winner lam 0.1241 LOCO 0.7418 (+0.1140 vs bar +0.02), dom-acc 0.001 | **Confirmed on lift, geometry clause refuted** - anti-predictive band holds the peak at high variance; lambda* feeds H96 |
+| M round 8 | **R8-H90 - full-corpus DANN, one 307M student (762k pairs, 13 groups, lam 0.02)** | 3 in-domain corpora + blind arena | **blind decomposed-min 0.7213, 8/10 won (+0.0752); whole 0.6538; gold 0.8418, 3/3 DECISIVE** | **CONFIRMED - new ladder holder; single model beats the H92 ensemble by +0.0320; attribution pending H91** |
+| M round 8 | R8-H91 - full-corpus ERM control (identical 762k mix, no discriminator) | 3 in-domain corpora + blind arena | blind decomposed-min 0.6965, 8/10 won; whole 0.6462; gold 0.8576, 3/3 DECISIVE | **Confirmed as control** - attribution resolved: objective +0.0248, data +0.0145; DANN wins 8/10 subsets vs its ERM twin, largest on the residual losses |
+| M round 8 | R8-H98 - gated ensemble H90+H91 | gate on H91 solo read | H91 solo 0.6965 < gate 0.7013 (within-0.02 of holder) | **Killed-at-gate** - the H97 dilution boundary applies; no arena shot spent; H90 stands alone |
+| M round 8 | R8-H95 - lift-all-groups GroupDRO, curriculum stage 1 (smoothed q, stratified batches) | 13 group-val sets + blind arena | 13/13 groups lifted, group-val mean 0.955, TabFact 0.524→0.782; blind min 0.6870 (6/10) vs ERM twin 0.6965; q pinned uniform | **Mechanism clause confirmed, blind clause refuted** - starvation fixed (gap to ERM 3.7x narrower than H81's) but forced balance still costs blind; trunk delivered to H96 |
+| M round 8 | R8-H96 - phase shift: GroupDRO-mastered trunk → DANN lambda* 0.1241 (the curriculum) | 13 group-val sets + blind arena | blind min 0.6820 (8/10) vs bar 0.7313, H90 0.7213, own stage 1 0.6870; dom-acc parked ~0.50 predictive; group-val rose to 0.9610 | **REFUTED on both clauses** - generalisation-from-mastery does not beat single-stage DANN; stage 2 undid stage 1's tabular mastery blind (finqa 0.7053→0.6417); lambda-vs-trunk attribution goes to H99 |
+| M round 8 | R8-H99 - full-corpus DANN from scratch at lambda 0.1241 (single-variable vs H90) | 3 in-domain + blind arena | blind min 0.6913 (8/10) vs bar 0.7313; gold 0.8435 3/3 DECISIVE; no anti-prediction at full scale (dom-acc ~0.46); finqa 0.7135 and delucionqa 0.7757 campaign bests | **REFUTED** - lambda 0.1241 costs -0.0300 vs 0.02; curriculum deficit attributed 3/4 lambda + 1/4 trunk; LOCO-HaluEval invalidated as a lambda proxy; high lambda conquers the far registers but pays on the strongholds |
+| M round 8 | **R8-H100 - variance probe: verbatim H90 replicate** | 3 in-domain + blind arena | **blind min 0.6918 vs H90's 0.7213 - gap 0.0295 on an identical recipe**; gold 0.8511 3/3 DECISIVE | **Demotion clause FIRES** - full-scale run-to-run noise ~±0.03; all round-8 single-run training deltas ≤ 0.03 demoted to within-noise; campaign moves to multi-seed means (see amendment) |
 | L round 7 (pre-reg) | R7-H49 - external calibration on LLM-AggreFact | 11 subsets, stratified | predicts 63-72 vs our private-gold ~82-85 | **blocked** - gated dataset, needs Hub auth |
 | L round 7 (pre-reg) | R7-H53 - MICE-style split encoder, document side cached | teacher corpus | 0.298 ms vs 2.707 ms measured; AUC deficit unknown | **pending** - needs R7-H50 |
 
@@ -1437,3 +1455,479 @@ On the blind arena:
 - **The failure is a NEGATIVE-CLASS problem, not a domain problem.** We win exactly the balanced subsets - expertqa (base 0.468) +0.0709, techqa (0.564) +0.0275, covidqa (0.841) +0.0171 - and lose every extreme-base-rate one. Where a handful of negatives decide the AUC, we fail
 - **`pubmedqa` REGRESSED below chance**, 0.5665 → 0.4783. Adding Wikipedia-register supervision actively harmed biomedical grounding, which is a direct warning against treating "more public data" as monotonically good
 - **This diagnosis is what R8-H84 (VitaminC) was registered for** - it is the only corpus in the survey with genuinely near-miss negatives, real Wikipedia revisions where a single edit flips the verdict, and our losses concentrate precisely where the negative class is thin
+
+**R8-H84 incarnation 4 - result. Near-miss negatives buy real transfer and nearly tie the incumbent, but do not beat it**
+
+`tals/vitaminc`, 370,653 train rows collapsed to binary, added to the R8-H83 mix; RAGBench still excluded so the arena stays blind. Checkpoint `models/R8-H84-mmbert-vitaminc`. Scored through the identical `--model` gate.
+
+In-domain, all three bars held: gold 0.8411, RAGTruth EN 0.8233, non-EN 0.8325 (per-language de 0.8297 fr 0.8161 es 0.8414 it 0.8336 pl 0.8208 hu 0.8190 cn 0.8672).
+
+On the blind arena:
+
+| subset | H83 | **H84** | lettucedect-v2 | H84 delta | base |
+|---|---|---|---|---|---|
+| covidqa | 0.7526 | 0.7417 | 0.7355 | +0.0062 | 0.841 |
+| expertqa | 0.7212 | 0.7376 | 0.6503 | **+0.0873** | **0.468** |
+| techqa | 0.6638 | 0.6706 | 0.6363 | +0.0343 | **0.564** |
+| pubmedqa | 0.4783 | 0.5466 | 0.5162 | +0.0304 | 0.692 |
+| hagrid | 0.5602 | 0.6428 | 0.5992 | +0.0436 | 0.848 |
+| emanual | 0.5866 | 0.6029 | 0.5999 | +0.0030 | 0.894 |
+| hotpotqa | 0.5790 | 0.6099 | 0.5976 | +0.0123 | 0.932 |
+| tatqa | 0.5863 | 0.5987 | 0.6156 | -0.0169 | 0.944 |
+| delucionqa | 0.7292 | 0.7190 | 0.7929 | -0.0739 | 0.935 |
+| finqa | 0.5038 | 0.5797 | 0.7170 | **-0.1373** | 0.920 |
+| **mean** | 0.6161 | **0.6450** | **0.6461** | **-0.0011, 7/10 won** | |
+
+- **Verdict - Kept, not a win.** Against its own pre-registered bar it PASSES: blind mean 0.6450 is ≥ 0.6361 and the lift over H83 (+0.0289) lands inside the predicted +0.02-0.05. But the round's objective is beating the incumbent, and 0.6450 vs 0.6461 is -0.0011 - a near-tie, not a beat. The hypothesis is confirmed as a mechanism and refuted as a solution
+- **The VitaminC mechanism works exactly where the diagnosis said it would.** The negative-class fix lifted `pubmedqa` back above chance (0.4783 → 0.5466) and pushed `hagrid` +0.0436, `expertqa` +0.0873 - the balanced and mid-base-rate subsets. It did NOT fix the extreme-base-rate tabular subsets: `finqa` is still -0.1373 and `tatqa` flipped negative. Near-miss negatives teach the boundary, but they are Wikipedia-prose near-misses, not financial-table near-misses
+- **Consequence for the adversarial arm, stated before it runs.** Data levers have now bought +0.0205 (diversity) and +0.0289 (near-miss) for a combined 0.6450, still short of 0.6461, and the residual is concentrated in `finqa`/`tatqa`/`delucionqa` - three extreme-base-rate domains where coverage, not discrimination, is the gap. This is precisely the seen-but-hard condition R8-H81 (GroupDRO) targets and the never-seen condition R8-H79 (DANN) targets, so both stay motivated. **Their bar is now 0.6450**, the best blind mean achieved without touching the arena
+- **`delucionqa` remains the honest residual across every incarnation** - the only subset no data lever has moved, and the strongest candidate for a genuine capability gap rather than coverage
+
+**R8-H81 GroupDRO - result. Worst-group weighting overfits the hardest SEEN boundaries and collapses blind transfer**
+
+Trainer `experiments/grounding-semantic/R8-H81_groupdro.py`, checkpoint `models/R8-H81-mmbert-groupdro`. The recipe, mix and data are byte-identical to R8-H84; the only change is the loss aggregation - exponentiated-gradient group weights (eta 0.01) over 12 corpus-of-origin groups, balanced stratified batches so every group updates q every step, weight decay 0.01 per GroupDRO's regularisation requirement.
+
+In-domain, all three round bars beaten decisively: gold 0.8177 (+0.1082), RAGTruth EN 0.8345 (+0.1306), non-EN 0.8157 (+0.2062) - but gold sits BELOW the arm's own 0.84 guardrail (-0.023 vs H84's 0.8411).
+
+On the blind arena, through the identical `--model` gate:
+
+| subset | H84 | **H81** | lettucedect-v2 | H81 delta | base |
+|---|---|---|---|---|---|
+| techqa | 0.6706 | 0.7147 | 0.6363 | +0.0784 | 0.564 |
+| expertqa | 0.7376 | 0.6919 | 0.6503 | +0.0416 | 0.468 |
+| hagrid | 0.6428 | 0.6000 | 0.5992 | +0.0008 | 0.848 |
+| covidqa | 0.7417 | 0.7342 | 0.7355 | -0.0013 | 0.841 |
+| pubmedqa | 0.5466 | 0.5053 | 0.5162 | -0.0109 | 0.692 |
+| hotpotqa | 0.6099 | 0.5809 | 0.5976 | -0.0167 | 0.932 |
+| tatqa | 0.5987 | 0.5557 | 0.6156 | -0.0599 | 0.944 |
+| delucionqa | 0.7190 | 0.7200 | 0.7929 | -0.0729 | 0.935 |
+| finqa | 0.5797 | 0.5574 | 0.7170 | -0.1596 | 0.920 |
+| **emanual** | 0.6029 | **0.4425** | 0.5999 | **-0.1574** | 0.894 |
+| **mean** | **0.6450** | **0.6103** | **0.6461** | **-0.0358, 3/10 won** | |
+
+- **Verdict - REFUTED, both gates.** Pre-registered: worst-subset AUC ≥ 0.55 with mean ≥ the re-based 0.6450. Measured: worst subset `emanual` 0.4425 (below chance), mean 0.6103 - below H84 (0.6450), below H83 (0.6161), barely above the pre-diversity H62 (0.5956). GroupDRO gave back nearly everything two data rounds had bought
+- **The mechanism is visible in the group weights.** By the end q had collapsed onto two groups - `vitaminc` 0.523 + `ragtruth_en` 0.447 = 97% of the total, with `halueval` at 0.0002 and every other group under 0.01. Worst-group minimisation degenerated into training on the two hardest seen boundaries and starving the other ten, which is the OPPOSITE of the diversity that transfers. The assumption the method encodes - the worst seen group predicts the unseen one - is false here: the blind arena's hard subsets (finqa tables, emanual manuals) resemble none of the up-weighted material
+- **In-domain vs blind dissociation, again.** All three in-domain bars beaten decisively while blind transfer collapsed - the fourth consecutive demonstration (H62, H78, H83/H84, now H81) that in-domain movement and blind generalisation are near-independent axes in this setup
+- **Consequence for the arm.** The seen-but-hard theory of the residual is dead: R8-H82's GroupDRO branch loses its premise, and per the pre-registered ordering (H82 runs only if it can beat max(H79, H81) by ≥ 0.01) the composition now rides entirely on R8-H79's DANN result
+
+### Amendment - 2026-07-31, the adversarial arm becomes an exploration, not a one-shot
+
+Append-only; directed by the author after the R8-H81 refutation. A single point in a method's hyperparameter space refutes that POINT, not the method. DANN and GroupDRO are not discarded on their first read; each measured failure mode has a known remedy, and the remedies are cheap variants of trainers that already exist:
+
+- **R8-H79 variants (DANN)** - the v1 pathology is an anti-predicting discriminator (accuracy 0.001 against a 0.083 chance floor, domain loss RISING 2.49 → 4.14): at lambda 0.1 the trunk learned to invert domain features rather than neutralise them. The lambda sweep was declared part of the experiment at registration; v2 runs lambda 0.02, and a stronger discriminator (so it re-adapts to inverted features faster than the trunk can invert) is the v3 lever if v2 still anti-predicts. True invariance parks the discriminator AT chance, never below
+- **R8-H81 variants (GroupDRO)** - the v1 pathology is q-collapse (vitaminc 0.523 + ragtruth_en 0.447 = 97% of the weight, ten groups starved): eta 0.01 let the exponentiated-gradient update fixate. v2 runs eta 0.003 with uniform smoothing on q (q ← (1−α)q + α/n, α = 0.2); v3, if v2 still collapses, replaces the 12 corpus groups with 3 SUPERGROUPS (private / ragtruth / wiki-register) so worst-group cannot fixate on a single corpus
+- **Variant discipline** - one lever per variant, recorded as dated `log:` lines under the parent hypothesis; the parent verdict stands until a variant clears the bar, which is recorded as a supersession with a back-reference, never a rewrite
+- **R8-H82 (composition)** - decided against the best VARIANTS, not the first points; its rule is unchanged (must beat max(best H79, best H81) by ≥ 0.01)
+- **R8-H73 (two-head trunk) joins the executable queue** - registered long before the arm, re-stated here: the R8-H64 orthogonality (Spearman −0.046..+0.083 between score-regression and token-span signals, fusion beating both) is the one supervision-shape lever no incarnation has tried; trainer `R8-H73_twohead.py`, score head on all pairs + token head on the span-carrying corpora (RAGTruth EN JSON spans, translated struct spans, PsiloQA offset pairs, HaluEval whole-answer; private and VitaminC token-masked), fused at inference as (p_score + 1 − max halluc-token)/2, max-over-chunks. The R8-H77 gate gains a twohead-aware scorer branch - data, chunking and metric untouched
+- **Queue** - GPU1 serial: H79 v1 (running) → H73 → H79 v2 → H81 v2 → composition decision; arena scorings interleave on GPU2
+
+**R8-H85 - context coverage (windowed inference). KILLED AT GATE**
+
+Because the arena scorer truncates every evidence document to its first 1,500 characters (~375 tokens) while the incumbent reads 4,096 tokens per document, sliding-window max-over-windows scoring will lift finqa ≥ +0.05 and the blind mean past 0.6461 while non-tabular subsets hold within ±0.01.
+
+- **Kill-gate, measured before any build** - per-subset hidden evidence mass (fraction of characters beyond the visible windows, MAX_CHUNKS applied) against the H84 per-subset delta vs the incumbent
+- **Result - the precondition is absent.** Spearman(delta, mean hidden mass) = **-0.128, p = 0.73**. The correlation runs the WRONG way on the extremes: `techqa` has the longest documents in the arena (median 3,199 chars, 83% exceed the window, 55% of evidence mass hidden) and is our second-best subset (+0.0343); `tatqa` has the shortest (median 325 chars, 0.4% hidden) and we lose it (-0.0169). `finqa` hides 30% but `expertqa` hides 19% and wins +0.0873
+- **Verdict - Killed-at-gate.** Truncation coverage does not explain the residual; no windowed-inference build. The kill sharpens the diagnosis: the finqa/tatqa deficit is CONTENT (numeric-tabular claims our mix never teaches), and the incumbent's edge there plausibly rides its token-classification objective - a hallucinated number is a localized token event, which token supervision detects and a CLS score must integrate. That is R8-H73's mechanism, and it feeds two data levers: R8-H86 (prose-parity: `dataset-lettucedetect-prose.zip`, the incumbent's own auxiliary corpus, absent from our mix - targets `delucionqa`/`emanual` manual-register prose) and R8-H87 (a tabular-numeric near-miss corpus - targets `finqa`/`tatqa`), both pre-registered before any build in their own entries
+
+**R8-H79 DANN v1 - result. Domain-adversarial training redistributes the blind arena instead of lifting it**
+
+Trainer `experiments/grounding-semantic/R8-H79_dann.py`, checkpoint `models/R8-H79-mmbert-dann`, lambda_max 0.1 (Ganin ramp). Data and recipe byte-identical to R8-H84; the only change is the N-way domain discriminator through a gradient-reversal layer. The pre-registered pathology check fired mid-run and held to the end: domain accuracy 0.000-0.001 against a 0.083 chance floor from step 1000 on, domain loss RISING 2.49 → 4.14 - the trunk learned to INVERT domain features, not neutralise them (true invariance parks the discriminator AT chance).
+
+In-domain, 3/3 decisive: gold 0.8328, RAGTruth EN 0.8372, non-EN 0.8411 - the best non-EN any incarnation has posted (beats H84's 0.8325).
+
+On the blind arena, through the identical `--model` gate (DANN-aware loader branch: trunk + task head, same data/chunking/metric):
+
+| subset | H84 | **H79 v1** | lettucedect-v2 | vs lettuce | vs H84 |
+|---|---|---|---|---|---|
+| emanual | 0.6029 | **0.7149** | 0.5999 | **+0.1150** | +0.1120 |
+| techqa | 0.6706 | 0.6878 | 0.6366 | +0.0512 | +0.0172 |
+| expertqa | 0.7376 | 0.6769 | 0.6506 | +0.0263 | -0.0607 |
+| tatqa | 0.5987 | **0.6413** | 0.6153 | **+0.0260** | +0.0426 |
+| covidqa | 0.7417 | 0.7596 | 0.7354 | +0.0242 | +0.0179 |
+| hotpotqa | 0.6099 | 0.6198 | 0.5983 | +0.0215 | +0.0099 |
+| hagrid | 0.6428 | 0.5530 | 0.5996 | -0.0466 | -0.0898 |
+| pubmedqa | 0.5466 | 0.4600 | 0.5163 | -0.0563 | -0.0866 |
+| delucionqa | 0.7190 | 0.6628 | 0.7922 | -0.1294 | -0.0562 |
+| finqa | 0.5797 | 0.5439 | 0.7170 | -0.1731 | -0.0358 |
+| **mean** | 0.6450 | **0.6320** | **0.6461** | **-0.0141, 6/10 won** | -0.0130 |
+
+- **Verdict - Refuted at the v1 point** (lambda 0.1). Pre-registered bar: blind mean ≥ 0.6450. Measured 0.6320. The parent hypothesis stays open per the exploration amendment; v2 (lambda 0.02) tests whether a gentler reversal parks the discriminator at chance instead of inverting
+- **The redistribution is structured, not noise.** DANN moved exactly the subsets ERM cannot: `emanual` +0.1120 (the subset GroupDRO destroyed at 0.4425, now our SECOND-BEST beat), the first `tatqa` win of the project, best-ever `covidqa`. It paid with `pubmedqa` (0.4600, below chance) and `hagrid`. Domain-invariance helps register-shifted subsets (manuals, tables-as-text) and hurts subsets that RELY on register features our mix covers well
+- **The complementarity is the finding.** Per-subset max(H84, H79) averages **0.6649** - +0.0188 over the incumbent. Same data, two objectives, strongly decorrelated errors: this motivates R8-H88 (score-level ensemble read) below, and R8-H89 (ensemble distillation back into one 307M student) if H88 clears
+
+**R8-H86 - prose-parity data lever. KILLED AT GATE**
+
+Because the incumbent's auxiliary corpus (`KRLabsOrg/lettucedetect-prose-hallucination`) carries manual-register prose our mix lacks, adding it will lift `delucionqa`/`emanual` while the rest holds.
+
+- **Kill-gate, measured before any build** - provenance check on the train parquet's `dataset` column, because R8-H83 recorded a deliberate exclusion of this corpus (PsiloQA-derived, double-counts the upstream) that must be verified, not overruled from a sidecar description
+- **Result - the precondition is absent.** The 78,882-row train split is 63,792 rows tagged `dataset: psiloqa` + 15,090 tagged `dataset: ragtruth` and nothing else - a repackaging of two upstreams ALREADY in our mix. The sidecar's "ACL papers, READMEs and Wikipedia markdown" describes document style within those rows, not independent material. There is no new register to add
+- **Verdict - Killed-at-gate.** R8-H83's exclusion stands confirmed at the data level. The `delucionqa` residual keeps its status as the honest capability gap; no data lever in the surveyed pool targets it
+
+**R8-H87 - tabular-numeric near-miss negatives (TabFact). Pre-registered**
+
+Because the blind residual concentrates in the tabular subsets (`finqa` -0.1373, `tatqa` -0.0169 at H84) and the R8-H85 probe ruled out context truncation, the gap is REGISTER: no corpus in our mix teaches reading numbers out of structured tables. TabFact (CC-BY-4.0, ~118k statements over 16k Wikipedia tables, human ENTAILED/REFUTED labels, near-balanced) is the near-miss construction VitaminC proved works - counterfactual claims against the SAME table - in exactly the register we lose.
+
+- **Terse claim** - because the finqa/tatqa deficit is tabular-register coverage and TabFact supplies near-miss negatives in that register, adding ~30k serialized TabFact pairs (caption + linearized table → evidence) to the H84 mix will lift finqa ≥ +0.04 and tatqa ≥ +0.02 while the seven non-tabular subsets hold within ±0.02 and the three in-domain bars stay decisive
+- **Bar** - blind mean ≥ 0.6461 (beat the incumbent); guardrail: gold ≥ 0.84, no subset below chance
+- **Fetch** - every HF mirror is a retired loading script; fetched from the upstream GitHub repo by `scripts/fetch_grounding_datasets.py` (r1+r2 statements joined to `#`-delimited CSV tables, official split ids). Wikipedia tables, not financial filings - register coverage, not domain coverage, stated before the run
+- **Caveat recorded pre-run** - TabFact statements are short single-fact claims; if the arena's tabular deficit is table-AGGREGATION reasoning rather than table-value lookup, this lever underdelivers and that miss is itself diagnostic
+
+**R8-H88 - complementarity read: score-level ensemble of ERM and DANN. Pre-registered**
+
+Because H84 (ERM) and H79 v1 (DANN) trained on identical data with different objectives and their per-subset profiles decorrelate (per-subset max 0.6649 vs 0.6450/0.6320 members), averaging their per-pair probabilities will recover part of the oracle gap.
+
+- **Terse claim** - because the two students' errors decorrelate across subsets, the unweighted mean of their per-pair sigmoid scores, max-over-chunks as always, will read blind mean ≥ 0.6461 with ≥ 7/10 subsets won, no subset below chance
+- **Status** - DIAGNOSTIC, not a ship candidate: two 307M students exceed the round's 400M single-model ceiling. What it buys is the decision for R8-H89 (distill the ensemble's soft scores into ONE 307M student) - if even the cheap unweighted mean clears the incumbent, the residual is variance, not capability, and distillation is the mechanism that converts an ensemble into a legal single model
+- **Rule fixed before the run** - unweighted mean, both members frozen as-is, identical gate; no weight tuning against the arena (that would un-blind it)
+
+**R8-H88 - result. The ensemble is the first blind result above the incumbent**
+
+Scorer `experiments/grounding-semantic/R8-H88_ensemble_arena.py`, members frozen (H84 ERM + H79 v1 DANN), unweighted mean of per-pair sigmoid probabilities, identical gate. (Fixing this run also exposed and repaired a silent arena defect: the twohead edit had dropped `@torch.inference_mode()` from `score_student`, breaking the plain branch - every RECORDED number predates that edit or used a branch with its own inference context, so all stand.)
+
+| subset | ens | H84 | H79 v1 | lettucedect-v2 | delta |
+|---|---|---|---|---|---|
+| expertqa | 0.7261 | 0.7374 | 0.6769 | 0.6503 | +0.0758 |
+| emanual | 0.6725 | 0.6023 | 0.7149 | 0.5999 | +0.0726 |
+| techqa | 0.6946 | 0.6708 | 0.6878 | 0.6363 | +0.0583 |
+| hotpotqa | 0.6289 | 0.6094 | 0.6198 | 0.5976 | +0.0313 |
+| covidqa | 0.7519 | 0.7418 | 0.7596 | 0.7355 | +0.0164 |
+| tatqa | 0.6232 | 0.5987 | 0.6413 | 0.6156 | +0.0076 |
+| hagrid | 0.5998 | 0.6428 | 0.5530 | 0.5992 | +0.0006 |
+| pubmedqa | 0.5074 | 0.5465 | 0.4600 | 0.5162 | -0.0088 |
+| delucionqa | 0.6962 | 0.7195 | 0.6628 | 0.7929 | -0.0967 |
+| finqa | 0.5691 | 0.5791 | 0.5439 | 0.7170 | -0.1479 |
+| **mean** | **0.6470** | 0.6450 | 0.6320 | **0.6461** | **+0.0009, 7/10 won** |
+
+- **Verdict - Confirmed (diagnostic).** Pre-registered bar met on all three clauses: mean 0.6470 ≥ 0.6461, 7/10 subsets won, none below chance. The margin is thin (+0.0009) but this is the FIRST blind mean above the incumbent in the project, from members that individually read 0.6450 and 0.6320
+- **What it proves** - the blind residual between our students and the incumbent is substantially VARIANCE between training objectives, not a capability ceiling: two students on identical data with different objectives, averaged with no tuning, recover a third of the max-oracle gap (0.6470 of 0.6450 → 0.6649)
+- **What it does not prove** - a ship: 614M total. The conversion mechanisms are R8-H89 (distill the ensemble's soft scores into one 307M student) and the R8-H90/H91 full-corpus pair, whose diverse-objective members would make a stronger ensemble AND a stronger distillation teacher
+- **Residual after ensembling** - `finqa` -0.1479 and `delucionqa` -0.0967 survive (both members weak there): consistent with the R8-H85/H86 diagnosis - those two need REGISTER coverage (TabFact, now in the full mix) or a capability the mix cannot teach, not error-averaging
+
+### Amendment - 2026-07-31, the author redirects the arm: full corpora + DANN as the centrepiece
+
+Directed mid-exploration by the author: "lets use all training data but RagBench, and DANN is very important - imho it is the only way to uncover the actual geometry of contradictions and hallucination." Consequences, recorded before the runs:
+
+- **R8-H90 (full-corpus DANN)** - every corpus but RAGBench at FULL size (~760k pairs: private ~74k, RAGTruth EN 15k, translations 106k, HaluEval 40k, PsiloQA 64k, VitaminC 371k, TabFact 93k), 13 domain groups, LAMBDA_MAX 0.02 (the registered v2 anti-prediction fix). Trainer `R8-H90_dann_full.py`. Bar: blind mean ≥ 0.6461; guardrail: three in-domain bars beaten, gold ≥ 0.80 (relaxed from 0.84 pre-run - private falls from 24% to ~10% of the mix; 0.84 still reported). Health check: domain-acc parks in [0.03, 0.15] at full ramp; anti-prediction at 0.02 kills the lambda lever and points at v3 (stronger discriminator)
+- **R8-H91 (full-corpus ERM control)** - identical mix, no discriminator. Trainer `R8-H91_erm_full.py`, same bar. H90 − H91 isolates the adversarial objective at full scale; H91 − H84 isolates the data. Without this control the two-lever directive would be unattributable
+- **R8-H87 status** - its TabFact lever is ABSORBED into the full-mix pair; the solo H87 run is not scheduled (attribution of finqa movement to TabFact specifically is downgraded from run-isolated to inferred, accepted consciously for GPU budget)
+- **Queue** - GPU1 serial: H73 (running) → H90 → H91; arenas on GPU2 as checkpoints land; then the composition/distillation decisions (H82, H89) against the full-scale results
+
+### Amendment - 2026-07-31, the author raises the bar: blind mean ≥ 0.74
+
+The goal moves from "beat the incumbent" (0.6461, cleared by R8-H88's 0.6470) to **blind RAGBench mean ≥ 0.74**. For scale: the only 0.70+ this project has produced is R8-H78's 0.7041, which trained on RAGBench train and is recorded as invalid evidence; the incumbent reads 0.6461; the H84/H79 oracle reads 0.6649. 0.74 therefore requires mechanisms beyond error-averaging over the current members. The registered path: the full-corpus pair (H90/H91), decomposed scoring (H92 below), two-head fusion (H73, training), then ensemble-of-diverse-objectives distilled into one student (H89). Each step keeps RAGBench excluded from training - the bar is only meaningful blind.
+
+**R8-H92 - decomposed scoring: min over sentences of max over chunks. Pre-registered**
+
+Because RAGBench `adherence_score` is a response-level AND over the response's claims, and our scorer feeds the WHOLE response as one claim (a single hallucinated sentence hides among supported ones, diluted in one CLS score), while the incumbent's token-level 1 − max(halluc) is precisely a fine-grained min-aggregation - decomposing the response into sentences and scoring each independently will recover what dilution loses.
+
+- **Terse claim** - because response-level dilution masks local hallucination, scoring per-sentence (max-over-chunks per sentence, MIN over sentences as the response score) will lift the H84+H79 ensemble's blind mean by ≥ +0.02 (to ≥ 0.667) with no subset below chance
+- **Formula only** - existing frozen checkpoints (H84, H79 v1), identical data and metric; the only change is the scoring aggregation. Sentence split is deterministic (regex on terminal punctuation, min 25 chars, cap 12 sentences, whole-response fallback below 2 sentences)
+- **Primary read** - min-aggregation on the ensemble; per-member and mean-aggregation numbers recorded as diagnostics, not bar-eligible
+- **Why it can be large** - the two worst residuals (`finqa` -0.1479, `delucionqa` -0.0967 at H88) are precisely long multi-claim responses where one wrong number or one wrong instruction step is the hallucination; dilution is the failure mode the decomposition targets
+
+**R8-H93 - DANN lambda geometry, searched under a legal objective. Pre-registered**
+
+Because DANN's blind effect is governed by where lambda sits between task-dominance (no invariance, ERM behaviour) and feature inversion (the anti-prediction pathology measured at 0.1), a search over lambda can find the invariance point - but ONLY under an objective that measures generalisation without touching the arena. In-domain validation is disqualified by the four recorded in-domain/blind dissociations (H62, H78, H83/H84, H81); RAGBench is disqualified by blindness. The legal proxy is leave-one-corpus-out: hold ALL of HaluEval out of training and maximise AUC on it.
+
+- **Terse claim** - because the invariance point lies between 0 and the measured inversion at 0.1, Optuna TPE over lambda ∈ [0.003, 0.15] (log) and discriminator hidden ∈ {128, 256, 512}, maximising held-out-HaluEval AUC, will find lambda* whose LOCO AUC beats the in-study ERM baseline (lambda 0) by ≥ +0.02, with the discriminator parked within [0.5x, 1.5x] of chance at lambda*
+- **Scale discipline, stated pre-run** - trials are ~60k-pair subsamples of the full mix (HaluEval excluded), bf16 autocast, one epoch, GPU idx0 (RTX PRO 4000); the study compares trial-relative geometry, not absolute quality. lambda* transfers to the NEXT full-scale DANN run (H90 launches at the registered 0.02 regardless; the sweep refines its successor)
+- **Baseline inside the study** - trial 0 is forced lambda ≈ 0 (ERM) so the LOCO lift is measured against the same subsample, same budget, same hardware
+- **Artifacts** - `R8-H93_lambda_sweep.py`, study db `R8-H93_optuna.db` (gitignored), per-trial log `R8-H93_trials.json`
+
+**R8-H92 - result. Decomposition is the largest single lift of the campaign; a single 307M student now beats the incumbent blind**
+
+Scorer `experiments/grounding-semantic/R8-H92_decomposed_arena.py`, frozen checkpoints, pre-registered formula (per-sentence max-over-chunks, MIN over sentences), single shot.
+
+| subset | ens min | H84 min | H79 min | ens mean | lettucedect-v2 | delta (ens min) |
+|---|---|---|---|---|---|---|
+| expertqa | 0.8066 | 0.7804 | 0.7995 | 0.7947 | 0.6503 | +0.1563 |
+| pubmedqa | 0.6622 | 0.6441 | 0.6560 | 0.5338 | 0.5162 | +0.1460 |
+| techqa | 0.7633 | 0.7657 | 0.7604 | 0.7406 | 0.6363 | +0.1270 |
+| tatqa | 0.6913 | 0.6643 | 0.6998 | 0.6199 | 0.6156 | +0.0757 |
+| hagrid | 0.6734 | 0.6857 | 0.6424 | 0.6036 | 0.5992 | +0.0742 |
+| emanual | 0.6689 | 0.6768 | 0.6949 | 0.6126 | 0.5999 | +0.0690 |
+| hotpotqa | 0.6226 | 0.6062 | 0.6057 | 0.5567 | 0.5976 | +0.0250 |
+| covidqa | 0.7310 | 0.7223 | 0.7344 | 0.7351 | 0.7355 | -0.0045 |
+| finqa | 0.6246 | 0.6510 | 0.6015 | 0.6041 | 0.7170 | -0.0924 |
+| delucionqa | 0.6487 | 0.6231 | 0.6618 | 0.7485 | 0.7929 | -0.1442 |
+| **mean** | **0.6893** | **0.6820** | **0.6856** | 0.6550 | **0.6461** | **+0.0432, 7/10 won** |
+
+- **Verdict - CONFIRMED, decisively.** Bar was ensemble-min ≥ 0.667 with none below chance: measured 0.6893, none below chance. +0.0423 over the H88 whole-response ensemble from a formula change alone on the SAME frozen weights
+- **The headline is in the pre-declared diagnostics: single-model beats.** H84 alone under min-scoring reads 0.6820 and H79 v1 alone 0.6856 - both above the incumbent's 0.6461 through the frozen gate with RAGBench untouched. The project's first LEGAL single-model blind beats, at 307M, size-matched. H79 v1's "refutation" was a scoring artifact: whole-response dilution masked the better sentence-level scorer
+- **The mechanism read** - dilution was the failure mode exactly where predicted: pubmedqa (long cited abstracts answers) flipped from -0.0088 to +0.1460, expertqa +0.1563, techqa +0.1270. `finqa` improved +0.055 but stays -0.0924 (register gap, TabFact pending in H90/H91). `delucionqa` PREFERS mean-aggregation (0.7485 vs 0.6487) - procedural manual answers where sentence fragments score spuriously low; covidqa marginally likewise
+- **Supersession, recorded now** - decomposed-min becomes the PRIMARY arena read for every subsequent incarnation (H90, H91, H73), with whole-response recorded alongside for lineage continuity. The ladder: incumbent 0.6461 → H88 0.6470 → **H92 0.6893**; distance to the 0.74 target: 0.0507
+- **The delucionqa/covidqa preference for mean motivates R8-H94** - one soft aggregator between min and mean, its shape tuned LEGALLY (RAGTruth, never RAGBench), frozen, then one arena shot
+
+**R8-H94 - soft aggregation between min and mean, tuned on RAGTruth. Pre-registered**
+
+Because min-aggregation wins 8 subsets while mean wins delucionqa (+0.0998 over min) and covidqa, a single response-level aggregator with one shape parameter - quantile q or soft-min temperature, interpolating min → mean - can keep min's gains where dilution rules and mean's robustness where fragment noise rules, IF its shape is chosen without touching the arena.
+
+- **Terse claim** - because the aggregator shape generalises across corpora of multi-sentence responses, the shape maximising mean AUC across RAGTruth EN + 7 translations (response-level, sentence-decomposed, H84 and H79 scored separately and averaged) will, frozen and applied once to the arena ensemble, read blind mean ≥ 0.6893 (no worse than pure min) with delucionqa improving ≥ +0.02
+- **Tuning corpus** - RAGTruth test responses (multi-sentence LLM outputs, human span labels), the harness that already serves the in-domain bars; RAGBench untouched until the single frozen-shape shot
+- **Search space, fixed pre-run** - quantile q ∈ {0 (=min), 0.05, 0.1, 0.15, 0.2, 0.25, 0.35, 0.5}, soft-min temperature τ ∈ {2, 4, 8, 16, 32}, and blend alpha·min + (1−alpha)·mean, alpha ∈ {0.5, 0.65, 0.8, 0.9, 1.0}; argmax by mean of the two members' RAGTruth AUCs
+- **Artifacts** - `R8-H94_soft_aggregation.py`: stage 1 caches per-sentence RAGTruth scores (GPU), stage 2 sweeps aggregators on the cache (CPU), stage 3 `--arena` applies the single frozen winner
+
+### Amendment - 2026-07-31, the author registers the curriculum fanout: understand domains first, then forget them
+
+Directed by the author: "we may perform GroupDRO training such that we lift all groups - and once it plateaus we could enter second stage training with DANN... this way we make sure domain understanding is great - and then perform a phase shift (must be long). Hypothesis is that the model will learn to generalise from well understood domains."
+
+The fanout attacks both recorded single-stage failure modes at once: R8-H79 v1 showed DANN-from-scratch inverts domain features (anti-prediction), R8-H81 showed worst-group GroupDRO starves 10 of 12 groups (q-collapse). The curriculum claim is that each stage supplies what the other lacks - stage 1 builds a trunk that has mastered EVERY domain's boundary, stage 2 then removes domain identity from features that already encode the task.
+
+**R8-H95 - lift-all-groups GroupDRO (stage 1 objective). Pre-registered**
+
+Because H81's q-collapse came from unsmoothed exponentiated-gradient fixation (eta 0.01, two groups took 97% of the weight), GroupDRO with uniform smoothing q ← (1−α)q + α/n (α 0.2) and eta 0.003 on the FULL 762k mix will keep every group's weight above α/n by construction and lift ALL groups rather than two.
+
+- **Terse claim** - because smoothing bounds every group's minimum weight, per-group held-out AUC will improve for ≥ 12 of 13 groups over training (vs H81's starvation), and the blind decomposed-min read will land ≥ the H91 ERM control (same data, same budget) rather than 0.035 below it as H81 did vs H84
+- **Per-group validation, defined pre-run** - 2,000 held-out pairs per group sampled from each training corpus before training (train rows only, arena untouched); the all-groups-lifted criterion and the plateau rule both read from these
+- **Standalone verdict** - H95 is judged as a single-stage model in its own right AND doubles as stage 1 of H96
+
+**R8-H96 - the phase shift: GroupDRO → DANN curriculum. Pre-registered**
+
+The author's core hypothesis: a model generalises FROM well-understood domains. Stage 1 (H95) trains until plateau; stage 2 loads the plateaued trunk, replaces the objective with DANN (fresh discriminator, GRL ramp restarted, lambda from the H93 sweep winner - 0.02 fallback if H93 is inconclusive), and trains long.
+
+- **Terse claim** - because invariance imposed on features that already encode every domain's task boundary removes domain identity WITHOUT removing task signal (whereas DANN-from-scratch inverted it), the curriculum model's blind decomposed-min read will beat the best single-stage single-model read at its run date by ≥ +0.01, with the stage-2 discriminator parking AT chance (in [0.5x, 1.5x] of 1/13) rather than anti-predicting
+- **Plateau rule, fixed pre-run** - evaluate per-group val AUC every 2,000 steps; plateau = no group improves > 0.003 for 3 consecutive evals; stage 1 also hard-caps at 1.5 epochs. Phase shift is a checkpoint save + separate stage-2 launch (detached-compute discipline), so the boundary is inspectable
+- **Long, by direction** - stage 2 runs a full epoch over the 762k mix minimum; combined budget ~2.5 epochs, ~12h on GPU1
+- **Controls already registered** - H90 (DANN-only, same data) and H91 (ERM-only, same data) at matched scale; H95 supplies the GroupDRO-only arm. Curriculum vs all three isolates the phase-shift contribution
+- **Kill condition** - if stage 2 re-enters anti-prediction (domain-acc < 0.02 at half-ramp) on a mastered trunk, the inversion pathology is not a curriculum problem and the DANN lever escalates to v3 (stronger discriminator) as registered
+- **Queue** - GPU1 serial after the running pair: H73 → H90 → H91 → H95 (stage 1) → H96 (stage 2); H93's lambda* feeds stage 2
+
+**R8-H94 - result. The RAGTruth-tuned shape does not transfer; pure min stays primary**
+
+Stage 1/2: cache + sweep on RAGTruth EN + 7 translations picked **softmin tau 2.0** (RAGTruth mean 0.7698 vs pure min's 0.7406 - on RAGTruth, softer is decisively better, full 18-candidate table in `logs/R8-H94-soft-aggregation.log`). Stage 3: one frozen shot on the arena.
+
+| read | blind mean | vs H92 min |
+|---|---|---|
+| ensemble softmin tau 2.0 (frozen from RAGTruth) | 0.6613 | -0.0280 |
+| ensemble pure min (H92) | **0.6893** | - |
+| incumbent | 0.6461 | - |
+
+- **Verdict - REFUTED on the primary bar** (0.6613 < 0.6893). The delucionqa clause of the prediction was CONFIRMED: +0.0814 (0.6487 → 0.7301), and covidqa +0.0039 - precisely the two subsets diagnosed as mean-preferring. The other eight all regressed (pubmedqa -0.1062, hotpotqa -0.0626, tatqa -0.0563)
+- **The finding** - aggregation preference is corpus-dependent and RAGTruth is NOT a valid transfer proxy for it: RAGTruth's global preference (soft) matches delucionqa's failure mode (fragment noise in procedural answers) but not the dilution-dominated majority. A single global shape cannot serve both regimes
+- **Consequence** - decomposed pure-MIN remains the primary arena read. A dispersion- or length-conditioned aggregator (choose shape per response from its own sentence-score statistics, no arena input) is the registrable follow-up idea, parked behind the training runs
+- **Method note** - this is the loop working as designed: the shape was tuned on legal terrain, frozen, and spent exactly one arena shot to learn a transferable negative
+
+**R8-H73 - result. The two-head trunk is the best in-domain model ever and a mid-pack blind model; fusion does not stack with decomposition**
+
+Trainer `experiments/grounding-semantic/R8-H73_twohead.py`, checkpoint `models/R8-H73-mmbert-twohead`. Score head on all pairs + token head on the span-carrying corpora, fused at inference as (p_score + 1 − max halluc-token)/2.
+
+In-domain, 3/3 DECISIVE and a new gold record: gold **0.8843** (score head 0.8530, token head alone **0.8896**, head Spearman 0.819), RAGTruth EN 0.8170, non-EN 0.8357.
+
+Blind, both reads: whole-response 0.6366 (6/10); decomposed-min PRIMARY **0.6607** (7/10, beats the incumbent's 0.6461 by +0.0146) - below H84-min 0.6820 and H79-min 0.6856.
+
+- **Verdict - Kept, in-domain champion; blind mid-pack.** The R8-H64 orthogonality promise partially held: heads correlate more after joint training (Spearman 0.819 on gold vs the untrained -0.046..+0.083) yet fusion still lifts in-domain. Blind, the fused per-pair score already embeds a token-level min, and sentence-level min on top over-sharpens - two AND-aggregations stack into an over-strict read
+- **The token head is real on tables** - tatqa 0.7013 under the primary read is the best tatqa of the project (vs H79-min 0.6998), consistent with the R8-H85 diagnosis that a hallucinated number is a localized token event
+- **Follow-up idea, parked unregistered** - a token-head-only blind read exists as a lever but would be read-shopping without a pre-registered mechanism claim; register before running if wanted
+
+**R8-H97 - three-member decomposed-min ensemble (ERM + DANN + two-head). Pre-registered**
+
+Because H73 trains a third objective (token supervision) on the same data and its per-subset profile decorrelates from both members (best-ever tatqa, strong pubmedqa, weak hotpotqa), adding it to the H92 ensemble may recover more of the oracle.
+
+- **Terse claim** - because three objectives decorrelate more than two, the unweighted mean of the three models' per-sentence scores, min over sentences, will read blind mean ≥ 0.6920 (+0.0027 over H92) with ≥ 7/10 subsets and none below chance; if it reads < 0.6893 the two-member ensemble stands and the weaker member is confirmed as dilution
+- **Members frozen** - H84, H79 v1, H73; identical gate, identical formula, one shot
+
+**R8-H97 - result. The third member dilutes; the two-member ensemble stands**
+
+One shot, members frozen: blind mean **0.6871** vs the pre-registered bar 0.6920 and the H92 two-member 0.6893. Per the hypothesis's own outcome branch: REFUTED - H73 (0.6607 solo) is confirmed as dilution, not decorrelation-gain. Footnote for the record: ens3 won 8/10 subsets (one more than H92) with pubmedqa +0.1089 and techqa +0.1181, so the third objective DOES redistribute; it just costs more mean than it buys. The H92 configuration remains the ladder holder at 0.6893.
+
+**R8-H93 - result. DANN lifts never-seen-corpus transfer at every lambda; the peak lives in the anti-predictive band, at high variance**
+
+Study `R8-H93_optuna.db`, 22 completed trials over two parallel workers (GPU idx0 + idx2). `R8-H93_trials.json` was rebuilt from the sqlite study post-run: each worker's local write held only its own trials (the anticipated last-writer-wins overwrite), and worker2 exited on a StopIteration in its summary print because its local list lacked trial 0 - after all its trials had committed to the db. No data loss; the db is canonical.
+
+| lambda band | trials | LOCO AUC | final domain-acc (chance 0.083) |
+|---|---|---|---|
+| 0 (ERM baseline) | 1 | 0.6278 | 0.867 |
+| 0.003 | 2 | 0.6249-0.6615 | 0.87-0.91 (no invariance) |
+| 0.016-0.028 | 6 | 0.6386-0.6852 | 0.03-0.41 |
+| 0.042-0.094 | 8 | 0.6160-0.6937 | 0.001-0.30 |
+| 0.124-0.134 | 5 | 0.6226-**0.7418** | 0.000-0.001 (anti-prediction) |
+
+- **Verdict - Confirmed on the lift clause, REFUTED on the geometry clause.** The bar (winner beats in-study ERM by ≥ +0.02) is cleared by 5.7x: lam_max 0.1241, hidden 256, LOCO 0.7418 vs ERM 0.6278, lift +0.1140. But the claim's second clause - discriminator parked within [0.5x, 1.5x] of chance at lambda* - fails: the winner is fully anti-predictive (dom-acc 0.001)
+- **The structural finding** - ERM ranks 19th of 22; every lambda ≥ 0.016 beats it in expectation. The high band (0.124-0.134, 5 trials) holds both the peak AND the widest spread (0.6226-0.7418, all anti-predictive) - identical hyperparameters, ~0.12 of AUC apart. The stable regime is lam 0.06-0.07 with dom-acc 0.05-0.14: 0.6937/0.6903, no collapse
+- **What this breaks** - the working equivalence "anti-prediction = failure" (from H79 v1's lambda-0.1 collapse) does not survive: under a legal transfer objective the anti-predictive regime can carry the BEST never-seen-corpus AUC. It is a high-variance regime, not a dead one. Scale caveat as registered: trials are 60k-pair subsamples, one epoch; geometry is trial-relative
+- **Feeds H96 as registered** - `pick_lambda` reads the rebuilt json and selects lam 0.1241 / hidden 256 (winner beats ERM, so no fallback). The selection mechanism was fixed pre-run and stands; the variance observation is recorded, not acted on
+
+### Amendment - 2026-08-01, the H96 kill condition is re-grounded by H93's evidence
+
+The pre-registered H96 kill ("stage 2 re-enters anti-prediction, domain-acc < 0.02 at half-ramp → kill") would deterministically kill the sweep's own winning lambda: all five high-band trials sit at dom-acc ≤ 0.001, including the LOCO winner. That kill was written when anti-prediction was believed a pure failure mode; H93 refutes the equivalence. Amended BEFORE H96 launches, recorded here:
+
+- **The kill moves task-side** - stage 2 is killed if any group's val AUC falls > 0.05 below its stage-1 plateau value for 2 consecutive evals (2,000-step cadence), or task loss diverges. Domain-acc is demoted from kill criterion to recorded diagnostic
+- **The H96 prediction clauses stand as written** - the terse claim still predicts the stage-2 discriminator parks AT chance on a mastered trunk; if it anti-predicts instead, that clause is adjudicated refuted even if the blind read wins
+- **Nothing else moves** - lambda* 0.1241 / hidden 256 per `pick_lambda`, bars, plateau rule, and the three controls (H90 DANN-only, H91 ERM-only, H95 GroupDRO-only) unchanged
+
+**R8-H90 - result. Full corpora + DANN in one 307M student: 0.7213 blind, the new ladder holder**
+
+Trainer `R8-H90_dann_full.py`, checkpoint `models/R8-H90-mmbert-dann-full`; 762,535 pairs / 13 groups, LAMBDA_MAX 0.02, one epoch (15,887 steps, ~6.3h GPU1). In-domain guardrail 3/3 DECISIVE: gold **0.8418** (clears even the unrelaxed 0.84 line), RAGTruth EN 0.8201, non-EN 0.8370.
+
+| subset | whole | min (primary) | H92 ens | lettucedect-v2 | delta (min) |
+|---|---|---|---|---|---|
+| expertqa | 0.6885 | 0.8248 | 0.8066 | 0.6503 | +0.1745 |
+| tatqa | 0.6202 | 0.7718 | 0.6913 | 0.6156 | +0.1562 |
+| hotpotqa | 0.7238 | 0.7253 | 0.6226 | 0.5976 | +0.1277 |
+| techqa | 0.6741 | 0.7529 | 0.7633 | 0.6363 | +0.1166 |
+| emanual | 0.6586 | 0.7058 | 0.6689 | 0.5999 | +0.1059 |
+| pubmedqa | 0.5011 | 0.6058 | 0.6622 | 0.5162 | +0.0896 |
+| hagrid | 0.5852 | 0.6516 | 0.6734 | 0.5992 | +0.0524 |
+| covidqa | 0.7882 | 0.7755 | 0.7310 | 0.7355 | +0.0400 |
+| finqa | 0.5674 | 0.6730 | 0.6246 | 0.7170 | -0.0440 |
+| delucionqa | 0.7306 | 0.7263 | 0.6487 | 0.7929 | -0.0666 |
+| **mean** | 0.6538 | **0.7213** | 0.6893 | 0.6461 | **+0.0752, 8/10 won** |
+
+- **Verdict - CONFIRMED, decisively; new ladder holder.** Bar was blind mean ≥ 0.6461: measured **0.7213** under the primary decomposed-min read, 8/10 subsets, none below chance. The ladder: incumbent 0.6461 → H88 0.6470 → H92 0.6893 → **H90 0.7213**. Distance to the author's 0.74 target: 0.0187
+- **A single model beats the frozen two-member ensemble by +0.0320** - full-scale data + DANN buys more than error-averaging over the capped-mix members; the H89 distillation premise (ensemble > any member) must be re-checked against H90-class members
+- **The registered residuals moved exactly where the levers pointed** - tatqa 0.7718 is the project record (+0.0805 over the ensemble; the TabFact tabular register), finqa 0.6730 narrows its loss from -0.0924 to -0.0440, hotpotqa +0.1027 over the ensemble (multi-hop, plausibly VitaminC+scale), delucionqa narrows -0.1442 → -0.0666. Only finqa and delucionqa still lose
+- **Health note, recorded honestly** - the pre-registered health band (domain-acc parks in [0.03, 0.15] at full ramp) was violated on the PREDICTIVE side: dom-acc held ~0.48-0.52 against chance 0.077 through the entire ramp. Lambda 0.02 under-invariances at full scale; no anti-prediction, so no kill. Consistent with H93's independent finding that the transfer optimum sits at higher lambda - the upward lambda lever stays open (H96 stage 2 runs at 0.1241)
+- **The decomposition gap replicates on new weights** - whole 0.6538 → min 0.7213 (+0.0675), same order as H92's mechanism predicted; pubmedqa remains the extreme case (whole 0.5011 → min 0.6058)
+- **Attribution pending H91** (ERM control, running) - H90 − H91 isolates the adversarial objective at full scale; H91 − H84 isolates the data
+
+**R8-H98 - two-member decomposed-min ensemble at the new holder: H90 + H91. Pre-registered, gated on H91's solo read**
+
+Because H92 showed unweighted error-averaging lifts the mean when members are near-equal (0.6820/0.6856 → 0.6893, +0.0037 over the best member) while H97 located dilution at a member ~0.025 below the pair (0.6871 < 0.6893), the ensembling question at 0.72 has a recorded boundary: it pays only between near-equals. H91 (same 762k mix, ERM objective) is the only candidate that can be both near-equal AND objective-decorrelated from H90; H79/H84 sit 0.036+ below the holder, past the recorded dilution boundary, and are excluded by that evidence.
+
+- **Terse claim** - because H90 and H91 share data but differ in objective (adversarial invariance vs plain ERM), their per-sentence errors partially decorrelate; IF H91's solo decomposed-min lands within 0.02 of H90's 0.7213, the unweighted mean of the two models' per-sentence scores, min over sentences, will read ≥ max(member solo) + 0.002 with ≥ 7/10 subsets; a read below the best member confirms that same-data objective diversity does not decorrelate enough to pay at this level
+- **Kill-gate, fixed pre-run** - if H91's solo min-read lands more than 0.02 below H90's (< 0.7013), H98 is killed at gate by the H97 dilution boundary without spending an arena shot
+- **Members frozen once trained** - H90, H91; identical gate and formula; one shot; artifacts `R8-H98_ensemble_full.py`, `R8-H98_result.json`
+
+**R8-H91 - result. The ERM control lands at 0.6965; the attribution triangle resolves, and DANN owns the larger lever**
+
+Trainer `R8-H91_erm_full.py`, checkpoint `models/R8-H91-mmbert-erm-full`; identical 762,535-pair mix, plain BCE, one epoch (23,823 steps, ~6h GPU1). In-domain 3/3 DECISIVE: gold **0.8576** (the best gold of the full-mix pair; per-language non-EN 0.8294-0.8775), RAGTruth EN 0.8178, non-EN 0.8430.
+
+| subset | whole | min (primary) | H90 min | lettucedect-v2 | delta (min) |
+|---|---|---|---|---|---|
+| expertqa | 0.6523 | 0.7962 | 0.8248 | 0.6503 | +0.1459 |
+| hotpotqa | 0.7335 | 0.7164 | 0.7253 | 0.5976 | +0.1188 |
+| emanual | 0.6096 | 0.7119 | 0.7058 | 0.5999 | +0.1120 |
+| tatqa | 0.6061 | 0.7267 | 0.7718 | 0.6156 | +0.1111 |
+| techqa | 0.7058 | 0.7441 | 0.7529 | 0.6363 | +0.1078 |
+| pubmedqa | 0.5309 | 0.6114 | 0.6058 | 0.5162 | +0.0952 |
+| hagrid | 0.6333 | 0.6396 | 0.6516 | 0.5992 | +0.0404 |
+| covidqa | 0.7624 | 0.7438 | 0.7755 | 0.7355 | +0.0083 |
+| finqa | 0.4810 | 0.6439 | 0.6730 | 0.7170 | -0.0731 |
+| delucionqa | 0.7469 | 0.6313 | 0.7263 | 0.7929 | -0.1616 |
+| **mean** | 0.6462 | **0.6965** | 0.7213 | 0.6461 | **+0.0504, 8/10 won** |
+
+- **Verdict - Confirmed as the attribution control.** Bar (blind mean ≥ 0.6461) cleared under the primary read at 0.6965, 8/10; guardrail 3/3 DECISIVE. H91 is itself the second-best single model ever measured - and it exists to be subtracted from
+- **The attribution triangle, the reason this run was registered** - objective: H90 − H91 = **+0.0248** (adversarial invariance at full scale); data: H91 − H84 = **+0.0145** (full corpora incl. TabFact over the capped mix). Both levers real; DANN's is 1.7x the data's. The author's directive that DANN is the central lever is confirmed by run-isolated evidence
+- **Where the adversarial objective acts** - H90 beats its ERM twin on 8/10 subsets, largest exactly on the residual losses: delucionqa +0.0950, tatqa +0.0451, covidqa +0.0317, finqa +0.0291; only emanual (-0.0061) and pubmedqa (-0.0056) marginally prefer ERM. Domain-invariance pays most where the eval register is furthest from the training mix
+- **In-domain/blind dissociation, again** - H91 wins gold (0.8576 vs 0.8418) yet loses blind (0.6965 vs 0.7213); the fifth recorded instance. In-domain selection would have picked the wrong model
+- **R8-H98 adjudication** - H91 solo 0.6965 < 0.7013: **killed at gate** as pre-registered; the arena shot is not spent; H90 stands alone as the holder. The ensemble path at the holder level is closed until a second model lands within 0.02 of it
+
+**R8-H95 - result. All 13 groups lifted - the starvation fix works - but forced balance still costs blind; the trunk ships to stage 2**
+
+Trainer `R8-H95_groupdro_lift.py`, checkpoint `models/R8-H95-mmbert-groupdro-lift` (trunk/ exported for H96); 762,535 pairs / 13 groups, batch 52 (13×4 stratified), eta_q 0.003, smoothing α 0.2, stopped at the 1.5-epoch cap (21,246 steps, ~9.8h GPU1) - the plateau rule never fired because some group kept improving every eval.
+
+Stage-1 facts: **13/13 groups lifted** vs first eval (bar ≥ 12/13); group-val mean 0.8262 → 0.9551; TabFact, the designated rescue case, 0.5242 → 0.7815 (+0.2573, the biggest climber and still rising at the cap); **q pinned uniform at 1/13 the entire run** (q_max = q_min = 0.077-0.078 at every logged step).
+
+| subset | whole | min (primary) | H91 min | lettucedect-v2 | delta (min) |
+|---|---|---|---|---|---|
+| expertqa | 0.6764 | 0.7685 | 0.7962 | 0.6503 | +0.1182 |
+| pubmedqa | 0.4545 | 0.6191 | 0.6114 | 0.5162 | +0.1029 |
+| emanual | 0.5596 | 0.7022 | 0.7119 | 0.5999 | +0.1023 |
+| techqa | 0.6384 | 0.7362 | 0.7441 | 0.6363 | +0.0999 |
+| hagrid | 0.5254 | 0.6743 | 0.6396 | 0.5992 | +0.0751 |
+| tatqa | 0.5870 | 0.6825 | 0.7267 | 0.6156 | +0.0669 |
+| covidqa | 0.7320 | 0.7275 | 0.7438 | 0.7355 | -0.0080 |
+| hotpotqa | 0.5945 | 0.5879 | 0.7164 | 0.5976 | -0.0097 |
+| finqa | 0.5336 | 0.7053 | 0.6439 | 0.7170 | -0.0117 |
+| delucionqa | 0.6352 | 0.6662 | 0.6313 | 0.7929 | -0.1267 |
+| **mean** | 0.5937 | **0.6870** | 0.6965 | 0.6461 | **+0.0409, 6/10 won** |
+
+- **Verdict - Confirmed on the mechanism clause, REFUTED on the blind clause.** Clause 1 (≥ 12/13 groups lift, vs H81's two-group starvation): 13/13, decisively. Clause 2 (blind decomposed-min ≥ the H91 ERM control): 0.6870 vs 0.6965, short by 0.0095 - though the gap to the ERM twin narrowed 3.7x from H81's -0.035. The smoothing fix repairs the training pathology; it does not make group-balanced training blind-superior
+- **Why q never moved** - with smoothing α 0.2 re-flattening every step and stratified batches feeding all groups, no group's loss stayed dominant long enough for the exponentiated-gradient to differentiate; the effective objective was balanced ERM with a floor. The blind cost vs H91 therefore traces to BATCH COMPOSITION: forced 1/13-per-group balance upsamples the small synthetic groups and downsamples the natural-frequency mix that H91 sampled - and natural frequency wins blind
+- **The mastery is real and it transfers where it was aimed** - finqa 0.7053 is the best finqa of the campaign (TabFact group-val 0.78 transferring to the tabular-financial register; the residual loss is now -0.0117), delucionqa 0.6662 beats both full-mix twins. The bill lands on hotpotqa (0.5879, -0.1285 vs H91)
+- **As curriculum stage 1, the deliverable stands** - the author's hypothesis wanted a trunk that has mastered EVERY domain's boundary before invariance is imposed; 13/13 lifted at group-val 0.955 is that trunk. H96 (launched on this trunk, lambda* 0.1241) adjudicates whether generalisation-from-mastery holds; H95's own blind read is the honest cost accounting of stage 1 alone
+
+**R8-H96 - result. The curriculum is refuted: invariance on a mastered trunk loses to single-stage DANN, and stage 2 undoes stage 1's mastery blind**
+
+Trainer `R8-H96_phase_shift.py`, checkpoint `models/R8-H96-mmbert-phase-shift`; stage-1 trunk loaded, fresh DANN heads, lambda* 0.1241 / hidden 256 via the registered `pick_lambda`, 736,535 pairs (val carve-out held), one epoch (15,345 steps, ~5.7h GPU1), natural-shuffle batches (stage 2 matches H90's sampling; only the trunk init and lambda differ from H90). Task health perfect throughout: per-group val mean rose 0.9551 → 0.9610, TabFact group-val 0.7733 → 0.8092, the amended task-side kill never approached. In-domain: gold 0.8489, RAGTruth EN 0.7818, non-EN 0.8070 - all above decisive, EN ~0.04 below the low-lambda twins (the invariance tax).
+
+| subset | whole | min (primary) | H95 stage1 | H90 min | lettucedect-v2 | delta (min) |
+|---|---|---|---|---|---|---|
+| pubmedqa | 0.4477 | 0.6446 | 0.6191 | 0.6058 | 0.5162 | +0.1284 |
+| tatqa | 0.6289 | 0.6904 | 0.6825 | 0.7718 | 0.6156 | +0.0748 |
+| emanual | 0.5569 | 0.6695 | 0.7022 | 0.7058 | 0.5999 | +0.0696 |
+| expertqa | 0.6443 | 0.7189 | 0.7685 | 0.8248 | 0.6503 | +0.0686 |
+| techqa | 0.6471 | 0.7027 | 0.7362 | 0.7529 | 0.6363 | +0.0664 |
+| hagrid | 0.5592 | 0.6562 | 0.6743 | 0.6516 | 0.5992 | +0.0570 |
+| covidqa | 0.7654 | 0.7644 | 0.7275 | 0.7755 | 0.7355 | +0.0289 |
+| hotpotqa | 0.6175 | 0.6228 | 0.5879 | 0.7253 | 0.5976 | +0.0252 |
+| finqa | 0.5157 | 0.6417 | 0.7053 | 0.6730 | 0.7170 | -0.0753 |
+| delucionqa | 0.7083 | 0.7088 | 0.6662 | 0.7263 | 0.7929 | -0.0841 |
+| **mean** | 0.6091 | **0.6820** | 0.6870 | 0.7213 | 0.6461 | **+0.0359, 8/10 won** |
+
+- **Verdict - REFUTED on both clauses.** Blind clause: 0.6820 vs the bar 0.7313 (best single-stage read + 0.01) - it also sits below its own stage 1 (0.6870) and the ERM twin (0.6965). Geometry clause: the stage-2 discriminator parked at ~0.50 predictive (half-ramp 0.359, final 0.501, chance 0.077), not at chance; notably the ORIGINAL anti-prediction kill would never have fired either - on a mastered trunk, lambda 0.1241 yields a stable predictive equilibrium, a third geometry class beside from-scratch anti-prediction (H93) and low-lambda predictivity (H90)
+- **The sharpest finding is the internal dissociation** - stage 2 RAISED every in-domain group-val (TabFact 0.7733 → 0.8092, mean to 0.9610) while LOWERING blind performance on exactly the corresponding registers: finqa fell 0.7053 → 0.6417 (stage 1's best-of-campaign tabular transfer, undone), expertqa 0.7685 → 0.7189, techqa 0.7362 → 0.7027. Invariance imposed on the mastered trunk strips features that transferred, while polishing the in-domain fit. The author's mechanism ("remove domain identity from features that already encode the task") removed more than identity
+- **What survives** - pubmedqa 0.6446 is the best single-model pubmedqa of the campaign (the one register where stage-2 invariance helped blind), and the run is still +0.0359 over the incumbent with 8/10: a decent model, not a holder
+- **Attribution gap, stated honestly** - H96 differs from H90 in TWO variables (trunk init AND lambda 0.02 → 0.1241); this run cannot say which caused the loss. R8-H99 (below) isolates them
+- **Consequence for R8-H82** - the GroupDRO+DANN composition question is adjudicated by the curriculum pair: refuted at this operating point in both orders tested (H81 joint-style worst-group, H95/H96 sequential); no further composition run is scheduled
+
+**R8-H99 - full-corpus DANN from scratch at the H93 winner lambda. Pre-registered**
+
+Because H93's LOCO geometry puts the transfer optimum at high lambda (winner 0.1241 → 0.7418 vs 0.6386 at 0.026, every lambda ≥ 0.016 beating ERM) and H90's discriminator never left the predictive regime at lambda 0.02 (dom-acc ~0.49 at full ramp - under-invariance), raising lambda to the sweep winner on the OTHERWISE UNCHANGED H90 recipe is the single-variable test of whether the LOCO optimum transfers to the blind arena at full scale - and it simultaneously attributes H96's failure: H99 vs H90 isolates lambda, H99 vs H96 isolates the trunk init.
+
+- **Terse claim** - because the LOCO transfer optimum sits at lambda ~0.124 and H90 is under-invariant at 0.02, the identical H90 recipe (full 762k natural-frequency mix, from scratch, one epoch) with LAMBDA_MAX 0.1241 will read blind decomposed-min ≥ 0.7313 (H90 + 0.01) with ≥ 7/10 subsets; guardrail: 3 in-domain bars beaten, gold ≥ 0.80
+- **Risk registered pre-run** - the high-lambda band is high-variance in H93 (five same-band trials span 0.6226-0.7418) and went anti-predictive from scratch at sweep scale; a healthy-training read < 0.7213 is adjudicated REFUTED and is itself evidence that the band's variance is real at full scale, with the stable band (lambda ~0.065, LOCO 0.690-0.694, dom-acc 0.05-0.14) as the registered follow-up point
+- **Kill condition** - task-loss divergence / non-finite only; discriminator geometry (anti-prediction included) is a recorded diagnostic per the H93 evidence, not a kill
+- **Artifacts** - `R8-H99_dann_highlambda.py` (H90 clone, LAMBDA_MAX 0.1241), checkpoint `models/R8-H99-mmbert-dann-highlambda`, `R8-H99_result.json`
+
+**R8-H99 - result. Lambda 0.1241 loses -0.0300 to 0.02 at full scale; the LOCO proxy is invalidated; high lambda conquers the far registers and pays on the strongholds**
+
+Trainer `R8-H99_dann_highlambda.py`, checkpoint `models/R8-H99-mmbert-dann-highlambda`; identical H90 recipe, one epoch, only LAMBDA_MAX moved. Training healthy end to end; in-domain 3/3 DECISIVE (gold 0.8435, EN 0.8167, non-EN 0.8424 - no in-domain tax, unlike H96's EN dip).
+
+| subset | whole | min (primary) | H90 min | H96 min | lettucedect-v2 | delta (min) |
+|---|---|---|---|---|---|---|
+| expertqa | 0.6591 | 0.7676 | 0.8248 | 0.7189 | 0.6503 | +0.1173 |
+| techqa | 0.6662 | 0.7354 | 0.7529 | 0.7027 | 0.6363 | +0.0991 |
+| tatqa | 0.6574 | 0.6958 | 0.7718 | 0.6904 | 0.6156 | +0.0802 |
+| emanual | 0.7682 | 0.6592 | 0.7058 | 0.6695 | 0.5999 | +0.0593 |
+| pubmedqa | 0.4680 | 0.5581 | 0.6058 | 0.6446 | 0.5162 | +0.0419 |
+| covidqa | 0.7791 | 0.7696 | 0.7755 | 0.7644 | 0.7355 | +0.0341 |
+| hotpotqa | 0.5905 | 0.6241 | 0.7253 | 0.6228 | 0.5976 | +0.0265 |
+| hagrid | 0.5648 | 0.6135 | 0.6516 | 0.6562 | 0.5992 | +0.0143 |
+| finqa | 0.5491 | 0.7135 | 0.6730 | 0.6417 | 0.7170 | -0.0035 |
+| delucionqa | 0.8367 | 0.7757 | 0.7263 | 0.7088 | 0.7929 | -0.0172 |
+| **mean** | 0.6539 | **0.6913** | 0.7213 | 0.6820 | 0.6461 | **+0.0452, 8/10 won** |
+
+- **Verdict - REFUTED (branch 3 of the pre-registered table).** 0.6913 vs the bar 0.7313; below H90's 0.7213, above H96's 0.6820. H90 keeps the ladder
+- **The attribution the run was built for** - lambda effect at full scale: **-0.0300** (H99 vs H90, single variable); trunk effect at matched lambda: **-0.0093** (H96 vs H99). The curriculum's -0.0393 deficit is fully decomposed: three quarters lambda, one quarter trunk
+- **LOCO-HaluEval is invalidated as a lambda-selection proxy** - the sweep said 0.1241 ≫ 0.02-band (0.7418 vs ~0.64-0.69); the blind arena says 0.02 > 0.1241 by 0.0300. Recorded beside H94's RAGTruth-aggregation invalidation: both legal proxies measured so far do NOT transfer their preferences to the arena. Lambda 0.02 stands as validated near-optimal at full scale (full-scale curve: lam 0 → 0.6965, 0.02 → 0.7213, 0.1241 → 0.6913)
+- **Geometry** - no anti-prediction at full scale (dom-acc ~0.44-0.49 through the ramp): H93's collapse at this lambda was a small-scale artifact of the 60k/1-epoch sweep trials, not a lambda property
+- **The redistribution finding** - strong invariance conquers the two far registers the campaign never held: finqa 0.7135 (campaign best, residual -0.0035 - effectively a tie) and delucionqa 0.7757 (campaign best; whole-response 0.8367 BEATS the incumbent's 0.7929 outright). It pays with the strongholds: hotpotqa -0.1012, tatqa -0.0760, expertqa -0.0572 vs H90. Invariance strength trades near-register sharpness for far-register transfer
+- **Ensemble at the holder measured closed, no shot spent** - H90/H99 per-subset Pearson r +0.777 (deltas +0.865): correlated, not complementary; oracle 0.7303 (+0.0090 over H90); member gap 0.0300 past the H97/H98 dilution gate. The complementarity idea died at its own diagnostic
+
+**R8-H100 - full-scale run-to-run variance probe: verbatim H90 replicate. Pre-registered**
+
+Because the H90 recipe seeds only the data split (SEED 0, private trace split - held fixed) while model init and batch order are unseeded, a verbatim rerun samples the run-to-run noise of the exact holder configuration - the quantity every recorded single-run delta is implicitly measured against, and never yet measured at full scale (H93's high-lambda band spread 0.12 at sweep scale is the warning).
+
+- **Terse claim** - because the full-scale regime trains 762k pairs for one epoch (far past the sweep-scale instability), the verbatim H90 rerun will read blind decomposed-min within ±0.010 of 0.7213, confirming the recorded deltas (H90−H91 +0.0248, H90−H99 +0.0300) as signal
+- **Pre-registered consequence** - if |read − 0.7213| > 0.02, every single-run delta of that magnitude or less in rounds 8 is demoted to within-noise, the affected verdicts get a noise annotation, and the campaign moves to multi-seed means before any further single-run adjudication
+- **Not an improvement hypothesis** - no ladder claim; the artifact paths change so the holder checkpoint is untouched
+- **Artifacts** - `R8-H100_dann_replicate.py` (verbatim clone, new CKPT/OUT), checkpoint `models/R8-H100-mmbert-dann-replicate`, `R8-H100_result.json`
+
+**R8-H100 - result. The demotion clause fires: full-scale run-to-run noise is ~±0.03, and the round-8 single-run deltas fall inside it**
+
+Verbatim H90 recipe, identical data and budget, second draw of the unseeded init/order. Training signature replicated (dom-acc ~0.47-0.50, same loss regime). In-domain 3/3 DECISIVE: gold 0.8511, EN 0.8304, non-EN 0.8398 (in-domain noise vs H90 ~±0.01).
+
+| read | H90 (draw 1) | H100 (draw 2) | gap |
+|---|---|---|---|
+| blind decomposed-min (primary) | 0.7213 | 0.6918 | **0.0295** |
+| blind whole-response | 0.6538 | 0.6464 | 0.0074 |
+| gold | 0.8418 | 0.8511 | 0.0093 |
+
+- **Verdict - the claim (within ±0.010) is REFUTED and the pre-registered consequence fires**: |0.6918 − 0.7213| = 0.0295 > 0.02. Run-to-run noise of the identical configuration on the primary blind read is ~±0.03. Every round-8 single-run TRAINING delta of that size or less is demoted to within-noise (enumerated in the amendment below)
+- **The recipe, honestly stated** - the full-762k DANN lambda-0.02 recipe reads mean 0.7066 over n=2 draws (0.7213, 0.6918). The "holder at 0.7213" was one draw, not the recipe. The multi-seed protocol (registered consequence) extends to n=3 before any further single-run adjudication
+- **What survives the noise bar, stated explicitly** - (1) every full-mix model beats the incumbent blind: margins +0.0452 to +0.0752 across four independent draws (H90, H91, H99, H100), all > 0.03, plus the deterministic frozen-weights H92 ensemble at +0.0432 - the incumbent beat is robust; (2) all formula comparisons on identical weights (decomposed-min over whole-response, +0.03 to +0.07; H94's softmin refutation; H97's dilution) are deterministic reads, untouched by training noise; (3) the H96 curriculum refutation vs its bar (margin 0.049) stands; (4) in-domain DECISIVE margins (+0.13 to +0.23) stand
+- **Sentence-min amplifies training noise** - whole-response gap 0.0074, decomposed-min gap 0.0295: the min-aggregation concentrates a response's score on its weakest sentence, so small per-sentence miscalibrations compound. The formula that buys +0.05 blind also multiplies variance ~4x. A noise-robust aggregation that keeps min's gains is now a live registrable question
+
+### Amendment - 2026-08-02, the noise bar: which round-8 verdicts demote
+
+R8-H100 measured run-to-run noise ~±0.03 on the primary blind read. Per its pre-registered consequence, the following single-run training-config deltas are DEMOTED to within-noise; recorded verdicts stay in place (append-only) with this amendment as their noise annotation:
+
+- **H90 − H91 = +0.0248 (the adversarial-objective attribution)** - demoted; whether DANN at 0.02 beats ERM at full scale is OPEN pending multi-seed means
+- **H99 − H90 = −0.0300 (lambda 0.1241 worse than 0.02)** - at the boundary; demoted to within-noise; the H99 REFUTED verdict vs its own bar (0.6913 vs 0.7313, margin 0.040) stands, but the lambda-attribution reading is open
+- **H96 − H99 = −0.0093 (trunk-init attribution)** and the 3/4-lambda-1/4-trunk decomposition - demoted; the curriculum's aggregate refutation vs its bar stands (margin 0.049)
+- **H91 − H84 = +0.0145 (the data lever)** - demoted; full-mix-vs-capped attribution open
+- **H95 − H91 = −0.0095 and H95's blind clause refutation** - the delta is within noise; the clause verdict (missed "≥ H91") is re-annotated as within-noise; the 13/13-groups-lifted mechanism confirmation (in-domain, different quantity) stands
+- **The H98 kill-gate decision** (0.6965 vs threshold 0.7013) - the gate fired on a within-noise difference; the kill stands procedurally (the gate was pre-registered) but the dilution inference is not evidence
+- **The benchmark ladder is restated as recipe means** - full-762k DANN lam-0.02: 0.7066 (n=2); full-762k ERM: 0.6965 (n=1); full-762k DANN lam-0.1241: 0.6913 (n=1); frozen H92 ensemble: 0.6893 (deterministic); incumbent: 0.6461. The author's 0.74 target is henceforth read against the recipe MEAN, and the honest distance from the best recipe is ~0.033
+- **Protocol from here** - no further single-run cross-config adjudication; new training hypotheses pre-register a multi-seed design (n ≥ 2 draws minimum, mean reported) or an effect-size bar > 0.03

@@ -13,8 +13,9 @@ Rounds 5-8 did not change what ships. They produced a **candidate successor** - 
 Two designs in this document, one deployed.
 
 - **Ships** - the two-cross-encoder OpenVINO int8 cascade described below, macro-F1 **0.789** end-to-end / **0.796** out-of-fold on the private gold, warm mean 585 ms per claim
-- **Candidate, not shipped** - a single distilled `mmBERT-base` cross-encoder (307.5M) that beats the public incumbent 3/3 on corpora it had training exposure to and loses 0.0505 AUC on the one corpus neither model saw
-- **The gate it has not passed** - a genuinely blind arena; incarnation R8-H83 is still training and no incarnation has cleared one, so nothing here supersedes the cascade
+- **Candidate, not shipped** - a single `mmBERT-base` cross-encoder (307.5M) that beats the public incumbent 3/3 in-domain DECISIVE and blind across every draw; the holder recipe (full-corpus DANN lambda 0.02) reads blind mean **0.7066 over 2 draws** (best draw R8-H90 at 0.7213, replicate 0.6918 - run-to-run noise ~±0.03, measured by R8-H100); the incumbent beat (+0.045 to +0.075 across four independent full-mix draws) is robust to the noise
+- **The blind gate now exists and has been partially cleared** - the R8-H77 RAGBench arena (10 subsets, seen by NEITHER model, RAGBench excluded from every training mix); the two-member ensemble R8-H88 (ERM + DANN students, unweighted mean) is the first result above the incumbent at 0.6470, recorded as a diagnostic (614M total, over the 400M single-model ceiling). No SINGLE model has cleared the gate; nothing here supersedes the cascade
+- **The benchmark ladder (blind RAGBench mean, frozen gate), stated as recipe means with the measured noise bar (~±0.03, R8-H100)** - incumbent 0.6461 → frozen H92 ensemble 0.6893 (deterministic) → **full-762k DANN lambda-0.02 recipe, mean 0.7066 over 2 draws (best draw H90 0.7213)** → **author-set target 0.74, read against the recipe mean (distance ~0.033)**; robust findings: every full-mix draw beats the incumbent (margins > noise), the decomposed-min formula lift is deterministic, the H96 curriculum refutation stands (margin 0.049); demoted to within-noise by R8-H100: the DANN-vs-ERM (+0.0248), lambda (−0.0300), data (+0.0145), and trunk (−0.0093) single-run attributions - all open pending multi-seed means; the LOCO-HaluEval and RAGTruth-aggregation proxies are invalidated; active run: holder-recipe draw 3 - experiments log, round 8 amendments
 - **Unchanged by rounds 5-8** - every shipped component, threshold, latency and footprint figure below
 - **Number discipline** - the experiments log's rounds 5-6 quote "the shipped cascade, macro-F1 0.824"; 0.824 belongs to the retired 6-model + lexical stack, not to this design, whose figures are 0.789 end-to-end and 0.796 out-of-fold
 
@@ -270,7 +271,43 @@ Incarnation 2 (`R8-H78`) added RAGBench train across all ten domains, ~30k pairs
 - **The 0.7041 is NOT countable as a win** - training on RAGBench-train makes RAGBench-test no longer blind for us while the incumbent has still never seen it; recorded for the mechanism it proves, not as evidence of generalisation
 - **In-domain cost of the diversity was small but real** - private gold 0.8531 → 0.8314 (-0.0217), RAGTruth EN -0.0061, non-EN +0.0008, all three bars held
 - **`delucionqa` is the honest residual** - still -0.1139 against the incumbent WITH direct supervision, the only subset where more data did not help, and the one remaining candidate for a genuine capability gap
-- **The fair arena has moved to HaluEval** - 24,507 rows, unseen by both models; incarnation R8-H83 (adding HaluEval and PsiloQA) is still training
+- **The fair arena is RAGBench, kept blind** - HaluEval and PsiloQA joined the TRAINING mix instead (R8-H83) and RAGBench stays excluded from every mix, so the R8-H77 gate remains blind for both models
+
+### The blind ladder - rounds 8 exploration (2026-07-31)
+
+Every step through the identical frozen gate, RAGBench excluded from all training. Full tables in the experiments log.
+
+| incarnation | lever | blind mean | verdict |
+|---|---|---|---|
+| R8-H62 | base mix | 0.5956 | baseline |
+| R8-H83 | + HaluEval + PsiloQA (diversity) | 0.6161 | Refuted as sufficient |
+| R8-H84 | + VitaminC near-miss negatives | 0.6450 | Kept - near-tie with 0.6461 |
+| R8-H81 | GroupDRO worst-group loss | 0.6103 | Refuted (q-collapse) |
+| R8-H79 v1 | DANN lambda 0.1 | 0.6320 | Refuted at point - complementary redistribution (emanual +0.1150, first tatqa win) |
+| R8-H88 | ensemble H84+H79, unweighted mean | 0.6470 | Confirmed diagnostic - first above the incumbent |
+| R8-H92 | decomposed scoring: min over sentences of max over chunks (formula only, same frozen weights) | 0.6893 (H84 alone 0.6820, H79 alone 0.6856) | Confirmed - largest formula lift; first legal single-model blind beats; min is now the primary read |
+| R8-H91 | full corpora, plain ERM (the attribution control) | 0.6965 (gold 0.8576 DECISIVE) | Confirmed as control - data lever +0.0145 over H84; in-domain/blind dissociation again (wins gold, loses blind) |
+| **R8-H90** | **full corpora (762k pairs incl. TabFact, 13 groups) + DANN lambda 0.02, one 307M student** | **0.7213** (whole-response 0.6538; gold 0.8418 DECISIVE) | **Confirmed - best draw of the holder recipe; tatqa record 0.7718; only finqa/delucionqa still lose** |
+| R8-H95 | lift-all-groups GroupDRO (smoothed q, stratified batches) - curriculum stage 1 | 0.6870 (13/13 groups lifted in-domain, q pinned uniform) | Mechanism confirmed, blind clause refuted - forced balance costs blind vs natural frequency |
+| R8-H96 | phase shift: mastered trunk → DANN lambda 0.1241 (the curriculum) | 0.6820 (vs bar 0.7313) | Refuted both clauses - invariance on the mastered trunk undid the mastery blind (margin 0.049, survives the noise bar) |
+| R8-H99 | single-stage DANN at lambda 0.1241 (single-variable vs H90) | 0.6913 (finqa 0.7135 + delucionqa 0.7757 campaign bests) | Refuted vs its bar; high lambda conquers far registers, pays on strongholds; LOCO proxy invalidated |
+| R8-H100 | variance probe - verbatim H90 replicate | 0.6918 (gap 0.0295 on identical recipe) | Demotion fired - run-to-run noise ~±0.03; single-run cross-config attributions demoted; recipe mean 0.7066 (n=2) |
+| incumbent | `lettucedect-v2-mmbert-base` | 0.6461 | the line to beat |
+
+### Current best blind configuration (R8-H90, 2026-08-01)
+
+The strongest legal blind read is now ONE model plus the decomposed formula - no ensemble.
+
+- **Architecture** - standard mmBERT-base cross-encoder, 307.5M, CLS → linear → sigmoid per (sentence, chunk) pair, MAX_LEN 512; nothing exotic at inference; checkpoint `models/R8-H90-mmbert-dann-full`
+- **Training** - the FULL legal mix, 762,535 pairs / 13 corpus groups (private soft labels, RAGTruth EN + 7 translations, HaluEval, PsiloQA, VitaminC, TabFact), one epoch, BCE + DANN (N-way corpus discriminator through a gradient reversal layer, Ganin ramp to lambda 0.02); RAGBench never touched
+- **The formula (from H92, unchanged)** - decompose the response into sentences (regex on terminal punctuation, min 25 chars, cap 12); per sentence take max over evidence chunks (OR over evidence); per response take MIN over sentences (AND over claims)
+- **DANN is IN the winning configuration** - both at lambda 0.02 in the holder and independently via the H93 LOCO sweep (every lambda ≥ 0.016 beats ERM on never-seen-corpus transfer; winner lam 0.1241 feeds the H96 curriculum). GroupDRO is NOT (H81 q-collapse refutation stands; the smoothed variant is under test as curriculum stage 1, H95)
+- **Reads** - best draw (this checkpoint) **0.7213** blind decomposed-min (8/10 subsets, whole-response 0.6538); the RECIPE reads mean 0.7066 over 2 draws with run-to-run noise ~±0.03 (R8-H100) - the checkpoint's own read is deterministic and stands, the recipe's expected value is the honest planning number; prior ensemble 0.6893; incumbent 0.6461; in-domain gold 0.8418 / RAGTruth EN 0.8201 / non-EN 0.8370, all DECISIVE; every number through the frozen gate
+- **Residuals** - finqa -0.0440 and delucionqa -0.0666 are the only blind losses of the best draw, both sharply narrowed by the full mix (from -0.0924 / -0.1442 at H92)
+
+- **What moved the needle** - decomposed min-scoring (+0.0423 on the same weights), near-miss negatives (+0.0289), objective diversity captured by ensembling; what did not: worst-group weighting (GroupDRO, refuted), windowed context (killed at gate), prose-parity data (killed at gate - repackaged upstreams)
+- **The active path to the 0.74 target** - full-corpus DANN + ERM pair (~760k pairs incl. TabFact tabular near-misses), decomposed min-over-sentences scoring, lambda geometry via leave-one-corpus-out search, then distillation of the best ensemble into one 307M student
+- **Discipline that keeps the number meaningful** - nothing trains or tunes against RAGBench; scoring-formula params tune on RAGTruth, training params on leave-one-corpus-out; every hypothesis pre-registers its bar before the run
 
 ### Capacity and shape - what the size budget buys
 

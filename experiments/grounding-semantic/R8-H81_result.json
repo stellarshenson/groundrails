@@ -1,0 +1,39 @@
+{
+  "gold": {
+    "auc": 0.8177,
+    "f1": 0.7204,
+    "n": 717
+  },
+  "ragtruth_en": {
+    "auc": 0.8345,
+    "f1": 0.7965,
+    "n": 600
+  },
+  "ragtruth_nonen": {
+    "auc": 0.8157,
+    "per_lang": {
+      "de": 0.8337,
+      "fr": 0.805,
+      "es": 0.8223,
+      "it": 0.8097,
+      "pl": 0.8195,
+      "hu": 0.7806,
+      "cn": 0.8389
+    }
+  },
+  "params_M": 307.5,
+  "final_group_weights": {
+    "halueval": 0.0002,
+    "private": 0.0036,
+    "psiloqa": 0.0034,
+    "ragtruth_cn": 0.0072,
+    "ragtruth_de": 0.0025,
+    "ragtruth_en": 0.4471,
+    "ragtruth_es": 0.0017,
+    "ragtruth_fr": 0.0014,
+    "ragtruth_hu": 0.0051,
+    "ragtruth_it": 0.0015,
+    "ragtruth_pl": 0.0028,
+    "vitaminc": 0.5234
+  }
+}

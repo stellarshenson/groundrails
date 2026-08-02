@@ -1,0 +1,73 @@
+{
+  "aggregator": {
+    "kind": "softmin",
+    "param": 2.0,
+    "ragtruth_h84": 0.7788463980463981,
+    "ragtruth_h79": 0.7607029548229548
+  },
+  "per_subset": {
+    "covidqa": {
+      "n": 245,
+      "ens_soft_auc": 0.7349,
+      "ens_soft_f1": 0.6402,
+      "lettuce_auc": 0.7355
+    },
+    "delucionqa": {
+      "n": 184,
+      "ens_soft_auc": 0.7301,
+      "ens_soft_f1": 0.5448,
+      "lettuce_auc": 0.7929
+    },
+    "emanual": {
+      "n": 132,
+      "ens_soft_auc": 0.6253,
+      "ens_soft_f1": 0.5307,
+      "lettuce_auc": 0.5999
+    },
+    "expertqa": {
+      "n": 203,
+      "ens_soft_auc": 0.7995,
+      "ens_soft_f1": 0.6868,
+      "lettuce_auc": 0.6503
+    },
+    "finqa": {
+      "n": 250,
+      "ens_soft_auc": 0.6128,
+      "ens_soft_f1": 0.6212,
+      "lettuce_auc": 0.717
+    },
+    "hagrid": {
+      "n": 250,
+      "ens_soft_auc": 0.6183,
+      "ens_soft_f1": 0.494,
+      "lettuce_auc": 0.5992
+    },
+    "hotpotqa": {
+      "n": 250,
+      "ens_soft_auc": 0.56,
+      "ens_soft_f1": 0.4766,
+      "lettuce_auc": 0.5976
+    },
+    "pubmedqa": {
+      "n": 250,
+      "ens_soft_auc": 0.556,
+      "ens_soft_f1": 0.5032,
+      "lettuce_auc": 0.5162
+    },
+    "tatqa": {
+      "n": 250,
+      "ens_soft_auc": 0.635,
+      "ens_soft_f1": 0.6529,
+      "lettuce_auc": 0.6156
+    },
+    "techqa": {
+      "n": 250,
+      "ens_soft_auc": 0.7416,
+      "ens_soft_f1": 0.6944,
+      "lettuce_auc": 0.6363
+    }
+  },
+  "mean_ens": 0.66135,
+  "mean_lettuce": 0.64605,
+  "wins": 6
+}

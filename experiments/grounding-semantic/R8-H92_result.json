@@ -1,0 +1,134 @@
+{
+  "per_subset": {
+    "covidqa": {
+      "n": 245,
+      "n_sent": 385,
+      "lettuce_auc": 0.7355,
+      "h84_min_auc": 0.7223,
+      "h84_mean_auc": 0.7268,
+      "h79_min_auc": 0.7344,
+      "h79_mean_auc": 0.7305,
+      "ens_min_auc": 0.731,
+      "ens_min_f1": 0.6402,
+      "ens_mean_auc": 0.7351
+    },
+    "delucionqa": {
+      "n": 184,
+      "n_sent": 929,
+      "lettuce_auc": 0.7929,
+      "h84_min_auc": 0.6231,
+      "h84_mean_auc": 0.7263,
+      "h79_min_auc": 0.6618,
+      "h79_mean_auc": 0.7422,
+      "ens_min_auc": 0.6487,
+      "ens_min_f1": 0.4677,
+      "ens_mean_auc": 0.7485
+    },
+    "emanual": {
+      "n": 132,
+      "n_sent": 748,
+      "lettuce_auc": 0.5999,
+      "h84_min_auc": 0.6768,
+      "h84_mean_auc": 0.615,
+      "h79_min_auc": 0.6949,
+      "h79_mean_auc": 0.6156,
+      "ens_min_auc": 0.6689,
+      "ens_min_f1": 0.5022,
+      "ens_mean_auc": 0.6126
+    },
+    "expertqa": {
+      "n": 203,
+      "n_sent": 1303,
+      "lettuce_auc": 0.6503,
+      "h84_min_auc": 0.7804,
+      "h84_mean_auc": 0.785,
+      "h79_min_auc": 0.7995,
+      "h79_mean_auc": 0.7922,
+      "ens_min_auc": 0.8066,
+      "ens_min_f1": 0.7369,
+      "ens_mean_auc": 0.7947
+    },
+    "finqa": {
+      "n": 250,
+      "n_sent": 563,
+      "lettuce_auc": 0.717,
+      "h84_min_auc": 0.651,
+      "h84_mean_auc": 0.6007,
+      "h79_min_auc": 0.6015,
+      "h79_mean_auc": 0.5924,
+      "ens_min_auc": 0.6246,
+      "ens_min_f1": 0.6511,
+      "ens_mean_auc": 0.6041
+    },
+    "hagrid": {
+      "n": 250,
+      "n_sent": 537,
+      "lettuce_auc": 0.5992,
+      "h84_min_auc": 0.6857,
+      "h84_mean_auc": 0.6336,
+      "h79_min_auc": 0.6424,
+      "h79_mean_auc": 0.5638,
+      "ens_min_auc": 0.6734,
+      "ens_min_f1": 0.6061,
+      "ens_mean_auc": 0.6036
+    },
+    "hotpotqa": {
+      "n": 250,
+      "n_sent": 293,
+      "lettuce_auc": 0.5976,
+      "h84_min_auc": 0.6062,
+      "h84_mean_auc": 0.5398,
+      "h79_min_auc": 0.6057,
+      "h79_mean_auc": 0.5342,
+      "ens_min_auc": 0.6226,
+      "ens_min_f1": 0.5238,
+      "ens_mean_auc": 0.5567
+    },
+    "pubmedqa": {
+      "n": 250,
+      "n_sent": 1314,
+      "lettuce_auc": 0.5162,
+      "h84_min_auc": 0.6441,
+      "h84_mean_auc": 0.5383,
+      "h79_min_auc": 0.656,
+      "h79_mean_auc": 0.5235,
+      "ens_min_auc": 0.6622,
+      "ens_min_f1": 0.5967,
+      "ens_mean_auc": 0.5338
+    },
+    "tatqa": {
+      "n": 250,
+      "n_sent": 468,
+      "lettuce_auc": 0.6156,
+      "h84_min_auc": 0.6643,
+      "h84_mean_auc": 0.6056,
+      "h79_min_auc": 0.6998,
+      "h79_mean_auc": 0.6568,
+      "ens_min_auc": 0.6913,
+      "ens_min_f1": 0.6529,
+      "ens_mean_auc": 0.6199
+    },
+    "techqa": {
+      "n": 250,
+      "n_sent": 1737,
+      "lettuce_auc": 0.6363,
+      "h84_min_auc": 0.7657,
+      "h84_mean_auc": 0.7395,
+      "h79_min_auc": 0.7604,
+      "h79_mean_auc": 0.7344,
+      "ens_min_auc": 0.7633,
+      "ens_min_f1": 0.6936,
+      "ens_mean_auc": 0.7406
+    }
+  },
+  "means": {
+    "ens_min": 0.6892600000000001,
+    "ens_mean": 0.65496,
+    "h84_min": 0.6819599999999999,
+    "h84_mean": 0.65106,
+    "h79_min": 0.68564,
+    "h79_mean": 0.64856
+  },
+  "mean_lettuce": 0.64605,
+  "wins": 7
+}

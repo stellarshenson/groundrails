@@ -231,3 +231,8 @@ src/groundrails/config_document_processing.experiment.yaml
 
 # local `groundrails init` runtime config (per-machine, not release content)
 groundrails.json
+
+# graphify knowledge-graph artefacts (regenerable via /graphify)
+graphify-out/
+experiments/grounding-semantic/R8-H93_optuna.db
+experiments/grounding-semantic/R8-H94_ragtruth_cache.npz

@@ -1,0 +1,158 @@
+{
+  "gold": {
+    "auc": 0.8489,
+    "f1": 0.7691,
+    "n": 717
+  },
+  "ragtruth_en": {
+    "auc": 0.7818,
+    "f1": 0.735,
+    "n": 600
+  },
+  "ragtruth_nonen": {
+    "auc": 0.807,
+    "per_lang": {
+      "de": 0.8,
+      "fr": 0.7963,
+      "es": 0.807,
+      "it": 0.7954,
+      "pl": 0.7902,
+      "hu": 0.8071,
+      "cn": 0.8532
+    }
+  },
+  "params_M": 307.1,
+  "lambda_max": 0.12410898678219821,
+  "hidden": 256,
+  "final_domain_acc": 0.5007,
+  "half_ramp_domain_acc": 0.35885416666666664,
+  "chance": 0.0769,
+  "per_group_val_history": [
+    {
+      "step": 2000,
+      "aucs": {
+        "halueval": 0.9996,
+        "private": 0.9874,
+        "psiloqa": 0.8657,
+        "ragtruth_cn": 0.9261,
+        "ragtruth_de": 0.9691,
+        "ragtruth_en": 0.9598,
+        "ragtruth_es": 0.976,
+        "ragtruth_fr": 0.9716,
+        "ragtruth_hu": 0.9168,
+        "ragtruth_it": 0.974,
+        "ragtruth_pl": 0.9461,
+        "tabfact": 0.7733,
+        "vitaminc": 0.9454
+      }
+    },
+    {
+      "step": 4000,
+      "aucs": {
+        "halueval": 0.9999,
+        "private": 0.9891,
+        "psiloqa": 0.881,
+        "ragtruth_cn": 0.9304,
+        "ragtruth_de": 0.966,
+        "ragtruth_en": 0.9584,
+        "ragtruth_es": 0.9798,
+        "ragtruth_fr": 0.9719,
+        "ragtruth_hu": 0.9172,
+        "ragtruth_it": 0.9733,
+        "ragtruth_pl": 0.9529,
+        "tabfact": 0.7686,
+        "vitaminc": 0.969
+      }
+    },
+    {
+      "step": 6000,
+      "aucs": {
+        "halueval": 0.9998,
+        "private": 0.9902,
+        "psiloqa": 0.8852,
+        "ragtruth_cn": 0.9314,
+        "ragtruth_de": 0.9686,
+        "ragtruth_en": 0.9603,
+        "ragtruth_es": 0.9831,
+        "ragtruth_fr": 0.9804,
+        "ragtruth_hu": 0.9136,
+        "ragtruth_it": 0.975,
+        "ragtruth_pl": 0.9582,
+        "tabfact": 0.7944,
+        "vitaminc": 0.9723
+      }
+    },
+    {
+      "step": 8000,
+      "aucs": {
+        "halueval": 0.9996,
+        "private": 0.9913,
+        "psiloqa": 0.8832,
+        "ragtruth_cn": 0.9478,
+        "ragtruth_de": 0.9808,
+        "ragtruth_en": 0.9757,
+        "ragtruth_es": 0.9881,
+        "ragtruth_fr": 0.9846,
+        "ragtruth_hu": 0.9219,
+        "ragtruth_it": 0.9835,
+        "ragtruth_pl": 0.9708,
+        "tabfact": 0.7979,
+        "vitaminc": 0.974
+      }
+    },
+    {
+      "step": 10000,
+      "aucs": {
+        "halueval": 0.9999,
+        "private": 0.9924,
+        "psiloqa": 0.8882,
+        "ragtruth_cn": 0.9498,
+        "ragtruth_de": 0.9853,
+        "ragtruth_en": 0.9787,
+        "ragtruth_es": 0.9904,
+        "ragtruth_fr": 0.9889,
+        "ragtruth_hu": 0.9334,
+        "ragtruth_it": 0.9919,
+        "ragtruth_pl": 0.9771,
+        "tabfact": 0.8059,
+        "vitaminc": 0.976
+      }
+    },
+    {
+      "step": 12000,
+      "aucs": {
+        "halueval": 0.9999,
+        "private": 0.9921,
+        "psiloqa": 0.8906,
+        "ragtruth_cn": 0.9512,
+        "ragtruth_de": 0.9854,
+        "ragtruth_en": 0.9755,
+        "ragtruth_es": 0.9935,
+        "ragtruth_fr": 0.988,
+        "ragtruth_hu": 0.9356,
+        "ragtruth_it": 0.9938,
+        "ragtruth_pl": 0.9802,
+        "tabfact": 0.8068,
+        "vitaminc": 0.9773
+      }
+    },
+    {
+      "step": 14000,
+      "aucs": {
+        "halueval": 0.9996,
+        "private": 0.9925,
+        "psiloqa": 0.8916,
+        "ragtruth_cn": 0.9532,
+        "ragtruth_de": 0.9882,
+        "ragtruth_en": 0.982,
+        "ragtruth_es": 0.9943,
+        "ragtruth_fr": 0.9901,
+        "ragtruth_hu": 0.9399,
+        "ragtruth_it": 0.9945,
+        "ragtruth_pl": 0.9804,
+        "tabfact": 0.8092,
+        "vitaminc": 0.9776
+      }
+    }
+  ]
+}

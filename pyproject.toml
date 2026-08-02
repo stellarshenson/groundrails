@@ -114,3 +114,8 @@ extend-select = ["I"]
 [tool.ruff.lint.isort]
 known-first-party = ["groundrails"]
 force-sort-within-sections = true
+
+[dependency-groups]
+dev = [
+    "optuna>=4.9.0",
+]

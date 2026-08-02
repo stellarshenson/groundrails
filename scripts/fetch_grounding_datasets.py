@@ -192,6 +192,31 @@ DATASETS = {
         "collapsed to binary (SUPPORTS -> grounded, REFUTES and NEI -> not).",
         "mapping": "claim -> claim; evidence -> evidence; SUPPORTS -> 1, otherwise 0",
     },
+    "tabfact": {
+        "title": "TabFact",
+        # Every HF mirror (`ibm/tab_fact`, `ibm-research/tab_fact`,
+        # `wenhu/tab_fact`) ships a loading SCRIPT and datasets 5.x removed
+        # script support, so this corpus is fetched straight from the GitHub
+        # repo those scripts download from.
+        "hf": ["wenhu/tab_fact (script-only; fetched from GitHub instead)"],
+        "github": "https://github.com/wenhuchen/Table-Fact-Checking/archive/refs/heads/master.zip",
+        "licence": "CC-BY-4.0",
+        "size": "~118k statements over 16k Wikipedia tables - 92,283 train / 12,792 val / 12,779 test",
+        "languages": "English",
+        "negatives": "Counterfactual statements written by annotators against the SAME table "
+        "that entails the positives - near-miss by construction, in the numeric-tabular "
+        "register no other corpus in this directory covers",
+        "labels": "Human annotation (ICLR 2020), binary ENTAILED / REFUTED",
+        "why": "The only permissively-licensed corpus whose claims require reading numbers "
+        "out of structured tables - registered for R8-H87 after the blind-arena residual "
+        "concentrated in the tabular subsets (finqa -0.1373, tatqa -0.0169) and the "
+        "R8-H85 probe ruled out context truncation as the cause.",
+        "caveats": "Wikipedia tables, not financial filings - register coverage, not domain "
+        "coverage. Tables arrive linearized (`#`-separated header and rows) and must be "
+        "serialized into evidence text; statements are short and single-fact.",
+        "mapping": "statement -> claim; caption + linearized table -> evidence; "
+        "ENTAILED -> 1, REFUTED -> 0",
+    },
     "halueval": {
         "title": "HaluEval",
         "hf": ["pminervini/HaluEval"],
@@ -269,6 +294,62 @@ def write_sidecar(name, spec):
     return path
 
 
+def fetch_github_tabfact(spec, staging):
+    """TabFact has no parquet mirror on the Hub - rebuild the statement/table
+    pairs from the upstream GitHub repo exactly as the retired loading script
+    did: r1+r2 collected statements joined to their #-delimited CSV tables,
+    split by the official train/val/test id lists."""
+    import io
+    import json
+    import urllib.request
+
+    import polars as pl
+
+    with urllib.request.urlopen(spec["github"]) as r:
+        z = zipfile.ZipFile(io.BytesIO(r.read()))
+    root = z.namelist()[0].split("/")[0]
+
+    def _read(path):
+        return z.read(f"{root}/{path}")
+
+    tables = {
+        n.split("/")[-1]: z.read(n).decode("utf-8")
+        for n in z.namelist()
+        if "/data/all_csv/" in n and n.endswith(".csv")
+    }
+    statements = {}
+    for part in ("collected_data/r1_training_all.json", "collected_data/r2_training_all.json"):
+        for tid, (stmts, labels, caption) in json.loads(_read(part)).items():
+            statements.setdefault(tid, []).extend(
+                (s, int(lb), caption) for s, lb in zip(stmts, labels, strict=True)
+            )
+
+    written = 0
+    for split, idfile in (
+        ("train", "data/train_id.json"),
+        ("validation", "data/val_id.json"),
+        ("test", "data/test_id.json"),
+    ):
+        ids = json.loads(_read(idfile))
+        rows = [
+            {
+                "table_id": tid,
+                "table_caption": cap,
+                "table_text": tables[tid],
+                "statement": s,
+                "label": lb,
+            }
+            for tid in ids
+            if tid in statements and tid in tables
+            for (s, lb, cap) in statements[tid]
+        ]
+        f = staging / f"wenhuchen__Table-Fact-Checking__tabfact__{split}.parquet"
+        pl.DataFrame(rows).write_parquet(f)
+        written += 1
+        print(f"    tabfact/{split}: {len(rows)} rows -> {f.name}", flush=True)
+    return written
+
+
 def fetch(name, spec):
     from datasets import load_dataset
 
@@ -276,6 +357,19 @@ def fetch(name, spec):
     if staging.exists():
         shutil.rmtree(staging)
     staging.mkdir(parents=True)
+
+    if spec.get("github"):
+        written = fetch_github_tabfact(spec, staging)
+        if not written:
+            shutil.rmtree(staging)
+            return None
+        archive = OUT / f"dataset-{name}.zip"
+        with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as z:
+            for f in sorted(staging.iterdir()):
+                z.write(f, f.name)
+            z.write(OUT / f"dataset-{name}.md", f"dataset-{name}.md")
+        shutil.rmtree(staging)
+        return archive
 
     written = 0
     for hf_id in spec["hf"]:
