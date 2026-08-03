@@ -1,0 +1,448 @@
+====================================================================================================
+[FN] delucionqa idx=142 label=1 score(min)=0.0059 mean=0.5733 lettuce=0.029 n_sent=12 n_chunks=3 resp_chars=1502 fallback=False capped=True
+--- ARGMIN sentence (score 0.0059):
+    - Reinstall the jack and tools by replacing the wing bolt.
+--- all sentences:
+    [0.722] Based on the provided context, here are the steps to properly re-install the carpets in the car:
+
+1.
+    [0.924] Front Carpet:
+   - Reinstall the front grommets.
+    [0.880] - Slide the front carpet from the rear to the front, making sure the carpet is tucked under the scuffs, B-pillar, and console.
+    [0.834] - Refasten the grommets under the front seat.
+    [0.639] Rear Carpet:
+   - Reinstall the grommets under the front seat (one left and one right).
+    [0.883] - Tuck the carpet under the scuffs, B-pillar, and console.
+    [0.025] - Reinstall the rear under-seat storage bin (if equipped) by replacing the four bolts.
+    [0.035] - Reinstall the fastener bin from the rear floor, making sure it is properly clipped in.
+    [0.006] - Reinstall the jack and tools by replacing the wing bolt.
+    [0.078] - Lift the carpet and secure it to the rear retainers (one left and one right).
+    [0.901] General Guidance:
+   - Always use carpet designed to fit your specific vehicle.
+    [0.953] - Ensure the carpet does not interfere with the operation of the pedal assemblies.
+--- RESPONSE:
+Based on the provided context, here are the steps to properly re-install the carpets in the car:
+
+1. Front Carpet:
+   - Reinstall the front grommets.
+   - Slide the front carpet from the rear to the front, making sure the carpet is tucked under the scuffs, B-pillar, and console.
+   - Refasten the grommets under the front seat.
+
+2. Rear Carpet:
+   - Reinstall the grommets under the front seat (one left and one right).
+   - Tuck the carpet under the scuffs, B-pillar, and console.
+   - Refasten the grommets.
+   - Reinstall the rear under-seat storage bin (if equipped) by replacing the four bolts.
+   - Reinstall the fastener bin from the rear floor, making sure it is properly clipped in.
+   - Reinstall the jack and tools by replacing the wing bolt.
+   - Lift the carpet and secure it to the rear retainers (one left and one right).
+
+3. General Guidance:
+   - Always use carpet designed to fit your specific vehicle.
+   - Ensure the carpet does not interfere with the operation of the pedal assemblies.
+   - Securely attach the carpet using the grommets to prevent it from slipping and interfering with the pedals.
+   - Check that the floor mat fasteners are secure to the vehicle carpet after reinstallation.
+   - Fully depress each pedal to check for interference with the accelerator, brake, or clutch pedals.
+
+The key is to follow the reverse order of the removal process, making sure the carpet is properly tucked and secured using the grommets to maintain a safe and functional installatio
+--- CHUNKS (truncated):
+  <chunk 0>  Carpet Safety Information Always use carpet designed to fit your vehicle.  Only use carpet that does not interfere with the operation of the pedal assemblies.  Only operate the vehicle when the carpet is securely attached by the grommets so it cannot slip out of position and interfere with the pedal assemblies or impair safe operation of your vehicle in other ways.  WARNING: If operating the vehicle without carpet in place the floor may become hot, and there is a risk of burns.  An improperly attached, damaged, folded, or damaged grommets may cause your carpet to interfere with the accelerator, brake, or clutch pedals and cause a loss of vehicle control.  To prevent SERIOUS INJURY or DEATH: ALWAYS securely attach your carpet using the grommets.  ALWAYS make sure objects cannot fall or slide into the driver’s side floor area when the vehicle is moving.  Objects can become trapped under a
+  <chunk 1>  Front Carpets: Remove the front grommets.  Front carpet 1 — grommets pull the carpet out from the front to the rear.  Front carpet pulled away remove the grommets under the front seat.  First for the rear carpet and then the front carpet.  Front and rear carpet split under the back of the front seat, open the carpet split and then pull out the rear edge and slide the carpet to the front (do not remove the harness).  Rear underside of front seat carpet split finally open the carpet split around seat bracket and then remove the last two grommets.  When reinstalling carpet, perform these steps in reverse order, making sure that the carpet is tucked under the scuffs, B-pillar, and console, and then refasten the grommets.
+  <chunk 2>  Carpet Safety Information Always use carpet designed to fit your vehicle.  Only use carpet that does not interfere with the operation of the pedal assemblies.  Only operate the vehicle when the carpet is securely attached by the grommets so it cannot slip out of position and interfere with the pedal assemblies or impair safe operation of your vehicle in other ways.  WARNING: If operating the vehicle without carpet in place the floor may become hot, and there is a risk of burns.  An improperly attached, damaged, folded, or damaged grommets may cause your carpet to interfere with the accelerator, brake, or clutch pedals and cause a loss of vehicle control.  To prevent SERIOUS INJURY or DEATH: ALWAYS securely attach your carpet using the grommets.  ALWAYS make sure objects cannot fall or slide into the driver’s side floor area when the vehicle is moving.  Objects can become trapped under a
+
+====================================================================================================
+[FN] delucionqa idx=14 label=1 score(min)=0.0063 mean=0.6641 lettuce=0.098 n_sent=11 n_chunks=3 resp_chars=926 fallback=False capped=False
+--- ARGMIN sentence (score 0.0063):
+    - Remove any metal jewelry that could make inadvertent electrical contact.
+--- all sentences:
+    [0.940] To jump start the car, you should follow these steps:
+
+- Prepare for jump starting by applying the parking brake, shifting the transmission into PARK or NEUTRAL, turning off the ignition, and all electrical accessories.
+    [0.946] - Make sure the vehicle providing the jump start is parked within reach of the jumper cables, with the ignition turned OFF.
+    [0.995] - Only use the positive battery post on the main battery to jump start your vehicle.
+    [0.969] - Avoid using a booster battery greater than 12 Volts.
+    [0.423] - Ensure that cable clamps do not touch each other.
+    [0.991] - Lift up the protective cap on the positive battery post to gain access.
+    [0.611] - Do not allow vehicles to touch each other.
+    [0.007] - Avoid the radiator cooling fan when the hood is raised.
+    [0.006] - Remove any metal jewelry that could make inadvertent electrical contact.
+    [0.568] - Keep open flames or sparks away from the battery.
+    [0.849] After following these preparations, you can proceed with the jump starting procedure.
+--- RESPONSE:
+To jump start the car, you should follow these steps:
+
+- Prepare for jump starting by applying the parking brake, shifting the transmission into PARK or NEUTRAL, turning off the ignition, and all electrical accessories.
+- Make sure the vehicle providing the jump start is parked within reach of the jumper cables, with the ignition turned OFF.
+- Only use the positive battery post on the main battery to jump start your vehicle.
+- Avoid using a booster battery greater than 12 Volts.
+- Ensure that cable clamps do not touch each other.
+- Lift up the protective cap on the positive battery post to gain access.
+- Do not allow vehicles to touch each other.
+- Avoid the radiator cooling fan when the hood is raised.
+- Remove any metal jewelry that could make inadvertent electrical contact.
+- Keep open flames or sparks away from the battery.
+
+After following these preparations, you can proceed with the jump starting procedure.
+--- CHUNKS (truncated):
+  <chunk 0>  Preparations For Jump Start The battery in your vehicle is located in the right rear of the engine compartment.  If your vehicle is equipped with a Stop/Start system, it will be equipped with two batteries See the following steps to prepare for jump starting: Apply the parking brake, shift the automatic transmission into PARK (P) (manual transmission in NEUTRAL) and place the ignition in OFF mode.  Turn off the heater, radio, and all electrical accessories.  If using another vehicle to jump start the battery, park the vehicle within the jumper cable’s reach, apply the parking brake and make sure the ignition is OFF.  WARNING: Only use the positive battery post on the main battery to jump start your vehicle.  Serious injury or death could result if you attempt to jump start using the supplemental battery.  Battery gas is flammable and explosive.  Keep flame or sparks away from the batter
+  <chunk 1>  JUMP STARTING If your vehicle has a discharged battery, it can be jump started using a set of jumper cables and a battery in another vehicle, or by using a portable battery booster pack.  Jump starting can be dangerous if done improperly, so please follow the procedures in this section carefully.  WARNING: Do not attempt jump starting if the battery is frozen.  It could rupture or explode and cause personal injury.  CAUTION: Do not use a portable battery booster pack or any other booster source with a system voltage greater than 12 Volts or damage to the battery, starter motor, alternator or electrical system may occur.  Note: When using a portable battery booster pack, follow the manufacturer's operating instructions and precautions.  Preparations For Jump Start The battery in your vehicle is located in the right rear of the engine compartment.  If your vehicle is equipped with a Stop/
+  <chunk 2>  JUMP STARTING If your vehicle has a discharged battery, it can be jump started using a set of jumper cables and a battery in another vehicle, or by using a portable battery booster pack.  Jump starting can be dangerous if done improperly, so please follow the procedures in this section carefully.  WARNING: Do not attempt jump starting if the battery is frozen.  It could rupture or explode and cause personal injury.  CAUTION: Do not use a portable battery booster pack or any other booster source with a system voltage greater than 12 Volts or damage to the battery, starter motor, alternator or electrical system may occur.  Note: When using a portable battery booster pack, follow the manufacturer's operating instructions and precautions.
+
+====================================================================================================
+[FN] delucionqa idx=164 label=1 score(min)=0.0081 mean=0.5699 lettuce=0.0728 n_sent=12 n_chunks=3 resp_chars=1499 fallback=False capped=False
+--- ARGMIN sentence (score 0.0081):
+    This helps maintain good visibility and air circulation.
+--- all sentences:
+    [0.467] Based on the given context, here are some tips to help keep the air inside the vehicle fresh:
+
+1.
+    [0.893] Maintain the outside air intake: Ensure the air intake located in front of the windshield is free of obstructions, such as leaves.
+    [0.670] Blocked air intake can reduce airflow and potentially lead to issues like water drains getting plugged.
+    [0.257] Avoid excessive recirculation: Refrain from using the recirculation mode for extended periods without the air conditioning (A/C) on.
+    [0.292] Prolonged use of recirculation mode can lead to fogging and poor air quality inside the vehicle.
+    [0.828] Use the climate control system effectively: Utilize the Defrost or Mix mode and increase the front blower speed to clear any fogging on the windows.
+    [0.008] This helps maintain good visibility and air circulation.
+    [0.808] Manage the A/C system: If the A/C performance seems lower than expected, check the front of the A/C condenser (located in front of the radiator) for any dirt or insect accumulation.
+    [0.829] Clean the condenser with a gentle water spray to improve the A/C's effectiveness.
+    [0.904] Avoid excessive engine heat buildup: If the engine is experiencing severe and abnormal overheating, stop the vehicle, turn off the engine, and allow it to cool.
+    [0.776] Seek immediate service and a tune-up to manufacturer's specifications to address the issue, as this can help maintain proper air quality and prevent any potential odors.
+    [0.106] By following these tips, you can help keep the air inside the vehicle fresh and improve the overall cabin environment.
+--- RESPONSE:
+Based on the given context, here are some tips to help keep the air inside the vehicle fresh:
+
+1. Maintain the outside air intake: Ensure the air intake located in front of the windshield is free of obstructions, such as leaves. Blocked air intake can reduce airflow and potentially lead to issues like water drains getting plugged.
+
+2. Avoid excessive recirculation: Refrain from using the recirculation mode for extended periods without the air conditioning (A/C) on. Prolonged use of recirculation mode can lead to fogging and poor air quality inside the vehicle.
+
+3. Use the climate control system effectively: Utilize the Defrost or Mix mode and increase the front blower speed to clear any fogging on the windows. This helps maintain good visibility and air circulation.
+
+4. Manage the A/C system: If the A/C performance seems lower than expected, check the front of the A/C condenser (located in front of the radiator) for any dirt or insect accumulation. Clean the condenser with a gentle water spray to improve the A/C's effectiveness.
+
+5. Avoid excessive engine heat buildup: If the engine is experiencing severe and abnormal overheating, stop the vehicle, turn off the engine, and allow it to cool. Seek immediate service and a tune-up to manufacturer's specifications to address the issue, as this can help maintain proper air quality and prevent any potential odors.
+
+By following these tips, you can help keep the air inside the vehicle fresh and improve the overall cabin environment.
+--- CHUNKS (truncated):
+  <chunk 0>  Outside Air Intake Make sure the air intake, located directly in front of the windshield, is free of obstructions, such as leaves.  Leaves collected in the air intake may reduce airflow, and if they enter the air distribution box, they could plug the water drains.  In Winter months, make sure the air intake is clear of ice, slush, and snow.
+  <chunk 1>  Window Fogging Vehicle windows tend to fog on the inside in mild, rainy, and/or humid weather.  To clear the windows, select Defrost or Mix mode and increase the front blower speed.  Do not use the Recirculation mode without A/C for long periods, as fogging may occur.
+  <chunk 2>  On the highways — slow down.  In city traffic — while stopped, place the transmission in NEUTRAL (N), but do not increase the engine idle speed while preventing vehicle motion with the brakes.  If your Air Conditioner (A/C) is on, turn it off.  The A/C system adds heat to the engine cooling system and turning the A/C off can help remove this heat.  You can also turn the temperature control to maximum heat, the mode control to floor and the blower control to high.  This allows the heater core to act as a supplement to the radiator and aids in removing heat from the engine cooling system.  For Manual Climate Controls, if the system is in Mix, Floor or Defrost Mode, the A/C can be turned off, but the A/C system shall remain active to prevent fogging of the windows.  If fog or mist appears on the windshield or side glass, select Defrost mode, and increase blower speed if needed.  If your ai
+
+====================================================================================================
+[FN] delucionqa idx=169 label=1 score(min)=0.0105 mean=0.5213 lettuce=0.1311 n_sent=9 n_chunks=3 resp_chars=1104 fallback=False capped=False
+--- ARGMIN sentence (score 0.0105):
+    You can also use the SCROLL/ENTER control knob located on the right side.
+--- all sentences:
+    [0.301] Based on the context provided, here are the key steps to make selections and adjustments with the menus:
+
+1.
+    [0.942] When making a selection, only press one button at a time to enter the desired menu.
+    [0.824] Once in the desired menu, press and release the preferred setting option until a check mark appears next to the setting, showing that setting has been selected.
+    [0.918] Pressing the Up or Down Arrow button on the right side of the screen will allow you to toggle up or down through the available settings.
+    [0.941] Once the setting is complete, press the X button on the touchscreen to close out of the settings screen.
+    [0.011] You can also use the SCROLL/ENTER control knob located on the right side.
+    [0.167] Turn the knob to scroll through menus and change settings, and push the center of the knob to select or change a setting.
+    [0.129] The Back Arrow button can be used to exit out of a menu or certain option on the Uconnect system.
+    [0.460] The key points are to use the arrow buttons, touchscreen buttons, and control knob to navigate and select settings, and remember to press the X button when finished to exit the settings screen.
+--- RESPONSE:
+Based on the context provided, here are the key steps to make selections and adjustments with the menus:
+
+1. When making a selection, only press one button at a time to enter the desired menu.
+
+2. Once in the desired menu, press and release the preferred setting option until a check mark appears next to the setting, showing that setting has been selected.
+
+3. Pressing the Up or Down Arrow button on the right side of the screen will allow you to toggle up or down through the available settings.
+
+4. Once the setting is complete, press the X button on the touchscreen to close out of the settings screen.
+
+5. You can also use the SCROLL/ENTER control knob located on the right side. Turn the knob to scroll through menus and change settings, and push the center of the knob to select or change a setting.
+
+6. The Back Arrow button can be used to exit out of a menu or certain option on the Uconnect system.
+
+The key points are to use the arrow buttons, touchscreen buttons, and control knob to navigate and select settings, and remember to press the X button when finished to exit the settings screen.
+--- CHUNKS (truncated):
+  <chunk 0>  When making a selection, only press one button at a time to enter the desired menu.  Once in the desired menu, press and release the preferred setting option until a check mark appears next to the setting, showing that setting has been selected.  Once the setting is complete, press the X button on the touchscreen to close out of the settings screen.  Pressing the Up or Down Arrow button on the right side of the screen will allow you to toggle up or down through the available settings.  The Favorites menu provides a means to edit the Favorites list and to configure the Alert Settings, along with providing a list of Channels currently airing any of the items in the Favorites list.  They allow you to change the Main Screen area and Menu Title area.  The seat can be adjusted forward or rearward by using a bar located by the front of the seat cushion, near the floor.  While sitting in the se
+  <chunk 1>  When making a selection, only press one button at a time to enter the desired menu.  Once in the desired menu, press and release the preferred setting option until a check mark appears next to the setting, showing that setting has been selected.  Once the setting is complete, press the X button on the touchscreen to close out of the settings screen.  Pressing the Up or Down Arrow button on the right side of the screen will allow you to toggle up or down through the available settings.  Setting Name Description Display Mode This setting will allow you to set the brightness manually or have the system set it automatically.  The “Auto” setting has the system automatically adjust the display brightness.  The “Manual” setting will allow the user to adjust the brightness of the display.  Display Brightness With Headlights ON/Brightness This setting will allow you to set the brightness when th
+  <chunk 2>  Drag & Drop Menu Bar The Uconnect features and services in the main menu bar are easily customized for your preference.  Simply follow these steps: press the apps button to open the app screen.  Press and hold, then drag the selected app to replace an existing shortcut in the main menu bar.  Note: This feature is only available if the vehicle is in PARK.  Uconnect 4 with 7-inch display and uconnect 4/4c/4c nav with 8.4-inch display press the apps button, then press the settings button on the touchscreen to display the menu setting screen.  In this mode the Uconnect system allows you to access programmable features.  When making a selection, only press one button at a time to enter the desired menu.  Once in the desired menu, press and release the preferred setting option until a check mark appears next to the setting, showing that setting has been selected.  Once the setting is complete
+
+====================================================================================================
+[FN] delucionqa idx=148 label=1 score(min)=0.0141 mean=0.2611 lettuce=0.4977 n_sent=4 n_chunks=3 resp_chars=474 fallback=False capped=False
+--- ARGMIN sentence (score 0.0141):
+    There is no information provided about the function or purpose of ratcheting mechanisms.
+--- all sentences:
+    [0.167] Based on the given context, the passage does not mention anything about ratcheting mechanisms.
+    [0.653] The context focuses on topics like the Bed Rail Tie Down system, the LATCH system for child seats, weight-distributing hitches, and various other vehicle features and safety systems.
+    [0.014] There is no information provided about the function or purpose of ratcheting mechanisms.
+    [0.210] The context does not contain enough information to answer the question "What do ratcheting mechanisms do?".
+--- RESPONSE:
+Based on the given context, the passage does not mention anything about ratcheting mechanisms. The context focuses on topics like the Bed Rail Tie Down system, the LATCH system for child seats, weight-distributing hitches, and various other vehicle features and safety systems. There is no information provided about the function or purpose of ratcheting mechanisms. The context does not contain enough information to answer the question "What do ratcheting mechanisms do?".
+--- CHUNKS (truncated):
+  <chunk 0>  The Bed Rail Tie Down system allows you to properly secure cargo in the truck bed.  Bed Rail Tie Down Locations Your vehicle is equipped with the child restraint anchorage system called LATCH, which stands for Lower Anchors and Tethers for CHildren.  The LATCH system has three vehicle anchor points for installing LATCH-equipped child seats.  There are two lower anchorages located at the back of the seat cushion where it meets the seatback and one top tether anchorage located behind the seating position.  These anchorages are used to install LATCH-equipped child seats without using the vehicle’s seat belts.  Some seating positions may have a top tether anchorage but no lower anchorages.  In these seating positions, the seat belt must be used with the top tether anchorage to install the child restraint.  Please see the following table for more information.  The TSC is a telescoping link t
+  <chunk 1>  Weight-Distributing Hitch A Weight-Distributing Hitch system works by applying leverage through spring (load) bars.  They are typically used for heavier loads to distribute trailer tongue weight to the tow vehicle's front axle and the trailer axle(s).  When used in accordance with the manufacturer's directions, it provides for a more level ride, offering more consistent steering and brake control thereby enhancing towing safety.  The addition of a friction/hydraulic sway control also dampens sway caused by traffic and crosswinds and contributes positively to tow vehicle and trailer stability.  Trailer sway control and a Weight-Distributing (load equalizing) Hitch are recommended for heavier Tongue Weights (TW) and may be required depending on vehicle and trailer configuration/loading to comply with Gross Axle Weight Rating (GAWR) requirements.  WARNING: An improperly adjusted Weight-Dis
+  <chunk 2>  BED RAIL TIE DOWN SYSTEM — IF EQUIPPED The Bed Rail Tie Down system allows you to properly secure cargo in the truck bed.  There are two adjustable utility rail cleats on each side of the bed that can be used to assist in securing cargo.  Each utility rail cleat must be tightened down in one of the detents along either utility rail in order to keep cargo properly secured.  To move the utility rail cleat to any position on the utility rail, turn the cleat retainer nut counterclockwise several times.  Then, pull out on the utility rail cleat and slide it to the detent nearest the desired location.  Make sure the utility rail cleat is seated in the detent, and tighten the nut.  To remove the utility rail cleats from the side utility rails, slide the cleat to the rectangular cutout located at the end of the rail toward the front of the vehicle.  To remove the utility rail cleat from the fro
+
+====================================================================================================
+[FN] delucionqa idx=137 label=1 score(min)=0.0197 mean=0.5345 lettuce=0.0773 n_sent=11 n_chunks=3 resp_chars=1262 fallback=False capped=False
+--- ARGMIN sentence (score 0.0197):
+    Avoid "topping off" the fuel tank after filling to prevent fuel spillage and overfilling.
+--- all sentences:
+    [0.557] Based on the context provided, here are the key things you should do to prevent fuel system trouble:
+
+1.
+    [0.837] Drain the accumulated water from the fuel/water separator using the drain provided on the fuel filter housing.
+    [0.131] This is important because diesel fuel is seldom completely free of water, and water can promote the growth of microbes that can clog the fuel system.
+    [0.627] Maintain good quality of stored fuel.
+    [0.931] If you store quantities of fuel, drain condensation from the supply tank and change the fuel filter on a regular basis to prevent contamination from water or dirt.
+    [0.551] Use the proper fuel recommended for your engine type (gas or diesel).
+    [0.980] Avoid using leaded gasoline, which can damage the emissions control system.
+    [0.490] Do not use fuel additives or alternative fuels like alcohol or gasoline, as these can cause damage to the fuel system.
+    [0.041] In extreme cold conditions below 20°F (-6°C), use climatized Number 2 diesel fuel or mix Number 2 diesel with 50% Number 1 diesel to prevent fuel gelling and filter plugging.
+    [0.020] Avoid "topping off" the fuel tank after filling to prevent fuel spillage and overfilling.
+    [0.715] Following these maintenance practices for the fuel system is essential to prevent trouble and damage to the engine and fuel system components.
+--- RESPONSE:
+Based on the context provided, here are the key things you should do to prevent fuel system trouble:
+
+1. Drain the accumulated water from the fuel/water separator using the drain provided on the fuel filter housing. This is important because diesel fuel is seldom completely free of water, and water can promote the growth of microbes that can clog the fuel system.
+
+2. Maintain good quality of stored fuel. If you store quantities of fuel, drain condensation from the supply tank and change the fuel filter on a regular basis to prevent contamination from water or dirt.
+
+3. Use the proper fuel recommended for your engine type (gas or diesel). Avoid using leaded gasoline, which can damage the emissions control system. 
+
+4. Do not use fuel additives or alternative fuels like alcohol or gasoline, as these can cause damage to the fuel system.
+
+5. In extreme cold conditions below 20°F (-6°C), use climatized Number 2 diesel fuel or mix Number 2 diesel with 50% Number 1 diesel to prevent fuel gelling and filter plugging.
+
+6. Avoid "topping off" the fuel tank after filling to prevent fuel spillage and overfilling.
+
+Following these maintenance practices for the fuel system is essential to prevent trouble and damage to the engine and fuel system components.
+--- CHUNKS (truncated):
+  <chunk 0>  For the proper maintenance intervals see "⇨maintenance plan" for gas engines or "⇨maintenance plan — diesel fuel up to b5 biodiesel" for diesel engines.  Diesel fuel is seldom completely free of water.  To prevent fuel system trouble, drain the accumulated water from the fuel/water separator using the fuel/water separator drain provided on the fuel filter housing.  If you buy good quality fuel and follow the listed cold weather recommendations, fuel conditioners should not be required in your vehicle.  If available in your area, a high cetane “premium” diesel fuel may offer improved cold-starting and warm-up performance.  A 12 Volt heater built into the fuel filter housing aids in preventing fuel gelling.  It is controlled by a built-in thermostat.  A Diesel Pre-Heat system both improves engine starting and reduces the amount of white smoke generated by a warming engine.
+  <chunk 1>  If you store quantities of fuel, good maintenance of the stored fuel is also essential.  Fuel contaminated with water will promote the growth of “microbes.” These microbes form “slime” that will clog the fuel filtration system and lines.  Drain condensation from the supply tank and change the line filter on a regular basis.  Fuel that is contaminated by water or dirt can cause severe damage to the engine fuel system.  Proper maintenance of the engine fuel filter and fuel tank is essential see Never pour fuel or other flammable liquid into the throttle body air inlet opening in an attempt to start the vehicle.  This could result in flash fire causing serious personal injury.  Do not attempt to push or tow your vehicle to get it started.  Vehicles equipped with an automatic transmission cannot be started this way.  Unburned fuel could enter the catalytic converter and once the engine has 
+  <chunk 2>  Fuel System Cautions CAUTION: Follow these guidelines to maintain your vehicle’s performance: The use of leaded gasoline is prohibited by Federal law.  Using leaded gasoline can impair engine performance and damage the emissions control system.  An out-of-tune engine, certain fuel or ignition malfunctions can cause the catalytic converter to overheat.  If you notice a pungent burning odor or some light smoke, your engine may be out-of-tune or malfunctioning and may require immediate service.  Contact an authorized dealer for service assistance.  The use of fuel additives, which are now being sold as octane enhancers, is not recommended.  Most of these products contain high concentrations of methanol.  Fuel system damage or vehicle performance problems resulting from the use of such fuels or additives is not the responsibility of The manufacturer and may void or not be covered under the 
+
+====================================================================================================
+[FN] delucionqa idx=136 label=1 score(min)=0.024 mean=0.8566 lettuce=0.1733 n_sent=12 n_chunks=3 resp_chars=1631 fallback=False capped=True
+--- ARGMIN sentence (score 0.024):
+    If it looks safe, shift to a lower gear with 4-wheel drive engaged, and proceed with caution, maintaining momentum as you climb.
+--- all sentences:
+    [0.672] Based on the provided context, here are some key tips for off-road driving:
+
+1.
+    [0.984] Familiarize yourself with the terrain and area before proceeding.
+    [0.989] Understand the different surface conditions you may encounter (hard-packed dirt, gravel, rocks, sand, mud, snow, etc.) and how they affect your vehicle's steering, handling, and traction.
+    [0.986] Maintain control of your vehicle by keeping a firm grip on the steering wheel and maintaining good driving posture.
+    [0.893] Avoid sudden accelerations, turns, or braking.
+    [0.939] Use your own judgment to determine what is safe, as there may be no road signs, speed limits, or signal lights in off-road environments.
+    [0.971] Look ahead on the trail for surface obstacles and changes in terrain.
+    [0.985] Plan your future driving route while being mindful of what you are currently driving over.
+    [0.890] If you get stuck or high-centered, get out of the vehicle and assess the situation.
+    [0.983] Try to determine what the vehicle is stuck on and the best way to recover it, such as jacking it up and placing rocks under the tires.
+    [0.961] When approaching hills, evaluate the grade, traction, and any obstacles on the path.
+    [0.024] If it looks safe, shift to a lower gear with 4-wheel drive engaged, and proceed with caution, maintaining momentum as you climb.
+--- RESPONSE:
+Based on the provided context, here are some key tips for off-road driving:
+
+1. Familiarize yourself with the terrain and area before proceeding. Understand the different surface conditions you may encounter (hard-packed dirt, gravel, rocks, sand, mud, snow, etc.) and how they affect your vehicle's steering, handling, and traction.
+
+2. Maintain control of your vehicle by keeping a firm grip on the steering wheel and maintaining good driving posture. Avoid sudden accelerations, turns, or braking.
+
+3. Use your own judgment to determine what is safe, as there may be no road signs, speed limits, or signal lights in off-road environments.
+
+4. Look ahead on the trail for surface obstacles and changes in terrain. Plan your future driving route while being mindful of what you are currently driving over.
+
+5. If you get stuck or high-centered, get out of the vehicle and assess the situation. Try to determine what the vehicle is stuck on and the best way to recover it, such as jacking it up and placing rocks under the tires.
+
+6. When approaching hills, evaluate the grade, traction, and any obstacles on the path. If it looks safe, shift to a lower gear with 4-wheel drive engaged, and proceed with caution, maintaining momentum as you climb.
+
+7. When crossing over large rocks, aim to drive over them with your tires, as the tread is designed to handle the abuse better than the sidewalls.
+
+8. Always wear your seatbelt and ensure any cargo is securely fastened to prevent it from becoming a pr
+--- CHUNKS (truncated):
+  <chunk 0>  Off-Road Driving Tips
+  <chunk 1>  The Basics Of Off-Road Driving You will encounter many types of terrain driving off-road.  You should be familiar with the terrain and area before proceeding.  There are many types of surface conditions: hard-packed dirt, gravel, rocks, grass, sand, mud, snow and ice.  Every surface has a different effect on your vehicle's steering, handling and traction.  Controlling your vehicle is one of the keys to successful off-road driving, so always keep a firm grip on the steering wheel and maintain a good driving posture.  Avoid sudden accelerations, turns or braking.  In most cases, there are no road signs, posted speed limits or signal lights.  Therefore, you will need to use your own good judgment on what is safe and what is not.  When on a trail, you should always be looking ahead for surface obstacles and changes in terrain.  The key is to plan your future driving route while remembering 
+  <chunk 2>  If you get hung up or high-centered on an object, get out of the vehicle and try to determine what the vehicle is hung up on, where it is contacting the underbody and what is the best direction to recover the vehicle.  Depending on what you are in contact with, jack the vehicle up and place a few rocks under the tires so the weight is off of the high point when you let the vehicle down.  You can also try rocking the vehicle or winching the vehicle off the object.  You will encounter many types of terrain driving off-road.  You should be familiar with the terrain and area before proceeding.  There are many types of surface conditions: hard-packed dirt, gravel, rocks, grass, sand, mud, snow and ice.  Every surface has a different effect on your vehicle's steering, handling and traction.  Controlling your vehicle is one of the keys to successful off-road driving, so always keep a firm grip
+
+====================================================================================================
+[FN] delucionqa idx=125 label=1 score(min)=0.0242 mean=0.7205 lettuce=0.0323 n_sent=9 n_chunks=3 resp_chars=1348 fallback=False capped=False
+--- ARGMIN sentence (score 0.0242):
+    If the vehicle's battery is discharged, follow the instructions for shifting the automatic transmission out of Park to move the vehicle.
+--- all sentences:
+    [0.592] Based on the provided context, here are some key things to pay attention to when towing a car:
+
+1.
+    [0.573] Practice turning, stopping, and backing the trailer in a safe, low-traffic area before towing on public roads.
+    [0.980] If using a manual transmission vehicle for trailer towing, all starts must be in first gear to avoid excessive clutch slippage.
+    [0.761] Ensure you are not exceeding the Gross Combination Weight Rating (GCWR) - the total weight of the tow vehicle, trailer, cargo, passengers, and equipment must not exceed this limit.
+    [0.975] Properly distribute the weight between the tow vehicle and trailer to stay within the limits for Gross Vehicle Weight Rating (GVWR), Gross Trailer Weight (GTW), and Tongue Weight Rating for the trailer hitch.
+    [0.984] Always use safety chains, connecting them to the frame or hook retainers of the vehicle hitch, and crossing them under the trailer tongue.
+    [0.654] Do not tow a trailer at all during the first 500 miles the new vehicle is driven, and for the first 500 miles of trailer towing, do not drive over 50 mph and avoid full throttle starts.
+    [0.942] Observe state and local laws regarding vehicles under tow, and use only proper towing/lifting equipment designed for this purpose.
+    [0.024] If the vehicle's battery is discharged, follow the instructions for shifting the automatic transmission out of Park to move the vehicle.
+--- RESPONSE:
+Based on the provided context, here are some key things to pay attention to when towing a car:
+
+1. Practice turning, stopping, and backing the trailer in a safe, low-traffic area before towing on public roads.
+
+2. If using a manual transmission vehicle for trailer towing, all starts must be in first gear to avoid excessive clutch slippage.
+
+3. Ensure you are not exceeding the Gross Combination Weight Rating (GCWR) - the total weight of the tow vehicle, trailer, cargo, passengers, and equipment must not exceed this limit.
+
+4. Properly distribute the weight between the tow vehicle and trailer to stay within the limits for Gross Vehicle Weight Rating (GVWR), Gross Trailer Weight (GTW), and Tongue Weight Rating for the trailer hitch.
+
+5. Always use safety chains, connecting them to the frame or hook retainers of the vehicle hitch, and crossing them under the trailer tongue.
+
+6. Do not tow a trailer at all during the first 500 miles the new vehicle is driven, and for the first 500 miles of trailer towing, do not drive over 50 mph and avoid full throttle starts.
+
+7. Observe state and local laws regarding vehicles under tow, and use only proper towing/lifting equipment designed for this purpose.
+
+8. If the vehicle's battery is discharged, follow the instructions for shifting the automatic transmission out of Park to move the vehicle.
+--- CHUNKS (truncated):
+  <chunk 0>  Towing Tips Before towing, practice turning, stopping and backing the trailer in an area away from heavy traffic.  If using a manual transmission vehicle for trailer towing, all starts must be in first gear to avoid excessive clutch slippage.
+  <chunk 1>  Towing Tips Before towing, practice turning, stopping and backing the trailer in an area away from heavy traffic.  If using a manual transmission vehicle for trailer towing, all starts must be in first gear to avoid excessive clutch slippage.  TRAILER TOWING In this section you will find safety tips and information on limits to the type of towing you can reasonably do with your vehicle.  Before towing a trailer, carefully review this information to tow your load as efficiently and safely as possible.  To maintain the New Vehicle Limited Warranty coverage, follow the requirements and recommendations in this manual concerning vehicles used for trailer towing.  TOWING A DISABLED VEHICLE This section describes procedures for towing a disabled vehicle using a commercial towing service.  If the transmission and drivetrain are operable, disabled vehicles may also be towed as described on Prope
+  <chunk 2>  Towing Requirements To promote proper break-in of your new vehicle drivetrain components, the following guidelines are recommended: WARNING: Improper towing can lead to a collision.  Follow these guidelines to make your trailer towing as safe as possible: Make certain that the load is secured in the trailer and that it will not shift during travel.  When trailering cargo that is not fully secured, dynamic load shifts can occur that may be difficult for the driver to control.  You could lose control of your vehicle and have a collision.  When hauling cargo, or towing a trailer, do not overload your vehicle or trailer.  Overloading can cause a loss of control, poor performance, or damage to brakes, axle, engine, transmission, steering, suspension, chassis structure, or tires.  Safety chains must always be used between your vehicle and trailer.  Always connect the chains to the frame or ho
+
+====================================================================================================
+[FN] delucionqa idx=116 label=1 score(min)=0.0462 mean=0.4787 lettuce=0.7334 n_sent=10 n_chunks=3 resp_chars=1464 fallback=False capped=False
+--- ARGMIN sentence (score 0.0462):
+    The information provided suggests that the ability to deactivate the DRLs may be limited or controlled by the vehicle's design and features, rather than being a user-configurable option.
+--- all sentences:
+    [0.355] Based on the provided context, it seems that the ability to deactivate the Daytime Running Lights (DRLs) depends on the specific vehicle and the market it is sold in.
+    [0.425] For vehicles sold in Canada, the context indicates that the headlight switch does not have an "OFF" detent.
+    [0.866] Instead, the headlights will be deactivated when the headlight switch is placed in the parking lights position.
+    [0.840] However, the DRLs will still be activated along with the front and rear marker lights in this scenario.
+    [0.973] The context also mentions that the DRLs may be deactivated when the parking brake is engaged, and that for vehicles sold in Canada, the DRLs will automatically deactivate when the front fog lights are turned on.
+    [0.971] Additionally, the context states that on some vehicles, the Daytime Running Lights may deactivate or reduce intensity on one side of the vehicle when a turn signal is activated on that side, or on both sides of the vehicle when the hazard warning lights are activated.
+    [0.064] However, the context does not explicitly state that the DRLs can be manually deactivated by the driver.
+    [0.046] The information provided suggests that the ability to deactivate the DRLs may be limited or controlled by the vehicle's design and features, rather than being a user-configurable option.
+    [0.199] Therefore, based on the given context, it is not clear if the DRLs can be deactivated by the driver.
+    [0.049] The ability to deactivate them may depend on the specific vehicle model and market regulations.
+--- RESPONSE:
+Based on the provided context, it seems that the ability to deactivate the Daytime Running Lights (DRLs) depends on the specific vehicle and the market it is sold in.
+
+For vehicles sold in Canada, the context indicates that the headlight switch does not have an "OFF" detent. Instead, the headlights will be deactivated when the headlight switch is placed in the parking lights position. However, the DRLs will still be activated along with the front and rear marker lights in this scenario.
+
+The context also mentions that the DRLs may be deactivated when the parking brake is engaged, and that for vehicles sold in Canada, the DRLs will automatically deactivate when the front fog lights are turned on.
+
+Additionally, the context states that on some vehicles, the Daytime Running Lights may deactivate or reduce intensity on one side of the vehicle when a turn signal is activated on that side, or on both sides of the vehicle when the hazard warning lights are activated.
+
+However, the context does not explicitly state that the DRLs can be manually deactivated by the driver. The information provided suggests that the ability to deactivate the DRLs may be limited or controlled by the vehicle's design and features, rather than being a user-configurable option.
+
+Therefore, based on the given context, it is not clear if the DRLs can be deactivated by the driver. The ability to deactivate them may depend on the specific vehicle model and market regulations.
+--- CHUNKS (truncated):
+  <chunk 0>  Daytime Running Lights (DRLs) — If Equipped The Daytime Running Lights (DRLs) are in a dedicated position below the headlight assembly.  DRLs are active when the low beams are not on while the vehicle’s transmission is in any position (automatic transmission), or when the vehicle begins to move (manual transmission).  Note: For vehicles sold in Canada, the DRLs will automatically deactivate when the front fog lights are turned on.  On some vehicles, the Daytime Running Lights may deactivate, or reduce intensity, on one side of the vehicle (when a turn signal is activated on that side), or on both sides of the vehicle (when the hazard warning lights are activated).
+  <chunk 1>  Vehicles sold in Canada are equipped with a headlight switch with an AUTO and ON detent but without an OFF detent.  Headlights will be deactivated when the headlight switch is placed in the parking lights position.  However, the Daytime Running Lights (DRLs) will be activated along with the front and rear marker lights.  The DRLs may be deactivated when the parking brake is engaged.  For vehicles sold in Canada, the DRLs will automatically deactivate when the front fog lights are turned on.  On some vehicles, the Daytime Running Lights may deactivate, or reduce intensity, on one side of the vehicle (when a turn signal is activated on that side), or on both sides of the vehicle (when the hazard warning lights are activated).  The Daytime Running Lights (DRLs) are in a dedicated position below the headlight assembly.  DRLs are active when the low beams are not on while the vehicle’s trans
+  <chunk 2>  The Daytime Running Lights (DRLs) are in a dedicated position below the headlight assembly.  DRLs are active when the low beams are not on while the vehicle’s transmission is in any position (automatic transmission), or when the vehicle begins to move (manual transmission).  Vehicles sold in Canada are equipped with a headlight switch with an AUTO and ON detent but without an OFF detent.  Headlights will be deactivated when the headlight switch is placed in the parking lights position.  However, the Daytime Running Lights (DRLs) will be activated along with the front and rear marker lights.  The DRLs may be deactivated when the parking brake is engaged.  For vehicles sold in Canada, the DRLs will automatically deactivate when the front fog lights are turned on.  On some vehicles, the Daytime Running Lights may deactivate, or reduce intensity, on one side of the vehicle (when a turn sign
+
+====================================================================================================
+[FN] delucionqa idx=101 label=1 score(min)=0.0565 mean=0.7386 lettuce=0.9588 n_sent=6 n_chunks=3 resp_chars=656 fallback=False capped=False
+--- ARGMIN sentence (score 0.0565):
+    The key details that support this are:
+
+1.
+--- all sentences:
+    [0.593] Based on the context provided, yes, you can manually activate or deactivate the air conditioning system using the A/C button.
+    [0.057] The key details that support this are:
+
+1.
+    [0.967] "The Air Conditioning (A/C) button allows the operator to manually activate or deactivate the air conditioning system."
+
+2.
+    [0.939] "Push the A/C button to engage the Air Conditioning (A/C).
+    [0.965] The A/C indicator illuminates when A/C is on."
+
+3.
+    [0.911] "Press and release this button on the touchscreen, or push and release the button on the blower knob to turn the Climate Control ON/OFF."
+
+So the A/C button provides the user the ability to manually turn the air conditioning system on or off as needed.
+--- RESPONSE:
+Based on the context provided, yes, you can manually activate or deactivate the air conditioning system using the A/C button.
+
+The key details that support this are:
+
+1. "The Air Conditioning (A/C) button allows the operator to manually activate or deactivate the air conditioning system."
+
+2. "Push the A/C button to engage the Air Conditioning (A/C). The A/C indicator illuminates when A/C is on."
+
+3. "Press and release this button on the touchscreen, or push and release the button on the blower knob to turn the Climate Control ON/OFF."
+
+So the A/C button provides the user the ability to manually turn the air conditioning system on or off as needed.
+--- CHUNKS (truncated):
+  <chunk 0>  A/C Button Press and release this button on the touchscreen, or push the button on the faceplate to change the current setting.  The A/C indicator illuminates when A/C is ON.  The Air Conditioning (A/C) button allows the operator to manually activate or deactivate the air conditioning system.  When the air conditioning system is turned on, cool dehumidified air will flow through the outlets into the cabin.  Note: If fog or mist appears on the windshield or side glass, select Defrost mode, and increase blower speed if needed.  If your air conditioning performance seems lower than expected, check the front of the A/C condenser (located in front of the radiator), for an accumulation of dirt or insects.  Clean with a gentle water spray from the front of the radiator and through the condenser.
+  <chunk 1>  The Air Conditioning (A/C) button allows the operator to manually activate or deactivate the air conditioning system.  When the air conditioning system is turned on, cool dehumidified air will flow through the outlets into the cabin.  If the light turns on while driving, safely pull over and stop the vehicle.  If the Air Conditioning (A/C) system is on, turn it off.  Also, shift the transmission into NEUTRAL and idle the vehicle.  If the temperature reading does not return to normal, turn the engine off immediately and call for service Press and release this button to turn the Climate Control ON/OFF.  When the Key Off Options/Engine Off Options button is pressed on the touchscreen, the system displays the options related to vehicle shutoff.  These settings will only activate when the ignition is set to OFF.  Depending on the vehicle’s options, feature settings may vary.  Press and relea
+  <chunk 2>  A/C Button Push the A/C button to engage the Air Conditioning (A/C).  The A/C indicator illuminates when A/C is on.  Note: For Manual Climate Controls, if the system is in Mix, Floor or Defrost Mode, the A/C can be turned off, but the A/C system shall remain active to prevent fogging of the windows.  If fog or mist appears on the windshield or side glass, select Defrost mode, and increase blower speed if needed.  If your air conditioning performance seems lower than expected, check the front of the A/C condenser (located in front of the radiator), for an accumulation of dirt or insects.  Clean with a gentle water spray from the front of the radiator and through the condenser.
+
+====================================================================================================
+[FN] delucionqa idx=180 label=1 score(min)=0.0677 mean=0.7149 lettuce=0.4593 n_sent=9 n_chunks=3 resp_chars=1190 fallback=False capped=False
+--- ARGMIN sentence (score 0.0677):
+    - This helps maintain steering control and prevents the wheels from losing traction, which could lead to skidding or loss of control.
+--- all sentences:
+    [0.740] Based on the context provided, the main function of the Anti-Lock Brake System (ABS) is:
+
+1.
+    [0.827] To prevent wheel lock-up during braking, especially on slippery or unstable road conditions such as ice, snow, gravel, bumps, etc.
+    [0.931] To enhance vehicle stability and control during braking by automatically preventing the wheels from locking up.
+    [0.466] To provide increased brake performance and shorter stopping distances under most braking conditions compared to a non-ABS system.
+    [0.765] The key points about the ABS function are:
+
+- It automatically senses when one or more wheels are beginning to lock up and adjusts the brake pressure to prevent the wheels from locking.
+    [0.068] - This helps maintain steering control and prevents the wheels from losing traction, which could lead to skidding or loss of control.
+    [0.846] - The ABS enhances vehicle stability and control during braking maneuvers.
+    [0.925] - It is designed to work with the original equipment manufacturer (OEM) tires and modifications may degrade its performance.
+    [0.866] In summary, the primary function of the ABS is to improve vehicle stability and braking performance, especially on slippery or unstable road surfaces, by preventing wheel lock-up during braking.
+--- RESPONSE:
+Based on the context provided, the main function of the Anti-Lock Brake System (ABS) is:
+
+1. To prevent wheel lock-up during braking, especially on slippery or unstable road conditions such as ice, snow, gravel, bumps, etc.
+
+2. To enhance vehicle stability and control during braking by automatically preventing the wheels from locking up.
+
+3. To provide increased brake performance and shorter stopping distances under most braking conditions compared to a non-ABS system.
+
+The key points about the ABS function are:
+
+- It automatically senses when one or more wheels are beginning to lock up and adjusts the brake pressure to prevent the wheels from locking.
+- This helps maintain steering control and prevents the wheels from losing traction, which could lead to skidding or loss of control.
+- The ABS enhances vehicle stability and control during braking maneuvers.
+- It is designed to work with the original equipment manufacturer (OEM) tires and modifications may degrade its performance.
+
+In summary, the primary function of the ABS is to improve vehicle stability and braking performance, especially on slippery or unstable road surfaces, by preventing wheel lock-up during braking.
+--- CHUNKS (truncated):
+  <chunk 0>  The ABS is activated during braking when the system detects one or more wheels are beginning to lock.  Road conditions such as ice, snow, gravel, bumps, railroad tracks, loose debris, or panic stops may increase the likelihood of ABS activation(s).  You also may experience the following normal characteristics when the ABS activates: If the ABS Warning Light is on, the brake system should be serviced as soon as possible to restore the benefits of Anti-Lock Brakes.  If the ABS Warning Light does not come on when the ignition is placed in the ON/RUN mode, have the light repaired as soon as possible.  This warning light monitors the ABS.  The light will turn on when the ignition is placed in the ON/RUN or ACC/ON/RUN position and may stay on for as long as four seconds.  The yellow ABS Warning Light will turn on when the ignition is placed in the ON/RUN mode and may stay on for as long as fo
+  <chunk 1>  If the ABS light does not turn on when the ignition is placed in the ON/RUN or ACC/ON/RUN position, have the brake system inspected by an authorized dealer.  The BAS is designed to optimize the vehicle’s braking capability during emergency braking maneuvers.  The system detects an emergency braking situation by sensing the rate and amount of brake application, and then applies optimum pressure to the brakes.  This can help reduce braking distances.  The BAS complements the Anti-Lock Brake System (ABS) by applying the brakes very quickly, creating the most efficient braking assistance possible.  To receive the benefit of the system, you must apply continuous braking pressure during the stopping sequence (do not “pump” the brakes).  Do not reduce brake pedal pressure unless braking is no longer desired.  Once the brake pedal is released, the BAS is deactivated.  Vehicles equipped with the
+  <chunk 2>  Anti-Lock Brake System (ABS) The ABS provides increased vehicle stability and brake performance under most braking conditions.  The system automatically prevents wheel lock and enhances vehicle control during braking.  The ABS performs a self-check cycle to ensure that the ABS is working properly each time the vehicle is started and driven.  During this self-check, you may hear a slight clicking sound, as well as some related motor noises.  The ABS is activated during braking when the system detects one or more wheels are beginning to lock.  Road conditions such as ice, snow, gravel, bumps, railroad tracks, loose debris, or panic stops may increase the likelihood of ABS activation(s).  You also may experience the following normal characteristics when the abs activates: abs motor noise or clicking sounds (you may continue to hear for a short time after the stop) brake pedal pulsations a 
+
+====================================================================================================
+[FN] delucionqa idx=131 label=1 score(min)=0.0697 mean=0.7177 lettuce=0.8893 n_sent=10 n_chunks=3 resp_chars=924 fallback=False capped=False
+--- ARGMIN sentence (score 0.0697):
+    Exercise extreme caution if you have to do this.
+--- all sentences:
+    [0.441] Based on the context provided, here are some tips if you have to drive across an incline:
+
+1.
+    [0.972] Avoid driving across an incline if at all possible.
+    [0.319] Only do it if absolutely necessary.
+    [0.880] Know your vehicle's abilities and limitations when it comes to driving across an incline.
+    [0.977] Driving across an incline places more weight on the downhill wheels, increasing the risk of a downhill slide or rollover.
+    [0.948] Make sure the surface has good traction with firm and stable soils.
+    [0.910] If possible, try to transverse the incline at an angle, heading slightly up or down the incline rather than directly across.
+    [0.979] WARNING: Driving across an incline increases the risk of a rollover, which may result in severe injury.
+    [0.070] Exercise extreme caution if you have to do this.
+    [0.683] The key advice is to avoid driving across an incline unless absolutely necessary, and if you must do it, be very careful and aware of the increased risks involved.
+--- RESPONSE:
+Based on the context provided, here are some tips if you have to drive across an incline:
+
+1. Avoid driving across an incline if at all possible. Only do it if absolutely necessary.
+
+2. Know your vehicle's abilities and limitations when it comes to driving across an incline.
+
+3. Driving across an incline places more weight on the downhill wheels, increasing the risk of a downhill slide or rollover.
+
+4. Make sure the surface has good traction with firm and stable soils.
+
+5. If possible, try to transverse the incline at an angle, heading slightly up or down the incline rather than directly across.
+
+6. WARNING: Driving across an incline increases the risk of a rollover, which may result in severe injury. Exercise extreme caution if you have to do this.
+
+The key advice is to avoid driving across an incline unless absolutely necessary, and if you must do it, be very careful and aware of the increased risks involved.
+--- CHUNKS (truncated):
+  <chunk 0>  Driving Across An Incline If at all possible, avoid driving across an incline.  If it is necessary, know your vehicle's abilities.  Driving across an incline places more weight on the downhill wheels, which increases the possibilities of a downhill slide or rollover.  Make sure the surface has good traction with firm and stable soils.  If possible, transverse the incline at an angle heading slightly up or down.  WARNING: Driving across an incline increases the risk of a rollover, which may result in severe injury.
+  <chunk 1>  Driving Across An Incline If at all possible, avoid driving across an incline.  If it is necessary, know your vehicle's abilities.  Driving across an incline places more weight on the downhill wheels, which increases the possibilities of a downhill slide or rollover.  Make sure the surface has good traction with firm and stable soils.  If possible, transverse the incline at an angle heading slightly up or down.  WARNING: Driving across an incline increases the risk of a rollover, which may result in severe injury.  Driving Downhill Before driving down a steep hill, you need to determine if it is too steep for a safe descent.  What is the surface traction?  Is the grade too steep to maintain a slow, controlled descent?  Are there obstacles?  Is it a straight descent?  Is there plenty of distance at the base of the hill to regain control if the vehicle descends too fast?  If you feel conf
+  <chunk 2>  Driving Up Hill Once you have determined your ability to proceed and have shifted into the appropriate gear, line your vehicle up for the straightest possible run.  Accelerate with an easy constant throttle and apply more power as you start up the hill.  Do not race forward into a steep grade; the abrupt change of grade could cause you to lose control.  If the front end begins to bounce, ease off the throttle slightly to bring all four tires back on the ground.  As you approach the crest of the hill, ease off the throttle and slowly proceed over the top.  If the wheels start to slip as you approach the crest of a hill, ease off the accelerator and maintain headway by turning the steering wheel no more than a quarter turn quickly back and forth.  This will provide a fresh "bite" into the surface and will usually provide enough traction to complete the climb.  If you do not make it to the

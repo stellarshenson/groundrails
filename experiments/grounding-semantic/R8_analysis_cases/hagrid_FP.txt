@@ -1,0 +1,171 @@
+====================================================================================================
+[FP] hagrid idx=183 label=0 score(min)=0.9763 mean=0.9763 lettuce=0.9649 n_sent=1 n_chunks=3 resp_chars=70 fallback=True capped=False
+--- ARGMIN sentence (score 0.9763):
+    Lawmakers renamed it as West Virginia University on December 4, 1868 .
+--- all sentences:
+    [0.976] Lawmakers renamed it as West Virginia University on December 4, 1868 .
+--- RESPONSE:
+Lawmakers renamed it as West Virginia University on December 4, 1868 .
+--- CHUNKS (truncated):
+  <chunk 0> Under the terms of the 1862 Morrill Land-Grant Colleges Act, the West Virginia Legislature created the
+Agricultural College of West Virginia on February 7, 1867, and the school officially opened on September 2 of the same year.
+On December 4, 1868, lawmakers renamed the college West Virginia
+University to represent a broader range of higher education. The University was built on the grounds of three former academies, namely the
+Monongalia Academy of 1814, the Morgantown Female Academy of 1831,
+and Woodburn Female Seminary of 1858. Upon its founding, the local newspaper claimed
+that "a place more eligible for the quiet and successful pursuit of science and literature
+is nowhere to be found."
+  <chunk 1> Under the terms of the 1862 Morrill Land-Grant Colleges Act, the West Virginia Legislature created the Agricultural College of West Virginia on February 7, 1867, and the school officially opened on September 2 of the same year. On December 4, 1868, lawmakers renamed the college West Virginia University to represent a broader range of higher education. It built on the grounds of three former academies, the Monongalia Academy of 1814, the Morgantown Female Academy of 1831, and Woodburn Female Seminary of 1858. Upon its founding, the local newspaper claimed that "a place more eligible for the quiet and successful pursuit of science and literature is nowhere to be found".
+  <chunk 2> West Virginia's oldest surviving post-secondary institution is Bethany College, founded on March 2, 1840 by Alexander Campbell. Marshall University and West Liberty University were both established in 1837, but as private subscription schools. Founded in 1867, West Virginia University is the state's largest public institution of higher learning in terms of enrollment, as it had 29,707 students as of spring 2013. Eastern West Virginia Community and Technical College is the state's smallest, with an enrollment of 822. With an enrollment of 1,549 students, Wheeling Jesuit University is West Virginia's largest traditional private post-secondary institution, while Valley College–Princeton is the state's smallest, with an enrollment of 72. The American Public University System, a private for-profit, distance education institution based in Charles Town, has the largest enrollment of any post-se
+
+====================================================================================================
+[FP] hagrid idx=196 label=0 score(min)=0.9429 mean=0.9429 lettuce=0.9301 n_sent=1 n_chunks=1 resp_chars=32 fallback=True capped=False
+--- ARGMIN sentence (score 0.9429):
+    According to the given context ,
+--- all sentences:
+    [0.943] According to the given context ,
+--- RESPONSE:
+According to the given context ,
+--- CHUNKS (truncated):
+  <chunk 0> Rugby refers to the team sports rugby league and rugby union. Legend claims that Rugby football was started around the time of 1845 in Rugby School, Rugby, Warwickshire, England, although forms of football in which the ball was carried and tossed date to medieval times. Rugby eventually split into two sports in 1895 when twenty one clubs split from the original Rugby Football Union, to form the Northern Union (later to be named rugby league in 1922) in the George Hotel, Huddersfield, Northern England over the issue of payment to players, thus making rugby league the first code to turn professional and pay its players, rugby union turned fully professional in 1995. Both sports are run by their respective world governing bodies World Rugby (rugby union) and the Rugby League International Federation (rugby league). Rugby football was one of many versions of football played at English public
+
+====================================================================================================
+[FP] hagrid idx=85 label=0 score(min)=0.9377 mean=0.9713 lettuce=0.3244 n_sent=7 n_chunks=4 resp_chars=525 fallback=False capped=False
+--- ARGMIN sentence (score 0.9377):
+    The major political parties in the UK are the Conservative Party, the Labour Party, and the Liberal Democrats  .
+--- all sentences:
+    [0.938] The major political parties in the UK are the Conservative Party, the Labour Party, and the Liberal Democrats  .
+    [0.971] However, other smaller political parties also support the Union, including UKIP, A Better Britain – Unionist Party, Britain First, Britannica Party, the BNP, National Front (NF), and the Scottish Unionist Party (SUP) .
+    [0.973] The Conservative Party is currently the governing party .
+    [0.979] The party leader is Theresa May .
+    [0.979] The party leader is Theresa May .
+    [0.979] The party leader is Theresa May .
+    [0.979] The party leader is Theresa May .
+--- RESPONSE:
+The major political parties in the UK are the Conservative Party, the Labour Party, and the Liberal Democrats  . However, other smaller political parties also support the Union, including UKIP, A Better Britain – Unionist Party, Britain First, Britannica Party, the BNP, National Front (NF), and the Scottish Unionist Party (SUP) . The Conservative Party is currently the governing party . The party leader is Theresa May . The party leader is Theresa May . The party leader is Theresa May . The party leader is Theresa May .
+--- CHUNKS (truncated):
+  <chunk 0> The Conservative Party, officially the Conservative and Unionist Party, is a centre-right political party in the United Kingdom. It is currently the governing party, having been so since the 2010 general election, where a coalition government with the Liberal Democrats was formed. In 2015, the Conservatives led by David Cameron won a surprise majority and formed the first majority Conservative government since 1992. However, the snap election on 8 June 2017 resulted in a hung parliament, and the party lost its parliamentary majority. It is reliant on the support of a Northern Irish political party, the Democratic Unionist Party (DUP), in order to command a majority in the House of Commons through a confidence-and-supply deal. The party leader, Theresa May, has served as both Leader of the Conservative Party and Prime Minister since July 2016. It is the largest party in local government w
+  <chunk 1> The three largest and most significant political parties that support the Union are the Labour Party, the Liberal Democrats and the Conservative and Unionist Party, all of which organise and stand in elections across Great Britain. The three parties have philosophical differences about what Scotland's status should be, particularly in their support of devolution (historically Home Rule) or federalism. These parties hold representation in both the Scottish and UK Parliaments. Other smaller political parties support the Union, including the UK Independence Party (UKIP), A Better Britain – Unionist Party, Britain First, Britannica Party, the British National Party (BNP), National Front (NF) and the Scottish Unionist Party (SUP).
+  <chunk 2> Since then the Conservative and Labour parties have dominated British politics, and have alternated in government ever since. However, the UK is not quite a two-party system as other parties have significant support. The Liberal Democrats were the third largest party until the 2015 general election when they were overtaken by the Scottish National Party in terms of seats and UK political party membership, and by the UK Independence Party in terms of votes.
+  <chunk 3> The Conservative Party, the Labour Party and the Liberal Democrats (formerly as the Liberal Party) have, in modern times, been considered the UK's three major political parties, representing the British traditions of conservatism, socialism and liberalism, respectively. However, in both the 2015 and 2017 general elections, the Scottish National Party was the third-largest party by number of seats won, ahead of the Liberal Democrats. Most of the remaining seats were won by parties that contest elections only in one part of the UK: Plaid Cymru (Wales only); and the Democratic Unionist Party and Sinn Féin (Northern Ireland only). In accordance with party policy, no elected Sinn Féin members of parliament have ever attended the House of Commons to speak on behalf of their constituents because of the requirement to take an oath of allegiance to the monarch.
+
+====================================================================================================
+[FP] hagrid idx=43 label=0 score(min)=0.9083 mean=0.9083 lettuce=0.9153 n_sent=1 n_chunks=2 resp_chars=107 fallback=True capped=False
+--- ARGMIN sentence (score 0.9083):
+    The first Mac OS was developed in 1999 as Mac OS X Server 1.0, followed by a client version in March 2001 .
+--- all sentences:
+    [0.908] The first Mac OS was developed in 1999 as Mac OS X Server 1.0, followed by a client version in March 2001 .
+--- RESPONSE:
+The first Mac OS was developed in 1999 as Mac OS X Server 1.0, followed by a client version in March 2001 .
+--- CHUNKS (truncated):
+  <chunk 0> macOS (formerly "Mac OS X" and later "OS X") is a line of open core graphical operating systems developed, marketed, and sold by Apple Inc., the latest of which is pre-loaded on all currently shipping Macintosh computers. macOS is the successor to the original classic Mac OS, which had been Apple's primary operating system since 1984. Unlike its predecessor, macOS is a UNIX operating system built on technology that had been developed at NeXT through the second half of the 1980s and up until Apple purchased the company in early 1997. The operating system was first released in 1999 as Mac OS X Server 1.0, followed in March 2001 by a client version (Mac OS X v10.0 "Cheetah"). Since then, six more distinct "client" and "server" editions of macOS have been released, until the two were merged in OS X 10.7 "Lion".
+  <chunk 1> The family of Macintosh operating systems developed by Apple Inc. includes the graphical user interface-based operating systems it has designed for use with its Macintosh series of personal computers since 1984, as well as the related system software it once created for compatible third-party systems.
+
+====================================================================================================
+[FP] hagrid idx=153 label=0 score(min)=0.9037 mean=0.952 lettuce=0.4472 n_sent=6 n_chunks=8 resp_chars=976 fallback=False capped=False
+--- ARGMIN sentence (score 0.9037):
+    The wine is aged in oak barrels, which can vary in size and style, with the most common barrels being the Bordeaux barrique style and the Burgundy style barrel .
+--- all sentences:
+    [0.904] The wine is aged in oak barrels, which can vary in size and style, with the most common barrels being the Bordeaux barrique style and the Burgundy style barrel .
+    [0.982] In Burgundy, the traditional barrel used for red wines holds 228 liters, while in Bordeaux, it is slightly smaller, holding 225 liters .
+    [0.948] Some Italian wines also use larger barrels such as hogshead barrel, particularly in Barolo and southern France .
+    [0.982] Some Italian wines also use larger barrels such as hogshead barrel, particularly in Barolo and southern France , Some Italian wines also use larger barrels such as hogshead barrel, particularly in Barolo and southern France , Some Italian wines also use larger barrels such as hogshead barrel, partic
+    [0.948] Some Italian wines also use larger barrels such as hogshead barrel, particularly in Barolo and southern France .
+    [0.948] Some Italian wines also use larger barrels such as hogshead barrel, particularly in Barolo and southern France .
+--- RESPONSE:
+The wine is aged in oak barrels, which can vary in size and style, with the most common barrels being the Bordeaux barrique style and the Burgundy style barrel . In Burgundy, the traditional barrel used for red wines holds 228 liters, while in Bordeaux, it is slightly smaller, holding 225 liters . Some Italian wines also use larger barrels such as hogshead barrel, particularly in Barolo and southern France . Some Italian wines also use larger barrels such as hogshead barrel, particularly in Barolo and southern France , Some Italian wines also use larger barrels such as hogshead barrel, particularly in Barolo and southern France , Some Italian wines also use larger barrels such as hogshead barrel, particularly in Barolo and southern France . Some Italian wines also use larger barrels such as hogshead barrel, particularly in Barolo and southern France . Some Italian wines also use larger barrels such as hogshead barrel, particularly in Barolo and southern France .
+--- CHUNKS (truncated):
+  <chunk 0> After fermentation, the oak barrel aging regiment will vary with the length of time and proportion of new oak barrels that are used. Most Cote de Nuit producers prefer to age their red wines for at least a year to 18 months and blend lots between barrels of different ages. The traditional barrel used in Burgundy holds 228 liters which is slightly larger than the 225 liters that a traditional Bordeaux wine barrel holds. Prior to bottling, the producer will decide on what, if any fining and filtration methods will be used in the clarification and stabilization of the wine. Some producers will use both, others will fine and not filter and a few will choose to use neither, believing that they can reduce the complexity of the wine even though the wine may have a higher risk of spoilage and instability.
+  <chunk 1> Wine barrels, especially those made of oak, have long been used as containers in which wine is aged. Aging in oak typically imparts desirable vanilla, butter and spice flavors to wine. The size of the barrel plays a large role in determining the effects of oak on the wine by dictating the ratio of surface area to volume of wine with smaller containers having a larger impact. The most common barrels are the Bordeaux barriques style which hold followed by the Burgundy style barrel which hold . Some New World wine makers are now also using the larger hogshead barrel. Larger barrels are also traditionally used in parts of Italy such as Barolo, as well as the south of France.
+  <chunk 2> In Bordeaux, most serious wines undergo barrel-ageing, although white wines can be an exception. Usually, six months of ageing in-barrel is required, but some châteaux barrel-age for as much as 20 months. The number of new barrels (which impart a higher degree of oak flavor to the wine) can vary from vintage to vintage, just as the duration of barrel-ageing. Only recently, addition of oak chips has been made legal in Bordeaux. During barrel-ageing, the wine needs to be racked in order to clear it of lees. This process is being challenged by some producers, as mentioned abovem since ageing on the lees can also add richness to the wine.
+  <chunk 3> Style Guide for Barrel Aged Beer according to craftbeer.com "A wood- or barrel-aged beer is any lager, ale or hybrid beer, either a traditional style or a unique experimental beer, that has been aged for a period of time in a wooden barrel or in contact with wood. This beer is aged with the intention of imparting the unique character of the wood and/or the flavor of what has previously been in the barrel. Today's craft brewers are using wood (mostly oak) to influence flavor, and aromatics. Beer may be aged in wooden barrels (new or previously used to age wine or spirits), or chips, spirals and cubes may be added to the conditioning tanks that normally house beer. A variety of types of wood are used including oak, apple, alder, hickory and more. The interior of most barrels is charred or toasted to further enhance the flavor of the wood."
+  <chunk 4> After fermentation the grapes are then aged in small oak barrels. In many DOC regions, the wines are required to age for at least 3 years though it is not uncommon for producers to age their wines for 5 to 10 years. Traditionally the barrels were made of chestnut instead of oak, which contributed high amounts of wood tannins and was very porous which promoted excessive evaporation in the barrel. Under this same traditional style of winemaking, a large ullage or air space would emerge in the barrel and oxidation took place. This gave the wine its characteristic amber but also flavours and traits that may be characterised as wine faults. Towards the end of the 20th century, more produces began switching to oak barrels while maintaining the tradition of not topping up the barrels and filling in the ullage space. This angel's share still produces some level of oxidation, though not as severe
+  <chunk 5> Ducru-Beaucaillou produces two wines. The grand vin called Château Ducru-Beaucaillou, and a second wine produced since 1995 to which lesser-quality lots are relegated, La Croix de Beaucaillou. The wines are aged for 18 months in 50% to 80% new oak barrels according to the richness of the vintage, fined with egg whites, lightly filtered, and then bottled. Wine writer Jay McInerney wrote "Ducru has always been a wine of finesse rather than sheer brute power, a kind of Burgundian Bordeaux."
+  <chunk 6> Most red wine is aged for some period before bottling, though this can vary from a few days, in the case of Beaujolais Nouveau to 18 months or more in the case of top Bordeaux reds. Aging can take place in stainless-steel or concrete tanks, or in small or large oak barrels. The latter impart some flavour to the wine as a function of their age and size (small, new barrels give more flavour than large, older barrels).
+  <chunk 7> Oak is used in winemaking to vary the color, flavor, tannin profile and texture of wine. It can be introduced in the form of a barrel during the fermentation or aging periods, or as free-floating chips or staves added to wine fermented in a vessel like stainless steel. Oak barrels can impart other qualities to wine through evaporation and low level exposure to oxygen.
+
+====================================================================================================
+[FP] hagrid idx=81 label=0 score(min)=0.8761 mean=0.8761 lettuce=0.6936 n_sent=1 n_chunks=1 resp_chars=48 fallback=True capped=False
+--- ARGMIN sentence (score 0.8761):
+    The molecular weight of water is 18.0153 g/mol .
+--- all sentences:
+    [0.876] The molecular weight of water is 18.0153 g/mol .
+--- RESPONSE:
+The molecular weight of water is 18.0153 g/mol .
+--- CHUNKS (truncated):
+  <chunk 0> Molecular masses are calculated from the standard atomic weights of each nuclide, while molar masses are calculated from the atomic mass of each element. The atomic mass takes into account the isotopic distribution of the element in a given sample (usually assumed to be "normal"). For example, water has a molar mass of 18.0153(3) g/mol, but individual water molecules have molecular masses which range between 18.010 564 6863(15) u (HO) and 22.027 7364(9) u (DO).
+
+====================================================================================================
+[FP] hagrid idx=24 label=0 score(min)=0.8665 mean=0.8665 lettuce=0.9107 n_sent=1 n_chunks=2 resp_chars=199 fallback=True capped=False
+--- ARGMIN sentence (score 0.8665):
+    It was initially a wholly owned subsidiary of General Electric (GE), but in 1921, GE made an agreement with Westinghouse to cross-license radio patents, which gave Westinghouse 40% ownership of RCA .
+--- all sentences:
+    [0.867] It was initially a wholly owned subsidiary of General Electric (GE), but in 1921, GE made an agreement with Westinghouse to cross-license radio patents, which gave Westinghouse 40% ownership of RCA .
+--- RESPONSE:
+It was initially a wholly owned subsidiary of General Electric (GE), but in 1921, GE made an agreement with Westinghouse to cross-license radio patents, which gave Westinghouse 40% ownership of RCA .
+--- CHUNKS (truncated):
+  <chunk 0> Although RCA had made a significant financial investment in establishing WDY, and its debut and ongoing operations were made with great fanfare, changes in the radio industry soon made the station redundant. RCA, formed in 1919, was originally a wholly owned GE subsidiary. However, on July 1, 1921 GE made an agreement with Westinghouse to cross-license radio patents, which gave Westinghouse 40% ownership of RCA, and also made RCA the sales agent for Westinghouse radio receivers. Because these companies were now working together, there was no longer a need for both WDY and WJZ, moreover, WJZ was located closer to New York City and had been providing a greater variety of programs.
+  <chunk 1> The RCA Corporation was a major American electronics company, which was founded as the Radio Corporation of America in 1919. It was initially a wholly owned subsidiary of General Electric (GE); however, in 1932, RCA became an independent company after GE was required to divest its ownership as part of the settlement of a government antitrust suit.
+
+====================================================================================================
+[FP] hagrid idx=188 label=0 score(min)=0.8656 mean=0.8656 lettuce=0.8906 n_sent=1 n_chunks=1 resp_chars=28 fallback=True capped=False
+--- ARGMIN sentence (score 0.8656):
+    Based on the given context ,
+--- all sentences:
+    [0.866] Based on the given context ,
+--- RESPONSE:
+Based on the given context ,
+--- CHUNKS (truncated):
+  <chunk 0> The , JMSDF, also referred to as the Japanese Navy, is the maritime warfare branch of the Japan Self-Defense Forces, tasked with the naval defense of Japan. It is the "de facto" navy of Japan and was formed following the dissolution of the Imperial Japanese Navy (IJN) after World War II. The JMSDF has a fleet of 154 ships and 346 aircraft and consists of approximately 45,800 personnel. Its main tasks are to maintain control of the nation's sea lanes and to patrol territorial waters. It also participates in UN-led peacekeeping operations (PKOs) and Maritime Interdiction Operations (MIOs).
+
+====================================================================================================
+[FP] hagrid idx=243 label=0 score(min)=0.8586 mean=0.9164 lettuce=0.2645 n_sent=2 n_chunks=1 resp_chars=346 fallback=False capped=False
+--- ARGMIN sentence (score 0.8586):
+    Yes, Catalonia did trade with France but there was intermittent conflict between Spain and France during the reign of Spain's last Habsburg king, Charles II .
+--- all sentences:
+    [0.859] Yes, Catalonia did trade with France but there was intermittent conflict between Spain and France during the reign of Spain's last Habsburg king, Charles II .
+    [0.974] However, the Catalan economy recovered, not only in Barcelona, but also along the Catalan coast and even in some inland areas due to the export of wine to England and the Dutch Republic .
+--- RESPONSE:
+Yes, Catalonia did trade with France but there was intermittent conflict between Spain and France during the reign of Spain's last Habsburg king, Charles II . However, the Catalan economy recovered, not only in Barcelona, but also along the Catalan coast and even in some inland areas due to the export of wine to England and the Dutch Republic .
+--- CHUNKS (truncated):
+  <chunk 0> In the last decades of the 17th century during the reign of Spain's last Habsburg king, Charles II, despite intermittent conflict between Spain and France, the population increased to approximately 500.000 inhabitants and the Catalan economy recovered, not only in Barcelona, but also along the Catalan coast and even in some inland areas. This economic growth was boosted by the export of wine to England and the Dutch Republic, due to the trade war of French minister Jean-Baptiste Colbert against the Dutch and later for the participation of this countries in the Nine Years' War against France, as a consequence, there weren't able to trade with French wine. This new trade caused many Catalans to look to England and, especially, the Netherlands as political and economic models for Catalonia.
+
+====================================================================================================
+[FP] hagrid idx=58 label=0 score(min)=0.7476 mean=0.8789 lettuce=0.1012 n_sent=3 n_chunks=3 resp_chars=603 fallback=False capped=False
+--- ARGMIN sentence (score 0.7476):
+    However, the program was originated and co-created by Guatemalan computer scientist Luis von Ahn who also realized the importance of preserving human brain cycles .
+--- all sentences:
+    [0.922] The original development team of Recaptcha consisted of Luis von Ahn, David Abraham, Manuel Blum, Michael Crawford, Ben Maurer, Colin McMillen, and Edison Tan from Carnegie Mellon University .
+    [0.748] However, the program was originated and co-created by Guatemalan computer scientist Luis von Ahn who also realized the importance of preserving human brain cycles .
+    [0.967] Furthermore, the project was then further developed by Luis von Ahn again in collaboration with Severin Hacker, Antonio Navas, Vicki Cheung, Marcel Uekermann, Brendan Meeder, Hector Villafuerte, and Jose Fuentes from Carnegie Mellon University .
+--- RESPONSE:
+The original development team of Recaptcha consisted of Luis von Ahn, David Abraham, Manuel Blum, Michael Crawford, Ben Maurer, Colin McMillen, and Edison Tan from Carnegie Mellon University . However, the program was originated and co-created by Guatemalan computer scientist Luis von Ahn who also realized the importance of preserving human brain cycles . Furthermore, the project was then further developed by Luis von Ahn again in collaboration with Severin Hacker, Antonio Navas, Vicki Cheung, Marcel Uekermann, Brendan Meeder, Hector Villafuerte, and Jose Fuentes from Carnegie Mellon University .
+--- CHUNKS (truncated):
+  <chunk 0> reCAPTCHA is a CAPTCHA-like system designed to establish that a computer user is human (normally in order to protect websites from bots) and, at the same time, assist in the digitization of books. reCAPTCHA was originally developed by Luis von Ahn, David Abraham, Manuel Blum, Michael Crawford, Ben Maurer, Colin McMillen, and Edison Tan at Carnegie Mellon University's main Pittsburgh campus. It was acquired by Google in September 2009.
+  <chunk 1> The reCAPTCHA program originated with Guatemalan computer scientist Luis von Ahn, and was aided by a MacArthur Fellowship. An early CAPTCHA developer, he realized "he had unwittingly created a system that was frittering away, in ten-second increments, millions of hours of a most precious resource: human brain cycles".
+  <chunk 2> The project was started at the end of 2009 in Pittsburgh by Carnegie Mellon University professor Luis von Ahn (creator of reCAPTCHA) and his graduate student Severin Hacker, and then developed along with Antonio Navas, Vicki Cheung, Marcel Uekermann, Brendan Meeder, Hector Villafuerte, and Jose Fuentes.
+
+====================================================================================================
+[FP] hagrid idx=226 label=0 score(min)=0.6848 mean=0.6848 lettuce=0.9329 n_sent=1 n_chunks=4 resp_chars=22 fallback=True capped=False
+--- ARGMIN sentence (score 0.6848):
+    According to context ,
+--- all sentences:
+    [0.685] According to context ,
+--- RESPONSE:
+According to context ,
+--- CHUNKS (truncated):
+  <chunk 0> The US force level will drop to between 10,000 and 20,000 troops according to the Long War Journal. They will consist of Special Forces, counterterrorism forces, and military training personnel. They will be deployed to a small number of bases around the country. US/ISAF troops will continue their training of Afghan National Security Forces soldiers. Counterterrorism forces will concentrate mostly on high-value targets. U.S. Secretary of Defense Leon Panetta stated on 12 November 2012 that the Obama Administration will cease combat operations by the end of 2014, but it is still refining its timeline for withdrawing the remaining 68,000 U.S. troops in Afghanistan. The administration was also debating how many trainers, Special Operations forces and military assets it will keep in the country after that to support Afghanistan's army and police.
+  <chunk 1> In 2007, the government of Uganda claimed that the LRA had only 500 or 1,000 soldiers in total, but other sources estimated that there could have been as many as 3,000 soldiers, along with about 1,500 women and children. By 2011, unofficial estimates were in the range of 300 to 400 combatants, with more than half believed to be abductees. The soldiers are organized into independent squads of 10 or 20 soldiers. By early 2012, the LRA had been reduced to a force of between 200 and 250 fighters, according to Ugandan defence minister Crispus Kiyonga. Abou Moussa, the UN envoy in the region, said in March 2012 that the LRA was believed to have dwindled to between 200 and 700 followers but still remained a threat: "The most important thing is that no matter how little the LRA may be, it still constitutes a danger [as] they continue to attack and create havoc."
+  <chunk 2> The U.S. Army currently consists of 10 active divisions and one deployable division headquarters (7th Infantry Division) as well as several independent units. The force is in the process of contracting after several years of growth. In June 2013, the Army announced plans to downsize to 32 active combat brigade teams by 2015 to match a reduction in active duty strength to 490,000 soldiers. Army Chief of Staff Raymond Odierno projected that the Army was to shrink to "450,000 in the active component, 335,000 in the National Guard and 195,000 in U.S. Army Reserve" by 2018. However, this plan was scrapped by the new administration and now the Army plans to grow by 16,000 soldiers to a total of 476,000 by October 2017. The National Guard and the Army Reserve will see a smaller expansion.
+  <chunk 3> As a uniformed military service, the U.S. Army is part of the Department of the Army, which is one of the three military departments of the Department of Defense. The U.S. Army is headed by a civilian senior appointed civil servant, the Secretary of the Army (SECARMY) and by a chief military officer, the Chief of Staff of the Army (CSA) who is also a member of the Joint Chiefs of Staff. It is the largest military branch, and in the fiscal year 2017, the projected end strength for the Regular Army (USA) was 476,000 soldiers; the Army National Guard (ARNG) had 343,000 soldiers and the United States Army Reserve (USAR) had 199,000 soldiers; the combined-component strength of the U.S. Army was 1,018,000 soldiers. As a branch of the armed forces, the mission of the U.S. Army is "to fight and win our Nation's wars, by providing prompt, sustained, land dominance, across the full range of milita
+
+====================================================================================================
+[FP] hagrid idx=86 label=0 score(min)=0.4761 mean=0.4761 lettuce=0.9372 n_sent=1 n_chunks=1 resp_chars=28 fallback=True capped=False
+--- ARGMIN sentence (score 0.4761):
+    Based on the given context ,
+--- all sentences:
+    [0.476] Based on the given context ,
+--- RESPONSE:
+Based on the given context ,
+--- CHUNKS (truncated):
+  <chunk 0> There is debate whether the Pythagorean theorem was discovered once, or many times in many places, and the date of first discovery is uncertain, as is the date of the first proof. According to Joran Friberg, a historian of mathematics, evidence indicates that the Pythagorean theorem "was well-known to the mathematicians of the Old Babylonian period" (20th to 16th centuries BC), which would have been over a thousand years before Pythagoras was born. The history of the theorem can be divided into four parts: knowledge of Pythagorean triples, knowledge of the relationship among the sides of a right triangle, knowledge of the relationships among adjacent angles, and proofs of the theorem within some deductive system.

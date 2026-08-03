@@ -236,3 +236,4 @@ groundrails.json
 graphify-out/
 experiments/grounding-semantic/R8-H93_optuna.db
 experiments/grounding-semantic/R8-H94_ragtruth_cache.npz
+experiments/grounding-semantic/R8_analysis_h90_dump.json

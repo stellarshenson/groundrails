@@ -116,6 +116,7 @@ A cross-encoder reranker (`BAAI/bge-reranker-v2-m3`) is the best single groundin
 | M round 8 | R8-H96 - phase shift: GroupDRO-mastered trunk → DANN lambda* 0.1241 (the curriculum) | 13 group-val sets + blind arena | blind min 0.6820 (8/10) vs bar 0.7313, H90 0.7213, own stage 1 0.6870; dom-acc parked ~0.50 predictive; group-val rose to 0.9610 | **REFUTED on both clauses** - generalisation-from-mastery does not beat single-stage DANN; stage 2 undid stage 1's tabular mastery blind (finqa 0.7053→0.6417); lambda-vs-trunk attribution goes to H99 |
 | M round 8 | R8-H99 - full-corpus DANN from scratch at lambda 0.1241 (single-variable vs H90) | 3 in-domain + blind arena | blind min 0.6913 (8/10) vs bar 0.7313; gold 0.8435 3/3 DECISIVE; no anti-prediction at full scale (dom-acc ~0.46); finqa 0.7135 and delucionqa 0.7757 campaign bests | **REFUTED** - lambda 0.1241 costs -0.0300 vs 0.02; curriculum deficit attributed 3/4 lambda + 1/4 trunk; LOCO-HaluEval invalidated as a lambda proxy; high lambda conquers the far registers but pays on the strongholds |
 | M round 8 | **R8-H100 - variance probe: verbatim H90 replicate** | 3 in-domain + blind arena | **blind min 0.6918 vs H90's 0.7213 - gap 0.0295 on an identical recipe**; gold 0.8511 3/3 DECISIVE | **Demotion clause FIRES** - full-scale run-to-run noise ~±0.03; all round-8 single-run training deltas ≤ 0.03 demoted to within-noise; campaign moves to multi-seed means (see amendment) |
+| M round 8 | **R8-H101 - windowed evidence on frozen H90 weights (un-truncate the chunks)** | blind arena, deterministic | **windowed mean 0.7355** (+0.0142 on identical weights); delucionqa +0.0809 flips to a WIN (0.8072 vs 0.7929); finqa -0.0019; zero-exposure subsets exact no-ops | **KILLED on the finqa clause** - truncation attribution refuted for finqa (numeric derivation is its real mode); highest deterministic blind read of the campaign; supersession conditional on the replicate windowed read |
 | L round 7 (pre-reg) | R7-H49 - external calibration on LLM-AggreFact | 11 subsets, stratified | predicts 63-72 vs our private-gold ~82-85 | **blocked** - gated dataset, needs Hub auth |
 | L round 7 (pre-reg) | R7-H53 - MICE-style split encoder, document side cached | teacher corpus | 0.298 ms vs 2.707 ms measured; AUC deficit unknown | **pending** - needs R7-H50 |
 
@@ -1931,3 +1932,138 @@ R8-H100 measured run-to-run noise ~±0.03 on the primary blind read. Per its pre
 - **The H98 kill-gate decision** (0.6965 vs threshold 0.7013) - the gate fired on a within-noise difference; the kill stands procedurally (the gate was pre-registered) but the dilution inference is not evidence
 - **The benchmark ladder is restated as recipe means** - full-762k DANN lam-0.02: 0.7066 (n=2); full-762k ERM: 0.6965 (n=1); full-762k DANN lam-0.1241: 0.6913 (n=1); frozen H92 ensemble: 0.6893 (deterministic); incumbent: 0.6461. The author's 0.74 target is henceforth read against the recipe MEAN, and the honest distance from the best recipe is ~0.033
 - **Protocol from here** - no further single-run cross-config adjudication; new training hypotheses pre-register a multi-seed design (n ≥ 2 draws minimum, mean reported) or an effect-size bar > 0.03
+
+### The failure-mode and architecture analysis - 2026-08-03 (subagent, report in `reports/R8_architecture_failure_analysis.md`)
+
+Per-example error analysis of the holder read (2,264 records reproduced at 0.7213 exactly; 8 ranked worst-case files read; comparator scores triangulated). Findings, recorded as analysis (not hypotheses):
+
+- **Mode 1, ~30% of addressable residual - evidence-window truncation**: the harness truncates every chunk to 1,500 chars; needle-verified that 6/7 worst grounded false-negatives have support present in the full document PAST char 1,500; 86% (finqa) / 74% (delucionqa) of bottom-quartile grounded responses carry a truncated chunk - vs 0-3% in pubmedqa/hotpotqa/tatqa. A harness constant, not the model
+- **Mode 2, ~25% - unsupportable-by-construction sentences**: inference/hedge/absence sentences are adherent under RAGBench labels but unentailable per (sentence, chunk); the min executes the response (56% of pubmedqa bottom-quartile argmins; 76% of pubmedqa grounded responses score < 0.1)
+- **Mode 3, ~15% - numeric-derivation blindness, both directions**: derived-arithmetic sentences score ~0.01 (75% finqa / 68% tatqa bottom-quartile argmins); mirror FPs copy true numbers with wrong unit/year at 0.65-0.70. The one genuine model-class gap
+- **Mode 4, ~15% - min-aggregation fragility + splitter artifacts**: delucionqa mean-over-sentences on H90's own scores reads 0.8130 vs min's 0.7263 (the formula, not capability, loses that subset); fallback-to-whole fires on 54-84% of four subsets; min amplifies training noise 4x (H100)
+- **Mode 5, ~10% - multi-chunk composition blindness**: hotpotqa grounded median 0.0118 (ranking survives, calibration collapses); conflation FPs merge entities across chunks at 0.9+. Label-noise ceiling estimated 0.82-0.88 and not binding
+- **Architecture verdict: NOT architecture-limited - recipe-and-formula-limited.** Same 307M backbone spans 0.5956-0.7213 blind across recipes (comparator on the identical backbone: 0.6461); the H90 trunk config itself carries 8,192 positions - the 512/1,500 window is a recipe constant. Residual attribution: formula/harness ~45%, training-data register coverage ~35%, true model-class capability ~15%, labels ~5%
+- **Transfer ranking**: (1) token-classification head on mmBERT at full scale (H73 recipe, token-head-only blind read never taken; +0.01-0.03 predicted, needs multi-seed); (2) Qwen3-0.6B decoder scorer (only candidate changing capability class, attacks numeracy; over the sub-400M budget, needs explicit reopening); (3) ModernBERT-large (English-only forks the multilingual deliverable; +0.00-0.02, below noise). DeBERTa-v3 family ranks below all three
+
+**R8-H101 - windowed evidence on frozen weights: un-truncate the chunks. Pre-registered**
+
+Because the analysis needle-verified that support for the worst grounded false-negatives exists in the full documents PAST the harness's 1,500-char truncation (Mode 1, the largest addressable mode, concentrated precisely in the two losing subsets), scoring each sentence against sliding WINDOWS over the FULL chunk text recovers evidence the current read never sees - with zero training and no tuned parameters.
+
+- **Terse claim** - because the support exists in text the scorer currently never reads, the frozen H90 checkpoint scored with per-sentence max over 1,500-char windows (stride 750, fixed pre-run) over every full chunk, min over sentences unchanged, will read blind mean ≥ 0.7213 with finqa AND delucionqa each improving ≥ +0.03; deterministic on frozen weights, so the ±0.03 training-noise bar does not apply
+- **Kill** - if either finqa or delucionqa moves < +0.01, the truncation attribution is refuted and the residual re-attributes toward register coverage / model class
+- **Discipline** - window size = the existing 1,500-char harness constant (not tuned), stride fixed at 50% pre-run, frozen weights, one shot through the identical gate; the frozen gate script is NOT modified - a separate read tool implements the windowing; H85's subset-level coverage kill is a different claim (this is argmin-level with needle verification); H94's no-tuned-aggregation lesson respected
+- **Artifacts** - `R8-H101_windowed_read.py`, `R8-H101_result.json`
+
+**R8-H101 - result. KILLED on the finqa clause; the windowed read is nonetheless the highest deterministic blind mean of the campaign**
+
+Sanity pre-run: delucionqa carries 218/552 chunks (39.5%) beyond 1,500 chars (max 4,423); a first-window-only read reproduces the baseline EXACTLY (0.7263 = 0.7263 - path fidelity proven). Implementation note for the record: no reconstruction was needed - `load_subsets()` already returns full documents; the truncation lives in `score_student`'s pair assembly (`k[:1500]`), so windowing passes pre-cut ≤1,500-char window lists through the UNCHANGED scorer. The gate script was not modified; the MAX_CHUNKS=8 cap (gate definition) retained.
+
+| subset | windowed | baseline H90 | delta | lettucedect-v2 |
+|---|---|---|---|---|
+| covidqa | 0.7755 | 0.7755 | +0.0000 | 0.7355 |
+| delucionqa | **0.8072** | 0.7263 | **+0.0809** | 0.7929 |
+| emanual | 0.7718 | 0.7058 | +0.0660 | 0.5999 |
+| expertqa | 0.8346 | 0.8248 | +0.0098 | 0.6503 |
+| finqa | 0.6711 | 0.6730 | -0.0019 | 0.7170 |
+| hagrid | 0.6307 | 0.6516 | -0.0209 | 0.5992 |
+| hotpotqa | 0.7246 | 0.7253 | -0.0007 | 0.5976 |
+| pubmedqa | 0.6058 | 0.6058 | +0.0000 | 0.5162 |
+| tatqa | 0.7742 | 0.7718 | +0.0024 | 0.6156 |
+| techqa | 0.7598 | 0.7529 | +0.0069 | 0.6363 |
+| **mean** | **0.7355** | 0.7213 | **+0.0142** | 0.6461 |
+
+- **Verdict - KILLED on the registered conjunction.** finqa moved -0.0019 (< +0.01): the truncation attribution for finqa is refuted and its residual re-attributes to numeric-derivation blindness (Mode 3) - full table text in view, the scorer still cannot verify derived arithmetic. delucionqa's clause passed decisively (+0.0809): its starved sentences were literal procedural text and were rescued
+- **Diagnostics, recorded as in H92** - windowed mean **0.7355** is the highest deterministic blind read of the campaign: +0.0142 over the identical frozen weights' baseline, delucionqa flips to a WIN over the incumbent for the first time under a min-family read (0.8072 vs 0.7929), finqa is the sole remaining loss, and the lift lands exactly on the truncation-exposed subsets while zero-exposure subsets are exact no-ops (covidqa, pubmedqa +0.0000) - the mechanism is confirmed at the argmin level even though the compound bar is not met. hagrid regressed -0.0209 (4% exposure; extra windows only add spurious maxima to its negatives), the only subset harmed
+- **Supersession candidate, conditional and recorded BEFORE the deciding read** - the windowed decomposed-min read becomes the PRIMARY read if and only if it also dominates on the second draw of the recipe: windowed(H100 replicate) ≥ its baseline 0.6918. The deciding read is deterministic on frozen weights and is running as this is recorded; a pass records the supersession, a fail keeps the truncated read primary and demotes the windowed lift to draw-specific
+
+**Supersession CONFIRMED - the windowed decomposed-min read is the primary blind read from here on**
+
+The deciding read (`R8-H101_replicate_result.json`, H100 replicate checkpoint, deterministic): windowed mean **0.7097** vs its own baseline 0.6918, **+0.0180 - condition passed**. The mechanism replicates across draws: delucionqa +0.0800, emanual +0.0769, expertqa +0.0378, techqa +0.0309; covidqa/pubmedqa exact no-ops (+0.0000) on both draws; finqa negative on both (-0.0019 / -0.0267 - numeric derivation, not truncation); hagrid mildly negative on both (-0.0209 / -0.0180). Formula effect on the recipe: +0.0142 and +0.0180 on the two draws - consistent sign and size, unlike the training noise it rides on.
+
+- **The ladder under the primary read** - recipe mean **0.7226 (n=2 draws: 0.7355, 0.7097)**; incumbent 0.6461; distance to the author's 0.74-of-mean target: **0.0174**. Best draw 0.7355, 9/10 subsets
+- **All subsequent checkpoints (draw 3 onward) get the windowed read as primary**, truncated read recorded alongside for lineage
+- **finqa is the campaign's last losing subset under the primary read** and its mode is now isolated twice over: numeric-derivation blindness, requiring a capability change (token-head at full scale or a decoder scorer), not more evidence
+
+**Draw 3 of the holder recipe - the multi-seed protocol's third draw (R8-H100-draw3)**
+
+Verbatim clone of the H90 trainer (only artifact paths changed - `models/R8-H100-mmbert-dann-draw3`), read blind through the frozen gate with the windowed primary read plus the truncated read for lineage.
+
+| read | draw 1 (H90) | draw 2 (H100) | draw 3 | recipe mean | sd |
+|---|---|---|---|---|---|
+| windowed (PRIMARY) | 0.7355 | 0.7097 | 0.7065 | **0.7172** | 0.0159 |
+| truncated (lineage) | 0.7213 | 0.6918 | 0.6987 | 0.7039 | 0.0154 |
+| windowing lift | +0.0143 | +0.0180 | +0.0078 | +0.0134 | - |
+
+- **Recipe mean under the primary read: 0.7172 ± 0.0159 (n=3)** - distance to the author's 0.74-of-mean target 0.0228 (~1.4 sd); incumbent 0.6461, beaten by +0.0711 of mean; draw 3 won 8/10 subsets truncated
+- **The windowing fingerprint replicates a third time** - delucionqa +0.0916, emanual +0.0672, expertqa +0.0309, techqa +0.0202; covidqa and pubmedqa exact no-ops (+0.0000) on all three draws; hagrid mildly negative on all three (-0.0209/-0.0180/-0.0138). The supersession stands
+- **New evidence - the finqa windowing penalty is checkpoint-dependent and grew each draw**: -0.0019 / -0.0267 / -0.0824. Each independently trained checkpoint scores long finqa table-windows differently; draw 3's long-window scores are bad enough to drag its whole-mean lift to +0.0078. Consistent with Mode 3 (numeric-derivation blindness): more table text in view gives the scorer more numbers to mis-handle, with checkpoint-level variance in how badly
+- **Adjudication under the multi-seed protocol** - draw 1 (0.7355) is the high draw of the distribution, not the recipe's expectation; the recipe as-is does NOT meet 0.74 in expectation (would need a real effect ≥ +0.023 on top, above the +0.03 effect-size bar only marginally). Reaching 0.74-of-mean requires a registered lever with predicted effect > noise: the transfer ranking's candidates (token-head at full scale; decoder scorer pending budget word) are the live options
+- **Artifacts** - `R8-H101_draw3_result.json` (windowed), `R8_decomposed_reads.json` tag `R8-H100-draw3` (truncated), `logs/R8-H100_draw3_train.log`, `logs/R8-H100_draw3_reads.log`. Note: the windowed script's printed verdict line for draw 3 compares against H90's hardcoded per-subset baselines and is not the adjudication; the table above (each draw vs its OWN truncated read) is
+
+**R8-H102 - full-mix two-head with DANN, judged on the token-head-only read. Pre-registered (transfer ranking candidate 1, sketch P2 of the failure analysis)**
+
+Because span supervision teaches that discourse tokens are not hallucination events (Mode B, ~25% of residual) and a wrong number is a localized token event (Mode C, finqa's mode), the H73 two-head recipe - score head + token-span head on one mmBERT trunk - scaled from its capped mix to the holder recipe's full 762k mix with DANN lambda 0.02, will produce a token-head-only blind read that beats the score-head read of the same weights. H73's fused read (0.6607 blind) stacked two ANDs and over-sharpened; the token-head-ONLY read was parked unregistered and has never been taken.
+
+- **Terse claim** - because span supervision addresses Modes B and C directly, one full-762k two-head DANN draw, read blind as 1 − max(halluc-token prob) per (sentence, window) through the PRIMARY windowed decomposed-min, will beat the score-head primary read of the SAME checkpoint by ≥ +0.01, while the score-head read itself stays within the recipe band (≥ 0.7172 − 2×0.0159 = 0.6854)
+- **Design note - the paired read is the point**: both heads sit on one trunk from one training run, so the token-vs-score comparison is within-checkpoint and deterministic on frozen weights; the ±0.03 run-to-run noise cancels out of the paired difference. The mean-level claim (does two-head lift the recipe expectation toward 0.74) is NOT adjudicable from one draw and is explicitly deferred: stage 2 (n ≥ 2 draws) runs only if the paired bar fires
+- **Kill** - token-head-only primary read < score-head primary read of the same checkpoint → head choice is confirmed as not the carrier of the comparator's robustness; the head-transfer question closes and the remaining levers are the decoder scorer (budget word pending) and register-coverage data work
+- **Guardrails** - in-domain gold ≥ 0.80 (score head); training instability (NaN/divergence) = kill; RAGBench untouched; frozen gate; both reads (windowed primary + truncated lineage) recorded for both heads
+- **Cost** - ~7-9h GPU1 (existing `R8-H73_twohead.py` architecture, data loading swapped to the holder trainer's full mix), zero integration work at serving time
+- **Artifacts** - `R8-H102_twohead_full.py`, `models/R8-H102-mmbert-twohead-full`, `R8-H102_tokenread.py` (token-head windowed read tool), `R8-H102_result.json`, `logs/R8-H102_*.log`
+
+**R8-H102 - result. KILLED on the paired bar; the head-transfer question closes, and the kill carries the round's sharpest diagnostic**
+
+Training clean (15,887 steps, DANN equilibrium held, domain-acc ~0.49); in-domain guardrails passed - score head 3/3 DECISIVE (gold 0.8321 ≥ 0.80, EN 0.8344, non-EN 0.8473), token head gold **0.8929**, the best in-domain number of the campaign. Blind paired reads on the same frozen checkpoint:
+
+| subset | token windowed | score windowed | paired delta | token trunc | score trunc |
+|---|---|---|---|---|---|
+| covidqa | 0.7715 | 0.7641 | +0.0074 | 0.7715 | 0.7641 |
+| delucionqa | **0.8663** | 0.7796 | **+0.0867** | 0.7854 | 0.7054 |
+| emanual | 0.6538 | 0.7494 | -0.0956 | 0.5672 | 0.6737 |
+| expertqa | 0.7818 | 0.7945 | -0.0127 | 0.7539 | 0.7507 |
+| finqa | **0.6913** | 0.6311 | **+0.0602** | **0.7152** | 0.6920 |
+| hagrid | 0.6393 | 0.6216 | +0.0177 | 0.6500 | 0.6362 |
+| hotpotqa | 0.6145 | 0.7468 | **-0.1323** | 0.6145 | 0.7453 |
+| pubmedqa | 0.5703 | 0.6357 | -0.0654 | 0.5703 | 0.6357 |
+| tatqa | 0.7258 | 0.6979 | +0.0279 | 0.7222 | 0.6992 |
+| techqa | 0.7364 | 0.7517 | -0.0153 | 0.6879 | 0.7222 |
+| **mean** | 0.7051 | **0.7172** | **-0.0121** | 0.6838 | 0.7025 |
+
+- **Verdict - KILLED**: token-head-only primary read 0.7051 < score-head 0.7172 of the same weights (bar was ≥ +0.01; kill was any negative). Paired and deterministic, so noise cannot rescue it: head choice alone is NOT the carrier of the comparator's robustness. The head-transfer question is closed
+- **The diagnostic the kill delivers**: the heads are subset-ANTI-correlated on one trunk. The token head wins exactly where the score head is weakest - finqa +0.0602 (and its truncated read 0.7152 is the campaign's best finqa, 0.002 from the incumbent), delucionqa +0.0867 (0.8663, the campaign's best delucionqa by far) - and loses exactly where the score head is strong: hotpotqa -0.1323 (multi-chunk composition), emanual -0.0956, pubmedqa -0.0654 (Mode B's blind prediction failed - span supervision did not rescue discourse sentences). Mode C's prediction CONFIRMED at subset level: a wrong number is a localized token event, span supervision attacks it - direct mechanical support for H103's numeracy thesis
+- **Score head unharmed**: 0.7172 windowed - exactly on the recipe n=3 mean; the auxiliary token loss cost the score head nothing blind
+- **Artifacts** - `R8-H102_result.json` (in-domain; fused non-EN NaN noted, diagnostic only), `R8-H102_reads.json`, `logs/R8-H102_train.log`, `logs/R8-H102_reads.log`
+
+**R8-H104 - parameter-free head fusion on the frozen H102 weights. Pre-registered**
+
+Because the two heads' subset profiles on one trunk are anti-correlated with large complementary margins (H102 table above: token rescues finqa/delucionqa by +0.06/+0.09 where score is weakest; score rescues hotpotqa/emanual/pubmedqa by +0.07-0.13 where token is weakest), fusing them at the pair level should beat either head alone. The fusion is H73's exact serving formula - no parameter is introduced or tuned (H94 lesson respected).
+
+- **Terse claim** - because head errors are subset-anticorrelated on shared features, the parameter-free pair-level fusion p = (sigmoid(score) + 1 − max halluc-token prob) / 2, aggregated through the PRIMARY windowed decomposed-min on the frozen H102 checkpoint, will read blind mean ≥ 0.7272 (score head + 0.01); deterministic on frozen weights, the ±0.03 training-noise bar does not apply
+- **Kill** - fused mean < 0.7172 (the score head alone) → pair-level fusion line closed; the H73 fused-read failure generalizes from the capped mix to full scale
+- **Caution recorded at registration** - H64/H73 history: rank-average fusion of two MODELS beat both, but H73's fused read stacked two ANDs and lost blind; this test differs in that fusion happens per pair BEFORE the min (one AND, not two). The H99-era lesson (measure correlation before registering an ensemble) is satisfied by the H102 paired table itself - the anti-correlation is measured, not eyeballed
+- **Cost** - one deterministic read, ~30 min GPU0; zero training
+- **Artifacts** - `R8-H104_fused_read.py`, `R8-H104_result.json`, `logs/R8-H104_read.log`
+
+**R8-H104 - result. KILLED; the fusion line closes at full scale**
+
+Sanity gate passed first (score-only path through the fused pipeline reproduces the recorded delucionqa 0.7796 EXACTLY - aggregation fidelity proven). The fused read on the frozen H102 weights:
+
+| read | fused mean | vs score head alone (0.7172) | bar (≥ 0.7272) |
+|---|---|---|---|
+| windowed (PRIMARY) | **0.7156** | -0.0016 | missed |
+| truncated (lineage) | 0.6953 | -0.0072 vs 0.7025 | - |
+
+- **Verdict - KILLED**: fused windowed 0.7156 < the score head alone (0.7172); the kill threshold fired. Pair-level fusion of anti-correlated heads does NOT harvest the complementarity: per-subset, fusion lands BETWEEN the heads everywhere (delucionqa 0.8547 - below token's 0.8663; finqa 0.6707 - halfway to token's 0.6913; hotpotqa 0.6392 - far below score's 0.7468), and under min-aggregation the halfway points cost more on the strong head's subsets than they earn on the weak ones. H73's fused-read failure generalizes from the capped mix to full scale, now with the mechanism visible
+- **What would harvest it and why it is not registrable**: per-SUBSET head selection reads 0.7372 - but choosing the head per subset from arena labels is selection on the benchmark, exactly what the discipline forbids. Recorded as a diagnostic ceiling, not a result
+- **Artifacts** - `R8-H104_fused_read.py`, `R8-H104_result.json`, `logs/R8-H104_read.log`
+
+**R8-H103 - Qwen3-0.6B decoder scorer, the capability-class test. Pre-registered (transfer ranking candidate 2, sketch P3; budget reopened)**
+
+2026-08-03: the author reopened the sub-400M parameter budget, making the decoder line live. This is the only candidate that changes what the model CAN do: decoder LM pretraining (code/tables/math) supplies the numeric-and-unit competence behind Mode C - finqa's isolated failure mode, now confirmed three ways (H101 kill on the finqa clause; checkpoint-dependent windowing penalty growing to -0.082; 75%/68% of finqa/tatqa bottom-quartile argmins being derived-arithmetic sentences).
+
+- **Terse claim** - because Mode C is a pretraining-capability gap and not an evidence or formula gap, a Qwen3-Reranker-0.6B-initialized sequence-classification scorer trained one epoch on the identical 762k mix (BCE, no DANN in stage 1, MAX_LEN 1,024) and read through the frozen gate under the PRIMARY windowed read will read finqa ≥ 0.72 while the blind mean lands ≥ 0.70 and in-domain gold holds ≥ 0.80
+- **Two-stage design under the multi-seed protocol** - stage 1 (this draw) adjudicates ONLY the finqa mechanism (subset-level effect vs the recipe's primary-read finqa mean 0.6036 across draws - a ≥ +0.12 subset effect, far above subset-level noise); the mean-level claim needs stage-2 n ≥ 2 draws, run only if stage 1 fires
+- **Kill** - training instability, or finqa < 0.70, or gold < 0.80 → the decoder line closes at this size and the budget rule re-closes with it
+- **Discipline** - RAGBench untouched; frozen gate unmodified (a decoder-scorer read tool implements the pair scoring, windowed + truncated both recorded); serving-shape cost (~4x mmBERT FLOPs per pair, ~0.7GB int8, torch-free CPU cascade degraded) recorded as an accepted consequence of the reopened budget, to be weighed only if the mechanism fires
+- **Cost** - ~20-25h GPU1 per draw at batch ~16/1,024 tokens; queued behind the H102 in-domain eval on the same card
+- **Artifacts** - `R8-H103_qwen_scorer.py`, `models/R8-H103-qwen06b-scorer`, `R8-H103_read.py`, `R8-H103_result.json`, `logs/R8-H103_*.log`

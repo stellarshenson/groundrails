@@ -1,0 +1,39 @@
+{
+  "gold": {
+    "n": 717,
+    "auc_score_head": 0.8321,
+    "auc_token_head": 0.8929,
+    "auc_fused": 0.874
+  },
+  "ragtruth_en": {
+    "n": 600,
+    "auc_score_head": 0.8344,
+    "auc_token_head": 0.7743,
+    "auc_fused": 0.8206
+  },
+  "ragtruth_nonen": {
+    "auc_score_head": 0.8473,
+    "auc_token_head": 0.8144,
+    "per_lang_score": {
+      "de": 0.8518,
+      "fr": 0.8321,
+      "es": 0.8531,
+      "it": 0.8367,
+      "pl": 0.8374,
+      "hu": 0.8345,
+      "cn": 0.8857
+    },
+    "per_lang_token": {
+      "de": 0.8214,
+      "fr": 0.803,
+      "es": 0.8082,
+      "it": 0.8098,
+      "pl": 0.7978,
+      "hu": 0.7958,
+      "cn": 0.8651
+    }
+  },
+  "params_M": 307.1,
+  "lambda_max": 0.02,
+  "w_tok": 1.0
+}

@@ -1,0 +1,238 @@
+====================================================================================================
+[FN] finqa idx=83 label=1 score(min)=0.0107 mean=0.1856 lettuce=0.3308 n_sent=2 n_chunks=3 resp_chars=471 fallback=False capped=False
+--- ARGMIN sentence (score 0.0107):
+    The port costs included in passenger ticket revenues on a gross basis were $398.0 million in 2010 and $459.8 million in 2012.
+--- all sentences:
+    [0.011] The port costs included in passenger ticket revenues on a gross basis were $398.0 million in 2010 and $459.8 million in 2012.
+    [0.361] To calculate the percentage increase:
+Percentage Increase = ((Final Value - Initial Value) / Initial Value) * 100
+Percentage Increase = (($459.8m - $398.0m) / $398.0m) * 100
+Percentage Increase = ($61.8m / $398.0m) * 100
+Percentage Increase ≈ 15.54%
+
+Therefore, the percentage increase in port costs 
+--- RESPONSE:
+The port costs included in passenger ticket revenues on a gross basis were $398.0 million in 2010 and $459.8 million in 2012. 
+
+To calculate the percentage increase:
+Percentage Increase = ((Final Value - Initial Value) / Initial Value) * 100
+Percentage Increase = (($459.8m - $398.0m) / $398.0m) * 100
+Percentage Increase = ($61.8m / $398.0m) * 100
+Percentage Increase ≈ 15.54%
+
+Therefore, the percentage increase in port costs from 2010 to 2012 was approximately 15.54%.
+--- CHUNKS (truncated):
+  <chunk 0> notes to the consolidated financial statements note 1 . general description of business we are a global cruise company . we own royal caribbean international , celebrity cruises , pullmantur , azamara club cruises , cdf croisi e8res de france and a 50% ( 50 % ) joint venture interest in tui cruises . together , these six brands operate a combined 41 ships as of december 31 , 2012 . our ships operate on a selection of worldwide itineraries that call on approximately 455 destinations on all seven continents . basis for preparation of consolidated financial statements the consolidated financial statements are prepared in accordance with accounting principles generally accepted in the united states of america ( 201cgaap 201d ) . estimates are required for the preparation of financial statements in accordance with these principles . actual results could differ from these estimates . all signi
+  <chunk 1> [["", "years"], ["ships", "30"], ["ship improvements", "3-20"], ["buildings and improvements", "10-40"], ["computer hardware and software", "3-5"], ["transportation equipment and other", "3-30"], ["leasehold improvements", "shorter of remaining lease term or useful life 3-30"]]
+  <chunk 2> computer hardware and software 3 20135 transportation equipment and other 3 201330 leasehold improvements shorter of remaining lease term or useful life 3 201330 0494.indd 71 3/27/13 12:53 pm .
+
+====================================================================================================
+[FN] finqa idx=113 label=1 score(min)=0.0122 mean=0.386 lettuce=0.199 n_sent=2 n_chunks=2 resp_chars=121 fallback=False capped=False
+--- ARGMIN sentence (score 0.0122):
+    This represents an increase of 4.9 percentage points.
+--- all sentences:
+    [0.760] The operating margin increased from 21.9% in 2015 to 26.8% in 2016.
+    [0.012] This represents an increase of 4.9 percentage points.
+--- RESPONSE:
+The operating margin increased from 21.9% in 2015 to 26.8% in 2016. This represents an increase of 4.9 percentage points.
+--- CHUNKS (truncated):
+  <chunk 0> 2015 vs . 2014 on a gaap basis , the effective tax rate was 24.0% ( 24.0 % ) and 27.1% ( 27.1 % ) in 2015 and 2014 , respectively . the effective tax rate was higher in fiscal year 2014 primarily due to the goodwill impairment charge of $ 305.2 , which was not deductible for tax purposes , and the chilean tax reform enacted in september 2014 which increased income tax expense by $ 20.6 . these impacts were partially offset by an income tax benefit of $ 51.6 associated with losses from transactions and a tax election in a non-u.s . subsidiary . refer to note 10 , goodwill , and note 23 , income taxes , to the consolidated financial statements for additional information . on a non-gaap basis , the effective tax rate was 24.2% ( 24.2 % ) and 24.1% ( 24.1 % ) in 2015 and 2014 , respectively . discontinued operations on 29 march 2016 , the board of directors approved the company 2019s exit of
+  <chunk 1> [["", "2016", "2015", "2014"], ["sales", "$ 3343.6", "$ 3693.9", "$ 4078.5"], ["operating income", "895.2", "808.4", "762.6"], ["operating margin", "26.8% ( 26.8 % )", "21.9% ( 21.9 % )", "18.7% ( 18.7 % )"], ["equity affiliates 2019 income", "52.7", "64.6", "60.9"], ["adjusted ebitda", "1390.4", "1289.9", "1237.9"], ["adjusted ebitda margin", "41.6% ( 41.6 % )", "34.9% ( 34.9 % )", "30.4% ( 30.4 % )"]]
+
+====================================================================================================
+[FN] finqa idx=101 label=1 score(min)=0.0137 mean=0.2044 lettuce=0.5215 n_sent=3 n_chunks=3 resp_chars=331 fallback=False capped=False
+--- ARGMIN sentence (score 0.0137):
+    The net change in asset retirement liability between 2002 and September 25, 2004, was $2.7 million.
+--- all sentences:
+    [0.014] The net change in asset retirement liability between 2002 and September 25, 2004, was $2.7 million.
+    [0.583] This can be calculated by subtracting the asset retirement liability as of September 29, 2002 ($5.5 million) from the asset retirement liability as of September 25, 2004 ($8.2 million).
+    [0.017] $8.2 million - $5.5 million = $2.7 million.
+--- RESPONSE:
+The net change in asset retirement liability between 2002 and September 25, 2004, was $2.7 million. This can be calculated by subtracting the asset retirement liability as of September 29, 2002 ($5.5 million) from the asset retirement liability as of September 25, 2004 ($8.2 million). 
+
+$8.2 million - $5.5 million = $2.7 million.
+--- CHUNKS (truncated):
+  <chunk 0> notes to consolidated financial statements ( continued ) note 1 2014summary of significant accounting policies ( continued ) the following table reconciles changes in the company 2019s asset retirement liabilities for fiscal 2003 and 2004 ( in millions ) : .
+  <chunk 1> [["asset retirement liability as of september 29 2002", "$ 5.5"], ["additional asset retirement obligations recognized", "0.5"], ["accretion recognized", "1.2"], ["asset retirement liability as of september 27 2003", "$ 7.2"], ["additional asset retirement obligations recognized", "0.5"], ["accretion recognized", "0.5"], ["asset retirement liability as of september 25 2004", "$ 8.2"]]
+  <chunk 2> long-lived assets including goodwill and other acquired intangible assets the company reviews property , plant , and equipment and certain identifiable intangibles , excluding goodwill , for impairment whenever events or changes in circumstances indicate the carrying amount of an asset may not be recoverable . recoverability of these assets is measured by comparison of its carrying amount to future undiscounted cash flows the assets are expected to generate . if property , plant , and equipment and certain identifiable intangibles are considered to be impaired , the impairment to be recognized equals the amount by which the carrying value of the assets exceeds its fair market value . for the three years ended september 25 , 2004 , september 27 , 2003 , and september 28 , 2002 the company had no material impairment of its long-lived assets , except for the impairment of certain assets in 
+
+====================================================================================================
+[FN] finqa idx=222 label=1 score(min)=0.0158 mean=0.0738 lettuce=0.0551 n_sent=2 n_chunks=3 resp_chars=180 fallback=False capped=False
+--- ARGMIN sentence (score 0.0158):
+    In 2010, the total fair value of assets segregated for the benefit of securities and futures brokerage customers was $25.0 billion.
+--- all sentences:
+    [0.016] In 2010, the total fair value of assets segregated for the benefit of securities and futures brokerage customers was $25.0 billion.
+    [0.132] In 2009, the total fair value was $24.0 billion.
+--- RESPONSE:
+In 2010, the total fair value of assets segregated for the benefit of securities and futures brokerage customers was $25.0 billion. In 2009, the total fair value was $24.0 billion.
+--- CHUNKS (truncated):
+  <chunk 0> jpmorgan chase & co./2010 annual report 273 the following table presents the u.s . and non-u.s . components of income before income tax expense/ ( benefit ) and extraordinary gain for the years ended december 31 , 2010 , 2009 and 2008 . year ended december 31 , ( in millions ) 2010 2009 2008 .
+  <chunk 1> [["year ended december 31 ( in millions )", "2010", "2009", "2008"], ["u.s .", "$ 16568", "$ 6263", "$ -2094 ( 2094 )"], ["non-u.s. ( a )", "8291", "9804", "4867"], ["income before incometax expense/ ( benefit ) andextraordinary gain", "$ 24859", "$ 16067", "$ 2773"]]
+  <chunk 2> non-u.s. ( a ) 8291 9804 4867 income before income tax expense/ ( benefit ) and extraordinary gain $ 24859 $ 16067 $ 2773 ( a ) for purposes of this table , non-u.s . income is defined as income generated from operations located outside the u.s . note 28 2013 restrictions on cash and intercompany funds transfers the business of jpmorgan chase bank , national association ( 201cjpmorgan chase bank , n.a . 201d ) is subject to examination and regulation by the office of the comptroller of the currency ( 201cocc 201d ) . the bank is a member of the u.s . federal reserve sys- tem , and its deposits in the u.s . are insured by the fdic . the board of governors of the federal reserve system ( the 201cfed- eral reserve 201d ) requires depository institutions to maintain cash reserves with a federal reserve bank . the average amount of reserve balances deposited by the firm 2019s bank subsidiarie
+
+====================================================================================================
+[FN] finqa idx=93 label=1 score(min)=0.0167 mean=0.0167 lettuce=0.1073 n_sent=1 n_chunks=3 resp_chars=142 fallback=True capped=False
+--- ARGMIN sentence (score 0.0167):
+    In 2001, the company awarded a total of 353,582 shares to employees - 64,001 shares at $0.003 per share and 289,581 shares at $3.60 per share.
+--- all sentences:
+    [0.017] In 2001, the company awarded a total of 353,582 shares to employees - 64,001 shares at $0.003 per share and 289,581 shares at $3.60 per share.
+--- RESPONSE:
+In 2001, the company awarded a total of 353,582 shares to employees - 64,001 shares at $0.003 per share and 289,581 shares at $3.60 per share.
+--- CHUNKS (truncated):
+  <chunk 0> table of contents marketaxess holdings inc . notes to consolidated financial statements 2014 ( continued ) ( in thousands , except share and per share amounts ) the combined aggregate amount of redemption requirements for the senior preferred shares was as follows : shares of series b convertible preferred stock were convertible into common stock on a 3.33-for-one basis and only in connection with an initial public offering of the company 2019s stock . dividends on the series b convertible preferred stock accrued at the rate of 8% ( 8 % ) per annum and were subordinate to dividend payments on the senior preferred shares . shares of series b convertible preferred stock had a liquidation preference equal to the original issue price plus all cumulative accrued but unpaid dividends . the liquidation preference was subordinate to that of the senior preferred shares . cumulative accrued but un
+  <chunk 1> [["year ended december 31,", "as of december 31 , 2004", "as of december 31 , 2003"], ["2005", "$ 2014", "$ 177973"]]
+  <chunk 2> convertible preferred stock 9 . stockholders 2019 equity ( deficit ) common stock restricted common stock and common stock subscribed .
+
+====================================================================================================
+[FN] finqa idx=13 label=1 score(min)=0.0234 mean=0.0234 lettuce=0.2357 n_sent=1 n_chunks=3 resp_chars=104 fallback=True capped=False
+--- ARGMIN sentence (score 0.0234):
+    The final cash purchase price for the Terrestar acquisition to be paid upon closing will be $30 million.
+--- all sentences:
+    [0.023] The final cash purchase price for the Terrestar acquisition to be paid upon closing will be $30 million.
+--- RESPONSE:
+The final cash purchase price for the Terrestar acquisition to be paid upon closing will be $30 million.
+--- CHUNKS (truncated):
+  <chunk 0> dish network corporation notes to consolidated financial statements - continued this transaction was accounted for as a business combination using purchase price accounting . the allocation of the purchase consideration is in the table below . purchase allocation ( in thousands ) .
+  <chunk 1> [["", "purchase price allocation ( in thousands )"], ["cash", "$ 107061"], ["current assets", "153258"], ["property and equipment", "28663"], ["acquisition intangibles", "17826"], ["other noncurrent assets", "12856"], ["current liabilities", "-86080 ( 86080 )"], ["total purchase price", "$ 233584"]]
+  <chunk 2> the pro forma revenue and earnings associated with the blockbuster acquisition are not included in this filing . due to the material ongoing modifications of the business , management has determined that insufficient information exists to accurately develop meaningful historical pro forma financial information . moreover , the historical operations of blockbuster materially changed during the periods preceding the acquisition as a result of blockbuster inc . 2019s bankruptcy proceedings , and any historical pro forma information would not prove useful in assessing our post acquisition earnings and cash flows . the cost of goods sold on a unit basis for blockbuster in the current period was lower-than-historical costs . the carrying values in the current period of the rental library and merchandise inventories ( 201cblockbuster inventory 201d ) were reduced to their estimated fair value d
+
+====================================================================================================
+[FN] finqa idx=33 label=1 score(min)=0.0242 mean=0.5095 lettuce=0.5306 n_sent=7 n_chunks=3 resp_chars=1131 fallback=False capped=False
+--- ARGMIN sentence (score 0.0242):
+    Subtract the beginning balance from the ending balance to get the net change.
+--- all sentences:
+    [0.579] To calculate the net change in the total fair value balance of non-vested shares during 2013, we need to:
+
+1.
+    [0.705] Calculate the total fair value of the non-vested shares at the beginning of 2013 (May 31, 2012).
+    [0.634] Calculate the total fair value of the non-vested shares at the end of 2013 (May 31, 2013).
+    [0.024] Subtract the beginning balance from the ending balance to get the net change.
+    [0.621] Total fair value of non-vested shares at May 31, 2012:
+   - Non-vested shares at May 31, 2012: 941,000
+   - Weighted average grant-date fair value: $44
+   - Total fair value = 941,000 x $44 = $41,404,000
+
+2.
+    [0.527] Total fair value of non-vested shares at May 31, 2013:
+   - Non-vested shares at May 31, 2013: 1,096,000
+   - Weighted average grant-date fair value: $44
+   - Total fair value = 1,096,000 x $44 = $48,224,000
+
+3.
+    [0.476] Net change in total fair value:
+   - Ending balance (May 31, 2013): $48,224,000
+   - Beginning balance (May 31, 2012): $41,404,000
+   - Net change = $48,224,000 - $41,404,000 = $6,820,000
+
+Therefore, the net change in the total fair value balance of non-vested shares during 2013 was an increase of $
+--- RESPONSE:
+To calculate the net change in the total fair value balance of non-vested shares during 2013, we need to:
+
+1. Calculate the total fair value of the non-vested shares at the beginning of 2013 (May 31, 2012).
+2. Calculate the total fair value of the non-vested shares at the end of 2013 (May 31, 2013).
+3. Subtract the beginning balance from the ending balance to get the net change.
+
+Calculations:
+
+1. Total fair value of non-vested shares at May 31, 2012:
+   - Non-vested shares at May 31, 2012: 941,000
+   - Weighted average grant-date fair value: $44
+   - Total fair value = 941,000 x $44 = $41,404,000
+
+2. Total fair value of non-vested shares at May 31, 2013:
+   - Non-vested shares at May 31, 2013: 1,096,000
+   - Weighted average grant-date fair value: $44
+   - Total fair value = 1,096,000 x $44 = $48,224,000
+
+3. Net change in total fair value:
+   - Ending balance (May 31, 2013): $48,224,000
+   - Beginning balance (May 31, 2012): $41,404,000
+   - Net change = $48,224,000 - $41,404,000 = $6,820,000
+
+Therefore, the net change in the total fair value balance of non-vested shares during 2013 was an increase of $6,820,000.
+--- CHUNKS (truncated):
+  <chunk 0> grants of restricted awards are subject to forfeiture if a grantee , among other conditions , leaves our employment prior to expiration of the restricted period . new grants of restricted awards generally vest one year after the date of grant in 25% ( 25 % ) increments over a four year period , with the exception of tsrs which vest after a three year period . the following table summarizes the changes in non-vested restricted stock awards for the years ended may 31 , 2013 and 2012 ( share awards in thousands ) : shares weighted average grant-date fair value .
+  <chunk 1> [["", "shares", "weighted averagegrant-datefair value"], ["non-vested at may 31 2011", "869", "$ 40"], ["granted", "472", "48"], ["vested", "-321 ( 321 )", "40"], ["forfeited", "-79 ( 79 )", "43"], ["non-vested at may 31 2012", "941", "44"], ["granted", "561", "44"], ["vested", "-315 ( 315 )", "43"], ["forfeited", "-91 ( 91 )", "44"], ["non-vested at may 31 2013", "1096", "$ 44"]]
+  <chunk 2> the total fair value of share awards vested during the years ended may 31 , 2013 , 2012 and 2011 was $ 13.6 million , $ 12.9 million and $ 10.8 million , respectively . we recognized compensation expense for restricted stock of $ 16.2 million , $ 13.6 million , and $ 12.5 million in the years ended may 31 , 2013 , 2012 and 2011 , respectively . as of may 31 , 2013 , there was $ 33.5 million of total unrecognized compensation cost related to unvested restricted stock awards that is expected to be recognized over a weighted average period of 2.5 years . employee stock purchase plan we have an employee stock purchase plan under which the sale of 2.4 million shares of our common stock has been authorized . employees may designate up to the lesser of $ 25000 or 20% ( 20 % ) of their annual compensation for the purchase of stock . the price for shares purchased under the plan is 85% ( 85 % ) o
+
+====================================================================================================
+[FN] finqa idx=52 label=1 score(min)=0.0258 mean=0.1596 lettuce=0.1488 n_sent=3 n_chunks=3 resp_chars=393 fallback=False capped=False
+--- ARGMIN sentence (score 0.0258):
+    According to the provided context, the total net revenues in the consolidated statements of earnings for 2017 were $32.73 billion, which was 6% higher than 2016.
+--- all sentences:
+    [0.026] According to the provided context, the total net revenues in the consolidated statements of earnings for 2017 were $32.73 billion, which was 6% higher than 2016.
+    [0.107] However, the specific total net revenues for 2016 are not directly stated in the given text.
+    [0.345] The passage focuses more on the changes in net revenues from 2016 to 2017, rather than providing the absolute net revenue figure for 2016.
+--- RESPONSE:
+According to the provided context, the total net revenues in the consolidated statements of earnings for 2017 were $32.73 billion, which was 6% higher than 2016. However, the specific total net revenues for 2016 are not directly stated in the given text. The passage focuses more on the changes in net revenues from 2016 to 2017, rather than providing the absolute net revenue figure for 2016.
+--- CHUNKS (truncated):
+  <chunk 0> the goldman sachs group , inc . and subsidiaries management 2019s discussion and analysis commissions and fees in the consolidated statements of earnings were $ 3.20 billion for 2018 , 5% ( 5 % ) higher than 2017 , reflecting an increase in our listed cash equity and futures volumes , generally consistent with market volumes . market making revenues in the consolidated statements of earnings were $ 9.45 billion for 2018 , 23% ( 23 % ) higher than 2017 , due to significantly higher revenues in equity products , interest rate products and commodities . these increases were partially offset by significantly lower results in mortgages and lower revenues in credit products . other principal transactions revenues in the consolidated statements of earnings were $ 5.82 billion for 2018 , 2% ( 2 % ) lower than 2017 , reflecting net losses from investments in public equities compared with net gain
+  <chunk 1> [["$ in millions", "year ended december 2018", "year ended december 2017", "year ended december 2016"], ["provision for credit losses", "$ 674", "$ 657", "$ 182"]]
+  <chunk 2> goldman sachs 2018 form 10-k 53 .
+
+====================================================================================================
+[FN] finqa idx=191 label=1 score(min)=0.0261 mean=0.0261 lettuce=0.0792 n_sent=1 n_chunks=3 resp_chars=129 fallback=True capped=False
+--- ARGMIN sentence (score 0.0261):
+    The total share-based compensation cost in the last three years is $ 172 million + $ 179 million + $ 147 million = $ 498 million.
+--- all sentences:
+    [0.026] The total share-based compensation cost in the last three years is $ 172 million + $ 179 million + $ 147 million = $ 498 million.
+--- RESPONSE:
+The total share-based compensation cost in the last three years is $ 172 million + $ 179 million + $ 147 million = $ 498 million.
+--- CHUNKS (truncated):
+  <chunk 0> share-based compensation cost is recorded net of estimated forfeitures on a straight-line basis for awards with service conditions only , and on a graded-vesting basis for awards with service , performance and market conditions . the company 2019s estimated forfeiture rate is based on an evaluation of historical , actual and trended forfeiture data . for fiscal 2014 , 2013 , and 2012 , the company recorded share-based compensation cost of $ 172 million , $ 179 million and $ 147 million , respectively , in personnel on its consolidated statements of operations . the amount of capitalized share-based compensation cost was immaterial during fiscal 2014 , 2013 and 2012 . options options issued under the eip expire 10 years from the date of grant and vest ratably over 3 years from the date of grant , subject to earlier vesting in full under certain conditions . during fiscal 2014 , 2013 and 2
+  <chunk 1> [["", "2014", "2013", "2012"], ["expected term ( in years ) ( 1 )", "4.80", "6.08", "6.02"], ["risk-free rate of return ( 2 )", "1.3% ( 1.3 % )", "0.8% ( 0.8 % )", "1.2% ( 1.2 % )"], ["expected volatility ( 3 )", "25.2% ( 25.2 % )", "29.3% ( 29.3 % )", "34.9% ( 34.9 % )"], ["expected dividend yield ( 4 )", "0.8% ( 0.8 % )", "0.9% ( 0.9 % )", "0.9% ( 0.9 % )"], ["fair value per option granted", "$ 44.11", "$ 39.03", "$ 29.65"]]
+  <chunk 2> ( 1 ) beginning in fiscal 2014 , assumption is based on the company 2019s historical option exercises and those of a set of peer companies that management believes is generally comparable to visa . the company 2019s data is weighted based on the number of years between the measurement date and visa 2019s initial public offering as a percentage of the options 2019 contractual term . the relative weighting placed on visa 2019s data and peer data in fiscal 2014 was approximately 58% ( 58 % ) and 42% ( 42 % ) , respectively . in fiscal 2013 and 2012 , assumption was fully based on peer companies 2019 data . ( 2 ) based upon the zero coupon u.s . treasury bond rate over the expected term of the awards . ( 3 ) based on the company 2019s implied and historical volatility . in fiscal 2013 and 2012 , historical volatility was a blend of visa 2019s historical volatility and those of comparable pee
+
+====================================================================================================
+[FN] finqa idx=38 label=1 score(min)=0.0271 mean=0.1955 lettuce=0.4314 n_sent=7 n_chunks=2 resp_chars=844 fallback=False capped=False
+--- ARGMIN sentence (score 0.0271):
+    To get the 5-year total return, I would need to extrapolate the data for an additional 1.75 years.
+--- all sentences:
+    [0.430] To determine if the B series stock outperformed the A series based on 5-year total return, I need to calculate the 5-year total return for each series and compare them.
+    [0.314] The data provided covers the period from September 18, 2008 to December 31, 2011, which is just over 3 years.
+    [0.027] To get the 5-year total return, I would need to extrapolate the data for an additional 1.75 years.
+    [0.079] However, the information provided does not give enough data to reliably extrapolate the 5-year total return for each series.
+    [0.082] The data only covers 3+ years, and stock performance can be volatile, making it difficult to accurately predict the next 1.75 years.
+    [0.281] Therefore, based on the information provided, I cannot definitively say whether the B series stock outperformed the A series based on 5-year total return.
+    [0.155] The data is incomplete to make that determination.
+--- RESPONSE:
+To determine if the B series stock outperformed the A series based on 5-year total return, I need to calculate the 5-year total return for each series and compare them.
+
+The data provided covers the period from September 18, 2008 to December 31, 2011, which is just over 3 years. To get the 5-year total return, I would need to extrapolate the data for an additional 1.75 years.
+
+However, the information provided does not give enough data to reliably extrapolate the 5-year total return for each series. The data only covers 3+ years, and stock performance can be volatile, making it difficult to accurately predict the next 1.75 years.
+
+Therefore, based on the information provided, I cannot definitively say whether the B series stock outperformed the A series based on 5-year total return. The data is incomplete to make that determination.
+--- CHUNKS (truncated):
+  <chunk 0> stock performance graph the following graph sets forth the cumulative total shareholder return on our series a common stock , series b common stock and series c common stock as compared with the cumulative total return of the companies listed in the standard and poor 2019s 500 stock index ( 201cs&p 500 index 201d ) and a peer group of companies comprised of cbs corporation class b common stock , news corporation class a common stock , scripps network interactive , inc. , time warner , inc. , viacom , inc . class b common stock and the walt disney company . the graph assumes $ 100 originally invested on september 18 , 2008 , the date upon which our common stock began trading , in each of our series a common stock , series b common stock and series c common stock , the s&p 500 index , and the stock of our peer group companies , including reinvestment of dividends , for the period september
+  <chunk 1> [["", "december 31 2008", "december 31 2009", "december 31 2010", "december 31 2011"], ["disca", "$ 102.53", "$ 222.09", "$ 301.96", "$ 296.67"], ["discb", "$ 78.53", "$ 162.82", "$ 225.95", "$ 217.56"], ["disck", "$ 83.69", "$ 165.75", "$ 229.31", "$ 235.63"], ["s&p 500", "$ 74.86", "$ 92.42", "$ 104.24", "$ 104.23"], ["peer group", "$ 68.79", "$ 100.70", "$ 121.35", "$ 138.19"]]
+
+====================================================================================================
+[FN] finqa idx=70 label=1 score(min)=0.0274 mean=0.4874 lettuce=0.1854 n_sent=3 n_chunks=3 resp_chars=309 fallback=False capped=False
+--- ARGMIN sentence (score 0.0274):
+    as of December 31, 2016 was $327 million - $184 million = $143 million.
+--- all sentences:
+    [0.987] According to the passage, as of December 31, 2016, the company had $327 million of cash and cash equivalents on hand, of which $184 million was held outside of the U.S.
+    [0.447] Therefore, the portion of cash and cash equivalents held in the U.S.
+    [0.027] as of December 31, 2016 was $327 million - $184 million = $143 million.
+--- RESPONSE:
+According to the passage, as of December 31, 2016, the company had $327 million of cash and cash equivalents on hand, of which $184 million was held outside of the U.S. Therefore, the portion of cash and cash equivalents held in the U.S. as of December 31, 2016 was $327 million - $184 million = $143 million.
+--- CHUNKS (truncated):
+  <chunk 0> financing activities for 2014 also included an acquisition-related contingent consideration payment of $ 86 million made to champion 2019s former shareholders . liquidity and capital resources we currently expect to fund all of our cash requirements which are reasonably foreseeable for 2017 , including scheduled debt repayments , new investments in the business , share repurchases , dividend payments , possible business acquisitions and pension contributions , with cash from operating activities , and as needed , additional short-term and/or long-term borrowings . we continue to expect our operating cash flow to remain strong . as of december 31 , 2016 , we had $ 327 million of cash and cash equivalents on hand , of which $ 184 million was held outside of the u.s . as of december 31 , 2015 , we had $ 26 million of deferred tax liabilities for pre-acquisition foreign earnings associated w
+  <chunk 1> [["( millions )", "total", "payments due by period less than 1 year", "payments due by period 2-3 years", "payments due by period 4-5 years", "payments due by period more than 5 years"], ["notes payable", "$ 30", "$ 30", "$ -", "$ -", "$ -"], ["commercial paper", "-", "-", "-", "-", "-"], ["long-term debt", "6652", "510", "967", "1567", "3608"], ["capital lease obligations", "5", "1", "1", "1", "2"], ["operating leases", "431", "102", "153", "105", "71"], ["interest*", "2261", "218", "396", "360", "1287"], ["total", "$ 9379", "$ 861", "$ 1517", "$ 2033", "$ 4968"]]
+  <chunk 2> * interest on variable rate debt was calculated using the interest rate at year-end 2016 . as of december 31 , 2016 , our gross liability for uncertain tax positions was $ 76 million . we are not able to reasonably estimate the amount by which the liability will increase or decrease over an extended period of time or whether a cash settlement of the liability will be required . therefore , these amounts have been excluded from the schedule of contractual obligations. .
+
+====================================================================================================
+[FN] finqa idx=147 label=1 score(min)=0.0301 mean=0.2629 lettuce=0.2817 n_sent=3 n_chunks=3 resp_chars=377 fallback=False capped=False
+--- ARGMIN sentence (score 0.0301):
+    Therefore, the total change in unpaid restructuring liabilities during 2007 was -$71 million.
+--- all sentences:
+    [0.030] The net change in Aon 2019's unpaid restructuring liabilities during 2007 was a decrease of $71 million.
+    [0.728] This is calculated by adding the amount expensed in 2007 ($38 million) to the cash payments made in 2007 (-$110 million) and adding the foreign currency revaluation ($1 million).
+    [0.030] Therefore, the total change in unpaid restructuring liabilities during 2007 was -$71 million.
+--- RESPONSE:
+The net change in Aon 2019's unpaid restructuring liabilities during 2007 was a decrease of $71 million. This is calculated by adding the amount expensed in 2007 ($38 million) to the cash payments made in 2007 (-$110 million) and adding the foreign currency revaluation ($1 million). Therefore, the total change in unpaid restructuring liabilities during 2007 was -$71 million.
+--- CHUNKS (truncated):
+  <chunk 0> notes to consolidated financial statements the following table sets forth the activity related to the 2005 restructuring plan liabilities . ( millions ) .
+  <chunk 1> [["balance at january 1 2005", "$ 2014"], ["expensed in 2005", "141"], ["cash payments in 2005", "-23 ( 23 )"], ["foreign currency revaluation", "-2 ( 2 )"], ["balance at december 31 2005", "116"], ["expensed in 2006", "155"], ["cash payments in 2006", "-141 ( 141 )"], ["foreign currency revaluation", "4"], ["balance at december 31 2006", "134"], ["expensed in 2007", "38"], ["cash payments in 2007", "-110 ( 110 )"], ["foreign currency revaluation", "1"], ["balance at december 31 2007", "$ 63"]]
+  <chunk 2> aon 2019s unpaid restructuring liabilities are included in both accounts payable and accrued liabilities and other non-current liabilities in the consolidated statements of financial position . aon corporation .

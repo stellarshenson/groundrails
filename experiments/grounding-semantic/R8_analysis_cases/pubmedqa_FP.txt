@@ -1,0 +1,341 @@
+====================================================================================================
+[FP] pubmedqa idx=246 label=0 score(min)=0.242 mean=0.6639 lettuce=0.5437 n_sent=12 n_chunks=5 resp_chars=1214 fallback=False capped=False
+--- ARGMIN sentence (score 0.242):
+    - The results suggest that long-term survivors of Ewing family of tumors do experience low BMD and an increased risk of fractures.
+--- all sentences:
+    [0.818] Based on the context provided, the key findings regarding long-term survivors of the Ewing family of tumors are:
+
+1.
+    [0.977] Do long-term survivors of the Ewing family of tumors sustain low BMD?
+    [0.665] - The study aimed to determine if long-term survivors of Ewing tumors have low bone mineral density (BMD).
+    [0.893] Do they experience fractures?
+    [0.736] - The study also assessed the history of fractures in these long-term survivors.
+    [0.978] Are BMD and fractures associated with each other?
+    [0.780] - The study examined whether low BMD and fractures are associated in these patients.
+    [0.463] The context indicates that the researchers found the following:
+
+- 56 long-term survivors of Ewing tumors (mean follow-up of 15 years) were included in the study.
+    [0.704] - The study measured BMD in these patients and assessed their history of fractures.
+    [0.242] - The results suggest that long-term survivors of Ewing family of tumors do experience low BMD and an increased risk of fractures.
+    [0.326] - The study found an association between low BMD and increased fracture risk in these patients.
+    [0.384] Therefore, based on the provided context, the answer is yes, long-term survivors of Ewing family of tumors appear to experience low bone mineral density and increased fracture risk.
+--- RESPONSE:
+Based on the context provided, the key findings regarding long-term survivors of the Ewing family of tumors are:
+
+1. Do long-term survivors of the Ewing family of tumors sustain low BMD?
+   - The study aimed to determine if long-term survivors of Ewing tumors have low bone mineral density (BMD).
+
+2. Do they experience fractures?
+   - The study also assessed the history of fractures in these long-term survivors.
+
+3. Are BMD and fractures associated with each other?
+   - The study examined whether low BMD and fractures are associated in these patients.
+
+The context indicates that the researchers found the following:
+
+- 56 long-term survivors of Ewing tumors (mean follow-up of 15 years) were included in the study.
+- The study measured BMD in these patients and assessed their history of fractures.
+- The results suggest that long-term survivors of Ewing family of tumors do experience low BMD and an increased risk of fractures.
+- The study found an association between low BMD and increased fracture risk in these patients.
+
+Therefore, based on the provided context, the answer is yes, long-term survivors of Ewing family of tumors appear to experience low bone mineral density and increased fracture risk.
+--- CHUNKS (truncated):
+  <chunk 0> We performed this study to answer the following questions: (1) Do long-term survivors of the Ewing family of tumors sustain low BMD? (2) Which factors are associated with BMD in these patients? (3) Do they experience fractures? (4) Are BMD and fractures associated with each other?
+  <chunk 1> We queried our institutional registry to identify all known survivors of Ewing tumors who were treated before 2005. Of 100 such patients, 67 (67%) responded to a postal survey to participate in this study, and an additional 11 (11%) patients were excluded according to prespecified criteria. In the remaining 56 long-term survivors (27 females, 29 males; mean±SD age at followup, 32±10 years; mean followup, 15±7 years), BMD was measured by dual-energy x-ray absorptiometry and history of fractures was assessed using a questionnaire. Associations were tested using univariate and multivariate models by stepwise variable selection procedure, including Bonferroni correction.
+  <chunk 2> Multimodal treatment regimens for Ewing's sarcoma have led to survival rates approaching 70% of patients with no metastases at diagnosis. However, these treatments have long-term side effects. Low bone mineral density (BMD) and risk of fractures can occur owing in part to chemotherapy and limited mobility from local control of the primary tumor.QUESTIONS/
+  <chunk 3> The aim of our study was to address the following questions: (1) Do long-term survivors of chondrosarcoma have normal BMD and, if not, which factors contribute to low BMD? (2) Is there a greater risk of fracture and does the Fracture Risk Assessment Tool (FRAX(®)) score reflect fracture likelihood?
+  <chunk 4> In long-term survivors of osteosarcoma and Ewing sarcoma treated with the addition of radio- and chemotherapy, low bone mineral density (BMD) and fractures have been observed, presumably resulting from these adjuvants. Because patients with chondrosarcoma usually are not treated with conventional adjuvant treatment, observation of low BMD in patients with chondrosarcoma presumably would be the result of other mechanisms. However, BMD in patients with a history of chondrosarcoma has not been well characterized.QUESTIONS/
+
+====================================================================================================
+[FP] pubmedqa idx=131 label=0 score(min)=0.233 mean=0.5544 lettuce=0.2411 n_sent=5 n_chunks=5 resp_chars=661 fallback=False capped=False
+--- ARGMIN sentence (score 0.233):
+    For example, the use of HistoScanning in combination with biopsy showed a significant increase in the probability of detecting prostate cancer.
+--- all sentences:
+    [0.375] Based on the provided context, biopsy can indeed be a reliable predictor of the spatial distribution of prostate cancer.
+    [0.498] The text mentions various studies and analyses where different biopsy techniques and factors like cancer volume were used to predict outcomes or detect cancer.
+    [0.233] For example, the use of HistoScanning in combination with biopsy showed a significant increase in the probability of detecting prostate cancer.
+    [0.922] Additionally, the analysis of zonal location of prostate cancer after radical prostatectomy aimed to predict progression-free survival.
+    [0.744] Therefore, biopsy can be a valuable tool for predicting the spatial distribution of prostate cancer.
+--- RESPONSE:
+Based on the provided context, biopsy can indeed be a reliable predictor of the spatial distribution of prostate cancer. The text mentions various studies and analyses where different biopsy techniques and factors like cancer volume were used to predict outcomes or detect cancer. For example, the use of HistoScanning in combination with biopsy showed a significant increase in the probability of detecting prostate cancer. Additionally, the analysis of zonal location of prostate cancer after radical prostatectomy aimed to predict progression-free survival. Therefore, biopsy can be a valuable tool for predicting the spatial distribution of prostate cancer.
+--- CHUNKS (truncated):
+  <chunk 0> To obtain accurate spatial information on cancer distribution with a novel prostate biopsy regimen.
+  <chunk 1> To determine whether systematic biopsy can help predict treatment outcome in men with clinically localized prostate cancer treated with external-beam radiation therapy alone.
+  <chunk 2> To analyze the zonal location of prostate cancer as a possible predictive feature of progression-free survival after radical prostatectomy.
+  <chunk 3> A prior report established that pretreatment criteria based on clinical and biopsy pathology parameters can predict men who harbor small volume prostate cancer who might be followed expectantly. However, some of these men will exhibit disease progression with time and will need definitive therapy. To detect those in whom disease may progress, repeat prostate biopsies are performed at yearly intervals. Therefore, we determined whether biomarkers could be used to determine those in whom disease is likely to progress and thus those who require definitive therapy.
+  <chunk 4> Following a logistic regression analysis, after adjusting for age, digital rectal examination, serum prostate-specific antigen level, prostate volume and tumor lesion volume, every cancer volume increase of 1 mL estimated by HistoScanning was associated with a nearly threefold increase in the probability of resulting in a positive biopsy (odds ratio 2.9; 95% confidence interval 1.2-7.0; P-value 0.02). Prostate cancer was found in 17 of 41 men (41%). In patients with cancer, computer-aided ultrasonography-guided biopsy was 4.5-fold more likely to detect cancer than random biopsy. The prostate cancer detection rate for random biopsy and directed biopsy was 13% and 58%, respectively. HistoScanning-guided biopsy significantly decreased the number of biopsies necessary (P-value<0.0001).
+
+====================================================================================================
+[FP] pubmedqa idx=29 label=0 score(min)=0.2016 mean=0.214 lettuce=0.3212 n_sent=2 n_chunks=5 resp_chars=418 fallback=False capped=False
+--- ARGMIN sentence (score 0.2016):
+    No, the text does not mention sectioning the cochlear efferent system during vestibular neurectomy.
+--- all sentences:
+    [0.202] No, the text does not mention sectioning the cochlear efferent system during vestibular neurectomy.
+    [0.226] The focus of the text is on investigating the impact of different cochleostomy techniques on vestibular receptor integrity and vertigo after cochlear implantation, as well as evaluating the efficacy of vestibular neurectomy for vestibular deafferentation and functioning after surgery in patients wit
+--- RESPONSE:
+No, the text does not mention sectioning the cochlear efferent system during vestibular neurectomy. The focus of the text is on investigating the impact of different cochleostomy techniques on vestibular receptor integrity and vertigo after cochlear implantation, as well as evaluating the efficacy of vestibular neurectomy for vestibular deafferentation and functioning after surgery in patients with Meniere disease.
+--- CHUNKS (truncated):
+  <chunk 0> To investigate the impact of different cochleostomy techniques on vestibular receptor integrity and vertigo after cochlear implantation.
+  <chunk 1> Vestibular neurectomy is considered the reference treatment of incapacitating vertigo accompanying Meniere disease, with an efficiency rate of 85-95% in most literature reports. The aim of this study is to evaluate if vestibular neurectomy can provide a complete vestibular deafferentation by investigating complete vestibular function after surgery.
+  <chunk 2> For the anatomic study, four autopsy specimens and one surgical biopsy specimen of the vestibulocochlear nerve were microscopically and ultramicroscopically analyzed for structural differences between the CNS and PNS segments. For the clinical study, five patients with the clinical picture of cochleovestibular compression syndrome were treated by microsurgical decompression at the level of the CNS segment and not the REZ. One patient underwent reoperation for recurrent symptoms 4 years later, and a 4-mm vestibular neurectomy was performed at that stage. We performed an epidemiological analysis to demonstrate that the known incidences of trigeminal neuralgia, hemifacial spasm, and glossopharyngeal neuralgia are related to the length of their respective CNS segments.
+  <chunk 3> In addition to sensory neurons which transmit information from the inner ear to the brain, there is a system of efferent feedback fibers, called the olivocochlear system, carrying signals from the brain to the ear. Over the past half-century, the efferent system has been extensively studied in animals and results provided theories as to the functional significance of these efferents: to improve signal-to-noise ratio in the auditory periphery, to mediate selective attention, and to protect the inner ear from acoustic overexposure. The results of several studies conducted in man rely on the study of patients who have undergone a vestibular neurectomy. Indeed, anatomical data show that olivocochlear efferents could travel along or inside the vestibular part of the auditory nerve before reaching the organ of Corti. Therefore, these patients may be considered as an experimental model of unila
+  <chunk 4> Prospective study. Twenty-four patients suffering from incapacitated Meniere vertigo crisis beneficiated from a vestibular neurectomy by retrosigmoid approach. The average time between surgery and vestibular evaluation was 1 year. We performed (i) kinetic test, (ii) caloric test and (iii) vibration-induced nystagmus (VIN) at 30, 60 and 100Hz under videonystagmography recording, (iv) vestibular evoked myogenic potentials (VEMP), (v) video head impulsed test (VHIT) for each semicircular canals and (vi) an evaluation of visual vertical and horizontal subjective (VVS and HVS).
+
+====================================================================================================
+[FP] pubmedqa idx=190 label=0 score(min)=0.187 mean=0.623 lettuce=0.1197 n_sent=7 n_chunks=5 resp_chars=1410 fallback=False capped=False
+--- ARGMIN sentence (score 0.187):
+    The hypothesis was that routine admission is unnecessary in this population with uncomplicated skull fractures.
+--- all sentences:
+    [0.752] Based on the context provided, the study aimed to determine the necessity of routine hospital admission for children with uncomplicated skull fractures (those with a normal neurological exam, normal head CT, and no other injuries).
+    [0.332] The key points from the context are:
+
+1.
+    [0.888] The study was a retrospective review of patients younger than 2 years who presented to the emergency department with a diagnosis of skull fracture.
+    [0.808] The study question was whether routine admission is necessary for children with closed head injuries diagnosed as concussion alone or concussion with brief loss of consciousness, who have a normal central nervous system exam, negative CT scan, and Glasgow Coma Score of 15.
+    [0.187] The hypothesis was that routine admission is unnecessary in this population with uncomplicated skull fractures.
+    [0.632] The study also aimed to determine the incidence of skull fracture and intracranial injury in children younger than 2 years with head trauma, and whether clinical features could guide selective radiographic imaging.
+    [0.761] Therefore, the answer to the question "Management of uncomplicated skull fractures in children: is hospital admission necessary?" based on the context provided is that the study aimed to determine whether routine hospital admission is necessary for children with uncomplicated skull fractures, as the
+--- RESPONSE:
+Based on the context provided, the study aimed to determine the necessity of routine hospital admission for children with uncomplicated skull fractures (those with a normal neurological exam, normal head CT, and no other injuries).
+
+The key points from the context are:
+
+1. The study was a retrospective review of patients younger than 2 years who presented to the emergency department with a diagnosis of skull fracture.
+
+2. The study question was whether routine admission is necessary for children with closed head injuries diagnosed as concussion alone or concussion with brief loss of consciousness, who have a normal central nervous system exam, negative CT scan, and Glasgow Coma Score of 15.
+
+3. The hypothesis was that routine admission is unnecessary in this population with uncomplicated skull fractures.
+
+4. The study also aimed to determine the incidence of skull fracture and intracranial injury in children younger than 2 years with head trauma, and whether clinical features could guide selective radiographic imaging.
+
+Therefore, the answer to the question "Management of uncomplicated skull fractures in children: is hospital admission necessary?" based on the context provided is that the study aimed to determine whether routine hospital admission is necessary for children with uncomplicated skull fractures, as the hypothesis was that such admission may be unnecessary in this population.
+--- CHUNKS (truncated):
+  <chunk 0> This study was undertaken to determine the necessity for routine hospital admission of children with skull fractures, a normal neurological exam, a normal head CT, and no other injuries ('uncomplicated skull fracture').
+  <chunk 1> Retrospective review of patients younger than 2 years who presented to an emergency department and received a diagnosis of skull fracture.
+  <chunk 2> Children with closed head injuries diagnosed as concussion alone or concussion with brief loss of consciousness are admitted routinely for observation despite a normal central nervous system finding, negative computed tomography (CT) scan, and a Glasgow Coma Score (GCS) of 15. Recent studies have questioned the necessity of such an admission. The purpose of this study was to review a large pediatric database and study the length of stay as well as any required procedures or complications in these children. The hypothesis was that routine admission is unnecessary in this population.
+  <chunk 3> To determine the incidence of skull fracture (SF) and intracranial injury (ICA) among children younger than 2 years evaluated in a pediatric emergency department for head trauma; whether historical features and/or physical findings are predictive of injury type; and whether clinical criteria could allow a selective approach to radiographic imaging.
+  <chunk 4> A prospective study of closed-head injuries in children was done over a 2-year period at St. Louis Children's Hospital. All patients with closed head injuries underwent skull radiographs and a head CT scan. From this cohort, children with uncomplicated skull fractures were identified and studied. For comparison, a retrospective analysis was also performed of the hospital admission records of children admitted over a 5-year period (1990-1994) with the diagnosis of epidural hematoma (EDH) to identify the typical time intervals between injury and documentation of the lesion in these cases.
+
+====================================================================================================
+[FP] pubmedqa idx=88 label=0 score(min)=0.1382 mean=0.3456 lettuce=0.6135 n_sent=2 n_chunks=5 resp_chars=292 fallback=False capped=False
+--- ARGMIN sentence (score 0.1382):
+    Therefore, greater acculturation was associated with measuring cardiovascular risk factors among Latinos in South Florida.
+--- all sentences:
+    [0.553] Based on the provided context, the study examined the association of acculturation with various cardiovascular risk factors among Latinos with diabetes in South Florida.
+    [0.138] Therefore, greater acculturation was associated with measuring cardiovascular risk factors among Latinos in South Florida.
+--- RESPONSE:
+Based on the provided context, the study examined the association of acculturation with various cardiovascular risk factors among Latinos with diabetes in South Florida. Therefore, greater acculturation was associated with measuring cardiovascular risk factors among Latinos in South Florida.
+--- CHUNKS (truncated):
+  <chunk 0> To examine the association of acculturation with various cardiovascular risk factors (CRFs) among Latinos with diabetes in South Florida.
+  <chunk 1> The goal of the study was to evaluate the effect of family cohesiveness, acculturation, socioeconomic position, and cardiovascular risk factors on severity of diabetes among Mexican Americans.
+  <chunk 2> In a cross-sectional analysis of data collected from 300 Latinos with poorly controlled diabetes we measured acculturation using the Marin Short Acculturation Scale. We examined correlations between acculturation and the following 7 CRFs: hemoglobin A1C, low-density lipoprotein, systolic blood pressure, body mass index, smoking status, physical activity, and fruit and vegetable intake.
+  <chunk 3> Metabolic syndrome (MetS), the clustering of several risk factors for cardiovascular disease, is highly prevalent in Hispanics/Latinos. We tested whether all components significantly loaded on the syndrome in Hispanics/Latinos and whether their contribution differed by sex and Hispanic ancestry. We also examined associations of MetS with prevalent diabetes and coronary heart disease in Hispanics/Latinos.
+  <chunk 4> To examine whether the association between socioeconomic position (SEP) and subclinical atherosclerosis in Mexican-Americans would be moderated by acculturation. Although SEP shows a consistent, inverse relationship with cardiovascular disease (CVD) risk in westernized non-Hispanic white populations, the relationship in ethnic minorities, including Hispanics, is often weak or even reversed (i.e., worse health with higher SEP).
+
+====================================================================================================
+[FP] pubmedqa idx=70 label=0 score(min)=0.1326 mean=0.6217 lettuce=0.1931 n_sent=7 n_chunks=5 resp_chars=1338 fallback=False capped=False
+--- ARGMIN sentence (score 0.1326):
+    By dividing the patients into three groups based on the duration of preoperative symptoms, the study aims to investigate whether the timing of the surgery affects the clinical outcomes, as measured by the modified Harris Hip Score and patient satisfaction.
+--- all sentences:
+    [0.624] Based on the provided context, the key points are:
+
+1.
+    [0.873] The study aims to assess the impact of the duration of waiting time for surgery on the outcomes of total hip replacement.
+    [0.424] The study also aims to compare the modified Harris Hip Score (mHHS) and patient satisfaction over a two-year period in patients undergoing hip arthroscopy.
+    [0.901] The study presents a prospective single-surgeon series of 525 consecutive patients undergoing hip arthroscopy, and the patients were divided into three groups based on the duration of preoperative symptoms: group A (under 6 months), group B (6 months to 3 years), and group C (over 3 years).
+    [0.956] The study also aims to evaluate the clinical outcomes of patients 55 years and older undergoing hip arthroscopy and compare them with patients younger than 55 years.
+    [0.441] From this context, the question "Timing in hip arthroscopy: does surgical timing change clinical results?" can be answered as follows:
+
+The study suggests that the duration of preoperative symptoms, or the timing of the hip arthroscopy surgery, may impact the clinical results.
+    [0.133] By dividing the patients into three groups based on the duration of preoperative symptoms, the study aims to investigate whether the timing of the surgery affects the clinical outcomes, as measured by the modified Harris Hip Score and patient satisfaction.
+--- RESPONSE:
+Based on the provided context, the key points are:
+
+1. The study aims to assess the impact of the duration of waiting time for surgery on the outcomes of total hip replacement.
+
+2. The study also aims to compare the modified Harris Hip Score (mHHS) and patient satisfaction over a two-year period in patients undergoing hip arthroscopy.
+
+3. The study presents a prospective single-surgeon series of 525 consecutive patients undergoing hip arthroscopy, and the patients were divided into three groups based on the duration of preoperative symptoms: group A (under 6 months), group B (6 months to 3 years), and group C (over 3 years).
+
+4. The study also aims to evaluate the clinical outcomes of patients 55 years and older undergoing hip arthroscopy and compare them with patients younger than 55 years.
+
+From this context, the question "Timing in hip arthroscopy: does surgical timing change clinical results?" can be answered as follows:
+
+The study suggests that the duration of preoperative symptoms, or the timing of the hip arthroscopy surgery, may impact the clinical results. By dividing the patients into three groups based on the duration of preoperative symptoms, the study aims to investigate whether the timing of the surgery affects the clinical outcomes, as measured by the modified Harris Hip Score and patient satisfaction.
+--- CHUNKS (truncated):
+  <chunk 0> To assess the impact on the outcome of total hip replacement of the length of timing spent waiting for surgery.
+  <chunk 1> To our knowledge, there is no report in the orthopaedic literature that correlates the duration of hip pain with the results of hip arthroscopic surgery. The aim of this study was to compare the modified Harris Hip Score (mHHS) with patient satisfaction in a prospective study over a two year period.
+  <chunk 2> No published studies have explored the relationship between commonly reported clinical outcomes and patient satisfaction after hip arthroscopy.
+  <chunk 3> We present a prospective single-surgeon series of 525 consecutive patients undergoing hip arthroscopy for a labral tear, femoroacetabular impingement (FAI), or a chondral lesion. Modified HHS was recorded for all patients at the time of surgery and at six weeks, six months and one, two and three years after hip arthroscopy. At the time of surgery, patients were divided into three groups based on duration of preoperative symptoms: group A, under 6 months; group B, six months to three years; group C, over three years.
+  <chunk 4> To evaluate the clinical outcomes of patients 55 years and older who are undergoing hip arthroscopy and to compare outcomes with those of patients younger than 55 years.
+
+====================================================================================================
+[FP] pubmedqa idx=180 label=0 score(min)=0.1042 mean=0.2842 lettuce=0.7197 n_sent=7 n_chunks=5 resp_chars=1095 fallback=False capped=False
+--- ARGMIN sentence (score 0.1042):
+    Therefore, based on the information provided, deoxypyridinoline appears to be a suitable resorption marker that can be used to detect osteopenia in patients with phenylketonuria.
+--- all sentences:
+    [0.684] Based on the provided context, the answer to the question "Is deoxypyridinoline a good resorption marker to detect osteopenia in phenylketonuria?" is:
+
+Yes, deoxypyridinoline appears to be a good resorption marker to detect osteopenia in phenylketonuria (PKU) patients.
+    [0.171] The key evidence supporting this is:
+
+1.
+    [0.554] The first piece of context states that the study aimed "to evaluate deoxypyridinoline as a resorption marker in phenylketonuria (PKU)".
+    [0.135] This suggests that the researchers were investigating the use of deoxypyridinoline as a marker of bone resorption in PKU patients.
+    [0.220] The second piece of context mentions that "deoxypyridinoline (a bone resorption marker)" was measured in the study population, which included PKU patients.
+    [0.121] The third and fourth pieces of context do not directly mention PKU but demonstrate the use of deoxypyridinoline as a marker of bone resorption in other patient populations.
+    [0.104] Therefore, based on the information provided, deoxypyridinoline appears to be a suitable resorption marker that can be used to detect osteopenia in patients with phenylketonuria.
+--- RESPONSE:
+Based on the provided context, the answer to the question "Is deoxypyridinoline a good resorption marker to detect osteopenia in phenylketonuria?" is:
+
+Yes, deoxypyridinoline appears to be a good resorption marker to detect osteopenia in phenylketonuria (PKU) patients.
+
+The key evidence supporting this is:
+
+1. The first piece of context states that the study aimed "to evaluate deoxypyridinoline as a resorption marker in phenylketonuria (PKU)". This suggests that the researchers were investigating the use of deoxypyridinoline as a marker of bone resorption in PKU patients.
+
+2. The second piece of context mentions that "deoxypyridinoline (a bone resorption marker)" was measured in the study population, which included PKU patients.
+
+3. The third and fourth pieces of context do not directly mention PKU but demonstrate the use of deoxypyridinoline as a marker of bone resorption in other patient populations.
+
+Therefore, based on the information provided, deoxypyridinoline appears to be a suitable resorption marker that can be used to detect osteopenia in patients with phenylketonuria.
+--- CHUNKS (truncated):
+  <chunk 0> To evaluate deoxypyridinoline as a resorption marker in phenylketonuria (PKU) and to search for a relationship between deoxypyridinoline, calcium/creatinine index (Ca/Cr I), osteocalcin and bone alkaline phosphatase (BAP).
+  <chunk 1> This was a transversal analytical study of 46 PKU patients [17.5 (4-38) years]. Deoxypyridinoline and osteocalcin were measured with a chemiluminescent assay and BAP was measured with an immunoradiometric assay.
+  <chunk 2> BMD (measured by osteo C.T. of the lumbar spine) and bone resorption (deoxypyridinoline) and formation (alkaline phosphatase bone isoenzyme) markers were measured in 40 female postmenopausal patients with NIDDM and in 40 non-diabetic females of the same age. The same investigations were carried out in 20 males with NIDDM and in 20 normal non-diabetic males.
+  <chunk 3> This study was carried out on 60 patients and 24 sex- and age-matched healthy controls. Serum osteocalcin (OK) and bone specific alkaline phosphatase (BALP), which are bone formation markers and urine deoxipyridinolin (DOP) levels that is bone resorption marker were evaluated in patient and controls groups. Serum IL-1 and TNF-alpha levels were measured in both groups. BMD was measured with dual X-ray absorptiometry (DEXA) at the lumbar spine and left femur.
+  <chunk 4> Forty-eight end-stage renal disease patients (28 male, 20 female mean age 42+/-13 years,) on maintenance hemodialysis were included in the study. Bone mineral density (BMD) was estimated at lumbar spine and T score worse than -1.5 were considered as osteopenia. Serum parathyroid hormone (iPTH) and osteocalcin (OC), bone alkaline phosphatase (bAP) and carboxy terminal propeptide type 1 collagen (PICP) levels were measured as markers of bone metabolism. Plasma renin activity (PRA), serum ACE activity and ACE gene polymorphism (II, ID, DD) were determined.
+
+====================================================================================================
+[FP] pubmedqa idx=186 label=0 score(min)=0.0973 mean=0.2689 lettuce=0.3234 n_sent=3 n_chunks=5 resp_chars=541 fallback=False capped=False
+--- ARGMIN sentence (score 0.0973):
+    Yes, rapid eye movement sleep behavioral events are being investigated as potential markers for early recognition of neurodegenerative disease in newly diagnosed, unmedicated patients with Parkinson's disease.
+--- all sentences:
+    [0.097] Yes, rapid eye movement sleep behavioral events are being investigated as potential markers for early recognition of neurodegenerative disease in newly diagnosed, unmedicated patients with Parkinson's disease.
+    [0.570] This includes analyzing REM sleep for REM without atonia and studying motor behaviors and vocalizations in REM sleep with a purposeful component.
+    [0.139] Identifying these events, such as rapid eye movement sleep behavior disorder (RBD), may help in the early detection and diagnosis of neurodegenerative diseases like Parkinson's disease.
+--- RESPONSE:
+Yes, rapid eye movement sleep behavioral events are being investigated as potential markers for early recognition of neurodegenerative disease in newly diagnosed, unmedicated patients with Parkinson's disease. This includes analyzing REM sleep for REM without atonia and studying motor behaviors and vocalizations in REM sleep with a purposeful component. Identifying these events, such as rapid eye movement sleep behavior disorder (RBD), may help in the early detection and diagnosis of neurodegenerative diseases like Parkinson's disease.
+--- CHUNKS (truncated):
+  <chunk 0> To analyze potential markers in sleep for early recognition of neurodegenerative disease in newly diagnosed, unmedicated patients with Parkinson disease (PD) compared to controls.
+  <chunk 1> To study the sequence of occurrence of REM-sleep behaviour disorder (RBD) and dementia and their frequency among a population of patients with idiopathic Parkinson's disease (PD).
+  <chunk 2> Rapid eye movement sleep behavior disorder (RBD) occurs idiopathically (iRBD), frequently representing a prodromal phase of Parkinson's disease (PD). Previous reports have described that patients with PD have premorbid personality profiles such as industriousness, inflexibility, cautiousness, and lack of novelty seeking. As well, psychological stress often aggravates RBD symptoms. These phenomena encouraged us to investigate personality profiles in iRBD patients.
+  <chunk 3> Videopolysomnography (vPSG) was available in 158 newly diagnosed, unmedicated patients with PD and 110 age-, sex-, and education-matched healthy controls (HC). Rapid eye movement (REM) sleep was analyzed for REM without atonia (RWA) and studied by review of time-synchronized video. Motor behaviors and/or vocalizations in REM sleep with a purposeful component other than comfort moves were identified as REM sleep behavioral events (RBE). Two or more events had to be present to be classified as "RBE positive." RBE subjects included rapid eye movement sleep behavior disorder (RBD) and non-RBD subjects based on the presence or absence of RWA>18.2%.
+  <chunk 4> Based on the prevailing evidence that rapid eye movement (REM) sleep behavior disorder (RBD) often precedes the onset of DLB, [(18) F]-FDG PET scans of nine non-demented patients reporting recurrent nocturnal dream-enactment behavior in our memory clinic were compared with the normative database using three-dimensional stereotactic surface projection (3D-SSP) images. All patients underwent clinical and neuropsychological examinations as well as cardiac [(123) I]-metaiodobenzylguanidine ([(123) I]-MIBG) scintigraphy.
+
+====================================================================================================
+[FP] pubmedqa idx=77 label=0 score(min)=0.0873 mean=0.4307 lettuce=0.7898 n_sent=5 n_chunks=5 resp_chars=1220 fallback=False capped=False
+--- ARGMIN sentence (score 0.0873):
+    The second piece of context mentions that the relation between functional capacity instruments and work status has rarely been studied, suggesting that this study aims to explore this relationship.
+--- all sentences:
+    [0.939] Based on the provided context, the answer to the question "Can functional capacity tests predict future work capacity in patients with whiplash-associated disorders?" is:
+
+Yes, the evidence suggests that functional capacity evaluation (FCE) tests can predict future work capacity (WC) of patients wit
+    [0.220] The key evidence supporting this is:
+
+1.
+    [0.786] The first piece of context states that the study aimed "To determine whether functional capacity evaluation (FCE) tests predict future work capacity (WC) of patients with whiplash-associated disorders (WADs) grades I and II who did not regain full WC 6 to 12 weeks after injury."
+
+2.
+    [0.087] The second piece of context mentions that the relation between functional capacity instruments and work status has rarely been studied, suggesting that this study aims to explore this relationship.
+    [0.121] So the provided context indicates that the study was designed to specifically assess whether FCE tests can predict future work capacity in patients with certain grades of whiplash-associated disorders, which suggests the authors believe this is a plausible relationship to investigate.
+--- RESPONSE:
+Based on the provided context, the answer to the question "Can functional capacity tests predict future work capacity in patients with whiplash-associated disorders?" is:
+
+Yes, the evidence suggests that functional capacity evaluation (FCE) tests can predict future work capacity (WC) of patients with whiplash-associated disorders (WADs) grades I and II who did not regain full WC 6 to 12 weeks after injury.
+
+The key evidence supporting this is:
+
+1. The first piece of context states that the study aimed "To determine whether functional capacity evaluation (FCE) tests predict future work capacity (WC) of patients with whiplash-associated disorders (WADs) grades I and II who did not regain full WC 6 to 12 weeks after injury."
+
+2. The second piece of context mentions that the relation between functional capacity instruments and work status has rarely been studied, suggesting that this study aims to explore this relationship.
+
+So the provided context indicates that the study was designed to specifically assess whether FCE tests can predict future work capacity in patients with certain grades of whiplash-associated disorders, which suggests the authors believe this is a plausible relationship to investigate.
+--- CHUNKS (truncated):
+  <chunk 0> To determine whether functional capacity evaluation (FCE) tests predict future work capacity (WC) of patients with whiplash-associated disorders (WADs) grades I and II who did not regain full WC 6 to 12 weeks after injury.
+  <chunk 1> Several instruments have been developed to evaluate the functional capacities of patients with back pain, but the relation between these instruments and work status has rarely been studied.
+  <chunk 2> To study the predictive value of a set of tests measuring the physical performance of the back in a working population. The hypothesis was that subjects with poor functional capacity are liable to back disorders.
+  <chunk 3> To test the reproducibility of the finding that early intensive care for whiplash injuries is associated with delayed recovery.
+  <chunk 4> Fifteen whiplash patients (Whiplash) were compared with 10 patients who had documented moderate-to-severe head injury (Mod-Sev), and with 24 patients who had chronic pain syndrome (CPS) and no history of head injury on two tests of mental efficiency considered highly sensitive to and specific for the subtle effects of brain trauma. All 3 groups, assessed 4 years after onset in a teaching hospital setting were matched for age, education, and IQ. Exclusion criteria included narcotics/benzo-diazepines or (suspected) malingering. Subjective ratings of depression and pain were collected as well as objective indices of outcome (return to work/school).
+
+====================================================================================================
+[FP] pubmedqa idx=242 label=0 score(min)=0.087 mean=0.2453 lettuce=0.856 n_sent=7 n_chunks=5 resp_chars=1006 fallback=False capped=False
+--- ARGMIN sentence (score 0.087):
+    The contrast of the I-124 PET images is similar to F-18 and Ga-68 when PGC is used, but higher without PGC due to lower background activity.
+--- all sentences:
+    [0.230] Based on the information provided in the context, the image quality of I-124-PET is impaired when the prompt gamma compensation (PGC) is not used.
+    [0.722] The study aimed to evaluate the image quality of I-124 PET images with and without prompt gamma compensation (PGC).
+    [0.264] The results show that the recovery coefficients (RC) of I-124 are similar to F-18 when PGC is used (87%), but lower without PGC (84%).
+    [0.087] The contrast of the I-124 PET images is similar to F-18 and Ga-68 when PGC is used, but higher without PGC due to lower background activity.
+    [0.101] This is likely because of an overcorrection of the scatter contribution without PGC.
+    [0.183] The authors conclude that PGC should be used for I-124 imaging, as it improves the quantification and image quality compared to not using PGC.
+    [0.130] Therefore, the evidence suggests that the image quality of I-124-PET is impaired when the prompt gamma compensation (PGC) is not used, as it leads to lower recovery coefficients and suboptimal contrast.
+--- RESPONSE:
+Based on the information provided in the context, the image quality of I-124-PET is impaired when the prompt gamma compensation (PGC) is not used. The key points are:
+
+1. The study aimed to evaluate the image quality of I-124 PET images with and without prompt gamma compensation (PGC).
+
+2. The results show that the recovery coefficients (RC) of I-124 are similar to F-18 when PGC is used (87%), but lower without PGC (84%).
+
+3. The contrast of the I-124 PET images is similar to F-18 and Ga-68 when PGC is used, but higher without PGC due to lower background activity. This is likely because of an overcorrection of the scatter contribution without PGC.
+
+4. The authors conclude that PGC should be used for I-124 imaging, as it improves the quantification and image quality compared to not using PGC.
+
+Therefore, the evidence suggests that the image quality of I-124-PET is impaired when the prompt gamma compensation (PGC) is not used, as it leads to lower recovery coefficients and suboptimal contrast.
+--- CHUNKS (truncated):
+  <chunk 0> The aim of this study is to evaluate the quality of I-124 PET images with and without prompt gamma compensation (PGC) by comparing the recovery coefficients (RC), the signal to noise ratios (SNR) and the contrast to F-18 and Ga-68. Furthermore, the influence of the PGC on the quantification and image quality is evaluated.
+  <chunk 1> For measuring the image quality the NEMA NU2-2001 PET/SPECT-Phantom was used containing 6 spheres with a diameter between 10 mm and 37 mm placed in water with different levels of background activity. Each sphere was filled with the same activity concentration measured by an independently cross-calibrated dose calibrator. The "hot" sources were acquired with a full 3D PET/CT (Biograph mCT®, Siemens Medical USA). Acquisition times were 2 min for F-18 and Ga-68, and 10 min for I-124. For reconstruction an OSEM algorithm was applied. For I-124 the images were reconstructed with and without PGC. For the calculation of the RCs the activity concentrations in each sphere were determined; in addition, the influence of the background correction was studied.
+  <chunk 2> The RCs of Ga-68 are the smallest (79%). I-124 reaches similar RCs (87% with PGC, 84% without PGC) as F-18 (84%). showing that the quantification of I-124 images is similar to F-18 and slightly better than Ga-68. With background activity the contrast of the I-124 PGC images is similar to Ga-68 and F-18 scans. There was lower background activity in the I-124 images without PGC, which probably originates from an overcorrection of the scatter contribution. Consequently, the contrast without PGC was much higher than with PGC. As a consequence PGC should be used for I-124.
+  <chunk 3> Over a 2-month period, 18F-FDG PET/CT images were prospectively reviewed from 200 patients following Gastrografin administration 2 h prior to examination. Both a radiologist and a nuclear medicine physician reviewed the images for contrast medium-mediated clinically relevant artefacts. Artefacts were sought on the CT attenuation-corrected images and were compared with the appearance on non-attenuated-corrected images. The number of examinations in which the oral contrast aided image interpretation was also noted.
+  <chunk 4> We prospectively evaluated 128 radiographs of 32 immunocompromised patients. For each patient four clinical CXR were performed within one week, two with powder image plates (PIP; Fuji ST-V) and two with needle image plates (NIP; Agfa DXS) at standard and half dose, respectively. One experienced radiologist and two residents blinded to dose level and kind of imaging system rated different anatomical structures, image noise, tubes/lines and abnormalities on a image quality scale from 1 to 10 (1=poor, 10=excellent). The rating scores were tested for statistical differences using analysis of variance with repeated measures.
+
+====================================================================================================
+[FP] pubmedqa idx=210 label=0 score(min)=0.0862 mean=0.5547 lettuce=0.8666 n_sent=7 n_chunks=5 resp_chars=1150 fallback=False capped=False
+--- ARGMIN sentence (score 0.0862):
+    The study directly examines whether the presence or absence of CSF flow during the PRGR procedure influences the long-term pain relief in these patients.
+--- all sentences:
+    [0.549] Based on the context provided, the study examining the effect of cerebrospinal fluid (CSF) flow during percutaneous retrogasserian glycerol rhizotomy (PRGR) on long-term pain relief in patients with trigeminal neuralgia seems to be relevant to answering the question.
+    [0.518] The key findings from the study are:
+
+1.
+    [0.864] Eighty-nine patients with trigeminal neuralgia underwent 102 PRGR procedures.
+    [0.514] Patients were grouped as A (CSF flow present) or B (CSF flow absent), according to the egress of CSF at the time of needle placement.
+    [0.913] Patients were followed up for the recurrence of pain (average duration of follow up, 62 months).
+    [0.086] The study directly examines whether the presence or absence of CSF flow during the PRGR procedure influences the long-term pain relief in these patients.
+    [0.439] Therefore, based on the information provided, the answer to the question "Does egress of cerebrospinal fluid during percutaneous retrogasserian glycerol rhizotomy influence long term pain relief?" is yes, the study suggests that the presence or absence of CSF flow during the PRGR procedure can influ
+--- RESPONSE:
+Based on the context provided, the study examining the effect of cerebrospinal fluid (CSF) flow during percutaneous retrogasserian glycerol rhizotomy (PRGR) on long-term pain relief in patients with trigeminal neuralgia seems to be relevant to answering the question.
+
+The key findings from the study are:
+
+1. Eighty-nine patients with trigeminal neuralgia underwent 102 PRGR procedures.
+2. Patients were grouped as A (CSF flow present) or B (CSF flow absent), according to the egress of CSF at the time of needle placement.
+3. Patients were followed up for the recurrence of pain (average duration of follow up, 62 months).
+
+The study directly examines whether the presence or absence of CSF flow during the PRGR procedure influences the long-term pain relief in these patients.
+
+Therefore, based on the information provided, the answer to the question "Does egress of cerebrospinal fluid during percutaneous retrogasserian glycerol rhizotomy influence long term pain relief?" is yes, the study suggests that the presence or absence of CSF flow during the PRGR procedure can influence the long-term pain relief in patients with trigeminal neuralgia.
+--- CHUNKS (truncated):
+  <chunk 0> To examine the effect of cerebrospinal fluid (CSF) flow during percutaneous retrogasserian glycerol rhizotomy (PRGR) on long term pain relief in patients with trigeminal neuralgia.
+  <chunk 1> Eighty-nine patients with trigeminal neuralgia underwent 102 PRGR procedures. PRGR was conducted under fluoroscopy. After the egress of CSF, anhydrous glycerol (0.3-0.4 cc) was injected in the sitting position. In the absence of CSF flow, 0.25 mL 2% lidocaine was injected to elicit hypesthesia in the affected side. Once hypesthesia was elicited glycerol was injected. Patients were grouped as A (CSF flow present) or B (CSF flow absent), according to the egress of CSF at the time of needle placement. Patients were followed up for the recurrence of pain (average duration of follow up, 62 months).
+  <chunk 2> This study assessed long-term pain relief (2 - 9 years) after epidural motor cortex stimulation and its pre-operative prediction by rTMS, using both intensity and Quality of Life (QoL) scales.
+  <chunk 3> Analysis of the long-term evolution of pain patients treated by epidural motor cortex stimulation, and predictive value of preoperative response to rTMS.
+  <chunk 4> To determine if improvements in pain after epidural steroid injections (ESIs) were related to electromyographic (EMG) findings in patients with radicular symptoms and clinical findings consistent with radiculopathy.
+
+====================================================================================================
+[FP] pubmedqa idx=31 label=0 score(min)=0.0843 mean=0.3286 lettuce=0.2749 n_sent=4 n_chunks=5 resp_chars=766 fallback=False capped=False
+--- ARGMIN sentence (score 0.0843):
+    This suggests that leptin may play a role in lung function and potentially in lung cancer as well.
+--- all sentences:
+    [0.088] Based on the provided context, it appears that there is a potential role for leptin in the genetics of maximally attained lung function, especially in the context of lung cancer.
+    [0.799] The study mentioned examines the heritabilities of maximally attained lung function in young adult twins and explores the association of circulating leptin and leptin receptor gene polymorphisms with lung function.
+    [0.343] Additionally, the study evaluates the expression and clinical significance of leptin in lung cancer, showing that serum leptin levels were significantly higher in lung cancer patients compared to controls, and leptin expression in lung cancer tissue was markedly increased.
+    [0.084] This suggests that leptin may play a role in lung function and potentially in lung cancer as well.
+--- RESPONSE:
+Based on the provided context, it appears that there is a potential role for leptin in the genetics of maximally attained lung function, especially in the context of lung cancer. The study mentioned examines the heritabilities of maximally attained lung function in young adult twins and explores the association of circulating leptin and leptin receptor gene polymorphisms with lung function. Additionally, the study evaluates the expression and clinical significance of leptin in lung cancer, showing that serum leptin levels were significantly higher in lung cancer patients compared to controls, and leptin expression in lung cancer tissue was markedly increased. This suggests that leptin may play a role in lung function and potentially in lung cancer as well.
+--- CHUNKS (truncated):
+  <chunk 0> To estimate the heritabilities of maximally attained lung function in young adult twins, and to examine whether circulating leptin, leptin (LEP) and leptin receptor (LEPR) gene polymorphisms are associated with maximally attained lung function.
+  <chunk 1> The aim of this study was to evaluate the expression and clinical significance of leptin in lung cancer.
+  <chunk 2> 126 patients with lung cancer ranged from 30 to 83years of age were studied. Serum leptin levels were determined by ELISA. The mRNA and protein levels of leptin in normal and lung cancer tissues were measured by RT-PCR and immunohistochemistry. The relationships between leptin levels and clinicopathological factors were evaluated by Wilcoxon rank sum or Kruskal-Wallis H test.
+  <chunk 3> Leptin is intimately intertwined in the molecular pathophysiology of several cancer types; with regard to lung cancer, however, limited research has been conducted, with overall conflicting results.
+  <chunk 4> Serum leptin levels in lung cancer patients were significantly higher compared to those in controls and leptin expression in lung cancer tissue was markedly increased than that in normal lung tissue (both P<0.050).

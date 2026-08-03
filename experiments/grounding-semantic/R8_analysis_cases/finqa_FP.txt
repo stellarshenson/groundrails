@@ -1,0 +1,283 @@
+====================================================================================================
+[FP] finqa idx=67 label=0 score(min)=0.6956 mean=0.6956 lettuce=0.3488 n_sent=1 n_chunks=3 resp_chars=128 fallback=True capped=False
+--- ARGMIN sentence (score 0.6956):
+    The portion of total smokeless products shipments related to the Copenhagen segment during 2014 is 448.6 million cans and packs.
+--- all sentences:
+    [0.696] The portion of total smokeless products shipments related to the Copenhagen segment during 2014 is 448.6 million cans and packs.
+--- RESPONSE:
+The portion of total smokeless products shipments related to the Copenhagen segment during 2014 is 448.6 million cans and packs.
+--- CHUNKS (truncated):
+  <chunk 0> administering and litigating product liability claims . litigation defense costs are influenced by a number of factors , including the number and types of cases filed , the number of cases tried annually , the results of trials and appeals , the development of the law controlling relevant legal issues , and litigation strategy and tactics . for further discussion on these matters , see note 18 and item 3 . for the years ended december 31 , 2014 , 2013 and 2012 , product liability defense costs for pm usa were $ 230 million , $ 247 million and $ 228 million , respectively . the factors that have influenced past product liability defense costs are expected to continue to influence future costs . pm usa does not expect future product liability defense costs to be significantly different from product liability defense costs incurred in the last few years . for 2014 , total smokeable products
+  <chunk 1> [["( cans and packs in millions )", "shipment volumefor the years ended december 31 , 2014", "shipment volumefor the years ended december 31 , 2013", "shipment volumefor the years ended december 31 , 2012"], ["copenhagen", "448.6", "426.1", "392.5"], ["skoal", "269.6", "283.8", "288.4"], ["copenhagenandskoal", "718.2", "709.9", "680.9"], ["other", "75.1", "77.6", "82.4"], ["total smokeless products", "793.3", "787.5", "763.3"]]
+  <chunk 2> smokeless products shipment volume includes cans and packs sold , as well as promotional units , but excludes international volume , which is not material to the smokeless products segment . other includes certain usstc and pm usa smokeless products . new types of smokeless products , as well as new packaging configurations of existing smokeless products , may or may not be equivalent to existing mst products on a can-for-can basis . to calculate volumes of cans and packs shipped , one pack of snus , irrespective of the number of pouches in the pack , is assumed to be equivalent to one can of mst . altria_mdc_2014form10k_nolinks_crops.pdf 31 2/25/15 5:56 pm .
+
+====================================================================================================
+[FP] finqa idx=71 label=0 score(min)=0.6924 mean=0.6924 lettuce=0.2154 n_sent=1 n_chunks=3 resp_chars=165 fallback=True capped=False
+--- ARGMIN sentence (score 0.6924):
+    The value in thousands of unvested restricted stock and performance awards at the weighted-average grant-date fair value as of December 31, 2017, was $78.29 million.
+--- all sentences:
+    [0.692] The value in thousands of unvested restricted stock and performance awards at the weighted-average grant-date fair value as of December 31, 2017, was $78.29 million.
+--- RESPONSE:
+The value in thousands of unvested restricted stock and performance awards at the weighted-average grant-date fair value as of December 31, 2017, was $78.29 million.
+--- CHUNKS (truncated):
+  <chunk 0> zero . to the extent earned , these performance units convert into unrestricted shares after performance results for the three-year performance period are certified by the compensation committee . we recognize share-based compensation expense based on the grant-date fair value of the performance-based restricted stock units , as determined by use of a monte carlo model , on a straight-line basis over the performance period . leveraged performance units during the year ended may 31 , 2015 , certain executives were granted performance units that we refer to as 201cleveraged performance units , 201d or 201clpus . 201d lpus contain a market condition based on our relative stock price growth over a three-year performance period . the lpus contain a minimum threshold performance which , if not met , would result in no payout . the lpus also contain a maximum award opportunity set as a fixed do
+  <chunk 1> [["", "shares ( in thousands )", "weighted-averagegrant-datefair value"], ["unvested at may 31 2015", "1848", "$ 28.97"], ["granted", "461", "57.04"], ["vested", "-633 ( 633 )", "27.55"], ["forfeited", "-70 ( 70 )", "34.69"], ["unvested at may 31 2016", "1606", "37.25"], ["granted", "348", "74.26"], ["vested", "-639 ( 639 )", "31.38"], ["forfeited", "-52 ( 52 )", "45.27"], ["unvested at december 31 2016", "1263", "49.55"], ["granted", "899", "79.79"], ["vested", "-858 ( 858 )", "39.26"], ["forfeited", "-78 ( 78 )", "59.56"], ["unvested at december 31 2017", "1226", "78.29"], ["granted", "650", "109.85"], ["vested", "-722 ( 722 )", "60.08"], ["forfeited", "-70 ( 70 )", "91.47"], ["unvested at december 31 2018", "1084", "$ 108.51"]]
+  <chunk 2> the total fair value of restricted stock and performance awards vested was $ 43.4 million and $ 33.7 million for the years ended december 31 , 2018 and 2017 , respectively , $ 20.0 million for the 2016 fiscal transition period and $ 17.4 million for the year ended may 31 , 2016 . for restricted stock and performance awards , we recognized compensation expense of $ 53.2 million and $ 35.2 million for the years ended december 31 , 2018 and 2017 , respectively , $ 17.2 million for the 2016 fiscal transition period and $ 28.8 million for the year ended may 31 , 2016 . as of december 31 , 2018 , there was $ 62.7 million of unrecognized compensation expense related to unvested restricted stock and performance awards that we expect to recognize over a weighted-average period of 2.0 years . our restricted stock and performance award plans provide for accelerated vesting under certain conditions 
+
+====================================================================================================
+[FP] finqa idx=229 label=0 score(min)=0.6529 mean=0.7365 lettuce=0.5536 n_sent=2 n_chunks=3 resp_chars=699 fallback=False capped=False
+--- ARGMIN sentence (score 0.6529):
+    To calculate the ratio of the statutory capital and surplus to the statutory net income of the Bermuda subsidiaries in 2009, we need to find the values of the statutory capital and surplus and the statutory net income for that year.
+--- all sentences:
+    [0.653] To calculate the ratio of the statutory capital and surplus to the statutory net income of the Bermuda subsidiaries in 2009, we need to find the values of the statutory capital and surplus and the statutory net income for that year.
+    [0.820] From the provided context, we see the following information for the Bermuda subsidiaries in 2009:
+- Statutory capital and surplus: $7,001 million
+- Statutory net income: $684 million
+
+To calculate the ratio, we divide the statutory capital and surplus by the statutory net income:
+$7,001 million / $6
+--- RESPONSE:
+To calculate the ratio of the statutory capital and surplus to the statutory net income of the Bermuda subsidiaries in 2009, we need to find the values of the statutory capital and surplus and the statutory net income for that year.
+
+From the provided context, we see the following information for the Bermuda subsidiaries in 2009:
+- Statutory capital and surplus: $7,001 million
+- Statutory net income: $684 million
+
+To calculate the ratio, we divide the statutory capital and surplus by the statutory net income:
+$7,001 million / $684 million ≈ 10.24
+
+Therefore, the ratio of the statutory capital and surplus to the statutory net income of the Bermuda subsidiaries in 2009 is approximately 10.24.
+--- CHUNKS (truncated):
+  <chunk 0> n o t e s t o c o n s o l i d a t e d f i n a n c i a l s t a t e m e n t s ( continued ) ace limited and subsidiaries there are no statutory restrictions on the payment of dividends from retained earnings by any of the bermuda subsidiaries as the minimum statutory capital and surplus requirements are satisfied by the share capital and additional paid-in capital of each of the bermuda subsidiaries . the company 2019s u.s . subsidiaries file financial statements prepared in accordance with statutory accounting practices prescribed or permitted by insurance regulators . statutory accounting differs from gaap in the reporting of certain reinsurance contracts , investments , subsidiaries , acquis- ition expenses , fixed assets , deferred income taxes , and certain other items . the statutory capital and surplus of the u.s . subsidiaries met regulatory requirements for 2008 , 2007 , and 2006 
+  <chunk 1> [["( in millions of u.s . dollars )", "bermuda subsidiaries 2008", "bermuda subsidiaries 2007", "bermuda subsidiaries 2006", "bermuda subsidiaries 2008", "bermuda subsidiaries 2007", "2006"], ["statutory capital and surplus", "$ 7001", "$ 8579", "$ 7605", "$ 5337", "$ 5321", "$ 4431"], ["statutory net income", "$ 684", "$ 1535", "$ 1527", "$ 798", "$ 873", "$ 724"]]
+  <chunk 2> as permitted by the restructuring discussed previously in note 7 , certain of the company 2019s u.s . subsidiaries discount certain a&e liabilities , which increased statutory capital and surplus by approximately $ 211 million , $ 140 million , and $ 157 million as of december 31 , 2008 , 2007 , and 2006 , respectively . the company 2019s international subsidiaries prepare statutory financial statements based on local laws and regulations . some jurisdictions impose complex regulatory requirements on insurance companies while other jurisdictions impose fewer requirements . in some countries , the company must obtain licenses issued by governmental authorities to conduct local insurance business . these licenses may be subject to reserves and minimum capital and solvency tests . jurisdictions may impose fines , censure , and/or criminal sanctions for violation of regulatory requirements .
+
+====================================================================================================
+[FP] finqa idx=200 label=0 score(min)=0.4593 mean=0.7223 lettuce=0.2372 n_sent=5 n_chunks=2 resp_chars=781 fallback=False capped=False
+--- ARGMIN sentence (score 0.4593):
+    The context states:
+- The increase in securities sold under agreements to repurchase of $5.2 billion is driven by a $6.2 billion increase from net transfers in.
+--- all sentences:
+    [0.542] Based on the information provided in the context, we can calculate the ratio of the net increase in securities sold under agreements to repurchase to the net transfers in.
+    [0.459] The context states:
+- The increase in securities sold under agreements to repurchase of $5.2 billion is driven by a $6.2 billion increase from net transfers in.
+    [0.966] - The increase in long-term debt of $2.2 billion is driven by the net transfers in of $38.8 billion.
+    [0.792] To calculate the ratio, we need to divide the net increase in securities sold under agreements to repurchase ($6.2 billion) by the net transfers in for long-term debt ($38.8 billion).
+    [0.852] Ratio = $6.2 billion / $38.8 billion = 0.16
+
+So the ratio of the net increase in securities sold under agreements to repurchase to the net transfers in is 0.16.
+--- RESPONSE:
+Based on the information provided in the context, we can calculate the ratio of the net increase in securities sold under agreements to repurchase to the net transfers in.
+
+The context states:
+- The increase in securities sold under agreements to repurchase of $5.2 billion is driven by a $6.2 billion increase from net transfers in.
+- The increase in long-term debt of $2.2 billion is driven by the net transfers in of $38.8 billion.
+
+To calculate the ratio, we need to divide the net increase in securities sold under agreements to repurchase ($6.2 billion) by the net transfers in for long-term debt ($38.8 billion).
+
+Ratio = $6.2 billion / $38.8 billion = 0.16
+
+So the ratio of the net increase in securities sold under agreements to repurchase to the net transfers in is 0.16.
+--- CHUNKS (truncated):
+  <chunk 0> the decrease in mortgage servicing rights of $ 2.7 billion was primarily 2022 attributed to mark-to-market losses recognized in the portfolio due to decreases in the mortgage interest rates and increases in refinancing . the increase in securities sold under agreements to repurchase of $ 5 2022 billion is driven by a $ 6.2 billion increase from net transfers in as the continued credit crisis impacted the availability of observable inputs for the underlying securities related to this liability . this was offset by a reduction from net settlements of $ 1.4 billion . the decrease in short-term borrowings of $ 3.7 billion is due to net transfers 2022 out of $ 1.8 billion as valuation methodology inputs considered to be unobservable were determined not to be significant to the overall valuation . in addition , net payments of $ 1.8 billion were made during the year . the increase in 2022 long
+  <chunk 1> [["", "aggregate cost", "fair value", "level 2", "level 3"], ["december 31 2009", "$ 2.5", "$ 1.6", "$ 0.3", "$ 1.3"], ["december 31 2008", "3.1", "2.1", "0.8", "1.3"]]
+
+====================================================================================================
+[FP] finqa idx=114 label=0 score(min)=0.3397 mean=0.4288 lettuce=0.1586 n_sent=2 n_chunks=3 resp_chars=560 fallback=False capped=False
+--- ARGMIN sentence (score 0.3397):
+    To calculate the percent decrease, we can use the formula:
+
+Percent decrease = ((Old Amount - New Amount) / Old Amount) * 100
+
+Percent decrease = (($400.0 million - $325.1 million) / $400.0 million) * 100
+Percent decrease = ($74.9 million / $400.0 million) * 100
+Percent decrease ≈ 18.73%
+
+Therefore, the percent of the outstanding notes under the ati 7.25% (7.25%) notes decreased by approximately 18.73% from 2005 to 2006.
+--- all sentences:
+    [0.518] The percent of the outstanding notes under the ati 7.25% (7.25%) notes decreased from $400.0 million in 2005 to $325.1 million in 2006.
+    [0.340] To calculate the percent decrease, we can use the formula:
+
+Percent decrease = ((Old Amount - New Amount) / Old Amount) * 100
+
+Percent decrease = (($400.0 million - $325.1 million) / $400.0 million) * 100
+Percent decrease = ($74.9 million / $400.0 million) * 100
+Percent decrease ≈ 18.73%
+
+Therefore,
+--- RESPONSE:
+The percent of the outstanding notes under the ati 7.25% (7.25%) notes decreased from $400.0 million in 2005 to $325.1 million in 2006. To calculate the percent decrease, we can use the formula:
+
+Percent decrease = ((Old Amount - New Amount) / Old Amount) * 100
+
+Percent decrease = (($400.0 million - $325.1 million) / $400.0 million) * 100
+Percent decrease = ($74.9 million / $400.0 million) * 100
+Percent decrease ≈ 18.73%
+
+Therefore, the percent of the outstanding notes under the ati 7.25% (7.25%) notes decreased by approximately 18.73% from 2005 to 2006.
+--- CHUNKS (truncated):
+  <chunk 0> american tower corporation and subsidiaries notes to consolidated financial statements 2014 ( continued ) ati 7.25% ( 7.25 % ) notes 2014during the year ended december 31 , 2006 , the company repurchased in privately negotiated transactions $ 74.9 million principal amount of ati 7.25% ( 7.25 % ) notes for $ 77.3 million in cash . in connection with these transactions , the company recorded a charge of $ 3.9 million related to amounts paid in excess of carrying value and the write-off of related deferred financing fees , which is reflected in loss on retirement of long-term obligations in the accompanying consolidated statement of operations for the year ended december 31 , 2006 . as of december 31 , 2006 and 2005 , the company had $ 325.1 million and $ 400.0 million outstanding under the ati 7.25% ( 7.25 % ) notes , respectively . capital lease obligations and notes payable 2014the compa
+  <chunk 1> [["2007", "$ 253907"], ["2008", "1278"], ["2009", "654"], ["2010", "1833416"], ["2011", "338501"], ["thereafter", "1112253"], ["total cash obligations", "$ 3540009"], ["accreted value of the discount and premium of 3.00% ( 3.00 % ) notes and 7.125% ( 7.125 % ) notes", "3007"], ["balance as of december 31 2006", "$ 3543016"]]
+  <chunk 2> the holders of the company 2019s 5.0% ( 5.0 % ) notes have the right to require the company to repurchase their notes on specified dates prior to the maturity date in 2010 , but the company may pay the purchase price by issuing shares of class a common stock , subject to certain conditions . obligations with respect to the right of the holders to put the 5.0% ( 5.0 % ) notes have been included in the table above as if such notes mature the date on which the put rights become exercisable in 2007 . in february 2007 , the company conducted a cash tender offer for its outstanding 5.0% ( 5.0 % ) notes to enable note holders to exercise their right to require the company to purchase their notes . ( see note 19. ) 8 . derivative financial instruments the company has entered into interest rate protection agreements to manage exposure on the variable rate debt under its credit facilities and to m
+
+====================================================================================================
+[FP] finqa idx=41 label=0 score(min)=0.3294 mean=0.3294 lettuce=0.103 n_sent=1 n_chunks=3 resp_chars=154 fallback=True capped=False
+--- ARGMIN sentence (score 0.3294):
+    The company paid a total of approximately $82,660,099 for the repurchase of shares on non-announced plans or programs ($109.32 per share x 75,671 shares).
+--- all sentences:
+    [0.329] The company paid a total of approximately $82,660,099 for the repurchase of shares on non-announced plans or programs ($109.32 per share x 75,671 shares).
+--- RESPONSE:
+The company paid a total of approximately $82,660,099 for the repurchase of shares on non-announced plans or programs ($109.32 per share x 75,671 shares).
+--- CHUNKS (truncated):
+  <chunk 0> part ii item 5 . market for registrant 2019s common equity , related stockholder matters and issuer purchases of equity securities our common stock is listed on the nasdaq global select market under the symbol adi . information regarding our equity compensation plans and the securities authorized for issuance thereunder is set forth in item 12 of this annual report on form 10-k . issuer purchases of equity securities the table below summarizes the activity related to stock repurchases for the three months ended november 2 , 2019 . period total number shares purchased ( 1 ) average price paid per share ( 2 ) total number of shares purchased as part of publicly announced plans or programs ( 3 ) approximate dollar value of shares that may yet be purchased under the plans or programs .
+  <chunk 1> [["period", "total number ofshares purchased ( 1 )", "average price paidper share ( 2 )", "total number of sharespurchased as part ofpublicly announcedplans or programs ( 3 )", "approximate dollarvalue of shares thatmay yet be purchasedunder the plans or programs"], ["august 4 2019 through august 31 2019", "199231", "$ 109.00", "194849", "$ 2213017633"], ["september 1 2019 through september 28 2019", "342313", "$ 113.39", "338534", "$ 2174639499"], ["september 29 2019 through november 2 2019", "1023202", "$ 109.32", "949531", "$ 2070927831"], ["total", "1564746", "$ 110.17", "1482914", "$ 2070927831"]]
+  <chunk 2> _______________________________________ ( 1 ) includes 81832 shares withheld by us from employees to satisfy employee tax obligations upon vesting of restricted stock units/ awards granted to our employees under our equity compensation plans . ( 2 ) the average price paid for shares in connection with vesting of restricted stock units/awards are averages of the closing stock price at the vesting date which is used to calculate the number of shares to be withheld . ( 3 ) shares repurchased pursuant to the stock repurchase program publicly announced on august 12 , 2004 . on august 21 , 2018 , the board of directors approved an increase to the current authorization for the stock repurchase program by an additional $ 2.0 billion to $ 8.2 billion in the aggregate . under the repurchase program , we may repurchase outstanding shares of our common stock froff m time to time in the open market a
+
+====================================================================================================
+[FP] finqa idx=36 label=0 score(min)=0.3011 mean=0.4661 lettuce=0.1346 n_sent=3 n_chunks=3 resp_chars=576 fallback=False capped=False
+--- ARGMIN sentence (score 0.3011):
+    Based on the information provided:
+
+The total scheduled maturities of long-term debt as of December 31, 2011 was $77,724,000.
+--- all sentences:
+    [0.301] Based on the information provided:
+
+The total scheduled maturities of long-term debt as of December 31, 2011 was $77,724,000.
+    [0.696] The long-term debt obligations, excluding the current maturities of $6,882,000, was $70,842,000.
+    [0.401] To calculate the percent of the scheduled maturities of long-term debt as part of the long-term debt:
+
+Percent = Scheduled maturities of long-term debt / Long-term debt obligations * 100
+= $77,724,000 / $70,842,000 * 100
+= 109.7%
+
+So as of December 31, 2012, the scheduled maturities of long-term deb
+--- RESPONSE:
+Based on the information provided:
+
+The total scheduled maturities of long-term debt as of December 31, 2011 was $77,724,000.
+
+The long-term debt obligations, excluding the current maturities of $6,882,000, was $70,842,000.
+
+To calculate the percent of the scheduled maturities of long-term debt as part of the long-term debt:
+
+Percent = Scheduled maturities of long-term debt / Long-term debt obligations * 100
+= $77,724,000 / $70,842,000 * 100
+= 109.7%
+
+So as of December 31, 2012, the scheduled maturities of long-term debt made up 109.7% of the long-term debt obligations.
+--- CHUNKS (truncated):
+  <chunk 0> borrowings under the credit facility bear interest based on the daily balance outstanding at libor ( with no rate floor ) plus an applicable margin ( varying from 1.25% ( 1.25 % ) to 1.75% ( 1.75 % ) ) or , in certain cases a base rate ( based on a certain lending institution 2019s prime rate or as otherwise specified in the credit agreement , with no rate floor ) plus an applicable margin ( varying from 0.25% ( 0.25 % ) to 0.75% ( 0.75 % ) ) . the credit facility also carries a commitment fee equal to the unused borrowings multiplied by an applicable margin ( varying from 0.25% ( 0.25 % ) to 0.35% ( 0.35 % ) ) . the applicable margins are calculated quarterly and vary based on the company 2019s leverage ratio as set forth in the credit agreement . upon entering into the credit facility in march 2011 , the company terminated its prior $ 200.0 million revolving credit facility . the prior
+  <chunk 1> [["2012", "$ 6882"], ["2013 ( 1 )", "65919"], ["2014", "2972"], ["2015", "1951"], ["2016", "2014"], ["total scheduled maturities of long term debt", "77724"], ["less current maturities of long term debt", "-6882 ( 6882 )"], ["long term debt obligations", "$ 70842"]]
+  <chunk 2> ( 1 ) includes the repayment of $ 25.0 million borrowed under the term loan facility , which is due in march 2015 , but is planned to be refinanced in early 2013 with the loan assumed in the acquisition of the company 2019s corporate headquarters. .
+
+====================================================================================================
+[FP] finqa idx=168 label=0 score(min)=0.1965 mean=0.2947 lettuce=0.2134 n_sent=4 n_chunks=3 resp_chars=857 fallback=False capped=False
+--- ARGMIN sentence (score 0.1965):
+    Calculate the net revenue increase excluding the volume/weather impact:
+   Net revenue increase = Retail electric price + Other = $13.5 million + $2.4 million = $15.9 million
+
+2.
+--- all sentences:
+    [0.317] To calculate the percent increase in net revenue between 2016 and 2017 without the loss in volume/weather, we can use the following steps:
+
+1.
+    [0.197] Calculate the net revenue increase excluding the volume/weather impact:
+   Net revenue increase = Retail electric price + Other = $13.5 million + $2.4 million = $15.9 million
+
+2.
+    [0.274] Calculate the 2016 net revenue excluding the volume/weather impact:
+   2016 net revenue excluding volume/weather impact = $705.4 million + $18.2 million = $723.6 million
+
+3.
+    [0.391] Calculate the percent increase:
+   Percent increase = (2017 net revenue - 2016 net revenue excluding volume/weather) / 2016 net revenue excluding volume/weather × 100
+   = ($703.1 million - $723.6 million) / $723.6 million × 100
+   = -2.8%
+
+Therefore, without the loss in volume/weather, net revenue 
+--- RESPONSE:
+To calculate the percent increase in net revenue between 2016 and 2017 without the loss in volume/weather, we can use the following steps:
+
+1. Calculate the net revenue increase excluding the volume/weather impact:
+   Net revenue increase = Retail electric price + Other = $13.5 million + $2.4 million = $15.9 million
+
+2. Calculate the 2016 net revenue excluding the volume/weather impact:
+   2016 net revenue excluding volume/weather impact = $705.4 million + $18.2 million = $723.6 million
+
+3. Calculate the percent increase:
+   Percent increase = (2017 net revenue - 2016 net revenue excluding volume/weather) / 2016 net revenue excluding volume/weather × 100
+   = ($703.1 million - $723.6 million) / $723.6 million × 100
+   = -2.8%
+
+Therefore, without the loss in volume/weather, net revenue would have experienced a 2.8% increase between 2016 and 2017.
+--- CHUNKS (truncated):
+  <chunk 0> entergy mississippi , inc . management 2019s financial discussion and analysis results of operations net income 2017 compared to 2016 net income increased $ 0.8 million primarily due to higher other income , lower other operation and maintenance expenses , and lower interest expense , substantially offset by higher depreciation and amortization expenses and a higher effective income tax rate . 2016 compared to 2015 net income increased $ 16.5 million primarily due to lower other operation and maintenance expenses , higher net revenues , and a lower effective income tax rate , partially offset by higher depreciation and amortization expenses . net revenue 2017 compared to 2016 net revenue consists of operating revenues net of : 1 ) fuel , fuel-related expenses , and gas purchased for resale , 2 ) purchased power expenses , and 3 ) other regulatory credits . following is an analysis of the
+  <chunk 1> [["", "amount ( in millions )"], ["2016 net revenue", "$ 705.4"], ["volume/weather", "-18.2 ( 18.2 )"], ["retail electric price", "13.5"], ["other", "2.4"], ["2017 net revenue", "$ 703.1"]]
+  <chunk 2> the volume/weather variance is primarily due to the effect of less favorable weather on residential and commercial sales . the retail electric price variance is primarily due to a $ 19.4 million net annual increase in rates , effective with the first billing cycle of july 2016 , and an increase in the energy efficiency rider , effective with the first billing cycle of february 2017 , each as approved by the mpsc . the increase was partially offset by decreased storm damage rider revenues due to resetting the storm damage provision to zero beginning with the november 2016 billing cycle . entergy mississippi resumed billing the storm damage rider effective with the september 2017 billing cycle . see note 2 to the financial statements for more discussion of the formula rate plan and the storm damage rider. .
+
+====================================================================================================
+[FP] finqa idx=242 label=0 score(min)=0.1826 mean=0.5983 lettuce=0.4538 n_sent=4 n_chunks=3 resp_chars=481 fallback=False capped=False
+--- ARGMIN sentence (score 0.1826):
+    So the portion of the Woburn property used by American Tower Corporation is approximately 57,800 square feet out of the total 163,000 square feet.
+--- all sentences:
+    [0.866] According to the information provided, the facility in Woburn, Massachusetts has a total of 163,000 square feet of space.
+    [0.373] Of this total, approximately 57,800 square feet is occupied by American Tower Corporation's lease administration office and broadcast division headquarters.
+    [0.971] The remaining space is leased to unaffiliated tenants.
+    [0.183] So the portion of the Woburn property used by American Tower Corporation is approximately 57,800 square feet out of the total 163,000 square feet.
+--- RESPONSE:
+According to the information provided, the facility in Woburn, Massachusetts has a total of 163,000 square feet of space. Of this total, approximately 57,800 square feet is occupied by American Tower Corporation's lease administration office and broadcast division headquarters. The remaining space is leased to unaffiliated tenants.
+
+So the portion of the Woburn property used by American Tower Corporation is approximately 57,800 square feet out of the total 163,000 square feet.
+--- CHUNKS (truncated):
+  <chunk 0> item 2 . properties our principal offices are located in boston , southborough and woburn , massachusetts ; atlanta , georgia ; cary , north carolina ; mexico city , mexico ; and sao paulo , brazil . details of each of these offices are provided below: .
+  <chunk 1> [["location", "function", "size ( square feet )", "property interest"], ["boston ma", "corporate headquarters us tower division headquarters and american tower international headquarters", "19600", "leased"], ["southborough ma", "information technology data center", "13900", "leased"], ["woburn ma", "us tower division lease administration site leasing management and broadcast division headquarters", "57800", "owned ( 1 )"], ["atlanta ga", "us tower division accounting services headquarters", "21400", "leased"], ["cary north carolina", "us tower division new site development site operations and structural engineering services headquarters", "17500", "leased"], ["mexico city mexico", "mexico headquarters", "11000", "leased"], ["sao paulo brazil", "brazil headquarters", "5200", "leased"]]
+  <chunk 2> ( 1 ) the facility in woburn contains a total of 163000 square feet of space . approximately 57100 square feet of space is occupied by our lease administration office and our broadcast division , and we lease the remaining space to unaffiliated tenants . in addition to the principal offices set forth above , we maintain 15 regional area offices in the united states through which we operate our tower leasing and services businesses . we believe that our owned and leased facilities are suitable and adequate to meet our anticipated needs . we have also established an office in delhi , india to pursue business opportunities in india and southeast asia , and we have an international business development group based in london , england . our interests in our communications sites are comprised of a variety of ownership interests , including leases created by long-term ground lease agreements , 
+
+====================================================================================================
+[FP] finqa idx=31 label=0 score(min)=0.1583 mean=0.2727 lettuce=0.0713 n_sent=2 n_chunks=3 resp_chars=140 fallback=False capped=False
+--- ARGMIN sentence (score 0.1583):
+    Total shareholders' equity decreased by $2,749 million from 2012 to 2013.
+--- all sentences:
+    [0.158] Total shareholders' equity decreased by $2,749 million from 2012 to 2013.
+    [0.387] (Decrease from $75,716 million in 2012 to $78,467 million in 2013)
+--- RESPONSE:
+Total shareholders' equity decreased by $2,749 million from 2012 to 2013. (Decrease from $75,716 million in 2012 to $78,467 million in 2013)
+--- CHUNKS (truncated):
+  <chunk 0> management 2019s discussion and analysis balance sheet analysis and metrics as of december 2013 , total assets on our consolidated statements of financial condition were $ 911.51 billion , a decrease of $ 27.05 billion from december 2012 . this decrease was primarily due to a decrease in financial instruments owned , at fair value of $ 67.89 billion , primarily due to decreases in u.s . government and federal agency obligations , non-u.s . government and agency obligations , derivatives and commodities , and a decrease in other assets of $ 17.11 billion , primarily due to the sale of a majority stake in our americas reinsurance business in april 2013 . these decreases were partially offset by an increase in collateralized agreements of $ 48.07 billion , due to firm and client activity . as of december 2013 , total liabilities on our consolidated statements of financial condition were $ 8
+  <chunk 1> [["$ in millions", "as of december 2013", "as of december 2012"], ["total assets", "$ 911507", "$ 938555"], ["unsecured long-term borrowings", "$ 160965", "$ 167305"], ["total shareholders 2019 equity", "$ 78467", "$ 75716"], ["leverage ratio", "11.6x", "12.4x"], ["debt to equity ratio", "2.1x", "2.2x"]]
+  <chunk 2> leverage ratio . the leverage ratio equals total assets divided by total shareholders 2019 equity and measures the proportion of equity and debt the firm is using to finance assets . this ratio is different from the tier 1 leverage ratio included in 201cequity capital 2014 consolidated regulatory capital ratios 201d below , and further described in note 20 to the consolidated financial statements . debt to equity ratio . the debt to equity ratio equals unsecured long-term borrowings divided by total shareholders 2019 equity . goldman sachs 2013 annual report 61 .
+
+====================================================================================================
+[FP] finqa idx=157 label=0 score(min)=0.1476 mean=0.3692 lettuce=0.3405 n_sent=2 n_chunks=3 resp_chars=446 fallback=False capped=False
+--- ARGMIN sentence (score 0.1476):
+    In 2007, the total debt was $3,165 million and the sum of lease obligations and purchase obligations was $2,473 million ($144 million lease obligations + $2,329 million purchase obligations).
+--- all sentences:
+    [0.148] In 2007, the total debt was $3,165 million and the sum of lease obligations and purchase obligations was $2,473 million ($144 million lease obligations + $2,329 million purchase obligations).
+    [0.591] To calculate the percentage of total debt compared to lease obligations and purchase obligations:
+(3,165 / 2,473) * 100 ≈ 127.87%
+
+Therefore, in 2007, the total debt accounted for approximately 127.87% of the lease obligations and purchase obligations.
+--- RESPONSE:
+In 2007, the total debt was $3,165 million and the sum of lease obligations and purchase obligations was $2,473 million ($144 million lease obligations + $2,329 million purchase obligations). 
+
+To calculate the percentage of total debt compared to lease obligations and purchase obligations:
+(3,165 / 2,473) * 100 ≈ 127.87%
+
+Therefore, in 2007, the total debt accounted for approximately 127.87% of the lease obligations and purchase obligations.
+--- CHUNKS (truncated):
+  <chunk 0> see note 8 of the notes to consolidated financial statements in item 8 . financial statements and supplementary data for a further discussion of these transactions . capital resources outlook for 2007 international paper expects to be able to meet pro- jected capital expenditures , service existing debt and meet working capital and dividend requirements during 2007 through current cash balances and cash from operations and divestiture proceeds , supple- mented as required by its various existing credit facilities . international paper has approximately $ 3.0 billion of committed liquidity , which we believe is adequate to cover expected operating cash flow variability during our industry 2019s economic cycles . in march 2006 , international paper replaced its matur- ing $ 750 million revolving bank credit agreement with a 364-day $ 500 million fully committed revolv- ing bank credit agre
+  <chunk 1> [["in millions", "2007", "2008", "2009", "2010", "2011", "thereafter"], ["total debt ( a )", "$ 692", "$ 129", "$ 1143", "$ 1198", "$ 381", "$ 3680"], ["lease obligations ( b )", "144", "117", "94", "74", "60", "110"], ["purchase obligations ( cd )", "2329", "462", "362", "352", "323", "1794"], ["total", "$ 3165", "$ 708", "$ 1599", "$ 1624", "$ 764", "$ 5584"]]
+  <chunk 2> ( a ) total debt includes scheduled principal payments only . ( b ) included in these amounts are $ 76 million of lease obligations related to discontinued operations and businesses held for sale that are due as follows : 2007 - $ 23 million ; 2008 - $ 19 million ; 2009 - $ 15 million ; 2010 - $ 7 million ; 2011 - $ 5 million ; and thereafter - $ 7 million . ( c ) included in these amounts are $ 1.3 billion of purchase obliga- tions related to discontinued operations and businesses held for sale that are due as follows : 2007 - $ 335 million ; 2008 - $ 199 million ; 2009 - $ 157 million ; 2010 - $ 143 million ; 2011 - $ 141 million ; and thereafter - $ 331 million . ( d ) includes $ 2.2 billion relating to fiber supply agreements entered into at the time of the transformation plan forestland sales . transformation plan in july 2005 , the company had announced a plan to focus its business
+
+====================================================================================================
+[FP] finqa idx=43 label=0 score(min)=0.1384 mean=0.1384 lettuce=0.3561 n_sent=1 n_chunks=3 resp_chars=66 fallback=True capped=False
+--- ARGMIN sentence (score 0.1384):
+    Total purchase commitments over the next two years are $3,772,000.
+--- all sentences:
+    [0.138] Total purchase commitments over the next two years are $3,772,000.
+--- RESPONSE:
+Total purchase commitments over the next two years are $3,772,000.
+--- CHUNKS (truncated):
+  <chunk 0> packaging corporation of america notes to consolidated financial statements ( continued ) december 31 , 2005 10 . commitments and contingencies ( continued ) purchase commitments the company has entered into various purchase agreements to buy minimum amounts of energy over periods ranging from one to two years at fixed prices . total purchase commitments over the next two years are as follows : ( in thousands ) .
+  <chunk 1> [["2006", "$ 2408"], ["2007", "1364"], ["total", "$ 3772"]]
+  <chunk 2> these purchase agreements are not marked to market . the company purchased $ 12.8 million during the year ended december 31 , 2005 , $ 17.6 million during the year ended december 31 , 2004 , and $ 19.3 million during the year ended december 31 , 2003 under these purchase agreements . litigation on may 14 , 1999 , pca was named as a defendant in two consolidated class action complaints which alleged a civil violation of section 1 of the sherman act . the suits , then captioned winoff industries , inc . v . stone container corporation , mdl no . 1261 ( e.d . pa. ) and general refractories co . v . gaylord container corporation , mdl no . 1261 ( e.d . pa. ) , name pca as a defendant based solely on the allegation that pca is successor to the interests of tenneco packaging inc . and tenneco inc. , both of which were also named as defendants in the suits , along with nine other linerboard and

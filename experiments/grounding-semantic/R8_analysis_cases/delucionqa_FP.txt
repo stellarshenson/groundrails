@@ -1,0 +1,256 @@
+====================================================================================================
+[FP] delucionqa idx=65 label=0 score(min)=0.5706 mean=0.5706 lettuce=0.006 n_sent=1 n_chunks=3 resp_chars=184 fallback=True capped=False
+--- ARGMIN sentence (score 0.5706):
+    The TrailCam image can be deactivated by pressing the touchscreen X button, shifting the transmission into PARK, turning the ignition OFF, or activating the windshield washing process.
+--- all sentences:
+    [0.571] The TrailCam image can be deactivated by pressing the touchscreen X button, shifting the transmission into PARK, turning the ignition OFF, or activating the windshield washing process.
+--- RESPONSE:
+The TrailCam image can be deactivated by pressing the touchscreen X button, shifting the transmission into PARK, turning the ignition OFF, or activating the windshield washing process.
+--- CHUNKS (truncated):
+  <chunk 0>  Manual Activation Of The TrailCam TrailCam view can be activated via the below methods: Press the FWD Camera button on the controls screen.  Press the Forward Facing Camera button on the apps menu.  Press the TrailCam button on the Off Road Pages.  Press the Off Road+ button when Auto Launch Off Road+ (if equipped) has been selected under camera settings.  The trailcam view can also be activated by pressing the icon on the back up camera view.  The back up camera view can also be activated by pressing the icon on the trailcam view.  When the vehicle is shifted out of REVERSE with Camera Delay turned off and TrailCam view is active, the TrailCam mode is exited and the previous screen appears again.  When the vehicle is shifted out of REVERSE with Camera Delay turned on and the TrailCam view is active, the TrailCam image will be displayed for up to 10 seconds unless the vehicle speed exce
+  <chunk 1>  Manual Activation Of The TrailCam TrailCam view can be activated via the below methods: Press the FWD Camera button on the controls screen.  Press the Forward Facing Camera button on the apps menu.  Press the TrailCam button on the Off Road Pages.  Press the Off Road+ button when Auto Launch Off Road+ (if equipped) has been selected under camera settings.  The trailcam view can also be activated by pressing the icon on the back up camera view.  The back up camera view can also be activated by pressing the icon on the trailcam view.  When the vehicle is shifted out of REVERSE with Camera Delay turned off and TrailCam view is active, the TrailCam mode is exited and the previous screen appears again.  When the vehicle is shifted out of REVERSE with Camera Delay turned on and the TrailCam view is active, the TrailCam image will be displayed for up to 10 seconds unless the vehicle speed exce
+  <chunk 2>  Manual Activation Of The TrailCam TrailCam view can be activated via the below methods: Press the FWD Camera button on the controls screen.  Press the Forward Facing Camera button on the apps menu.  Press the TrailCam button on the Off Road Pages.  Press the Off Road+ button when Auto Launch Off Road+ (if equipped) has been selected under camera settings.  The trailcam view can also be activated by pressing the icon on the back up camera view.  The back up camera view can also be activated by pressing the icon on the trailcam view.  When the vehicle is shifted out of REVERSE with Camera Delay turned off and TrailCam view is active, the TrailCam mode is exited and the previous screen appears again.  When the vehicle is shifted out of REVERSE with Camera Delay turned on and the TrailCam view is active, the TrailCam image will be displayed for up to 10 seconds unless the vehicle speed exce
+
+====================================================================================================
+[FP] delucionqa idx=168 label=0 score(min)=0.5373 mean=0.8219 lettuce=0.0659 n_sent=6 n_chunks=3 resp_chars=839 fallback=False capped=False
+--- ARGMIN sentence (score 0.5373):
+    Based on the context provided, the function of Trailer Sway Control (TSC) is:
+
+1.
+--- all sentences:
+    [0.537] Based on the context provided, the function of Trailer Sway Control (TSC) is:
+
+1.
+    [0.928] TSC uses sensors in the vehicle to recognize an excessively swaying trailer and will take the appropriate actions to attempt to stop the sway.
+    [0.943] When TSC is functioning, it can:
+   - Cause the ESC Activation/Malfunction Indicator Light to flash
+   - Reduce engine power
+   - Apply brakes to individual wheels to attempt to stop the trailer from swaying
+
+2.
+    [0.901] TSC is a telescoping link that can be installed between the hitch receiver and the trailer tongue.
+    [0.903] It typically provides adjustable friction associated with the telescoping motion to dampen any unwanted trailer swaying motions while traveling.
+    [0.719] The key purpose of TSC is to detect and help control or dampen trailer sway in order to maintain stability and control of the vehicle while towing a trailer.
+--- RESPONSE:
+Based on the context provided, the function of Trailer Sway Control (TSC) is:
+
+1. TSC uses sensors in the vehicle to recognize an excessively swaying trailer and will take the appropriate actions to attempt to stop the sway. When TSC is functioning, it can:
+   - Cause the ESC Activation/Malfunction Indicator Light to flash
+   - Reduce engine power
+   - Apply brakes to individual wheels to attempt to stop the trailer from swaying
+
+2. TSC is a telescoping link that can be installed between the hitch receiver and the trailer tongue. It typically provides adjustable friction associated with the telescoping motion to dampen any unwanted trailer swaying motions while traveling.
+
+The key purpose of TSC is to detect and help control or dampen trailer sway in order to maintain stability and control of the vehicle while towing a trailer.
+--- CHUNKS (truncated):
+  <chunk 0>  Trailer Sway Control (TSC) TSC uses sensors in the vehicle to recognize an excessively swaying trailer and will take the appropriate actions to attempt to stop the sway.  When TSC is functioning, the ESC Activation/Malfunction Indicator Light will flash, the engine power may be reduced, and you may feel the brakes being applied to individual wheels to attempt to stop the trailer from swaying.  TSC is disabled when the ESC system is in the “Partial Off” or “Full Off” modes.  Note: TSC cannot stop all trailers from swaying.  Always use caution when towing a trailer and follow the trailer tongue weight recommendations.  See "⇨trailer towing" for further information.  WARNING: If TSC activates while driving, slow the vehicle down, stop at the nearest safe location, and adjust the trailer load to eliminate trailer sway.
+  <chunk 1>  Trailer Sway Control (TSC) — If Equipped The TSC is a telescoping link that can be installed between the hitch receiver and the trailer tongue.  It typically provides adjustable friction associated with the telescoping motion to dampen any unwanted trailer swaying motions while traveling.
+  <chunk 2>  Trailer Sway Control (TSC) — If Equipped The TSC is a telescoping link that can be installed between the hitch receiver and the trailer tongue.  It typically provides adjustable friction associated with the telescoping motion to dampen any unwanted trailer swaying motions while traveling.  Tilt/Telescoping Steering Column This feature allows you to tilt the steering column upward or downward.  It also allows you to lengthen or shorten the steering column.  The tilt/telescoping control is located below the steering wheel at the end of the steering column.  To unlock the steering column, push the control downward (toward the floor).  To tilt the steering column, move the steering wheel upward or downward as desired.  To lengthen or shorten the steering column, pull the steering wheel outward or push it inward as desired.  To lock the steering column in position, push the control upward un
+
+====================================================================================================
+[FP] delucionqa idx=82 label=0 score(min)=0.5206 mean=0.7423 lettuce=0.6616 n_sent=3 n_chunks=3 resp_chars=434 fallback=False capped=False
+--- ARGMIN sentence (score 0.5206):
+    If you remain in the vehicle but open a door, rotating the instrument panel dimmer control to the extreme bottom position will cause all interior lights to turn off.
+--- all sentences:
+    [0.521] If you remain in the vehicle but open a door, rotating the instrument panel dimmer control to the extreme bottom position will cause all interior lights to turn off.
+    [0.756] This allows the doors to stay open for extended periods of time without discharging the vehicle's battery.
+    [0.950] However, it is important to ensure that the hood is fully latched before driving the vehicle to prevent it from opening while in motion and blocking your vision.
+--- RESPONSE:
+If you remain in the vehicle but open a door, rotating the instrument panel dimmer control to the extreme bottom position will cause all interior lights to turn off. This allows the doors to stay open for extended periods of time without discharging the vehicle's battery. However, it is important to ensure that the hood is fully latched before driving the vehicle to prevent it from opening while in motion and blocking your vision.
+--- CHUNKS (truncated):
+  <chunk 0>  When any of these situations occur, after all open doors are closed, the FOBIK-Safe search will be executed.  If it detects a Passive Entry key fob inside the vehicle, the vehicle will unlock and alert the customer.  If Passive Entry is disabled using the Uconnect system, the key fob protection described in this section remains active/functional.  When a door is open and the interior lights are on, rotating the instrument panel dimmer control to the extreme bottom position will cause all the interior lights to turn off.  This allows the doors to stay open for extended periods of time without discharging the vehicle’s battery.  Be sure the hood is fully latched before driving your vehicle.  If the hood is not fully latched, it could open when the vehicle is in motion and block your vision.  Failure to follow this warning could result in serious injury or death.  The doors have to be open
+  <chunk 1>  The Remote Door Lock/Unlock feature provides you the ability to lock or unlock the door on your vehicle without the keys and from virtually any distance.  All occupants must wear seat belts during off-road operation with doors removed.  For information on off-road driving tips, see Do not store detached doors inside of the vehicle, as they may cause personal injury in the event of an accident.  Assistance to remove doors may by required due to the weight of the door to avoid personal injury.  Avoid trapping anyone in a vehicle in a collision.  Remember that the rear doors can only be opened from the outside when the Child-Protection Door Lock system is engaged (locked).
+  <chunk 2>  DOOR FRAME — IF EQUIPPED WITH A SOFT TOP WARNING: Do not drive your vehicle on public roads with the door frame(s) removed as you will lose the protection that they can provide.  This procedure is furnished for use during off-road operation only.  CAUTION: Failure to follow these cautions may cause interior water damage, stains or mildew: Opening a door or lowering a window while the top is wet may allow water to drip into the vehicle's interior.  Careless handling and storage of the removable door frame(s) may damage the seals, causing water to leak into the vehicle's interior.  The door frame(s) must be positioned properly to ensure sealing.  Improper installation can cause water to leak into the vehicle's interior.
+
+====================================================================================================
+[FP] delucionqa idx=24 label=0 score(min)=0.4754 mean=0.6155 lettuce=0.5746 n_sent=2 n_chunks=3 resp_chars=305 fallback=False capped=False
+--- ARGMIN sentence (score 0.4754):
+    However, it is mentioned that FCA US LLC does not recommend deactivating BeltAlert, so it is important to check the specific instructions for your vehicle.
+--- all sentences:
+    [0.755] The Daytime Running Lights (DRLs) can be deactivated by placing the headlight switch in the parking lights position or by engaging the parking brake.
+    [0.475] However, it is mentioned that FCA US LLC does not recommend deactivating BeltAlert, so it is important to check the specific instructions for your vehicle.
+--- RESPONSE:
+The Daytime Running Lights (DRLs) can be deactivated by placing the headlight switch in the parking lights position or by engaging the parking brake. However, it is mentioned that FCA US LLC does not recommend deactivating BeltAlert, so it is important to check the specific instructions for your vehicle.
+--- CHUNKS (truncated):
+  <chunk 0>  Daytime Running Lights (DRLs) — If Equipped The Daytime Running Lights (DRLs) are in a dedicated position below the headlight assembly.  DRLs are active when the low beams are not on while the vehicle’s transmission is in any position (automatic transmission), or when the vehicle begins to move (manual transmission).  Note: For vehicles sold in Canada, the DRLs will automatically deactivate when the front fog lights are turned on.  On some vehicles, the Daytime Running Lights may deactivate, or reduce intensity, on one side of the vehicle (when a turn signal is activated on that side), or on both sides of the vehicle (when the hazard warning lights are activated).
+  <chunk 1>  Vehicles sold in Canada are equipped with a headlight switch with an AUTO and ON detent but without an OFF detent.  Headlights will be deactivated when the headlight switch is placed in the parking lights position.  However, the Daytime Running Lights (DRLs) will be activated along with the front and rear marker lights.  The DRLs may be deactivated when the parking brake is engaged.  For vehicles sold in Canada, the DRLs will automatically deactivate when the front fog lights are turned on.  On some vehicles, the Daytime Running Lights may deactivate, or reduce intensity, on one side of the vehicle (when a turn signal is activated on that side), or on both sides of the vehicle (when the hazard warning lights are activated).  The Daytime Running Lights (DRLs) are in a dedicated position below the headlight assembly.  DRLs are active when the low beams are not on while the vehicle’s trans
+  <chunk 2>  The Daytime Running Lights (DRLs) are in a dedicated position below the headlight assembly.  DRLs are active when the low beams are not on while the vehicle’s transmission is in any position (automatic transmission), or when the vehicle begins to move (manual transmission).  Vehicles sold in Canada are equipped with a headlight switch with an AUTO and ON detent but without an OFF detent.  Headlights will be deactivated when the headlight switch is placed in the parking lights position.  However, the Daytime Running Lights (DRLs) will be activated along with the front and rear marker lights.  The DRLs may be deactivated when the parking brake is engaged.  For vehicles sold in Canada, the DRLs will automatically deactivate when the front fog lights are turned on.  On some vehicles, the Daytime Running Lights may deactivate, or reduce intensity, on one side of the vehicle (when a turn sign
+
+====================================================================================================
+[FP] delucionqa idx=76 label=0 score(min)=0.3875 mean=0.6746 lettuce=0.063 n_sent=2 n_chunks=3 resp_chars=398 fallback=False capped=False
+--- ARGMIN sentence (score 0.3875):
+    This is done through sensors in the vehicle which can activate the ESC system, reduce engine power, apply brakes to individual wheels, and use a telescoping link with adjustable friction to dampen any unwanted trailer swaying motions while traveling.
+--- all sentences:
+    [0.962] The function of Trailer Sway Control (TSC) is to recognize an excessively swaying trailer and take appropriate actions to attempt to stop the sway.
+    [0.388] This is done through sensors in the vehicle which can activate the ESC system, reduce engine power, apply brakes to individual wheels, and use a telescoping link with adjustable friction to dampen any unwanted trailer swaying motions while traveling.
+--- RESPONSE:
+The function of Trailer Sway Control (TSC) is to recognize an excessively swaying trailer and take appropriate actions to attempt to stop the sway. This is done through sensors in the vehicle which can activate the ESC system, reduce engine power, apply brakes to individual wheels, and use a telescoping link with adjustable friction to dampen any unwanted trailer swaying motions while traveling.
+--- CHUNKS (truncated):
+  <chunk 0>  Trailer Sway Control (TSC) TSC uses sensors in the vehicle to recognize an excessively swaying trailer and will take the appropriate actions to attempt to stop the sway.  When TSC is functioning, the ESC Activation/Malfunction Indicator Light will flash, the engine power may be reduced, and you may feel the brakes being applied to individual wheels to attempt to stop the trailer from swaying.  TSC is disabled when the ESC system is in the “Partial Off” or “Full Off” modes.  Note: TSC cannot stop all trailers from swaying.  Always use caution when towing a trailer and follow the trailer tongue weight recommendations.  See "⇨trailer towing" for further information.  WARNING: If TSC activates while driving, slow the vehicle down, stop at the nearest safe location, and adjust the trailer load to eliminate trailer sway.
+  <chunk 1>  Trailer Sway Control (TSC) — If Equipped The TSC is a telescoping link that can be installed between the hitch receiver and the trailer tongue.  It typically provides adjustable friction associated with the telescoping motion to dampen any unwanted trailer swaying motions while traveling.
+  <chunk 2>  Trailer Sway Control (TSC) — If Equipped The TSC is a telescoping link that can be installed between the hitch receiver and the trailer tongue.  It typically provides adjustable friction associated with the telescoping motion to dampen any unwanted trailer swaying motions while traveling.  Tilt/Telescoping Steering Column This feature allows you to tilt the steering column upward or downward.  It also allows you to lengthen or shorten the steering column.  The tilt/telescoping control is located below the steering wheel at the end of the steering column.  To unlock the steering column, push the control downward (toward the floor).  To tilt the steering column, move the steering wheel upward or downward as desired.  To lengthen or shorten the steering column, pull the steering wheel outward or push it inward as desired.  To lock the steering column in position, push the control upward un
+
+====================================================================================================
+[FP] delucionqa idx=93 label=0 score(min)=0.377 mean=0.714 lettuce=0.6452 n_sent=4 n_chunks=3 resp_chars=720 fallback=False capped=False
+--- ARGMIN sentence (score 0.377):
+    The text specifically states that "Some of the most important safety features in your vehicle are the restraint systems." This indicates that the primary safety features discussed are the various restraint systems, such as seatbelts, airbags, and other occupant protection mechanisms.
+--- all sentences:
+    [0.672] Based on the given context, the main safety features implemented in this car are the occupant restraint systems.
+    [0.377] The text specifically states that "Some of the most important safety features in your vehicle are the restraint systems." This indicates that the primary safety features discussed are the various restraint systems, such as seatbelts, airbags, and other occupant protection mechanisms.
+    [0.977] The context also emphasizes the importance of safe driving practices, such as obeying traffic laws, keeping hands on the steering wheel, and only using the vehicle's features and applications when it is safe to do so.
+    [0.830] However, the main focus is on the occupant restraint systems as the key safety features in the vehicle.
+--- RESPONSE:
+Based on the given context, the main safety features implemented in this car are the occupant restraint systems. The text specifically states that "Some of the most important safety features in your vehicle are the restraint systems." This indicates that the primary safety features discussed are the various restraint systems, such as seatbelts, airbags, and other occupant protection mechanisms.
+
+The context also emphasizes the importance of safe driving practices, such as obeying traffic laws, keeping hands on the steering wheel, and only using the vehicle's features and applications when it is safe to do so. However, the main focus is on the occupant restraint systems as the key safety features in the vehicle.
+--- CHUNKS (truncated):
+  <chunk 0>  Some of the most important safety features in your vehicle are the restraint systems: ALWAYS obey traffic laws and pay attention to the road.  ALWAYS drive safely with your hands on the steering wheel.  You have full responsibility and assume all risks related to the use of the features and applications in this vehicle.  Only use the features and applications when it is safe to do so.  Failure to do so may result in an accident involving serious injury or death.  Always drive safely with your hands on the steering wheel and obey all applicable laws.  You have full responsibility and assume all risks related to the use of the features and applications in this vehicle.  Only use the features and applications in this vehicle when it is safe to do so.  Failure to comply may result in an accident involving in serious injury or death.
+  <chunk 1>  OCCUPANT RESTRAINT SYSTEMS Some of the most important safety features in your vehicle are the restraint systems:
+  <chunk 2>  SAFETY FEATURES When the Safety/Driving Assistance button is selected on the touchscreen, the system displays the options related to the vehicle’s safety settings.  These options will differ depending on the features equipped on the vehicle.  The settings may display in list form or within subfolders on the screen.  To access a subfolder, select the desired folder; the available options related to that feature will then display on the screen.  Note: depending on the vehicle’s options, feature settings may vary.  OCCUPANT RESTRAINT SYSTEMS Some of the most important safety features in your vehicle are the restraint systems:
+
+====================================================================================================
+[FP] delucionqa idx=175 label=0 score(min)=0.3296 mean=0.5286 lettuce=0.5542 n_sent=6 n_chunks=3 resp_chars=1601 fallback=False capped=False
+--- ARGMIN sentence (score 0.3296):
+    Based on the provided context, there are several factors that may cause the driver to lose control of the vehicle:
+
+1.
+--- all sentences:
+    [0.330] Based on the provided context, there are several factors that may cause the driver to lose control of the vehicle:
+
+1.
+    [0.745] Breach of the vehicle's systems: The context states that "it may be possible that vehicle systems, including safety related systems, could be impaired or a loss of vehicle control could occur that may result in an accident involving serious injury or death." This suggests that a breach or compromise
+    [0.440] Unsafe driving actions: The context warns against "sharp turns, abrupt maneuvers, or other unsafe driving actions that can cause loss of vehicle control." This indicates that aggressive or reckless driving can result in the driver losing control of the vehicle.
+    [0.756] Failure to use seat belts: The context emphasizes the importance of using seat belts, stating that "in a rollover crash, an unbelted person is significantly more likely to die than a person wearing a seat belt." This implies that not wearing a seat belt can contribute to the driver losing control of
+    [0.384] Distracted or inattentive driving: The context stresses the importance of "ALWAYS driving safely with your hands on the steering wheel and obeying all applicable laws." This suggests that distracted or inattentive driving can lead to a loss of vehicle control.
+    [0.516] In summary, the context indicates that a breach of the vehicle's systems, unsafe driving actions, failure to use seat belts, and distracted or inattentive driving can all contribute to the driver losing control of the vehicle.
+--- RESPONSE:
+Based on the provided context, there are several factors that may cause the driver to lose control of the vehicle:
+
+1. Breach of the vehicle's systems: The context states that "it may be possible that vehicle systems, including safety related systems, could be impaired or a loss of vehicle control could occur that may result in an accident involving serious injury or death." This suggests that a breach or compromise of the vehicle's systems could lead to a loss of vehicle control.
+
+2. Unsafe driving actions: The context warns against "sharp turns, abrupt maneuvers, or other unsafe driving actions that can cause loss of vehicle control." This indicates that aggressive or reckless driving can result in the driver losing control of the vehicle.
+
+3. Failure to use seat belts: The context emphasizes the importance of using seat belts, stating that "in a rollover crash, an unbelted person is significantly more likely to die than a person wearing a seat belt." This implies that not wearing a seat belt can contribute to the driver losing control of the vehicle, especially in the event of a rollover.
+
+4. Distracted or inattentive driving: The context stresses the importance of "ALWAYS driving safely with your hands on the steering wheel and obeying all applicable laws." This suggests that distracted or inattentive driving can lead to a loss of vehicle control.
+
+In summary, the context indicates that a breach of the vehicle's systems, unsafe driving actions, failure to use seat belts, 
+--- CHUNKS (truncated):
+  <chunk 0>  It is not possible to know or to predict all of the possible outcomes if your vehicle’s systems are breached.  It may be possible that vehicle systems, including safety related systems, could be impaired or a loss of vehicle control could occur that may result in an accident involving serious injury or death.  be possible that vehicle systems, including safety related systems, could be impaired or a loss of vehicle control could occur that may result in an accident involving serious injury or death.  Access, or allow others to access, information stored in your vehicle systems, including personal information.  When the ACC system is resumed, the driver must ensure that there are no pedestrians, vehicles or objects in the path of the vehicle.  Failure to follow these warnings can result in a collision and death or serious personal injury.
+  <chunk 1>  Some of the most important safety features in your vehicle are the restraint systems: ALWAYS obey traffic laws and pay attention to the road.  ALWAYS drive safely with your hands on the steering wheel.  You have full responsibility and assume all risks related to the use of the features and applications in this vehicle.  Only use the features and applications when it is safe to do so.  Failure to do so may result in an accident involving serious injury or death.  Always drive safely with your hands on the steering wheel and obey all applicable laws.  You have full responsibility and assume all risks related to the use of the features and applications in this vehicle.  Only use the features and applications in this vehicle when it is safe to do so.  Failure to comply may result in an accident involving in serious injury or death.
+  <chunk 2>  ROLLOVER WARNING Utility vehicles have a significantly higher rollover rate than other types of vehicles.  This vehicle has a higher ground clearance and a higher center of gravity than many passenger vehicles.  It is capable of performing better in a wide variety of off-road applications.  Driven in an unsafe manner, all vehicles can go out of control.  Because of the higher center of gravity, if this vehicle is out of control it may roll over while some other vehicles may not.  Do not attempt sharp turns, abrupt maneuvers, or other unsafe driving actions that can cause loss of vehicle control.  Failure to operate this vehicle safely may result in a collision, rollover of the vehicle, and severe or fatal injury.  Drive carefully.  Failure to use the driver and passenger seat belts provided is a major cause of severe or fatal injury.  In fact, the US government notes that the universal 
+
+====================================================================================================
+[FP] delucionqa idx=56 label=0 score(min)=0.3074 mean=0.3074 lettuce=0.1865 n_sent=1 n_chunks=3 resp_chars=154 fallback=True capped=False
+--- ARGMIN sentence (score 0.3074):
+    Ratcheting mechanisms are used to tighten down the utility rail cleats in the bed rail tie-down system in order to properly secure cargo in the truck bed.
+--- all sentences:
+    [0.307] Ratcheting mechanisms are used to tighten down the utility rail cleats in the bed rail tie-down system in order to properly secure cargo in the truck bed.
+--- RESPONSE:
+Ratcheting mechanisms are used to tighten down the utility rail cleats in the bed rail tie-down system in order to properly secure cargo in the truck bed.
+--- CHUNKS (truncated):
+  <chunk 0>  The Bed Rail Tie Down system allows you to properly secure cargo in the truck bed.  Bed Rail Tie Down Locations Your vehicle is equipped with the child restraint anchorage system called LATCH, which stands for Lower Anchors and Tethers for CHildren.  The LATCH system has three vehicle anchor points for installing LATCH-equipped child seats.  There are two lower anchorages located at the back of the seat cushion where it meets the seatback and one top tether anchorage located behind the seating position.  These anchorages are used to install LATCH-equipped child seats without using the vehicle’s seat belts.  Some seating positions may have a top tether anchorage but no lower anchorages.  In these seating positions, the seat belt must be used with the top tether anchorage to install the child restraint.  Please see the following table for more information.  The TSC is a telescoping link t
+  <chunk 1>  Weight-Distributing Hitch A Weight-Distributing Hitch system works by applying leverage through spring (load) bars.  They are typically used for heavier loads to distribute trailer tongue weight to the tow vehicle's front axle and the trailer axle(s).  When used in accordance with the manufacturer's directions, it provides for a more level ride, offering more consistent steering and brake control thereby enhancing towing safety.  The addition of a friction/hydraulic sway control also dampens sway caused by traffic and crosswinds and contributes positively to tow vehicle and trailer stability.  Trailer sway control and a Weight-Distributing (load equalizing) Hitch are recommended for heavier Tongue Weights (TW) and may be required depending on vehicle and trailer configuration/loading to comply with Gross Axle Weight Rating (GAWR) requirements.  WARNING: An improperly adjusted Weight-Dis
+  <chunk 2>  BED RAIL TIE DOWN SYSTEM — IF EQUIPPED The Bed Rail Tie Down system allows you to properly secure cargo in the truck bed.  There are two adjustable utility rail cleats on each side of the bed that can be used to assist in securing cargo.  Each utility rail cleat must be tightened down in one of the detents along either utility rail in order to keep cargo properly secured.  To move the utility rail cleat to any position on the utility rail, turn the cleat retainer nut counterclockwise several times.  Then, pull out on the utility rail cleat and slide it to the detent nearest the desired location.  Make sure the utility rail cleat is seated in the detent, and tighten the nut.  To remove the utility rail cleats from the side utility rails, slide the cleat to the rectangular cutout located at the end of the rail toward the front of the vehicle.  To remove the utility rail cleat from the fro
+
+====================================================================================================
+[FP] delucionqa idx=77 label=0 score(min)=0.2827 mean=0.7851 lettuce=0.6365 n_sent=5 n_chunks=3 resp_chars=566 fallback=False capped=False
+--- ARGMIN sentence (score 0.2827):
+    Press on the desired setting option to confirm your choice.
+--- all sentences:
+    [0.826] To make selections and adjustments with the menus, you should only press one button at a time to enter the desired menu.
+    [0.917] Once in the desired menu, press and release the preferred setting option until a check mark appears next to the setting, showing that the setting has been selected.
+    [0.968] Press the X button on the touchscreen to close out of the settings screen once the setting is complete.
+    [0.932] Use the Up or Down Arrow button on the right side of the screen to toggle up or down through the available settings.
+    [0.283] Press on the desired setting option to confirm your choice.
+--- RESPONSE:
+To make selections and adjustments with the menus, you should only press one button at a time to enter the desired menu. Once in the desired menu, press and release the preferred setting option until a check mark appears next to the setting, showing that the setting has been selected. Press the X button on the touchscreen to close out of the settings screen once the setting is complete. Use the Up or Down Arrow button on the right side of the screen to toggle up or down through the available settings. Press on the desired setting option to confirm your choice.
+--- CHUNKS (truncated):
+  <chunk 0>  When making a selection, only press one button at a time to enter the desired menu.  Once in the desired menu, press and release the preferred setting option until a check mark appears next to the setting, showing that setting has been selected.  Once the setting is complete, press the X button on the touchscreen to close out of the settings screen.  Pressing the Up or Down Arrow button on the right side of the screen will allow you to toggle up or down through the available settings.  The Favorites menu provides a means to edit the Favorites list and to configure the Alert Settings, along with providing a list of Channels currently airing any of the items in the Favorites list.  They allow you to change the Main Screen area and Menu Title area.  The seat can be adjusted forward or rearward by using a bar located by the front of the seat cushion, near the floor.  While sitting in the se
+  <chunk 1>  When making a selection, only press one button at a time to enter the desired menu.  Once in the desired menu, press and release the preferred setting option until a check mark appears next to the setting, showing that setting has been selected.  Once the setting is complete, press the X button on the touchscreen to close out of the settings screen.  Pressing the Up or Down Arrow button on the right side of the screen will allow you to toggle up or down through the available settings.  Setting Name Description Display Mode This setting will allow you to set the brightness manually or have the system set it automatically.  The “Auto” setting has the system automatically adjust the display brightness.  The “Manual” setting will allow the user to adjust the brightness of the display.  Display Brightness With Headlights ON/Brightness This setting will allow you to set the brightness when th
+  <chunk 2>  Drag & Drop Menu Bar The Uconnect features and services in the main menu bar are easily customized for your preference.  Simply follow these steps: press the apps button to open the app screen.  Press and hold, then drag the selected app to replace an existing shortcut in the main menu bar.  Note: This feature is only available if the vehicle is in PARK.  Uconnect 4 with 7-inch display and uconnect 4/4c/4c nav with 8.4-inch display press the apps button, then press the settings button on the touchscreen to display the menu setting screen.  In this mode the Uconnect system allows you to access programmable features.  When making a selection, only press one button at a time to enter the desired menu.  Once in the desired menu, press and release the preferred setting option until a check mark appears next to the setting, showing that setting has been selected.  Once the setting is complete
+
+====================================================================================================
+[FP] delucionqa idx=130 label=0 score(min)=0.2374 mean=0.7268 lettuce=0.3206 n_sent=7 n_chunks=3 resp_chars=835 fallback=False capped=False
+--- ARGMIN sentence (score 0.2374):
+    These default settings can clear personal data and reset selected settings from other menus.
+--- all sentences:
+    [0.322] Based on the context provided, the key points about the default settings are:
+
+1.
+    [0.915] When the "Reset/Restore Default Settings" button is pressed on the touchscreen, the system displays options to reset the Uconnect system back to its default settings.
+    [0.237] These default settings can clear personal data and reset selected settings from other menus.
+    [0.954] Depending on the vehicle's options, the feature settings may vary.
+    [0.941] The factory default volume setting for the Front and Rear chime is set to medium.
+    [0.831] ParkSense will retain its last known configuration state through ignition cycles.
+    [0.888] So in summary, the default settings for the car can vary depending on the vehicle's options, but the key default settings mentioned are the medium volume setting for the chimes and the last known configuration state for ParkSense being retained.
+--- RESPONSE:
+Based on the context provided, the key points about the default settings are:
+
+1. When the "Reset/Restore Default Settings" button is pressed on the touchscreen, the system displays options to reset the Uconnect system back to its default settings.
+
+2. These default settings can clear personal data and reset selected settings from other menus.
+
+3. Depending on the vehicle's options, the feature settings may vary.
+
+4. The factory default volume setting for the Front and Rear chime is set to medium.
+
+5. ParkSense will retain its last known configuration state through ignition cycles.
+
+So in summary, the default settings for the car can vary depending on the vehicle's options, but the key default settings mentioned are the medium volume setting for the chimes and the last known configuration state for ParkSense being retained.
+--- CHUNKS (truncated):
+  <chunk 0>  When the Reset/Restore Default Settings button is pressed on the touchscreen, the system displays the options related to resetting the Uconnect system back to its default settings.  These settings can clear personal data and reset selected settings from other menus.  Depending on the vehicle’s options, feature settings may vary.  Depending on the vehicle’s options, feature settings may vary.  All settings should be changed with the ignition in the ON/RUN position.  Depending on the vehicle’s options, feature settings may vary.
+  <chunk 1>  When the Reset/Restore Default Settings button is pressed on the touchscreen, the system displays the options related to resetting the Uconnect system back to its default settings.  These settings can clear personal data and reset selected settings from other menus.  Note: depending on the vehicle’s options, feature settings may vary.
+  <chunk 2>  When the Reset/Restore Default Settings button is pressed on the touchscreen, the system displays the options related to resetting the Uconnect system back to its default settings.  These settings can clear personal data and reset selected settings from other menus.  Note: depending on the vehicle’s options, feature settings may vary.  Adjustable Chime Volume Settings The Front and Rear chime volume settings are programmable.  The settings may be programmed through the Uconnect system The chime volume settings include low, medium, and high.  The factory default volume setting is medium.  ParkSense will retain its last known configuration state through ignition cycles.  When the Safety/Driving Assistance button is selected on the touchscreen, the system displays the options related to the vehicle’s safety settings.  These options will differ depending on the features equipped on the vehi
+
+====================================================================================================
+[FP] delucionqa idx=83 label=0 score(min)=0.2 mean=0.2 lettuce=0.456 n_sent=1 n_chunks=3 resp_chars=318 fallback=True capped=False
+--- ARGMIN sentence (score 0.2):
+    Accessing information stored in the vehicle systems, failure to follow warnings related to the ACC system, failing to obey traffic laws, driving in an unsafe manner such as attempting sharp turns or abrupt maneuvers, and not wearing a seat belt are all factors that may cause the driver to lose control of the vehicle.
+--- all sentences:
+    [0.200] Accessing information stored in the vehicle systems, failure to follow warnings related to the ACC system, failing to obey traffic laws, driving in an unsafe manner such as attempting sharp turns or abrupt maneuvers, and not wearing a seat belt are all factors that may cause the driver to lose contr
+--- RESPONSE:
+Accessing information stored in the vehicle systems, failure to follow warnings related to the ACC system, failing to obey traffic laws, driving in an unsafe manner such as attempting sharp turns or abrupt maneuvers, and not wearing a seat belt are all factors that may cause the driver to lose control of the vehicle.
+--- CHUNKS (truncated):
+  <chunk 0>  It is not possible to know or to predict all of the possible outcomes if your vehicle’s systems are breached.  It may be possible that vehicle systems, including safety related systems, could be impaired or a loss of vehicle control could occur that may result in an accident involving serious injury or death.  be possible that vehicle systems, including safety related systems, could be impaired or a loss of vehicle control could occur that may result in an accident involving serious injury or death.  Access, or allow others to access, information stored in your vehicle systems, including personal information.  When the ACC system is resumed, the driver must ensure that there are no pedestrians, vehicles or objects in the path of the vehicle.  Failure to follow these warnings can result in a collision and death or serious personal injury.
+  <chunk 1>  Some of the most important safety features in your vehicle are the restraint systems: ALWAYS obey traffic laws and pay attention to the road.  ALWAYS drive safely with your hands on the steering wheel.  You have full responsibility and assume all risks related to the use of the features and applications in this vehicle.  Only use the features and applications when it is safe to do so.  Failure to do so may result in an accident involving serious injury or death.  Always drive safely with your hands on the steering wheel and obey all applicable laws.  You have full responsibility and assume all risks related to the use of the features and applications in this vehicle.  Only use the features and applications in this vehicle when it is safe to do so.  Failure to comply may result in an accident involving in serious injury or death.
+  <chunk 2>  ROLLOVER WARNING Utility vehicles have a significantly higher rollover rate than other types of vehicles.  This vehicle has a higher ground clearance and a higher center of gravity than many passenger vehicles.  It is capable of performing better in a wide variety of off-road applications.  Driven in an unsafe manner, all vehicles can go out of control.  Because of the higher center of gravity, if this vehicle is out of control it may roll over while some other vehicles may not.  Do not attempt sharp turns, abrupt maneuvers, or other unsafe driving actions that can cause loss of vehicle control.  Failure to operate this vehicle safely may result in a collision, rollover of the vehicle, and severe or fatal injury.  Drive carefully.  Failure to use the driver and passenger seat belts provided is a major cause of severe or fatal injury.  In fact, the US government notes that the universal 
+
+====================================================================================================
+[FP] delucionqa idx=106 label=0 score(min)=0.1485 mean=0.6952 lettuce=0.1559 n_sent=12 n_chunks=3 resp_chars=1659 fallback=False capped=True
+--- ARGMIN sentence (score 0.1485):
+    Connect one end of the black jumper cable to the negative (-) battery post or a metal ground on the other vehicle.
+--- all sentences:
+    [0.802] Based on the provided context, here are the steps to jump start a car:
+
+1.
+    [0.946] Apply the parking brake, shift the transmission to Park (automatic) or Neutral (manual), and turn off the ignition.
+    [0.608] Turn off the heater, radio, and all electrical accessories.
+    [0.947] If using another vehicle to jump start, park the other vehicle within reach of the jumper cables and apply its parking brake.
+    [0.476] Ensure the other vehicle's ignition is also turned off.
+    [0.959] Locate the positive (+) battery post on your vehicle's main battery.
+    [0.721] This is usually covered by a protective cap - lift up the cap to access the post.
+    [0.996] WARNING: Only use the positive battery post on the main battery to jump start your vehicle.
+    [0.878] Do not attempt to jump start using the supplemental battery if your vehicle has a stop/start system.
+    [0.474] Connect one end of the red jumper cable to the positive (+) battery post on your vehicle.
+    [0.386] Connect the other end of the red jumper cable to the positive (+) battery post on the other vehicle.
+    [0.148] Connect one end of the black jumper cable to the negative (-) battery post or a metal ground on the other vehicle.
+--- RESPONSE:
+Based on the provided context, here are the steps to jump start a car:
+
+1. Apply the parking brake, shift the transmission to Park (automatic) or Neutral (manual), and turn off the ignition.
+2. Turn off the heater, radio, and all electrical accessories.
+3. If using another vehicle to jump start, park the other vehicle within reach of the jumper cables and apply its parking brake. Ensure the other vehicle's ignition is also turned off.
+4. Locate the positive (+) battery post on your vehicle's main battery. This is usually covered by a protective cap - lift up the cap to access the post.
+5. WARNING: Only use the positive battery post on the main battery to jump start your vehicle. Do not attempt to jump start using the supplemental battery if your vehicle has a stop/start system.
+6. Connect one end of the red jumper cable to the positive (+) battery post on your vehicle.
+7. Connect the other end of the red jumper cable to the positive (+) battery post on the other vehicle.
+8. Connect one end of the black jumper cable to the negative (-) battery post or a metal ground on the other vehicle.
+9. Connect the other end of the black jumper cable to a metal ground on your vehicle, such as an unpainted bolt or the engine block.
+10. Start the engine of the vehicle with the good battery and let it run for a few minutes.
+11. Try to start your vehicle. If it doesn't start after a few attempts, let the other vehicle run for a few more minutes before trying again.
+12. Once your vehicle is run
+--- CHUNKS (truncated):
+  <chunk 0>  Preparations For Jump Start The battery in your vehicle is located in the right rear of the engine compartment.  If your vehicle is equipped with a Stop/Start system, it will be equipped with two batteries See the following steps to prepare for jump starting: Apply the parking brake, shift the automatic transmission into PARK (P) (manual transmission in NEUTRAL) and place the ignition in OFF mode.  Turn off the heater, radio, and all electrical accessories.  If using another vehicle to jump start the battery, park the vehicle within the jumper cable’s reach, apply the parking brake and make sure the ignition is OFF.  WARNING: Only use the positive battery post on the main battery to jump start your vehicle.  Serious injury or death could result if you attempt to jump start using the supplemental battery.  Battery gas is flammable and explosive.  Keep flame or sparks away from the batter
+  <chunk 1>  JUMP STARTING If your vehicle has a discharged battery, it can be jump started using a set of jumper cables and a battery in another vehicle, or by using a portable battery booster pack.  Jump starting can be dangerous if done improperly, so please follow the procedures in this section carefully.  WARNING: Do not attempt jump starting if the battery is frozen.  It could rupture or explode and cause personal injury.  CAUTION: Do not use a portable battery booster pack or any other booster source with a system voltage greater than 12 Volts or damage to the battery, starter motor, alternator or electrical system may occur.  Note: When using a portable battery booster pack, follow the manufacturer's operating instructions and precautions.  Preparations For Jump Start The battery in your vehicle is located in the right rear of the engine compartment.  If your vehicle is equipped with a Stop/
+  <chunk 2>  JUMP STARTING If your vehicle has a discharged battery, it can be jump started using a set of jumper cables and a battery in another vehicle, or by using a portable battery booster pack.  Jump starting can be dangerous if done improperly, so please follow the procedures in this section carefully.  WARNING: Do not attempt jump starting if the battery is frozen.  It could rupture or explode and cause personal injury.  CAUTION: Do not use a portable battery booster pack or any other booster source with a system voltage greater than 12 Volts or damage to the battery, starter motor, alternator or electrical system may occur.  Note: When using a portable battery booster pack, follow the manufacturer's operating instructions and precautions.

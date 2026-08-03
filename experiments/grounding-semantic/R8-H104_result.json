@@ -1,0 +1,137 @@
+{
+  "model": "/home/lab/workspace/private/ai-assistants/groundrails/models/R8-H102-mmbert-twohead-full",
+  "window": 1500,
+  "stride": 750,
+  "reads": {
+    "fused_windowed": {
+      "per_subset": {
+        "covidqa": {
+          "n": 245,
+          "auc": 0.7691,
+          "f1": 0.6195,
+          "lettuce_auc": 0.7355
+        },
+        "delucionqa": {
+          "n": 184,
+          "auc": 0.8547,
+          "f1": 0.6577,
+          "lettuce_auc": 0.7929
+        },
+        "emanual": {
+          "n": 132,
+          "auc": 0.7125,
+          "f1": 0.5672,
+          "lettuce_auc": 0.5999
+        },
+        "expertqa": {
+          "n": 203,
+          "auc": 0.7997,
+          "f1": 0.6824,
+          "lettuce_auc": 0.6503
+        },
+        "finqa": {
+          "n": 250,
+          "auc": 0.6707,
+          "f1": 0.5904,
+          "lettuce_auc": 0.717
+        },
+        "hagrid": {
+          "n": 250,
+          "auc": 0.6392,
+          "f1": 0.5238,
+          "lettuce_auc": 0.5992
+        },
+        "hotpotqa": {
+          "n": 250,
+          "auc": 0.6392,
+          "f1": 0.5652,
+          "lettuce_auc": 0.5976
+        },
+        "pubmedqa": {
+          "n": 250,
+          "auc": 0.5909,
+          "f1": 0.4903,
+          "lettuce_auc": 0.5162
+        },
+        "tatqa": {
+          "n": 250,
+          "auc": 0.7388,
+          "f1": 0.5898,
+          "lettuce_auc": 0.6156
+        },
+        "techqa": {
+          "n": 250,
+          "auc": 0.7416,
+          "f1": 0.7194,
+          "lettuce_auc": 0.6363
+        }
+      },
+      "mean": 0.7156
+    },
+    "fused_truncated": {
+      "per_subset": {
+        "covidqa": {
+          "n": 245,
+          "auc": 0.7691,
+          "f1": 0.6195,
+          "lettuce_auc": 0.7355
+        },
+        "delucionqa": {
+          "n": 184,
+          "auc": 0.7573,
+          "f1": 0.4713,
+          "lettuce_auc": 0.7929
+        },
+        "emanual": {
+          "n": 132,
+          "auc": 0.6289,
+          "f1": 0.5206,
+          "lettuce_auc": 0.5999
+        },
+        "expertqa": {
+          "n": 203,
+          "auc": 0.7597,
+          "f1": 0.6738,
+          "lettuce_auc": 0.6503
+        },
+        "finqa": {
+          "n": 250,
+          "auc": 0.7126,
+          "f1": 0.6621,
+          "lettuce_auc": 0.717
+        },
+        "hagrid": {
+          "n": 250,
+          "auc": 0.6507,
+          "f1": 0.5238,
+          "lettuce_auc": 0.5992
+        },
+        "hotpotqa": {
+          "n": 250,
+          "auc": 0.6387,
+          "f1": 0.5652,
+          "lettuce_auc": 0.5976
+        },
+        "pubmedqa": {
+          "n": 250,
+          "auc": 0.5909,
+          "f1": 0.4903,
+          "lettuce_auc": 0.5162
+        },
+        "tatqa": {
+          "n": 250,
+          "auc": 0.7373,
+          "f1": 0.5898,
+          "lettuce_auc": 0.6156
+        },
+        "techqa": {
+          "n": 250,
+          "auc": 0.7078,
+          "f1": 0.6552,
+          "lettuce_auc": 0.6363
+        }
+      },
+      "mean": 0.6953
+    }
+  }
+}
