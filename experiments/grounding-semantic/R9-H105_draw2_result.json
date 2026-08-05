@@ -1,0 +1,32 @@
+{
+  "gold": {
+    "auc": 0.8177,
+    "f1": 0.699,
+    "n": 717
+  },
+  "gold_full": {
+    "auc": 0.824,
+    "f1": 0.715,
+    "n": 2752
+  },
+  "ragtruth_en": {
+    "auc": 0.8361,
+    "f1": 0.7581,
+    "n": 600
+  },
+  "ragtruth_nonen": {
+    "auc": 0.8337,
+    "per_lang": {
+      "de": 0.8365,
+      "fr": 0.8237,
+      "es": 0.8331,
+      "it": 0.8331,
+      "pl": 0.8248,
+      "hu": 0.8212,
+      "cn": 0.8633
+    }
+  },
+  "params_M": 307.1,
+  "lambda_max": 0.02,
+  "mix": "clean (public only, no private pairs)"
+}

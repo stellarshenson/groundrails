@@ -1,0 +1,62 @@
+{
+  "per_subset": {
+    "covidqa": {
+      "score": 0.7691,
+      "token": 0.7647,
+      "fused": 0.7758
+    },
+    "delucionqa": {
+      "score": 0.8517,
+      "token": 0.7355,
+      "fused": 0.8484
+    },
+    "emanual": {
+      "score": 0.6229,
+      "token": 0.5678,
+      "fused": 0.6047
+    },
+    "expertqa": {
+      "score": 0.7709,
+      "token": 0.806,
+      "fused": 0.7945
+    },
+    "finqa": {
+      "score": 0.6378,
+      "token": 0.5702,
+      "fused": 0.625
+    },
+    "hagrid": {
+      "score": 0.6143,
+      "token": 0.6005,
+      "fused": 0.6034
+    },
+    "hotpotqa": {
+      "score": 0.6559,
+      "token": 0.5728,
+      "fused": 0.6319
+    },
+    "pubmedqa": {
+      "score": 0.6357,
+      "token": 0.6064,
+      "fused": 0.6497
+    },
+    "tatqa": {
+      "score": 0.7128,
+      "token": 0.661,
+      "fused": 0.7119
+    },
+    "techqa": {
+      "score": 0.7257,
+      "token": 0.7369,
+      "fused": 0.75
+    }
+  },
+  "means": {
+    "score": 0.6997,
+    "token": 0.6622,
+    "fused": 0.6995
+  },
+  "model": "/home/lab/workspace/private/ai-assistants/groundrails/models/R9-H106-twohead-clean",
+  "window": 1500,
+  "stride": 750
+}

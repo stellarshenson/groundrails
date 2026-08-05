@@ -1,0 +1,60 @@
+{
+ "arm_a": {
+  "n": 199,
+  "degen": 0.0754,
+  "differ_rate": 0.8693,
+  "family_kill": false
+ },
+ "arm_b": {
+  "n": 1497,
+  "garbage": 0.0621,
+  "evasion": 0.0601,
+  "exact_repro": 0.01,
+  "filler_usable": 0.035,
+  "usable": 1314,
+  "usable_rate": 0.8778,
+  "nli_fwd_mean": 0.5691,
+  "nli_fwd_ge08_share": 0.497,
+  "per_type": {
+   "entity": {
+    "n": 372,
+    "degen": 0.075,
+    "evasion": 0.013,
+    "usable": 0.911
+   },
+   "hedge": {
+    "n": 178,
+    "degen": 0.006,
+    "evasion": 0.101,
+    "usable": 0.893
+   },
+   "negation": {
+    "n": 107,
+    "degen": 0.047,
+    "evasion": 0.215,
+    "usable": 0.738
+   },
+   "number_date": {
+    "n": 368,
+    "degen": 0.114,
+    "evasion": 0.103,
+    "usable": 0.783
+   },
+   "positional": {
+    "n": 22,
+    "degen": 0.318,
+    "evasion": 0.0,
+    "usable": 0.682
+   },
+   "relverb": {
+    "n": 450,
+    "degen": 0.022,
+    "evasion": 0.013,
+    "usable": 0.964
+   }
+  },
+  "number_date_usable": 288,
+  "bypass_eligible": 278,
+  "bound_qualified_denied": 10
+ }
+}

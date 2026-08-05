@@ -2067,3 +2067,248 @@ Sanity gate passed first (score-only path through the fused pipeline reproduces 
 - **Discipline** - RAGBench untouched; frozen gate unmodified (a decoder-scorer read tool implements the pair scoring, windowed + truncated both recorded); serving-shape cost (~4x mmBERT FLOPs per pair, ~0.7GB int8, torch-free CPU cascade degraded) recorded as an accepted consequence of the reopened budget, to be weighed only if the mechanism fires
 - **Cost** - ~20-25h GPU1 per draw at batch ~16/1,024 tokens; queued behind the H102 in-domain eval on the same card
 - **Artifacts** - `R8-H103_qwen_scorer.py`, `models/R8-H103-qwen06b-scorer`, `R8-H103_read.py`, `R8-H103_result.json`, `logs/R8-H103_*.log`
+
+## Round 9 - the clean-mix protocol and the single-pass fanout
+
+### Amendment - 2026-08-03, the author resets the training protocol: the private gold dataset becomes test-only
+
+Author's order: "redo the pipeline to not train on private gold dataset; we will test on RagBench and on golden only, not train on those."
+
+- **What leaves the mix** - `private_train()`: 76,865 teacher pairs (soft rerank labels) drawn from the TRAIN split of the 639 private gold traces, ~10% of the 762k mix. The clean mix is `public_train()` only: ~686k pairs, 12 domain groups (RAGTruth EN + 7 translations, HaluEval, PsiloQA, VitaminC, TabFact)
+- **Test protocol** - two held-out sets, neither ever trained or tuned on: RAGBench (blind, frozen R8-H77 gate, unchanged) and the private gold dataset - now the FULL 2,752 rows, legal as a pure test set since no trace enters training (the old gate used only the 40% held-out trace split)
+- **Consequences** - R8-H90 and every full-mix descendant (the H100 draws, H102) trained on private-gold pairs; they remain recorded but are disqualified as deliverables under the new protocol. The recipe baseline must be re-established on the clean mix (R9-H105 below). Old split-gate gold numbers (0.83-0.84 band) stay for lineage but are not comparable to the new full-gold read: gold moves from in-domain to out-of-domain
+- **Forward rule** - every future training hypothesis, including R8-H103 if its budget word ever fires, uses the clean mix
+
+**R9-H105 - clean-mix recipe baseline. Pre-registered**
+
+Because the removed private pairs supply domain-specific supervision orthogonal to RAGBench's domains (RAGBench never resembled the private traces; the pairs' value was the in-domain gold gate, which no longer trains), retraining the exact H90 recipe on the clean mix - mmBERT-base 307M, BCE + DANN lambda 0.02, MAX_LEN 512, ~686k pairs, 12 domain groups - will land the blind primary mean within the recipe band (≥ 0.7172 − 2×0.0159 = 0.6854) while full-gold AUC drops below the in-domain-trained 0.84 line (predicted 0.72-0.80, gold now out-of-domain).
+
+- **Bar** - blind primary mean ≥ 0.6461 (beat lettucedect-v2); this draw re-establishes the baseline, its numbers become the reference for every future lever; no lever claim is made
+- **Guardrail** - full-gold AUC (2,752 rows) recorded as the first clean reference - no pass line, first measurement; the old split-gate read recorded alongside for lineage
+- **Kill** - training instability only
+- **Mechanics** - DANN discriminator drops to 12 domain groups (chance 0.083); mid-run health check domain-acc in the equilibrium band as before; multi-seed protocol applies - this draw seeds the clean-recipe ladder, n ≥ 2 before any mean-level lever adjudication against it
+- **Cost** - ~5h GPU1
+- **Artifacts** - `R9-H105_clean_mix.py`, `models/R9-H105-mmbert-dann-clean`, `R9-H105_result.json`, `logs/R9-H105_*.log`
+
+### The single-pass architecture fanout - 15 hypotheses, 0 survive adversarial review (2026-08-03)
+
+Author's order: fan out hypotheses for internalizing the windowed decomposed-min pipeline into the model architecture or head (target: ≤ 2 forward passes per response, no external orchestration, at ≥ 0.7172 blind). Process: 5 lenses (long-context single-pass, learned aggregation, structure injection, distillation, architecture surgery) generated 15 hypotheses; triage merged near-duplicates and constraint violators to 8; each survivor faced an adversarial skeptic primed with the full campaign record. **All 8 refuted** (6 high-confidence, 2 medium). Full record in the workflow transcript; the refuted list is binding - do not resubmit without addressing the named flaw.
+
+| hypothesis | lens | decisive flaw |
+|---|---|---|
+| sent-softmin-single-pass | structure-injection | learned global soft-min tau resubmits the H94 kill (RAGTruth-fit aggregation shape, -0.028 blind, does not transfer) |
+| gated-noisy-or-head | learned-aggregation | gate has no supervision channel - g=1 degenerate optimum satisfies every loss term; H102 already falsified span-supervision-rescues-discourse |
+| sent-abstain-class | structure-injection | mechanism measured and inverted - H102 token read moved pubmedqa -0.0654 under the same only-affirmative-evidence-sinks semantics |
+| marker-smoothmin-distill | distillation | headroom double-counted - delucionqa min-vs-mean gap was measured truncated; windowed primary already banks it |
+| dual-head-response-fusion | distillation | global fusion must discount the token head to survive hotpotqa, deleting the finqa/delucionqa edge that funds the claim; +0.015-0.030 prediction is 7-15x the closest measured analogue |
+| long-context-response-distill | distillation | Mode A fix unsupervised where it lives - response-reconstructible sources carry short evidence; 61% of mix (VitaminC/TabFact) cannot be responses and its boundary supervision would be forgotten |
+| colbert-late-interaction-two-tower | architecture-surgery | attacks Mode A which the windowed read already eliminated; MaxSim surfaces wrong-unit/year number copies at max similarity (Mode C FP inflation, no finqa kill) |
+| digit-aware-arithmetic-adapter | architecture-surgery | premise falsified against the actual tokenizer - mmBERT already tokenizes digit-by-digit ('398.0' → ▁,3,9,8,.,0); predicted effect below run noise |
+
+- **Recurring kill patterns** (the fanout's real yield): (1) any LEARNED aggregation shape trains on RAGTruth-register rows and the H94 record says that preference does not transfer - conditional aggregators must stay parameter-free; (2) Mode-A gains priced against the truncated baseline are double-counted - the windowed primary already banked them; (3) 61% of the mix is single-claim pairs that teach aggregation nothing - the label-shape gap is structural; (4) H102's pubmedqa -0.0654 stands as the falsifier for every span-supervision-rescues-discourse story
+- **Registrable salvages** - three cheap frozen-weights precursors survive the review as pre-conditions, not hypotheses: **P-A** response-level parameter-free dual-head fusion on frozen H102 (fuse AFTER aggregation - min over score-head sentence scores with 1 − max token-head prob at response level, unweighted logit mean; the one fusion shape H104 did not test; ~30 min, deterministic); **P-B** lexicon-excluded min on the existing H90 dump (discourse-marker sentences dropped from the min; zero GPU; only pubmedqa ≥ +0.03 earns the abstain-class head a training run); **P-C** extend the dump to windowed per-sentence scores and measure residual min-vs-oracle headroom post-windowing (proceed with any aggregation work only if ≥ +0.01 blind-mean headroom remains)
+- **Caveat** - precursor reads run on protocol-disqualified checkpoints (trained with private pairs); they remain valid MECHANISM tests since private-gold contamination is orthogonal to RAGBench, but any deliverable they motivate trains on the clean mix and adjudicates against the R9-H105 baseline
+
+**R9-H105 - result. Clean baseline established; the clean mix costs nothing blind and RAISES gold**
+
+Training clean: 14,285 steps over 685,670 pairs / 12 domain groups, DANN equilibrium domain-acc ~0.55 (chance 0.083), no instability. Blind reads (each vs this checkpoint's OWN truncated read - the windowed script's printed baselines/verdict are H90's hardcoded dict, not the adjudication):
+
+| subset | windowed (PRIMARY) | truncated | windowing lift | lettuce |
+|---|---|---|---|---|
+| covidqa | 0.8030 | 0.8030 | +0.0000 | 0.7355 |
+| delucionqa | 0.7975 | 0.7505 | +0.0470 | 0.7929 |
+| emanual | 0.6883 | 0.6241 | +0.0642 | 0.5999 |
+| expertqa | 0.7857 | 0.7684 | +0.0173 | 0.6503 |
+| finqa | 0.6489 | 0.6639 | -0.0150 | 0.7170 |
+| hagrid | 0.6259 | 0.6424 | -0.0165 | 0.5992 |
+| hotpotqa | 0.6809 | 0.6827 | -0.0018 | 0.5976 |
+| pubmedqa | 0.6201 | 0.6201 | +0.0000 | 0.5162 |
+| tatqa | 0.7034 | 0.7091 | -0.0057 | 0.6156 |
+| techqa | 0.6934 | 0.6732 | +0.0202 | 0.6363 |
+| **mean** | **0.7047** | 0.6937 | +0.0110 | 0.6461 |
+
+- **Verdict - baseline ESTABLISHED**: windowed PRIMARY 0.7047, bar (≥ 0.6461) passed by +0.0586; truncated 0.6937 with 8/10 subset wins. Band prediction CONFIRMED: 0.7047 ≥ 0.6854, sitting 0.0125 below the contaminated recipe mean - inside 1 sd. The private pairs were NOT load-bearing for blind transfer
+- **Gold prediction REFUTED in the favorable direction**: predicted a drop to 0.72-0.80; measured split-gate gold **0.8629** - ABOVE every contaminated model (H90 0.8418, H102 0.8321) - and **gold_full 0.8788** on all 2,752 rows, the first clean measurement. The clean model beats the contaminated ones on the very dataset they trained toward: the private soft teacher labels were plausibly noise, not signal. The protocol reset is costless on both test sets
+- **Windowing fingerprint replicates a fourth time on a different mix**: covidqa and pubmedqa exact +0.0000, delucionqa/emanual large positive, hagrid negative, finqa negative (-0.0150, mild draw of the checkpoint-dependent penalty)
+- **The clean ladder starts at n=1**: 0.7047 is the reference for future levers until n ≥ 2; the contaminated ladder (0.7172 ± 0.0159) stays recorded for lineage only. Distance to the 0.74 target from the clean point: 0.0353
+- **Artifact wrinkle** - the windowed JSON write failed on a doubled path (`--out` was passed with the directory prefix; the script prepends its own dir); all numbers are in `logs/R9-H105_reads.log` and the deterministic read was relaunched with a bare filename to materialize `R9-H105_windowed_result.json` (`logs/R9-H105_windowed_rerun.log`)
+- **Artifacts** - `R9-H105_clean_mix.py`, `models/R9-H105-mmbert-dann-clean`, `R9-H105_result.json` (in-domain incl. gold_full), `R8_decomposed_reads.json` tag `R9-H105`, `logs/R9-H105_train.log`, `logs/R9-H105_reads.log`
+
+**Precursor P-B - result. FAILED; the oracle bound closes the sentence-exclusion class, not just the lexicon**
+
+Run on the frozen H90 dump (2,264 responses, per-sentence truncated scores; valid for the mechanism - windowing is an exact no-op on pubmedqa). Provenance caveat recorded honestly: no discourse lexicon was ever committed - the report's marker counts were manual case reading - so the executor reconstructed a 36-term lexicon from the failure report's own category exemplars (11 verbatim, 25 category-standard) AND added an oracle bound that settles the question independently of any lexicon choice.
+
+- **Lexicon read** - sentence match rate 13.6%, all-matched fallback 5.4%; pubmedqa excluded-min delta **-0.0043** against the +0.03 bar; mean -0.0042
+- **The oracle bound is the verdict**: dropping each response's single lowest-scoring sentence - an upper bound on ANY sentence-exclusion rule, learned abstain head included - reads pubmedqa **+0.0065** (4.6x short of the bar) and the MEAN at **-0.0359** (hotpotqa -0.0982, tatqa -0.0969). No exclusion rule can beat the oracle, so the bar is unreachable by the whole class
+- **Verdict - KILLED, class-level**: the sent-abstain-class salvage line closes permanently. Two mechanism facts recorded: pubmedqa's floor is CROWDED, not sunk by a discourse outlier (removing the argmin barely moves the ranking - consistent with 76% of grounded responses scoring < 0.1); and on most subsets the argmin sentence is load-bearing SIGNAL - deleting it costs -0.036 of mean. Mode B will not fall to sentence exclusion; it is a scoring-quality problem, not an aggregation-membership problem
+- **Artifacts** - `R9_PB_lexicon_min.py`, `R9_PB_result.json`, `logs/R9_PB_lexicon_min.log`
+
+**Precursor P-C - result. NOT FIRED; hard-min is already the optimal fixed aggregator on windowed scores - the aggregation line closes**
+
+Run on a new windowed per-sentence dump of the frozen H90 checkpoint (2,264 responses; sanity gate: the hard-min read reproduced the recorded R8-H101 per-subset AUCs EXACTLY on all 10 subsets before anything else counted).
+
+| aggregator | blind mean |
+|---|---|
+| **hard-min** | **0.7355** |
+| softmin tau 0.5 | 0.6975 |
+| softmin tau 1 | 0.6912 |
+| softmin tau 2 | 0.6872 |
+| softmin tau 4 | 0.6853 |
+| mean | 0.6840 |
+| drop-argmin | 0.6975 |
+
+- **Verdict - threshold NOT FIRED** (needed some fixed aggregator ≥ hard-min + 0.01): headroom is +0.0000 - hard-min wins the mean outright, and per-subset it wins 7/10 (only delucionqa/expertqa/techqa prefer a softer read, by small margins). The subset-level-best ceiling is 0.7400 (+0.0045) and is non-registrable (selection on benchmark)
+- **What this closes**: every aggregation-softening lever - learned or fixed, gated or global - on top of per-sentence windowed scores. Together with P-B (exclusion closed) the round's aggregation question is fully answered: the decomposed hard-min IS the right read; the residual lives in per-pair scoring quality (Modes B/C) and in data coverage, not in the formula
+- **Artifacts** - `R9_PC_windowed_dump.py`, `R9_PC_windowed_dump.json` (390KB, per-sentence windowed scores), `R9_PC_headroom.py`, `R9_PC_result.json`, `logs/R9_PC_dump.log`, `logs/R9_PC_headroom.log`. Chain note: the executor's watcher died between the dump and the headroom read; the read was recovered manually - numbers unaffected (deterministic from the dump)
+
+**Precursor P-A - result. BAR FIRED; post-aggregation fusion is the round's first surviving mechanism**
+
+Run on the frozen H102 two-head checkpoint, GPU0. Sanity gate EXACT: both single-head windowed reads reproduce `R8-H102_reads.json` on all 10 subsets. Fusion is parameter-free: per response, logit-mean of S_sent (score head through the decomposed windowed min) and S_tok (token head through the same read), fused AFTER each head's aggregation.
+
+| read | blind mean |
+|---|---|
+| score head (recorded) | 0.7172 |
+| token head (recorded) | 0.7051 |
+| **fused post-aggregation** | **0.7223** |
+
+- **Verdict - BAR FIRED**: fused 0.7223 ≥ 0.7172 AND above both heads (bar was both conditions; kill was < 0.7172). Deterministic paired comparison on one checkpoint - run noise does not apply. The mechanism H104 could not reach is real: fusing after aggregation lets each head keep its own min structure - fused beats BOTH heads outright on covidqa/expertqa/tatqa/techqa and holds hotpotqa at 0.6829 where pair-level fusion collapsed it to 0.6392
+- **Magnitude honesty**: +0.0051 over the score head - a real, banked, serving-cost-free mechanism, not the 0.74 gap-closer on its own. It composes with everything else (two forward passes per pair already produce both heads)
+- **Caveat**: measured on the protocol-disqualified H102 checkpoint; deliverable requires the clean-mix two-head retrain - registered next as R9-H106
+- **Artifacts** - `R9_PA_response_fusion.py`, `R9_PA_result.json`, `logs/R9_PA_response_fusion.log`
+
+**R9-H106 - clean-mix two-head with post-aggregation fusion serving. Pre-registered**
+
+Because post-aggregation fusion of the subset-anticorrelated heads is proven deterministically on frozen weights (P-A: 0.7223 > 0.7172 > 0.7051, same checkpoint) and the mechanism is architecture-borne rather than data-borne, a clean-mix two-head DANN draw - the H102 recipe minus `private_train()` (~686k pairs, 12 groups, token spans where they exist) - served with the parameter-free post-aggregation logit-mean will read fused ≥ its OWN score-head windowed read + 0.003 (paired, deterministic) while the score head lands within the clean band (≥ 0.7047 − 0.03) and gold_full stays ≥ 0.80.
+
+- **Bar** - paired: fused − score-head ≥ +0.003 on the same checkpoint (P-A measured +0.0051; the bar allows for mechanism attenuation, not reversal). Mean-level claims deferred to the clean ladder at n ≥ 2
+- **Kill** - fused ≤ score head paired → the fusion mechanism does not survive retraining on the clean mix; the line closes. Training instability = kill
+- **Guardrails** - RAGBench untouched; frozen gate; gold_full ≥ 0.80; both single-head reads recorded alongside the fused read
+- **Cost** - ~5h GPU1, queued behind the draw-2 chain
+- **Artifacts** - `R9-H106_twohead_clean.py`, `models/R9-H106-twohead-clean`, `R9-H106_result.json`, `R9-H106_fusion_read` outputs, `logs/R9-H106_*.log`
+
+**R9-H105 draw 2 - result. The clean ladder holds at n=2; the gold surprise was a favorable draw, not the expectation**
+
+Same script mechanism as the H100 draws (SEED pins only the data split; init and batch order unseeded sample the run noise). Training clean, all lineage bars DECISIVE. Reads vs the draw's OWN truncated:
+
+| subset | windowed (PRIMARY) | truncated | lift |
+|---|---|---|---|
+| covidqa | 0.7726 | 0.7726 | +0.0000 |
+| delucionqa | 0.8358 | 0.7573 | +0.0785 |
+| emanual | 0.7070 | 0.6108 | +0.0962 |
+| expertqa | 0.7599 | 0.7303 | +0.0296 |
+| finqa | 0.6176 | 0.6393 | -0.0217 |
+| hagrid | 0.6420 | 0.6573 | -0.0153 |
+| hotpotqa | 0.6526 | 0.6551 | -0.0025 |
+| pubmedqa | 0.5925 | 0.5925 | +0.0000 |
+| tatqa | 0.7606 | 0.7591 | +0.0015 |
+| techqa | 0.6745 | 0.6872 | -0.0127 |
+| **mean** | **0.7015** | 0.6862 | +0.0153 |
+
+- **Clean ladder at n=2**: windowed {0.7047, 0.7015} → mean **0.7031**; truncated {0.6937, 0.6862}. Both draws inside the band (≥ 0.6854) - the band prediction is confirmed twice; the clean recipe's draw spread so far (0.0032) is far tighter than the contaminated ladder's, though n=2 cannot establish that. Distance to the 0.74 target from the clean mean: 0.0369
+- **Gold honesty update**: draw 2 reads split-gold 0.8177 / gold_full **0.8240** vs draw 1's 0.8629 / 0.8788 - a 0.055 swing. Draw 1's "clean beats every contaminated model on gold" was a favorable draw, not the expectation; the defensible statement at n=2: clean gold_full sits at 0.8514 ± large (both draws ≥ 0.82, still refuting the predicted 0.72-0.80 drop - the protocol reset remains costless, just not miraculous)
+- **Fingerprint, fifth replication**: covidqa and pubmedqa exact +0.0000 again; delucionqa/emanual large positive; hagrid/techqa negative; finqa penalty -0.0217 (checkpoint-dependent, both clean draws mild)
+- **Artifacts** - `R9-H105_draw2.py`, `models/R9-H105-draw2`, `R9-H105_draw2_result.json`, `R8_decomposed_reads.json` tag `R9-H105-draw2`, `R9-H105_draw2_windowed_result.json`, `logs/R9-H105_draw2_*.log`
+
+**R9-H106 - result. KILLED on the paired kill; the P-A complementarity was a checkpoint property, not an architecture property**
+
+Training clean (14,285 steps, in-domain gate 3/3 DECISIVE on the score head; gold_full score 0.8080 / token 0.8275 / fused 0.8286; fused non-EN NaN again - H102's empty-claim-token artifact, diagnostic only). Blind windowed reads, all three from the same forward passes, envelope invariant held:
+
+| read | blind mean |
+|---|---|
+| score head | 0.6997 |
+| token head | 0.6622 |
+| **fused post-aggregation** | **0.6995** |
+
+- **Verdict - KILLED**: fused 0.6995 ≤ score 0.6997 (kill was fused ≤ score; bar was ≥ +0.003). Paired and deterministic on one checkpoint - noise cannot rescue it
+- **The diagnostic**: this draw's token head is far weaker than H102's (0.6622 vs 0.7051) and its subset profile INVERTED - it loses finqa (0.5702 vs score's 0.6378) and delucionqa (0.7355 vs 0.8517), exactly where H102's token head won. The anti-correlation P-A harvested was a property of THAT checkpoint's draw, not of the two-head architecture; with no complementarity to harvest, fusion has nothing to add. The post-aggregation fusion line closes - a mechanism that requires a favorable head-draw is not a recipe
+- **Score head within the clean band** (0.6997 vs clean ladder {0.7047, 0.7015}) - the auxiliary token loss again cost the score head little blind; truncated lineage read 0.6857 (7/10)
+- **Round-9 standing after the kill**: best clean model remains R9-H105 draw 1 (0.7047 windowed); the clean ladder mean 0.7031 is the planning number; remaining levers toward 0.74: register-coverage data work (unregistered), the held decoder line
+- **Artifacts** - `R9-H106_twohead_clean.py`, `models/R9-H106-twohead-clean`, `R9-H106_result.json`, `R9-H106_fusion_result.json`, `R8_decomposed_reads.json` tag `R9-H106`, `logs/R9-H106_*.log`
+
+## Round 10 - data-variety levers (2026-08-05)
+
+Author's order: improve the register/domain variety of the clean mix - the supervision is thin and register-narrow exactly where the blind residual lives. Fanout process: 5 personas (synthetic-registers, corpus-miner, register-transformer, numeric-forger, mix-geometer) generated 15 hypotheses; triage kept 7 (dropping the forced-balance family resubmissions and near-duplicates); adversarial skeptics refuted 3 and passed 4. Data-only round: round 9 closed every formula and head lever.
+
+**The contamination wall (binding for the round)**: RAGBench's ten subsets are built from public corpora - CovidQA, DelucionQA, EManual, ExpertQA, FinQA, HAGRID, HotpotQA, PubMedQA, TAT-QA, TechQA. Those corpora and their derivatives are forbidden in training; their REGISTERS are legal. Explicitly rejected at review on this wall: ConvFinQA, TAT-HQA, MultiHiertt, FinanceBench (FinQA/TAT-QA substrate), MTRAG (TechQA-adjacent, excluded on suspicion).
+
+**Refuted at review (binding)**: procedural-manual-forge (mechanism anchored to a Mode A artifact the windowed read already fixed); hedged-discourse-forge (P-B's oracle read is the direct ceiling proxy for the mechanism - near zero); hedged-verdict-register (PUBHEALTH/CLIMATE-FEVER/SciTail hypotheses are declarative claims, not the failing hedged-discourse class). **Note the round's sharpest negative finding: all three pubmedqa/Mode-B hypotheses died independently - the hedged-discourse residual has no live data lever; it joins Mode B's hand-off to scoring-quality work**
+
+**Corrected 2-draw subset baselines for all round-10 bars** (clean ladder windowed, draws 1/2): finqa {0.6489, 0.6176} → **0.6333**; tatqa {0.7034, 0.7606} → **0.7320**; emanual {0.6883, 0.7070} → **0.6977**; techqa {0.6934, 0.6745} → **0.6840**; pubmedqa {0.6201, 0.5925} → 0.6063; mean 0.7031. Subset draw noise is large (tatqa swing 0.057) - every bar below reads against the 2-draw mean with both-draws clauses, as registered.
+
+### Pre-registration at a glance
+
+| id | hypothesis | lens | target | pairs | bar (2-draw) | cost |
+|---|---|---|---|---|---|---|
+| R10-H107 | procedural-doc-register | corpus-miner | emanual + techqa | ~112k | emanual ≥ 0.735 AND techqa ≥ 0.730 AND mean ≥ 0.7031 | 15 GPU-h |
+| R10-H108 | quantitative-nearmiss-register | corpus-miner | finqa (+tatqa guardrail) | ~118k | finqa ≥ 0.700 AND tatqa ≥ 0.690 AND mean ≥ 0.7031 | 15 GPU-h |
+| R10-H109 | synthetic-numeric-derivation-forge | synthetic | finqa FN face | ~100k | finqa ≥ baseline +0.030 AND mean ≥ 0.7031 | 24 GPU-h |
+| R10-H110 | wiki-table-derivation-pairs | numeric-forger | finqa derivation | ~120k | finqa ≥ 0.6989 AND mean ≥ 0.6981 | 26 GPU-h |
+
+**R10-H107 - procedural-doc-register. Pre-registered.** Because emanual (2-draw 0.6977) and techqa (0.6840) are the manual/procedural residual and NO corpus in the mix contains numbered procedures, conditional eligibility rules, imperative instructions or identifier strings (the H86 "no data lever" verdict rested on a provenance check of one PROSE corpus, never the technical sibling), adding ~112k pairs - `KRLabsOrg/lettucedetect-code-hallucination` ~74k (BEHIND a pre-registered zero-GPU provenance gate: if its source column shows repackaged PsiloQA/RAGTruth upstreams, killed at gate - the H86 outcome repeated) + `IBM/multidoc2dial` ~38k (61k human-grounded turns over 488 US government-service documents; positives = annotated-span-in-window, negatives = deterministic span-anchored corruptions: step numbers, thresholds, identifiers, condition negation) as two new DANN groups - will lift both subsets ≥ +0.04 while the mean holds. Kill: both target subsets < +0.02, or mean < 0.6931, or delucionqa < 0.75 → the procedural residual is Mode A/E mechanics, not coverage. Contamination: government webpages and GitHub docs share zero documents with EManual (Samsung manuals) / TechQA (IBM technotes) / DelucionQA (Jeep manual); register only. Labels: human spans + corruption-by-construction; no LLM judge
+
+**R10-H108 - quantitative-nearmiss-register. Pre-registered.** Because finqa (2-draw 0.6333) is the only subset losing to the incumbent and its Mode C failure is two-faced (75% of bottom-quartile grounded argmins are derived-numeric sentences scoring ~0.01; hallucinated wrong-unit/period copies score 0.65-0.82) while the mix teaches only table LOOKUP, composing the two proven data mechanisms - near-miss negatives (VitaminC, KEPT) and register coverage (TabFact, FIRED) - via ~118k pairs: FEVEROUS table-cell claims ~45k, InfoTabS ~24k, SEM-TAB-FACTS + SciTab ~6k (all human-labeled, Wikipedia/science-paper tables), plus ~45k deterministic unit/period/scale corruption negatives built from TabFact/FEVEROUS/InfoTabS positives only (≥ 6 edit families, distribution logged), as four new DANN groups - will lift finqa to ≥ 0.700 with tatqa ≥ 0.690 and mean held. STRETCH recorded pre-run: finqa ≥ 0.7170 ends the sole-loss status. Kill: finqa < +0.02 or draws disagree in sign → **Mode C is confirmed a capability class; the finqa data lane closes permanently and hands to the held decoder line with a stronger prior**. Licence gate (InfoTabS unstated) before any GPU
+
+**R10-H109 - synthetic-numeric-derivation-forge. Pre-registered, QUEUED behind H108's verdict.** Fully synthetic financial statements (~14k tables, programmatic generator computes every derived quantity; gpt-oss-120b renders filing-style narration; negatives mutate exactly one semantic slot; ~15% supported-edit controls prevent surface shortcuts; labels COMPUTED, drop-not-relabel) → ~100k pairs. Runs only if H108 half-fires or its diagnostic points at derivation-narration rather than quantity semantics - the two hypotheses share the finqa bar and must not be confounded. Its kill escalates formally to the decoder line with the budget question reopened. Contamination: no source corpus exists; SEC/EDGAR/FinTabNet-lineage hard-banned regardless
+
+**R10-H110 - wiki-table-derivation-pairs. Pre-registered, QUEUED as the H109 alternate.** Own extraction of Wikipedia tables (never TabFact's released rows), programmatic derivation engine (sums, deltas, percent change, ratios, ranks), ~40 templates + LLM paraphrase with verbatim-number-survival check on BOTH classes, corruption-by-construction negatives → ~120k pairs. Sequenced last of the numeric lane: same finqa bar, weakest register match (wiki vs financial prose), cheapest falsification of derivation-transfer
+
+**Sequencing** - lane A (H107, procedural) and lane B (H108, quantitative) are subset-disjoint and adjudicate independently; H109/H110 are conditional on H108's outcome. Zero-GPU gates (provenance, licences, corruption generation) run first for both lanes; training draws serialize on GPU1, 2 draws per hypothesis
+
+**R10-H111 - dropout-dial autoencoder corruption (author's mechanism, 2026-08-05). Pre-registered, two-stage**
+
+Because a rich denoising encoder-decoder under inference-time MC dropout produces a monotone corruption spectrum - subtle paraphrase at low p, fluent small hallucinations in a mid band, noise at high p - there exists a dial setting p\* where FLUENT SEMANTIC DRIFT peaks; reconstructions of in-register seed statements at p\*, adjudicated pair-by-pair by an NLI referee (bidirectional entailment → paraphrase; non-entailment + fluent → drift; disfluent → discard), yield genuine in-register hallucination negatives against the seed's own evidence - the register-faithful generator that templates cannot be, applicable to registers where every other data lever died (hedged discourse included).
+
+- **Stage 0 (calibration precursor, ~2-3h GPU0, runs before anything else)** - denoising encoder-decoder capable of near-identity reconstruction (mBART-50-class, or a brief identity-finetuned mT5); sweep dropout p over ~6 values on ~3k mixed-register seed statements (procedural from the H107 parquet, quantitative from H108 positives, hedged-scientific from legal open-access abstracts); referee = mDeBERTa-v3-mnli-xnli + a perplexity fluency gate; measure the composition curve paraphrase/drift/noise vs p, verify by a 50-sample eyeball per band
+- **Stage-0 bar** - some p\* reaches fluent-drift yield ≥ 25% with the NLI paraphrase/drift boundary confirmed by eyeball (mislabeled paraphrases < 1 in 10 among admitted drifts). **Kill** - no band reaches 15% fluent drift, or drift is inseparable from disfluency → the dial does not exist at this model scale; line closes at ~zero cost
+- **Stage 1 (conditional)** - generate at p\* to ~60-80k adjudicated pairs (drift → label 0 vs the seed's evidence; certified paraphrases → label-1 augmentation), new DANN group(s), one training draw under the standard bars (target-subset + mean-no-regression), n=2 on fire
+- **Discipline** - the NLI is the referee, never our own grounder (self-adjudication = training on our own decision boundary, forbidden); referee noise is bounded to one NLI decision per pair and the eyeball sample quantifies it; seeds only from already-gated legal corpora, so contamination is inherited-clean
+- **Recorded secondary** - the paraphrase band is a free label-1 augmentation lever (paraphrase-robust positives in-register) even if the drift band fails its yield bar
+
+**R10-H111 stage 0 - result. FIRED with a referee amendment; the dial exists exactly as the author predicted**
+
+Two calibration passes on `facebook/mbart-large-50` (identity fidelity 0.997 at p=0), 2,860 mixed-register seeds, MC dropout at inference, greedy decode. Pass 1's fluency gate (gpt2 NLL) was blind to degenerate repetition (high-probability text) - the main-session eyeball caught it; pass 2 added a calibrated degeneracy gate (distinct-3gram ≥ 0.952, max token-run ≤ 1):
+
+| p | paraphrase | drift (honest) | noise |
+|---|---|---|---|
+| 0.10 | 0.713 | 0.080 | 0.207 |
+| 0.15 | 0.408 | 0.210 | 0.382 |
+| 0.20 | 0.076 | **0.302** | 0.622 |
+
+- **Verdict - stage 0 FIRES**: the corruption spectrum is the predicted monotone dial (paraphrase → fluent hallucination → noise), per-register consistent (p=0.2 drift: scientific 0.334, procedural 0.322, quantitative 0.247 - all clear the 15% floor); best_p 0.2 at honest yield 0.302 ≥ the 25% bar; paraphrase-mislabel < 1/10 confirmed on BOTH eyeball files (essentially zero)
+- **Amendment binding for stage 1 (from the second eyeball)**: the token-level degeneracy gate still admits symbol-soup and truncation garbage (~40% of admitted drift; LaTeX-heavy scientific seeds worst) - stage-1 referee v3 adds a char-level degeneracy check (char-run / symbol-density) and LaTeX-stripping of scientific seeds; net effective precision of admitted drift ~0.6, so 60-80k clean negatives ≈ 300-400k reconstructions - feasible on GPU0
+- **Prized specimens for the record** (the class nothing else generates): hedge-deletion overclaims ("nearly the same" → "the same"), fluent entity corruption ("Danedream" → "Daneam"), fluent fact-substitution ("three awards between 1958 and 1962" → "was in the Golden Globe")
+- **Amendment - referee v4, contrastive adjudication (author's design, 2026-08-05)**: the final label is CONTRASTIVE, not absolute - because the seed is label-1 by protocol (a guaranteed-clean reference), an LLM judge (local gpt-oss-120b, batched) sees (baseline, corrupted) side by side and answers only the easy question "did factual content change, and how" - never the hard one "is this grounded". Cascade: deterministic gates → NLI pre-referee → contrastive judge on the admitted band only (~80-120k pairs, not the 400k raw). Judge-confirmed factual deltas → label 0 with a DELTA TYPE (entity-swap / number-change / hedge-deletion / omission / negation); judge-confirmed no-delta → upgraded paraphrase band (label 1). Judge noise is bounded by the contrastive anchoring; a 50-pair main-session eyeball adjudicates judge precision before the parquet is admitted to any mix. Runs as a post-filter on the stage-1 output - no generation is redone
+- **Artifacts** - `R10-H111_stage0.py`/`_stage0b.py`, `R10-H111_stage0_result.json`/`_stage0b_result.json`, `R10-H111_stage0b_recons.parquet` (11,440 scored reconstructions), `R10-H111_eyeball.md`/`_eyeball2.md`, `logs/R10-H111_stage0*.log`
+
+**R10-H111 referee v4 - judge validation result. Judge ADMITTED as post-filter (2026-08-05)**
+
+Built and validated on 500 stage-1 checkpoint rows before the full pass. One deviation from registration: the judge is `Qwen/Qwen3-32B-FP8` (vLLM, temp 0, thinking off, ~5-6 judgments/s batched) - the registered gpt-oss-120b is not cached locally (60GB download vs a cached 32GB instruct model); swap accepted, contrastive anchoring does not require the larger model. Author-authorized escalation (2026-08-05): if the full-pass eyeball on the judged parquet shows precision < ~85% or a contaminated paraphrase band, pull gpt-oss-120b and re-judge (post-filter rerun, no regeneration).
+
+- **Validation (n=500, 500/500 parsed)** - delta distribution: degenerate 245 (49%), omission 165, other-factual 35, none 19, entity-swap 18, number-change 12, hedge-deletion 3, negation 3; post-judge 192 clean label-0 kept, accidental-regrounding filter dropped 44, 19 upgraded label-1 paraphrases
+- **Judge vs NLI pre-referee** - judge confirms factual delta on only 47.8% of NLI-drift rows and confirms no-delta on only 23.4% of NLI-paraphrase rows - materially stricter in BOTH directions, exactly its cascade role; the NLI paraphrase band is impure, so label-1 augmentation is taken from judged output only
+- **Main-session 50-pair eyeball (adjudicated)** - delta-detection precision ~90% (45/50 genuine factual deltas; the misses are duplication disfluency typed as factual change, e.g. "the speed of the speed", "an oil and an oil and"); typing sound on clean cases (3:09:45 → 3:03:45 as number-change, causal-clause drops as omission). Judge ADMITTED as post-filter
+- **Caveats recorded** - severity skews obvious (47/50; only 3 subtle), and a residual disfluent fraction survives inside admitted drift (word-level repetition passes the token-level gates) - valid label-0 negatives but the fluent-subtle fraction is smaller than the stage-0 prize specimens suggested; risk of a fluency shortcut noted for training adjudication
+- **Yield projection** - effective clean-drift precision ~38% of the NLI-admitted band → a 90-120k admitted band projects to ~35-45k judged negatives, UNDER the 60-80k stage-1 target; extension generation rounds may be needed after the full pass
+- **Final parquet admission remains pending** the full judged parquet (`R10-H111_stage1_judged.parquet`) and the stage-1 report eyeball
+- **Artifacts** - `R10-H111_judge.py`, `R10-H111_judge_validation.parquet`, `R10-H111_judge_eyeball.md`, `logs/R10-H111_judge_validation.log`; full pass armed on the STAGE1 DONE marker (watcher detached, vLLM starts only at fire time, GPU1 idle until then)
+
+**R10-H111 stage 1 - generation result (2026-08-05). Early-stopped at the drift target; parquet NOT admissible raw - judge pass running**
+
+260,452 reconstructions consumed (112,226 seeds, repeated full-seed rounds at p=0.2), early-stopped at the 80k drift target in ~2h50m on GPU0. Output `R10-H111_stage1_pairs.parquet`: 96,320 rows = 83,714 NLI-admitted drift (procedural 39,832 / scientific 26,333 / quantitative 17,549, label 0) + 12,606 paraphrases (procedural 6,583 / scientific 3,163 / quantitative 2,860, label 1).
+
+- **Main-session 50-pair drift eyeball** - ~15-20/50 are the genuine article: fluent in-register factual corruption ("co-signer is the spouse" → "the person"; Vietnamese host city → "Chinese"; dropped hotline number); the remainder is repetition/truncation junk invisible to the token-level referee-v3 gates - consistent with the judge validation's 49% degenerate finding, and exactly the class the contrastive judge strips
+- **Paraphrase-band impurity confirmed on sight** - borderline NLI-paraphrases include outright hallucinations ("high-redshift supernovae" → "high-relationships of supernovae") and degenerate junk; the rule stands - label-1 only from judge-confirmed no-delta rows
+- **Verdict** - generation stage did its job (raw ore at scale, register mix healthy); admission rides entirely on the judge pass (launched 06:45, ~5h on GPU1); projected post-judge yield ~32k negatives, under the 60-80k target → extension rounds are a live option after the judged parquet is read
+- **Artifacts** - `R10-H111_stage1.py`, `R10-H111_stage1_pairs.parquet` (27.8MB), `R10-H111_stage1_report.md`, `R10-H111_stage1_progress.json`, `logs/R10-H111_stage1_gen.log`
+
+**R10-H111 judge full pass + final admission (2026-08-05). Parquet ADMITTED at 26,142 pairs after a still-entailed filter; no judge escalation**
+
+Full pass: 96,320 pairs judged in 5h22m (Qwen3-32B-FP8, GPU1), 28 parse failures (0.03%). Delta mix: degenerate 46,073 (47.8%, stripped), omission 32,557, entity-swap 6,600, other-factual 6,185, none 2,982, number-change 1,494, negation 275, hedge-deletion 126. Judge kept 38,751 label-0 (regrounding filter dropped 8,486) + 2,982 certified label-1 paraphrases. Judge/NLI agreement 50.1% on drift, 18.6% on paraphrase - full-pass replication of the validation profile.
+
+- **Main-session 50-pair eyeball on the kept set** - strict precision 84% (42/50 genuine negatives); the 5-8 misses are one class: the corrupted claim is STILL TRUE (pure truncation "the annual assessment is \$250", pure stutter "a rock and a rock band from Texas") - a LABEL-MAPPING hole (omission → label 0 is wrong when the residual claim stays entailed), not a judge-capacity failure; escalation to gpt-oss-120b NOT triggered - a larger judge answers the same question the same way
+- **Still-entailed filter (deterministic, on existing columns)** - drop kept rows with nli_fwd(seed → claim) ≥ 0.8: catches 6/7 eyeballed mislabels, residual precision ~0.97; the sacrificed rows are truncation junk and typo-swaps NLI reads as near-identical, while fluent semantic corruptions (false dates, flipped comparisons, negations) all sit at low forward entailment and survive - the filter trades junk for purity
+- **Final artifact `R10-H111_pairs_final.parquet`** - 26,142 pairs: 23,160 label-0 (procedural 11,518 / quantitative 5,331 / scientific 5,327, plus 984 reclaimed from the NLI-paraphrase band - the contrastive judge exposing hallucinations NLI called paraphrase) + 2,982 judge-certified label-1 paraphrases; negative delta mix omission 13,968 / other-factual 4,112 / entity-swap 3,907 / number-change 893 / negation 264 / hedge-deletion 16
+- **Yield vs target** - 26,142 is under the registered 60-80k; end-to-end efficiency 260,452 recons → 23,160 negatives (8.9%). Extension rounds NOT launched pre-training: repeated rounds face dedup pressure on the same 112k seeds, and the lane's mechanism is unproven until a training draw - scale-after-signal, per the R9-H106 lesson
+- **Artifacts** - `R10-H111_stage1_judged.parquet` (15.5MB, full judge output), `R10-H111_pairs_final.parquet`, `logs/R10-H111_judge.log`
+
+**Track split (2026-08-05, author's order)**: dataset-GENERATION-method research continues in its own canonical log, `semantic-dataset-enhancements.md`, under task code **DR** (dataset refinement; first entries: the targeted-corruption fanout, DR-H112 through DR-H116). Hypothesis H-numbers remain global across both documents; training verdicts stay here.

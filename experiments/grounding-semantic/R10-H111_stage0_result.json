@@ -1,0 +1,153 @@
+{
+ "model_used": "facebook/mbart-large-50",
+ "fidelity_at_p0": 0.9966019417475728,
+ "dropout_mechanism": "model.train() + set p on every nn.Dropout module AND every float `dropout`/`activation_dropout` attr (Bart-family F.dropout paths); greedy decode, noise source is dropout only",
+ "fluency_referee": "gpt2 length-normalized NLL, threshold p95 of the p=0.05 distribution (EN-only referee - seeds are EN; multilingual limitation recorded)",
+ "nli_referee": "MoritzLaurer/mDeBERTa-v3-base-mnli-xnli, both directions, argmax entailment",
+ "scientific_seed_source": "gfissore/arxiv-abstracts-2021 (streaming; arXiv metadata mirror, CC0; no pubmed material)",
+ "per_p": {
+  "0.05": {
+   "paraphrase": 0.9013,
+   "drift": 0.0485,
+   "noise": 0.0502,
+   "exact_match": 0.886,
+   "n": 2868
+  },
+  "0.1": {
+   "paraphrase": 0.8291,
+   "drift": 0.1224,
+   "noise": 0.0485,
+   "exact_match": 0.7165,
+   "n": 2868
+  },
+  "0.15": {
+   "paraphrase": 0.5554,
+   "drift": 0.3818,
+   "noise": 0.0628,
+   "exact_match": 0.3278,
+   "n": 2868
+  },
+  "0.2": {
+   "paraphrase": 0.1688,
+   "drift": 0.6702,
+   "noise": 0.1611,
+   "exact_match": 0.0268,
+   "n": 2868
+  },
+  "0.3": {
+   "paraphrase": 0.0035,
+   "drift": 0.3567,
+   "noise": 0.6398,
+   "exact_match": 0.0,
+   "n": 2868
+  },
+  "0.4": {
+   "paraphrase": 0.0,
+   "drift": 0.0457,
+   "noise": 0.9543,
+   "exact_match": 0.0,
+   "n": 2868
+  }
+ },
+ "per_register": {
+  "procedural": {
+   "0.05": {
+    "paraphrase": 0.8815,
+    "drift": 0.0751,
+    "noise": 0.0434
+   },
+   "0.1": {
+    "paraphrase": 0.8021,
+    "drift": 0.1534,
+    "noise": 0.0444
+   },
+   "0.15": {
+    "paraphrase": 0.5312,
+    "drift": 0.4222,
+    "noise": 0.0466
+   },
+   "0.2": {
+    "paraphrase": 0.1915,
+    "drift": 0.6603,
+    "noise": 0.1481
+   },
+   "0.3": {
+    "paraphrase": 0.0063,
+    "drift": 0.382,
+    "noise": 0.6116
+   },
+   "0.4": {
+    "paraphrase": 0.0,
+    "drift": 0.0487,
+    "noise": 0.9513
+   }
+  },
+  "quantitative": {
+   "0.05": {
+    "paraphrase": 0.9122,
+    "drift": 0.0282,
+    "noise": 0.0596
+   },
+   "0.1": {
+    "paraphrase": 0.8418,
+    "drift": 0.1073,
+    "noise": 0.0509
+   },
+   "0.15": {
+    "paraphrase": 0.61,
+    "drift": 0.312,
+    "noise": 0.078
+   },
+   "0.2": {
+    "paraphrase": 0.1961,
+    "drift": 0.6143,
+    "noise": 0.1896
+   },
+   "0.3": {
+    "paraphrase": 0.0011,
+    "drift": 0.3044,
+    "noise": 0.6945
+   },
+   "0.4": {
+    "paraphrase": 0.0,
+    "drift": 0.0477,
+    "noise": 0.9523
+   }
+  },
+  "scientific": {
+   "0.05": {
+    "paraphrase": 0.91,
+    "drift": 0.042,
+    "noise": 0.048
+   },
+   "0.1": {
+    "paraphrase": 0.843,
+    "drift": 0.107,
+    "noise": 0.05
+   },
+   "0.15": {
+    "paraphrase": 0.528,
+    "drift": 0.408,
+    "noise": 0.064
+   },
+   "0.2": {
+    "paraphrase": 0.122,
+    "drift": 0.731,
+    "noise": 0.147
+   },
+   "0.3": {
+    "paraphrase": 0.003,
+    "drift": 0.381,
+    "noise": 0.616
+   },
+   "0.4": {
+    "paraphrase": 0.0,
+    "drift": 0.041,
+    "noise": 0.959
+   }
+  }
+ },
+ "best_p": 0.2,
+ "drift_yield_at_best_p": 0.6702,
+ "examples_path": "/home/lab/workspace/private/ai-assistants/groundrails/experiments/grounding-semantic/R10-H111_eyeball.md"
+}

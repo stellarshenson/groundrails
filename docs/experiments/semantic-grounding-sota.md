@@ -13,9 +13,10 @@ Rounds 5-8 did not change what ships. They produced a **candidate successor** - 
 Two designs in this document, one deployed.
 
 - **Ships** - the two-cross-encoder OpenVINO int8 cascade described below, macro-F1 **0.789** end-to-end / **0.796** out-of-fold on the private gold, warm mean 585 ms per claim
-- **Candidate, not shipped** - a single `mmBERT-base` cross-encoder (307.5M) that beats the public incumbent 3/3 in-domain DECISIVE and blind across every draw; under the PRIMARY read (windowed decomposed-min, R8-H101 supersession) the holder recipe reads blind mean **0.7172 ± 0.0159 over 3 draws** (0.7355 / 0.7097 / 0.7065; run-to-run noise ~±0.03 measured by R8-H100, the windowed formula lift is positive on all three draws: +0.0143/+0.0180/+0.0078); the incumbent beat is robust and the sole remaining losing subset is finqa (numeric-derivation blindness, isolated by the failure analysis; its windowing penalty is checkpoint-dependent: -0.002/-0.027/-0.082)
+- **Candidate, not shipped - CLEAN PROTOCOL (2026-08-04)** - a single `mmBERT-base` cross-encoder (307.5M) trained on PUBLIC data only: no private gold, no RAGBench, nothing client-derived anywhere in training. Best clean checkpoint `models/R9-H105-mmbert-dann-clean`: blind RAGBench **0.7047** under the PRIMARY windowed read (truncated 0.6937, 8/10 subsets vs the incumbent's 0.6461), full private gold (2,752 rows, fully held out) **0.8788**; clean-recipe expectation over 2 draws **0.7031** blind / ~0.85 gold_full. This is the first candidate whose gold numbers are genuine held-out performance - see the clean configuration section below for the model and dataset recipes
+- **Superseded lineage (protocol-disqualified 2026-08-03)** - the earlier holder recipe (0.7172 ± 0.0159 over 3 draws, best draw 0.7355) trained on 76,865 private-gold teacher pairs and is disqualified as a deliverable under the author's clean-data order; its draws remain recorded as lineage. The clean retrain proved the private pairs non-load-bearing: blind −0.0125 (inside 1 sd), gold held ≥ 0.82. finqa remains the sole losing subset in both lines (numeric-derivation blindness, isolated by the failure analysis)
 - **The blind gate now exists and has been partially cleared** - the R8-H77 RAGBench arena (10 subsets, seen by NEITHER model, RAGBench excluded from every training mix); the two-member ensemble R8-H88 (ERM + DANN students, unweighted mean) is the first result above the incumbent at 0.6470, recorded as a diagnostic (614M total, over the 400M single-model ceiling). No SINGLE model has cleared the gate; nothing here supersedes the cascade
-- **The benchmark ladder (blind RAGBench mean, frozen gate), stated as recipe means under the primary read (windowed decomposed-min, R8-H101) with the measured noise bar (~±0.03, R8-H100)** - incumbent 0.6461 → frozen H92 ensemble 0.6893 (deterministic) → **full-762k DANN lambda-0.02 recipe, primary-read mean 0.7172 ± 0.0159 over 3 draws (0.7355 / 0.7097 / 0.7065; best draw 9/10 subsets)** → **author-set target 0.74, read against the recipe mean (distance 0.0228, ~1.4 sd)**; robust findings: every full-mix draw beats the incumbent (margins > noise), the decomposition and windowing formula lifts replicate across all three draws (windowing +0.0143/+0.0180/+0.0078), the H96 curriculum refutation stands (margin 0.049); demoted to within-noise by R8-H100: the DANN-vs-ERM (+0.0248), lambda (−0.0300), data (+0.0145), and trunk (−0.0093) single-run attributions - all open pending multi-seed means; the LOCO-HaluEval and RAGTruth-aggregation proxies are invalidated; finqa is the sole losing subset (numeric-derivation blindness, checkpoint-dependent windowing penalty); the recipe as-is does not meet 0.74 in expectation - reaching it needs a registered lever with effect > noise (transfer ranking: token-head at full scale; decoder scorer pending budget word) - experiments log, round 8 amendments
+- **The benchmark ladder (blind RAGBench mean, frozen gate), stated as recipe means under the primary read (windowed decomposed-min, R8-H101) with the measured noise bar (~±0.03, R8-H100)** - incumbent 0.6461 → frozen H92 ensemble 0.6893 (deterministic) → full-762k DANN lambda-0.02 recipe (private-contaminated lineage), primary-read mean 0.7172 ± 0.0159 over 3 draws → **CLEAN recipe (public data only, R9-H105): 0.7031 over 2 draws (0.7047 / 0.7015), the deliverable line** → **author-set target 0.74, read against the clean recipe mean (distance 0.0369)**; round-9 closures: the decomposed hard-min formula is PROVEN optimal (P-C: every fixed softening loses, headroom +0.0000; P-B: the sentence-exclusion class is dead by oracle bound), post-aggregation dual-head fusion fired on frozen H102 (P-A: +0.0051) but KILLED at clean scale (R9-H106: fused 0.6995 ≤ score 0.6997 - the complementarity was checkpoint-specific); robust findings: every full-mix draw beats the incumbent (margins > noise), the decomposition and windowing formula lifts replicate across all three draws (windowing +0.0143/+0.0180/+0.0078), the H96 curriculum refutation stands (margin 0.049); demoted to within-noise by R8-H100: the DANN-vs-ERM (+0.0248), lambda (−0.0300), data (+0.0145), and trunk (−0.0093) single-run attributions - all open pending multi-seed means; the LOCO-HaluEval and RAGTruth-aggregation proxies are invalidated; finqa is the sole losing subset (numeric-derivation blindness, checkpoint-dependent windowing penalty); the recipe as-is does not meet 0.74 in expectation - reaching it needs a registered lever with effect > noise (transfer ranking: token-head at full scale; decoder scorer pending budget word) - experiments log, round 8 amendments
 - **Unchanged by rounds 5-8** - every shipped component, threshold, latency and footprint figure below
 - **Number discipline** - the experiments log's rounds 5-6 quote "the shipped cascade, macro-F1 0.824"; 0.824 belongs to the retired 6-model + lexical stack, not to this design, whose figures are 0.789 end-to-end and 0.796 out-of-fold
 
@@ -294,9 +295,94 @@ Every step through the identical frozen gate, RAGBench excluded from all trainin
 | R8-H100 | variance probe - verbatim H90 replicate | 0.6918 (gap 0.0295 on identical recipe) | Demotion fired - run-to-run noise ~±0.03; single-run cross-config attributions demoted; recipe mean 0.7066 (n=2) |
 | incumbent | `lettucedect-v2-mmbert-base` | 0.6461 | the line to beat |
 
-### Current best blind configuration (R8-H90, 2026-08-01)
+### Current best CLEAN configuration (R9-H105, 2026-08-04) - no private data in training
 
-The strongest legal blind read is now ONE model plus the decomposed formula - no ensemble.
+The deliverable line: one public-data-only model plus the decomposed formula. Nothing private, nothing client-derived, no RAGBench anywhere in training - the first configuration whose private-gold numbers are genuine held-out measurements.
+
+**Model recipe** (checkpoint `models/R9-H105-mmbert-dann-clean`, trainer `experiments/grounding-semantic/R9-H105_clean_mix.py`):
+
+- **Architecture** - `jhu-clsp/mmBERT-base` cross-encoder, 307.5M (196.6M of it the 256k multilingual embedding table), CLS → linear → sigmoid per (sentence, evidence-window) pair; nothing exotic at inference
+- **Objective** - BCE on the pair label + DANN: a 12-way corpus-group discriminator through a gradient reversal layer, Ganin ramp to lambda 0.02; equilibrium domain-acc ~0.55 vs chance 0.083
+- **Optimization** - one epoch over the mix (14,285 steps), MAX_LEN 512, batch 48, lr 1e-5, 10% warmup, clip 1.0, SEED 0 (pins the data split only; init and batch order sample run noise)
+- **Cost** - ~5h on one 96GB GPU per draw
+- **Serving read (the PRIMARY formula, proven optimal in round 9)** - decompose the response into sentences (regex on terminal punctuation, min 25 chars, cap 12); score each sentence against 1,500-char windows (stride 750) over the FULL text of every evidence chunk; per sentence MAX over all windows of all chunks (OR over evidence); per response hard MIN over sentences (AND over claims). Round 9 closed the formula question: hard-min beats every fixed softening (headroom +0.0000) and every sentence-exclusion rule (oracle bound)
+
+**Dataset recipe** - 685,670 pairs, 12 corpus groups, public sources only, mean target 0.482:
+
+| source | pairs (approx) | contribution |
+|---|---|---|
+| RAGTruth EN train | 15k | span-annotated responses; label = no evident-conflict AND no baseless-info |
+| RAGTruth translations (de, fr, es, it, pl, hu, cn) | 106k | the multilingual carrier |
+| HaluEval (qa + summarization) | 40k | synthetic hallucination pairs |
+| PsiloQA | 64k | multilingual QA hallucinations |
+| VitaminC | 371k | near-miss evidence negatives - the boundary-sharpening mass |
+| TabFact | 93k | tabular register (the R8-H87 lever) |
+
+- **Excluded by protocol** - ALL private/client data (the former 76,865 teacher pairs are eval-only now) and RAGBench (never touched by anything, ever)
+- **Test sets, both fully held out** - RAGBench blind (frozen R8-H77 gate, 10 subsets, 2,264 responses) and the full private gold (2,752 claims)
+
+**Candidate lanes - staged, NOT in the trained recipe** (round 10; each enters the table above only if its training draw beats the 0.7031 clean mean):
+
+| lane | pairs | mechanism |
+|---|---|---|
+| R10-H107 procedural-doc register | 83,672 | emanual/techqa-register pairs from public manuals + governance docs, incl. 4,042 corruption negatives |
+| R10-H108 quantitative near-miss | 61,184 | FEVEROUS/InfoTabs/SciTab numeric-derivation pairs + 33,176 corruptions |
+| R10-H111 surrogate generation | 26,142 | mBART-50 MC-dropout p=0.2 reconstruction of public seed statements (the dial: identity → paraphrase → fluent hallucination → noise); cascade referee: deterministic degeneracy gates → NLI → Qwen3-32B-FP8 contrastive judge ("did factual content change" vs the clean seed, delta-typed) → accidental-regrounding drop → still-entailed drop (nli_fwd ≥ 0.8); 23,160 delta-typed label-0 (omission 13,968 / other-factual 4,112 / entity-swap 3,907 / number-change 893 / negation 264 / hedge-deletion 16) + 2,982 judge-certified label-1 paraphrases; artifact `R10-H111_pairs_final.parquet` |
+
+**Appendix - synthetic dataset enhancement (DR track): targeted corruption and debris reduction**
+
+Synthetic hallucination pairs are generated, not harvested, because the registers where the blind residual lives are contamination-walled; the generation method itself is a research object (canonical log: `experiments/semantic-dataset-enhancements.md`). The second-generation method corrupts only chosen spans of a clean seed - the rest stays verbatim by construction - which collapses the debris (garbage output) that dominated full-sentence regeneration.
+
+- **Why debris happens** - autoregressive decoding compounds errors: with the whole sentence free to regenerate, one derailed token cascades under greedy decode and produces truncation or repetition junk; measured at 62.2% of output at the dropout setting that maximizes drift (R10-H111)
+- **The fix** - force-decode the clean tokens outside a chosen target span, free the model only inside it; out-of-span text is byte-identical to the seed, so the cascade is structurally impossible and only the few in-span tokens can misfire
+- **Where to corrupt** - an empirical distribution over sequence positions fitted from the 12,756 span-annotated real LLM hallucinations in RAGTruth train (position x length histogram, KS D = 0.008 vs empirical), snapped to typed factual loci (numbers, entities, negations, hedges) via NER/POS with a quota inverting the delta-type famine; 97.9% snap rate
+- **Measured debris reduction** - full-sentence regeneration 62.2% → cross-attention blinding 14.3% → masked-span infilling 6.2% → deterministic typed swaps 0.2%; all three targeted engines passed their pre-registered kill-gates (DR-H114, DR-H112, DR-H113)
+- **Certified-yield gain** - end-to-end usable-pair rate 8.9% (full-sentence) → ~30% (blinding, post-veto) → ~49% (infilling, estimated) → ~98% (typed swaps on the four surviving operators); certified purity 96-99% on swaps
+- **Mechanism portfolio** - typed swaps mint the famine classes (number-change, negation, comparative, unit) at guaranteed volume but read as obvious severity; span blinding and infilling produce the fluent model-natural fills, with blinding the main source of subtle negatives; every stream passes the same adjudication cascade (degeneracy gates → NLI → contrastive LLM judge answering only "did factual content change" vs the clean seed → accidental-regrounding drop)
+- **Label purity guards, all measured** - accidental-regrounding drop (corrupted claim coincidentally supported: killed the date and entity swap operators at 7.4% / 21.4% leak); still-entailed veto nli_fwd ≥ 0.8 (kills still-true truncations; executes only 0.5-2.4% of certified swap negatives - safe); ban lists and co-mention occlusion against copy-through (evasion 6.0%)
+- **Status** - kill-gates adjudicated 2026-08-05: three engines pass (infilling, blinding, typed swaps), the dropout severity-dial variant (DR-H115) KILLED on copy-through by its two-arm gate; pilot-scale generation and the training draw that decides recipe admission are pending
+
+**Candidate serving pipeline** - response + retrieved chunks in → grounded-probability out; one model, deterministic, no cascade:
+
+```mermaid
+flowchart LR
+    IN["Response +<br/>retrieved chunks"] --> SENT["sentence decomposition<br/>terminal-punctuation regex<br/>min 25 chars, cap 12"]
+    IN --> WIN["evidence windowing<br/>1,500-char windows<br/>stride 750, FULL chunk text"]
+    SENT --> XE["mmBERT cross-encoder<br/>every (sentence, window) pair<br/>CLS → linear → sigmoid"]
+    WIN --> XE
+    XE --> MAX["per sentence: MAX<br/>over all windows, all chunks<br/>(OR over evidence)"]
+    MAX --> MIN["per response: hard MIN<br/>over sentences<br/>(AND over claims)"]
+    MIN --> OUT(["grounded probability"])
+
+    style IN stroke:#0284c7,stroke-width:2px
+    style SENT stroke:#a855f7,stroke-width:2px
+    style WIN stroke:#a855f7,stroke-width:2px
+    style XE stroke:#a855f7,stroke-width:2px
+    style MAX stroke:#10b981,stroke-width:2px
+    style MIN stroke:#10b981,stroke-width:2px
+    style OUT stroke:#10b981,stroke-width:3px
+```
+
+- **Cost shape** - O(sentences × windows) forward passes per response, batched into padded forwards; no per-claim cascade routing, no thresholds to fit
+- **The formula is proven, not chosen** - round 9 closed every alternative by measurement: hard-min beats all fixed softenings (headroom +0.0000, P-C), sentence exclusion is dead by oracle bound (P-B), and the round-2 whole-response single pass reads 0.6538 vs 0.7047 on identical weights - the decomposition carries the signal
+- **Extension closed (2026-08-05)** - R9-H106 (token head + post-aggregation fusion on the clean mix) KILLED on its paired kill: fused 0.6995 ≤ score 0.6997. The P-A complementarity (+0.0051 on frozen H102) was a checkpoint property, not an architecture property - the clean draw's token head inverted its subset profile and left nothing to harvest. The single-head pipeline above stands as-is
+
+**Measured results (clean line)**:
+
+| read | draw 1 (best) | draw 2 | clean mean (n=2) |
+|---|---|---|---|
+| blind windowed (PRIMARY) | **0.7047** | 0.7015 | **0.7031** |
+| blind truncated | 0.6937 | 0.6862 | 0.6900 |
+| gold_full (2,752 rows, held out) | **0.8788** | 0.8240 | 0.8514 |
+| RAGTruth EN / non-EN gates | 0.8382 / 0.8402 | 0.8361 / 0.8337 | all DECISIVE |
+
+- **Incumbent beat** - 0.7047 vs lettucedect-v2's 0.6461 (+0.0586), 8/10 subsets; finqa is the sole loss (numeric-derivation blindness); quote the n=2 mean 0.7031 as the honest planning number
+- **The clean protocol is costless** - removing the private pairs moved blind −0.0125 (inside 1 sd) and gold stayed ≥ 0.82 on both draws; the private teacher labels were not load-bearing
+- **Pending upgrade** - R9-H106 (same clean recipe, two heads, parameter-free post-aggregation fusion; P-A measured the mechanism at +0.0051 deterministic) supersedes this section if its paired bar fires
+
+### Superseded lineage - best contaminated configuration (R8-H90, 2026-08-01; protocol-disqualified 2026-08-03)
+
+Retained for lineage: the strongest read of the private-contaminated line. Disqualified as a deliverable because its mix included 76,865 private-gold teacher pairs.
 
 - **Architecture** - standard mmBERT-base cross-encoder, 307.5M, CLS → linear → sigmoid per (sentence, chunk) pair, MAX_LEN 512; nothing exotic at inference; checkpoint `models/R8-H90-mmbert-dann-full`
 - **Training** - the FULL legal mix, 762,535 pairs / 13 corpus groups (private soft labels, RAGTruth EN + 7 translations, HaluEval, PsiloQA, VitaminC, TabFact), one epoch, BCE + DANN (N-way corpus discriminator through a gradient reversal layer, Ganin ramp to lambda 0.02); RAGBench never touched
@@ -332,6 +418,8 @@ Depth and vocabulary, not parameter count, decide what a sub-400M budget can hol
 ## Measurement validity - what the private gold can and cannot prove
 
 Rounds 7 and 8 established that the private gold measures deployment fit, not general capability, and that it cannot measure generalisation at any sample size. Every number in this document is read under these three constraints.
+
+- **Round 9 changes the gold's role, not its limits** - under the clean protocol (2026-08-03) no model trains on any private trace, so the full 2,752-row gold is now a genuinely held-out test set and the clean line's gold numbers (0.8240-0.8788 across draws) are real held-out performance - the train/test leakage concern below no longer applies to the CLEAN line. The evidence-overlap caveat still stands: gold measures deployment fit on one interconnected corpus, not generalisation to unseen documents
 
 - **Transfer fails in BOTH directions** - the shipped reranker reads 0.8619 AUC on the private gold and 0.6432 on RAGTruth EN, a collapse of -0.219; the public incumbent reads 0.7095 and 0.7039, flat to within 0.006
 - **Our 0.8619 is domain specialisation, not general grounding capability** - it does not travel, and no number measured on this gold may be quoted as if it does

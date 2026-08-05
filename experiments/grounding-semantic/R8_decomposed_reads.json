@@ -534,5 +534,206 @@
     "mean": 0.69872,
     "wins": 8,
     "model": "models/R8-H100-mmbert-dann-draw3"
+  },
+  "R9-H105": {
+    "per_subset": {
+      "covidqa": {
+        "n": 245,
+        "auc": 0.803,
+        "f1": 0.7105,
+        "lettuce_auc": 0.7355
+      },
+      "delucionqa": {
+        "n": 184,
+        "auc": 0.7505,
+        "f1": 0.5366,
+        "lettuce_auc": 0.7929
+      },
+      "emanual": {
+        "n": 132,
+        "auc": 0.6241,
+        "f1": 0.6529,
+        "lettuce_auc": 0.5999
+      },
+      "expertqa": {
+        "n": 203,
+        "auc": 0.7684,
+        "f1": 0.6566,
+        "lettuce_auc": 0.6503
+      },
+      "finqa": {
+        "n": 250,
+        "auc": 0.6639,
+        "f1": 0.5833,
+        "lettuce_auc": 0.717
+      },
+      "hagrid": {
+        "n": 250,
+        "auc": 0.6424,
+        "f1": 0.5915,
+        "lettuce_auc": 0.5992
+      },
+      "hotpotqa": {
+        "n": 250,
+        "auc": 0.6827,
+        "f1": 0.5728,
+        "lettuce_auc": 0.5976
+      },
+      "pubmedqa": {
+        "n": 250,
+        "auc": 0.6201,
+        "f1": 0.5544,
+        "lettuce_auc": 0.5162
+      },
+      "tatqa": {
+        "n": 250,
+        "auc": 0.7091,
+        "f1": 0.477,
+        "lettuce_auc": 0.6156
+      },
+      "techqa": {
+        "n": 250,
+        "auc": 0.6732,
+        "f1": 0.6635,
+        "lettuce_auc": 0.6363
+      }
+    },
+    "mean": 0.69374,
+    "wins": 8,
+    "model": "models/R9-H105-mmbert-dann-clean"
+  },
+  "R9-H105-draw2": {
+    "per_subset": {
+      "covidqa": {
+        "n": 245,
+        "auc": 0.7726,
+        "f1": 0.6119,
+        "lettuce_auc": 0.7355
+      },
+      "delucionqa": {
+        "n": 184,
+        "auc": 0.7573,
+        "f1": 0.5876,
+        "lettuce_auc": 0.7929
+      },
+      "emanual": {
+        "n": 132,
+        "auc": 0.6108,
+        "f1": 0.4261,
+        "lettuce_auc": 0.5999
+      },
+      "expertqa": {
+        "n": 203,
+        "auc": 0.7303,
+        "f1": 0.6344,
+        "lettuce_auc": 0.6503
+      },
+      "finqa": {
+        "n": 250,
+        "auc": 0.6393,
+        "f1": 0.701,
+        "lettuce_auc": 0.717
+      },
+      "hagrid": {
+        "n": 250,
+        "auc": 0.6573,
+        "f1": 0.628,
+        "lettuce_auc": 0.5992
+      },
+      "hotpotqa": {
+        "n": 250,
+        "auc": 0.6551,
+        "f1": 0.539,
+        "lettuce_auc": 0.5976
+      },
+      "pubmedqa": {
+        "n": 250,
+        "auc": 0.5925,
+        "f1": 0.5841,
+        "lettuce_auc": 0.5162
+      },
+      "tatqa": {
+        "n": 250,
+        "auc": 0.7591,
+        "f1": 0.5707,
+        "lettuce_auc": 0.6156
+      },
+      "techqa": {
+        "n": 250,
+        "auc": 0.6872,
+        "f1": 0.6717,
+        "lettuce_auc": 0.6363
+      }
+    },
+    "mean": 0.68615,
+    "wins": 8,
+    "model": "models/R9-H105-draw2"
+  },
+  "R9-H106": {
+    "per_subset": {
+      "covidqa": {
+        "n": 245,
+        "auc": 0.7691,
+        "f1": 0.6341,
+        "lettuce_auc": 0.7355
+      },
+      "delucionqa": {
+        "n": 184,
+        "auc": 0.7694,
+        "f1": 0.5543,
+        "lettuce_auc": 0.7929
+      },
+      "emanual": {
+        "n": 132,
+        "auc": 0.5381,
+        "f1": 0.6754,
+        "lettuce_auc": 0.5999
+      },
+      "expertqa": {
+        "n": 203,
+        "auc": 0.7196,
+        "f1": 0.6385,
+        "lettuce_auc": 0.6503
+      },
+      "finqa": {
+        "n": 250,
+        "auc": 0.6693,
+        "f1": 0.6222,
+        "lettuce_auc": 0.717
+      },
+      "hagrid": {
+        "n": 250,
+        "auc": 0.6255,
+        "f1": 0.6202,
+        "lettuce_auc": 0.5992
+      },
+      "hotpotqa": {
+        "n": 250,
+        "auc": 0.665,
+        "f1": 0.5765,
+        "lettuce_auc": 0.5976
+      },
+      "pubmedqa": {
+        "n": 250,
+        "auc": 0.6357,
+        "f1": 0.5459,
+        "lettuce_auc": 0.5162
+      },
+      "tatqa": {
+        "n": 250,
+        "auc": 0.7527,
+        "f1": 0.5581,
+        "lettuce_auc": 0.6156
+      },
+      "techqa": {
+        "n": 250,
+        "auc": 0.7121,
+        "f1": 0.628,
+        "lettuce_auc": 0.6363
+      }
+    },
+    "mean": 0.6856500000000001,
+    "wins": 7,
+    "model": "models/R9-H106-twohead-clean"
   }
 }

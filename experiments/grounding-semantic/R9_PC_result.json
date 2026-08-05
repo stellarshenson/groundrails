@@ -1,0 +1,122 @@
+{
+  "per_subset": {
+    "covidqa": {
+      "hard_min": 0.7755,
+      "mean": 0.768,
+      "softmin_tau0.5": 0.7717,
+      "softmin_tau1": 0.7694,
+      "softmin_tau2": 0.7684,
+      "softmin_tau4": 0.7679,
+      "drop_argmin": 0.7395
+    },
+    "delucionqa": {
+      "hard_min": 0.8072,
+      "mean": 0.8256,
+      "softmin_tau0.5": 0.8314,
+      "softmin_tau1": 0.8295,
+      "softmin_tau2": 0.828,
+      "softmin_tau4": 0.8251,
+      "drop_argmin": 0.7524
+    },
+    "emanual": {
+      "hard_min": 0.7718,
+      "mean": 0.6919,
+      "softmin_tau0.5": 0.7094,
+      "softmin_tau1": 0.7022,
+      "softmin_tau2": 0.6967,
+      "softmin_tau4": 0.6937,
+      "drop_argmin": 0.727
+    },
+    "expertqa": {
+      "hard_min": 0.8346,
+      "mean": 0.8327,
+      "softmin_tau0.5": 0.8409,
+      "softmin_tau1": 0.8387,
+      "softmin_tau2": 0.8359,
+      "softmin_tau4": 0.835,
+      "drop_argmin": 0.8314
+    },
+    "finqa": {
+      "hard_min": 0.6711,
+      "mean": 0.6159,
+      "softmin_tau0.5": 0.6433,
+      "softmin_tau1": 0.632,
+      "softmin_tau2": 0.6215,
+      "softmin_tau4": 0.6176,
+      "drop_argmin": 0.6333
+    },
+    "hagrid": {
+      "hard_min": 0.6307,
+      "mean": 0.5456,
+      "softmin_tau0.5": 0.5591,
+      "softmin_tau1": 0.5537,
+      "softmin_tau2": 0.5503,
+      "softmin_tau4": 0.5485,
+      "drop_argmin": 0.602
+    },
+    "hotpotqa": {
+      "hard_min": 0.7246,
+      "mean": 0.6556,
+      "softmin_tau0.5": 0.6579,
+      "softmin_tau1": 0.6567,
+      "softmin_tau2": 0.6561,
+      "softmin_tau4": 0.6559,
+      "drop_argmin": 0.6317
+    },
+    "pubmedqa": {
+      "hard_min": 0.6058,
+      "mean": 0.4943,
+      "softmin_tau0.5": 0.5106,
+      "softmin_tau1": 0.5012,
+      "softmin_tau2": 0.4965,
+      "softmin_tau4": 0.4963,
+      "drop_argmin": 0.6125
+    },
+    "tatqa": {
+      "hard_min": 0.7742,
+      "mean": 0.6559,
+      "softmin_tau0.5": 0.6919,
+      "softmin_tau1": 0.6728,
+      "softmin_tau2": 0.664,
+      "softmin_tau4": 0.6592,
+      "drop_argmin": 0.6777
+    },
+    "techqa": {
+      "hard_min": 0.7598,
+      "mean": 0.7541,
+      "softmin_tau0.5": 0.7583,
+      "softmin_tau1": 0.7555,
+      "softmin_tau2": 0.7548,
+      "softmin_tau4": 0.7541,
+      "drop_argmin": 0.7676
+    }
+  },
+  "means": {
+    "hard_min": 0.7355,
+    "mean": 0.684,
+    "softmin_tau0.5": 0.6975,
+    "softmin_tau1": 0.6912,
+    "softmin_tau2": 0.6872,
+    "softmin_tau4": 0.6853,
+    "drop_argmin": 0.6975
+  },
+  "hard_min_mean": 0.7355,
+  "best_fixed": "hard_min",
+  "best_fixed_mean": 0.7355,
+  "headroom": 0.0,
+  "threshold_fired": false,
+  "ceiling_non_registrable": 0.74,
+  "ceiling_choices": {
+    "covidqa": "hard_min",
+    "delucionqa": "softmin_tau0.5",
+    "emanual": "hard_min",
+    "expertqa": "softmin_tau0.5",
+    "finqa": "hard_min",
+    "hagrid": "hard_min",
+    "hotpotqa": "hard_min",
+    "pubmedqa": "drop_argmin",
+    "tatqa": "hard_min",
+    "techqa": "drop_argmin"
+  },
+  "model": "/home/lab/workspace/private/ai-assistants/groundrails/models/R8-H90-mmbert-dann-full"
+}

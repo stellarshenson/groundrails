@@ -1,0 +1,91 @@
+{
+ "model_used": "facebook/mbart-large-50",
+ "dropout_mechanism": "unchanged from stage 0 (model.train() + nn.Dropout modules + float dropout attrs, greedy decode); same per-p torch seeds as stage 0",
+ "fluency_referee": "gpt2 length-normalized NLL <= 5.710 (p95 of p=0.05)",
+ "degeneracy_referee": {
+  "distinct3_min": 0.9523809523809523,
+  "maxrun_max": 1.0,
+  "calibration": "p5 / p95 of the p=0.05 reconstruction distribution; failing pair -> noise regardless of NLL"
+ },
+ "nli_referee": "MoritzLaurer/mDeBERTa-v3-base-mnli-xnli, both directions, argmax entailment",
+ "per_p": {
+  "0.1": {
+   "paraphrase": 0.7133,
+   "drift": 0.0797,
+   "noise": 0.207,
+   "degenerate_share": 0.1594,
+   "n": 2860
+  },
+  "0.15": {
+   "paraphrase": 0.4084,
+   "drift": 0.2101,
+   "noise": 0.3815,
+   "degenerate_share": 0.3385,
+   "n": 2860
+  },
+  "0.2": {
+   "paraphrase": 0.0759,
+   "drift": 0.3017,
+   "noise": 0.6224,
+   "degenerate_share": 0.5101,
+   "n": 2860
+  }
+ },
+ "per_register": {
+  "procedural": {
+   "0.1": {
+    "paraphrase": 0.6656,
+    "drift": 0.1072,
+    "noise": 0.2272
+   },
+   "0.15": {
+    "paraphrase": 0.3934,
+    "drift": 0.2294,
+    "noise": 0.3773
+   },
+   "0.2": {
+    "paraphrase": 0.089,
+    "drift": 0.3215,
+    "noise": 0.5895
+   }
+  },
+  "quantitative": {
+   "0.1": {
+    "paraphrase": 0.74,
+    "drift": 0.0604,
+    "noise": 0.1996
+   },
+   "0.15": {
+    "paraphrase": 0.4574,
+    "drift": 0.1683,
+    "noise": 0.3743
+   },
+   "0.2": {
+    "paraphrase": 0.0928,
+    "drift": 0.247,
+    "noise": 0.6602
+   }
+  },
+  "scientific": {
+   "0.1": {
+    "paraphrase": 0.733,
+    "drift": 0.072,
+    "noise": 0.195
+   },
+   "0.15": {
+    "paraphrase": 0.377,
+    "drift": 0.231,
+    "noise": 0.392
+   },
+   "0.2": {
+    "paraphrase": 0.048,
+    "drift": 0.334,
+    "noise": 0.618
+   }
+  }
+ },
+ "best_p": 0.2,
+ "drift_yield_at_best_p": 0.3017,
+ "examples_path": "/home/lab/workspace/private/ai-assistants/groundrails/experiments/grounding-semantic/R10-H111_eyeball2.md",
+ "recons_path": "/home/lab/workspace/private/ai-assistants/groundrails/experiments/grounding-semantic/R10-H111_stage0b_recons.parquet"
+}

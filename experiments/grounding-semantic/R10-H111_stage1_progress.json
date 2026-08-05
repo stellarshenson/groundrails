@@ -1,0 +1,1 @@
+{"recon_total": 260452, "drift_total": 83714, "para_counts": {"procedural": 6583, "quantitative": 2860, "scientific": 3163}, "rows": 96320, "thresholds": {"nll_max": 6.234306645393371, "distinct3_min": 0.9129795396419437, "maxrun_max": 1.0, "charrun_max": 3.0, "symdens_max": 0.06910171017101704}}

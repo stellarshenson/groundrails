@@ -1,0 +1,110 @@
+{
+  "note": "P-B precursor; H90 truncated per-sentence scores; lexicon reconstructed from the failure-analysis prose",
+  "lexicon_terms": 36,
+  "lexicon_provenance": {
+    "report": 8,
+    "category": 28
+  },
+  "per_subset": {
+    "covidqa": {
+      "n": 245,
+      "auc_included": 0.7755,
+      "auc_excluded": 0.7778,
+      "delta": 0.0024,
+      "auc_oracle_drop_argmin": 0.7395,
+      "oracle_delta": -0.0359,
+      "fallback_rate": 0.012
+    },
+    "delucionqa": {
+      "n": 184,
+      "auc_included": 0.7263,
+      "auc_excluded": 0.6797,
+      "delta": -0.0465,
+      "auc_oracle_drop_argmin": 0.7054,
+      "oracle_delta": -0.0208,
+      "fallback_rate": 0.005
+    },
+    "emanual": {
+      "n": 132,
+      "auc_included": 0.7058,
+      "auc_excluded": 0.7119,
+      "delta": 0.0061,
+      "auc_oracle_drop_argmin": 0.641,
+      "oracle_delta": -0.0648,
+      "fallback_rate": 0.0
+    },
+    "expertqa": {
+      "n": 203,
+      "auc_included": 0.8248,
+      "auc_excluded": 0.8104,
+      "delta": -0.0144,
+      "auc_oracle_drop_argmin": 0.8174,
+      "oracle_delta": -0.0073,
+      "fallback_rate": 0.0
+    },
+    "finqa": {
+      "n": 250,
+      "auc_included": 0.6732,
+      "auc_excluded": 0.6905,
+      "delta": 0.0174,
+      "auc_oracle_drop_argmin": 0.6665,
+      "oracle_delta": -0.0066,
+      "fallback_rate": 0.288
+    },
+    "hagrid": {
+      "n": 250,
+      "auc_included": 0.6517,
+      "auc_excluded": 0.6483,
+      "delta": -0.0034,
+      "auc_oracle_drop_argmin": 0.6189,
+      "oracle_delta": -0.0328,
+      "fallback_rate": 0.012
+    },
+    "hotpotqa": {
+      "n": 250,
+      "auc_included": 0.7247,
+      "auc_excluded": 0.7324,
+      "delta": 0.0077,
+      "auc_oracle_drop_argmin": 0.6265,
+      "oracle_delta": -0.0982,
+      "fallback_rate": 0.0
+    },
+    "pubmedqa": {
+      "n": 250,
+      "auc_included": 0.606,
+      "auc_excluded": 0.6017,
+      "delta": -0.0043,
+      "auc_oracle_drop_argmin": 0.6125,
+      "oracle_delta": 0.0065,
+      "fallback_rate": 0.012
+    },
+    "tatqa": {
+      "n": 250,
+      "auc_included": 0.7718,
+      "auc_excluded": 0.7515,
+      "delta": -0.0203,
+      "auc_oracle_drop_argmin": 0.6749,
+      "oracle_delta": -0.0969,
+      "fallback_rate": 0.156
+    },
+    "techqa": {
+      "n": 250,
+      "auc_included": 0.7527,
+      "auc_excluded": 0.7667,
+      "delta": 0.0139,
+      "auc_oracle_drop_argmin": 0.7513,
+      "oracle_delta": -0.0015,
+      "fallback_rate": 0.008
+    }
+  },
+  "mean_included": 0.7212,
+  "mean_excluded": 0.7171,
+  "mean_delta": -0.0042,
+  "mean_oracle_drop_argmin": 0.6854,
+  "mean_oracle_delta": -0.0359,
+  "fallback_rate": 0.0543,
+  "lexicon_match_rate_sentences": 0.1358,
+  "pubmedqa_delta": -0.0043,
+  "pubmedqa_oracle_delta": 0.0065,
+  "pubmedqa_bar": 0.03
+}

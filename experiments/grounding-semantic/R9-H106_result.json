@@ -1,0 +1,46 @@
+{
+  "gold": {
+    "n": 717,
+    "auc_score_head": 0.8063,
+    "auc_token_head": 0.8185,
+    "auc_fused": 0.8228
+  },
+  "gold_full": {
+    "n": 2752,
+    "auc_score_head": 0.808,
+    "auc_token_head": 0.8275,
+    "auc_fused": 0.8286
+  },
+  "ragtruth_en": {
+    "n": 600,
+    "auc_score_head": 0.8422,
+    "auc_token_head": 0.787,
+    "auc_fused": 0.8209
+  },
+  "ragtruth_nonen": {
+    "auc_score_head": 0.8479,
+    "auc_token_head": 0.8216,
+    "per_lang_score": {
+      "de": 0.8494,
+      "fr": 0.8423,
+      "es": 0.8529,
+      "it": 0.8401,
+      "pl": 0.8274,
+      "hu": 0.8291,
+      "cn": 0.8939
+    },
+    "per_lang_token": {
+      "de": 0.8415,
+      "fr": 0.8127,
+      "es": 0.8188,
+      "it": 0.8211,
+      "pl": 0.8107,
+      "hu": 0.7944,
+      "cn": 0.8517
+    }
+  },
+  "params_M": 307.1,
+  "lambda_max": 0.02,
+  "w_tok": 1.0,
+  "mix": "clean (public only, no private pairs)"
+}

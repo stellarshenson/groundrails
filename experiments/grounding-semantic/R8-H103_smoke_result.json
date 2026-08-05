@@ -1,0 +1,4 @@
+{
+  "smoke": true,
+  "steps": 200
+}

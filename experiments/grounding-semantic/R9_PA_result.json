@@ -1,0 +1,67 @@
+{
+  "per_subset": {
+    "covidqa": {
+      "score": 0.7641,
+      "token": 0.7715,
+      "fused": 0.7728
+    },
+    "delucionqa": {
+      "score": 0.7796,
+      "token": 0.8663,
+      "fused": 0.8484
+    },
+    "emanual": {
+      "score": 0.7494,
+      "token": 0.6538,
+      "fused": 0.7107
+    },
+    "expertqa": {
+      "score": 0.7945,
+      "token": 0.7818,
+      "fused": 0.7999
+    },
+    "finqa": {
+      "score": 0.6311,
+      "token": 0.6913,
+      "fused": 0.68
+    },
+    "hagrid": {
+      "score": 0.6216,
+      "token": 0.6393,
+      "fused": 0.6332
+    },
+    "hotpotqa": {
+      "score": 0.7468,
+      "token": 0.6145,
+      "fused": 0.6829
+    },
+    "pubmedqa": {
+      "score": 0.6357,
+      "token": 0.5703,
+      "fused": 0.6093
+    },
+    "tatqa": {
+      "score": 0.6979,
+      "token": 0.7258,
+      "fused": 0.7297
+    },
+    "techqa": {
+      "score": 0.7517,
+      "token": 0.7364,
+      "fused": 0.7564
+    }
+  },
+  "means": {
+    "score": 0.7172,
+    "token": 0.7051,
+    "fused": 0.7223
+  },
+  "verdict_inputs": {
+    "bar_mean": 0.7172,
+    "score_mean_recorded": 0.7172,
+    "token_mean_recorded": 0.7051
+  },
+  "model": "/home/lab/workspace/private/ai-assistants/groundrails/models/R8-H102-mmbert-twohead-full",
+  "window": 1500,
+  "stride": 750
+}
