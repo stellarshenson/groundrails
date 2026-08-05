@@ -1,0 +1,46 @@
+{
+ "generated": {
+  "H112_sentence": 31000,
+  "H112_longform": 0,
+  "H112_longform_docs": 0,
+  "H112_longform_splice_rejects": 0,
+  "H113": 7108,
+  "H113_mix": {
+   "number": 2520,
+   "negation": 2981,
+   "comparative": 1120,
+   "unit": 487
+  },
+  "H114": 23000
+ },
+ "longform_enabled": false,
+ "rows_after_dedup": 61100,
+ "per_engine": {
+  "H112": {
+   "n": 31000,
+   "debris": 0.0761,
+   "debris_kill_bar": 0.124,
+   "debris_kill": false,
+   "usable": 0.844,
+   "nli_fwd_ge08": 0.3171
+  },
+  "H113": {
+   "n": 7102,
+   "debris": 0.0204,
+   "debris_kill_bar": 0.02,
+   "debris_kill": true,
+   "usable": 0.969,
+   "nli_fwd_ge08": 0.0106
+  },
+  "H114": {
+   "n": 22998,
+   "debris": 0.1189,
+   "debris_kill_bar": 0.286,
+   "debris_kill": false,
+   "usable": 0.8529,
+   "nli_fwd_ge08": 0.6987
+  }
+ },
+ "runtime_s": 4870.2,
+ "judge_pass": "pending - GPU1, not run here"
+}

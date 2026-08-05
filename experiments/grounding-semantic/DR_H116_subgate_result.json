@@ -1,0 +1,48 @@
+{
+ "n_docs": 129,
+ "n_spans": 202,
+ "span_attempts": 207,
+ "tokens_min": 311,
+ "tokens_max": 1140,
+ "tokens_mean": 676.6,
+ "sent_mean": 16.57,
+ "spans_per_doc_mean": 1.566,
+ "splice_intact_rate": 1.0,
+ "doc_degen_rate": 0.124,
+ "span_degen_rate": 0.0891,
+ "doc_degen_expected_from_span_rate": 0.136,
+ "doc_degen_all_spans": 0.0543,
+ "per_locus_span_degen": {
+  "entity": {
+   "n": 90,
+   "degen": 0.1222
+  },
+  "negation": {
+   "n": 25,
+   "degen": 0.12
+  },
+  "number_date": {
+   "n": 84,
+   "degen": 0.0357
+  },
+  "positional": {
+   "n": 3,
+   "degen": 0.3333
+  }
+ },
+ "h112_gate_reference": {
+  "pooled_span_degen": 0.0621,
+  "core_loci_span_degen": 0.0944
+ },
+ "bars": {
+  "splice_intact_rate_min": 1.0,
+  "doc_degen_rate_max": 0.124
+ },
+ "bar_note": "doc_degen_rate = share of docs with >=1 degenerate edited span, the compounding 1-(1-g)^K reading of the H116 skeptic amendment; doc_degen_all_spans is the alternative reading under the failed-span revert policy - reported, not gated",
+ "kill_splice": false,
+ "kill_degen": true,
+ "verdict": "SURVIVES",
+ "runtime_s": 35.3,
+ "verdict_executor": "KILL",
+ "adjudication": "main session 2026-08-05 - failed-span revert policy reading, doc_degen_all_spans 5.43% vs bar 12.4%; see canonical doc"
+}

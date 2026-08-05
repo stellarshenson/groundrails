@@ -178,3 +178,42 @@ All four gates ran in one afternoon for ~2 GPU-hours total. The round's headline
 ### Sequencing (registered)
 
 Gate order by cost x information: **H113 first** (CPU + sub-hour judge; also produces the veto-demotion measurement every other candidate needs) → **H114** (30 min, no judge; kills or de-risks the whole blinding family) → **H112** (45 min; the fleet's rank-1 backbone bet) → **H115** (1h two-arm; runs the controlled three-way comparison on the shared targeting) → **H116** GPU gate only after an engine survives. Shared targeting module built once before H112/H114/H115 gates.
+
+## DR-2 - pilot-scale generation (2026-08-05). Pre-registered; author authorized
+
+The pilot converts the three surviving engines into one training lane - the DR lane - sized to replace the H111 lane (26,142 pairs) in the candidate-lane queue. Admission is decided by the training draw recorded in `semantic-grounding-experiments.md`, bar: lane mean over 2 draws blind > the 0.7031 clean mean under the PRIMARY windowed read.
+
+- **Target lane** - ~26k pairs: ~22k certified label-0 negatives + up to ~4k label-1 paraphrase positives reclaimed from still-entailed fills (bidirectional NLI ≥ 0.8 AND judge no-delta - the H111 reclaim rule); if reclaim falls short the lane ships smaller, no forced backfill
+- **Negative mix (caps binding)** - H112 SPAN-INFILL-BAN 55% (~12.1k, core loci only: number_date/negation/entity/positional), H113 TYPED-SWAP hard cap 20% (~4.4k, fingerprint risk - four surviving operators at famine proportions number 45 / negation 20 / comparative 20 / unit 15), H114 XATTN-BLIND 25% (~5.5k, negation + number_date loci 2x overweight per the gate eyeball; seam cleaner mandatory before the degeneracy gates)
+- **Generation volumes (+25% slack over measured yields)** - H112 ~31k spans (0.49 yield), H113 ~5.6k swaps (0.98), H114 ~23k decodes (0.296); seed pool = the H111 public seed pool; dedup exact (seed_id, span_start, replacement) within lane
+- **Certification cascade unchanged from H111 admission** - degeneracy gates (+ H114 seam cleaner) → bidirectional NLI → contrastive judge (Qwen3-32B-FP8, temp 0) → accidental-regrounding drop → still-entailed veto nli_fwd ≥ 0.8 on negatives
+- **Kill bars per engine at pilot scale** - realized debris > 2x its gate measurement (H112 > 12.4%, H113 > 2%, H114 > 28.6%) OR certified yield < half its gate estimate → engine dropped from the mix, lane rebalanced across survivors; pooled 50-pair stratified eyeball precision < 85% → judge escalation to gpt-oss-120b (standing author trigger)
+- **DR-H116 operationalization** - the GPU sub-gate (GPU0, before pilot spend) measures splice integrity and degeneracy only: KILL if char-exact-outside-spans < 100% on any doc OR doc-level degen > 2x the engine bar; judge-dependent doc certification is measured inside the pilot judge pass (expectation ≈ 1-(1-0.49)^1.9 ≈ 72% docs with ≥1 certified span, informational). If the sub-gate survives, up to 20% of the H112 share is delivered long-form (256-2048 tok, pysbd splice, exact char-offset ledger)
+- **Compute plan** - generation + H116 sub-gate on GPU0 (mBART engines fit 24GB); judge pass on GPU1 AFTER the H107/H108 lane training draws release the card; detached with markers, checkpoint parquets throughout
+
+### DR-H116 sub-gate - result (2026-08-05). SURVIVES on adjudication; splice mechanism clean
+
+150 docs assembled (311-1140 tok, mean 16.6 sentences), 129 edited (21 had no core-locus span), 202 spans, 35s GPU0.
+
+- **Splice integrity 100%** (129/129 char-exact outside spans; ledger offsets verified) - the primary kill bar cleared outright
+- **Wrapper adds zero degradation** - span-level degen inside docs 8.9% vs the H112 engine's own gate rate 9.4% on core loci; the blind holds at doc scale
+- **Adjudication (main session)** - the executor gated on the compounding reading (docs with ≥1 degenerate span: 16/129 = 12.40%, vs bar 12.4% - fires by 0.000031, one document on n=129) and returned KILL; the DR-1 registration's binding failed-span policy (degenerate span reverts to its clean sentence char-exact, doc certifies iff ≥1 span certifies) makes all-spans-degenerate the operative doc-waste metric: 7/129 = **5.43%**, well under the bar. Both readings recorded; verdict adjudicated **SURVIVES** - the compounding figure re-counts the engine's known span debris per-doc, which the revert policy exists to neutralize, and the mechanism claim H116 tests (wrapping does not degrade the engine) passes on the span-level comparison
+- **Consequence** - long-form delivery ON: up to 20% of the H112 share as 256-2048-tok docs with exact char-offset ledger, via a top-up run after the sentence-level generation completes (~10 min GPU0, no new code)
+- **Pilot deviations accepted (executor report)** - H113 fluency gate is GPT-2 NLL at the H111 stage-0 threshold 6.2343 (the gate's actual code path; the registration prose said mBART - prose corrected here); H114 degeneracy gated on the RAW decoded span (gate-identical metric) with post-seam degen recorded as a separate column - the seam cleaner converts stutter-fills into clean deletion negatives, both numbers in the parquet; disjoint seed slices per engine on top of exact dedup
+- **Artifacts** - `DR_pilot_engines.py` (shared engine module), `DR_H116_subgate.py`, `DR_H116_subgate_result.json`, `DR_H116_subgate_docs.parquet`, `DR_H116_subgate_spans.parquet`, `logs/DR_pilot_gen.log`
+
+### DR-2 generation - result (2026-08-05). H112 and H114 pass at scale; H113 DROPPED at its pilot bar
+
+61,100 rows after dedup in 81 min GPU0 (`DR_pilot_raw.parquet`, 41 columns incl. nli_fwd/nli_bwd; judge pass pending on GPU1).
+
+| engine | n | realized debris | kill bar | usable | nli_fwd ≥ 0.8 | verdict |
+|---|---|---|---|---|---|---|
+| H112 SPAN-INFILL-BAN | 31,000 | 7.6% | > 12.4% | 84.4% | 31.7% | PASS |
+| H113 TYPED-SWAP | 7,102 | **2.04%** | > 2% | 96.9% | 1.1% | **DROPPED** - bar fired |
+| H114 XATTN-BLIND | 22,998 | 11.9% | > 28.6% | 85.3% | 69.9% | PASS |
+
+- **H113 mechanism note (main-session eyeball of the 145 flagged rows)** - the swaps themselves are clean ("139" → "177", well-formed negation toggles); the debris is SEED-register: the full-pool seed rotation hit code/traceback seeds (issue URLs, diff blocks) the degeneracy gates rightly flag as non-prose, a register the gate's 1,505 evidence-entailed sample never hit at this density (gate 0.2% → pilot 2.04%, 10x). Dropped as registered - same standard as DR-1's date operator; re-admission path is a NEW registration with a seed-register prefilter (CPU-cheap)
+- **Quota deviation recorded (moot with the drop)** - realized H113 operator mix number 35 / negation 42 / comparative 16 / unit 7 vs the registered 45/20/20/15; the supply-redistribution fix did not hold at scale
+- **Lane rebalance** - negatives now from H112 + H114 only; their loci (number_date/negation/entity/positional fills, blinding flips) cover the famine core the swaps were minting
+- **Veto pressure consistent with gates** - H114 still-entailed 69.9% → projected post-veto ~26% vs the gate's 29.6%; H112 31.7%
+- **Long-form top-up** - launched after the sentence-level run under the H116 SURVIVES adjudication: ~6,200 H112 long-form span rows (20% share) into `DR_pilot_longform.parquet`, merged at lane assembly

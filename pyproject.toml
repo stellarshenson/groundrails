@@ -65,6 +65,7 @@ dev = [
     "nncf",                           # INT8 quantization for SaT conversion (notebook 02)
     "onnxruntime>=1.17",              # SaT model conversion (notebooks 02/04)
     "wtpsplit-lite",                  # SaT lite splitter (notebooks 02/04) - verify exact dist name
+    "pysbd",                          # rule-based sentence segmentation (DR-H116 long-form wrapper)
     "rich",                           # notebook rich output
 ]
 semantic = [
