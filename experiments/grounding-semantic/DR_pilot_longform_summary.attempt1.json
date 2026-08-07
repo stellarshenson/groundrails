@@ -1,0 +1,56 @@
+{
+ "target_spans": 6200,
+ "generated_spans": 6201,
+ "rows_after_dedup": 6201,
+ "dedup_skips_vs_pilot_lane": 1119,
+ "docs": 3934,
+ "splice_rejects_during_generation": 0,
+ "splice_integrity_recheck": {
+  "docs_checked": 3934,
+  "docs_char_exact": 3388,
+  "docs_char_exact_rate": 0.86121,
+  "span_offsets_exact": 6201,
+  "n_spans": 6201,
+  "span_offsets_exact_rate": 1.0,
+  "failing_doc_ids": [
+   "DR-LF-00030",
+   "DR-LF-00031",
+   "DR-LF-00032",
+   "DR-LF-00042",
+   "DR-LF-00045"
+  ]
+ },
+ "per_doc": {
+  "spans_mean": 1.576,
+  "spans_max": 7,
+  "chars_mean": 2610.9,
+  "chars_min": 930,
+  "chars_max": 5000,
+  "doc_degen_any": 0.1268,
+  "doc_degen_all_spans": 0.0552
+ },
+ "per_span": {
+  "degen": 0.0831,
+  "degeneracy_pass": 0.9169,
+  "evasion": 0.0821,
+  "usable": 0.8384,
+  "nli_fwd_ge08": 0.3374,
+  "locus_mix": {
+   "entity": 2854,
+   "negation": 466,
+   "number_date": 2634,
+   "positional": 247
+  },
+  "register_mix": {
+   "procedural": 1776,
+   "quantitative": 2893,
+   "scientific": 1532
+  }
+ },
+ "bars": {
+  "h112_debris_kill": 0.124,
+  "debris_kill": false
+ },
+ "runtime_s": 1014.0,
+ "judge_pass": "pending - GPU1, not run here"
+}

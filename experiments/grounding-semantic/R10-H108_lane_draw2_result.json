@@ -1,0 +1,84 @@
+{
+  "gold": {
+    "auc": 0.8199,
+    "f1": 0.7049,
+    "n": 717
+  },
+  "gold_full": {
+    "auc": 0.8579,
+    "f1": 0.7335,
+    "n": 2752
+  },
+  "ragtruth_en": {
+    "auc": 0.814,
+    "f1": 0.725,
+    "n": 600
+  },
+  "ragtruth_nonen": {
+    "auc": 0.8291,
+    "per_lang": {
+      "de": 0.8268,
+      "fr": 0.818,
+      "es": 0.8274,
+      "it": 0.8211,
+      "pl": 0.8191,
+      "hu": 0.8189,
+      "cn": 0.8724
+    }
+  },
+  "params_M": 307.1,
+  "lambda_max": 0.02,
+  "lane": "R10-H108 quantitative-nearmiss-register",
+  "draw": 2,
+  "mix": "clean public-only mix + H108 lane",
+  "mix_rows": 746854,
+  "clean_rows": 685670,
+  "lane_rows": 61184,
+  "dann_groups": 16,
+  "lane_groups": [
+    "quant_corrupt",
+    "quant_feverous",
+    "quant_infotabs",
+    "quant_scitab"
+  ],
+  "train_seconds": 10885.9,
+  "checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/R10-H108-lane-draw2",
+  "reads": {
+    "windowed_primary": {
+      "read": "windowed decomposed-min (1500/750), R8-H101 gate",
+      "per_subset": {
+        "covidqa": 0.7664,
+        "delucionqa": 0.8614,
+        "emanual": 0.6132,
+        "expertqa": 0.7852,
+        "finqa": 0.7072,
+        "hagrid": 0.6354,
+        "hotpotqa": 0.7016,
+        "pubmedqa": 0.5575,
+        "tatqa": 0.7482,
+        "techqa": 0.6612
+      },
+      "mean": 0.70373,
+      "mean_lettuce": 0.64605
+    },
+    "truncated": {
+      "read": "truncated decomposed-min, R8_decomposed_read gate",
+      "per_subset": {
+        "covidqa": 0.7664,
+        "delucionqa": 0.8106,
+        "emanual": 0.5115,
+        "expertqa": 0.7455,
+        "finqa": 0.7057,
+        "hagrid": 0.6455,
+        "hotpotqa": 0.7021,
+        "pubmedqa": 0.5575,
+        "tatqa": 0.7436,
+        "techqa": 0.6563
+      },
+      "mean": 0.6844699999999999,
+      "wins": 8
+    }
+  },
+  "primary_mean": 0.70373,
+  "clean_mean_bar": 0.7031
+}

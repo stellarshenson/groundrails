@@ -1,0 +1,40 @@
+{
+ "source": "DR_pilot_longform.FAILED.parquet",
+ "repair": "doc-granular quarantine of docs carrying an unledgered edit",
+ "mechanism": "internal df.unique(dedup_key) runs AFTER the splice, so a dropped row leaves its edit in doc_corrupt unledgered; same defect class as attempt 1 (cross-lane dedup), internal door",
+ "docs_before": 3380,
+ "rows_before": 5435,
+ "docs_dropped": [
+  "DR-LF-02429"
+ ],
+ "rows_dropped": 3,
+ "docs_shipped": 3379,
+ "rows_shipped": 5432,
+ "docs_char_exact_rate": 1.0,
+ "span_offsets_exact_rate": 1.0,
+ "target_spans": 6200,
+ "shortfall_note": "doc pool exhausted at 4134 assembled docs; ships under target",
+ "per_doc": {
+  "spans_mean": 1.608,
+  "spans_max": 8
+ },
+ "per_span": {
+  "degen": 0.0751,
+  "usable": 0.8479,
+  "nli_fwd_ge08": 0.3411,
+  "locus_mix": {
+   "entity": 2528,
+   "negation": 484,
+   "number_date": 2224,
+   "positional": 196
+  },
+  "register_mix": {
+   "procedural": 1588,
+   "quantitative": 2371,
+   "scientific": 1473
+  }
+ },
+ "h112_debris_bar": 0.124,
+ "debris_kill": false,
+ "judge_pass": "pending - GPU1, after the lane campaign frees the card"
+}

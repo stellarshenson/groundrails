@@ -217,3 +217,22 @@ The pilot converts the three surviving engines into one training lane - the DR l
 - **Lane rebalance** - negatives now from H112 + H114 only; their loci (number_date/negation/entity/positional fills, blinding flips) cover the famine core the swaps were minting
 - **Veto pressure consistent with gates** - H114 still-entailed 69.9% → projected post-veto ~26% vs the gate's 29.6%; H112 31.7%
 - **Long-form top-up** - launched after the sentence-level run under the H116 SURVIVES adjudication: ~6,200 H112 long-form span rows (20% share) into `DR_pilot_longform.parquet`, merged at lane assembly
+
+### DR-2 long-form top-up - result (2026-08-06). SHIPS at 5,432 spans after two ledger defects and a doc-granular repair
+
+The H116 long-form share took three attempts; the engine was never at fault, the row-dedup ORDER was. Final artifact `DR_pilot_longform.parquet`: 5,432 spans over 3,379 docs, 100% char-exact outside spans, 100% span offsets exact, NLI populated.
+
+| metric | value | bar |
+|---|---|---|
+| span degeneracy (debris) | **7.5%** | kill > 12.4% (H112 engine bar) |
+| usable (not degen, not evasion) | 84.8% | - |
+| still-entailed (nli_fwd ≥ 0.8) | 34.1% | veto input, judge decides |
+| docs char-exact outside spans | **100%** (3,379/3,379) | 100% required |
+| spans per doc | 1.61 mean, 8 max | - |
+
+- **Defect class, twice** - a row dropped by dedup AFTER its edit was spliced into the doc leaves an unledgered corruption in `doc_corrupt`: the context reads as clean while carrying a hallucination no span records, which is precisely inverted supervision. Attempt 1 lost rows to the CROSS-LANE dedup (546/3,934 docs, 86.1% char-exact); the fix moved that check before the edit, and attempt 3 then lost one row to the INTERNAL `unique(dedup_key)`, which still ran after the splice (3,379/3,380, 99.97%)
+- **Detection** - the independent recheck (rebuild each doc from its own ledger, compare byte-for-byte against `doc_clean`) caught both; it is not the same test as the in-generation splice check, which validates against the true original and passed in both runs. The recheck is what makes the H116 char-exact guarantee auditable rather than asserted
+- **Remedy** - `DR_pilot_longform_repair.py` drops the offending doc whole (3 rows) and re-verifies to 100% before running the NLI stage; a doc whose context carries an unrecorded corruption is unusable as span supervision even though its own ledgered spans are correct. Quarantined evidence kept: `DR_pilot_longform.attempt1.parquet`, `DR_pilot_longform.FAILED.parquet`
+- **Volume shortfall** - 5,432 of the registered 6,200 spans: the H112 seed slice exhausted at 4,134 assembled docs with 1,552 cross-lane dedup skips. Shipped under target rather than re-seeded, per scale-after-signal
+- **Infrastructure casualty (recorded, not a method finding)** - the container recycle at 23:37 reverted `/dev/shm` from the remounted 32 GB to Docker's 64 MB default and killed both GPU jobs; the lane campaign lost 1,400 steps and restarted from H107 draw 1. DataLoader workers pass every batch through `/dev/shm`, so the default is a latent hang for any training in this container - the remount is now the mandatory first step in the recovery board
+- **Artifacts** - `DR_pilot_longform.parquet`, `DR_pilot_longform_summary.json`, `DR_pilot_longform_topup.py`, `DR_pilot_longform_repair.py`, `logs/DR_pilot_longform.log`, `logs/DR_pilot_longform_repair.log`

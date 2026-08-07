@@ -43,7 +43,7 @@ import numpy as np
 import polars as pl
 import torch
 from torch import nn
-from torch.utils.data import DataLoader, Dataset
+from torch.utils.data import DataLoader, Dataset, Subset
 from transformers import AutoModel, AutoTokenizer
 
 HERE = pathlib.Path(__file__).parent
@@ -62,6 +62,7 @@ SEED = 0
 
 # DANN: the adversarial weight, unchanged from the H90/H105 recipe.
 LAMBDA_MAX = 0.02
+RESUME_EVERY = 1000  # the container is recreated every few hours and kills the draw
 DANN_HIDDEN = 256
 
 # Lineage bars (split-gate era) - kept for comparability only; the admission
@@ -358,19 +359,44 @@ def main():
     print(f"student {STUDENT} + DANN heads  {n_par:.1f}M params  (ceiling 400M)\n", flush=True)
 
     ds = GroupSet(claims, chunks, y, groups, tok)
-    dl = DataLoader(ds, batch_size=BATCH, shuffle=True, collate_fn=ds.collate, num_workers=2)
     opt = torch.optim.AdamW(model.parameters(), lr=LR)
-    n_steps = len(dl)
+    n_steps = (len(ds) + BATCH - 1) // BATCH
     sched = torch.optim.lr_scheduler.OneCycleLR(
         opt, max_lr=LR, total_steps=n_steps, pct_start=WARMUP_FRAC, anneal_strategy="linear"
     )
+
+    # Resume state: the epoch's shuffled order is persisted with the weights, so a
+    # restart continues the SAME permutation from where it stopped - every example
+    # is still seen exactly once and no compute is spent fast-forwarding batches.
+    resume_path = ckpt_dir / "resume.pt"
+    start_step = 0
+    if resume_path.exists():
+        st = torch.load(resume_path, map_location="cuda", weights_only=False)
+        model.load_state_dict(st["model"])
+        opt.load_state_dict(st["opt"])
+        sched.load_state_dict(st["sched"])
+        perm, start_step = st["perm"], st["step"]
+        print(f"resumed from {resume_path} at step {start_step}/{n_steps}\n", flush=True)
+    else:
+        perm = np.random.permutation(len(ds)).tolist()
+
+    dl = DataLoader(Subset(ds, perm[start_step * BATCH:]), batch_size=BATCH,
+                    shuffle=False, collate_fn=ds.collate, num_workers=2)
     task_lossf = nn.BCEWithLogitsLoss()
     domain_lossf = nn.CrossEntropyLoss()
+
+    def save_resume(step):
+        ckpt_dir.mkdir(parents=True, exist_ok=True)
+        tmp = resume_path.with_suffix(".tmp")
+        torch.save({"model": model.state_dict(), "opt": opt.state_dict(),
+                    "sched": sched.state_dict(), "perm": perm, "step": step}, tmp)
+        tmp.replace(resume_path)  # atomic: a kill mid-write cannot corrupt the resume
 
     model.train()
     t0 = time.time()
     dom_correct, dom_total = 0, 0
-    for step, (enc, yy, gg) in enumerate(dl):
+    for i, (enc, yy, gg) in enumerate(dl):
+        step = start_step + i
         enc = {k: v.cuda() for k, v in enc.items()}
         yy, gg = yy.cuda(), gg.cuda()
         # Ganin ramp: lambda grows from 0 to LAMBDA_MAX over training.
@@ -400,6 +426,9 @@ def main():
                 f"lam {lam:.4f}  domain-acc {acc:.3f} (chance {chance:.3f})  ({time.time() - t0:.0f}s)",
                 flush=True,
             )
+        if step and step % RESUME_EVERY == 0:
+            save_resume(step + 1)
+            print(f"  resume point saved at step {step}", flush=True)
 
     ckpt_dir.mkdir(parents=True, exist_ok=True)
     # Persist trunk + both heads; the task head is what the arena scores.
@@ -414,6 +443,7 @@ def main():
     )
     tok.save_pretrained(ckpt_dir)
     base.save_pretrained(ckpt_dir / "trunk")
+    resume_path.unlink(missing_ok=True)  # the draw is done; a stale resume would rerun it
     print(f"\ncheckpoint saved -> {ckpt_dir}\n", flush=True)
 
     model.eval()
