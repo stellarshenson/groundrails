@@ -1,0 +1,446 @@
+{
+  "hypothesis": "R13-H128 WICE-ATTRIBUTED-SUPPORT-LANE - pre-GPU gates (rulings 3 + 4)",
+  "dataset": {
+    "source": "github.com/ryokamoi/wice (data/entailment_retrieval)",
+    "claim_level_rows": 1967,
+    "subclaim_level_rows": 5377,
+    "label_counts_claim": {
+      "partially_supported": 1039,
+      "supported": 686,
+      "not_supported": 242
+    },
+    "label_counts_subclaim": {
+      "supported": 3149,
+      "not_supported": 1418,
+      "partially_supported": 810
+    }
+  },
+  "provenance": {
+    "evidence_vs_full_arena": {
+      "instrument": "provenance_gate.py (R13 ruling 4)",
+      "mode": "containment",
+      "n": 13,
+      "jaccard_threshold": null,
+      "thresholds": {
+        "warn": 0.005,
+        "kill": 0.005
+      },
+      "candidate": {
+        "label": "wice_evidence",
+        "n_units": 1967,
+        "n_units_scorable": 1967
+      },
+      "arena": {
+        "subsets": {
+          "covidqa": 980,
+          "delucionqa": 552,
+          "emanual": 396,
+          "expertqa": 759,
+          "finqa": 725,
+          "hagrid": 703,
+          "hotpotqa": 998,
+          "pubmedqa": 1250,
+          "tatqa": 1032,
+          "techqa": 1250
+        },
+        "n_units": 8645,
+        "n_units_scorable": 8457
+      },
+      "candidate_vs_arena": {
+        "n_units": 1967,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "covidqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "delucionqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "emanual": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "expertqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "finqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hagrid": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hotpotqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "pubmedqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "tatqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "techqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        }
+      },
+      "arena_vs_candidate": {
+        "n_units": 8645,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "wice_evidence": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        }
+      },
+      "max_fraction": 0.0,
+      "verdict": "PASS",
+      "hit_examples": []
+    },
+    "claims_vs_leak_subsets": {
+      "instrument": "provenance_gate.py (R13 ruling 4)",
+      "mode": "containment",
+      "n": 13,
+      "jaccard_threshold": null,
+      "thresholds": {
+        "warn": 0.005,
+        "kill": 0.005
+      },
+      "candidate": {
+        "label": "wice_claims",
+        "n_units": 1967,
+        "n_units_scorable": 1794
+      },
+      "arena": {
+        "subsets": {
+          "hagrid": 703,
+          "hotpotqa": 998
+        },
+        "n_units": 1701,
+        "n_units_scorable": 1694
+      },
+      "candidate_vs_arena": {
+        "n_units": 1967,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "hagrid": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hotpotqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        }
+      },
+      "arena_vs_candidate": {
+        "n_units": 1701,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "wice_claims": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        }
+      },
+      "max_fraction": 0.0,
+      "verdict": "PASS",
+      "hit_examples": []
+    },
+    "claims_vs_full_arena": {
+      "instrument": "provenance_gate.py (R13 ruling 4)",
+      "mode": "containment",
+      "n": 13,
+      "jaccard_threshold": null,
+      "thresholds": {
+        "warn": 0.005,
+        "kill": 0.005
+      },
+      "candidate": {
+        "label": "wice_claims",
+        "n_units": 1967,
+        "n_units_scorable": 1794
+      },
+      "arena": {
+        "subsets": {
+          "covidqa": 980,
+          "delucionqa": 552,
+          "emanual": 396,
+          "expertqa": 759,
+          "finqa": 725,
+          "hagrid": 703,
+          "hotpotqa": 998,
+          "pubmedqa": 1250,
+          "tatqa": 1032,
+          "techqa": 1250
+        },
+        "n_units": 8645,
+        "n_units_scorable": 8457
+      },
+      "candidate_vs_arena": {
+        "n_units": 1967,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "covidqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "delucionqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "emanual": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "expertqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "finqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hagrid": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hotpotqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "pubmedqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "tatqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "techqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        }
+      },
+      "arena_vs_candidate": {
+        "n_units": 8645,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "wice_claims": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        }
+      },
+      "max_fraction": 0.0,
+      "verdict": "PASS",
+      "hit_examples": []
+    },
+    "evidence_vs_leak_subsets": {
+      "instrument": "provenance_gate.py (R13 ruling 4)",
+      "mode": "containment",
+      "n": 13,
+      "jaccard_threshold": null,
+      "thresholds": {
+        "warn": 0.005,
+        "kill": 0.005
+      },
+      "candidate": {
+        "label": "wice_evidence",
+        "n_units": 1967,
+        "n_units_scorable": 1967
+      },
+      "arena": {
+        "subsets": {
+          "hagrid": 703,
+          "hotpotqa": 998
+        },
+        "n_units": 1701,
+        "n_units_scorable": 1694
+      },
+      "candidate_vs_arena": {
+        "n_units": 1967,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "hagrid": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hotpotqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        }
+      },
+      "arena_vs_candidate": {
+        "n_units": 1701,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "wice_evidence": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        }
+      },
+      "max_fraction": 0.0,
+      "verdict": "PASS",
+      "hit_examples": []
+    },
+    "claims_vs_leak_subsets_n8": {
+      "instrument": "provenance_gate.py (R13 ruling 4)",
+      "mode": "containment",
+      "n": 8,
+      "jaccard_threshold": null,
+      "thresholds": {
+        "warn": 0.005,
+        "kill": 0.005
+      },
+      "candidate": {
+        "label": "wice_claims_n8",
+        "n_units": 1967,
+        "n_units_scorable": 1957
+      },
+      "arena": {
+        "subsets": {
+          "hagrid": 703,
+          "hotpotqa": 998
+        },
+        "n_units": 1701,
+        "n_units_scorable": 1701
+      },
+      "candidate_vs_arena": {
+        "n_units": 1967,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "hagrid": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hotpotqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        }
+      },
+      "arena_vs_candidate": {
+        "n_units": 1701,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "wice_claims_n8": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        }
+      },
+      "max_fraction": 0.0,
+      "verdict": "PASS",
+      "hit_examples": []
+    }
+  },
+  "provenance_positive_controls": {
+    "evidence_side": {
+      "injected": 10,
+      "detected_total": 10,
+      "baseline_hits": 0,
+      "passes": true,
+      "candidate_units": 1967
+    },
+    "claim_side": {
+      "injected": 10,
+      "detected_total": 10,
+      "baseline_hits": 0,
+      "passes": true,
+      "candidate_units": 1967
+    }
+  },
+  "yield_claim_level": {
+    "rows": 1967,
+    "claims_with_evidence": 1754,
+    "claims_with_multi_sentence_set": 1499,
+    "evidence_sets_nonempty": 7640,
+    "evidence_sets_multi_sentence": 6941,
+    "multi_sentence_fraction_by_set": 0.9085,
+    "multi_sentence_fraction_by_claim": 0.8546,
+    "deletion_negatives_all_sets": 29374,
+    "deletion_negatives_min_set_only": 3818,
+    "deletion_negatives_dedup": 25035,
+    "buildable_pairs_dedup_with_swap": 50070,
+    "buildable_pairs_min_set_with_swap": 7636
+  },
+  "yield_subclaim_level": {
+    "rows": 5377,
+    "claims_with_evidence": 4067,
+    "claims_with_multi_sentence_set": 2443,
+    "evidence_sets_nonempty": 7741,
+    "evidence_sets_multi_sentence": 3944,
+    "multi_sentence_fraction_by_set": 0.5095,
+    "multi_sentence_fraction_by_claim": 0.6007,
+    "deletion_negatives_all_sets": 9700,
+    "deletion_negatives_min_set_only": 5357,
+    "deletion_negatives_dedup": 9155,
+    "buildable_pairs_dedup_with_swap": 18310,
+    "buildable_pairs_min_set_with_swap": 10714
+  },
+  "sample": {
+    "path": "/home/lab/workspace/private/ai-assistants/groundrails/experiments/grounding-semantic/R13-H128_sample_pairs.parquet",
+    "rows": 200,
+    "by_type": {
+      "deletion": 101,
+      "swap": 99
+    },
+    "mean_swap_jaccard": 0.1337
+  },
+  "gates": {
+    "provenance": {
+      "metric": "max bidirectional 13-gram containment fraction, both sides",
+      "value": 0.0,
+      "bar": "< 0.005",
+      "verdict": "PASS"
+    },
+    "buildable_pairs": {
+      "metric": "dedup deletion negatives + equal swap negatives, claim + subclaim",
+      "value": 68380,
+      "bar": ">= 15000",
+      "verdict": "PASS"
+    },
+    "multi_sentence_evidence": {
+      "metric": "evidence sets with >= 2 sentences / non-empty evidence sets",
+      "value": 0.7077,
+      "bar": ">= 0.4",
+      "verdict": "PASS"
+    },
+    "license": {
+      "metric": "WiCE LICENSE.md",
+      "value": {
+        "annotations": "ODC-BY 1.0",
+        "wikipedia_text": "CC BY-SA (Wikipedia reuse policy)",
+        "evidence_text": "Common Crawl archived web pages, bound by Common Crawl terms of use",
+        "code_and_model_outputs": "MIT"
+      },
+      "bar": "permissive",
+      "verdict": "PASS",
+      "note": "ODC-BY annotations and CC BY-SA Wikipedia text are permissive with attribution; CC BY-SA carries a share-alike obligation on derived text and Common Crawl terms bind the evidence passages - research training use is clear, redistribution of a derived corpus needs the same terms"
+    }
+  },
+  "overall": "PASS"
+}

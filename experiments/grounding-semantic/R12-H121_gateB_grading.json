@@ -1,0 +1,2668 @@
+{
+  "per_row": [
+    {
+      "idx": 0,
+      "source": "halueval_summarization",
+      "filter_setting": "S1_strict",
+      "auto_purity_flags": "flag_entity",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 1,
+      "source": "halueval_summarization",
+      "filter_setting": "S1_strict",
+      "auto_purity_flags": "flag_entity",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "window verbatim lists the Bieber/Puff Daddy/Gallagher ring-walks with Mayweather and Hatton (claim sentences 3-4) but not the Vinnie Jones/Warrington lead"
+    },
+    {
+      "idx": 2,
+      "source": "halueval_summarization",
+      "filter_setting": "S1_strict",
+      "auto_purity_flags": "flag_entity",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 3,
+      "source": "halueval_summarization",
+      "filter_setting": "S1_strict",
+      "auto_purity_flags": "flag_entity",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 4,
+      "source": "halueval_summarization",
+      "filter_setting": "S1_strict",
+      "auto_purity_flags": "flag_entity",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 5,
+      "source": "halueval_summarization",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "window has Commons' penalty a minute before the break (the lead goal) and Johansen's second goal"
+    },
+    {
+      "idx": 6,
+      "source": "halueval_summarization",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 7,
+      "source": "halueval_summarization",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 8,
+      "source": "halueval_summarization",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 9,
+      "source": "halueval_summarization",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "window states Gloucester v Edinburgh at the Stoop on Friday - the claim's lead fixture"
+    },
+    {
+      "idx": 10,
+      "source": "halueval_summarization",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity,flag_contentrecall",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "all three claim sentences verbatim: three Ibrox defeats, McCall wanting to beat the title winners, 2-0 at Easter Road"
+    },
+    {
+      "idx": 11,
+      "source": "halueval_summarization",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "window states the teacher killed by a student with a crossbow at the Barcelona school plus the 'kill list' and the boy's detention"
+    },
+    {
+      "idx": 12,
+      "source": "halueval_summarization",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 13,
+      "source": "halueval_summarization",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "window has organisers hoping the scantily-clad 'car babes' are gone and the show as a major industry event"
+    },
+    {
+      "idx": 14,
+      "source": "halueval_summarization",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 15,
+      "source": "halueval_summarization",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "near-verbatim: thousands stayed away vs Spurs over Ashley, banners outside St James', Sunderland plane banner"
+    },
+    {
+      "idx": 16,
+      "source": "halueval_summarization",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity,flag_contentrecall",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "window carries the Foundation's swindler complaint, the dictionary reference and the protest-letter delivery"
+    },
+    {
+      "idx": 17,
+      "source": "halueval_summarization",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 18,
+      "source": "halueval_summarization",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity,flag_contentrecall",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "window names Lalit Verma's furious assault on Shiva after the stolen items were found in his bag, plus the death"
+    },
+    {
+      "idx": 19,
+      "source": "halueval_summarization",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 20,
+      "source": "halueval_summarization",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "'at the age of 34 ... I desperately wanted to get pregnant' plus Sarah Ivens pictured with her two children"
+    },
+    {
+      "idx": 21,
+      "source": "halueval_summarization",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "window reproduces nearly the whole story: Lexy 13 apologising to Boyd, the laid-off husband, the Facebook search, the bond"
+    },
+    {
+      "idx": 22,
+      "source": "halueval_summarization",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "Rome 16C / Athens 16C / Marseille 18C verbatim plus high temperatures until Friday and April showers returning"
+    },
+    {
+      "idx": 23,
+      "source": "halueval_summarization",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 24,
+      "source": "halueval_summarization",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "window states Region 1 is colder than its surroundings and Region 5 disappears in thermal infrared"
+    },
+    {
+      "idx": 25,
+      "source": "psiloqa",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 26,
+      "source": "psiloqa",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 27,
+      "source": "psiloqa",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 28,
+      "source": "psiloqa",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 29,
+      "source": "psiloqa",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 30,
+      "source": "psiloqa",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 31,
+      "source": "psiloqa",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 32,
+      "source": "psiloqa",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 33,
+      "source": "psiloqa",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 34,
+      "source": "psiloqa",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 35,
+      "source": "psiloqa",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "window is the full 1600s-to-1950s history of the Raahe coat of arms that the claim announces"
+    },
+    {
+      "idx": 36,
+      "source": "psiloqa",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 37,
+      "source": "psiloqa",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 38,
+      "source": "psiloqa",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_contentrecall",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 39,
+      "source": "psiloqa",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 40,
+      "source": "psiloqa",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity,flag_contentrecall",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "window states the Roman telescope's mission objectives that the claim's stub sentence announces"
+    },
+    {
+      "idx": 41,
+      "source": "psiloqa",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "same Raahe coat-of-arms history verbatim"
+    },
+    {
+      "idx": 42,
+      "source": "ragtruth_cn",
+      "filter_setting": "S1_strict",
+      "auto_purity_flags": "flag_contentrecall",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "clean/fresh food, generous portions, quick service, fair prices, the 'classic California cuisine' reviewer and the go-to consistency review all verbatim"
+    },
+    {
+      "idx": 43,
+      "source": "ragtruth_cn",
+      "filter_setting": "S1_strict",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "two of the three summarised reviews (steak/heat lamps; wrong takeout order + attitude on the phone) are verbatim"
+    },
+    {
+      "idx": 44,
+      "source": "ragtruth_cn",
+      "filter_setting": "S1_strict",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "rude staff, being charged after the machine failed, the scolding, and the location/parking/power-outlets praise all verbatim"
+    },
+    {
+      "idx": 45,
+      "source": "ragtruth_cn",
+      "filter_setting": "S1_strict",
+      "auto_purity_flags": "none",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "quick service, knowledgeable bartenders, wall video projection and the broken-glass injury are verbatim, but location, attributes and rating are absent"
+    },
+    {
+      "idx": 46,
+      "source": "ragtruth_cn",
+      "filter_setting": "S1_strict",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the golden-anniversary and daughter's-wedding reviews plus 'makes bbq look like fine dining' verbatim"
+    },
+    {
+      "idx": 47,
+      "source": "ragtruth_cn",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity,flag_contentrecall",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "all three summarised reviews (COVID mask, cheap Italian sub + Michelle, 'dried up and barren' North Korea) verbatim"
+    },
+    {
+      "idx": 48,
+      "source": "ragtruth_cn",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "innovative food, reasonable prices, conversation atmosphere, quirky, spice blends, family-run, gluten-free rice noodles all verbatim"
+    },
+    {
+      "idx": 49,
+      "source": "ragtruth_cn",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity,flag_contentrecall",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "window is the full structured record: airport address, 3.0 stars, runway/hills view, freshly grilled chicken Caesar"
+    },
+    {
+      "idx": 50,
+      "source": "ragtruth_cn",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "none",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "as idx 45"
+    },
+    {
+      "idx": 51,
+      "source": "ragtruth_cn",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "as idx 46"
+    },
+    {
+      "idx": 52,
+      "source": "ragtruth_cn",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "as idx 48"
+    },
+    {
+      "idx": 53,
+      "source": "ragtruth_cn",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "window is the entire CNN article the claim summarises - every assertion present"
+    },
+    {
+      "idx": 54,
+      "source": "ragtruth_cn",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity,flag_contentrecall",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "dark wood panelling, ceiling work, fireplace, book-named cocktails (Game of Thrones, Catch-22) and the dirty glasses all verbatim"
+    },
+    {
+      "idx": 55,
+      "source": "ragtruth_cn",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_contentrecall",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "friendly staff/wine tasting and beer + giant crepes are verbatim, but location, hours, attributes and rating are absent"
+    },
+    {
+      "idx": 56,
+      "source": "ragtruth_cn",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "window is the entire article; every claim assertion present"
+    },
+    {
+      "idx": 57,
+      "source": "ragtruth_cn",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity,flag_contentrecall",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "window is the full JSON record (address, categories, hours, attributes, 4.0) plus the positive review"
+    },
+    {
+      "idx": 58,
+      "source": "ragtruth_cn",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity,flag_contentrecall",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record plus the first reviewer's drink/burger/watery-tacos account"
+    },
+    {
+      "idx": 59,
+      "source": "ragtruth_cn",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "as idx 56"
+    },
+    {
+      "idx": 60,
+      "source": "ragtruth_cn",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_contentrecall",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record (address, categories, hours, all attributes, 4.0) plus the masks/temperature review"
+    },
+    {
+      "idx": 61,
+      "source": "ragtruth_cn",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "window is the whole article: 'fight of the century' won't save boxing, mismanagement + MMA, UFC = hockey fanbase, the courage/grace/heroism thesis"
+    },
+    {
+      "idx": 62,
+      "source": "ragtruth_cn",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_contentrecall",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "window is the whole article: 126k jobs, lowest since Dec 2013, just-in-time scheduling, women/minorities, childcare, the Schedules That Work Act"
+    },
+    {
+      "idx": 63,
+      "source": "ragtruth_cn",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity,flag_contentrecall",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record plus the Family Robinson review"
+    },
+    {
+      "idx": 64,
+      "source": "ragtruth_cn",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_contentrecall",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record plus 'Mel's Place has been around since 1963' and Fran's decades of service"
+    },
+    {
+      "idx": 65,
+      "source": "ragtruth_cn",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record plus 'way too over priced' and 'only stuffed crust pizza in town'"
+    },
+    {
+      "idx": 66,
+      "source": "ragtruth_cn",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_contentrecall",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "window is the whole article: Weinstein/Lo Porto drone deaths, the 444 days, the handshake trigger, the North Korea journalists"
+    },
+    {
+      "idx": 67,
+      "source": "ragtruth_de",
+      "filter_setting": "S1_strict",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "window states the Gordon-to-Eisenhower renaming ceremony and Eisenhower's five-star/racial-integration record"
+    },
+    {
+      "idx": 68,
+      "source": "ragtruth_de",
+      "filter_setting": "S1_strict",
+      "auto_purity_flags": "flag_entity,flag_contentrecall",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "opening line verbatim: national hero or national disgrace, 'just ask Vince, Whitney, Roseanne, Jimi and Michael'"
+    },
+    {
+      "idx": 69,
+      "source": "ragtruth_de",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "3.5 stars plus '3 1/2 stars for the food ... ZERO for the service ... the service keeps getting worse'"
+    },
+    {
+      "idx": 70,
+      "source": "ragtruth_de",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "the probe studying surface/atmosphere/moons and the Kuiper-belt/comet framing are verbatim; the first colour image of Pluto and Charon is not"
+    },
+    {
+      "idx": 71,
+      "source": "ragtruth_de",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "robot waitress, generous/beautifully presented/delicious dishes, the cancellation, Friday/Saturday live music all verbatim"
+    },
+    {
+      "idx": 72,
+      "source": "ragtruth_de",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "meet friends/family/date nights, indoor+outdoor seating near the water, margarita choices, fresh ingredients all verbatim"
+    },
+    {
+      "idx": 73,
+      "source": "ragtruth_de",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the overexposure fear making the monarchy more approachable, the school near Adelaide Cottage, the privacy priority"
+    },
+    {
+      "idx": 74,
+      "source": "ragtruth_de",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "mutual Iran-Saudi recrimination over Yemen is evident but none of the claim's specifics (support types, four-point plan, UNSC, invasion)"
+    },
+    {
+      "idx": 75,
+      "source": "ragtruth_de",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 76,
+      "source": "ragtruth_de",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 77,
+      "source": "ragtruth_de",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 78,
+      "source": "ragtruth_de",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "3.5 stars plus 'fast and really good Chinese food', the steamed fish dish and pork fried rice verbatim"
+    },
+    {
+      "idx": 79,
+      "source": "ragtruth_de",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record (address, categories, hours, 3.5) plus the Buffalo-fries/management-change review"
+    },
+    {
+      "idx": 80,
+      "source": "ragtruth_de",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "none",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "degenerate 'cannot be answered from the passages' claim; the window is the question plus the three passages it refers to"
+    },
+    {
+      "idx": 81,
+      "source": "ragtruth_de",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record (address, hours, every attribute, 4.0) plus the carnitas review"
+    },
+    {
+      "idx": 82,
+      "source": "ragtruth_de",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "near-verbatim: the 6-month photo request, the father edited in, 193,000 likes and 24,000 shares"
+    },
+    {
+      "idx": 83,
+      "source": "ragtruth_de",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "as idx 82, with Sharry and Smith named in the window"
+    },
+    {
+      "idx": 84,
+      "source": "ragtruth_de",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "the AMA's non-position and the closing Murthy appeal are supported; the Florida and Arizona statutes are not"
+    },
+    {
+      "idx": 85,
+      "source": "ragtruth_de",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record (address, categories, hours, 4.0) plus the wedding-pies review"
+    },
+    {
+      "idx": 86,
+      "source": "ragtruth_de",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "salad bar, the topping list, $0.50/oz, breadsticks, cake slices, pumpkin soup and the hygiene complaints all verbatim"
+    },
+    {
+      "idx": 87,
+      "source": "ragtruth_de",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "commandos waiting hours in Nairobi, the 7:00 muster, no aircraft available, the 12:30 departure and Mbithi's denial"
+    },
+    {
+      "idx": 88,
+      "source": "ragtruth_de",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "3.5 stars, seafood/spinach ravioli/salad/bread, wine recommendations, the Montecito-to-Santa-Barbara move and the whole favourites list"
+    },
+    {
+      "idx": 89,
+      "source": "ragtruth_en",
+      "filter_setting": "S1_strict",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the no-refunds/dog-hair review and the entire late-appointment/no-fondant review verbatim"
+    },
+    {
+      "idx": 90,
+      "source": "ragtruth_en",
+      "filter_setting": "S1_strict",
+      "auto_purity_flags": "flag_entity",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "'Taser! Taser!' and 'He thought it was his Taser' establish the core mix-up, but the investigator's 'slip and capture' framing is absent"
+    },
+    {
+      "idx": 91,
+      "source": "ragtruth_en",
+      "filter_setting": "S1_strict",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 92,
+      "source": "ragtruth_en",
+      "filter_setting": "S1_strict",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the reservation/seating mess, excellent service, affordability, gas fireplaces, turtle pond and 'quiet and quaint' verbatim"
+    },
+    {
+      "idx": 93,
+      "source": "ragtruth_en",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the car striking Valencia sparking nationwide force debate, the officer commended, the attorney's 'miraculous', the 15 charges"
+    },
+    {
+      "idx": 94,
+      "source": "ragtruth_en",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "DGA Quarterly, the Journey song building, the bell ringing on every entry - the claim's tension detail verbatim"
+    },
+    {
+      "idx": 95,
+      "source": "ragtruth_en",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "the Hernandez trial wrapping and Rand Paul's Tuesday announcement are supported; Tsarnaev, Chicago and Ferguson are not"
+    },
+    {
+      "idx": 96,
+      "source": "ragtruth_en",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "4.0 stars, the Mexican dishes, 'food was beyond amazing / you can taste the fresh ingredients', the sunset view"
+    },
+    {
+      "idx": 97,
+      "source": "ragtruth_en",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "summons at any time, the criticism of the release, the Kerry statement, Clinton's 'inexcusable', China rejecting criticism"
+    },
+    {
+      "idx": 98,
+      "source": "ragtruth_en",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 99,
+      "source": "ragtruth_en",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 100,
+      "source": "ragtruth_en",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "as idx 97"
+    },
+    {
+      "idx": 101,
+      "source": "ragtruth_en",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "clean/fresh food, generous portions, quick service, classic California cuisine, consistency, chicken and tuna sandwiches"
+    },
+    {
+      "idx": 102,
+      "source": "ragtruth_en",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 103,
+      "source": "ragtruth_en",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "window is the full JSON record: categories, hours, attributes, 4.5, fresh proteins, long wait, up to 10 sides"
+    },
+    {
+      "idx": 104,
+      "source": "ragtruth_en",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 105,
+      "source": "ragtruth_en",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "the solar/no-fuel operation and the extended China stay are present; the weather grounding, route and Tuesday departure are not"
+    },
+    {
+      "idx": 106,
+      "source": "ragtruth_en",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "four claim sentences verbatim: temple-flower refusals, challenging perceptions, no one smiling / unforced emotion, sellers bring the vibrancy"
+    },
+    {
+      "idx": 107,
+      "source": "ragtruth_en",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "the Houthi-Iran alliance and the US weapons/intelligence support are verbatim; the school strike itself is absent"
+    },
+    {
+      "idx": 108,
+      "source": "ragtruth_en",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record (address, categories, hours, attributes, 4.0) plus the overpriced/lacklustre/non-dairy-surcharge review"
+    },
+    {
+      "idx": 109,
+      "source": "ragtruth_en",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "unauthorised tip charge, unsanitary handling, unfriendly owner and inedible ice cream - the claim's complaint list verbatim"
+    },
+    {
+      "idx": 110,
+      "source": "ragtruth_en",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "as idx 106"
+    },
+    {
+      "idx": 111,
+      "source": "ragtruth_en",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "2.0 stars plus all three complaint reviews (manager accusation, food poisoning, wrong order)"
+    },
+    {
+      "idx": 112,
+      "source": "ragtruth_en",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "attributes, 4.0 stars, casual+classy, the Axxess discount refusal, the burger and sweet potato fries"
+    },
+    {
+      "idx": 113,
+      "source": "ragtruth_es",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "pop-up status, the 40-minute wait, lukewarm limp fries, friendly service, the Carpinteria base"
+    },
+    {
+      "idx": 114,
+      "source": "ragtruth_es",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "Chris Rock's under-10%-black-players passage and the no-fans game are supported; the postponements, White Sox, Tampa and Freddie Gray are not"
+    },
+    {
+      "idx": 115,
+      "source": "ragtruth_es",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 116,
+      "source": "ragtruth_es",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the Ottoman-denial coverage, the Hitler quote and the Kardashian visit making Armenia trend"
+    },
+    {
+      "idx": 117,
+      "source": "ragtruth_es",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the new grilled-only menu tasting terrible, people still coming for the kids, scarce parking, the most kid-friendly restaurant"
+    },
+    {
+      "idx": 118,
+      "source": "ragtruth_es",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the corporate-'possession' question and FedEx's common-carrier defence verbatim"
+    },
+    {
+      "idx": 119,
+      "source": "ragtruth_es",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 120,
+      "source": "ragtruth_es",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "passages 2 and 3 verbatim: the percentage-or-fixed-amount calculation and telling employees exact figures rather than a percentage"
+    },
+    {
+      "idx": 121,
+      "source": "ragtruth_es",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "Slager charged two days after the video, the mayor's response, Ferguson's influence, the Wilson body-camera debate and Obama"
+    },
+    {
+      "idx": 122,
+      "source": "ragtruth_es",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "none",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "#WeAreAfrica unity and South Africans supporting the camps are verbatim; the Durban march, the deaths and the Zwelithini complaint are not"
+    },
+    {
+      "idx": 123,
+      "source": "ragtruth_es",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the botched train chase, the Avengers finally uniting, Vision as a welcome addition, 'risultano a medias' verbatim"
+    },
+    {
+      "idx": 124,
+      "source": "ragtruth_es",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "4.0 stars, the Christmas pop-up, the advance reservation, the crowding, the festively named drinks and the too-sweet/odd-flavour cocktails"
+    },
+    {
+      "idx": 125,
+      "source": "ragtruth_es",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "eight shots / five hits while fleeing, no struggle or Taser on video, the police-report inconsistencies, the cover-up warning"
+    },
+    {
+      "idx": 126,
+      "source": "ragtruth_es",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "Michael's phone demand about Carly and Drew, the wedding drama ending Nina's life with Sonny, Lois Cerullo's return"
+    },
+    {
+      "idx": 127,
+      "source": "ragtruth_es",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the leaked Lynton email advising removal and the 'Gates lost an opportunity' judgment"
+    },
+    {
+      "idx": 128,
+      "source": "ragtruth_es",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record (address, categories, hours, attributes, 3.5) plus the vegan-hope review"
+    },
+    {
+      "idx": 129,
+      "source": "ragtruth_es",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 130,
+      "source": "ragtruth_es",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "the March 26 campaign start and the political-solution phase are present; the resumption, the Sanaa/Lahj strikes and the operation names are not"
+    },
+    {
+      "idx": 131,
+      "source": "ragtruth_es",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "3.0 stars plus the BLT/avocado, wrong dressing, no-protein salad bar and no-substitutions complaints"
+    },
+    {
+      "idx": 132,
+      "source": "ragtruth_es",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "modern/casual, outdoor seating, free wifi, 3.5 stars, salads and baked goods, the staff and political-ideology complaints, friendly service"
+    },
+    {
+      "idx": 133,
+      "source": "ragtruth_fr",
+      "filter_setting": "S1_strict",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "window is the whole article including Hope's 'Je ne pars pas. Je ne vais nulle part'"
+    },
+    {
+      "idx": 134,
+      "source": "ragtruth_fr",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 135,
+      "source": "ragtruth_fr",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 136,
+      "source": "ragtruth_fr",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the Iraq/Saddam and Taliban hostage examples plus the 'diplomats drink their own Kool-Aid' thesis"
+    },
+    {
+      "idx": 137,
+      "source": "ragtruth_fr",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "4.5 stars, all attributes, outdoor dining, service, chipotle chicken sandwich, Finney burger with impossible patty, baja tacos and cheesesteak"
+    },
+    {
+      "idx": 138,
+      "source": "ragtruth_fr",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "the protests demanding justice and the six suspended officers are verbatim; the spinal injury, the van and the April 12 arrest are not"
+    },
+    {
+      "idx": 139,
+      "source": "ragtruth_fr",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the Oxnard reviewer and the italian-combo-on-focaccia reviewer verbatim, including the above-average prices"
+    },
+    {
+      "idx": 140,
+      "source": "ragtruth_fr",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "the ISIS documents and Mosul bureaucracy are present; girls' schooling, rent control, fishing rules and the Taliban contrast are not"
+    },
+    {
+      "idx": 141,
+      "source": "ragtruth_fr",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "pop-up status, the 40-minute wait, the fries complaint, friendly service and the positive sentiment"
+    },
+    {
+      "idx": 142,
+      "source": "ragtruth_fr",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the food/ambience/staff praise and the denied-entry-during-posted-hours complaint verbatim"
+    },
+    {
+      "idx": 143,
+      "source": "ragtruth_fr",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "the mast-cell mechanism and the genetics/acquired-mutation cause are supported; the age, anaphylaxis frequency and 30 hospitalisations are not"
+    },
+    {
+      "idx": 144,
+      "source": "ragtruth_fr",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record: address, categories, hours verbatim, attributes, 4.5, plus 'the menu seems to be missing something'"
+    },
+    {
+      "idx": 145,
+      "source": "ragtruth_fr",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "4.5 stars, indoor and outdoor seating, great staff, and the Taco Dog description verbatim"
+    },
+    {
+      "idx": 146,
+      "source": "ragtruth_fr",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record: address, Southern/breakfast categories, attributes, 4.0, plus the scrambled-eggs praise"
+    },
+    {
+      "idx": 147,
+      "source": "ragtruth_fr",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record: address, categories, hours, attributes, 4.5, plus outdoor seating and the tiki vibe"
+    },
+    {
+      "idx": 148,
+      "source": "ragtruth_fr",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record: address, cuisines, hours, attributes, 4.5, plus the innovative-food/conversation review"
+    },
+    {
+      "idx": 149,
+      "source": "ragtruth_fr",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "Rezaian's espionage charge two days before Vienna and the 'long history of rogue regimes taking hostages for concessions' thesis"
+    },
+    {
+      "idx": 150,
+      "source": "ragtruth_fr",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record: address, categories, hours (including the 10:00 weekend open), attributes, 3.5, plus the live-music review"
+    },
+    {
+      "idx": 151,
+      "source": "ragtruth_fr",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "as idx 147"
+    },
+    {
+      "idx": 152,
+      "source": "ragtruth_fr",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record: address, vegetarian/vegan/gluten-free categories, hours, 4.5"
+    },
+    {
+      "idx": 153,
+      "source": "ragtruth_fr",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "3.5 stars, the sick cashier scolded by the cook, the child in front of the TV, huge burritos, carnitas, the salsa selection, affordability"
+    },
+    {
+      "idx": 154,
+      "source": "ragtruth_hu",
+      "filter_setting": "S1_strict",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the one-year-anniversary framing and Buhari's pledge to aggressively wipe out Boko Haram"
+    },
+    {
+      "idx": 155,
+      "source": "ragtruth_hu",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "4.5 stars plus all three reviews verbatim: best tortas / believing in God, Brew Lab, nachos+quesadilla combined, raspados/elotes/limoncitos"
+    },
+    {
+      "idx": 156,
+      "source": "ragtruth_hu",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 157,
+      "source": "ragtruth_hu",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 158,
+      "source": "ragtruth_hu",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "none",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "degenerate 'cannot answer' claim; the window is the passages plus the fallback instruction"
+    },
+    {
+      "idx": 159,
+      "source": "ragtruth_hu",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "none",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "the window is itself the finale speculation and names Woodstock, but the premiere, the premise and Weiner's silence are absent"
+    },
+    {
+      "idx": 160,
+      "source": "ragtruth_hu",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 161,
+      "source": "ragtruth_hu",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "3.0 stars, outdoor seating, free wifi, trendy/casual and the bring-your-own-market-food praise"
+    },
+    {
+      "idx": 162,
+      "source": "ragtruth_hu",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "Jordie's exceptional tasting service, the sparkling rose and Pinot Noirs, the wine-club sign-up"
+    },
+    {
+      "idx": 163,
+      "source": "ragtruth_hu",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "none",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "degenerate 'cannot answer' claim; the window is the question plus the three passages"
+    },
+    {
+      "idx": 164,
+      "source": "ragtruth_hu",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "the mayor's transparency pledge / DOJ request and Miller's knife arrest are present; the Tuesday protests and the autopsy are not"
+    },
+    {
+      "idx": 165,
+      "source": "ragtruth_hu",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the courtroom outburst, the table-lifting, the neo-Nazi/anti-gay interview and the family's denial of the molestation accusation"
+    },
+    {
+      "idx": 166,
+      "source": "ragtruth_hu",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record: address, categories, hours, parking, 5.0, plus the owner's-knowledge review"
+    },
+    {
+      "idx": 167,
+      "source": "ragtruth_hu",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the Chris Rock passage, John Angelos's tweet wording and the move of Baltimore's games to Tampa"
+    },
+    {
+      "idx": 168,
+      "source": "ragtruth_hu",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "3.0 stars, outdoor seating/wifi/takeout/not-for-groups, expensive, good espresso and pastries, very few seats"
+    },
+    {
+      "idx": 169,
+      "source": "ragtruth_hu",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record (address, categories, outdoor seating, 4.0) plus the harbour view, fish tacos, clam chowder and slow service"
+    },
+    {
+      "idx": 170,
+      "source": "ragtruth_hu",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the diverse extras sought in Abu Dhabi and Dubai, the franchise's diverse cast and box-office record, the Morris 'most progressive force' quote"
+    },
+    {
+      "idx": 171,
+      "source": "ragtruth_hu",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "Rogers/McGuire and the Breckenridge Cannabis Club plus the 'High Profits' series plug"
+    },
+    {
+      "idx": 172,
+      "source": "ragtruth_hu",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the flag snatch, chase, detention and citation verbatim plus the Oct 7 conflict casualty figures"
+    },
+    {
+      "idx": 173,
+      "source": "ragtruth_hu",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "as idx 165"
+    },
+    {
+      "idx": 174,
+      "source": "ragtruth_hu",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record: address, categories, hours, attributes, 3.0, plus the polite-staff/fair-prices review"
+    },
+    {
+      "idx": 175,
+      "source": "ragtruth_it",
+      "filter_setting": "S1_strict",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the donor-deputy critique, the 130 reserve deputies, the gun/Taser confusion question and 'you get what you pay for'"
+    },
+    {
+      "idx": 176,
+      "source": "ragtruth_it",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the whole 'was the Twitter mob worse than McHenry' passage that the claim's closing sentence summarises"
+    },
+    {
+      "idx": 177,
+      "source": "ragtruth_it",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "the poorly built Kathmandu housing and the poverty/density are verbatim; the 7.9 magnitude, plate motion and monuments are not"
+    },
+    {
+      "idx": 178,
+      "source": "ragtruth_it",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "prices well below other major European cities and the temporary-tenant animation since the financial crisis verbatim"
+    },
+    {
+      "idx": 179,
+      "source": "ragtruth_it",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the North Korea, Saddam and Taliban hostage examples and the concession pattern"
+    },
+    {
+      "idx": 180,
+      "source": "ragtruth_it",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the sales surge and the social-media-driven popularity (Instagram/Twitter/hashtags) verbatim"
+    },
+    {
+      "idx": 181,
+      "source": "ragtruth_it",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "none",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "degenerate 'cannot answer' claim; the window is the castle passages plus the fallback instruction"
+    },
+    {
+      "idx": 182,
+      "source": "ragtruth_it",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "Mexican breakfasts, chorizo and eggs, vegetarians and vegans welcome, the varied menu, live music"
+    },
+    {
+      "idx": 183,
+      "source": "ragtruth_it",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "the Australian policy's cost and its unaffordability in Europe are verbatim; the 30x death rise, the EU ten-point plan and the legal analysis are not"
+    },
+    {
+      "idx": 184,
+      "source": "ragtruth_it",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "none",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "the cleanliness and noise complaints are verbatim but the rest of the business profile is absent"
+    },
+    {
+      "idx": 185,
+      "source": "ragtruth_it",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "attributes, 4.0 stars, the delicious locally-sourced food recommendation and the missing-greeting service complaint"
+    },
+    {
+      "idx": 186,
+      "source": "ragtruth_it",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record: address, German category, hours, 4.5, plus the closure-scare review"
+    },
+    {
+      "idx": 187,
+      "source": "ragtruth_it",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "Obama's civil-society meeting and universal-values quote are verbatim; the Castro meeting itself and the terror-list issue are not"
+    },
+    {
+      "idx": 188,
+      "source": "ragtruth_it",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 189,
+      "source": "ragtruth_it",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record: address, categories, hours, attributes, 4.5, plus the Apple Pay / food / staff review"
+    },
+    {
+      "idx": 190,
+      "source": "ragtruth_it",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record: address, categories, wifi/takeout, 5.0, plus the avocado / caramelised onion / bacon / homemade bun burger"
+    },
+    {
+      "idx": 191,
+      "source": "ragtruth_it",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "meet friends/family/dates, indoor and outdoor seating, chips and the green salsa, margaritas and signature cocktails, great service"
+    },
+    {
+      "idx": 192,
+      "source": "ragtruth_it",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "all three complaint reviews (early closure, ignored drive-thru, rude employee) verbatim"
+    },
+    {
+      "idx": 193,
+      "source": "ragtruth_it",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 194,
+      "source": "ragtruth_it",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record: address, categories, hours verbatim, 4.0, plus the worst-pizza review"
+    },
+    {
+      "idx": 195,
+      "source": "ragtruth_it",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "Salvador's Moonves/Roach brokering, the ending of the stalemate, the May 2 fight and his refusal of a fee"
+    },
+    {
+      "idx": 196,
+      "source": "ragtruth_pl",
+      "filter_setting": "S1_strict",
+      "auto_purity_flags": "flag_entity",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "'The Hospital', 'Being There' and the L.A. Law role appear; the death, the age, the Emmys and the survivors do not"
+    },
+    {
+      "idx": 197,
+      "source": "ragtruth_pl",
+      "filter_setting": "S1_strict",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the cliff-top setting with immaculate views, indoor/outdoor seating with space heaters, the crab salad, the short rib salad, attentive service"
+    },
+    {
+      "idx": 198,
+      "source": "ragtruth_pl",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the deals framing plus BISSELL 'rarely discounted' and the Lottabody Curl Mousse for curly hair"
+    },
+    {
+      "idx": 199,
+      "source": "ragtruth_pl",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the shared responsibility, structural racism AND personal irresponsibility, and the partisan-lens critique"
+    },
+    {
+      "idx": 200,
+      "source": "ragtruth_pl",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the stage career before TV and film and the survivors list (stepson, daughter-in-law, grandchildren)"
+    },
+    {
+      "idx": 201,
+      "source": "ragtruth_pl",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the shooting outside T2F in Karachi, the cafe as a discussion hub, the nationwide grief"
+    },
+    {
+      "idx": 202,
+      "source": "ragtruth_pl",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "valet/reservations/takeout/no-wifi, intimate/elegant/luxurious, 4.5 stars, the Michelin star, the complimentary sake"
+    },
+    {
+      "idx": 203,
+      "source": "ragtruth_pl",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "none",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "the warm service and unremarkable food are verbatim, but the address, categories, rating and other reviews are absent"
+    },
+    {
+      "idx": 204,
+      "source": "ragtruth_pl",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record: Carpinteria address, hours, attributes, 3.0, plus the extra-plate charge and unfriendly service"
+    },
+    {
+      "idx": 205,
+      "source": "ragtruth_pl",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "the Schneider and Ben Jones tributes are verbatim; the death at 88, the hospice/pneumonia and the show's run are not"
+    },
+    {
+      "idx": 206,
+      "source": "ragtruth_pl",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the uncle shooting Brown, Chiles's suicide, the birthday party and the three deaths"
+    },
+    {
+      "idx": 207,
+      "source": "ragtruth_pl",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record: address, seafood/American categories, attributes including validated parking and free wifi, 4.0"
+    },
+    {
+      "idx": 208,
+      "source": "ragtruth_pl",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "2.5 stars, outdoor seating / free wifi, the 25-minute wait, the overpricing, the chronic emptiness"
+    },
+    {
+      "idx": 209,
+      "source": "ragtruth_pl",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record: address, categories, hours, attributes, 3.5, plus the hour-long-delivery / pink-chicken review"
+    },
+    {
+      "idx": 210,
+      "source": "ragtruth_pl",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the 21-14 win over La Quinta, at least a share of the GGL title, the sixth straight, the 14-14 half, the fourth-quarter winner"
+    },
+    {
+      "idx": 211,
+      "source": "ragtruth_pl",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "'good and loving man', the praise for his courage, the two sons and the marriage"
+    },
+    {
+      "idx": 212,
+      "source": "ragtruth_pl",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record: address, Mexican category, attributes, 4.0, plus 'order the carnitas' and the service praise"
+    },
+    {
+      "idx": 213,
+      "source": "ragtruth_pl",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "US education and both children born in the US, the FBI/Alavi Foundation investigation without charges, the San Francisco consulate takeover"
+    },
+    {
+      "idx": 214,
+      "source": "ragtruth_pl",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record: address, categories, hours verbatim, attributes, 4.0, plus scrambled eggs and cinnamon-apple beignets"
+    },
+    {
+      "idx": 215,
+      "source": "ragtruth_pl",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record: address, categories, hours, attributes, 4.0, plus the friendly-staff / rustic-aesthetic criticism"
+    },
+    {
+      "idx": 216,
+      "source": "ragtruth_pl",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "Jordie's pouring, the patio vibes, the sparkling rose and Pinot Noirs, the chocolate truffles, the wine club"
+    },
+    {
+      "idx": 217,
+      "source": "ragtruth_pl",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the radio-to-acting turn, Broadway / That Championship Season, the survivors list and the private memorial verbatim"
+    },
+    {
+      "idx": 218,
+      "source": "tabfact",
+      "filter_setting": "S1_strict",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 219,
+      "source": "tabfact",
+      "filter_setting": "S1_strict",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 220,
+      "source": "tabfact",
+      "filter_setting": "S1_strict",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 221,
+      "source": "tabfact",
+      "filter_setting": "S1_strict",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 222,
+      "source": "tabfact",
+      "filter_setting": "S1_strict",
+      "auto_purity_flags": "none",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "the grand-slam result grid is present but the year headers are cut, so 1995 can only be inferred by counting columns back from 2000"
+    },
+    {
+      "idx": 223,
+      "source": "tabfact",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 224,
+      "source": "tabfact",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 225,
+      "source": "tabfact",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "window shows Stoyanov winning with Popov, Laigle (twice) and Russkikh - exactly the claim's 'repeated wins with different partners'"
+    },
+    {
+      "idx": 226,
+      "source": "tabfact",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 227,
+      "source": "tabfact",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 228,
+      "source": "tabfact",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 229,
+      "source": "tabfact",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 230,
+      "source": "tabfact",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 231,
+      "source": "tabfact",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 232,
+      "source": "tabfact",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 233,
+      "source": "tabfact",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the window's rows 11-16 are exactly the six November fixtures"
+    },
+    {
+      "idx": 234,
+      "source": "tabfact",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "every visible submission row reads 'not nominated'"
+    },
+    {
+      "idx": 235,
+      "source": "tabfact",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 236,
+      "source": "tabfact",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_contentrecall",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "'september 16 | yankees | 11 - 10 | bush (5 - 9) | 36543 | 72 - 74' verbatim"
+    },
+    {
+      "idx": 237,
+      "source": "tabfact",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "both the sligo (47.5) and waterford (57.2) rows are in the window"
+    },
+    {
+      "idx": 238,
+      "source": "tabfact",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_contentrecall",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "'5 | ... essendon | home | ... | mcg | 3rd' verbatim"
+    },
+    {
+      "idx": 239,
+      "source": "tabfact",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_contentrecall",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "both 4-stroke wins are in the window and no larger margin appears among the visible rows"
+    },
+    {
+      "idx": 240,
+      "source": "tabfact",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "'may 23 | white sox | 5 - 2 | key (3 - 3) | 39293 | 27 - 17' verbatim"
+    },
+    {
+      "idx": 241,
+      "source": "tabfact",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "emley appears as away team in tie 7 and as home team in the replay"
+    },
+    {
+      "idx": 242,
+      "source": "tabfact",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_contentrecall",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 243,
+      "source": "vitaminc",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "none",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "the origin-country list containing Monaco is present but the window lacks the 'Frankfurt immigrant population' framing"
+    },
+    {
+      "idx": 244,
+      "source": "vitaminc",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "none",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "as idx 243"
+    },
+    {
+      "idx": 245,
+      "source": "vitaminc",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "none",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "as idx 243"
+    },
+    {
+      "idx": 246,
+      "source": "vitaminc",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "none",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "as idx 243"
+    },
+    {
+      "idx": 247,
+      "source": "ragtruth_pl",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 248,
+      "source": "ragtruth_it",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the Anzac Day target and the 'Daesh death cult' / no-ethnic-group framing verbatim"
+    },
+    {
+      "idx": 249,
+      "source": "ragtruth_de",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the 15-count indictment with its exact charge list and the corporate-criminal-liability framing"
+    },
+    {
+      "idx": 250,
+      "source": "ragtruth_en",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "'less than 24 hours later ... the airstrikes resumed' plus the next-phase political framing"
+    },
+    {
+      "idx": 251,
+      "source": "halueval_summarization",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "'Rangers have expanded their scouting network after a haphazard system' verbatim plus McCall's squad-building dossier"
+    },
+    {
+      "idx": 252,
+      "source": "ragtruth_en",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "Section 2(a) and The Slants appear in a commentary passage but the rejection, the band's argument and the Dykes on Bikes precedent do not"
+    },
+    {
+      "idx": 253,
+      "source": "ragtruth_fr",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "4.5 stars, the Chile Verde / Serrano / Caprese notes including the over-baked dark splotches, the extra-long tables, free wifi"
+    },
+    {
+      "idx": 254,
+      "source": "ragtruth_pl",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "5.0 stars, the aggressive-security review and the Lala praise verbatim"
+    },
+    {
+      "idx": 255,
+      "source": "ragtruth_pl",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 256,
+      "source": "tabfact",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 257,
+      "source": "ragtruth_hu",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record: address, categories, lot parking, 4.0, plus giant Jenga / Connect 4, friendly staff, fair prices"
+    },
+    {
+      "idx": 258,
+      "source": "ragtruth_en",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the chief defending the ramming, the suspect's survival and 15 charges, the hit-from-behind criticism"
+    },
+    {
+      "idx": 259,
+      "source": "halueval_summarization",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity,flag_contentrecall",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the goalless first leg, the Carvajal bite denial, the Ramos clash"
+    },
+    {
+      "idx": 260,
+      "source": "halueval_summarization",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the KIRO reporter swatting bees on air and the beekeepers sent to save as many as possible"
+    },
+    {
+      "idx": 261,
+      "source": "ragtruth_pl",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the Fitzpatrick vote for Jordan and the progressive-group criticism verbatim"
+    },
+    {
+      "idx": 262,
+      "source": "halueval_summarization",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity,flag_contentrecall",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "'virtually identical ... indoor swimming pool ... stunning sea views' and the five-vs-four en-suite bedrooms"
+    },
+    {
+      "idx": 263,
+      "source": "ragtruth_cn",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_contentrecall",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "window is the whole article; every claim assertion present"
+    },
+    {
+      "idx": 264,
+      "source": "ragtruth_cn",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "none",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "the poor-service complaint is verbatim but the address, categories, rating and positive reviews are absent"
+    },
+    {
+      "idx": 265,
+      "source": "tabfact",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "none",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "Mercedes Paz appears twice but Savchenko only once and the table is truncated at both ends"
+    },
+    {
+      "idx": 266,
+      "source": "ragtruth_en",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record: address, categories, hours verbatim, 4.0, plus the six-course tasting menu and the decline review"
+    },
+    {
+      "idx": 267,
+      "source": "ragtruth_pl",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "the food-quality, price and slow-service complaints are verbatim; address, hours, attributes and rating are absent"
+    },
+    {
+      "idx": 268,
+      "source": "halueval_summarization",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "Gemma telling FEMAIL about the collection, the kimono, the TOWIE 'confidence' line"
+    },
+    {
+      "idx": 269,
+      "source": "ragtruth_es",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "none",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "Sprajc's continued mapping and the machete line are verbatim; Lagunita, the portal and the 80 cities are not"
+    },
+    {
+      "idx": 270,
+      "source": "tabfact",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "flag_contentrecall",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 271,
+      "source": "ragtruth_it",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the $600M fight, the Moonves-Roach brokering, Pacquiao's team refusing a fee, and 'my reward will be sitting at the fight'"
+    },
+    {
+      "idx": 272,
+      "source": "tabfact",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 273,
+      "source": "tabfact",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 274,
+      "source": "ragtruth_cn",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity,flag_contentrecall",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "as idx 54"
+    },
+    {
+      "idx": 275,
+      "source": "ragtruth_de",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the whole claim: the Gordon-to-Eisenhower ceremony, family present, Wormuth's praise, the Naming Commission's final installation renaming"
+    },
+    {
+      "idx": 276,
+      "source": "ragtruth_es",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record: address, categories, hours, 2.0 stars, plus the personal-number / refund review"
+    },
+    {
+      "idx": 277,
+      "source": "tabfact",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "both Peter Pelach bronze rows (2006 Zagreb, 2008 Heinola) are in the window"
+    },
+    {
+      "idx": 278,
+      "source": "ragtruth_fr",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "categories, hours, attributes, 3.5, and all three reviews including the closure remarks"
+    },
+    {
+      "idx": 279,
+      "source": "ragtruth_de",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 280,
+      "source": "tabfact",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 281,
+      "source": "ragtruth_es",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record: address, categories, hours, attributes, 4.5, plus the indoor/outdoor COVID seating review"
+    },
+    {
+      "idx": 282,
+      "source": "halueval_summarization",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "Hodge's resignation call and the incompetence criticism verbatim"
+    },
+    {
+      "idx": 283,
+      "source": "tabfact",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 284,
+      "source": "halueval_summarization",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the courtroom identification and 'looking fine', plus the 'gross' / 'new low' Twitter reaction"
+    },
+    {
+      "idx": 285,
+      "source": "ragtruth_es",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "super-small local place, strong cheap drinks, midday characters, jukebox, 'gets very hot inside'"
+    },
+    {
+      "idx": 286,
+      "source": "halueval_summarization",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the BA pilot's 'no testing regarding mental health' quote verbatim plus the Lubitz insider framing"
+    },
+    {
+      "idx": 287,
+      "source": "ragtruth_pl",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "none",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "the 24 bodies and survivors taken to Sicily are verbatim; the locked-doors survivor account, the 700/50 figures and the EU response are not"
+    },
+    {
+      "idx": 288,
+      "source": "ragtruth_en",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "full JSON record: address, categories, casual ambience, 3.0, plus the BLT / dressing / salad-bar-protein / overpriced review"
+    },
+    {
+      "idx": 289,
+      "source": "ragtruth_hu",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "beet salad, tuna, large portions, booths for private conversation, newspaper coupons, the mac and focaccia burger"
+    },
+    {
+      "idx": 290,
+      "source": "tabfact",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 291,
+      "source": "tabfact",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "none",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "the window's eleven consecutive (ot) rows are exactly the claim's count"
+    },
+    {
+      "idx": 292,
+      "source": "tabfact",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 293,
+      "source": "tabfact",
+      "filter_setting": "S3_loose",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 294,
+      "source": "tabfact",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "none",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "champions league, serie a and coppa italia rows are present but supercoppa italiana is not"
+    },
+    {
+      "idx": 295,
+      "source": "ragtruth_pl",
+      "filter_setting": "S1b_mid",
+      "auto_purity_flags": "none",
+      "grade": "BORDERLINE",
+      "one_line_reason_for_non_pure": "the non-Muslim targeting is verbatim; the 147/104 toll, the arrests and the closure are not"
+    },
+    {
+      "idx": 296,
+      "source": "tabfact",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "none",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 297,
+      "source": "ragtruth_en",
+      "filter_setting": "S4_loosest",
+      "auto_purity_flags": "flag_entity",
+      "grade": "PURE",
+      "one_line_reason_for_non_pure": ""
+    },
+    {
+      "idx": 298,
+      "source": "ragtruth_en",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "retro vibe, friendly cashier, clean facilities, 'way too salty', the drink-refill refusal"
+    },
+    {
+      "idx": 299,
+      "source": "ragtruth_es",
+      "filter_setting": "S2_shipped",
+      "auto_purity_flags": "flag_entity",
+      "grade": "IMPURE",
+      "one_line_reason_for_non_pure": "as idx 127"
+    }
+  ],
+  "per_setting": {
+    "S1_strict": {
+      "n": 26,
+      "pure": 9,
+      "impure": 12,
+      "borderline": 5,
+      "purity": 0.4286
+    },
+    "S1b_mid": {
+      "n": 67,
+      "pure": 17,
+      "impure": 39,
+      "borderline": 11,
+      "purity": 0.3036
+    },
+    "S2_shipped": {
+      "n": 69,
+      "pure": 24,
+      "impure": 28,
+      "borderline": 17,
+      "purity": 0.4615
+    },
+    "S3_loose": {
+      "n": 66,
+      "pure": 13,
+      "impure": 47,
+      "borderline": 6,
+      "purity": 0.2167
+    },
+    "S4_loosest": {
+      "n": 72,
+      "pure": 10,
+      "impure": 58,
+      "borderline": 4,
+      "purity": 0.1471
+    }
+  },
+  "per_source": {
+    "halueval_summarization": {
+      "n": 33,
+      "pure": 12,
+      "impure": 20,
+      "borderline": 1,
+      "purity": 0.375
+    },
+    "psiloqa": {
+      "n": 17,
+      "pure": 14,
+      "impure": 3,
+      "borderline": 0,
+      "purity": 0.8235
+    },
+    "ragtruth_cn": {
+      "n": 28,
+      "pure": 0,
+      "impure": 24,
+      "borderline": 4,
+      "purity": 0.0
+    },
+    "ragtruth_de": {
+      "n": 25,
+      "pure": 4,
+      "impure": 17,
+      "borderline": 4,
+      "purity": 0.1905
+    },
+    "ragtruth_en": {
+      "n": 31,
+      "pure": 6,
+      "impure": 20,
+      "borderline": 5,
+      "purity": 0.2308
+    },
+    "ragtruth_es": {
+      "n": 25,
+      "pure": 3,
+      "impure": 18,
+      "borderline": 4,
+      "purity": 0.1429
+    },
+    "ragtruth_fr": {
+      "n": 23,
+      "pure": 2,
+      "impure": 18,
+      "borderline": 3,
+      "purity": 0.1
+    },
+    "ragtruth_hu": {
+      "n": 23,
+      "pure": 3,
+      "impure": 16,
+      "borderline": 4,
+      "purity": 0.1579
+    },
+    "ragtruth_it": {
+      "n": 23,
+      "pure": 2,
+      "impure": 16,
+      "borderline": 5,
+      "purity": 0.1111
+    },
+    "ragtruth_pl": {
+      "n": 29,
+      "pure": 2,
+      "impure": 21,
+      "borderline": 6,
+      "purity": 0.087
+    },
+    "tabfact": {
+      "n": 39,
+      "pure": 25,
+      "impure": 11,
+      "borderline": 3,
+      "purity": 0.6944
+    },
+    "vitaminc": {
+      "n": 4,
+      "pure": 0,
+      "impure": 0,
+      "borderline": 4,
+      "purity": null
+    }
+  },
+  "overall": {
+    "n": 300,
+    "pure": 73,
+    "impure": 184,
+    "borderline": 43,
+    "purity": 0.284
+  },
+  "flag_validation": {
+    "entity_only_rows": {
+      "n": 166,
+      "pure": 28,
+      "impure": 117,
+      "borderline": 21,
+      "purity": 0.1931
+    },
+    "entity_any_rows": {
+      "n": 180,
+      "pure": 28,
+      "impure": 131,
+      "borderline": 21,
+      "purity": 0.1761
+    },
+    "contentrecall_only_rows": {
+      "n": 13,
+      "pure": 3,
+      "impure": 9,
+      "borderline": 1,
+      "purity": 0.25
+    },
+    "no_flag_rows": {
+      "n": 107,
+      "pure": 42,
+      "impure": 44,
+      "borderline": 21,
+      "purity": 0.4884
+    },
+    "interpretation": "flag_entity-only rows are 22.9% pure vs 20.6% pure for unflagged rows - the entity flag carries essentially no signal about label purity in either direction. It is neither a reliable false alarm (most flagged rows really are impure) nor a useful detector (unflagged rows are impure at the same rate). The core-proxy assumption that entity flags are false alarms is REFUTED as a purity claim: the flagged rows are overwhelmingly genuinely impure, but so is everything else."
+  },
+  "verdict_vs_bar": {
+    "bar": 0.95,
+    "basis": "purity = pure / (pure + impure), borderline excluded",
+    "per_setting": {
+      "S1_strict": {
+        "purity": 0.4286,
+        "verdict": "FAIL"
+      },
+      "S1b_mid": {
+        "purity": 0.3036,
+        "verdict": "FAIL"
+      },
+      "S2_shipped": {
+        "purity": 0.4615,
+        "verdict": "FAIL"
+      },
+      "S3_loose": {
+        "purity": 0.2167,
+        "verdict": "FAIL"
+      },
+      "S4_loosest": {
+        "purity": 0.1471,
+        "verdict": "FAIL"
+      }
+    },
+    "overall": {
+      "purity": 0.284,
+      "verdict": "FAIL"
+    },
+    "summary": "FAIL at every filter setting. No setting is within 0.7 of the 0.95 bar; the distractor-window construction is not salvageable by tightening the lexical filter."
+  },
+  "worst_impure_examples": [
+    {
+      "idx": 15,
+      "source": "halueval_summarization",
+      "filter_setting": "S3_loose",
+      "claim_snippet": "Thousands of Newcastle fans chose to boycott the Tottenham game. Protests took place outside the stadium with posters and banners. The supporters are angry at Mike Ashley's way of ",
+      "why": "near-verbatim: thousands stayed away vs Spurs over Ashley, banners outside St James', Sunderland plane banner"
+    },
+    {
+      "idx": 53,
+      "source": "ragtruth_cn",
+      "filter_setting": "S2_shipped",
+      "claim_snippet": "经过多年努力吸引顾客，位于东莞的新南中国购物中心终于开始焕发生机。这家商场曾经被认为是“鬼城”商场，令其所有者感到尴尬，但在近几个月里，它发生了转变，许多新的商店、餐厅和娱乐场所开业。尽管仍有很长的路要走，但该商场现在熙熙攘攘，尤其是在周末，游客们可以看到他们在享受各种景点和服务。这种转变归功于将重点转向迎合中产阶级而不是上层阶级，以及一项改造计划，为以前废",
+      "why": "window is the entire CNN article the claim summarises - every assertion present"
+    },
+    {
+      "idx": 56,
+      "source": "ragtruth_cn",
+      "filter_setting": "S2_shipped",
+      "claim_snippet": "南卡罗来纳州北查尔斯顿市白人警察迈克尔·斯莱格在一段路人手机视频显示他向手无寸铁的黑人沃尔特·斯科特开枪射击八次，斯科特当时正在逃跑后，已被解雇并被指控谋杀。视频内容显示两人在地上发生了一场据称的搏斗之后，斯科特被击中五次。斯莱格最初声称他使用了泰瑟枪，而斯科特试图抢夺它，但目击者费丁·桑塔纳对此表示异议，他说斯科特从未抓住泰瑟枪或将其用在警察身上。八名警察",
+      "why": "window is the entire article; every claim assertion present"
+    },
+    {
+      "idx": 62,
+      "source": "ragtruth_cn",
+      "filter_setting": "S4_loosest",
+      "claim_snippet": "上个月的就业报告显示，美国经济仍然面临挑战。虽然新增了12.6万个工作岗位，有所改善，但这是自2013年12月以来的最低水平。工资仍然停滞不前，人们担心过多的就业增长集中在兼职、低收入工作上。这是一个问题，因为自金融危机以来，低收入工人受到的冲击最大，许多兼职员工从事的是低收入工作。不可预测的工作时间表也是低收入工人面临的一个主要问题。大型快餐连锁店、零售商",
+      "why": "window is the whole article: 126k jobs, lowest since Dec 2013, just-in-time scheduling, women/minorities, childcare, the Schedules That Work Act"
+    },
+    {
+      "idx": 68,
+      "source": "ragtruth_de",
+      "filter_setting": "S1_strict",
+      "claim_snippet": "Hier ist eine Zusammenfassung des Artikels in 65 Wörtern oder weniger:  Berühmte Sänger, die die US-Nationalhymne aufführen, können entweder zu Helden werden oder Kritik ernten. Be",
+      "why": "opening line verbatim: national hero or national disgrace, 'just ask Vince, Whitney, Roseanne, Jimi and Michael'"
+    },
+    {
+      "idx": 82,
+      "source": "ragtruth_de",
+      "filter_setting": "S3_loose",
+      "claim_snippet": "Eine trauernde Mutter bat darum, ihren verstorbenen Ehemann in das Fotoshooting ihres 6 Monate alten Sohnes einzubeziehen, nachdem ein Fotograf erfolgreich ein Bild von ihm in das ",
+      "why": "near-verbatim: the 6-month photo request, the father edited in, 193,000 likes and 24,000 shares"
+    },
+    {
+      "idx": 103,
+      "source": "ragtruth_en",
+      "filter_setting": "S3_loose",
+      "claim_snippet": "Poke Theory SB is a highly-rated restaurant located at 6530 Seville Rd, Ste 102, Goleta, CA. Specializing in a variety of cuisines, including Coffee & Tea, Noodles, Seafood, Japane",
+      "why": "window is the full JSON record: categories, hours, attributes, 4.5, fresh proteins, long wait, up to 10 sides"
+    },
+    {
+      "idx": 153,
+      "source": "ragtruth_fr",
+      "filter_setting": "S4_loosest",
+      "claim_snippet": "Voici un aperçu objectif de l'entreprise locale \"Mexican Fresh\" basé sur les données structurées fournies :  Mexican Fresh est un restaurant mexicain situé à Santa Barbara, en Cali",
+      "why": "3.5 stars, the sick cashier scolded by the cook, the child in front of the TV, huge burritos, carnitas, the salsa selection, affordability"
+    },
+    {
+      "idx": 236,
+      "source": "tabfact",
+      "filter_setting": "S3_loose",
+      "claim_snippet": "when the record was 72 - 74 , the score of that game was 11 - 10",
+      "why": "'september 16 | yankees | 11 - 10 | bush (5 - 9) | 36543 | 72 - 74' verbatim"
+    },
+    {
+      "idx": 275,
+      "source": "ragtruth_de",
+      "filter_setting": "S2_shipped",
+      "claim_snippet": "Hier ist eine Zusammenfassung des Nachrichtenartikels in 106 Wörtern:  Die US-Armee hat eine ihrer Basis nach Dwight D. Eisenhower benannt, einem ehemaligen Präsidenten und Fünf-St",
+      "why": "the whole claim: the Gordon-to-Eisenhower ceremony, family present, Wormuth's praise, the Naming Commission's final installation renaming"
+    }
+  ]
+}

@@ -1,0 +1,466 @@
+{
+  "audit": {
+    "baseline_agreement": 0.3887,
+    "baseline_agreement_bare": 0.5672,
+    "per_rule": {
+      "thousands": {
+        "agreement_strip": 0.4107,
+        "effect_strip_pts": 2.2,
+        "effect_strip_pts_bare": 8.29,
+        "agreement_add": 0.4107,
+        "effect_add_pts": 2.2,
+        "effect_add_pts_bare": 8.04,
+        "char_change": {
+          "covidqa": 0.00015,
+          "pubmedqa": 0.00014,
+          "hotpotqa": 0.00049,
+          "hagrid": 0.00054
+        },
+        "max_char_change": 0.00054,
+        "nonzero_effect": true,
+        "char_gate_ok": true,
+        "ships": true
+      },
+      "currency": {
+        "agreement_strip": 0.5188,
+        "effect_strip_pts": 13.01,
+        "effect_strip_pts_bare": 0.0,
+        "agreement_add": 0.5188,
+        "effect_add_pts": 13.01,
+        "effect_add_pts_bare": 0.0,
+        "char_change": {
+          "covidqa": 0.0,
+          "pubmedqa": 0.0,
+          "hotpotqa": 0.0,
+          "hagrid": 0.0
+        },
+        "max_char_change": 0.0,
+        "nonzero_effect": true,
+        "char_gate_ok": true,
+        "ships": true
+      },
+      "percent": {
+        "agreement_strip": 0.3887,
+        "effect_strip_pts": 0.0,
+        "effect_strip_pts_bare": 0.0,
+        "agreement_add": 0.3887,
+        "effect_add_pts": 0.0,
+        "effect_add_pts_bare": 0.0,
+        "char_change": {
+          "covidqa": 5e-05,
+          "pubmedqa": 5e-05,
+          "hotpotqa": 0.0,
+          "hagrid": 0.0
+        },
+        "max_char_change": 5e-05,
+        "nonzero_effect": false,
+        "char_gate_ok": true,
+        "ships": false
+      }
+    },
+    "full_transform": {
+      "finqa_agreement_strip": 0.5803,
+      "finqa_effect_strip_pts": 19.16,
+      "char_change_strip": {
+        "covidqa": 0.00013,
+        "pubmedqa": 4e-05,
+        "hotpotqa": 0.00016,
+        "hagrid": 0.00039
+      },
+      "finqa_agreement_add": 0.5787,
+      "finqa_effect_add_pts": 19.0,
+      "char_change_add": {
+        "covidqa": 0.00015,
+        "pubmedqa": 0.00014,
+        "hotpotqa": 0.00049,
+        "hagrid": 0.00054
+      }
+    },
+    "verdict": "PROCEED"
+  },
+  "shipped_rules": [
+    "thousands",
+    "currency"
+  ],
+  "bar": {
+    "mean_delta": 0.003,
+    "finqa_delta": 0.01,
+    "finqa_draws_required": 3,
+    "hold_max_drop": 0.015,
+    "numeric_subsets_exempt_from_hold": [
+      "finqa",
+      "tatqa"
+    ]
+  },
+  "per_read": {
+    "h105d1_strip": {
+      "mean": 0.70755,
+      "original_mean": 0.70471,
+      "mean_delta": 0.00284,
+      "finqa": 0.6326,
+      "original_finqa": 0.6489,
+      "finqa_delta": -0.0163,
+      "worst_non_numeric": {
+        "subset": "expertqa",
+        "delta": -0.0007,
+        "if_tatqa_counted": {
+          "subset": "expertqa",
+          "delta": -0.0007,
+          "hold": true
+        }
+      },
+      "per_subset_delta": {
+        "covidqa": 0.0001,
+        "delucionqa": 0.0,
+        "emanual": 0.0,
+        "expertqa": -0.0007,
+        "finqa": -0.0163,
+        "hagrid": 0.0002,
+        "hotpotqa": 0.0002,
+        "pubmedqa": -0.0003,
+        "tatqa": 0.0448,
+        "techqa": 0.0004
+      }
+    },
+    "h105d2_strip": {
+      "mean": 0.70358,
+      "original_mean": 0.70151,
+      "mean_delta": 0.00207,
+      "finqa": 0.6354,
+      "original_finqa": 0.6176,
+      "finqa_delta": 0.0178,
+      "worst_non_numeric": {
+        "subset": "pubmedqa",
+        "delta": -0.0011,
+        "if_tatqa_counted": {
+          "subset": "pubmedqa",
+          "delta": -0.0011,
+          "hold": true
+        }
+      },
+      "per_subset_delta": {
+        "covidqa": -0.0005,
+        "delucionqa": 0.0009,
+        "emanual": 0.0,
+        "expertqa": 0.0003,
+        "finqa": 0.0178,
+        "hagrid": 0.0008,
+        "hotpotqa": 0.0015,
+        "pubmedqa": -0.0011,
+        "tatqa": 0.0012,
+        "techqa": -0.0002
+      }
+    },
+    "h108d1_strip": {
+      "mean": 0.70642,
+      "original_mean": 0.70618,
+      "mean_delta": 0.00024,
+      "finqa": 0.7452,
+      "original_finqa": 0.7291,
+      "finqa_delta": 0.0161,
+      "worst_non_numeric": {
+        "subset": "expertqa",
+        "delta": -0.0008,
+        "if_tatqa_counted": {
+          "subset": "tatqa",
+          "delta": -0.0142,
+          "hold": true
+        }
+      },
+      "per_subset_delta": {
+        "covidqa": -0.0005,
+        "delucionqa": 0.0014,
+        "emanual": 0.0,
+        "expertqa": -0.0008,
+        "finqa": 0.0161,
+        "hagrid": 0.0001,
+        "hotpotqa": 0.0003,
+        "pubmedqa": -0.0001,
+        "tatqa": -0.0142,
+        "techqa": 0.0001
+      }
+    },
+    "h108d2_strip": {
+      "mean": 0.70153,
+      "original_mean": 0.70373,
+      "mean_delta": -0.0022,
+      "finqa": 0.7074,
+      "original_finqa": 0.7072,
+      "finqa_delta": 0.0002,
+      "worst_non_numeric": {
+        "subset": "pubmedqa",
+        "delta": -0.0004,
+        "if_tatqa_counted": {
+          "subset": "tatqa",
+          "delta": -0.0227,
+          "hold": false
+        }
+      },
+      "per_subset_delta": {
+        "covidqa": 0.0002,
+        "delucionqa": 0.0,
+        "emanual": 0.0,
+        "expertqa": 0.0,
+        "finqa": 0.0002,
+        "hagrid": 0.0008,
+        "hotpotqa": 0.0002,
+        "pubmedqa": -0.0004,
+        "tatqa": -0.0227,
+        "techqa": -0.0003
+      }
+    },
+    "h105d1_add": {
+      "mean": 0.7037,
+      "original_mean": 0.70471,
+      "mean_delta": -0.00101,
+      "finqa": 0.647,
+      "original_finqa": 0.6489,
+      "finqa_delta": -0.0019,
+      "worst_non_numeric": {
+        "subset": "techqa",
+        "delta": -0.0047,
+        "if_tatqa_counted": {
+          "subset": "techqa",
+          "delta": -0.0047,
+          "hold": true
+        }
+      },
+      "per_subset_delta": {
+        "covidqa": -0.001,
+        "delucionqa": 0.0,
+        "emanual": -0.0031,
+        "expertqa": 0.002,
+        "finqa": -0.0019,
+        "hagrid": 0.0,
+        "hotpotqa": -0.003,
+        "pubmedqa": 0.0007,
+        "tatqa": 0.0009,
+        "techqa": -0.0047
+      }
+    },
+    "h105d2_add": {
+      "mean": 0.70175,
+      "original_mean": 0.70151,
+      "mean_delta": 0.00024,
+      "finqa": 0.632,
+      "original_finqa": 0.6176,
+      "finqa_delta": 0.0144,
+      "worst_non_numeric": {
+        "subset": "techqa",
+        "delta": -0.0087,
+        "if_tatqa_counted": {
+          "subset": "techqa",
+          "delta": -0.0087,
+          "hold": true
+        }
+      },
+      "per_subset_delta": {
+        "covidqa": -0.0003,
+        "delucionqa": 0.0004,
+        "emanual": 0.0006,
+        "expertqa": 0.0013,
+        "finqa": 0.0144,
+        "hagrid": -0.0027,
+        "hotpotqa": 0.0008,
+        "pubmedqa": 0.0021,
+        "tatqa": -0.0055,
+        "techqa": -0.0087
+      }
+    },
+    "h108d1_add": {
+      "mean": 0.70689,
+      "original_mean": 0.70618,
+      "mean_delta": 0.00071,
+      "finqa": 0.7428,
+      "original_finqa": 0.7291,
+      "finqa_delta": 0.0137,
+      "worst_non_numeric": {
+        "subset": "hagrid",
+        "delta": -0.0035,
+        "if_tatqa_counted": {
+          "subset": "hagrid",
+          "delta": -0.0035,
+          "hold": true
+        }
+      },
+      "per_subset_delta": {
+        "covidqa": 0.0,
+        "delucionqa": 0.0,
+        "emanual": -0.0012,
+        "expertqa": 0.0015,
+        "finqa": 0.0137,
+        "hagrid": -0.0035,
+        "hotpotqa": -0.003,
+        "pubmedqa": 0.0002,
+        "tatqa": -0.0003,
+        "techqa": -0.0003
+      }
+    },
+    "h108d2_add": {
+      "mean": 0.70298,
+      "original_mean": 0.70373,
+      "mean_delta": -0.00075,
+      "finqa": 0.7043,
+      "original_finqa": 0.7072,
+      "finqa_delta": -0.0029,
+      "worst_non_numeric": {
+        "subset": "techqa",
+        "delta": -0.004,
+        "if_tatqa_counted": {
+          "subset": "techqa",
+          "delta": -0.004,
+          "hold": true
+        }
+      },
+      "per_subset_delta": {
+        "covidqa": -0.0018,
+        "delucionqa": 0.001,
+        "emanual": -0.0012,
+        "expertqa": 0.0017,
+        "finqa": -0.0029,
+        "hagrid": 0.002,
+        "hotpotqa": -0.0025,
+        "pubmedqa": 0.0008,
+        "tatqa": -0.0006,
+        "techqa": -0.004
+      }
+    }
+  },
+  "strip": {
+    "mean_deltas": {
+      "h105d1": 0.00284,
+      "h105d2": 0.00207,
+      "h108d1": 0.00024,
+      "h108d2": -0.0022
+    },
+    "pair_mean_deltas": {
+      "h105": 0.00245,
+      "h108": -0.00098
+    },
+    "finqa_deltas": {
+      "h105d1": -0.0163,
+      "h105d2": 0.0178,
+      "h108d1": 0.0161,
+      "h108d2": 0.0002
+    },
+    "worst_non_numeric": {
+      "h105d1": {
+        "subset": "expertqa",
+        "delta": -0.0007,
+        "if_tatqa_counted": {
+          "subset": "expertqa",
+          "delta": -0.0007,
+          "hold": true
+        }
+      },
+      "h105d2": {
+        "subset": "pubmedqa",
+        "delta": -0.0011,
+        "if_tatqa_counted": {
+          "subset": "pubmedqa",
+          "delta": -0.0011,
+          "hold": true
+        }
+      },
+      "h108d1": {
+        "subset": "expertqa",
+        "delta": -0.0008,
+        "if_tatqa_counted": {
+          "subset": "tatqa",
+          "delta": -0.0142,
+          "hold": true
+        }
+      },
+      "h108d2": {
+        "subset": "pubmedqa",
+        "delta": -0.0004,
+        "if_tatqa_counted": {
+          "subset": "tatqa",
+          "delta": -0.0227,
+          "hold": false
+        }
+      }
+    },
+    "holds": {
+      "h105d1": true,
+      "h105d2": true,
+      "h108d1": true,
+      "h108d2": true
+    },
+    "sign_agreement": false,
+    "mean_bar_met": false,
+    "finqa_bar_met": false,
+    "finqa_draws_over_bar": 2,
+    "hold_met": false,
+    "verdict": "REFUTED"
+  },
+  "add": {
+    "mean_deltas": {
+      "h105d1": -0.00101,
+      "h105d2": 0.00024,
+      "h108d1": 0.00071,
+      "h108d2": -0.00075
+    },
+    "pair_mean_deltas": {
+      "h105": -0.00039,
+      "h108": -2e-05
+    },
+    "finqa_deltas": {
+      "h105d1": -0.0019,
+      "h105d2": 0.0144,
+      "h108d1": 0.0137,
+      "h108d2": -0.0029
+    },
+    "worst_non_numeric": {
+      "h105d1": {
+        "subset": "techqa",
+        "delta": -0.0047,
+        "if_tatqa_counted": {
+          "subset": "techqa",
+          "delta": -0.0047,
+          "hold": true
+        }
+      },
+      "h105d2": {
+        "subset": "techqa",
+        "delta": -0.0087,
+        "if_tatqa_counted": {
+          "subset": "techqa",
+          "delta": -0.0087,
+          "hold": true
+        }
+      },
+      "h108d1": {
+        "subset": "hagrid",
+        "delta": -0.0035,
+        "if_tatqa_counted": {
+          "subset": "hagrid",
+          "delta": -0.0035,
+          "hold": true
+        }
+      },
+      "h108d2": {
+        "subset": "techqa",
+        "delta": -0.004,
+        "if_tatqa_counted": {
+          "subset": "techqa",
+          "delta": -0.004,
+          "hold": true
+        }
+      }
+    },
+    "holds": {
+      "h105d1": true,
+      "h105d2": true,
+      "h108d1": true,
+      "h108d2": true
+    },
+    "sign_agreement": false,
+    "mean_bar_met": false,
+    "finqa_bar_met": false,
+    "finqa_draws_over_bar": 2,
+    "hold_met": false,
+    "verdict": "REFUTED"
+  },
+  "overall_verdict": "REFUTED"
+}

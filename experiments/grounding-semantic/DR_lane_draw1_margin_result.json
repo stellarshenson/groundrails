@@ -1,0 +1,51 @@
+{
+  "gold": {
+    "auc": 0.7797,
+    "f1": 0.6434,
+    "n": 717
+  },
+  "gold_full": {
+    "auc": 0.8042,
+    "f1": 0.6972,
+    "n": 2752
+  },
+  "ragtruth_en": {
+    "auc": 0.8436,
+    "f1": 0.7644,
+    "n": 600
+  },
+  "ragtruth_nonen": {
+    "auc": 0.8474,
+    "per_lang": {
+      "de": 0.8498,
+      "fr": 0.8368,
+      "es": 0.8539,
+      "it": 0.8491,
+      "pl": 0.8403,
+      "hu": 0.8232,
+      "cn": 0.8784
+    }
+  },
+  "params_M": 307.1,
+  "lambda_max": 0.02,
+  "lane": "DR (H112+H114 certified + reclaim)",
+  "draw": 1,
+  "arm": "margin",
+  "lambda_margin": 0.3,
+  "margin_m": 0.25,
+  "seed": 1117,
+  "mix_rows": 716039,
+  "clean_rows": 685670,
+  "lane_rows": 30369,
+  "margin_pairs": 13898,
+  "hinge_mean_final": 0.0563,
+  "dann_groups": 16,
+  "train_seconds": 20177.2,
+  "checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/DR-lane-draw1-margin",
+  "step_cosine_mean": 0.9378,
+  "step_cosine_slice": "trunk.layers.0.attn.Wqkv.weight",
+  "step_cosine_n": 2982,
+  "ema": true,
+  "ema_decay": 0.999,
+  "ema_checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/DR-lane-draw1-margin-ema"
+}

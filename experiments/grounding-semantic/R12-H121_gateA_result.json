@@ -1,0 +1,267 @@
+{
+  "gate": "R12-H121 Gate A - window attribution on the blind arena",
+  "model": "/home/lab/workspace/private/ai-assistants/groundrails/models/R9-H105-mmbert-dann-clean",
+  "window": 1500,
+  "stride": 750,
+  "n_pairs": 77171,
+  "n_scored_sentences": 8277,
+  "n_labelled_sentences": 6468,
+  "n_unlabelled_sentences": 1809,
+  "reproduction_check": {
+    "per_subset": {
+      "covidqa": {
+        "auc": 0.803,
+        "recorded": 0.803,
+        "n_window_pairs": 1540,
+        "recorded_n_window_pairs": 1540
+      },
+      "delucionqa": {
+        "auc": 0.7975,
+        "recorded": 0.7975,
+        "n_window_pairs": 5093,
+        "recorded_n_window_pairs": 5093
+      },
+      "emanual": {
+        "auc": 0.6883,
+        "recorded": 0.6883,
+        "n_window_pairs": 2983,
+        "recorded_n_window_pairs": 2983
+      },
+      "expertqa": {
+        "auc": 0.7857,
+        "recorded": 0.7857,
+        "n_window_pairs": 13949,
+        "recorded_n_window_pairs": 13949
+      },
+      "finqa": {
+        "auc": 0.6489,
+        "recorded": 0.6489,
+        "n_window_pairs": 2918,
+        "recorded_n_window_pairs": 2918
+      },
+      "hagrid": {
+        "auc": 0.6259,
+        "recorded": 0.6259,
+        "n_window_pairs": 1941,
+        "recorded_n_window_pairs": 1941
+      },
+      "hotpotqa": {
+        "auc": 0.6809,
+        "recorded": 0.6809,
+        "n_window_pairs": 1177,
+        "recorded_n_window_pairs": 1177
+      },
+      "pubmedqa": {
+        "auc": 0.6201,
+        "recorded": 0.6201,
+        "n_window_pairs": 6570,
+        "recorded_n_window_pairs": 6570
+      },
+      "tatqa": {
+        "auc": 0.7034,
+        "recorded": 0.7034,
+        "n_window_pairs": 1942,
+        "recorded_n_window_pairs": 1942
+      },
+      "techqa": {
+        "auc": 0.6934,
+        "recorded": 0.6934,
+        "n_window_pairs": 39058,
+        "recorded_n_window_pairs": 39058
+      }
+    },
+    "ok": true
+  },
+  "misconfiguration_check": {
+    "subsets": {
+      "covidqa": {
+        "windows_with_win_in_doc_gt0": 0,
+        "argmax_mid_window_count": 0,
+        "max_doc_len": 900
+      },
+      "pubmedqa": {
+        "windows_with_win_in_doc_gt0": 0,
+        "argmax_mid_window_count": 0,
+        "max_doc_len": 1354
+      }
+    },
+    "void": false
+  },
+  "a_argmax_support_free": {
+    "pooled_frac": 0.8039,
+    "pooled_score_weighted": 0.7166,
+    "n_label0_sentences_pooled": 1173,
+    "per_subset": {
+      "covidqa": {
+        "n_label0_sent": 43,
+        "argmax_support_free_frac": 0.4884,
+        "argmax_support_free_score_weighted": 0.3899,
+        "distractor_fraction": 0.506
+      },
+      "delucionqa": {
+        "n_label0_sent": 14,
+        "argmax_support_free_frac": 0.4286,
+        "argmax_support_free_score_weighted": 0.3013,
+        "distractor_fraction": 0.292
+      },
+      "emanual": {
+        "n_label0_sent": 24,
+        "argmax_support_free_frac": 0.2917,
+        "argmax_support_free_score_weighted": 0.2457,
+        "distractor_fraction": null
+      },
+      "expertqa": {
+        "n_label0_sent": 447,
+        "argmax_support_free_frac": 0.9284,
+        "argmax_support_free_score_weighted": 0.8722,
+        "distractor_fraction": null
+      },
+      "finqa": {
+        "n_label0_sent": 13,
+        "argmax_support_free_frac": 0.7692,
+        "argmax_support_free_score_weighted": 0.592,
+        "distractor_fraction": 0.628
+      },
+      "hagrid": {
+        "n_label0_sent": 48,
+        "argmax_support_free_frac": 0.5208,
+        "argmax_support_free_score_weighted": 0.2899,
+        "distractor_fraction": null
+      },
+      "hotpotqa": {
+        "n_label0_sent": 17,
+        "argmax_support_free_frac": 0.5294,
+        "argmax_support_free_score_weighted": 0.1312,
+        "distractor_fraction": 0.55
+      },
+      "pubmedqa": {
+        "n_label0_sent": 155,
+        "argmax_support_free_frac": 0.8581,
+        "argmax_support_free_score_weighted": 0.7712,
+        "distractor_fraction": 0.584
+      },
+      "tatqa": {
+        "n_label0_sent": 13,
+        "argmax_support_free_frac": 0.3846,
+        "argmax_support_free_score_weighted": 0.2597,
+        "distractor_fraction": 0.737
+      },
+      "techqa": {
+        "n_label0_sent": 399,
+        "argmax_support_free_frac": 0.782,
+        "argmax_support_free_score_weighted": 0.7305,
+        "distractor_fraction": 0.799
+      }
+    },
+    "bar": "KILL if pooled < 0.15"
+  },
+  "b_mid_window_asymmetry": {
+    "per_subset": {
+      "covidqa": {
+        "mid_share_label0": 0.0,
+        "n_label0": 43,
+        "mid_share_label1": 0.0,
+        "n_label1": 338,
+        "asymmetry_pp": 0.0
+      },
+      "delucionqa": {
+        "mid_share_label0": 0.1429,
+        "n_label0": 14,
+        "mid_share_label1": 0.2573,
+        "n_label1": 548,
+        "asymmetry_pp": -11.44
+      },
+      "emanual": {
+        "mid_share_label0": 0.0,
+        "n_label0": 24,
+        "mid_share_label1": 0.1489,
+        "n_label1": 423,
+        "asymmetry_pp": -14.89
+      },
+      "expertqa": {
+        "mid_share_label0": 0.1745,
+        "n_label0": 447,
+        "mid_share_label1": 0.1474,
+        "n_label1": 780,
+        "asymmetry_pp": 2.71
+      },
+      "finqa": {
+        "mid_share_label0": 0.1538,
+        "n_label0": 13,
+        "mid_share_label1": 0.2598,
+        "n_label1": 485,
+        "asymmetry_pp": -10.6
+      },
+      "hagrid": {
+        "mid_share_label0": 0.0,
+        "n_label0": 48,
+        "mid_share_label1": 0.0356,
+        "n_label1": 477,
+        "asymmetry_pp": -3.56
+      },
+      "hotpotqa": {
+        "mid_share_label0": 0.0588,
+        "n_label0": 17,
+        "mid_share_label1": 0.0113,
+        "n_label1": 266,
+        "asymmetry_pp": 4.75
+      },
+      "pubmedqa": {
+        "mid_share_label0": 0.0,
+        "n_label0": 155,
+        "mid_share_label1": 0.0,
+        "n_label1": 813,
+        "asymmetry_pp": 0.0
+      },
+      "tatqa": {
+        "mid_share_label0": 0.0769,
+        "n_label0": 13,
+        "mid_share_label1": 0.0308,
+        "n_label1": 390,
+        "asymmetry_pp": 4.61
+      },
+      "techqa": {
+        "mid_share_label0": 0.5764,
+        "n_label0": 399,
+        "mid_share_label1": 0.4465,
+        "n_label1": 775,
+        "asymmetry_pp": 12.99
+      }
+    },
+    "finqa_techqa_asymmetry_pp": {
+      "finqa": -10.6,
+      "techqa": 12.99
+    },
+    "bar": "signed asymmetry (label0 - label1) >= +10pp holds the false-positive-inflation premise; < +10pp falsifies it on that subset",
+    "per_subset_premise": {
+      "finqa": "FALSIFIED-SIGN-INVERTED",
+      "techqa": "HOLDS"
+    },
+    "fp_inflation_premise_falsified_on_both": false,
+    "note": "directional reading: a NEGATIVE asymmetry contradicts the premise, it does not merely miss the bar"
+  },
+  "c_ordering_vs_distractor_fraction": {
+    "order_by_support_free_frac": [
+      "pubmedqa",
+      "techqa",
+      "finqa",
+      "hotpotqa",
+      "covidqa",
+      "delucionqa",
+      "tatqa"
+    ],
+    "order_by_distractor_fraction": [
+      "techqa",
+      "tatqa",
+      "finqa",
+      "pubmedqa",
+      "hotpotqa",
+      "covidqa",
+      "delucionqa"
+    ],
+    "spearman_rho": 0.3214,
+    "spearman_p": 0.4821
+  },
+  "verdict": "GATE-PASS",
+  "contamination_note": "arena sentence_support_information / unsupported_response_sentence_keys read for sentence labels; ANALYSIS ONLY per round-12 author ruling 4 - no quantity here may enter a lane's size, thresholds or mix"
+}

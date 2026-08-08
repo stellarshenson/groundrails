@@ -2416,6 +2416,26 @@ Pairwise hinge/ranking auxiliaries on top of a pointwise objective are standard 
 
 - The audit floor rests on H112 alone; H114 and long-form are unjudged and could certify at a materially different rate. The gate passes without them, so this changes lane size, not the go/no-go
 - Falsifier to watch: probe pair-accuracy up, `gold_full` flat, blind mean flat → the hinge fixed pair-local ordering and bought nothing globally (A2's failure mode), and the round is refuted with the mechanism identified rather than a null result
+
+**R11-H117 probe (kill-gate 2) - result (2026-08-08): PROCEED, lambda_margin = 0.3 (`R11-H117_probe_result.json`)**
+
+Three paired arms (draw seed 1117, shared-perm prefix, 3,125 steps each, ~4 GPU-h; full control checkpoints untouched):
+
+| arm | gold_full | ragtruth_en | pair-acc | non-verbatim pair-acc |
+|---|---|---|---|---|
+| lam0 | 0.7966 | 0.7774 | 0.8465 | 0.7894 |
+| lam0.1 | +0.0143 | +0.0013 | +0.0630 | +0.0862 |
+| lam0.3 | +0.0308 | −0.0137 | +0.0950 | +0.1307 |
+
+- Neither KILL fires: gold_full RISES at both lambdas; pair-accuracy improves at both. A5 tie-break mechanical: 0.3's gain exceeds 0.1's by 0.0320 > 0.02 → **lambda = 0.3, fixed before any blind read**
+- **A7 shortcut concern refuted**: verbatim pairs were saturated in the control (0.9929, +0.0035); the entire gain sits on the non-verbatim half (+0.1307 at 0.3) - the hinge buys semantic discrimination, not copying
+- A6 ratio peaks 0.0488 vs the 0.25 cap; hinge falls monotonically with lambda while BCE stays flat - auxiliary stays auxiliary
+- **Flag recorded (outside the registered rules, does not alter the verdict)**: ragtruth_en regresses −0.0137 at the chosen lambda while both globals are non-negative at 0.1. The A5 rule was fixed pre-hoc exactly to forbid re-choosing on this observation; the flag stands as a watch-item for the full-draw holds. Probe-length caveat: mid-warmup checkpoints (3,125/14,918 steps)
+- Full margin draws launch next on GPU1 (paired seeds 1117/2117 vs the completed controls 0.69826/0.70713); **R12-H120 trajectory-EMA rides draw 1** per ruling 6 - EMA buffer + step-cosine instrument ported from the H129 trainer into `DR_lane_trainer.py` (no RNG or loss impact - pairing with the finished controls intact). Bar unchanged: blind pair ≥ control pair + 0.01 AND gold_full ≥ control − 0.005
+
+**R12-H120 - verdict (2026-08-09): KILLED AT ITS INSTRUMENT. Step-cosine 0.9378, deep in the registered ABORT zone**
+
+The always-on instrument measured mean consecutive-step update cosine **0.9378** (n = 2,865 samples) over the final 20% of the H117 margin draw 1 - the registered rule was LICENSE the EMA read only below 0.3 (oscillation to cancel), ABORT above 0.5 (coherent descent - the EMA is a lagged under-trained iterate). 0.9378 is not a close call: the terminal trajectory is almost perfectly coherent descent, exactly the regime the registration's lowered prior named - OneCycleLR's anneal-to-zero is already the implicit average, and a within-run EMA has nothing to cancel. No blind read spent; the EMA checkpoint (`models/DR-lane-draw1-margin-ema/`) is retained as evidence. The within-run weight-averaging line closes alongside the cross-draw line (H118): weight-space averaging is now closed in BOTH its forms for this campaign, while output-space averaging (0.72067) remains the sole live route - H129.
 **R11-H117 arm-identity decision (main session, 2026-08-08, per amendment A1)**: option (b) is BINDING - clean seed rows enter BOTH arms as margin-only partners with their BCE term masked; the control arm carries the identical row set at lambda_margin = 0. The lane's BCE label composition is unchanged in both arms, so H117 measures the LOSS and only the loss. This simultaneously voids the A9/A10 data-injection risks (verbatim-copy positives, TabFact upweighting, H107-lane positives) - seed rows never contribute a BCE gradient in either arm. The A2/A3 paired-draw requirement (identical model-init and data-permutation seeds per draw index across arms) will be implemented in the DR lane trainer before the control draws launch; A5 (margin on sigmoid probabilities, m in [0.2, 0.3], in-band fraction abort), A6 (pair build asserts label==0 on the corrupt member), A7 (seed rows carry the corrupt partner's DANN tag), A8 (pairs adjacent in the flat resume permutation, aligned to batch boundaries, no second dataloader), A11 (no long-form rows until their judge verdicts + eyeball stratum land) are all BINDING on the implementation.
 
 **R11-H118 interpolation gate - result (2026-08-08). LICENSE; no barrier on the H105 pair**
@@ -2485,3 +2505,135 @@ Fanout process: 4-phase dynamic workflow (3 evidence readers over the full recor
 ### Wave 0 (launched 2026-08-08, GPU0/GPU2, parallel to DR/H117 on GPU1)
 
 H119 audit + reads; H121 Gate A (extended per-window dump) + Gates B/C (joint 2k sample); H122 gradient gate; H123 layer probe on both H105 draws; label-ceiling diagnostic (CPU). Training arms queue on GPU1 behind DR draw 2 and H117, in gate-survival order.
+
+## Round 13 - exhaust fanout (2026-08-08)
+
+Fanout process: same 4-phase dynamic workflow as Round 12, run to exhaustion over the targets Round 12 left uncovered (pubmedqa, hagrid, multi-hop reads, variance, OOD divergence, objective/mix) plus the newly opened dataset-admission axis. 2 evidence readers (limitations inventory; legal-corpus scout) → 6 designers → 6 skeptics → synthesis, schema-capped fields (no truncation - the Round 12 slice bug is fixed). 18 candidates, **10 killed on measurement**, 8 survive amended, top 5 registered below. Full records with all amendments: `experiments/grounding-semantic/R13_synthesis.md`.
+
+**Key measured facts this round produced**: hagrid's windowing cost is negative on 10/10 recorded checkpoints; hagrid's loss is 12 high-scoring negatives (68.5% of misranked pairs, suppression ceiling +0.1769), not low positives; RAGTruth's 8-language family is positionally parallel (label agreement ≥ 0.9998, pos_frac spread 0.000199) so 87.5% of the arena-shaped register's mass is duplicated supervision; the aggregator line is measured shut (hard_min 0.7355 vs best alternative 0.7230); R-Drop is measured shut (all task-path dropout channels 0.0); mean-bar arithmetic defect recorded - a +0.03-0.06 single-subset move is only +0.003-0.006 of mean, and corr(mean, pubmedqa) = -0.859 over 8 reads.
+
+**Label ceiling (ANALYSIS ONLY, `R12_label_ceiling_result.json`)**: faithful-oracle under response-level labels reads pubmedqa 0.7789, hagrid 0.7833 - reachable headroom +0.205/+0.136, materially below the raw-to-1.0 framing.
+
+### Session rulings (issued 2026-08-08 under the author's standing grants of the same day - "best of what we can", dataset admission opened, "continue"; the author may override any of them)
+
+1. **SCIFACT promotion DEFERRED** - its free pre-build gates run now; the 20.5 GPU-h promotion decision waits for the gate results and the R4/R5 outcomes (worst ratio on the board, admission conjunction near-self-contradictory)
+2. **SciFact admissible CONDITIONAL** on its provenance gate: drop any abstract matching ragbench pubmedqa, covidqa, or expertqa documents at 8-gram Jaccard ≥ 0.3; KILL the corpus at > 2% overlap
+3. **WiCE admissible CONDITIONAL** on the bidirectional containment gate (claim-side AND passage-side - the live leak path is WiCE claims vs hagrid/hotpotqa Wikipedia chunks)
+4. **Provenance instrument FIXED**: normalized 13-gram containment over document text, run bidirectionally, WARN at 0.5%, KILL at 2% of the candidate corpus - the canonical gate for every future admission (RAGBench parquet exposes no PMID/title/URL; text containment is the only executable check)
+5. **Read-amendment budget**: both R1 and R2 reads RUN this round; ADOPTION serializes - if both pass, R2 re-reads on top of the R1-amended read before both enter the shipped read
+6. **Label ceiling stays out of bars** (ceiling-blind adjudication preserved); it MAY inform target prioritization
+7. **Mean-bar arithmetic ruling ADOPTED**: subset-targeted lanes carry subset-primary bars with a mean HOLD (no-loss) clause; mean-gain bars reserved for mix-wide levers
+8. **Trainer seeding CONFIRMED** for R12/R13 arm trainers (seed re-issued after model construction, bit-identical init asserted); banked unseeded draws remain the comparison baseline; the init-distribution discontinuity is recorded here. The DR/H117 trainer already seeds with identical RNG consumption across its arms (same rows, same n_groups) - its pairing stands
+9. **Hold clauses**: general 0.06 stands; tighter guards legal only on deterministic reads (zero draw noise); R5's -0.03 training-draw guards loosen to 0.06
+10. **GPU1 queue CONFIRMED**: DR draw2 → H117 → R12 arms → R4 → R5 (→ SCIFACT if promoted); GPU0/GPU2 remain gates-and-reads only (byte-identical recipe contract)
+11. **PUBHEALTH stays refused**; Evidence Inference 2.0 and NLI4CT not admitted (no live lane needs them; eligible later via the ruling-4 instrument)
+
+### Pre-registration at a glance
+
+| id | hypothesis | mechanism | prediction | bar | kill-gate | cost |
+|---|---|---|---|---|---|---|
+| R13-H124 | WINDOW-CONSENSUS-EVIDENCE-READ (frozen weights) | within-chunk mean of top-2 windows replaces max (single-window chunks fall back); spurious single-window maxima carry hagrid's 10/10 windowing cost | hagrid +0.010 to +0.023; mean +0.001 to +0.002 | subset-primary: hagrid ≥ +0.010 both H108 draws AND mean HOLD ≥ -0.002 AND no subset < -0.02 (deterministic read) | reversion ceiling already measured +0.0230; instrument misconfig check per R12-H121 Gate A rules | ~0.5 GPU-h |
+| R13-H125 | TOP2-UNION-PREMISE-READ (frozen weights, folds exhaustive-pair probe on 4 subsets) | max-over-units is an OR; add one composite premise (top-2 units concatenated, clipped to 1500) to the pool | hotpotqa ≥ +0.030; mean ≥ +0.005; no subset ≤ -0.020 | ADMIT all three on both H108 draws; REFUTE on draw 1 miss → draw 2 unspent, multi-hop read line closes | pre-registered union FIRE-RATE split by response label - hallucinated fire-rate ≈ grounded fire-rate is a diagnostic refutation regardless of AUC | ~0.7 GPU-h |
+| R13-H126 | SEED-PAIRED-ARM-ADJUDICATION (facility) | seed after model construction + bit-identical init assert makes lane-minus-control init-paired; binding per-subset noise is 0.0198-0.0204 SD, mean-level only 0.0023 | pooled per-subset paired-delta SD ≤ 0.014 (≥ 30% cut) over ≥ 10 subset-seed cells | ADMIT ≥ 30% cut → hold clauses re-priceable; REFUTE < 15% or SD ≥ 0.018 → 0.06 stands, FM4 open | none - zero GPU; measured free off H122's seeded control pair | 0 GPU-h, ~1 h eng |
+| R13-H127 | RAGTRUTH-PARALLEL-COPY-REBALANCE | family-mass-preserving reweight EN 4.0 / translations 0.5714 (family fixed 120,717 row-equivalents) - 87.5% of the only arena-shaped register is parallel duplicates | pair mean ≥ 0.7150 with sign agreement (mix-wide lever - mean bar legal) | ADMIT ≥ 0.7150 + holds (nonen ≥ 0.82, gold_full ≥ 0.84, none < 0.55); REFUTE < 0.70496 or sign disagreement | CPU alignment gate already run and PASSED (agreement ≥ 0.9998, numeric-Jaccard 0.84-0.88 vs 0.13 shuffled) | ~12.5 GPU-h |
+| R13-H128 | WICE-ATTRIBUTED-SUPPORT-LANE (re-aimed at hagrid's 12 high-scoring negatives) | WiCE partial-support deletion/swap negatives = strictness signal on over-claim; suppressing the 12 negatives ceiling +0.1769 | hagrid ≥ 0.688 (+0.040, ~4 SE); mean HOLD ≥ 0.7031; finqa/techqa hold per ruling 9 | subset-primary per ruling 7; 1-draw pilot gate: mean ≥ 0.700 AND hagrid ≥ +0.02, both required to spend draw 2 | pre-GPU: ruling-3/4 provenance gate, pairs ≥ 15,000, multi-sentence-evidence ≥ 40%, permissive license | ~11-12.5 GPU-h |
+
+**Salvage diagnostic (ANALYSIS, ~0.5 GPU-h)**: ANCHOR-TEACHER ceiling - score the output-mean of the two frozen H105 draws through the windowed arena read; below pair mean +0.005 closes the whole consistency/distillation class. Runs with H124/H125.
+
+**Label-ceiling diagnostic - result (2026-08-08, ANALYSIS ONLY, `R12_label_ceiling_result.json`)**
+
+The read's labels ARE the sentence-level annotations (`adherence_score` == empty `unsupported_response_sentence_keys` on 2,264/2,264 arena rows), so the ceiling decomposes by the read's own machinery, not label granularity. `fully_supported` is NULL on 8/10 subsets and unusable; `unsupported_response_sentence_keys` is the truth field.
+
+- **Faithful-oracle ceiling under the shipped read: 0.7560 pooled** (per-subset: tatqa 0.8823, techqa 0.8682, emanual 0.8160, hagrid 0.7833, pubmedqa 0.7789, covidqa 0.7549, finqa 0.7348, expertqa 0.6920, delucionqa 0.6657, hotpotqa 0.5843). 0.74 is reachable but consumes 68% of the total faithful headroom above the 0.7031 incumbent
+- **Loss decomposition**: conjunctive support **−0.1884** (20.9% of supported sentences cannot fit all annotated support in any single 1500-char window; 20.0% draw support from more than one DOCUMENT); H92 splitter −0.0538 (15.3% of annotated sentences uncovered, concentrated finqa 1.0 → 0.75, tatqa → 0.8929); documents[:8] cap −0.0018; window truncation itself **0.0000** - not a live loss source
+- **The read rewards leaky scoring**: a partial-support entailer's ceiling is 0.9444 vs the faithful 0.7560 - min-over-sentences × max-over-windows penalises faithfulness by construction. The incumbent (0.7031) likely already exploits partial-support firing
+- **Consequence for prioritization (licensed use)**: the conjunctive-support loss is the single biggest structural lever on the board and is exactly what R13-H125 (union premise) attacks; the read-amendment line outranks every training lane in mechanical headroom. hotpotqa's faithful ceiling is 0.5843 - its weakness is substantially STRUCTURAL, and training lanes cannot fix it
+- Caveat: 16.5% of supporting keys unlocatable in raw documents and resolved optimistically - 0.7560 is an upper bound on its own ceiling. Bars remain ceiling-blind per ruling 6
+
+**R12-H121 Gates B/C - result (2026-08-08, `R12-H121_gateBC_result.json`): the registered tension does NOT bind; Gate B grading pending**
+
+- Gate C (lexical separability < 0.95 AUC) passes at EVERY filter setting tested (0.5740-0.9375) - the certifier keeps the hardest admitted window, not the most distant; the feared purity/separability contradiction is empty
+- Best setting S1b_mid: core purity proxy 0.986, separability 0.8267, projected lane 17,307 rows → 15,238 after the ≤50% RAGTruth cap (cap costs 12%); S1_strict is cap-compliant unaided but supplies only 1,612 rows (28x short)
+- Purity proxies disagree on the entity flag (shared proper nouns fire 15-61% - expected within-document, not evidence of support); the registered 300-row grading adjudicates; eyeball sample at `R12-H121_gateB_eyeball_sample.parquet`
+- Lane-build note recorded: PsiloQA contributes near-degenerate single-word claims - exclude from any H121 build
+
+**R12-H121 - verdict (2026-08-08): KILLED at Gate B, pre-build. Purity 0.284 vs the 0.95 bar - fails at EVERY filter setting**
+
+Full 300-row grading (`R12-H121_gateB_grading.json`, all rows read individually; 3 worst examples spot-checked in the main session against the raw parquet and confirmed): per-setting purity S1_strict 0.429 / S1b_mid 0.304 / S2 0.462 / S3 0.217 / S4 0.147. Folding all 43 borderlines into PURE still reads 0.39 - no drawing of the line saves it, no tightening reaches 0.95.
+
+- **Mechanism of the failure**: RAGTruth and HaluEval-summarization claims are whole-document abstractive summaries, so a lexically-distant window of the SAME document still carries the claim's content - in several graded rows the "support-free" window IS the article being summarized (per-source purity: ragtruth_cn 0.000, translations 0.087-0.19, ragtruth_en 0.231, halueval_summ 0.375; only single-fact registers behave: psiloqa 0.824, tabfact 0.694 - the two smallest slices)
+- **The entity-flag assumption is refuted in the inverse**: entity-flagged rows are impure at 0.807, unflagged at ~0.51 - the auto-proxy that read 0.986 purity measured the wrong thing
+- **Reusable negative result**: the torch-free lexical tier CANNOT certify "support-free" for abstractive-summary claims; window-evidence certification for that register class requires semantic judging. Any future same-document negative construction must either restrict to single-fact registers (supply measured at ~1.6-4k rows - 10x short) or pay an NLI/judge certification pass
+- **Consequences**: no H121 build, no training draws - ~15 GPU-h returned to the queue (now DR draw2 → H117 → H122/H123 arms as licensed → H127 → H128). Gate A (mid-run on GPU0) completes as the windowing-anomaly ANALYSIS it was merged to serve; its H121-gating role is moot. The M3 absorbed pubmedqa reach dies with the lane - pubmedqa again has no live lever in Round 12, raising the SCIFACT promotion pressure (ruling 1). H128 is UNAFFECTED: its negatives come from WiCE's annotated minimal-evidence deletions, not lexical certification
+
+**Wave 0 GPU0 gate results (2026-08-08): H122 LICENSED, H123 KILLED, Gate A passed-as-analysis**
+
+- **R12-H121 Gate A (`R12-H121_gateA_result.json`) - GATE-PASS, now ANALYSIS only** (lane already dead at Gate B): pooled argmax support-free share on ungrounded sentences 0.8039 vs the 0.15 bar (pool dominated by expertqa/techqa/pubmedqa, 1,001 of 1,173 sentences). Clause (b) SPLITS: techqa +12.99pp label asymmetry holds, finqa **-10.60pp sign-inverted** (consistent with ruling 3's +0.233 correlation). Clause (c) ordering vs distractor fraction: ρ = 0.32, p = 0.48 - no agreement. Misconfiguration check clean; the dump reproduces `R9-H105_windowed_result.json` exactly on all 10 subsets (AUC to 4 dp, 77,171 window-pairs) - the per-window score matrix (`R12-H121_gateA_scores.parquet`) is now the M3 instrument for H124/H125
+- **R12-H122 gradient gate (`R12-H122_gradgate_result.json`) - LICENSE**: 16-way/9-way GRL trunk-gradient norm ratio 1.1869 (bar ≥ 1.15, margin thin), direction cosine 0.0254 (bar ≤ 0.9, near-orthogonal). Caveats recorded: per-batch mean ratio 25.16 vs ratio-of-means 1.1869 (9-way head hits 98.8% and its gradient collapses on easy batches - both aggregations clear the bar); matched-protocol 16-way refit reads ratio 2.746 (diagnostic only). **H122 arm licensed for the GPU1 queue**
+- **R12-H123 layer probe (`R12-H123_layerprobe_result.json`) - KILLED pre-build, both draws**: max AUC(l<22) beats AUC(22) by +0.0007 / -0.0011 vs the +0.005 bar - grounding readout rises monotonically to the top; no un-erased mid-stack layer exists. The load-bearing finding: linear DANN-group accuracy is 0.94-0.997 across the ENTIRE stack vs 0.083 chance - **at lambda 0.02 the adversary is not erasing corpus identity anywhere**, so the "erasure at the top" premise (which amendment A required the probe to establish) is false. ~13 GPU-h saved. Layer 0 is degenerate by construction (RoPE - constant CLS)
+
+**R12 scoreboard after Wave 0 gates**: H119 reads in flight (GPU2); H120 rides the first H117 arm; H121 KILLED (Gate B); H122 LICENSED; H123 KILLED. GPU1 training queue: DR draw2 → H117 probe+arms → H122 arm + seeded control pair → H127 → H128.
+
+**R12-H119 - verdict (2026-08-08): REFUTED in both directions (`R12-H119_verdict.json`)**
+
+Kill-gate PROCEEDED (shipped rules: thousands-separator +8.29 pts bare-token agreement, currency-spacing +13.01 pts affix-inclusive - all 3,240 finqa evidence `$` occurrences are spaced `$ 383,221` vs claims' `$383,221`; percent dropped at +0.0; char-change worst 0.054% vs the 5% gate; audit reproduces the skeptic's reference numbers exactly). The 8 frozen reads then missed the bar:
+
+| draw | original | strip Δmean | strip Δfinqa | add Δmean | add Δfinqa |
+|---|---|---|---|---|---|
+| h105d1 | 0.70471 | +0.00284 | **−0.0163** | −0.00101 | −0.0019 |
+| h105d2 | 0.70151 | +0.00207 | +0.0178 | +0.00024 | +0.0144 |
+| h108d1 | 0.70618 | +0.00024 | +0.0161 | +0.00071 | +0.0137 |
+| h108d2 | 0.70373 | −0.00220 | +0.0002 | −0.00075 | −0.0029 |
+
+- **strip**: pair means +0.00245 / −0.00098 vs the +0.003-on-both bar; finqa ≥ +0.010 on 2 of 4 (bar 3 of 4); finqa sign-disagrees within the H105 pair - REFUTED. **add**: −0.00039 / −0.00002 - REFUTED
+- **The mechanism finding**: the transform is confirmed LOCALIZED (every non-numeric subset moved < 0.002 - subset-blind-and-harmless holds cleanly) but NOT directional - tatqa swings +0.0448 / +0.0012 / −0.0142 / −0.0227 across the four draws under a deterministic zero-variance read. Higher claim/evidence string agreement does not translate into a better score; what each checkpoint does with the surface gap is idiosyncratic to its weights
+- **Adjudication of the downstream note (main session)**: rank-6 tabular serialization parity stays below the cut, now on the instability argument - a training-side surface lever whose serving-side twin produces checkpoint-dependent sign flips would be adjudicating weight idiosyncrasy, not a mechanism. The serving-wrapper canonicalization line closes; the shipped library keeps its unmodified read
+- Add-direction caveat recorded: separator insertion can push a window past 1,500 chars into tail truncation - bounded, affects only the already-refuted arm
+
+**Wave 0 complete.** Final R12 ledger: H119 REFUTED, H120 rides the first H117 arm, H121 KILLED at Gate B, H122 LICENSED, H123 KILLED. Of the five registered, one training arm survives to spend GPU1 time; the round's ~35 GPU-h of planned arm spend shrank to ~13, with the kills costing ~5 GPU-h of gates total.
+
+**R13-H124 - verdict (2026-08-08): REFUTED in sign (`R13-H124_result.json`)**
+
+Consensus-top2 makes hagrid WORSE on all four checkpoints (−0.0042/−0.0058 H108 pair vs the +0.010 bar; −0.0037/−0.0032 H105 replication), and the subset floor breaks (techqa −0.0346 on H108 d2). Reproduction guard clean on all four score matrices (banked reads reproduced to 4 dp). The spurious-single-window-maximum story for hagrid is dead: softening the within-chunk max costs hagrid, so its windowing pathology is not single-window spikes. Line closed.
+
+**R13-H125 - verdict (2026-08-08): REFUTED on draw 1, draw 2 unspent; the multi-hop read line closes on measurement (`R13-H125_result_h108d1.json`)**
+
+All three REFUTE clauses fired: hotpotqa **−0.0056** vs the +0.030 bar (wrong sign on the registered target), mean +0.00044 vs +0.003, delucionqa −0.0746 through the −0.020 floor. The pre-registered fire-rate diagnostic refuted the two-hop premise independently of AUC: the composite premise is the argmax MORE often on hallucinated responses than grounded on 8 of 10 subsets (pooled gap +0.0116 is Simpson composition only) - the union premise feeds leaky scoring, exactly the failure the label-ceiling analysis predicted the read geometry rewards. Exhaustive-pair fold (licensed 4 subsets): exhaustive beats top-2 selection everywhere (+0.001 to +0.015) but the exhaustive union vs the standard read is still hotpotqa +0.0041 - an order of magnitude short. techqa/expertqa never exhausted per amendment. ~0.3 GPU-h returned.
+
+**ANCHOR-TEACHER ceiling - result (2026-08-08): the class OPENS. Output-mean of the two H105 draws reads 0.72067 blind (`R13_anchor_teacher_result.json`)**
+
+The output-probability ensemble of the two frozen H105 draws through the standard windowed read scores **0.72067** - above the class-closing bar 0.70811 by +0.0126, **above every windowed read ever banked** (previous max 0.7062), +0.01756 over its own pair mean, beating both members on 8/10 subsets. The decisive contrast: the WEIGHT-space soup of the same two draws read 0.69218 (H118 KILL) while the OUTPUT-space mean of the same two draws reads 0.72067 - the draws' functions are individually noisy OOD in ways that cancel in probability space and compound in weight space. The prior "output ensembles closed" verdicts (H64/H88/H92/H97/H98/P-A, +0.004-0.005 max) averaged DIFFERENT objectives; the same-recipe two-draw ensemble under the windowed read was never measured. The ensemble itself cannot ship (two 307M models = 614M, breaches the budget and the single-cross-encoder serving contract) - its use is as a distillation teacher, registered next.
+
+### R13-H129 - ENSEMBLE-OUTPUT-DISTILLATION (registered 2026-08-08)
+
+**Causal claim.** Because same-recipe draws implement divergent functions off-distribution (H118) and their output-probability mean reads 0.72067 blind (+0.0176 over the pair mean) while weight-space merging fails, a single 307M student trained with the two-draw output-mean as a soft target can inherit part of the averaged function inside the serving budget.
+
+**Load-bearing risk (pre-registered).** The ensemble's advantage may live only OOD: in-domain the draws largely agree (gold_full 0.8788/0.8240), and distillation on the public mix can only transmit what the teachers disagree about ON that mix. A student matching near-identical in-domain soft targets learns nothing beyond a single draw.
+
+**Kill-gate (pre-build, ~0.5 GPU-h, GPU0/GPU2).** Score both H105 draws on a fixed-seed 20k held-out sample of the public mix; KILL if median |p1 − p2| < 0.02 AND fraction of rows with |p1 − p2| ≥ 0.10 is < 5% - nothing to distill where training happens. LICENSE otherwise, and record the disagreement distribution as the transmissible-signal estimate.
+
+**Prediction.** Distilled student 2-draw pair mean ≥ **0.7091** (clean control 0.7031 + 0.006 - mix-wide lever, mean bar legal per ruling 7), retaining ≥ one third of the ensemble lift.
+
+**Two-sided bar.** ADMIT: pair mean ≥ 0.7091 with both draws ≥ control. Hold: gold_full ≥ 0.84, no subset < 0.55, no subset more than 0.06 below control. KILL: pair mean ≤ 0.7031. REFUTE band between - records "in-domain distillation cannot transmit an OOD ensemble advantage", the FM2 finding in its sharpest form.
+
+**Mechanics (pre-registered, no post-hoc tuning).** Teacher targets: mean sigmoid probability of the two H105 draws over the full public mix (~3 GPU-h one-off on a gate card, cacheable parquet). Loss: 0.5·BCE(hard label) + 0.5·MSE(student prob, teacher prob); DANN and schedule byte-identical to the clean recipe; trains under the H126 seeding facility. Cost: gate 0.5 + targets ~3 + 2 draws ~12 + reads 0.5 ≈ **16 GPU-h**.
+
+**Sequencing.** Kill-gate + teacher targets on GPU0 NOW (cards idle). Training queues on GPU1 at the END of the ruling-10 queue unless the author promotes it - it is the only registered lane whose teacher is measured above every banked read.
+
+**R13-H129 kill-gate - result (2026-08-08): LICENSE (`R13-H129_gate_result.json`); teacher targets banked and verified**
+
+- Gate: median |p1−p2| 0.01248 (clause fires) but frac ≥ 0.10 = **14.44%** vs the 5% floor (clause does not fire; KILL is an AND) - the disagreement is dispersion with a fat tail, not calibration offset (draw correlation 0.9775, means 0.4829/0.4840). Per-label symmetric
+- **The transmissible signal is stratified**: RAGTruth family median 0.047-0.061 with 26.5-32.3% of rows ≥ 0.10 (all 8 languages equally - register-driven, not multilingual artefact); TabFact 0.0428/24.7%; VitaminC 0.0076/9.1% and HaluEval 0.0017/1.8% near-dead. Pre-registered read: the distillation gradient draws almost all signal from ~15% of the mix; the load-bearing risk confirmed in shape, not magnitude
+- Teacher targets: `R13-H129_teacher_targets.parquet`, 685,670 rows exactly matching the in-memory `public_train()` build order, `key_hash` = blake2b-64(claim + NUL + chunk) for alignment assertion; spot-check rescored 5 rows to < 1e-6; full-mix disagreement reproduces the gate sample (0.012457/14.389%). ~3.3 GPU-h
+- Trainer contract: the distillation trainer MUST assert key_hash alignment before consuming targets (the mix has no materialized parquet - positional order is the key)
+
+**Queue amendment (author's word, 2026-08-08 evening)**: R13-H129 is PROMOTED to the head of the post-H117 GPU1 queue - it runs immediately after the H117 margin draws, ahead of H122, H127 and H128 (ruling 10 order otherwise unchanged). Rationale: highest measured teacher (0.72067) of any registered lane, marginal cost ~12.5 GPU-h with gate and targets already paid.
+
+**Below the cut**: SCIFACT-ABSTRACT-NEARMISS (ruling 1); EVIDENCE-TOKEN-MASK-CONSISTENCY (R-Drop null banked free - task-path dropout measured 0.0 everywhere; lane needs its A1-A3 repairs + H126 first); NON-ADVERSARIAL-INVARIANCE-SWAP (premise measurably false - no degenerate equilibrium at lambda 0.02; survivable only as penalty-form test behind H122). Ten kills recorded in the synthesis file - the refused list grows by OUTCOME-DIRECTION-FLIP, BIOMED-TARGET-DANN, CITATION-MARKER-STRIP, EXHAUSTIVE-PAIR-CONCAT (standalone), CONJUNCT-SPLIT-MIN, SHARED-PREFIX-BRANCH-SCREEN, VARIANCE-PROFILED-AGGREGATOR, UNLABELED-REGISTER-ANCHOR, TRUNCATED-POSITIVE-REWEIGHT, CONFLICT-SEMANTICS-MASS-SHIFT.
+
+**Corpus admission gates - results (2026-08-08): WiCE PASS all gates, SciFact PASS all gates**
+
+The ruling-4 canonical instrument shipped as `provenance_gate.py` (normalized 13-gram containment, bidirectional, per-subset breakdown, WARN 0.5% / KILL 2%, `--jaccard` variant for ruling 2, spike-control self-test asserting the gate can actually fire - the defect the ruling repaired).
+
+- **WiCE (`R13-H128_gates_result.json`)**: provenance 0.000000 on all four runs (evidence and CLAIMS vs full arena and vs hagrid+hotpotqa specifically; spike controls 10/10 detected; n=8 sensitivity also 0.0 - 173 sub-13-token claims scored there); buildable pairs 68,380 vs the 15,000 bar (most-conservative construction alone 18,350); multi-sentence evidence 0.7077 vs 0.40; license ODC-BY 1.0 annotations / CC BY-SA Wikipedia text. **H128's pre-GPU kill-gate is fully cleared; the lane is licensed for its GPU1 slot.** 200-pair build sample at `R13-H128_sample_pairs.parquet` (deletion + nearest-sentence swap, zero collisions). Builder note: claim-level evidence indices are strings, subclaim-level ints - coerce
+- **SciFact (`R13-scifact_gates_result.json`)**: 0 of 5,183 abstracts match pubmedqa/covidqa/expertqa arena docs at 8-gram Jaccard ≥ 0.3 (max best-Jaccard 0.0163, p99 0.0046; controls 9/9); yield 1,258 labelled (claim, abstract) rows from train+dev (508 SUPPORT / 265 CONTRADICT / 485 NEI; test split blind, unusable); label mapping recorded. Promotion still DEFERRED per ruling 1. **License conflict flagged for the author**: the HF mirror tags cc-by-nc-2.0 while the upstream AI2 release states CC BY 4.0 claims + ODC-By abstracts; data taken from the AI2 S3 release, upstream terms recorded as authoritative - a non-commercial reading would bar the shipped model from commercial use and must be resolved before any SciFact-trained checkpoint ships

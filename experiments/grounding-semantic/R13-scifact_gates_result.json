@@ -1,0 +1,125 @@
+{
+  "hypothesis": "SCIFACT-ABSTRACT-NEARMISS - pre-build gates (R13 ruling 2)",
+  "dataset": {
+    "source": "https://scifact.s3-us-west-2.amazonaws.com/release/latest/data.tar.gz",
+    "abstracts": 5183,
+    "claims_train": 809,
+    "claims_dev": 300,
+    "claims_test_blind": 300,
+    "claims_total": 1409
+  },
+  "provenance": {
+    "instrument": "provenance_gate.py (R13 ruling 4)",
+    "mode": "jaccard",
+    "n": 8,
+    "jaccard_threshold": 0.3,
+    "thresholds": {
+      "warn": 0.005,
+      "kill": 0.02
+    },
+    "candidate": {
+      "label": "scifact_abstracts",
+      "n_units": 5183,
+      "n_units_scorable": 5183
+    },
+    "arena": {
+      "subsets": {
+        "covidqa": 980,
+        "expertqa": 759,
+        "pubmedqa": 1250
+      },
+      "n_units": 2989,
+      "n_units_scorable": 2978
+    },
+    "candidate_vs_arena": {
+      "n_units": 5183,
+      "units_with_hit": 0,
+      "fraction": 0.0,
+      "per_arena_subset": {
+        "covidqa": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        },
+        "expertqa": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        },
+        "pubmedqa": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        }
+      },
+      "best_jaccard": {
+        "max": 0.0163,
+        "p99": 0.0046,
+        "mean": 0.0001
+      }
+    },
+    "arena_vs_candidate": {
+      "n_units": 2989,
+      "units_with_hit": 0,
+      "fraction": 0.0,
+      "per_arena_subset": {
+        "scifact_abstracts": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        }
+      },
+      "best_jaccard": {
+        "max": 0.0163,
+        "p99": 0.0076,
+        "mean": 0.0002
+      }
+    },
+    "max_fraction": 0.0,
+    "verdict": "PASS",
+    "hit_examples": []
+  },
+  "provenance_positive_control": {
+    "injected": 9,
+    "detected_total": 9,
+    "baseline_hits": 0,
+    "passes": true,
+    "candidate_units": 5183
+  },
+  "near_miss_structure": {
+    "claims": 1109,
+    "claims_with_evidence": 693,
+    "claim_abstract_SUPPORT": 508,
+    "claim_abstract_CONTRADICT": 265,
+    "claim_abstract_NEI": 485,
+    "support_rationales": 832,
+    "contradict_rationales": 463,
+    "multi_sentence_rationales": 85,
+    "total_labelled_claim_abstract_rows": 1258
+  },
+  "claim_twin_abstracts": 189,
+  "label_schema_mapping": {
+    "SUPPORT rationale": "(claim, rationale sentences of the cited abstract, label=1)",
+    "CONTRADICT rationale": "(claim, rationale sentences of the cited abstract, label=0) - refuted near-miss",
+    "NEI (cited abstract with no evidence entry)": "(claim, full cited abstract, label=0) - topical near-miss",
+    "claims_test": "blind - no evidence field, unusable for supervision",
+    "note": "evidence is a dict doc_id -> list of rationale objects {sentences: [int], label: SUPPORT|CONTRADICT}; the abstract itself is a list of sentences in corpus.jsonl, so rationale indices address it directly"
+  },
+  "gates": {
+    "provenance": {
+      "metric": "abstracts matching a pubmedqa/covidqa/expertqa document at 8-gram Jaccard >= 0.3",
+      "value": 0.0,
+      "abstracts_dropped": 0,
+      "bar": "<= 0.02",
+      "verdict": "PASS"
+    },
+    "license": {
+      "metric": "allenai/scifact LICENSE.md",
+      "value": {
+        "claims_and_evidence": "CC BY 4.0",
+        "abstracts_corpus": "ODC-By 1.0 (S2ORC)",
+        "code": "Apache 2.0"
+      },
+      "bar": "permissive",
+      "verdict": "PASS",
+      "note": "the HF mirror allenai/scifact carries a license:cc-by-nc-2.0 tag that contradicts the upstream LICENSE.md; the upstream repository terms are recorded as authoritative and the data was fetched from the AI2 S3 release"
+    }
+  },
+  "overall": "PASS"
+}

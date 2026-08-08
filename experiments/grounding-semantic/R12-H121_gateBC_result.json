@@ -1,0 +1,322 @@
+{
+  "gate": "R12-H121 joint Gate B (>=95% label purity) + Gate C (lexical AUC < 0.95)",
+  "verdict": "PASS under the core purity proxy, FAIL under the conservative all-flag proxy",
+  "verdict_note": "AUTOMATIC proxy only. The registered Gate B instrument is the 300-row human/judge grading of R12-H121_gateB_eyeball_sample.parquet, which happens outside this run and is what adjudicates. Two proxies are reported because they disagree: the conservative one counts shared proper nouns as a leak, which is unavoidable within a single document and is not itself evidence of support.",
+  "any_setting_satisfies_joint_gate_core": true,
+  "any_setting_satisfies_joint_gate_all3flags": false,
+  "gate_c_standing": "Gate C (lexical separability AUC < 0.95) is satisfied at EVERY setting tested. The registered tension - 'the certifier selects lexically-distant windows, which is what the separability gate forbids' - does not bind: because the selection rule keeps the HARDEST admitted window rather than the most distant, looser certification lowers separability instead of raising it. The binding gate is Gate B, not Gate C.",
+  "substrate": "R9-H105.public_train sources only; the blind arena is never read",
+  "substrate_census": {
+    "ragtruth_en": {
+      "label1_rows": 8369,
+      "label1_rows_doc_gt_1500": 5988,
+      "frac_gt_1500": 0.7155
+    },
+    "ragtruth_de": {
+      "label1_rows": 8369,
+      "label1_rows_doc_gt_1500": 7118,
+      "frac_gt_1500": 0.8505
+    },
+    "ragtruth_fr": {
+      "label1_rows": 8370,
+      "label1_rows_doc_gt_1500": 7435,
+      "frac_gt_1500": 0.8883
+    },
+    "ragtruth_es": {
+      "label1_rows": 8370,
+      "label1_rows_doc_gt_1500": 7157,
+      "frac_gt_1500": 0.8551
+    },
+    "ragtruth_it": {
+      "label1_rows": 8369,
+      "label1_rows_doc_gt_1500": 7067,
+      "frac_gt_1500": 0.8444
+    },
+    "ragtruth_pl": {
+      "label1_rows": 8372,
+      "label1_rows_doc_gt_1500": 6753,
+      "frac_gt_1500": 0.8066
+    },
+    "ragtruth_hu": {
+      "label1_rows": 8370,
+      "label1_rows_doc_gt_1500": 6698,
+      "frac_gt_1500": 0.8002
+    },
+    "ragtruth_cn": {
+      "label1_rows": 8370,
+      "label1_rows_doc_gt_1500": 1958,
+      "frac_gt_1500": 0.2339
+    },
+    "halueval_qa": {
+      "label1_rows": 10000,
+      "label1_rows_doc_gt_1500": 1,
+      "frac_gt_1500": 0.0001
+    },
+    "halueval_summarization": {
+      "label1_rows": 10000,
+      "label1_rows_doc_gt_1500": 9294,
+      "frac_gt_1500": 0.9294
+    },
+    "psiloqa": {
+      "label1_rows": 6739,
+      "label1_rows_doc_gt_1500": 312,
+      "frac_gt_1500": 0.0463
+    },
+    "vitaminc": {
+      "label1_rows": 185714,
+      "label1_rows_doc_gt_1500": 48,
+      "frac_gt_1500": 0.0003
+    },
+    "tabfact": {
+      "label1_rows": 50994,
+      "label1_rows_doc_gt_1500": 11512,
+      "frac_gt_1500": 0.2258
+    }
+  },
+  "pool_label1_docs_gt_1500": 71341,
+  "claims_scored": 5000,
+  "windows_per_doc_evaluated_cap": 12,
+  "window_geometry": {
+    "win": 1500,
+    "stride": 750
+  },
+  "certifier": [
+    "(i) lexical LOW-tier frozen manifold support probability below the setting's cut",
+    "(ii) no shared word n-gram at the setting's order",
+    "(iii) no shared numeral (settings S1/S2 only)",
+    "selection: the HARDEST admitted window (max p_lex), at most one per positive claim"
+  ],
+  "auto_purity_definition": "a row is auto-clean when none of flag_entity (>=2 shared capitalized tokens), flag_charoverlap (rapidfuzz partial_ratio >= 0.80) or flag_contentrecall (claim content-word recall in window >= 0.60) fires. None of the three is used by any filter setting, so they stay informative; the 300-row human/judge grading is the registered purity instrument and this is only its automatic proxy.",
+  "settings": {
+    "S1_strict": {
+      "cut_lexical_support": 0.1,
+      "ngram_order": 4,
+      "forbid_shared_numeral": true,
+      "n_rows": 113,
+      "yield_per_claim": 0.0226,
+      "projected_max_lane_rows": 1612,
+      "auto_purity_all3flags": 0.8319,
+      "auto_purity_core": 0.9646,
+      "flag_rates": {
+        "flag_entity": 0.1504,
+        "flag_charoverlap": 0.0,
+        "flag_contentrecall": 0.0354
+      },
+      "separability": {
+        "auc_heldout": 0.9375,
+        "auc_full_raw_feature": 0.9522,
+        "n_pairs": 113
+      },
+      "per_source": {
+        "tabfact": 62,
+        "ragtruth_cn": 33,
+        "halueval_summarization": 7,
+        "ragtruth_en": 4,
+        "ragtruth_de": 2,
+        "ragtruth_pl": 2,
+        "ragtruth_it": 1,
+        "ragtruth_fr": 1,
+        "ragtruth_hu": 1
+      },
+      "ragtruth_derived_rows": 44,
+      "ragtruth_derived_share": 0.3894,
+      "joint_gate_pass_all3flags": false,
+      "joint_gate_pass_core": true,
+      "ragtruth_cap": {
+        "violates_50pct_cap": false,
+        "projected_lane_rows_uncapped": 1612,
+        "projected_lane_rows_capped": 1612,
+        "rows_lost_pct": 0.0
+      }
+    },
+    "S1b_mid": {
+      "cut_lexical_support": 0.25,
+      "ngram_order": 4,
+      "forbid_shared_numeral": true,
+      "n_rows": 1213,
+      "yield_per_claim": 0.2426,
+      "projected_max_lane_rows": 17307,
+      "auto_purity_all3flags": 0.4402,
+      "auto_purity_core": 0.986,
+      "flag_rates": {
+        "flag_entity": 0.5523,
+        "flag_charoverlap": 0.0,
+        "flag_contentrecall": 0.014
+      },
+      "separability": {
+        "auc_heldout": 0.8267,
+        "auc_full_raw_feature": 0.8245,
+        "n_pairs": 1213
+      },
+      "per_source": {
+        "halueval_summarization": 276,
+        "tabfact": 254,
+        "ragtruth_de": 134,
+        "ragtruth_pl": 105,
+        "ragtruth_en": 95,
+        "ragtruth_it": 94,
+        "ragtruth_fr": 80,
+        "ragtruth_hu": 59,
+        "ragtruth_es": 58,
+        "ragtruth_cn": 54,
+        "psiloqa": 3,
+        "vitaminc": 1
+      },
+      "ragtruth_derived_rows": 679,
+      "ragtruth_derived_share": 0.5598,
+      "joint_gate_pass_all3flags": false,
+      "joint_gate_pass_core": true,
+      "ragtruth_cap": {
+        "violates_50pct_cap": true,
+        "projected_lane_rows_uncapped": 17307,
+        "projected_lane_rows_capped": 15238,
+        "rows_lost_pct": 0.1195
+      }
+    },
+    "S2_shipped": {
+      "cut_lexical_support": 0.45,
+      "ngram_order": 4,
+      "forbid_shared_numeral": true,
+      "n_rows": 1460,
+      "yield_per_claim": 0.292,
+      "projected_max_lane_rows": 20832,
+      "auto_purity_all3flags": 0.4274,
+      "auto_purity_core": 0.9568,
+      "flag_rates": {
+        "flag_entity": 0.5479,
+        "flag_charoverlap": 0.0,
+        "flag_contentrecall": 0.0432
+      },
+      "separability": {
+        "auc_heldout": 0.7537,
+        "auc_full_raw_feature": 0.7389,
+        "n_pairs": 1460
+      },
+      "per_source": {
+        "halueval_summarization": 359,
+        "tabfact": 342,
+        "ragtruth_de": 148,
+        "ragtruth_pl": 115,
+        "ragtruth_it": 114,
+        "ragtruth_en": 101,
+        "ragtruth_fr": 89,
+        "ragtruth_es": 67,
+        "ragtruth_hu": 64,
+        "ragtruth_cn": 55,
+        "psiloqa": 5,
+        "vitaminc": 1
+      },
+      "ragtruth_derived_rows": 753,
+      "ragtruth_derived_share": 0.5158,
+      "joint_gate_pass_all3flags": false,
+      "joint_gate_pass_core": true,
+      "ragtruth_cap": {
+        "violates_50pct_cap": true,
+        "projected_lane_rows_uncapped": 20832,
+        "projected_lane_rows_capped": 20175,
+        "rows_lost_pct": 0.0315
+      }
+    },
+    "S3_loose": {
+      "cut_lexical_support": 0.45,
+      "ngram_order": 5,
+      "forbid_shared_numeral": false,
+      "n_rows": 2000,
+      "yield_per_claim": 0.5446,
+      "projected_max_lane_rows": 38852,
+      "auto_purity_all3flags": 0.341,
+      "auto_purity_core": 0.8955,
+      "flag_rates": {
+        "flag_entity": 0.6115,
+        "flag_charoverlap": 0.0,
+        "flag_contentrecall": 0.1045
+      },
+      "separability": {
+        "auc_heldout": 0.6687,
+        "auc_full_raw_feature": 0.655,
+        "n_pairs": 2000
+      },
+      "per_source": {
+        "tabfact": 490,
+        "halueval_summarization": 345,
+        "ragtruth_de": 201,
+        "ragtruth_pl": 169,
+        "ragtruth_it": 157,
+        "ragtruth_en": 141,
+        "ragtruth_hu": 133,
+        "ragtruth_fr": 132,
+        "ragtruth_es": 124,
+        "ragtruth_cn": 103,
+        "psiloqa": 4,
+        "vitaminc": 1
+      },
+      "ragtruth_derived_rows": 1160,
+      "ragtruth_derived_share": 0.58,
+      "joint_gate_pass_all3flags": false,
+      "joint_gate_pass_core": false,
+      "ragtruth_cap": {
+        "violates_50pct_cap": true,
+        "projected_lane_rows_uncapped": 38852,
+        "projected_lane_rows_capped": 32636,
+        "rows_lost_pct": 0.16
+      }
+    },
+    "S4_loosest": {
+      "cut_lexical_support": 0.7,
+      "ngram_order": 5,
+      "forbid_shared_numeral": false,
+      "n_rows": 2000,
+      "yield_per_claim": 0.5764,
+      "projected_max_lane_rows": 41121,
+      "auto_purity_all3flags": 0.2905,
+      "auto_purity_core": 0.8045,
+      "flag_rates": {
+        "flag_entity": 0.5935,
+        "flag_charoverlap": 0.0,
+        "flag_contentrecall": 0.1955
+      },
+      "separability": {
+        "auc_heldout": 0.574,
+        "auc_full_raw_feature": 0.5921,
+        "n_pairs": 2000
+      },
+      "per_source": {
+        "tabfact": 544,
+        "halueval_summarization": 347,
+        "ragtruth_de": 188,
+        "ragtruth_pl": 164,
+        "ragtruth_it": 151,
+        "ragtruth_en": 136,
+        "ragtruth_hu": 129,
+        "ragtruth_fr": 127,
+        "ragtruth_es": 117,
+        "ragtruth_cn": 91,
+        "psiloqa": 5,
+        "vitaminc": 1
+      },
+      "ragtruth_derived_rows": 1103,
+      "ragtruth_derived_share": 0.5515,
+      "joint_gate_pass_all3flags": false,
+      "joint_gate_pass_core": false,
+      "ragtruth_cap": {
+        "violates_50pct_cap": true,
+        "projected_lane_rows_uncapped": 41121,
+        "projected_lane_rows_capped": 36885,
+        "rows_lost_pct": 0.103
+      }
+    }
+  },
+  "ragtruth_cap_arithmetic": {
+    "reference_setting": "S3_loose",
+    "uncapped_rows": 2000,
+    "uncapped_ragtruth_rows": 1160,
+    "uncapped_ragtruth_share": 0.58,
+    "violates_50pct_cap": true,
+    "max_lane_size_under_cap": 1680,
+    "rows_lost_to_cap": 320,
+    "rows_lost_pct": 0.16,
+    "non_ragtruth_supply": 840,
+    "note": "The cap binds the LANE, not the sample. Scaled to the registered lane, the non-RAGTruth supply is the hard ceiling: a capped lane can never exceed twice the number of non-RAGTruth certified windows available."
+  },
+  "eyeball_sample": "/home/lab/workspace/private/ai-assistants/groundrails/experiments/grounding-semantic/R12-H121_gateB_eyeball_sample.parquet"
+}

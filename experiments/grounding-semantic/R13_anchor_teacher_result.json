@@ -1,0 +1,138 @@
+{
+  "diagnostic": "ANCHOR-TEACHER ceiling (ANALYSIS ONLY)",
+  "object": "per-(sentence, window) mean of the two frozen H105 draws' sigmoid probabilities, read through the standard windowed arena read",
+  "reproduction_guard": {
+    "per_draw": {
+      "h105d1": {
+        "per_subset": {
+          "covidqa": {
+            "rebuilt": 0.803,
+            "banked": 0.803,
+            "ok": true
+          },
+          "delucionqa": {
+            "rebuilt": 0.7975,
+            "banked": 0.7975,
+            "ok": true
+          },
+          "emanual": {
+            "rebuilt": 0.6883,
+            "banked": 0.6883,
+            "ok": true
+          },
+          "expertqa": {
+            "rebuilt": 0.7857,
+            "banked": 0.7857,
+            "ok": true
+          },
+          "finqa": {
+            "rebuilt": 0.6489,
+            "banked": 0.6489,
+            "ok": true
+          },
+          "hagrid": {
+            "rebuilt": 0.6259,
+            "banked": 0.6259,
+            "ok": true
+          },
+          "hotpotqa": {
+            "rebuilt": 0.6809,
+            "banked": 0.6809,
+            "ok": true
+          },
+          "pubmedqa": {
+            "rebuilt": 0.6201,
+            "banked": 0.6201,
+            "ok": true
+          },
+          "tatqa": {
+            "rebuilt": 0.7034,
+            "banked": 0.7034,
+            "ok": true
+          },
+          "techqa": {
+            "rebuilt": 0.6934,
+            "banked": 0.6934,
+            "ok": true
+          }
+        },
+        "mean": 0.70469,
+        "ok": true
+      },
+      "h105d2": {
+        "per_subset": {
+          "covidqa": {
+            "rebuilt": 0.7726,
+            "banked": 0.7726,
+            "ok": true
+          },
+          "delucionqa": {
+            "rebuilt": 0.8358,
+            "banked": 0.8358,
+            "ok": true
+          },
+          "emanual": {
+            "rebuilt": 0.707,
+            "banked": 0.707,
+            "ok": true
+          },
+          "expertqa": {
+            "rebuilt": 0.7599,
+            "banked": 0.7599,
+            "ok": true
+          },
+          "finqa": {
+            "rebuilt": 0.6176,
+            "banked": 0.6176,
+            "ok": true
+          },
+          "hagrid": {
+            "rebuilt": 0.642,
+            "banked": 0.642,
+            "ok": true
+          },
+          "hotpotqa": {
+            "rebuilt": 0.6526,
+            "banked": 0.6526,
+            "ok": true
+          },
+          "pubmedqa": {
+            "rebuilt": 0.5925,
+            "banked": 0.5925,
+            "ok": true
+          },
+          "tatqa": {
+            "rebuilt": 0.7606,
+            "banked": 0.7606,
+            "ok": true
+          },
+          "techqa": {
+            "rebuilt": 0.6745,
+            "banked": 0.6745,
+            "ok": true
+          }
+        },
+        "mean": 0.70152,
+        "ok": true
+      }
+    },
+    "ok": true
+  },
+  "h105_pair_mean": 0.70311,
+  "bar": 0.70811,
+  "anchor_per_subset": {
+    "covidqa": 0.7919,
+    "delucionqa": 0.8362,
+    "emanual": 0.7318,
+    "expertqa": 0.772,
+    "finqa": 0.6626,
+    "hagrid": 0.6428,
+    "hotpotqa": 0.6877,
+    "pubmedqa": 0.622,
+    "tatqa": 0.763,
+    "techqa": 0.6966
+  },
+  "anchor_mean": 0.72067,
+  "delta_vs_pair_mean": 0.01756,
+  "verdict": "OPEN - anchor teacher clears the bar"
+}

@@ -1,0 +1,45 @@
+{
+  "gold": {
+    "auc": 0.8236,
+    "f1": 0.7215,
+    "n": 717
+  },
+  "gold_full": {
+    "auc": 0.8323,
+    "f1": 0.7124,
+    "n": 2752
+  },
+  "ragtruth_en": {
+    "auc": 0.8332,
+    "f1": 0.7567,
+    "n": 600
+  },
+  "ragtruth_nonen": {
+    "auc": 0.848,
+    "per_lang": {
+      "de": 0.8506,
+      "fr": 0.8491,
+      "es": 0.8464,
+      "it": 0.8495,
+      "pl": 0.8294,
+      "hu": 0.8263,
+      "cn": 0.8848
+    }
+  },
+  "params_M": 307.1,
+  "lambda_max": 0.02,
+  "lane": "DR (H112+H114 certified + reclaim)",
+  "draw": 2,
+  "arm": "control",
+  "lambda_margin": 0.0,
+  "margin_m": 0.25,
+  "seed": 2117,
+  "mix_rows": 716039,
+  "clean_rows": 685670,
+  "lane_rows": 30369,
+  "margin_pairs": 13898,
+  "hinge_mean_final": 0.0,
+  "dann_groups": 16,
+  "train_seconds": 21409.2,
+  "checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/DR-lane-draw2-control"
+}

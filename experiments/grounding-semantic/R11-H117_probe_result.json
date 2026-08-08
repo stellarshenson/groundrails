@@ -1,0 +1,95 @@
+{
+  "hypothesis": "R11-H117 PAIRED-MARGIN - kill-gate 2 probe",
+  "design": {
+    "steps_per_arm": 3125,
+    "draw_seed": 1117,
+    "shared_perm_prefix": true,
+    "margin_m": 0.25,
+    "heldout_pairs": 2000,
+    "arms": [
+      0.0,
+      0.1,
+      0.3
+    ]
+  },
+  "arms": {
+    "0": {
+      "lambda_margin": 0.0,
+      "gold_full_auc": 0.7966,
+      "ragtruth_en_auc": 0.7774,
+      "pair_acc": 0.8465,
+      "pair_acc_verbatim": 0.9929,
+      "pair_acc_non_verbatim": 0.7894,
+      "mean_gap": 0.3319,
+      "hinge_mean": 0.15864,
+      "a6_ratio": 0.0,
+      "a6_void": false,
+      "bce_mean": 0.43431,
+      "steps": 3125,
+      "train_seconds": 4229.4
+    },
+    "0.1": {
+      "lambda_margin": 0.1,
+      "gold_full_auc": 0.8109,
+      "ragtruth_en_auc": 0.7787,
+      "pair_acc": 0.9095,
+      "pair_acc_verbatim": 0.9964,
+      "pair_acc_non_verbatim": 0.8756,
+      "mean_gap": 0.4295,
+      "hinge_mean": 0.13034,
+      "a6_ratio": 0.01909,
+      "a6_void": false,
+      "bce_mean": 0.42994,
+      "steps": 3125,
+      "train_seconds": 4260.6
+    },
+    "0.3": {
+      "lambda_margin": 0.3,
+      "gold_full_auc": 0.8274,
+      "ragtruth_en_auc": 0.7637,
+      "pair_acc": 0.9415,
+      "pair_acc_verbatim": 0.9964,
+      "pair_acc_non_verbatim": 0.9201,
+      "mean_gap": 0.4901,
+      "hinge_mean": 0.11422,
+      "a6_ratio": 0.04884,
+      "a6_void": false,
+      "bce_mean": 0.44317,
+      "steps": 3125,
+      "train_seconds": 7105.0
+    }
+  },
+  "per_lambda": {
+    "0.1": {
+      "gold_full_delta": 0.0143,
+      "ragtruth_en_delta": 0.0013,
+      "pair_acc_gain": 0.063,
+      "pair_acc_gain_verbatim": 0.0035,
+      "pair_acc_gain_non_verbatim": 0.0862,
+      "calibration_ok": true,
+      "pair_acc_improves": true,
+      "a6_void": false,
+      "passes": true,
+      "flat_global_warning": false
+    },
+    "0.3": {
+      "gold_full_delta": 0.0308,
+      "ragtruth_en_delta": -0.0137,
+      "pair_acc_gain": 0.095,
+      "pair_acc_gain_verbatim": 0.0035,
+      "pair_acc_gain_non_verbatim": 0.1307,
+      "calibration_ok": true,
+      "pair_acc_improves": true,
+      "a6_void": false,
+      "passes": true,
+      "flat_global_warning": false
+    }
+  },
+  "verdict": "PROCEED",
+  "chosen_lambda": 0.3,
+  "reason": "A5 tie-break: larger lambda pair-acc gain 0.095 exceeds smaller 0.063 by > 0.02",
+  "a2_flat_global_warning": {
+    "0.1": false,
+    "0.3": false
+  }
+}

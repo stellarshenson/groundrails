@@ -1,0 +1,223 @@
+{
+  "case": "B",
+  "case_finding": "The read's labels ARE derived from the sentence-level annotations. `adherence_score` == (unsupported_response_sentence_keys is empty) on 2264/2264 arena rows, all ten subsets. The annotation-granularity ceiling is therefore 1.0 by construction, and the diagnostic measures what the read's own machinery (H92 splitter, documents[:8] cap, 1500/750 windows) costs a perfect entailer.",
+  "truth_field_warning": "sentence_support_information[].fully_supported is NULL on 8/10 subsets (finqa 1101/1116, tatqa 658/665, techqa 1739/1917, pubmedqa 736/832 null) and is NOT a usable truth field. unsupported_response_sentence_keys is populated on all subsets and is what adherence_score is computed from.",
+  "read": "R8-H101_windowed_read.py - H92 min-over-sentences of max over 1500/750 windows of documents[:8]",
+  "label_field": "adherence_score (response-level boolean, GPT-4o annotated)",
+  "oracle_truth_field": "unsupported_response_sentence_keys (support) + sentence_support_information[].supporting_sentence_keys (evidence location)",
+  "auc_path": "R7-H59.auc_and_f1 (sklearn roc_auc_score), per subset then unweighted mean",
+  "per_subset": {
+    "covidqa": {
+      "n": 245,
+      "grounded_rate": 0.8408,
+      "o1_annotation_and_auc": 1.0,
+      "o1_annotation_and_f1": 1.0,
+      "o2_plus_splitter_auc": 1.0,
+      "o2_plus_splitter_f1": 1.0,
+      "o3_plus_chunkcap_auc": 1.0,
+      "o3_plus_chunkcap_f1": 1.0,
+      "o4_windows_strict_auc": 0.7549,
+      "o4_windows_strict_f1": 0.5007,
+      "o4_windows_lenient_auc": 1.0,
+      "o4_windows_lenient_f1": 1.0
+    },
+    "delucionqa": {
+      "n": 184,
+      "grounded_rate": 0.9348,
+      "o1_annotation_and_auc": 1.0,
+      "o1_annotation_and_f1": 1.0,
+      "o2_plus_splitter_auc": 1.0,
+      "o2_plus_splitter_f1": 1.0,
+      "o3_plus_chunkcap_auc": 1.0,
+      "o3_plus_chunkcap_f1": 1.0,
+      "o4_windows_strict_auc": 0.6657,
+      "o4_windows_strict_f1": 0.4831,
+      "o4_windows_lenient_auc": 1.0,
+      "o4_windows_lenient_f1": 1.0
+    },
+    "emanual": {
+      "n": 132,
+      "grounded_rate": 0.8939,
+      "o1_annotation_and_auc": 1.0,
+      "o1_annotation_and_f1": 1.0,
+      "o2_plus_splitter_auc": 0.9643,
+      "o2_plus_splitter_f1": 1.0,
+      "o3_plus_chunkcap_auc": 0.9643,
+      "o3_plus_chunkcap_f1": 1.0,
+      "o4_windows_strict_auc": 0.816,
+      "o4_windows_strict_f1": 0.5686,
+      "o4_windows_lenient_auc": 0.9643,
+      "o4_windows_lenient_f1": 1.0
+    },
+    "expertqa": {
+      "n": 203,
+      "grounded_rate": 0.468,
+      "o1_annotation_and_auc": 1.0,
+      "o1_annotation_and_f1": 1.0,
+      "o2_plus_splitter_auc": 0.9815,
+      "o2_plus_splitter_f1": 0.9699,
+      "o3_plus_chunkcap_auc": 0.9657,
+      "o3_plus_chunkcap_f1": 0.9598,
+      "o4_windows_strict_auc": 0.692,
+      "o4_windows_strict_f1": 0.7444,
+      "o4_windows_lenient_auc": 0.9657,
+      "o4_windows_lenient_f1": 0.9598
+    },
+    "finqa": {
+      "n": 250,
+      "grounded_rate": 0.92,
+      "o1_annotation_and_auc": 1.0,
+      "o1_annotation_and_f1": 1.0,
+      "o2_plus_splitter_auc": 0.75,
+      "o2_plus_splitter_f1": 0.8422,
+      "o3_plus_chunkcap_auc": 0.75,
+      "o3_plus_chunkcap_f1": 0.8422,
+      "o4_windows_strict_auc": 0.7348,
+      "o4_windows_strict_f1": 0.7508,
+      "o4_windows_lenient_auc": 0.75,
+      "o4_windows_lenient_f1": 0.8422
+    },
+    "hagrid": {
+      "n": 250,
+      "grounded_rate": 0.848,
+      "o1_annotation_and_auc": 1.0,
+      "o1_annotation_and_f1": 1.0,
+      "o2_plus_splitter_auc": 0.9342,
+      "o2_plus_splitter_f1": 0.9467,
+      "o3_plus_chunkcap_auc": 0.9319,
+      "o3_plus_chunkcap_f1": 0.9345,
+      "o4_windows_strict_auc": 0.7833,
+      "o4_windows_strict_f1": 0.6716,
+      "o4_windows_lenient_auc": 0.9319,
+      "o4_windows_lenient_f1": 0.9345
+    },
+    "hotpotqa": {
+      "n": 250,
+      "grounded_rate": 0.932,
+      "o1_annotation_and_auc": 1.0,
+      "o1_annotation_and_f1": 1.0,
+      "o2_plus_splitter_auc": 0.9706,
+      "o2_plus_splitter_f1": 1.0,
+      "o3_plus_chunkcap_auc": 0.9706,
+      "o3_plus_chunkcap_f1": 1.0,
+      "o4_windows_strict_auc": 0.5843,
+      "o4_windows_strict_f1": 0.4792,
+      "o4_windows_lenient_auc": 0.9706,
+      "o4_windows_lenient_f1": 1.0
+    },
+    "pubmedqa": {
+      "n": 250,
+      "grounded_rate": 0.692,
+      "o1_annotation_and_auc": 1.0,
+      "o1_annotation_and_f1": 1.0,
+      "o2_plus_splitter_auc": 0.987,
+      "o2_plus_splitter_f1": 0.9808,
+      "o3_plus_chunkcap_auc": 0.987,
+      "o3_plus_chunkcap_f1": 0.9808,
+      "o4_windows_strict_auc": 0.7789,
+      "o4_windows_strict_f1": 0.6916,
+      "o4_windows_lenient_auc": 0.987,
+      "o4_windows_lenient_f1": 0.9808
+    },
+    "tatqa": {
+      "n": 250,
+      "grounded_rate": 0.944,
+      "o1_annotation_and_auc": 1.0,
+      "o1_annotation_and_f1": 1.0,
+      "o2_plus_splitter_auc": 0.8929,
+      "o2_plus_splitter_f1": 0.9243,
+      "o3_plus_chunkcap_auc": 0.8929,
+      "o3_plus_chunkcap_f1": 0.9243,
+      "o4_windows_strict_auc": 0.8823,
+      "o4_windows_strict_f1": 0.8936,
+      "o4_windows_lenient_auc": 0.8929,
+      "o4_windows_lenient_f1": 0.9243
+    },
+    "techqa": {
+      "n": 250,
+      "grounded_rate": 0.564,
+      "o1_annotation_and_auc": 1.0,
+      "o1_annotation_and_f1": 1.0,
+      "o2_plus_splitter_auc": 0.9817,
+      "o2_plus_splitter_f1": 0.9838,
+      "o3_plus_chunkcap_auc": 0.9817,
+      "o3_plus_chunkcap_f1": 0.9838,
+      "o4_windows_strict_auc": 0.8682,
+      "o4_windows_strict_f1": 0.848,
+      "o4_windows_lenient_auc": 0.9817,
+      "o4_windows_lenient_f1": 0.9838
+    }
+  },
+  "pooled_means": {
+    "o1_annotation_and": 1.0,
+    "o2_plus_splitter": 0.9462,
+    "o3_plus_chunkcap": 0.9444,
+    "o4_windows_strict": 0.756,
+    "o4_windows_lenient": 0.9444
+  },
+  "ceiling_headline": {
+    "annotation_granularity_ceiling": 1.0,
+    "faithful_entailer_ceiling": 0.756,
+    "leaky_entailer_ceiling": 0.9444,
+    "reading": "The honest ceiling for a FAITHFUL per-(sentence, window) entailer is 0.7560 pooled mean AUC. It is not an upper bound on achievable AUC: an entailer that fires on PARTIAL window support reaches 0.9444, so this label/aggregation combination actively PENALISES faithfulness. Against the 0.74 round bar, 0.74 is reachable but sits only +0.0160 below the faithful ceiling and 0.0350 above the H105-pair incumbent 0.7031 - i.e. the remaining gap is 68% of the entire faithful-oracle headroom."
+  },
+  "window_reachability": {
+    "supported_scored_sentences": 6173,
+    "frac_no_single_window_carries_all_support": 0.2093,
+    "frac_support_spans_multiple_documents": 0.1999,
+    "frac_no_window_carries_any_support": 0.0
+  },
+  "caveats": [
+    "1894 of 11495 supporting keys (16.5%) could not be located as a substring of their raw document; they are resolved OPTIMISTICALLY, so both O4 numbers are upper bounds on their own ceilings",
+    "696 of 8277 H92 sentences map to no annotated sentence and are scored 1 (optimistic)",
+    "All oracle scores are binary, so per-subset AUC = (TPR + TNR) / 2 exactly"
+  ],
+  "top_loss_sources": [
+    {
+      "rank": 1,
+      "source": "conjunctive support - one window cannot carry the whole evidence",
+      "mechanism": "1292 of 6173 supported scored sentences (20.9%) cannot have ALL their annotated supporting sentences inside any single 1500-char window; 1234 of those (20.0% of supported sentences) draw support from more than one DOCUMENT, so no window exists even in principle. A faithful per-(sentence, window) entailer must return 0 on every window for these, and MIN-over-sentences propagates it to the response",
+      "responses_flipped": 662,
+      "auc_cost_pooled": 0.1884
+    },
+    {
+      "rank": 2,
+      "source": "H92 sentence splitter drops annotated sentences",
+      "mechanism": "sentences() keeps only >=25-char fragments and caps at 12; 1593 of 10422 annotated response sentences (15.3%) are covered by no scored sentence, and 210 of those are the UNSUPPORTED sentence that produced the label - 30 responses become invisible to the min. Concentrated in finqa (1.0000 -> 0.7500) and tatqa (-> 0.8929), where responses are arithmetic fragments below the 25-char floor",
+      "responses_flipped": 30,
+      "auc_cost_pooled": 0.0538
+    },
+    {
+      "rank": 3,
+      "source": "documents[:8] chunk cap strands evidence",
+      "mechanism": "MAX_CHUNKS=8 strands 22 supporting keys on 18 sentences, flipping 4 responses. Window GEOMETRY itself costs nothing: 0 of 6173 supported sentences (0.0%) lack even one supporting sentence wholly inside some window - at stride 750 every document sentence shorter than 750 chars is fully contained somewhere, so 1500/750 truncation is NOT a live loss source on this arena",
+      "responses_flipped": 4,
+      "auc_cost_pooled": 0.0018
+    }
+  ],
+  "loss_accounting": {
+    "n_resp": 2264,
+    "label1": 1816,
+    "label0": 448,
+    "identity_adherence_eq_no_unsupported": 2264,
+    "n_sent_ann": 10422,
+    "n_sent_h92": 8277,
+    "h92_unmapped": 696,
+    "ann_uncovered": 1593,
+    "ann_uncovered_unsupported": 210,
+    "flip_split": 30,
+    "flip_cap": 4,
+    "flip_window_strict": 662,
+    "flip_window_lenient": 0,
+    "supported_sent": 6173,
+    "supported_sent_no_keys": 62,
+    "supp_keys": 11495,
+    "supp_keys_over_chunk_cap": 22,
+    "supp_keys_unlocatable": 1894,
+    "supported_sent_multidoc": 1234,
+    "supported_sent_no_window_strict": 1292,
+    "supported_sent_no_window_lenient": 0,
+    "supported_sent_over_cap": 18
+  },
+  "licence": "ANALYSIS ONLY - Round 12 ruling 5; no quantity here may enter any build"
+}

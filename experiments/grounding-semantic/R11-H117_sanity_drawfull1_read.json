@@ -1,0 +1,27 @@
+{
+  "model": "models/DR-lane-draw1-control",
+  "ragtruth_en": {
+    "auc": 0.8329,
+    "f1": 0.7441,
+    "n": 600
+  },
+  "heldout_pairs": {
+    "overall": {
+      "pair_acc": 0.8855,
+      "n": 2000,
+      "mean_gap": 0.4612
+    },
+    "verbatim": {
+      "pair_acc": 0.9964,
+      "n": 561,
+      "mean_gap": 0.9373
+    },
+    "non_verbatim": {
+      "pair_acc": 0.8423,
+      "n": 1439,
+      "mean_gap": 0.2756
+    },
+    "mean_p_seed": 0.5834,
+    "mean_p_corrupt": 0.1222
+  }
+}

@@ -1,0 +1,233 @@
+{
+  "hypothesis": "R13-H125 TOP2-UNION-PREMISE-READ",
+  "tag": "h108d1",
+  "model": "models/R10-H108-lane-draw1",
+  "composite": "unit_a[:750] + unit_b[:750], document order, no separator, <= 1500 chars",
+  "reproduction_guard": {
+    "per_subset": {
+      "covidqa": {
+        "rebuilt": 0.7516,
+        "banked": 0.7516,
+        "ok": true
+      },
+      "delucionqa": {
+        "rebuilt": 0.7355,
+        "banked": 0.7355,
+        "ok": true
+      },
+      "emanual": {
+        "rebuilt": 0.6719,
+        "banked": 0.6719,
+        "ok": true
+      },
+      "expertqa": {
+        "rebuilt": 0.7496,
+        "banked": 0.7496,
+        "ok": true
+      },
+      "finqa": {
+        "rebuilt": 0.7291,
+        "banked": 0.7291,
+        "ok": true
+      },
+      "hagrid": {
+        "rebuilt": 0.6599,
+        "banked": 0.6599,
+        "ok": true
+      },
+      "hotpotqa": {
+        "rebuilt": 0.6965,
+        "banked": 0.6965,
+        "ok": true
+      },
+      "pubmedqa": {
+        "rebuilt": 0.5907,
+        "banked": 0.5907,
+        "ok": true
+      },
+      "tatqa": {
+        "rebuilt": 0.7391,
+        "banked": 0.7391,
+        "ok": true
+      },
+      "techqa": {
+        "rebuilt": 0.7379,
+        "banked": 0.7379,
+        "ok": true
+      }
+    },
+    "ok": true
+  },
+  "standard_per_subset": {
+    "covidqa": 0.7516,
+    "delucionqa": 0.7355,
+    "emanual": 0.6719,
+    "expertqa": 0.7496,
+    "finqa": 0.7291,
+    "hagrid": 0.6599,
+    "hotpotqa": 0.6965,
+    "pubmedqa": 0.5907,
+    "tatqa": 0.7391,
+    "techqa": 0.7379
+  },
+  "union_per_subset": {
+    "covidqa": 0.7522,
+    "delucionqa": 0.6609,
+    "emanual": 0.7446,
+    "expertqa": 0.7933,
+    "finqa": 0.7322,
+    "hagrid": 0.6425,
+    "hotpotqa": 0.691,
+    "pubmedqa": 0.5912,
+    "tatqa": 0.7225,
+    "techqa": 0.736
+  },
+  "delta_per_subset": {
+    "covidqa": 0.0006,
+    "delucionqa": -0.0746,
+    "emanual": 0.0726,
+    "expertqa": 0.0437,
+    "finqa": 0.003,
+    "hagrid": -0.0174,
+    "hotpotqa": -0.0056,
+    "pubmedqa": 0.0005,
+    "tatqa": -0.0166,
+    "techqa": -0.002
+  },
+  "standard_mean": 0.70618,
+  "union_mean": 0.70662,
+  "mean_delta": 0.00044,
+  "worst_subset": {
+    "subset": "delucionqa",
+    "delta": -0.0746
+  },
+  "n_composites_scored": 18392,
+  "exhaustive_probe": {
+    "subsets": [
+      "hotpotqa",
+      "covidqa",
+      "tatqa",
+      "hagrid"
+    ],
+    "n_pair_forwards": 11928,
+    "per_subset": {
+      "hotpotqa": {
+        "standard": 0.6965,
+        "top2_union": 0.691,
+        "exhaustive_union": 0.7006,
+        "exhaustive_minus_top2": 0.0096
+      },
+      "covidqa": {
+        "standard": 0.7516,
+        "top2_union": 0.7522,
+        "exhaustive_union": 0.7654,
+        "exhaustive_minus_top2": 0.0132
+      },
+      "tatqa": {
+        "standard": 0.7391,
+        "top2_union": 0.7225,
+        "exhaustive_union": 0.737,
+        "exhaustive_minus_top2": 0.0145
+      },
+      "hagrid": {
+        "standard": 0.6599,
+        "top2_union": 0.6425,
+        "exhaustive_union": 0.6439,
+        "exhaustive_minus_top2": 0.0014
+      }
+    },
+    "exhaustive_beats_top2": true
+  },
+  "fire_rate": {
+    "definition": "fraction of scored sentences whose final argmax IS the top-2 composite, split by response adherence label",
+    "pooled": {
+      "grounded": 0.371,
+      "n_grounded": 5591,
+      "hallucinated": 0.3594,
+      "n_hallucinated": 2468,
+      "gap": 0.0116
+    },
+    "per_subset": {
+      "covidqa": {
+        "grounded": 0.5877,
+        "n_grounded": 325,
+        "hallucinated": 0.6667,
+        "n_hallucinated": 60,
+        "gap": -0.079
+      },
+      "delucionqa": {
+        "grounded": 0.4778,
+        "n_grounded": 879,
+        "hallucinated": 0.54,
+        "n_hallucinated": 50,
+        "gap": -0.0622
+      },
+      "emanual": {
+        "grounded": 0.4688,
+        "n_grounded": 642,
+        "hallucinated": 0.5,
+        "n_hallucinated": 106,
+        "gap": -0.0312
+      },
+      "expertqa": {
+        "grounded": 0.5221,
+        "n_grounded": 521,
+        "hallucinated": 0.5828,
+        "n_hallucinated": 652,
+        "gap": -0.0607
+      },
+      "finqa": {
+        "grounded": 0.4464,
+        "n_grounded": 513,
+        "hallucinated": 0.36,
+        "n_hallucinated": 50,
+        "gap": 0.0864
+      },
+      "hagrid": {
+        "grounded": 0.3594,
+        "n_grounded": 345,
+        "hallucinated": 0.375,
+        "n_hallucinated": 104,
+        "gap": -0.0156
+      },
+      "hotpotqa": {
+        "grounded": 0.0704,
+        "n_grounded": 270,
+        "hallucinated": 0.087,
+        "n_hallucinated": 23,
+        "gap": -0.0166
+      },
+      "pubmedqa": {
+        "grounded": 0.1181,
+        "n_grounded": 838,
+        "hallucinated": 0.105,
+        "n_hallucinated": 476,
+        "gap": 0.0131
+      },
+      "tatqa": {
+        "grounded": 0.446,
+        "n_grounded": 426,
+        "hallucinated": 0.5476,
+        "n_hallucinated": 42,
+        "gap": -0.1016
+      },
+      "techqa": {
+        "grounded": 0.2752,
+        "n_grounded": 832,
+        "hallucinated": 0.2818,
+        "n_hallucinated": 905,
+        "gap": -0.0066
+      }
+    },
+    "diagnostic_refutation": true,
+    "refutation_rule": "hallucinated >= 0.90 x grounded (fire rates match)",
+    "note": "hallucinated fire rate matching grounded refutes the two-hop premise regardless of AUC (amendment 4)"
+  },
+  "clauses_admit": {
+    "hotpotqa_ge_0.030": false,
+    "mean_ge_0.005": false,
+    "no_subset_le_-0.020": false
+  },
+  "draw1_refute_fired": true,
+  "verdict": "REFUTE"
+}

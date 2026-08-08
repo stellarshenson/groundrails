@@ -1,0 +1,103 @@
+{
+  "per_subset": {
+    "covidqa": {
+      "n": 245,
+      "auc": 0.7519,
+      "f1": 0.6004,
+      "baseline_h90": 0.7755,
+      "delta": -0.0236,
+      "lettuce_auc": 0.7355,
+      "n_window_pairs": 1540
+    },
+    "delucionqa": {
+      "n": 184,
+      "auc": 0.8808,
+      "f1": 0.6908,
+      "baseline_h90": 0.7263,
+      "delta": 0.1545,
+      "lettuce_auc": 0.7929,
+      "n_window_pairs": 5093
+    },
+    "emanual": {
+      "n": 132,
+      "auc": 0.6677,
+      "f1": 0.5537,
+      "baseline_h90": 0.7058,
+      "delta": -0.0381,
+      "lettuce_auc": 0.5999,
+      "n_window_pairs": 2983
+    },
+    "expertqa": {
+      "n": 203,
+      "auc": 0.6984,
+      "f1": 0.6313,
+      "baseline_h90": 0.8248,
+      "delta": -0.1264,
+      "lettuce_auc": 0.6503,
+      "n_window_pairs": 13949
+    },
+    "finqa": {
+      "n": 250,
+      "auc": 0.7098,
+      "f1": 0.6774,
+      "baseline_h90": 0.673,
+      "delta": 0.0368,
+      "lettuce_auc": 0.717,
+      "n_window_pairs": 2918
+    },
+    "hagrid": {
+      "n": 250,
+      "auc": 0.6569,
+      "f1": 0.6414,
+      "baseline_h90": 0.6516,
+      "delta": 0.0053,
+      "lettuce_auc": 0.5992,
+      "n_window_pairs": 1941
+    },
+    "hotpotqa": {
+      "n": 250,
+      "auc": 0.6344,
+      "f1": 0.4804,
+      "baseline_h90": 0.7253,
+      "delta": -0.0909,
+      "lettuce_auc": 0.5976,
+      "n_window_pairs": 1177
+    },
+    "pubmedqa": {
+      "n": 250,
+      "auc": 0.606,
+      "f1": 0.594,
+      "baseline_h90": 0.6058,
+      "delta": 0.0002,
+      "lettuce_auc": 0.5162,
+      "n_window_pairs": 6570
+    },
+    "tatqa": {
+      "n": 250,
+      "auc": 0.8175,
+      "f1": 0.5707,
+      "baseline_h90": 0.7718,
+      "delta": 0.0457,
+      "lettuce_auc": 0.6156,
+      "n_window_pairs": 1942
+    },
+    "techqa": {
+      "n": 250,
+      "auc": 0.6479,
+      "f1": 0.5795,
+      "baseline_h90": 0.7529,
+      "delta": -0.105,
+      "lettuce_auc": 0.6363,
+      "n_window_pairs": 39058
+    }
+  },
+  "mean": 0.70713,
+  "baseline_mean": 0.72128,
+  "mean_lettuce": 0.64605,
+  "finqa_delta": 0.0368,
+  "delucionqa_delta": 0.1545,
+  "verdict": "REFUTED (bar missed, kill not triggered)",
+  "model": "models/DR-lane-draw2-control",
+  "window": 1500,
+  "stride": 750
+}

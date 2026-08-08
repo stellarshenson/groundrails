@@ -1,4 +1,18 @@
-"""DR lane training draws - control (BCE-only) and margin (R11-H117) arms.
+"""R11-H117 kill-gate-2 PROBE trainer - copy of DR_lane_trainer.py.
+
+Differences from DR_lane_trainer.py (naming/args/reporting ONLY, training logic
+byte-identical):
+  - checkpoints go to models/H117-probe-lam<LAM>/ so the finished full control
+    draws (models/DR-lane-draw{1,2}-control) can never be clobbered
+  - --lambda-margin takes 0 for the probe-control arm (no --arm flag)
+  - --max-steps saves a checkpoint before returning (the probe reads need it)
+  - A6 instrument: running mean of (lambda_margin * hinge) / BCE logged every
+    200 steps; > 0.25 voids the arm
+  - the hinge is always computed (multiplied by lambda_margin = 0 in the control
+    arm, so it contributes exactly zero to loss and gradient) to give the
+    control arm a pair-separation diagnostic on the same code path
+
+DR lane training draws - control (BCE-only) and margin (R11-H117) arms.
 
 The exact R9-H105 recipe (mmBERT-base cross-encoder, BCE + DANN lambda 0.02
 Ganin ramp, MAX_LEN 512, BATCH 48, LR 1e-5, OneCycleLR, 1 epoch) on
@@ -20,22 +34,9 @@ DR lane admission bar (control arm): lane mean over 2 draws blind windowed
 read > 0.7031. H117 bar (margin arm): blind >= control + 0.01 AND
 gold_full >= control - 0.005.
 
-R12-H120 instruments (ruling 6: H120 rides the first H117 margin arm). Ported
-verbatim from R13-H129_trainer.py - neither consumes RNG nor enters the loss,
-so the paired comparison against the finished control draws is intact:
-  --ema     ONE EMA buffer (decay 0.999) over trunk + task_head, started at 80%
-            of total steps, saved as a SEPARATE checkpoint dir
-            models/DR-lane-draw<N>-<arm>-ema/. Off by default.
-  step-cosine  ALWAYS on: running mean cosine of consecutive parameter updates,
-            cos(W_t - W_{t-1}, W_{t-1} - W_{t-2}), measured over the final 20%
-            of steps on one fixed parameter slice (the largest non-embedding
-            parameter tensor, selected deterministically and named in the log
-            and in the result json). Logged every 200 steps; the H120 read is
-            LICENSEd below 0.3 and ABORTed above 0.5.
-
 Run:  CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=1 \
-      uv run python experiments/grounding-semantic/DR_lane_trainer.py \
-          --draw 1 --arm control
+      uv run python experiments/grounding-semantic/R11-H117_probe_trainer.py \
+          --draw 1 --lambda-margin 0 --max-steps 3125
 """
 
 import os
@@ -66,9 +67,6 @@ LAMBDA_MAX = 0.02
 RESUME_EVERY = 1000
 MARGIN_M = 0.25
 DRAW_SEEDS = {1: 1117, 2: 2117}  # paired across arms per A2/A3
-EMA_DECAY = 0.999
-EMA_START_FRAC = 0.8  # EMA and the step-cosine window both open at 80%
-COS_FRAC = 0.8
 
 
 def _mod(name, fname):
@@ -148,8 +146,6 @@ def build_perm(n_rows, pair_ids, is_corrupt, rng):
 
 def margin_hinge(probs, pid, cor, lam_margin):
     """Hinge max(0, m - (p_clean - p_corrupt)) over COMPLETE pairs in the batch."""
-    if lam_margin == 0.0:
-        return probs.new_zeros(()), 0
     terms = []
     ids = pid.tolist()
     by_pid = {}
@@ -164,41 +160,18 @@ def margin_hinge(probs, pid, cor, lam_margin):
     return torch.stack(terms).mean(), len(terms)
 
 
-def ema_named(model):
-    """The parameters the EMA buffer covers: trunk + task_head."""
-    return [(n, p) for n, p in model.named_parameters()
-            if n.startswith(("trunk.", "task_head."))]
-
-
-def cosine_slice(model):
-    """Fixed, deterministic parameter slice for the step-cosine instrument: the
-    largest non-embedding parameter tensor (ties broken by name). Embeddings are
-    excluded - their gradients are token-sparse, so their update direction is
-    dominated by which rows happened to appear in the batch."""
-    cands = sorted(
-        ((p.numel(), n) for n, p in model.named_parameters() if "embed" not in n.lower()),
-        key=lambda t: (-t[0], t[1]),
-    )
-    name = cands[0][1]
-    return name, dict(model.named_parameters())[name]
-
-
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--draw", type=int, required=True, choices=(1, 2))
-    ap.add_argument("--arm", required=True, choices=("control", "margin"))
-    ap.add_argument("--lambda-margin", type=float, default=0.1,
-                    help="margin weight (margin arm only; control forces 0)")
-    ap.add_argument("--ema", action="store_true",
-                    help="maintain the H120 EMA buffer and save "
-                         "models/DR-lane-draw<N>-<arm>-ema/")
+    ap.add_argument("--lambda-margin", type=float, required=True,
+                    help="margin weight; 0 is the probe-control arm")
     ap.add_argument("--max-steps", type=int, default=0,
-                    help="probe mode: stop after N steps, no checkpoint/eval")
+                    help="probe mode: stop after N steps, save checkpoint, no eval")
     args = ap.parse_args()
-    lam_margin = 0.0 if args.arm == "control" else args.lambda_margin
-    ckpt_dir = HERE.parent.parent / "models" / f"DR-lane-draw{args.draw}-{args.arm}"
-    ema_dir = HERE.parent.parent / "models" / f"DR-lane-draw{args.draw}-{args.arm}-ema"
-    out = HERE / f"DR_lane_draw{args.draw}_{args.arm}_result.json"
+    lam_margin = args.lambda_margin
+    arm = f"lam{lam_margin:g}"
+    ckpt_dir = HERE.parent.parent / "models" / f"H117-probe-{arm}"
+    out = HERE / f"R11-H117_probe_{arm}_train.json"
 
     print(f"GPU: {torch.cuda.get_device_name(0)}", flush=True)
     seed = DRAW_SEEDS[args.draw]
@@ -225,7 +198,7 @@ def main():
     print(f"train: {len(y)} rows ({n_public} clean + {len(ly)} DR lane, "
           f"{n_pairs} margin pairs, {int(bce_mask.sum())} BCE-masked) across "
           f"{n_groups} domains (chance {chance:.3f})\n"
-          f"arm {args.arm}  lambda_margin {lam_margin}  m {MARGIN_M}  seed {seed}\n",
+          f"arm {arm}  lambda_margin {lam_margin}  m {MARGIN_M}  seed {seed}\n",
           flush=True)
 
     tok = AutoTokenizer.from_pretrained(H108.STUDENT)
@@ -241,28 +214,15 @@ def main():
     sched = torch.optim.lr_scheduler.OneCycleLR(
         opt, max_lr=LR, total_steps=n_steps, pct_start=WARMUP_FRAC, anneal_strategy="linear")
 
-    cos_name, cos_par = cosine_slice(model)
-    cos_start = int(COS_FRAC * n_steps)
-    ema_start = int(EMA_START_FRAC * n_steps)
-    print(f"step-cosine slice: {cos_name} ({cos_par.numel()} elems), window steps "
-          f"{cos_start}..{n_steps}\nEMA: {'on' if args.ema else 'off'}"
-          f"{f' (decay {EMA_DECAY}, from step {ema_start})' if args.ema else ''}\n", flush=True)
-
     resume_path = ckpt_dir / "resume.pt"
     start_step = 0
-    ema = None
-    cos_sum, cos_n = torch.zeros((), device="cuda"), 0
     if resume_path.exists():
         st = torch.load(resume_path, map_location="cuda", weights_only=False)
         model.load_state_dict(st["model"])
         opt.load_state_dict(st["opt"])
         sched.load_state_dict(st["sched"])
         perm, start_step = st["perm"], st["step"]
-        ema = st.get("ema")
-        cos_sum += float(st.get("cos_sum", 0.0))
-        cos_n = st.get("cos_n", 0)
-        print(f"resumed from {resume_path} at step {start_step}/{n_steps} "
-              f"(ema {'present' if ema else 'absent'}, cos_n {cos_n})\n", flush=True)
+        print(f"resumed from {resume_path} at step {start_step}/{n_steps}\n", flush=True)
     else:
         perm = build_perm(len(ds), pair_ids, is_corrupt, np.random.default_rng(seed))
 
@@ -274,21 +234,43 @@ def main():
         ckpt_dir.mkdir(parents=True, exist_ok=True)
         tmp = resume_path.with_suffix(".tmp")
         torch.save({"model": model.state_dict(), "opt": opt.state_dict(),
-                    "sched": sched.state_dict(), "perm": perm, "step": step,
-                    "ema": ema, "cos_sum": cos_sum.item(), "cos_n": cos_n}, tmp)
+                    "sched": sched.state_dict(), "perm": perm, "step": step}, tmp)
         tmp.replace(resume_path)
+
+    def save_final():
+        ckpt_dir.mkdir(parents=True, exist_ok=True)
+        torch.save({"trunk": base.state_dict(), "task_head": model.task_head.state_dict(),
+                    "domain_head": model.domain_head.state_dict(), "config": base.config},
+                   ckpt_dir / "dann_student.pt")
+        tok.save_pretrained(ckpt_dir)
+        base.save_pretrained(ckpt_dir / "trunk")
+        resume_path.unlink(missing_ok=True)
+        print(f"\ncheckpoint saved -> {ckpt_dir}\n", flush=True)
 
     model.train()
     t0 = time.time()
     dom_correct, dom_total = 0, 0
     hinge_sum, hinge_pairs = 0.0, 0
-    prev_w, prev_delta = None, None
+    a6_marg, a6_bce, a6_n = 0.0, 0.0, 0  # A6 running magnitude ratio
     for i, (enc, yy, gg, pid, cor, msk) in enumerate(dl):
         step = start_step + i
         if args.max_steps and i >= args.max_steps:
+            ratio = (a6_marg / a6_bce) if a6_bce else 0.0
             print(f"probe stop at {args.max_steps} steps  "
-                  f"hinge mean {hinge_sum / max(hinge_pairs, 1):.4f} over {hinge_pairs} pairs",
-                  flush=True)
+                  f"hinge mean {hinge_sum / max(hinge_pairs, 1):.4f} over {hinge_pairs} pairs  "
+                  f"A6 ratio {ratio:.4f}", flush=True)
+            save_final()
+            out.write_text(json.dumps({
+                "arm": arm, "lambda_margin": lam_margin, "margin_m": MARGIN_M,
+                "draw": args.draw, "seed": seed, "max_steps": args.max_steps,
+                "n_steps_full": n_steps, "mix_rows": int(len(y)),
+                "margin_pairs": n_pairs, "hinge_mean": round(hinge_sum / max(hinge_pairs, 1), 5),
+                "hinge_pairs_seen": hinge_pairs, "a6_ratio": round(ratio, 5),
+                "a6_void": bool(ratio > 0.25), "bce_mean": round(a6_bce / max(a6_n, 1), 5),
+                "train_seconds": round(time.time() - t0, 1), "checkpoint": str(ckpt_dir),
+            }, indent=2))
+            print(f"results -> {out}")
+            print(f"=== H117 PROBE {arm} DONE ===", flush=True)
             return
         enc = {k: v.cuda() for k, v in enc.items()}
         yy, gg, msk = yy.cuda(), gg.cuda(), msk.cuda()
@@ -306,29 +288,15 @@ def main():
         if n_terms:
             hinge_sum += m_loss.item() * n_terms
             hinge_pairs += n_terms
+        a6_marg += lam_margin * m_loss.item()
+        a6_bce += t_loss.item()
+        a6_n += 1
 
         loss.backward()
         torch.nn.utils.clip_grad_norm_(model.parameters(), CLIP)
         opt.step()
         sched.step()
         opt.zero_grad()
-
-        with torch.no_grad():
-            if step >= cos_start:
-                cur = cos_par.detach().flatten().float().clone()
-                if prev_w is not None:
-                    delta = cur - prev_w
-                    if prev_delta is not None:
-                        cos_sum += F.cosine_similarity(delta, prev_delta, dim=0)
-                        cos_n += 1
-                    prev_delta = delta
-                prev_w = cur
-            if args.ema and step >= ema_start:
-                if ema is None:
-                    ema = {n: q.detach().clone().float() for n, q in ema_named(model)}
-                else:
-                    for n, q in ema_named(model):
-                        ema[n].mul_(EMA_DECAY).add_(q.detach().float(), alpha=1.0 - EMA_DECAY)
 
         dom_correct += (domain_logit.argmax(-1) == gg).sum().item()
         dom_total += len(gg)
@@ -338,65 +306,35 @@ def main():
             acc = dom_correct / max(dom_total, 1)
             dom_correct, dom_total = 0, 0
             hm = hinge_sum / max(hinge_pairs, 1)
-            cm = (cos_sum / cos_n).item() if cos_n else float("nan")
+            ratio = (a6_marg / a6_bce) if a6_bce else 0.0
             print(f"  step {step}/{n_steps} task {t_loss.item():.4f} domain {d_loss.item():.4f} "
-                  f"hinge {hm:.4f} lam {lam:.4f} domain-acc {acc:.3f} "
-                  f"step-cos {cm:.4f} (n={cos_n})  "
+                  f"hinge {hm:.4f} lam {lam:.4f} domain-acc {acc:.3f}  "
+                  f"A6 {ratio:.4f}{' VOID' if ratio > 0.25 else ''}  "
                   f"({time.time() - t0:.0f}s)", flush=True)
         if step and step % RESUME_EVERY == 0:
             save_resume(step + 1)
             print(f"  resume point saved at step {step}", flush=True)
 
-    ckpt_dir.mkdir(parents=True, exist_ok=True)
-    torch.save({"trunk": base.state_dict(), "task_head": model.task_head.state_dict(),
-                "domain_head": model.domain_head.state_dict(), "config": base.config},
-               ckpt_dir / "dann_student.pt")
-    tok.save_pretrained(ckpt_dir)
-    base.save_pretrained(ckpt_dir / "trunk")
-    resume_path.unlink(missing_ok=True)
-    print(f"\ncheckpoint saved -> {ckpt_dir}\n", flush=True)
+    save_final()
 
-    if ema is not None:
-        live = {n: q.detach().clone() for n, q in ema_named(model)}
-        with torch.no_grad():
-            for n, q in ema_named(model):
-                q.copy_(ema[n].to(q.dtype))
-        ema_dir.mkdir(parents=True, exist_ok=True)
-        torch.save({"trunk": base.state_dict(), "task_head": model.task_head.state_dict(),
-                    "domain_head": model.domain_head.state_dict(), "config": base.config},
-                   ema_dir / "dann_student.pt")
-        tok.save_pretrained(ema_dir)
-        base.save_pretrained(ema_dir / "trunk")
-        with torch.no_grad():
-            for n, q in ema_named(model):
-                q.copy_(live[n])
-        print(f"EMA checkpoint saved -> {ema_dir}\n", flush=True)
-
-    cos_mean = (cos_sum / cos_n).item() if cos_n else None
     model.eval()
     res = H108.evaluate(model, tok)
     res.update({
         "params_M": round(n_par, 1), "lambda_max": LAMBDA_MAX,
         "lane": "DR (H112+H114 certified + reclaim)", "draw": args.draw,
-        "arm": args.arm, "lambda_margin": lam_margin, "margin_m": MARGIN_M,
+        "arm": arm, "lambda_margin": lam_margin, "margin_m": MARGIN_M,
         "seed": seed, "mix_rows": int(len(y)), "clean_rows": int(n_public),
         "lane_rows": int(len(ly)), "margin_pairs": n_pairs,
         "hinge_mean_final": round(hinge_sum / max(hinge_pairs, 1), 4),
         "dann_groups": n_groups, "train_seconds": round(time.time() - t0, 1),
         "checkpoint": str(ckpt_dir),
-        "step_cosine_mean": None if cos_mean is None else round(cos_mean, 4),
-        "step_cosine_slice": cos_name, "step_cosine_n": cos_n,
-        "ema": bool(args.ema), "ema_decay": EMA_DECAY if args.ema else None,
-        "ema_checkpoint": str(ema_dir) if ema is not None else None,
     })
     gf = res["gold_full"]
     print(f"gold_full {gf['auc']:.4f} (n={gf['n']})  "
           f"gold {res['gold']['auc']:.4f}  ragtruth_en {res['ragtruth_en']['auc']:.4f}")
-    print(f"step-cosine mean over final 20%: {cos_mean} "
-          f"(H120 read: LICENSE < 0.3, ABORT > 0.5)")
     out.write_text(json.dumps(res, indent=2))
     print(f"results -> {out}")
-    print(f"=== DR DRAW {args.draw} {args.arm.upper()} DONE ===", flush=True)
+    print(f"=== H117 PROBE {arm} FULL-RUN DONE ===", flush=True)
 
 
 if __name__ == "__main__":

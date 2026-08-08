@@ -1,0 +1,19 @@
+{
+  "rows": 685670,
+  "mix_rows": 685670,
+  "row_count_match": true,
+  "spot_rows": [
+    47665,
+    562073,
+    586454,
+    592963,
+    614324
+  ],
+  "spot_max_abs_diff_d1": 5.4e-07,
+  "spot_max_abs_diff_d2": 7.7e-07,
+  "spot_hashes_match": true,
+  "spot_pass": true,
+  "p_teacher_mean": 0.482608,
+  "p_d1_mean": 0.482197,
+  "p_d2_mean": 0.483019
+}

@@ -263,3 +263,12 @@ Contrastive judge (Qwen3-32B-FP8, temp 0) over 50,387 usable rows (H112 sentence
 - **DANN groups** - dr_h112, dr_h112_long, dr_h114, dr_reclaim (4 lane groups on top of the 12 public)
 - **Admission draws** - `DR_lane_trainer.py` via `DR_campaign.sh` (control arm = BCE-only with inert partners, paired seeds 1117/2117 per draw index); bar unchanged: lane mean over 2 draws blind windowed > 0.7031
 - **Artifacts** - `DR_judged.parquet`, `DR_judge_summary.json`, `DR_judge_eyeball.md`, `DR_lane.parquet`, `DR_lane_summary.json`, `DR_lane_assemble.py`, `DR_lane_trainer.py`, `DR_campaign.sh`, `logs/DR_judge.log`
+
+### DR lane admission - verdict (2026-08-08): NOT ADMITTED. Pair mean 0.70270 vs the 0.7031 bar
+
+Both control draws complete (`DR_campaign.sh`, paired seeds 1117/2117, mid-draw resume machinery unused - no restarts): draw 1 **0.69826**, draw 2 **0.70713**, pair mean **0.70270** - misses the registered bar by 0.0004. The bar is the bar; the lane does not enter the mix.
+
+- **Draw 2 is the highest single windowed draw ever banked** (0.70713 vs the previous max 0.70618, H108 d1) with tatqa 0.8175 and delucionqa 0.8808 both campaign records - but the draw spread (0.0089) is 3x the same-recipe norm (~0.003), and the pair lands under the bar. An admission claim off the good draw alone would be exactly the single-draw cherry-pick the 2-draw protocol exists to forbid
+- **The trade replicates draw 1's fingerprint**: bought finqa (0.7098/0.6870 vs clean-pair ~0.633), delucionqa, tatqa; paid hotpotqa (0.6344/0.6228 vs ~0.667), techqa (0.6479/0.6754 vs ~0.684), expertqa (0.6984 d2). Third data lane, third register-displacement trade (H107 severe, H108 marginal-positive, DR marginal-negative)
+- **What survives**: the certified minimal pairs remain the substrate for R11-H117 (margin loss, launching next on GPU1) - the H117 arms train on the SAME lane with the margin term active vs these controls as the paired comparison; H117's verdict, not the mix admission, decides whether the corruption engine earns its keep
+- **Verdict recorded**: DR mix-admission CLOSED as NOT ADMITTED; `DR_lane_draw1_control_windowed_result.json`, `DR_lane_draw2_control_windowed_result.json`

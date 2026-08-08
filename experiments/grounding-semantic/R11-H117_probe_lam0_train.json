@@ -1,0 +1,18 @@
+{
+  "arm": "lam0",
+  "lambda_margin": 0.0,
+  "margin_m": 0.25,
+  "draw": 1,
+  "seed": 1117,
+  "max_steps": 3125,
+  "n_steps_full": 14918,
+  "mix_rows": 716039,
+  "margin_pairs": 13898,
+  "hinge_mean": 0.15864,
+  "hinge_pairs_seen": 2966,
+  "a6_ratio": 0.0,
+  "a6_void": false,
+  "bce_mean": 0.43431,
+  "train_seconds": 4229.4,
+  "checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/H117-probe-lam0"
+}

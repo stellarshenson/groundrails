@@ -1,0 +1,5 @@
+{
+  "model": "models/H117-probe-lam0",
+  "gold_full_auc": 0.7966,
+  "n": 2752
+}

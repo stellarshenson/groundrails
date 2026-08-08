@@ -1,0 +1,27 @@
+{
+  "model": "models/H117-probe-lam0.3",
+  "ragtruth_en": {
+    "auc": 0.7637,
+    "f1": 0.7194,
+    "n": 600
+  },
+  "heldout_pairs": {
+    "overall": {
+      "pair_acc": 0.9415,
+      "n": 2000,
+      "mean_gap": 0.4901
+    },
+    "verbatim": {
+      "pair_acc": 0.9964,
+      "n": 561,
+      "mean_gap": 0.8988
+    },
+    "non_verbatim": {
+      "pair_acc": 0.9201,
+      "n": 1439,
+      "mean_gap": 0.3308
+    },
+    "mean_p_seed": 0.6558,
+    "mean_p_corrupt": 0.1657
+  }
+}
