@@ -236,3 +236,30 @@ The H116 long-form share took three attempts; the engine was never at fault, the
 - **Volume shortfall** - 5,432 of the registered 6,200 spans: the H112 seed slice exhausted at 4,134 assembled docs with 1,552 cross-lane dedup skips. Shipped under target rather than re-seeded, per scale-after-signal
 - **Infrastructure casualty (recorded, not a method finding)** - the container recycle at 23:37 reverted `/dev/shm` from the remounted 32 GB to Docker's 64 MB default and killed both GPU jobs; the lane campaign lost 1,400 steps and restarted from H107 draw 1. DataLoader workers pass every batch through `/dev/shm`, so the default is a latent hang for any training in this container - the remount is now the mandatory first step in the recovery board
 - **Artifacts** - `DR_pilot_longform.parquet`, `DR_pilot_longform_summary.json`, `DR_pilot_longform_topup.py`, `DR_pilot_longform_repair.py`, `logs/DR_pilot_longform.log`, `logs/DR_pilot_longform_repair.log`
+
+### DR-2 judge pass + eyeball - result (2026-08-08). Cascade certifies 22,838 negatives; eyeball PASS 90%
+
+Contrastive judge (Qwen3-32B-FP8, temp 0) over 50,387 usable rows (H112 sentence 26,165 + long-form 4,606 usable + H114 19,616; H113 excluded at its drop), `DR_judge.py`, ~3h GPU1 with chunk-level checkpointing.
+
+| stage | rows | note |
+|---|---|---|
+| judged (parsed) | 50,367 / 50,387 | 20 parse_fail dropped |
+| factual deltas | 42,419 | omission 14,634, entity-swap 13,314, number-change 7,862, other 4,515, negation 1,347, hedge 747 |
+| accidental-regrounding drop | 7,329 | changed-span found in evidence |
+| still-entailed veto (nli_fwd ≥ 0.8) | 12,252 | consistent with gate projections |
+| **certified negatives** | **22,838** | H112 18,495 (2,746 long-form) + H114 4,343 |
+| **label-1 reclaims** (no-delta AND bidir NLI ≥ 0.8) | **2,573** | under the 4k cap, all taken |
+
+- **Eyeball (main session, 50-pair stratified)** - **PASS 45/50 = 90%** vs the ≥ 85% bar; no gpt-oss-120b escalation. The 5 fails share one fingerprint: the infill engine occasionally replaces an entity with truncated filler ("the aforemention", "The following are") - text destruction, not a clean factual swap. These rows are still correctly label-0 (the claims ARE ungrounded); residual risk is a mild garble-shortcut signal at ~10% of the lane, recorded rather than re-filtered
+- **H114 veto pressure realized** - 69.9% still-entailed at pilot → 4,343 certified of 19,616 usable (22.1%); the blinding engine's survivors skew heavily to negation/omission flips
+
+### DR lane assembly - adjudicated (2026-08-08). Ships smaller at 16,471 BCE rows; H117 pairs materialized
+
+`DR_lane_assemble.py` → `DR_lane.parquet`: 30,369 rows = 13,898 margin pairs (corrupt + BCE-masked clean partner) + 2,573 reclaims.
+
+- **Rebalance adjudication** - H113's dropped 20% share redistributes proportionally: H112 68.75% / H114 31.25% of the 22k negative target. H114 supply (4,343) cannot fill its share; per the registration's no-forced-backfill principle the ratio HOLDS and the lane ships smaller: H112 9,555 + H114 4,343 = 13,898 negatives. Filling H112 to ~80% of the mix was declined - it breaches the fingerprint-cap intent of the 55% share
+- **Long-form per A11** - 1,911 long-form (= 20% of the H112 share) + 7,644 sentence, sampled seed 0
+- **H117 readiness** - every negative ships with its seed as a materialized margin-only partner row (shared pair_id, bce_mask, label -1, corrupt partner's DANN tag per A1-A3); 13,898 pairs = 1.74x the 8k kill-gate floor. Packing validated: 0 non-adjacent, 0 batch-straddling pairs at BATCH 48
+- **DANN groups** - dr_h112, dr_h112_long, dr_h114, dr_reclaim (4 lane groups on top of the 12 public)
+- **Admission draws** - `DR_lane_trainer.py` via `DR_campaign.sh` (control arm = BCE-only with inert partners, paired seeds 1117/2117 per draw index); bar unchanged: lane mean over 2 draws blind windowed > 0.7031
+- **Artifacts** - `DR_judged.parquet`, `DR_judge_summary.json`, `DR_judge_eyeball.md`, `DR_lane.parquet`, `DR_lane_summary.json`, `DR_lane_assemble.py`, `DR_lane_trainer.py`, `DR_campaign.sh`, `logs/DR_judge.log`

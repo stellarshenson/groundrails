@@ -1,0 +1,103 @@
+{
+  "per_subset": {
+    "covidqa": {
+      "n": 245,
+      "auc": 0.7965,
+      "f1": 0.6169,
+      "baseline_h90": 0.7755,
+      "delta": 0.021,
+      "lettuce_auc": 0.7355,
+      "n_window_pairs": 1540
+    },
+    "delucionqa": {
+      "n": 184,
+      "auc": 0.7757,
+      "f1": 0.7103,
+      "baseline_h90": 0.7263,
+      "delta": 0.0494,
+      "lettuce_auc": 0.7929,
+      "n_window_pairs": 5093
+    },
+    "emanual": {
+      "n": 132,
+      "auc": 0.6907,
+      "f1": 0.4731,
+      "baseline_h90": 0.7058,
+      "delta": -0.0151,
+      "lettuce_auc": 0.5999,
+      "n_window_pairs": 2983
+    },
+    "expertqa": {
+      "n": 203,
+      "auc": 0.7457,
+      "f1": 0.6167,
+      "baseline_h90": 0.8248,
+      "delta": -0.0791,
+      "lettuce_auc": 0.6503,
+      "n_window_pairs": 13949
+    },
+    "finqa": {
+      "n": 250,
+      "auc": 0.6741,
+      "f1": 0.6511,
+      "baseline_h90": 0.673,
+      "delta": 0.0011,
+      "lettuce_auc": 0.717,
+      "n_window_pairs": 2918
+    },
+    "hagrid": {
+      "n": 250,
+      "auc": 0.6387,
+      "f1": 0.65,
+      "baseline_h90": 0.6516,
+      "delta": -0.0129,
+      "lettuce_auc": 0.5992,
+      "n_window_pairs": 1941
+    },
+    "hotpotqa": {
+      "n": 250,
+      "auc": 0.6052,
+      "f1": 0.4983,
+      "baseline_h90": 0.7253,
+      "delta": -0.1201,
+      "lettuce_auc": 0.5976,
+      "n_window_pairs": 1177
+    },
+    "pubmedqa": {
+      "n": 250,
+      "auc": 0.622,
+      "f1": 0.6235,
+      "baseline_h90": 0.6058,
+      "delta": 0.0162,
+      "lettuce_auc": 0.5162,
+      "n_window_pairs": 6570
+    },
+    "tatqa": {
+      "n": 250,
+      "auc": 0.7318,
+      "f1": 0.4748,
+      "baseline_h90": 0.7718,
+      "delta": -0.04,
+      "lettuce_auc": 0.6156,
+      "n_window_pairs": 1942
+    },
+    "techqa": {
+      "n": 250,
+      "auc": 0.6414,
+      "f1": 0.6079,
+      "baseline_h90": 0.7529,
+      "delta": -0.1115,
+      "lettuce_auc": 0.6363,
+      "n_window_pairs": 39058
+    }
+  },
+  "mean": 0.69218,
+  "baseline_mean": 0.72128,
+  "mean_lettuce": 0.64605,
+  "finqa_delta": 0.0011,
+  "delucionqa_delta": 0.0494,
+  "verdict": "KILLED (a losing-subset delta < +0.01)",
+  "model": "models/R11-H118-soup-h105",
+  "window": 1500,
+  "stride": 750
+}

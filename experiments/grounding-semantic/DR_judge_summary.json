@@ -1,0 +1,24 @@
+{
+  "input_rows": 50387,
+  "delta_counts": {
+    "omission": 14634,
+    "other-factual": 4515,
+    "negation": 1347,
+    "entity-swap": 13314,
+    "number-change": 7862,
+    "parse_fail": 20,
+    "degenerate": 3536,
+    "none": 4412,
+    "hedge-deletion": 747
+  },
+  "regrounding_dropped": 7329,
+  "still_entailed_vetoed": 12252,
+  "certified_negatives": 22838,
+  "reclaimed_positives": 2573,
+  "para_not_reclaimed": 1839,
+  "by_engine_negatives": {
+    "H112": 18495,
+    "H114": 4343
+  },
+  "longform_negatives": 2746
+}

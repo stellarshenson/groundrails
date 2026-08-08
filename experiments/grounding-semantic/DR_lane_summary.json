@@ -1,0 +1,18 @@
+{
+  "pairs": 13898,
+  "rows_total": 30369,
+  "negatives": {
+    "h112_sent": 7644,
+    "h112_long": 1911,
+    "h114": 4343
+  },
+  "reclaimed_positives": 2573,
+  "bce_rows": 16471,
+  "by_dann_tag": {
+    "dr_h114": 8686,
+    "dr_h112_long": 3822,
+    "dr_h112": 15288,
+    "dr_reclaim": 2573
+  },
+  "h117_pair_floor_8k": true
+}
