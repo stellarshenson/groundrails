@@ -1,0 +1,198 @@
+{
+  "panel": "R15-B5 the derivation instrument panel",
+  "data": "R14_H133_probe.build() at its banked seed and fresh held-out TabFact test+validation builds; synthetic two-row tables for the substrate probe. Frozen weights throughout, zero arena, zero gold.",
+  "implementation_choices": [
+    "Arm 2's committee is the free-CPU output mean of the two H105 draws' probabilities, per the synthesis amendment that no GPU be spent on it beyond scoring draw 2.",
+    "Arm 5 reuses R15_P4_numeracy_probe.py's Instrument B construction and seed (20260810) so the shipped-checkpoint reading is comparable to the banked R15_gate_P4_numeracy.json; the three controls are P4's own (permuted labels, 200-row training subset, ridge lambda 1e4).",
+    "Arm 5's declinable mmBERT-small half is RUN and reported, but it is excluded from the SUBSTRATE HOLD adjudication - the hold binds the 307M line the register trains.",
+    "Arm 6's re-surfaced member (b) is drawn uniformly from the constructible separator / scale-word / currency spellings of the same quantity; the wrong-factor member (c) is x10 and /10 at balanced rates, both absent from the evidence.",
+    "Arm 7 scores the identical triples at max_length 512 and 1024 in one checkpoint load; the truncated partition is the pairs whose untruncated encoding exceeds 512."
+  ],
+  "arm_2_anchor_teacher_lever": {
+    "per_checkpoint": {
+      "R9-H105-mmbert-dann-clean": {
+        "mean_a_verbatim": 0.90907,
+        "mean_b_correct": 0.24345,
+        "mean_c_wrong_operand": 0.24646,
+        "auroc_b_vs_c": 0.4933,
+        "auroc_a_vs_b": 0.9672
+      },
+      "R9-H105-draw2": {
+        "mean_a_verbatim": 0.89352,
+        "mean_b_correct": 0.19294,
+        "mean_c_wrong_operand": 0.19867,
+        "auroc_b_vs_c": 0.4835,
+        "auroc_a_vs_b": 0.9734
+      },
+      "R10-H108-lane-draw1": {
+        "mean_a_verbatim": 0.88689,
+        "mean_b_correct": 0.17258,
+        "mean_c_wrong_operand": 0.17965,
+        "auroc_b_vs_c": 0.483,
+        "auroc_a_vs_b": 0.9661
+      },
+      "R10-H108-lane-draw2": {
+        "mean_a_verbatim": 0.89416,
+        "mean_b_correct": 0.18109,
+        "mean_c_wrong_operand": 0.18656,
+        "auroc_b_vs_c": 0.4875,
+        "auroc_a_vs_b": 0.9762
+      },
+      "R13-H129-draw1": {
+        "mean_a_verbatim": 0.9164,
+        "mean_b_correct": 0.36727,
+        "mean_c_wrong_operand": 0.37857,
+        "auroc_b_vs_c": 0.4831,
+        "auroc_a_vs_b": 0.9736
+      },
+      "H129-committee-teacher (output mean of H105 d1 + d2)": {
+        "mean_a_verbatim": 0.90129,
+        "mean_b_correct": 0.2182,
+        "mean_c_wrong_operand": 0.22257,
+        "auroc_b_vs_c": 0.488,
+        "auroc_a_vs_b": 0.9744,
+        "cross_draw_pearson_on_b": 0.6407,
+        "cross_draw_pearson_on_b_minus_c": 0.4632
+      }
+    },
+    "reading": {
+      "h108_max_auroc_b_vs_c": 0.4875,
+      "h108_clause": "CLEAR - the admitted lane carries no derivation competence, A4's marginal claim over it stands",
+      "committee_auroc_b_vs_c": 0.488,
+      "committee_clause": "DERIVATION-BLIND ANCHOR - the 0.72067 committee advantage is variance cancellation carrying zero derivation competence; any future proposal to distil derivation competence from a committee must first exhibit a teacher above 0.60 on this instrument"
+    }
+  },
+  "arm_5_trunk_numeracy_retention": {
+    "per_checkpoint": {
+      "base_pretrained": {
+        "hidden_size": 768,
+        "magnitude_ridge_r2_interpolation_1_to_999": 0.7634,
+        "magnitude_ridge_r2_extrapolation_REPORT_ONLY": -48.1113,
+        "comparison_probe_heldout_accuracy": 0.98,
+        "comparison_probe_heldout_auroc": 0.9989,
+        "control_permuted_labels_acc": 0.5079,
+        "control_train200_acc": 0.7907,
+        "control_ridge_lambda_1e4_acc": 0.4846
+      },
+      "small_pretrained": {
+        "hidden_size": 384,
+        "magnitude_ridge_r2_interpolation_1_to_999": 0.9606,
+        "magnitude_ridge_r2_extrapolation_REPORT_ONLY": -59.1361,
+        "comparison_probe_heldout_accuracy": 0.9775,
+        "comparison_probe_heldout_auroc": 0.9968,
+        "control_permuted_labels_acc": 0.4921,
+        "control_train200_acc": 0.8524,
+        "control_ridge_lambda_1e4_acc": 0.4846
+      },
+      "h105_draw1": {
+        "hidden_size": 768,
+        "magnitude_ridge_r2_interpolation_1_to_999": 0.9985,
+        "magnitude_ridge_r2_extrapolation_REPORT_ONLY": -46.7484,
+        "comparison_probe_heldout_accuracy": 1.0,
+        "comparison_probe_heldout_auroc": 1.0,
+        "control_permuted_labels_acc": 0.4729,
+        "control_train200_acc": 0.9967,
+        "control_ridge_lambda_1e4_acc": 0.9842
+      },
+      "h105_draw2": {
+        "hidden_size": 768,
+        "magnitude_ridge_r2_interpolation_1_to_999": 0.9988,
+        "magnitude_ridge_r2_extrapolation_REPORT_ONLY": -29.8928,
+        "comparison_probe_heldout_accuracy": 1.0,
+        "comparison_probe_heldout_auroc": 1.0,
+        "control_permuted_labels_acc": 0.4662,
+        "control_train200_acc": 0.9983,
+        "control_ridge_lambda_1e4_acc": 0.9917
+      },
+      "h108_lane_draw1": {
+        "hidden_size": 768,
+        "magnitude_ridge_r2_interpolation_1_to_999": 0.9991,
+        "magnitude_ridge_r2_extrapolation_REPORT_ONLY": -54.7258,
+        "comparison_probe_heldout_accuracy": 1.0,
+        "comparison_probe_heldout_auroc": 1.0,
+        "control_permuted_labels_acc": 0.4787,
+        "control_train200_acc": 0.9942,
+        "control_ridge_lambda_1e4_acc": 0.9408
+      }
+    },
+    "reading": {
+      "baseline_checkpoint": "base_pretrained",
+      "substrate_hold_rule": "magnitude interpolation R2 >= (baseline - 0.05) AND comparison accuracy >= 0.95 absolute AND >= (baseline - 0.02); extrapolation R2 is REPORT, not bar",
+      "per_checkpoint": {
+        "h105_draw1": {
+          "magnitude_hold": true,
+          "comparison_hold": true,
+          "verdict": "HOLD"
+        },
+        "h105_draw2": {
+          "magnitude_hold": true,
+          "comparison_hold": true,
+          "verdict": "HOLD"
+        },
+        "h108_lane_draw1": {
+          "magnitude_hold": true,
+          "comparison_hold": true,
+          "verdict": "HOLD"
+        }
+      },
+      "max_comparison_accuracy_spread_vs_baseline": 0.02,
+      "retirement_clause": "KEEP - checkpoints separate on this instrument"
+    }
+  },
+  "arm_6_wrong_factor_scale_gate": {
+    "n": 600,
+    "mean_a_verbatim": 0.91968,
+    "mean_b_resurfaced": 0.83879,
+    "mean_c_wrong_factor": 0.67743,
+    "mean_abs_gap_a_minus_b": 0.1056,
+    "auroc_a_vs_c": 0.8892,
+    "auroc_a_vs_b": 0.8152,
+    "auroc_from_digit_length_a_vs_c": 0.1542,
+    "share_x10": 0.565,
+    "bar": "LICENSE at mean |score(a) - score(b)| >= 0.10 AND AUROC(a vs c) <= 0.60",
+    "verdict": "KILL",
+    "clause_fired": "KILL - magnitude already discriminated on the copy axis (AUROC(a vs c) > 0.60); P1's 'scale already works' reading extends to the wrong-factor axis"
+  },
+  "arm_7_read_length_1024": {
+    "n": 2000,
+    "share_pairs_over_512": 0.3475,
+    "auroc_b_vs_c_512": 0.4933,
+    "auroc_b_vs_c_1024": 0.4928,
+    "delta_auroc_b_vs_c": -0.0004,
+    "truncated_partition": {
+      "n": 695,
+      "auroc_a_vs_b_512": 0.8589,
+      "auroc_a_vs_b_1024": 0.9459,
+      "delta_auroc_a_vs_b": 0.087
+    },
+    "bar": "delta AUROC(b vs c) at 1024 < +0.03 -> READ LENGTH IS NOT A DERIVATION LEVER; VOID the inference if AUROC(a vs b) on the truncated partition moves less than +0.05",
+    "verdict": "READ LENGTH IS NOT A DERIVATION LEVER",
+    "clause_fired": "H131 Stage 2 gains no derivation argument; P2-D's token budget stays a build-hygiene KILL rather than a mechanism claim; A4 may build at 512"
+  },
+  "cross_referenced_arms": {
+    "arm_1_checkpoint_specificity": {
+      "file": "R15_gate_B1_result.json",
+      "verdict": "LICENSE",
+      "gate": "R15-B1 killgate clause 2 (BLOCKING) == R15-B5 arm 1 - checkpoint specificity"
+    },
+    "arm_3_evidence_conditioning": {
+      "file": "R15_gate_B6_result.json",
+      "verdict": "LICENSE",
+      "gate": "R15-B6 evidence-conditioning gate (R15-H139) == R15-B5 arm 3"
+    },
+    "arm_4_controlled_bind_col": {
+      "file": "R15_gate_B4_result.json",
+      "verdict": "LICENSE",
+      "gate": "R15-B4 BLOCKING probe (R15-H138) == R15-B5 arm 4 - controlled cross-header binding"
+    },
+    "arm_8_natural_derivation": {
+      "file": "R15_gate_B5arm8_result.json",
+      "verdict": "KILL VITAMINC LEG",
+      "gate": "R15-B5 arm 8 - natural-derivation baseline"
+    }
+  },
+  "clause_A_ship_read": "0 GPU - R14-H132's parked 140.9M ship candidate must, alongside its arena holds, REPORT AUROC(b vs c) on these triples, P4's comparison family and verbatim AUROC(a vs b), and HOLD scale/unit AUROC >= 0.80",
+  "clause_B_serving_ensemble_price": "the serving-side two-forward-pass ensemble buys +0.01756 of arena mean and a committee derivation AUROC(b vs c) of 0.488",
+  "clause_C": "every post-arm read in the register compares against THIS panel's per-checkpoint baseline, not against a prose-quoted anchor",
+  "scores": "R15_gate_B5_scores.parquet"
+}

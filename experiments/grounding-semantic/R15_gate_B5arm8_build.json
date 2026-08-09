@@ -1,0 +1,12 @@
+{
+  "step": "R15-B5 arm 8 step 1 - natural-derivation candidate build",
+  "seed": 20260812,
+  "detector": "P3 section 7 - absent claim numeral equal to a+b, a-b, b-a, a/b, b/a or either percent change over the first 40 evidence numbers, at the claim numeral's own decimal precision",
+  "negative": "the SAME operation over a DIFFERENT evidence pair, rendered in the claim's own surface, absent from the evidence, digit-length-matched where constructible; the claim is byte-identical outside the numeral",
+  "n_vitaminc": 500,
+  "n_wice": 355,
+  "n_total": 855,
+  "wice_caveat": "partially_supported dominates WiCE's numeric slice, so the binary collapse is lossiest exactly where the derivations live (P3 section 7)",
+  "coincidence_floor": "P3's shuffle control puts the false-positive floor at 2.58% against a 5.10% real rate - roughly half of every detected derivation is arithmetic coincidence, which is what the judge pass removes",
+  "out": "R15_gate_B5arm8_candidates.parquet"
+}

@@ -1,0 +1,131 @@
+{
+  "gate": "R15-B2 (R15-H137) killgate clause 2 - shortcut expression on the up-weighted rows",
+  "model": "/home/lab/workspace/private/ai-assistants/groundrails/models/R9-H105-mmbert-dann-clean",
+  "data": "byte-exact clean mix (tmp/R14_E6_mix.parquet, 685,670 rows) + admitted H108 lane (R10-H108_pairs.parquet, 61,184 rows); the pool R15_L2_weight_arith.json is computed over. Training rows, in-domain, zero arena, zero gold.",
+  "implementation_choices": [
+    "'matched from the same groups' is implemented as per-DANN-group count matching: the present-positive draw carries the SAME per-group counts as the absent-positive draw.",
+    "present-positive is restricted to rows whose claim CARRIES a numeral (present-number positives), not to all non-absent positives - the contrast the gate names is present-number against absent-number, and a claim with no numeral is neither.",
+    "score = the shipped sigmoid task score of the training row's own (claim, chunk) pair; no re-chunking, because the pool rows ARE the training object."
+  ],
+  "seed": 20260812,
+  "n_per_arm_target": 4000,
+  "n_absent_positive_pool": 87933,
+  "n_present_positive_pool": 90853,
+  "n_absent_positive_scored": 4000,
+  "n_present_positive_scored": 4000,
+  "group_match_shortfall": {},
+  "mean_absent_positive": 0.8273,
+  "mean_present_positive": 0.86777,
+  "delta_present_minus_absent": 0.04046,
+  "auroc_present_over_absent": 0.495,
+  "per_group": {
+    "h108_lane": {
+      "n_absent_pos": 115,
+      "n_present_pos": 115,
+      "mean_absent_pos": 0.30808,
+      "mean_present_pos": 0.50657,
+      "delta": 0.1985,
+      "auroc_present_over_absent": 0.6581
+    },
+    "halueval": {
+      "n_absent_pos": 104,
+      "n_present_pos": 104,
+      "mean_absent_pos": 0.99788,
+      "mean_present_pos": 0.99357,
+      "delta": -0.00432,
+      "auroc_present_over_absent": 0.4884
+    },
+    "psiloqa": {
+      "n_absent_pos": 36,
+      "n_present_pos": 36,
+      "mean_absent_pos": 0.2586,
+      "mean_present_pos": 0.63756,
+      "delta": 0.37896,
+      "auroc_present_over_absent": 0.7909
+    },
+    "ragtruth_cn": {
+      "n_absent_pos": 87,
+      "n_present_pos": 87,
+      "mean_absent_pos": 0.67702,
+      "mean_present_pos": 0.76018,
+      "delta": 0.08316,
+      "auroc_present_over_absent": 0.6227
+    },
+    "ragtruth_de": {
+      "n_absent_pos": 138,
+      "n_present_pos": 138,
+      "mean_absent_pos": 0.72753,
+      "mean_present_pos": 0.81302,
+      "delta": 0.08549,
+      "auroc_present_over_absent": 0.668
+    },
+    "ragtruth_en": {
+      "n_absent_pos": 160,
+      "n_present_pos": 160,
+      "mean_absent_pos": 0.71477,
+      "mean_present_pos": 0.81828,
+      "delta": 0.10351,
+      "auroc_present_over_absent": 0.6809
+    },
+    "ragtruth_es": {
+      "n_absent_pos": 150,
+      "n_present_pos": 150,
+      "mean_absent_pos": 0.67138,
+      "mean_present_pos": 0.8206,
+      "delta": 0.14923,
+      "auroc_present_over_absent": 0.7148
+    },
+    "ragtruth_fr": {
+      "n_absent_pos": 138,
+      "n_present_pos": 138,
+      "mean_absent_pos": 0.73033,
+      "mean_present_pos": 0.79307,
+      "delta": 0.06273,
+      "auroc_present_over_absent": 0.6046
+    },
+    "ragtruth_hu": {
+      "n_absent_pos": 126,
+      "n_present_pos": 126,
+      "mean_absent_pos": 0.6773,
+      "mean_present_pos": 0.79772,
+      "delta": 0.12042,
+      "auroc_present_over_absent": 0.6764
+    },
+    "ragtruth_it": {
+      "n_absent_pos": 137,
+      "n_present_pos": 137,
+      "mean_absent_pos": 0.71093,
+      "mean_present_pos": 0.8082,
+      "delta": 0.09728,
+      "auroc_present_over_absent": 0.6755
+    },
+    "ragtruth_pl": {
+      "n_absent_pos": 132,
+      "n_present_pos": 132,
+      "mean_absent_pos": 0.67509,
+      "mean_present_pos": 0.78873,
+      "delta": 0.11363,
+      "auroc_present_over_absent": 0.6719
+    },
+    "tabfact": {
+      "n_absent_pos": 259,
+      "n_present_pos": 259,
+      "mean_absent_pos": 0.61373,
+      "mean_present_pos": 0.77495,
+      "delta": 0.16121,
+      "auroc_present_over_absent": 0.7208
+    },
+    "vitaminc": {
+      "n_absent_pos": 2418,
+      "n_present_pos": 2418,
+      "mean_absent_pos": 0.93248,
+      "mean_present_pos": 0.9217,
+      "delta": -0.01078,
+      "auroc_present_over_absent": 0.376
+    }
+  },
+  "bar": "KILL if mean(present-positive) - mean(absent-positive) < 0.05",
+  "verdict": "KILL",
+  "gates_downstream": "R15-H137's ~12 GPU-h arm; the per-group breakdown is also the arm's own pre-arm baseline",
+  "sample": "R15_gate_B2_sample.parquet"
+}

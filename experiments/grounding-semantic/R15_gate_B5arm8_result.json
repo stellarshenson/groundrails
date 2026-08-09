@@ -1,0 +1,51 @@
+{
+  "gate": "R15-B5 arm 8 - natural-derivation baseline",
+  "model": "/home/lab/workspace/private/ai-assistants/groundrails/models/R9-H105-mmbert-dann-clean",
+  "data": "VitaminC train (P3's absent-and-two-operand-derivable slice) and the WiCE claim_train + subclaim_train numeric slice; zero arena, zero gold",
+  "implementation_choices": [
+    "The negative is the SAME operation over a DIFFERENT evidence pair, rendered in the claim's own surface and absent from the evidence, with the claim byte-identical outside the numeral - the natural-corpus analogue of the H133 (b vs c) axis the synthetic baselines are defined on.",
+    "The PRIMARY reading is the judge-verified VitaminC subset when the judge step has landed; the all-detected VitaminC reading is reported beside it, and carries P3's 2.58% coincidence floor.",
+    "WiCE is reported uncorrected, with P3's caveat that partially_supported dominates its numeric slice.",
+    "Arm 8 is re-constituted on EDGAR MD&A prose when R14-H136's acquisition lands; VitaminC/WiCE is banked now because it is what exists."
+  ],
+  "judge_status": "RUN",
+  "n_verified": 86,
+  "legs": {
+    "vitaminc_all_detected": {
+      "n": 500,
+      "mean_correct": 0.46318,
+      "mean_wrong_operand": 0.43767,
+      "auroc_correct_vs_wrong": 0.5106,
+      "frac_correct_higher": 0.564,
+      "distinct_evidence_docs": 487,
+      "leg": "vitaminc_all_detected"
+    },
+    "wice_numeric_slice": {
+      "n": 355,
+      "mean_correct": 0.07243,
+      "mean_wrong_operand": 0.08368,
+      "auroc_correct_vs_wrong": 0.4799,
+      "frac_correct_higher": 0.3944,
+      "distinct_evidence_docs": 171,
+      "leg": "wice_numeric_slice"
+    },
+    "vitaminc_judge_verified": {
+      "n": 86,
+      "mean_correct": 0.52776,
+      "mean_wrong_operand": 0.51175,
+      "auroc_correct_vs_wrong": 0.5304,
+      "frac_correct_higher": 0.6047,
+      "distinct_evidence_docs": 85,
+      "leg": "vitaminc_judge_verified"
+    }
+  },
+  "primary_leg": "vitaminc_judge_verified",
+  "primary_natural_auroc": 0.5304,
+  "bar": "KILL the VitaminC leg below 150 of 500 verified; NO-READ and escalate if the pre-arm natural AUROC is above 0.65",
+  "verdict": "KILL VITAMINC LEG",
+  "clauses_fired": [
+    "KILL the VitaminC leg - 86 of 500 verified, below 150"
+  ],
+  "gates_downstream": "every A4 / H133 read is reported alongside this baseline; a finqa admission with no movement here is 'construction learned, transfer unproven'",
+  "sample": "R15_gate_B5arm8_scored.parquet"
+}

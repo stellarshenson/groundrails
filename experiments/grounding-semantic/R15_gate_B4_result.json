@@ -1,0 +1,53 @@
+{
+  "gate": "R15-B4 BLOCKING probe (R15-H138) == R15-B5 arm 4 - controlled cross-header binding",
+  "data": "TabFact test+validation, table_id-disjoint from every train split; byte-identical claim templates; zero arena, zero gold",
+  "implementation_choices": [
+    "digit-length match = equal count of digit characters in the two formatted cell values; magnitude match = the two cells within a factor of 2.0 (|log10 ratio| <= log10 2.0). Both are required of the negative, per the blocking clause's 'digit-length-matched AND magnitude-matched'.",
+    "The free CPU constructibility clause is adjudicated on DIGIT-LENGTH matching alone, which is how the synthesis words it; the joint length+magnitude rate is reported beside it.",
+    "'constructible at the sub-block's size' is adjudicated PER ADMITTING TABLE - a real build enumerates rows and column pairs freely, so the supply question is whether a table yields any digit-length-matched cross-header tuple. The stricter per-random-tuple rate (one uniformly drawn tuple per table) is reported beside it.",
+    "The probe is run on BOTH checkpoints the uncontrolled licensing clause was measured on, and the KILL is taken on the worse (higher) of the two."
+  ],
+  "seed": 20260812,
+  "n_pairs": 600,
+  "banked_uncontrolled_reference": {
+    "R9-H105-mmbert-dann-clean": 0.5179,
+    "R10-H108-lane-draw1": 0.5276
+  },
+  "checkpoints": {
+    "R9-H105-mmbert-dann-clean": {
+      "n": 600,
+      "mean_pos": 0.87757,
+      "mean_neg": 0.8666,
+      "auroc_pos_vs_neg": 0.5199,
+      "frac_pos_higher": 0.5333,
+      "distinct_tables": 300
+    },
+    "R10-H108-lane-draw1": {
+      "n": 600,
+      "mean_pos": 0.8288,
+      "mean_neg": 0.82617,
+      "auroc_pos_vs_neg": 0.5025,
+      "frac_pos_higher": 0.5417,
+      "distinct_tables": 300
+    }
+  },
+  "worst_controlled_auroc": 0.5199,
+  "constructibility_census": {
+    "tables_admitting_a_cross_header_tuple": 501,
+    "tables_with_a_len_matched_tuple": 407,
+    "tables_with_a_len_and_mag_matched_tuple": 364,
+    "random_tuples_examined": 500,
+    "random_tuples_len_matched": 206,
+    "random_tuples_len_and_mag_matched": 103,
+    "adjudicated_rate_per_admitting_table": 0.8124,
+    "adjudicated_rate_len_and_magnitude": 0.7265,
+    "strict_rate_per_random_tuple": 0.412,
+    "strict_rate_len_and_magnitude": 0.206,
+    "bar": "KILL below 0.6"
+  },
+  "bar": "KILL the sub-block if the controlled probe reads above 0.6 on either checkpoint, or if digit-length-matched constructibility is below 0.6",
+  "verdict": "LICENSE",
+  "clauses_fired": [],
+  "gates_downstream": "R15-B4's 15% sub-block of the H133 lane row budget; on KILL the 15% returns to B1's derivation core and the lane is strictly simpler",
+  "sample": "R15_gate_B4_pairs.parquet"
+}

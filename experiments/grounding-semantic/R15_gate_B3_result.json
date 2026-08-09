@@ -1,0 +1,111 @@
+{
+  "gate": "R15-B3 killgate (amends R14-H134 / R14-A5) - binary absent-numeral partial correlation, substituted for claim digit fraction",
+  "model": "/home/lab/workspace/private/ai-assistants/groundrails/models/R9-H105-mmbert-dann-clean",
+  "data": "R7-H60_multilingual_parallel.load_english() - RAGTruth EN TEST split, seed-0 sample; the identical 600-row in-domain gate R14_H134_partialr.py used",
+  "read": "max over M59.top_chunks(context, semantic_top_k); quantity = pre-sigmoid task logit of the argmax chunk - unmodified from R14_H134_partialr.py",
+  "implementation_choices": [
+    "PRIMARY feature is 'absent_binary_vs_deciding_chunk': the absence flag is computed against the DECIDING (argmax) chunk, because the correlated logit belongs to that (claim, chunk) pair and that pair is the same object the P3/L2 census flags. The all-retrieved-chunks and full-context variants are reported so the choice is auditable.",
+    "Absence detector byte-identical to tmp/R15_L2_weights.py / P3 (canonical numeral forms of the claim minus those of the evidence).",
+    "Token digit fraction (P2-E) is reported alongside the character form R14-A5 registered; neither is the gate's primary."
+  ],
+  "n": 600,
+  "in_domain_auc_sanity": 0.8382,
+  "banked_reference_digit_fraction_char": {
+    "partial_r": 0.07307,
+    "per_label_r": {
+      "label_0": 0.27716,
+      "label_1": -0.0364
+    }
+  },
+  "primary_feature": "absent_binary_vs_deciding_chunk",
+  "features": {
+    "absent_binary_vs_deciding_chunk": {
+      "partial_r_controlling_for_label": -0.20789,
+      "raw_r": -0.29054,
+      "prevalence_or_mean": 0.53333,
+      "per_label": {
+        "label_0": {
+          "n": 210,
+          "pearson_r": -0.14588,
+          "mean_feature": 0.68095
+        },
+        "label_1": {
+          "n": 390,
+          "pearson_r": -0.24402,
+          "mean_feature": 0.45385
+        }
+      }
+    },
+    "absent_binary_vs_all_retrieved_chunks": {
+      "partial_r_controlling_for_label": -0.19421,
+      "raw_r": -0.28657,
+      "prevalence_or_mean": 0.45333,
+      "per_label": {
+        "label_0": {
+          "n": 210,
+          "pearson_r": -0.16934,
+          "mean_feature": 0.60952
+        },
+        "label_1": {
+          "n": 390,
+          "pearson_r": -0.20972,
+          "mean_feature": 0.36923
+        }
+      }
+    },
+    "absent_binary_vs_full_context": {
+      "partial_r_controlling_for_label": -0.18403,
+      "raw_r": -0.28657,
+      "prevalence_or_mean": 0.44333,
+      "per_label": {
+        "label_0": {
+          "n": 210,
+          "pearson_r": -0.16934,
+          "mean_feature": 0.60952
+        },
+        "label_1": {
+          "n": 390,
+          "pearson_r": -0.19335,
+          "mean_feature": 0.35385
+        }
+      }
+    },
+    "claim_digit_fraction_char": {
+      "partial_r_controlling_for_label": 0.07307,
+      "raw_r": 0.09694,
+      "prevalence_or_mean": 0.00785,
+      "per_label": {
+        "label_0": {
+          "n": 210,
+          "pearson_r": 0.27716,
+          "mean_feature": 0.00708
+        },
+        "label_1": {
+          "n": 390,
+          "pearson_r": -0.0364,
+          "mean_feature": 0.00826
+        }
+      }
+    },
+    "claim_digit_fraction_token": {
+      "partial_r_controlling_for_label": 0.0507,
+      "raw_r": 0.07914,
+      "prevalence_or_mean": 0.03583,
+      "per_label": {
+        "label_0": {
+          "n": 210,
+          "pearson_r": 0.26213,
+          "mean_feature": 0.03255
+        },
+        "label_1": {
+          "n": 390,
+          "pearson_r": -0.06358,
+          "mean_feature": 0.0376
+        }
+      }
+    }
+  },
+  "bar": "KILL if |partial r| < 0.05 for the binary absent indicator",
+  "verdict": "PASS",
+  "gates_downstream": "the B3 substitution amendment to R14-H134 / A5 (which feature the registered lambda_dec = 1.0 term regresses against)"
+}

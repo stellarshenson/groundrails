@@ -1,0 +1,217 @@
+{
+  "gate": "R15-B1 killgate clause 2 (BLOCKING) == R15-B5 arm 1 - checkpoint specificity",
+  "also_reported_under": [
+    "R15-B1 killgate clause 2",
+    "R15-B5 arm 1",
+    "P1 section 9 falsifier 2"
+  ],
+  "data": "R15_P1_typeprobe.build() and R14_H133_probe.build() rebuilt at their banked seeds over held-out TabFact test+validation, table_id-disjoint from every train split; zero arena, zero gold",
+  "implementation_choices": [
+    "P1's MAIN quad build (4,139 quads, absence rule intact) is the surface. The 869 top-up quads (R15_P1_typeprobe_topup.json) are excluded because that build DROPS the absence rule and covers only count_agg and date_arith, neither of which is a tier-1 type; the 5,008 figure the synthesis quotes is main+top-up.",
+    "AUROC is sklearn roc_auc_score, identical to R7-H59.auc_and_f1's first return."
+  ],
+  "tier1_types": [
+    "difference",
+    "ratio",
+    "pct_change",
+    "sum"
+  ],
+  "bar": "KILL the type-uniformity premise and B1's schedule if any tier-1 type reads AUROC(b vs c) > 0.6 on either checkpoint",
+  "banked_reference_h105_draw1": {
+    "sum": 0.5067,
+    "difference": 0.4994,
+    "ratio": 0.5121,
+    "pct_change": 0.4861,
+    "h133_triples_auroc_b_vs_c": 0.4924
+  },
+  "checkpoints": {
+    "R9-H105-draw2": {
+      "p1_quads": {
+        "n": 4114,
+        "per_type": {
+          "sum": {
+            "n": 500,
+            "mean_b_correct": 0.18798,
+            "mean_c_wrong_operand": 0.19015,
+            "auroc_b_vs_c": 0.4999,
+            "auroc_b_vs_d": 0.5206,
+            "auroc_a_vs_b": 0.9775
+          },
+          "difference": {
+            "n": 500,
+            "mean_b_correct": 0.30785,
+            "mean_c_wrong_operand": 0.31091,
+            "auroc_b_vs_c": 0.4888,
+            "auroc_b_vs_d": 0.5099,
+            "auroc_a_vs_b": 0.9526
+          },
+          "mean": {
+            "n": 500,
+            "mean_b_correct": 0.21742,
+            "mean_c_wrong_operand": 0.22194,
+            "auroc_b_vs_c": 0.4887,
+            "auroc_b_vs_d": 0.475,
+            "auroc_a_vs_b": 0.9645
+          },
+          "ratio": {
+            "n": 500,
+            "mean_b_correct": 0.1499,
+            "mean_c_wrong_operand": 0.14838,
+            "auroc_b_vs_c": 0.5069,
+            "auroc_b_vs_d": 0.5955,
+            "auroc_a_vs_b": 0.9771
+          },
+          "pct_change": {
+            "n": 500,
+            "mean_b_correct": 0.3761,
+            "mean_c_wrong_operand": 0.37378,
+            "auroc_b_vs_c": 0.5009,
+            "auroc_b_vs_d": 0.5468,
+            "auroc_a_vs_b": 0.9216
+          },
+          "product": {
+            "n": 500,
+            "mean_b_correct": 0.20095,
+            "mean_c_wrong_operand": 0.19979,
+            "auroc_b_vs_c": 0.5015,
+            "auroc_b_vs_d": 0.6964,
+            "auroc_a_vs_b": 0.9712
+          },
+          "scale_unit": {
+            "n": 500,
+            "mean_b_correct": 0.32493,
+            "mean_c_wrong_operand": 0.09978,
+            "auroc_b_vs_c": 0.8723,
+            "auroc_b_vs_d": 0.6793,
+            "auroc_a_vs_b": 0.9356
+          },
+          "rounding": {
+            "n": 500,
+            "mean_b_correct": 0.10016,
+            "mean_c_wrong_operand": 0.07217,
+            "auroc_b_vs_c": 0.6989,
+            "auroc_b_vs_d": 0.5129,
+            "auroc_a_vs_b": 0.9848
+          },
+          "count_agg": {
+            "n": 0,
+            "note": "under 30 - not adjudicated"
+          },
+          "date_arith": {
+            "n": 114,
+            "mean_b_correct": 0.37344,
+            "mean_c_wrong_operand": 0.3739,
+            "auroc_b_vs_c": 0.4818,
+            "auroc_b_vs_d": 0.6189,
+            "auroc_a_vs_b": 0.9885
+          }
+        }
+      },
+      "h133_triples": {
+        "n": 2000,
+        "mean_a_verbatim": 0.88395,
+        "mean_b_correct": 0.1939,
+        "mean_c_wrong_operand": 0.19758,
+        "gap_a_minus_b": 0.69005,
+        "auroc_b_vs_c": 0.4883,
+        "auroc_a_vs_b": 0.9702
+      }
+    },
+    "R10-H108-lane-draw1": {
+      "p1_quads": {
+        "n": 4114,
+        "per_type": {
+          "sum": {
+            "n": 500,
+            "mean_b_correct": 0.17426,
+            "mean_c_wrong_operand": 0.17779,
+            "auroc_b_vs_c": 0.4908,
+            "auroc_b_vs_d": 0.4297,
+            "auroc_a_vs_b": 0.9659
+          },
+          "difference": {
+            "n": 500,
+            "mean_b_correct": 0.38495,
+            "mean_c_wrong_operand": 0.38609,
+            "auroc_b_vs_c": 0.4938,
+            "auroc_b_vs_d": 0.6195,
+            "auroc_a_vs_b": 0.9332
+          },
+          "mean": {
+            "n": 500,
+            "mean_b_correct": 0.25337,
+            "mean_c_wrong_operand": 0.25412,
+            "auroc_b_vs_c": 0.4984,
+            "auroc_b_vs_d": 0.5574,
+            "auroc_a_vs_b": 0.9513
+          },
+          "ratio": {
+            "n": 500,
+            "mean_b_correct": 0.34347,
+            "mean_c_wrong_operand": 0.34309,
+            "auroc_b_vs_c": 0.5019,
+            "auroc_b_vs_d": 0.8699,
+            "auroc_a_vs_b": 0.9355
+          },
+          "pct_change": {
+            "n": 500,
+            "mean_b_correct": 0.36532,
+            "mean_c_wrong_operand": 0.36331,
+            "auroc_b_vs_c": 0.5006,
+            "auroc_b_vs_d": 0.5722,
+            "auroc_a_vs_b": 0.9313
+          },
+          "product": {
+            "n": 500,
+            "mean_b_correct": 0.09721,
+            "mean_c_wrong_operand": 0.10018,
+            "auroc_b_vs_c": 0.4951,
+            "auroc_b_vs_d": 0.4639,
+            "auroc_a_vs_b": 0.9824
+          },
+          "scale_unit": {
+            "n": 500,
+            "mean_b_correct": 0.03419,
+            "mean_c_wrong_operand": 0.03876,
+            "auroc_b_vs_c": 0.4548,
+            "auroc_b_vs_d": 0.0326,
+            "auroc_a_vs_b": 0.9908
+          },
+          "rounding": {
+            "n": 500,
+            "mean_b_correct": 0.10079,
+            "mean_c_wrong_operand": 0.05317,
+            "auroc_b_vs_c": 0.6247,
+            "auroc_b_vs_d": 0.5679,
+            "auroc_a_vs_b": 0.9833
+          },
+          "count_agg": {
+            "n": 0,
+            "note": "under 30 - not adjudicated"
+          },
+          "date_arith": {
+            "n": 114,
+            "mean_b_correct": 0.38975,
+            "mean_c_wrong_operand": 0.38913,
+            "auroc_b_vs_c": 0.4957,
+            "auroc_b_vs_d": 0.9473,
+            "auroc_a_vs_b": 1.0
+          }
+        }
+      },
+      "h133_triples": {
+        "n": 2000,
+        "mean_a_verbatim": 0.87805,
+        "mean_b_correct": 0.17245,
+        "mean_c_wrong_operand": 0.17778,
+        "gap_a_minus_b": 0.7056,
+        "auroc_b_vs_c": 0.4869,
+        "auroc_a_vs_b": 0.9618
+      }
+    }
+  },
+  "breaches": [],
+  "verdict": "LICENSE",
+  "gates_downstream": "B1 lane build spec (the tier-1 share schedule); the H133 lane build must not start until this reads LICENSE",
+  "scores": "R15_gate_B1_scores.parquet"
+}

@@ -29,6 +29,8 @@ os.environ.setdefault("CUDA_DEVICE_ORDER", "PCI_BUS_ID")
 os.environ.setdefault("CUDA_VISIBLE_DEVICES", "2")
 os.environ.setdefault("VLLM_WSL2_ENABLE_PIN_MEMORY", "1")
 os.environ.setdefault("VLLM_USE_DEEP_GEMM", "0")
+# no nvcc on this host, so flashinfer's sampling kernels cannot JIT-build
+os.environ.setdefault("VLLM_USE_FLASHINFER_SAMPLER", "0")
 
 import polars as pl  # noqa: E402
 
@@ -83,18 +85,23 @@ def main():
                   max_model_len=4096, enforce_eager=True)
         sp = SamplingParams(temperature=0.0, max_tokens=6)
         tok = llm.get_tokenizer()
+
+        def prompt(r):
+            user = USER.format(evidence=r["evidence"][:2500], claim=r["claim_pos"],
+                               value=r["v_correct"], op=OP_NAMES.get(r["op"], "an operation over"),
+                               a=r["a"], b=r["b"])
+            try:
+                return tok.apply_chat_template(
+                    [{"role": "system", "content": SYSTEM}, {"role": "user", "content": user}],
+                    tokenize=False, add_generation_prompt=True)
+            except Exception:  # templates that reject a system turn
+                return tok.apply_chat_template(
+                    [{"role": "user", "content": SYSTEM + "\n\n" + user}],
+                    tokenize=False, add_generation_prompt=True)
+
         for s in range(0, len(todo), CHUNK):
             batch = todo[s:s + CHUNK]
-            prompts = [
-                tok.apply_chat_template(
-                    [{"role": "system", "content": SYSTEM},
-                     {"role": "user", "content": USER.format(
-                         evidence=r["evidence"][:2500], claim=r["claim_pos"],
-                         value=r["v_correct"], op=OP_NAMES.get(r["op"], "an operation over"),
-                         a=r["a"], b=r["b"])}],
-                    tokenize=False, add_generation_prompt=True)
-                for r in batch
-            ]
+            prompts = [prompt(r) for r in batch]
             outs = llm.generate(prompts, sp)
             for r, o in zip(batch, outs):
                 txt = o.outputs[0].text.strip().upper()

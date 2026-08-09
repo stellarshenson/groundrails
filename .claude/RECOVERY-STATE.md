@@ -114,7 +114,8 @@ Refresh done; /dev/shm remounted 32G. Author's word "continue" received.
 
 - **H122 draw 1 RUNNING on GPU1** since 14:35 (design note group map verified: clean mix, 12→5). Relaunch after any kill: remount shm 32G, then `nohup setsid bash experiments/grounding-semantic/R12-H122_campaign.sh 1 >> logs/R12-H122_campaign_d1.log 2>&1 &` (auto-resumes). Marker `CAMPAIGN COMPLETE`. Then draw 2, then ladder H127 → H128 → H135 → H134 → H133 (task #53, session 4834cb1f)
 - **R15 resume in flight**: two fresh opus agents writing the missing `R15_hypotheses_L1_lane_construction.md` and `R15_hypotheses_L4_capacity_interaction.md` (prompts read from the wf_3aa4c9cf-9ad script, idempotent). On both landing → synthesis agent per script → `R15_synthesis.md`. If session dies first: spawn agents only for missing R15_*.md files, same pattern (task #54)
-- Awaiting-author list unchanged (6 items in 13:15 section below)
+- **STANDING ORDER (author, 2026-08-09 23:19): "continue whenever you know the time has come because resources are free"** - advance the GPU1 ladder and licensed work autonomously as cards free up; only genuine author rulings wait. Ladder: H127 d1 (running) -> H127 d2 -> H128 -> H135 -> [H134 blocked on B3 amendment ruling] -> H133 lane (build spec unblocked by B1, but its scale/unit VOID clause is pre-failed on the H108 checkpoint - needs author amendment before adjudication) + H138 sub-block; H139 licensed for registration. H137 KILLED at gate B2. Commit dc8af16 shipped the wave; gate results recorded in canonical log (uncommitted)
+- Awaiting-author: scale/unit VOID-clause amendment, H134/B3 amendment, census-ordering ruling, wice sidecar (minor)
 
 ## CURRENT STATE - 2026-08-09 13:15 (pre-container-refresh pause, author's order)
 

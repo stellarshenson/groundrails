@@ -1,0 +1,48 @@
+{
+  "gate": "R15-B6 evidence-conditioning gate (R15-H139) == R15-B5 arm 3",
+  "model": "/home/lab/workspace/private/ai-assistants/groundrails/models/R9-H105-mmbert-dann-clean",
+  "data": "TabFact test+validation, table_id-disjoint from every train split; zero arena, zero gold",
+  "implementation_choices": [
+    "Both members of a pair are rendered by the SAME serializer from the same header and body, so the only difference between the two evidence strings is the edited cell.",
+    "Origin symmetry is enforced pair by pair with a fair coin: half the pairs take the EDITED table as the positive (the asserted value is computed from it) and the original as the negative. Per-origin AUROCs are reported so a pristine-table cue would be visible.",
+    "The replacement is drawn from the column's own empirical values at equal digit count, per L3-C2's construction.",
+    "The derived operator is the two-cell sum, which is the operator the banked H133 / P1 baselines are defined on; the gate measures evidence conditioning, not operator coverage.",
+    "Clause 1 requires both the original and the edited derived values ABSENT from both serializations, so no verbatim-copy route is open on either member."
+  ],
+  "seed": 20260812,
+  "n_per_arm_target": 600,
+  "clause_3_claim_strings_byte_identical": true,
+  "clause_3_note": "the claim is a single Python string scored against two evidence strings, so byte-identity holds by construction",
+  "share_of_edited_tables_carrying_a_total_row": 0.032,
+  "arms": {
+    "derived": {
+      "n": 600,
+      "mean_pos": 0.25664,
+      "mean_neg": 0.25847,
+      "auroc_pos_vs_neg": 0.496,
+      "frac_pos_higher": 0.41,
+      "distinct_tables": 600,
+      "auroc_origin_original_is_positive": 0.4941,
+      "n_origin_original": 292,
+      "auroc_origin_edited_is_positive": 0.4976,
+      "n_origin_edited": 308
+    },
+    "verbatim": {
+      "n": 600,
+      "mean_pos": 0.92343,
+      "mean_neg": 0.09087,
+      "auroc_pos_vs_neg": 0.99,
+      "frac_pos_higher": 0.8967,
+      "distinct_tables": 504,
+      "auroc_origin_original_is_positive": 0.9916,
+      "n_origin_original": 563,
+      "auroc_origin_edited_is_positive": 0.9405,
+      "n_origin_edited": 37
+    }
+  },
+  "bar": "LICENSE if clause 1 AUROC <= 0.6; NO-READ / ESCALATE if clause 2 AUROC <= 0.6 as well",
+  "verdict": "LICENSE",
+  "clause_fired": "clause 1 licenses - evidence-side derived AUROC 0.4960 <= 0.6 while the verbatim discriminator reads 0.9900 > 0.6: the model reads evidence numerals on the copy route but does not condition on them for derived claims",
+  "gates_downstream": "R15-H139's registration (its own ~13 GPU-h arm, or a sub-block of A4's SECOND build); on NO-READ the whole R15 field is re-scoped",
+  "sample": "R15_gate_B6_pairs.parquet"
+}

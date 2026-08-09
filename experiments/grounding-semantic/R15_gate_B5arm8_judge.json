@@ -1,0 +1,13 @@
+{
+  "step": "R15-B5 arm 8 step 2 - VitaminC derivation judge pass",
+  "judge_model": "speakleash/Bielik-11B-v2.3-Instruct",
+  "judge_substitution_recorded": "the campaign's registered judge Qwen3-32B-FP8 needs 32 GB of weights and does not fit card 0 (24 GB) or card 2 (32 GB with a KV cache); card 1 is carrying H127 training and is untouched",
+  "n_candidates": 500,
+  "counts": {
+    "derived": 86,
+    "coincidence": 414
+  },
+  "n_verified": 86,
+  "bar": "KILL the VitaminC leg if fewer than 150 of 500 candidates verify",
+  "out": "R15_gate_B5arm8_judged.parquet"
+}
