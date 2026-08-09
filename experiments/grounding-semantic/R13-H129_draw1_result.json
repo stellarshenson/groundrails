@@ -1,0 +1,49 @@
+{
+  "gold": {
+    "auc": 0.8177,
+    "f1": 0.7262,
+    "n": 717
+  },
+  "gold_full": {
+    "auc": 0.8387,
+    "f1": 0.7153,
+    "n": 2752
+  },
+  "ragtruth_en": {
+    "auc": 0.8329,
+    "f1": 0.7487,
+    "n": 600
+  },
+  "ragtruth_nonen": {
+    "auc": 0.8421,
+    "per_lang": {
+      "de": 0.8455,
+      "fr": 0.8348,
+      "es": 0.843,
+      "it": 0.833,
+      "pl": 0.8374,
+      "hu": 0.8321,
+      "cn": 0.8692
+    }
+  },
+  "params_M": 307.1,
+  "lambda_max": 0.02,
+  "lane": "R13-H129 ensemble-output distillation (public mix only)",
+  "draw": 1,
+  "seed": 3129,
+  "distill_weight": 0.5,
+  "teacher_targets": "R13-H129_teacher_targets.parquet",
+  "p_teacher_mean": 0.482608,
+  "mix_rows": 685670,
+  "dann_groups": 12,
+  "init_fingerprint": "81e1907078c541f780f56fc6f8e7f7a0",
+  "init_fingerprint_scope": "trunk+task_head",
+  "step_cosine_mean": 0.9381,
+  "step_cosine_slice": "trunk.layers.0.attn.Wqkv.weight",
+  "step_cosine_n": 2855,
+  "ema": false,
+  "ema_decay": null,
+  "ema_checkpoint": null,
+  "train_seconds": 19074.4,
+  "checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/R13-H129-draw1"
+}

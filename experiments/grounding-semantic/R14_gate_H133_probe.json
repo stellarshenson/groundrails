@@ -1,0 +1,18 @@
+{
+  "gate": "R14-H133 (R14-A4 kill-gate) shortcut-presence probe",
+  "model": "/home/lab/workspace/private/ai-assistants/groundrails/models/R9-H105-mmbert-dann-clean",
+  "data": "TabFact test+validation tables, table_id-disjoint from the train split used by the clean mix and by R10-H108_data.tabfact_positives(); no arena, no gold",
+  "seed": 20260809,
+  "n_triples": 2000,
+  "n_requested": 2000,
+  "mean_score_a_verbatim": 0.90507,
+  "mean_score_b_correct_derived": 0.24189,
+  "mean_score_c_wrong_operand": 0.24524,
+  "gap_a_minus_b": 0.66318,
+  "auroc_b_vs_c": 0.4924,
+  "auroc_a_vs_b": 0.9643,
+  "bar": "LICENSE if gap >= 0.20 AND AUROC(b vs c) <= 0.60; KILL otherwise",
+  "verdict": "LICENSE",
+  "clause_fired": "LICENSE - score(a) - score(b) >= 0.20 AND AUROC(b vs c) <= 0.60",
+  "sample": "R14_H133_triples.parquet"
+}

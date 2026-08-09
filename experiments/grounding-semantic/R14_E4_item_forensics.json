@@ -1,0 +1,347 @@
+{
+  "reproduction": {
+    "covidqa": 0.803,
+    "delucionqa": 0.7975,
+    "emanual": 0.6883,
+    "expertqa": 0.7857,
+    "finqa": 0.6489,
+    "hagrid": 0.6259,
+    "hotpotqa": 0.6809,
+    "pubmedqa": 0.6201,
+    "tatqa": 0.7034,
+    "techqa": 0.6934,
+    "mean": 0.70471
+  },
+  "subsets": {
+    "finqa": {
+      "n_resp": 250,
+      "n_supported": 230,
+      "n_unsupported": 20,
+      "base_rate_supported": 0.92,
+      "auroc": 0.6489,
+      "discordant_pairs": 1615.0,
+      "total_pairs": 4600,
+      "discordance_from_supported_side": 1615.0,
+      "discordance_from_unsupported_side": 1615.0,
+      "top5_supported_share_of_discordance": 0.0601,
+      "top5_unsupported_share_of_discordance": 0.5752,
+      "n_supported_with_zero_loss": 13,
+      "n_unsupported_with_zero_win": 0,
+      "score_mean_supported": 0.4291,
+      "score_mean_unsupported": 0.341,
+      "worst_supported": [
+        [
+          147,
+          20.0
+        ],
+        [
+          217,
+          20.0
+        ],
+        [
+          205,
+          19.0
+        ],
+        [
+          160,
+          19.0
+        ],
+        [
+          5,
+          19.0
+        ],
+        [
+          112,
+          19.0
+        ],
+        [
+          96,
+          19.0
+        ],
+        [
+          101,
+          19.0
+        ],
+        [
+          50,
+          19.0
+        ],
+        [
+          184,
+          18.0
+        ],
+        [
+          195,
+          18.0
+        ],
+        [
+          191,
+          18.0
+        ],
+        [
+          155,
+          17.0
+        ],
+        [
+          148,
+          17.0
+        ],
+        [
+          176,
+          17.0
+        ],
+        [
+          167,
+          17.0
+        ],
+        [
+          153,
+          17.0
+        ],
+        [
+          156,
+          16.0
+        ],
+        [
+          100,
+          16.0
+        ],
+        [
+          245,
+          16.0
+        ]
+      ],
+      "worst_unsupported": [
+        [
+          200,
+          217.0
+        ],
+        [
+          71,
+          213.0
+        ],
+        [
+          67,
+          212.0
+        ],
+        [
+          229,
+          168.0
+        ],
+        [
+          114,
+          119.0
+        ],
+        [
+          36,
+          103.0
+        ],
+        [
+          157,
+          92.0
+        ],
+        [
+          85,
+          76.0
+        ],
+        [
+          215,
+          73.0
+        ],
+        [
+          31,
+          53.0
+        ],
+        [
+          242,
+          51.0
+        ],
+        [
+          48,
+          51.0
+        ],
+        [
+          168,
+          51.0
+        ],
+        [
+          41,
+          38.0
+        ],
+        [
+          189,
+          36.0
+        ],
+        [
+          43,
+          22.0
+        ],
+        [
+          198,
+          17.0
+        ],
+        [
+          214,
+          12.0
+        ],
+        [
+          116,
+          9.0
+        ],
+        [
+          81,
+          2.0
+        ]
+      ]
+    },
+    "delucionqa": {
+      "n_resp": 184,
+      "n_supported": 172,
+      "n_unsupported": 12,
+      "base_rate_supported": 0.9348,
+      "auroc": 0.7975,
+      "discordant_pairs": 418.0,
+      "total_pairs": 2064,
+      "discordance_from_supported_side": 418.0,
+      "discordance_from_unsupported_side": 418.0,
+      "top5_supported_share_of_discordance": 0.122,
+      "top5_unsupported_share_of_discordance": 0.8254,
+      "n_supported_with_zero_loss": 44,
+      "n_unsupported_with_zero_win": 0,
+      "score_mean_supported": 0.7145,
+      "score_mean_unsupported": 0.4052,
+      "worst_supported": [
+        [
+          164,
+          12.0
+        ],
+        [
+          6,
+          10.0
+        ],
+        [
+          121,
+          10.0
+        ],
+        [
+          174,
+          10.0
+        ],
+        [
+          72,
+          9.0
+        ],
+        [
+          116,
+          9.0
+        ],
+        [
+          137,
+          9.0
+        ],
+        [
+          171,
+          9.0
+        ],
+        [
+          100,
+          9.0
+        ],
+        [
+          180,
+          9.0
+        ],
+        [
+          103,
+          9.0
+        ],
+        [
+          114,
+          9.0
+        ],
+        [
+          55,
+          9.0
+        ],
+        [
+          105,
+          9.0
+        ],
+        [
+          102,
+          8.0
+        ],
+        [
+          19,
+          8.0
+        ],
+        [
+          11,
+          7.0
+        ],
+        [
+          113,
+          6.0
+        ],
+        [
+          117,
+          6.0
+        ],
+        [
+          159,
+          6.0
+        ]
+      ],
+      "worst_unsupported": [
+        [
+          65,
+          128.0
+        ],
+        [
+          82,
+          90.0
+        ],
+        [
+          24,
+          67.0
+        ],
+        [
+          83,
+          36.0
+        ],
+        [
+          77,
+          24.0
+        ],
+        [
+          93,
+          20.0
+        ],
+        [
+          130,
+          17.0
+        ],
+        [
+          106,
+          16.0
+        ],
+        [
+          175,
+          14.0
+        ],
+        [
+          56,
+          4.0
+        ],
+        [
+          76,
+          1.0
+        ],
+        [
+          168,
+          1.0
+        ]
+      ]
+    }
+  }
+}

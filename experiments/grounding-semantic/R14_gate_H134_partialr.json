@@ -1,0 +1,25 @@
+{
+  "gate": "R14-H134 (R14-A5 kill-gate clause 2) label-conditional partial correlation",
+  "model": "/home/lab/workspace/private/ai-assistants/groundrails/models/R9-H105-mmbert-dann-clean",
+  "data": "R7-H60_multilingual_parallel.load_english() - RAGTruth EN TEST split, seed-0 sample; the campaign's in-domain held-out gate. The repo archive ships train and test only - there is no separate RAGTruth dev split.",
+  "n": 600,
+  "read": "max over M59.top_chunks(context, semantic_top_k); quantity = pre-sigmoid task logit of the argmax chunk",
+  "feature": "claim digit fraction = digit chars / total chars",
+  "partial_r_controlling_for_label": 0.07307,
+  "raw_r": 0.09694,
+  "per_label": {
+    "label_0": {
+      "n": 210,
+      "pearson_r": 0.27716,
+      "mean_digit_fraction": 0.00708
+    },
+    "label_1": {
+      "n": 390,
+      "pearson_r": -0.0364,
+      "mean_digit_fraction": 0.00826
+    }
+  },
+  "in_domain_auc_sanity": 0.8382,
+  "kill_clause": "KILL if |partial r| < 0.05",
+  "verdict": "PASS (|partial r| >= 0.05)"
+}

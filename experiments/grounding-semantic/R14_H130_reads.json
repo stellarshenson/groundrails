@@ -1,0 +1,269 @@
+{
+  "gate": "R14-H130 (R14-A1) corrected windowed read on three fresh checkpoints",
+  "frozen_form_doc": "R14_H130_frozen_form.md",
+  "alpha_frozen": 0.016,
+  "alpha_hat": 0.015816,
+  "per_checkpoint": {
+    "drc1": {
+      "model": "models/DR-lane-draw1-control",
+      "banked_read": "DR_lane_draw1_control_windowed_result.json",
+      "reproduction_ok": true,
+      "per_subset": {
+        "covidqa": {
+          "banked": 0.7649,
+          "dump_alpha0": 0.7649,
+          "corrected": 0.7649,
+          "delta": 0.0,
+          "reproduces": true
+        },
+        "delucionqa": {
+          "banked": 0.8551,
+          "dump_alpha0": 0.8551,
+          "corrected": 0.8425,
+          "delta": -0.0126,
+          "reproduces": true
+        },
+        "emanual": {
+          "banked": 0.6556,
+          "dump_alpha0": 0.6556,
+          "corrected": 0.6416,
+          "delta": -0.014,
+          "reproduces": true
+        },
+        "expertqa": {
+          "banked": 0.7453,
+          "dump_alpha0": 0.7453,
+          "corrected": 0.7451,
+          "delta": -0.0002,
+          "reproduces": true
+        },
+        "finqa": {
+          "banked": 0.687,
+          "dump_alpha0": 0.687,
+          "corrected": 0.6983,
+          "delta": 0.0113,
+          "reproduces": true
+        },
+        "hagrid": {
+          "banked": 0.6583,
+          "dump_alpha0": 0.6583,
+          "corrected": 0.6589,
+          "delta": 0.0006,
+          "reproduces": true
+        },
+        "hotpotqa": {
+          "banked": 0.6228,
+          "dump_alpha0": 0.6228,
+          "corrected": 0.6216,
+          "delta": -0.0012,
+          "reproduces": true
+        },
+        "pubmedqa": {
+          "banked": 0.5994,
+          "dump_alpha0": 0.5994,
+          "corrected": 0.5994,
+          "delta": 0.0,
+          "reproduces": true
+        },
+        "tatqa": {
+          "banked": 0.7188,
+          "dump_alpha0": 0.7188,
+          "corrected": 0.7197,
+          "delta": 0.0009,
+          "reproduces": true
+        },
+        "techqa": {
+          "banked": 0.6754,
+          "dump_alpha0": 0.6754,
+          "corrected": 0.6838,
+          "delta": 0.0084,
+          "reproduces": true
+        }
+      },
+      "mean_alpha0": 0.69826,
+      "mean_corrected": 0.69758,
+      "mean_delta": -0.00068,
+      "finqa_delta": 0.0113,
+      "worst_subset_delta": -0.014,
+      "worst_subset": "emanual"
+    },
+    "drc2": {
+      "model": "models/DR-lane-draw2-control",
+      "banked_read": "DR_lane_draw2_control_windowed_result.json",
+      "reproduction_ok": true,
+      "per_subset": {
+        "covidqa": {
+          "banked": 0.7519,
+          "dump_alpha0": 0.7519,
+          "corrected": 0.7519,
+          "delta": 0.0,
+          "reproduces": true
+        },
+        "delucionqa": {
+          "banked": 0.8808,
+          "dump_alpha0": 0.8808,
+          "corrected": 0.8765,
+          "delta": -0.0043,
+          "reproduces": true
+        },
+        "emanual": {
+          "banked": 0.6677,
+          "dump_alpha0": 0.6677,
+          "corrected": 0.6622,
+          "delta": -0.0055,
+          "reproduces": true
+        },
+        "expertqa": {
+          "banked": 0.6984,
+          "dump_alpha0": 0.6984,
+          "corrected": 0.7019,
+          "delta": 0.0035,
+          "reproduces": true
+        },
+        "finqa": {
+          "banked": 0.7098,
+          "dump_alpha0": 0.7098,
+          "corrected": 0.7048,
+          "delta": -0.005,
+          "reproduces": true
+        },
+        "hagrid": {
+          "banked": 0.6569,
+          "dump_alpha0": 0.6569,
+          "corrected": 0.6568,
+          "delta": -0.0001,
+          "reproduces": true
+        },
+        "hotpotqa": {
+          "banked": 0.6344,
+          "dump_alpha0": 0.6344,
+          "corrected": 0.6428,
+          "delta": 0.0084,
+          "reproduces": true
+        },
+        "pubmedqa": {
+          "banked": 0.606,
+          "dump_alpha0": 0.606,
+          "corrected": 0.606,
+          "delta": 0.0,
+          "reproduces": true
+        },
+        "tatqa": {
+          "banked": 0.8175,
+          "dump_alpha0": 0.8175,
+          "corrected": 0.8199,
+          "delta": 0.0024,
+          "reproduces": true
+        },
+        "techqa": {
+          "banked": 0.6479,
+          "dump_alpha0": 0.6479,
+          "corrected": 0.662,
+          "delta": 0.0141,
+          "reproduces": true
+        }
+      },
+      "mean_alpha0": 0.70713,
+      "mean_corrected": 0.70848,
+      "mean_delta": 0.00135,
+      "finqa_delta": -0.005,
+      "worst_subset_delta": -0.0055,
+      "worst_subset": "emanual"
+    },
+    "mgn1": {
+      "model": "models/DR-lane-draw1-margin",
+      "banked_read": "DR_lane_draw1_margin_windowed_result.json",
+      "reproduction_ok": true,
+      "per_subset": {
+        "covidqa": {
+          "banked": 0.769,
+          "dump_alpha0": 0.769,
+          "corrected": 0.769,
+          "delta": 0.0,
+          "reproduces": true
+        },
+        "delucionqa": {
+          "banked": 0.8159,
+          "dump_alpha0": 0.8159,
+          "corrected": 0.813,
+          "delta": -0.0029,
+          "reproduces": true
+        },
+        "emanual": {
+          "banked": 0.8117,
+          "dump_alpha0": 0.8117,
+          "corrected": 0.8081,
+          "delta": -0.0036,
+          "reproduces": true
+        },
+        "expertqa": {
+          "banked": 0.7384,
+          "dump_alpha0": 0.7384,
+          "corrected": 0.7421,
+          "delta": 0.0037,
+          "reproduces": true
+        },
+        "finqa": {
+          "banked": 0.585,
+          "dump_alpha0": 0.585,
+          "corrected": 0.5843,
+          "delta": -0.0007,
+          "reproduces": true
+        },
+        "hagrid": {
+          "banked": 0.6806,
+          "dump_alpha0": 0.6806,
+          "corrected": 0.6799,
+          "delta": -0.0007,
+          "reproduces": true
+        },
+        "hotpotqa": {
+          "banked": 0.6468,
+          "dump_alpha0": 0.6468,
+          "corrected": 0.6463,
+          "delta": -0.0005,
+          "reproduces": true
+        },
+        "pubmedqa": {
+          "banked": 0.6311,
+          "dump_alpha0": 0.6311,
+          "corrected": 0.6311,
+          "delta": 0.0,
+          "reproduces": true
+        },
+        "tatqa": {
+          "banked": 0.7107,
+          "dump_alpha0": 0.7107,
+          "corrected": 0.7116,
+          "delta": 0.0009,
+          "reproduces": true
+        },
+        "techqa": {
+          "banked": 0.6788,
+          "dump_alpha0": 0.6788,
+          "corrected": 0.684,
+          "delta": 0.0052,
+          "reproduces": true
+        }
+      },
+      "mean_alpha0": 0.7068,
+      "mean_corrected": 0.70694,
+      "mean_delta": 0.00014,
+      "finqa_delta": -0.0007,
+      "worst_subset_delta": -0.0036,
+      "worst_subset": "emanual"
+    }
+  },
+  "reproduction_ok_all": true,
+  "finqa_deltas": [
+    0.0113,
+    -0.005,
+    -0.0007
+  ],
+  "finqa_mean_delta": 0.00187,
+  "gold_full_clause": "gold_full is read with max-over-chunks on pre-chunked evidence at or below the 1,500-char window, so K_d == 1 for every document and the frozen offset alpha * ln(K_d) is identically zero - gold_full is unchanged by construction and the >= banked - 0.005 clause holds with equality. Verified in R14_H130_goldcheck.json.",
+  "verdict": "KILL",
+  "clause_fired": [
+    "finqa negative on at least one checkpoint"
+  ]
+}

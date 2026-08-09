@@ -231,6 +231,17 @@ Two layers: a fast deterministic lexical grounder, and an optional model-based c
   - [`lexical-grounding-sota.md`](docs/experiments/lexical-grounding-sota.md) - the deterministic lexical grounder
   - [`semantic-grounding-sota.md`](docs/experiments/semantic-grounding-sota.md) - the optional model-based cascade
 
+## Research corpora
+
+Training and evaluation corpora are not shipped with the package - they are fetched on demand by two CLI scripts, and every corpus carries a tracked markdown sidecar recording its licence and provenance. Nothing enters a training mix without a licence permitting commercial use and a provenance gate against the evaluation arena.
+
+- **Survey corpora** - `uv run python scripts/fetch_grounding_datasets.py [name ...]`; no argument fetches all, `--dry-run` writes sidecars only. Names: `ragtruth`, `ragtruth-translated`, `lettucedetect-prose`, `psiloqa`, `ragbench`, `faithdial`, `nomiracl`, `vitaminc`, `tabfact`, `halueval`
+- **Register-gap corpora** - `uv run python scripts/fetch_register_corpora.py <subcommand>`; `list` prints the corpora with their licences, `--sidecar-only` writes the sidecar and stops. Subcommands: `edgar-restricted`, `scifact`, `army-tm`, `faa-amt`
+- **Where data lands** - `data/external/datasets/`: the survey script writes one `dataset-<name>.zip` archive per corpus, the register script writes one `data/external/datasets/<name>/` directory per corpus
+- **Sidecar convention** - `data/external/datasets/dataset-<name>.md`, generated from the script's own spec table so a description cannot drift from what was downloaded. Every sidecar carries a `**Licence**` line, a Caveats section and a Provenance section
+- **Archives are gitignored** - `.gitignore` excludes everything under `data/external/datasets/` except the `*.md` sidecars, so the payload never enters the repository
+- **Resumability** - the register script is idempotent: files already on disk are skipped and progress is checkpointed to `<name>/_state.json`, so re-running the same subcommand continues rather than restarts. `army-tm` is rate-limited by its mirror to about 100 manuals per IP per day and is designed to run detached for roughly 18 days
+
 ## Documentation
 
 - [`docs/api-reference.md`](docs/api-reference.md) - the Python functions and the grounding-document fields

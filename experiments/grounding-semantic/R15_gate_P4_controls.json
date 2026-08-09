@@ -1,0 +1,10 @@
+{
+  "acc_lam1": 1.0,
+  "acc_lam100": 0.9991659716430359,
+  "acc_lam10000": 0.9849874895746455,
+  "acc_permuted_labels": 0.5079232693911593,
+  "acc_train200": 0.9974979149291076,
+  "taskhead_synthetic_2row_table_comparison_auroc": 0.5230010728947165,
+  "taskhead_mean_ok": 0.4034939408302307,
+  "taskhead_mean_bad": 0.39914432168006897
+}

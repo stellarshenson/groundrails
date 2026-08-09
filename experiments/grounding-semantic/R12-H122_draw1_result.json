@@ -1,0 +1,47 @@
+{
+  "gold": {
+    "auc": 0.8673,
+    "f1": 0.7606,
+    "n": 717
+  },
+  "gold_full": {
+    "auc": 0.8754,
+    "f1": 0.77,
+    "n": 2752
+  },
+  "ragtruth_en": {
+    "auc": 0.8323,
+    "f1": 0.7186,
+    "n": 600
+  },
+  "ragtruth_nonen": {
+    "auc": 0.8317,
+    "per_lang": {
+      "de": 0.8301,
+      "fr": 0.8252,
+      "es": 0.845,
+      "it": 0.8283,
+      "pl": 0.8133,
+      "hu": 0.8238,
+      "cn": 0.8563
+    }
+  },
+  "params_M": 307.1,
+  "lambda_max": 0.02,
+  "lane": "R12-H122 DANN group collapse (public mix only, 12 -> 5 groups)",
+  "draw": 1,
+  "seed": 1122,
+  "mix_rows": 685670,
+  "dann_groups": 5,
+  "group_counts": {
+    "halueval": 40000,
+    "psiloqa": 61712,
+    "ragtruth": 120720,
+    "tabfact": 92585,
+    "vitaminc": 370653
+  },
+  "init_fingerprint": "9b12d49f672f9e4bda20d262e7afd470",
+  "init_fingerprint_scope": "trunk+task_head",
+  "train_seconds": 19666.3,
+  "checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/R12-H122-draw1"
+}

@@ -1,0 +1,66 @@
+{
+  "n_triples_matched": 2000,
+  "evidence_chars_mean": 918.8745,
+  "evidence_tokens_mean": 437.4575,
+  "evidence_tokens_median": 343.0,
+  "evidence_tokens_p95": 867.0,
+  "evidence_tokens_max": 1089,
+  "chars_per_token": 2.1004886188944067,
+  "claim_tokens_mean": 20.9825,
+  "pair_tokens_mean": 461.44,
+  "share_pair_over_512": 0.3565,
+  "share_evidence_truncated": 0.3565,
+  "mean_retained_evidence_fraction": 0.908880638333682,
+  "operand_rows_located_share": 0.912,
+  "n_located": 1824,
+  "share_both_operand_rows_visible": 0.875,
+  "share_no_operand_row_visible": 0.028508771929824595,
+  "all": {
+    "n": 2000,
+    "mean_a": 0.9050724414799479,
+    "mean_b": 0.24189422264648602,
+    "mean_c": 0.2452387259405805,
+    "auroc_b_vs_c": 0.49238575,
+    "auroc_a_vs_b": 0.96428825
+  },
+  "by_truncation": {
+    "evidence_fits_512": {
+      "n": 1287,
+      "mean_a": 0.9827482614618464,
+      "mean_b": 0.1843362432280765,
+      "mean_c": 0.18776888469333247,
+      "auroc_b_vs_c": 0.4883606853303823,
+      "auroc_a_vs_b": 0.9973297012924053
+    },
+    "evidence_truncated": {
+      "n": 713,
+      "mean_a": 0.7648637734340807,
+      "mean_b": 0.3457892009234748,
+      "mean_c": 0.34897461049206463,
+      "auroc_b_vs_c": 0.4916477991380277,
+      "auroc_a_vs_b": 0.8454174035002134
+    }
+  },
+  "by_operand_visibility": {
+    "both_operand_rows_visible": {
+      "n": 1596,
+      "mean_a": 0.9791514997473098,
+      "mean_b": 0.2127378302314704,
+      "mean_c": 0.21510765761388512,
+      "auroc_b_vs_c": 0.49187995835453296,
+      "auroc_a_vs_b": 0.9948367158497748
+    },
+    "at_least_one_truncated_away": {
+      "n": 228,
+      "mean_a": 0.6355985686062475,
+      "mean_b": 0.3560037641344886,
+      "mean_c": 0.36460027980961296,
+      "auroc_b_vs_c": 0.4758002462296091,
+      "auroc_a_vs_b": 0.7454024315173899
+    }
+  },
+  "share_pair_over_1024": 0.009,
+  "share_evidence_truncated_at_1024": 0.009,
+  "mean_retained_evidence_fraction_1024": 0.9995849105247512,
+  "truncated_partition_share_of_sample": 0.3565
+}

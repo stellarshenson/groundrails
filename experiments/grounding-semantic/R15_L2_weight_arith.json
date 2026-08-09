@@ -1,0 +1,382 @@
+{
+  "mix_by_group": [
+    {
+      "tag": "vitaminc",
+      "rows": 370653,
+      "absent_rows": 117861,
+      "absent_pos": 53023,
+      "absent_neg": 64838
+    },
+    {
+      "tag": "tabfact",
+      "rows": 92585,
+      "absent_rows": 11312,
+      "absent_pos": 5218,
+      "absent_neg": 6094
+    },
+    {
+      "tag": "psiloqa",
+      "rows": 61712,
+      "absent_rows": 21008,
+      "absent_pos": 1019,
+      "absent_neg": 19989
+    },
+    {
+      "tag": "halueval",
+      "rows": 40000,
+      "absent_rows": 5015,
+      "absent_pos": 2285,
+      "absent_neg": 2730
+    },
+    {
+      "tag": "ragtruth_de",
+      "rows": 15090,
+      "absent_rows": 7024,
+      "absent_pos": 3076,
+      "absent_neg": 3948
+    },
+    {
+      "tag": "ragtruth_hu",
+      "rows": 15090,
+      "absent_rows": 6864,
+      "absent_pos": 2957,
+      "absent_neg": 3907
+    },
+    {
+      "tag": "ragtruth_fr",
+      "rows": 15090,
+      "absent_rows": 7093,
+      "absent_pos": 3162,
+      "absent_neg": 3931
+    },
+    {
+      "tag": "ragtruth_cn",
+      "rows": 15090,
+      "absent_rows": 5677,
+      "absent_pos": 2051,
+      "absent_neg": 3626
+    },
+    {
+      "tag": "ragtruth_es",
+      "rows": 15090,
+      "absent_rows": 7349,
+      "absent_pos": 3246,
+      "absent_neg": 4103
+    },
+    {
+      "tag": "ragtruth_pl",
+      "rows": 15090,
+      "absent_rows": 6936,
+      "absent_pos": 2985,
+      "absent_neg": 3951
+    },
+    {
+      "tag": "ragtruth_en",
+      "rows": 15090,
+      "absent_rows": 7594,
+      "absent_pos": 3371,
+      "absent_neg": 4223
+    },
+    {
+      "tag": "ragtruth_it",
+      "rows": 15090,
+      "absent_rows": 7195,
+      "absent_pos": 3161,
+      "absent_neg": 4034
+    }
+  ],
+  "pool": {
+    "mix_rows": 685670,
+    "h108_rows": 61184,
+    "total_rows": 746854,
+    "absent_rows": 246544,
+    "absent_pos": 87933,
+    "absent_neg": 158611,
+    "P0_given_absent": 0.6433
+  },
+  "absent_positive_upweight": {
+    "w_star": 1.8038,
+    "row_equivalents_added": 70678,
+    "added_pct_of_pool": 9.46,
+    "effective_group_shares": [
+      {
+        "tag": "vitaminc",
+        "base_share": 0.4963,
+        "eff_share": 0.5055,
+        "delta_pp": 0.923
+      },
+      {
+        "tag": "tabfact",
+        "base_share": 0.124,
+        "eff_share": 0.1184,
+        "delta_pp": -0.559
+      },
+      {
+        "tag": "psiloqa",
+        "base_share": 0.0826,
+        "eff_share": 0.0765,
+        "delta_pp": -0.614
+      },
+      {
+        "tag": "halueval",
+        "base_share": 0.0536,
+        "eff_share": 0.0512,
+        "delta_pp": -0.238
+      },
+      {
+        "tag": "ragtruth_de",
+        "base_share": 0.0202,
+        "eff_share": 0.0215,
+        "delta_pp": 0.128
+      },
+      {
+        "tag": "ragtruth_hu",
+        "base_share": 0.0202,
+        "eff_share": 0.0214,
+        "delta_pp": 0.116
+      },
+      {
+        "tag": "ragtruth_fr",
+        "base_share": 0.0202,
+        "eff_share": 0.0216,
+        "delta_pp": 0.136
+      },
+      {
+        "tag": "ragtruth_cn",
+        "base_share": 0.0202,
+        "eff_share": 0.0205,
+        "delta_pp": 0.027
+      },
+      {
+        "tag": "ragtruth_es",
+        "base_share": 0.0202,
+        "eff_share": 0.0216,
+        "delta_pp": 0.144
+      },
+      {
+        "tag": "ragtruth_pl",
+        "base_share": 0.0202,
+        "eff_share": 0.0214,
+        "delta_pp": 0.119
+      },
+      {
+        "tag": "ragtruth_en",
+        "base_share": 0.0202,
+        "eff_share": 0.0218,
+        "delta_pp": 0.157
+      },
+      {
+        "tag": "ragtruth_it",
+        "base_share": 0.0202,
+        "eff_share": 0.0216,
+        "delta_pp": 0.136
+      },
+      {
+        "tag": "h108_lane",
+        "base_share": 0.0819,
+        "eff_share": 0.0772,
+        "delta_pp": -0.474
+      }
+    ],
+    "max_abs_group_share_shift_pp": 0.923
+  },
+  "absent_negative_downweight": {
+    "w_neg": 0.5544,
+    "row_equivalents_removed": 70678,
+    "h108_absent_neg_rows_affected": 33237
+  },
+  "lane_loss_weight_pooled_P0_given_absent": {
+    "lane25000_w1": 0.6301,
+    "lane25000_w2": 0.6192,
+    "lane25000_w3": 0.6099,
+    "lane25000_w4": 0.602,
+    "lane25000_w6": 0.5891,
+    "lane25000_w8": 0.5791,
+    "lane50000_w1": 0.6192,
+    "lane50000_w2": 0.602,
+    "lane50000_w3": 0.5891,
+    "lane50000_w4": 0.5791,
+    "lane50000_w6": 0.5647,
+    "lane50000_w8": 0.5547
+  },
+  "lane_weight_note": "pooled purity is a function of lane row-equivalents = rows x weight, so a 50,000-row lane at weight w matches the dilution of a 50,000*w-row lane at weight 1 while holding documents, GPU time and per-table cap fixed",
+  "absent_vs_digitfraction_cell_correlation": [
+    {
+      "tag": "vitaminc",
+      "label": 1.0,
+      "n": 185714,
+      "r": 0.5622
+    },
+    {
+      "tag": "vitaminc",
+      "label": 0.0,
+      "n": 184939,
+      "r": 0.6948
+    },
+    {
+      "tag": "psiloqa",
+      "label": 0.0,
+      "n": 54973,
+      "r": 0.4593
+    },
+    {
+      "tag": "tabfact",
+      "label": 1.0,
+      "n": 50994,
+      "r": 0.1558
+    },
+    {
+      "tag": "tabfact",
+      "label": 0.0,
+      "n": 41591,
+      "r": 0.2394
+    },
+    {
+      "tag": "halueval",
+      "label": 1.0,
+      "n": 20000,
+      "r": 0.037
+    },
+    {
+      "tag": "halueval",
+      "label": 0.0,
+      "n": 20000,
+      "r": 0.2094
+    },
+    {
+      "tag": "ragtruth_pl",
+      "label": 1.0,
+      "n": 8372,
+      "r": 0.3119
+    },
+    {
+      "tag": "ragtruth_fr",
+      "label": 1.0,
+      "n": 8370,
+      "r": 0.3085
+    },
+    {
+      "tag": "ragtruth_es",
+      "label": 1.0,
+      "n": 8370,
+      "r": 0.3069
+    },
+    {
+      "tag": "ragtruth_hu",
+      "label": 1.0,
+      "n": 8370,
+      "r": 0.3008
+    },
+    {
+      "tag": "ragtruth_cn",
+      "label": 1.0,
+      "n": 8370,
+      "r": 0.1917
+    },
+    {
+      "tag": "ragtruth_en",
+      "label": 1.0,
+      "n": 8369,
+      "r": 0.2286
+    },
+    {
+      "tag": "ragtruth_it",
+      "label": 1.0,
+      "n": 8369,
+      "r": 0.3106
+    },
+    {
+      "tag": "ragtruth_de",
+      "label": 1.0,
+      "n": 8369,
+      "r": 0.3069
+    },
+    {
+      "tag": "psiloqa",
+      "label": 1.0,
+      "n": 6739,
+      "r": 0.2685
+    },
+    {
+      "tag": "ragtruth_en",
+      "label": 0.0,
+      "n": 6721,
+      "r": 0.2054
+    },
+    {
+      "tag": "ragtruth_de",
+      "label": 0.0,
+      "n": 6721,
+      "r": 0.2576
+    },
+    {
+      "tag": "ragtruth_it",
+      "label": 0.0,
+      "n": 6721,
+      "r": 0.2698
+    },
+    {
+      "tag": "ragtruth_hu",
+      "label": 0.0,
+      "n": 6720,
+      "r": 0.2446
+    },
+    {
+      "tag": "ragtruth_fr",
+      "label": 0.0,
+      "n": 6720,
+      "r": 0.2518
+    },
+    {
+      "tag": "ragtruth_cn",
+      "label": 0.0,
+      "n": 6720,
+      "r": 0.1562
+    },
+    {
+      "tag": "ragtruth_es",
+      "label": 0.0,
+      "n": 6720,
+      "r": 0.2518
+    },
+    {
+      "tag": "ragtruth_pl",
+      "label": 0.0,
+      "n": 6718,
+      "r": 0.279
+    }
+  ],
+  "absent_vs_digitfraction_summary": {
+    "cells": 24,
+    "mean_r": 0.2837,
+    "median_r": 0.2631,
+    "max_r": 0.6948,
+    "mean_r2_shared_variance": 0.0973
+  },
+  "digfrac_by_absent": [
+    {
+      "label": 0.0,
+      "absent": false,
+      "n": 229890,
+      "mean_digfrac": 0.01449151375496285
+    },
+    {
+      "label": 0.0,
+      "absent": true,
+      "n": 125374,
+      "mean_digfrac": 0.05245811119076225
+    },
+    {
+      "label": 1.0,
+      "absent": false,
+      "n": 244852,
+      "mean_digfrac": 0.02298610125012544
+    },
+    {
+      "label": 1.0,
+      "absent": true,
+      "n": 85554,
+      "mean_digfrac": 0.051273652852662
+    }
+  ]
+}

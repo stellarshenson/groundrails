@@ -1,0 +1,9 @@
+{
+  "gate": "R14-H130 gold_full clause check",
+  "source": "experiments/grounding-semantic/private-rag-forensics/R7-H51_teacher_pairs.parquet",
+  "n_chunks": 123579,
+  "max_chunk_chars": 1500,
+  "n_chunks_over_1500": 0,
+  "K_is_1_for_every_gold_document": true,
+  "conclusion": "gold_full read is max-over-chunks on documents at or below the 1500-char window, so K_d == 1 everywhere and alpha*ln(K_d) == 0; gold_full is unchanged by the H130 correction by construction and the >= banked - 0.005 clause holds with equality"
+}

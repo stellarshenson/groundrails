@@ -1,0 +1,52 @@
+{
+  "probe": "R15-P4 numeracy dossier probe",
+  "model": "/home/lab/workspace/private/ai-assistants/groundrails/models/R9-H105-mmbert-dann-clean",
+  "seed": 20260810,
+  "data": "TabFact test+validation, table_id-disjoint from train; zero arena, zero gold",
+  "train_table_ids_excluded": 13182,
+  "A_derivation_families": {
+    "verbatim": {
+      "n": 1200,
+      "mean_correct": 0.903701901435852,
+      "mean_wrong": 0.08793646097183228,
+      "auroc_correct_vs_wrong": 0.9818232638888889,
+      "frac_correct_scored_higher": 0.9475
+    },
+    "comparison": {
+      "n": 1200,
+      "mean_correct": 0.36355265974998474,
+      "mean_wrong": 0.35949215292930603,
+      "auroc_correct_vs_wrong": 0.5130090277777778,
+      "frac_correct_scored_higher": 0.5133333333333333
+    },
+    "sum": {
+      "n": 1200,
+      "mean_correct": 0.24570630490779877,
+      "mean_wrong": 0.24738472700119019,
+      "auroc_correct_vs_wrong": 0.496159375,
+      "frac_correct_scored_higher": 0.5141666666666667
+    },
+    "difference": {
+      "n": 1200,
+      "mean_correct": 0.41151630878448486,
+      "mean_wrong": 0.40602120757102966,
+      "auroc_correct_vs_wrong": 0.5112194444444444,
+      "frac_correct_scored_higher": 0.5508333333333333
+    },
+    "ratio": {
+      "n": 1200,
+      "mean_correct": 0.33325523138046265,
+      "mean_wrong": 0.3251539468765259,
+      "auroc_correct_vs_wrong": 0.5159048611111111,
+      "frac_correct_scored_higher": 0.5241666666666667
+    }
+  },
+  "A_note": "R14-H133 measured the sum family alone at AUROC 0.4924 on 2,000 triples",
+  "B_representation_probe": {
+    "magnitude_ridge_r2_interpolation_1_to_999": 0.9987143961089161,
+    "magnitude_ridge_r2_extrapolation_train_1_999_test_10k_100k": -46.10691512846968,
+    "comparison_linear_probe_heldout_accuracy": 1.0,
+    "comparison_linear_probe_heldout_auroc": 1.0,
+    "note": "linear probe on the frozen fine-tuned trunk CLS; separates representation content from task-head usage"
+  }
+}

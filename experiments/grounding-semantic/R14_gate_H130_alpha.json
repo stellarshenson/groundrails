@@ -1,0 +1,106 @@
+{
+  "gate": "R14-H130 (R14-A1) legal-data alpha fit",
+  "frozen_form_doc": "R14_H130_frozen_form.md",
+  "model": "/home/lab/workspace/private/ai-assistants/groundrails/models/R9-H105-mmbert-dann-clean",
+  "data": "R9-H105_clean_mix.public_train(); RAGBench and gold never touched",
+  "window": 1500,
+  "strides": [
+    1500,
+    1000,
+    750,
+    500,
+    375,
+    250
+  ],
+  "seed": 20260809,
+  "n_items_requested": 1000,
+  "n_items_sampled": 1000,
+  "n_items_in_fit": 850,
+  "n_items_dropped_constant_K": 150,
+  "n_unique_pairs_scored": 8455,
+  "tag_counts": {
+    "halueval": 84,
+    "psiloqa": 84,
+    "ragtruth_cn": 84,
+    "ragtruth_de": 84,
+    "ragtruth_en": 83,
+    "ragtruth_es": 83,
+    "ragtruth_fr": 83,
+    "ragtruth_hu": 83,
+    "ragtruth_it": 83,
+    "ragtruth_pl": 83,
+    "tabfact": 83,
+    "vitaminc": 83
+  },
+  "alpha_hat": 0.015816,
+  "alpha_clustered_se": 0.001213,
+  "alpha_frozen": 0.016,
+  "mean_max_by_K": {
+    "2": {
+      "n": 2414,
+      "mean_max": 0.52797
+    },
+    "3": {
+      "n": 1332,
+      "mean_max": 0.52529
+    },
+    "4": {
+      "n": 741,
+      "mean_max": 0.51901
+    },
+    "5": {
+      "n": 452,
+      "mean_max": 0.51879
+    },
+    "6": {
+      "n": 284,
+      "mean_max": 0.50939
+    },
+    "7": {
+      "n": 187,
+      "mean_max": 0.50326
+    },
+    "8": {
+      "n": 123,
+      "mean_max": 0.53118
+    },
+    "9": {
+      "n": 90,
+      "mean_max": 0.48775
+    },
+    "10": {
+      "n": 74,
+      "mean_max": 0.44516
+    },
+    "11": {
+      "n": 56,
+      "mean_max": 0.51378
+    },
+    "12": {
+      "n": 49,
+      "mean_max": 0.54128
+    },
+    "13": {
+      "n": 33,
+      "mean_max": 0.64234
+    },
+    "14": {
+      "n": 25,
+      "mean_max": 0.41975
+    },
+    "15": {
+      "n": 20,
+      "mean_max": 0.7106
+    },
+    "16": {
+      "n": 25,
+      "mean_max": 0.45528
+    },
+    "18": {
+      "n": 20,
+      "mean_max": 0.56901
+    }
+  },
+  "kill_clause": "KILL if alpha_hat <= 0 or alpha_hat > 0.15",
+  "verdict": "LICENSED"
+}

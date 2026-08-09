@@ -1,0 +1,286 @@
+{
+  "gate": "R14-H131 Stage 1 (R14-A2) - frozen-weights windowed read at max_length=1024",
+  "read_script": "R14_H131_read1024.py (R8-H101 read; only the tokenizer max_length changes)",
+  "checkpoints": [
+    "h105d1",
+    "h105d2",
+    "h108d1",
+    "h108d2"
+  ],
+  "barred_from_adjudicating": [
+    "delucionqa"
+  ],
+  "token_dense_group": [
+    "techqa",
+    "finqa",
+    "tatqa"
+  ],
+  "per_checkpoint": {
+    "h105d1": {
+      "pair": "h105",
+      "per_subset": {
+        "covidqa": {
+          "auc_512": 0.803,
+          "auc_1024": 0.803,
+          "delta": 0.0
+        },
+        "delucionqa": {
+          "auc_512": 0.7975,
+          "auc_1024": 0.7975,
+          "delta": 0.0
+        },
+        "emanual": {
+          "auc_512": 0.6883,
+          "auc_1024": 0.6883,
+          "delta": 0.0
+        },
+        "expertqa": {
+          "auc_512": 0.7857,
+          "auc_1024": 0.7854,
+          "delta": -0.0003
+        },
+        "finqa": {
+          "auc_512": 0.6489,
+          "auc_1024": 0.6528,
+          "delta": 0.0039
+        },
+        "hagrid": {
+          "auc_512": 0.6259,
+          "auc_1024": 0.6259,
+          "delta": 0.0
+        },
+        "hotpotqa": {
+          "auc_512": 0.6809,
+          "auc_1024": 0.6809,
+          "delta": 0.0
+        },
+        "pubmedqa": {
+          "auc_512": 0.6201,
+          "auc_1024": 0.6201,
+          "delta": 0.0
+        },
+        "tatqa": {
+          "auc_512": 0.7034,
+          "auc_1024": 0.7025,
+          "delta": -0.0009
+        },
+        "techqa": {
+          "auc_512": 0.6934,
+          "auc_1024": 0.6917,
+          "delta": -0.0017
+        }
+      },
+      "mean_512": 0.70471,
+      "mean_1024": 0.70481,
+      "mean_delta": 0.0001,
+      "dense_group_mean_delta": 0.00043,
+      "techqa_delta": -0.0017,
+      "worst_subset": "techqa",
+      "worst_subset_delta": -0.0017,
+      "n_subsets_moving_over_0.010": 0
+    },
+    "h105d2": {
+      "pair": "h105",
+      "per_subset": {
+        "covidqa": {
+          "auc_512": 0.7726,
+          "auc_1024": 0.7726,
+          "delta": 0.0
+        },
+        "delucionqa": {
+          "auc_512": 0.8358,
+          "auc_1024": 0.8358,
+          "delta": 0.0
+        },
+        "emanual": {
+          "auc_512": 0.707,
+          "auc_1024": 0.707,
+          "delta": 0.0
+        },
+        "expertqa": {
+          "auc_512": 0.7599,
+          "auc_1024": 0.7599,
+          "delta": 0.0
+        },
+        "finqa": {
+          "auc_512": 0.6176,
+          "auc_1024": 0.6204,
+          "delta": 0.0028
+        },
+        "hagrid": {
+          "auc_512": 0.642,
+          "auc_1024": 0.642,
+          "delta": 0.0
+        },
+        "hotpotqa": {
+          "auc_512": 0.6526,
+          "auc_1024": 0.6526,
+          "delta": 0.0
+        },
+        "pubmedqa": {
+          "auc_512": 0.5925,
+          "auc_1024": 0.5925,
+          "delta": 0.0
+        },
+        "tatqa": {
+          "auc_512": 0.7606,
+          "auc_1024": 0.7403,
+          "delta": -0.0203
+        },
+        "techqa": {
+          "auc_512": 0.6745,
+          "auc_1024": 0.6581,
+          "delta": -0.0164
+        }
+      },
+      "mean_512": 0.70151,
+      "mean_1024": 0.69812,
+      "mean_delta": -0.00339,
+      "dense_group_mean_delta": -0.0113,
+      "techqa_delta": -0.0164,
+      "worst_subset": "tatqa",
+      "worst_subset_delta": -0.0203,
+      "n_subsets_moving_over_0.010": 2
+    },
+    "h108d1": {
+      "pair": "h108",
+      "per_subset": {
+        "covidqa": {
+          "auc_512": 0.7516,
+          "auc_1024": 0.7516,
+          "delta": 0.0
+        },
+        "delucionqa": {
+          "auc_512": 0.7355,
+          "auc_1024": 0.7355,
+          "delta": 0.0
+        },
+        "emanual": {
+          "auc_512": 0.6719,
+          "auc_1024": 0.6719,
+          "delta": 0.0
+        },
+        "expertqa": {
+          "auc_512": 0.7496,
+          "auc_1024": 0.7496,
+          "delta": 0.0
+        },
+        "finqa": {
+          "auc_512": 0.7291,
+          "auc_1024": 0.7307,
+          "delta": 0.0016
+        },
+        "hagrid": {
+          "auc_512": 0.6599,
+          "auc_1024": 0.6599,
+          "delta": 0.0
+        },
+        "hotpotqa": {
+          "auc_512": 0.6965,
+          "auc_1024": 0.6965,
+          "delta": 0.0
+        },
+        "pubmedqa": {
+          "auc_512": 0.5907,
+          "auc_1024": 0.5907,
+          "delta": 0.0
+        },
+        "tatqa": {
+          "auc_512": 0.7391,
+          "auc_1024": 0.7473,
+          "delta": 0.0082
+        },
+        "techqa": {
+          "auc_512": 0.7379,
+          "auc_1024": 0.725,
+          "delta": -0.0129
+        }
+      },
+      "mean_512": 0.70618,
+      "mean_1024": 0.70587,
+      "mean_delta": -0.00031,
+      "dense_group_mean_delta": -0.00103,
+      "techqa_delta": -0.0129,
+      "worst_subset": "techqa",
+      "worst_subset_delta": -0.0129,
+      "n_subsets_moving_over_0.010": 1
+    },
+    "h108d2": {
+      "pair": "h108",
+      "per_subset": {
+        "covidqa": {
+          "auc_512": 0.7664,
+          "auc_1024": 0.7664,
+          "delta": 0.0
+        },
+        "delucionqa": {
+          "auc_512": 0.8614,
+          "auc_1024": 0.8614,
+          "delta": 0.0
+        },
+        "emanual": {
+          "auc_512": 0.6132,
+          "auc_1024": 0.6132,
+          "delta": 0.0
+        },
+        "expertqa": {
+          "auc_512": 0.7852,
+          "auc_1024": 0.7849,
+          "delta": -0.0003
+        },
+        "finqa": {
+          "auc_512": 0.7072,
+          "auc_1024": 0.7135,
+          "delta": 0.0063
+        },
+        "hagrid": {
+          "auc_512": 0.6354,
+          "auc_1024": 0.6354,
+          "delta": 0.0
+        },
+        "hotpotqa": {
+          "auc_512": 0.7016,
+          "auc_1024": 0.7016,
+          "delta": 0.0
+        },
+        "pubmedqa": {
+          "auc_512": 0.5575,
+          "auc_1024": 0.5575,
+          "delta": 0.0
+        },
+        "tatqa": {
+          "auc_512": 0.7482,
+          "auc_1024": 0.7458,
+          "delta": -0.0024
+        },
+        "techqa": {
+          "auc_512": 0.6612,
+          "auc_1024": 0.6377,
+          "delta": -0.0235
+        }
+      },
+      "mean_512": 0.70373,
+      "mean_1024": 0.70174,
+      "mean_delta": -0.00199,
+      "dense_group_mean_delta": -0.00653,
+      "techqa_delta": -0.0235,
+      "worst_subset": "techqa",
+      "worst_subset_delta": -0.0235,
+      "n_subsets_moving_over_0.010": 1
+    }
+  },
+  "pair_mean_deltas": {
+    "h105": -0.00164,
+    "h108": -0.00115
+  },
+  "branch_clauses": {
+    "ADOPT_read": false,
+    "LICENSE_stage2": true,
+    "KILL_line": false
+  },
+  "stage1_admit_bar_arena_part": false,
+  "stage1_kill_bar": true,
+  "gold_full_and_ragtruth_en_hold_clause": "NOT MEASURED - the ADMIT bar's hold reads at 1024 were not run; they are only load-bearing if the arena clauses admit",
+  "verdict": "LICENSE THE STAGE-2 TRAINING ARM (blocked by session ruling 14 - not run)",
+  "stage2_status": "BLOCKED by session ruling 14 - not run under any branch"
+}

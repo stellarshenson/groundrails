@@ -1,0 +1,43 @@
+{
+ "4": {
+  "body_rows_retained": 4,
+  "tables_scanned": 13143,
+  "tables_admitting": 8091,
+  "constructible_tuples": 277214,
+  "median_tuples_per_admitting_table": 24.0,
+  "tuples_at_per_table_cap_2": 16182
+ },
+ "6": {
+  "body_rows_retained": 6,
+  "tables_scanned": 13143,
+  "tables_admitting": 8313,
+  "constructible_tuples": 671460,
+  "median_tuples_per_admitting_table": 60.0,
+  "tuples_at_per_table_cap_2": 16626
+ },
+ "8": {
+  "body_rows_retained": 8,
+  "tables_scanned": 13143,
+  "tables_admitting": 8390,
+  "constructible_tuples": 1120338,
+  "median_tuples_per_admitting_table": 110.0,
+  "tuples_at_per_table_cap_2": 16780
+ },
+ "10": {
+  "body_rows_retained": 10,
+  "tables_scanned": 13143,
+  "tables_admitting": 8404,
+  "constructible_tuples": 1129654,
+  "median_tuples_per_admitting_table": 110.0,
+  "tuples_at_per_table_cap_2": 16808
+ },
+ "full": {
+  "body_rows_retained": null,
+  "tables_scanned": 13143,
+  "tables_admitting": 8438,
+  "constructible_tuples": 1121632,
+  "median_tuples_per_admitting_table": 110.0,
+  "tuples_at_per_table_cap_2": 16876
+ },
+ "_note": "TabFact train only. The banked R14_gate_H133_census.json reports 8,438 admitting TabFact tables / 1,121,632 tuples over the FULL table; 'full' here reproduces that configuration. A4 needs >= 12,500 admitting tables across TabFact train + FEVEROUS train for 25,000 tuples at per-table cap 2."
+}

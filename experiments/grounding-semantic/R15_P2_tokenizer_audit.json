@@ -1,0 +1,3379 @@
+{
+  "tokenizer": "/home/lab/workspace/private/ai-assistants/groundrails/models/R9-H105-mmbert-dann-clean/tokenizer.json",
+  "vocab_size": 256000,
+  "form_audit": [
+    {
+      "surface": "7",
+      "n_tokens": 2,
+      "tokens": [
+        "\u2581",
+        "7"
+      ]
+    },
+    {
+      "surface": "42",
+      "n_tokens": 3,
+      "tokens": [
+        "\u2581",
+        "4",
+        "2"
+      ]
+    },
+    {
+      "surface": "999",
+      "n_tokens": 4,
+      "tokens": [
+        "\u2581",
+        "9",
+        "9",
+        "9"
+      ]
+    },
+    {
+      "surface": "1000",
+      "n_tokens": 5,
+      "tokens": [
+        "\u2581",
+        "1",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "surface": "10547",
+      "n_tokens": 6,
+      "tokens": [
+        "\u2581",
+        "1",
+        "0",
+        "5",
+        "4",
+        "7"
+      ]
+    },
+    {
+      "surface": "10548",
+      "n_tokens": 6,
+      "tokens": [
+        "\u2581",
+        "1",
+        "0",
+        "5",
+        "4",
+        "8"
+      ]
+    },
+    {
+      "surface": "123456",
+      "n_tokens": 7,
+      "tokens": [
+        "\u2581",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
+    },
+    {
+      "surface": "1234567",
+      "n_tokens": 8,
+      "tokens": [
+        "\u2581",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ]
+    },
+    {
+      "surface": "10500000",
+      "n_tokens": 9,
+      "tokens": [
+        "\u2581",
+        "1",
+        "0",
+        "5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "surface": "1,000",
+      "n_tokens": 6,
+      "tokens": [
+        "\u2581",
+        "1",
+        ",",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "surface": "10,547",
+      "n_tokens": 7,
+      "tokens": [
+        "\u2581",
+        "1",
+        "0",
+        ",",
+        "5",
+        "4",
+        "7"
+      ]
+    },
+    {
+      "surface": "10,548",
+      "n_tokens": 7,
+      "tokens": [
+        "\u2581",
+        "1",
+        "0",
+        ",",
+        "5",
+        "4",
+        "8"
+      ]
+    },
+    {
+      "surface": "123,456",
+      "n_tokens": 8,
+      "tokens": [
+        "\u2581",
+        "1",
+        "2",
+        "3",
+        ",",
+        "4",
+        "5",
+        "6"
+      ]
+    },
+    {
+      "surface": "1,234,567",
+      "n_tokens": 10,
+      "tokens": [
+        "\u2581",
+        "1",
+        ",",
+        "2",
+        "3",
+        "4",
+        ",",
+        "5",
+        "6",
+        "7"
+      ]
+    },
+    {
+      "surface": "10,500,000",
+      "n_tokens": 11,
+      "tokens": [
+        "\u2581",
+        "1",
+        "0",
+        ",",
+        "5",
+        "0",
+        "0",
+        ",",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "surface": "3.5",
+      "n_tokens": 4,
+      "tokens": [
+        "\u2581",
+        "3",
+        ".",
+        "5"
+      ]
+    },
+    {
+      "surface": "0.25",
+      "n_tokens": 5,
+      "tokens": [
+        "\u2581",
+        "0",
+        ".",
+        "2",
+        "5"
+      ]
+    },
+    {
+      "surface": "10.5",
+      "n_tokens": 5,
+      "tokens": [
+        "\u2581",
+        "1",
+        "0",
+        ".",
+        "5"
+      ]
+    },
+    {
+      "surface": "1.75",
+      "n_tokens": 5,
+      "tokens": [
+        "\u2581",
+        "1",
+        ".",
+        "7",
+        "5"
+      ]
+    },
+    {
+      "surface": "12.50",
+      "n_tokens": 6,
+      "tokens": [
+        "\u2581",
+        "1",
+        "2",
+        ".",
+        "5",
+        "0"
+      ]
+    },
+    {
+      "surface": "3.1416",
+      "n_tokens": 7,
+      "tokens": [
+        "\u2581",
+        "3",
+        ".",
+        "1",
+        "4",
+        "1",
+        "6"
+      ]
+    },
+    {
+      "surface": "0.0001",
+      "n_tokens": 7,
+      "tokens": [
+        "\u2581",
+        "0",
+        ".",
+        "0",
+        "0",
+        "0",
+        "1"
+      ]
+    },
+    {
+      "surface": "10,547.32",
+      "n_tokens": 10,
+      "tokens": [
+        "\u2581",
+        "1",
+        "0",
+        ",",
+        "5",
+        "4",
+        "7",
+        ".",
+        "3",
+        "2"
+      ]
+    },
+    {
+      "surface": "1,234,567.89",
+      "n_tokens": 13,
+      "tokens": [
+        "\u2581",
+        "1",
+        ",",
+        "2",
+        "3",
+        "4",
+        ",",
+        "5",
+        "6",
+        "7",
+        ".",
+        "8",
+        "9"
+      ]
+    },
+    {
+      "surface": "$5",
+      "n_tokens": 2,
+      "tokens": [
+        "\u2581$",
+        "5"
+      ]
+    },
+    {
+      "surface": "$1,000",
+      "n_tokens": 6,
+      "tokens": [
+        "\u2581$",
+        "1",
+        ",",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "surface": "$ 1,000",
+      "n_tokens": 7,
+      "tokens": [
+        "\u2581$",
+        "\u2581",
+        "1",
+        ",",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "surface": "$10,547",
+      "n_tokens": 7,
+      "tokens": [
+        "\u2581$",
+        "1",
+        "0",
+        ",",
+        "5",
+        "4",
+        "7"
+      ]
+    },
+    {
+      "surface": "$ 383,221",
+      "n_tokens": 9,
+      "tokens": [
+        "\u2581$",
+        "\u2581",
+        "3",
+        "8",
+        "3",
+        ",",
+        "2",
+        "2",
+        "1"
+      ]
+    },
+    {
+      "surface": "$383,221",
+      "n_tokens": 8,
+      "tokens": [
+        "\u2581$",
+        "3",
+        "8",
+        "3",
+        ",",
+        "2",
+        "2",
+        "1"
+      ]
+    },
+    {
+      "surface": "5%",
+      "n_tokens": 3,
+      "tokens": [
+        "\u2581",
+        "5",
+        "%"
+      ]
+    },
+    {
+      "surface": "5 %",
+      "n_tokens": 3,
+      "tokens": [
+        "\u2581",
+        "5",
+        "\u2581%"
+      ]
+    },
+    {
+      "surface": "12.5%",
+      "n_tokens": 6,
+      "tokens": [
+        "\u2581",
+        "1",
+        "2",
+        ".",
+        "5",
+        "%"
+      ]
+    },
+    {
+      "surface": "(1,234)",
+      "n_tokens": 7,
+      "tokens": [
+        "\u2581(",
+        "1",
+        ",",
+        "2",
+        "3",
+        "4",
+        ")"
+      ]
+    },
+    {
+      "surface": "-1,234",
+      "n_tokens": 6,
+      "tokens": [
+        "\u2581-",
+        "1",
+        ",",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    {
+      "surface": "- 1,234",
+      "n_tokens": 7,
+      "tokens": [
+        "\u2581-",
+        "\u2581",
+        "1",
+        ",",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    {
+      "surface": "10.5 million",
+      "n_tokens": 6,
+      "tokens": [
+        "\u2581",
+        "1",
+        "0",
+        ".",
+        "5",
+        "\u2581million"
+      ]
+    },
+    {
+      "surface": "10.5 billion",
+      "n_tokens": 6,
+      "tokens": [
+        "\u2581",
+        "1",
+        "0",
+        ".",
+        "5",
+        "\u2581billion"
+      ]
+    },
+    {
+      "surface": "1.05 thousand",
+      "n_tokens": 6,
+      "tokens": [
+        "\u2581",
+        "1",
+        ".",
+        "0",
+        "5",
+        "\u2581thousand"
+      ]
+    },
+    {
+      "surface": "10500 thousand",
+      "n_tokens": 7,
+      "tokens": [
+        "\u2581",
+        "1",
+        "0",
+        "5",
+        "0",
+        "0",
+        "\u2581thousand"
+      ]
+    },
+    {
+      "surface": "2019",
+      "n_tokens": 5,
+      "tokens": [
+        "\u2581",
+        "2",
+        "0",
+        "1",
+        "9"
+      ]
+    },
+    {
+      "surface": "2020",
+      "n_tokens": 5,
+      "tokens": [
+        "\u2581",
+        "2",
+        "0",
+        "2",
+        "0"
+      ]
+    },
+    {
+      "surface": "1997",
+      "n_tokens": 5,
+      "tokens": [
+        "\u2581",
+        "1",
+        "9",
+        "9",
+        "7"
+      ]
+    },
+    {
+      "surface": "Q3 2019",
+      "n_tokens": 7,
+      "tokens": [
+        "\u2581Q",
+        "3",
+        "\u2581",
+        "2",
+        "0",
+        "1",
+        "9"
+      ]
+    },
+    {
+      "surface": "FY2019",
+      "n_tokens": 5,
+      "tokens": [
+        "\u2581FY",
+        "2",
+        "0",
+        "1",
+        "9"
+      ]
+    },
+    {
+      "surface": "1.0",
+      "n_tokens": 4,
+      "tokens": [
+        "\u2581",
+        "1",
+        ".",
+        "0"
+      ]
+    },
+    {
+      "surface": "1.00",
+      "n_tokens": 5,
+      "tokens": [
+        "\u2581",
+        "1",
+        ".",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "surface": "01",
+      "n_tokens": 3,
+      "tokens": [
+        "\u2581",
+        "0",
+        "1"
+      ]
+    },
+    {
+      "surface": "007",
+      "n_tokens": 4,
+      "tokens": [
+        "\u2581",
+        "0",
+        "0",
+        "7"
+      ]
+    }
+  ],
+  "form_audit_leading_space": [
+    {
+      "surface": " 10547",
+      "n_tokens": 6,
+      "tokens": [
+        "\u2581",
+        "1",
+        "0",
+        "5",
+        "4",
+        "7"
+      ]
+    },
+    {
+      "surface": " 10,547",
+      "n_tokens": 7,
+      "tokens": [
+        "\u2581",
+        "1",
+        "0",
+        ",",
+        "5",
+        "4",
+        "7"
+      ]
+    },
+    {
+      "surface": " $1,000",
+      "n_tokens": 6,
+      "tokens": [
+        "\u2581$",
+        "1",
+        ",",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "surface": " 10.5",
+      "n_tokens": 5,
+      "tokens": [
+        "\u2581",
+        "1",
+        "0",
+        ".",
+        "5"
+      ]
+    },
+    {
+      "surface": " 2019",
+      "n_tokens": 5,
+      "tokens": [
+        "\u2581",
+        "2",
+        "0",
+        "1",
+        "9"
+      ]
+    }
+  ],
+  "digit_ladder": [
+    {
+      "digits": 1,
+      "bare_mean_tokens": 2.0,
+      "bare_max_tokens": 2,
+      "bare_unique_counts": [
+        2
+      ],
+      "comma_mean_tokens": 2.0,
+      "comma_unique_counts": [
+        2
+      ]
+    },
+    {
+      "digits": 2,
+      "bare_mean_tokens": 3.0,
+      "bare_max_tokens": 3,
+      "bare_unique_counts": [
+        3
+      ],
+      "comma_mean_tokens": 3.0,
+      "comma_unique_counts": [
+        3
+      ]
+    },
+    {
+      "digits": 3,
+      "bare_mean_tokens": 4.0,
+      "bare_max_tokens": 4,
+      "bare_unique_counts": [
+        4
+      ],
+      "comma_mean_tokens": 4.0,
+      "comma_unique_counts": [
+        4
+      ]
+    },
+    {
+      "digits": 4,
+      "bare_mean_tokens": 5.0,
+      "bare_max_tokens": 5,
+      "bare_unique_counts": [
+        5
+      ],
+      "comma_mean_tokens": 6.0,
+      "comma_unique_counts": [
+        6
+      ]
+    },
+    {
+      "digits": 5,
+      "bare_mean_tokens": 6.0,
+      "bare_max_tokens": 6,
+      "bare_unique_counts": [
+        6
+      ],
+      "comma_mean_tokens": 7.0,
+      "comma_unique_counts": [
+        7
+      ]
+    },
+    {
+      "digits": 6,
+      "bare_mean_tokens": 7.0,
+      "bare_max_tokens": 7,
+      "bare_unique_counts": [
+        7
+      ],
+      "comma_mean_tokens": 8.0,
+      "comma_unique_counts": [
+        8
+      ]
+    },
+    {
+      "digits": 7,
+      "bare_mean_tokens": 8.0,
+      "bare_max_tokens": 8,
+      "bare_unique_counts": [
+        8
+      ],
+      "comma_mean_tokens": 10.0,
+      "comma_unique_counts": [
+        10
+      ]
+    },
+    {
+      "digits": 8,
+      "bare_mean_tokens": 9.0,
+      "bare_max_tokens": 9,
+      "bare_unique_counts": [
+        9
+      ],
+      "comma_mean_tokens": 11.0,
+      "comma_unique_counts": [
+        11
+      ]
+    },
+    {
+      "digits": 9,
+      "bare_mean_tokens": 10.0,
+      "bare_max_tokens": 10,
+      "bare_unique_counts": [
+        10
+      ],
+      "comma_mean_tokens": 12.0,
+      "comma_unique_counts": [
+        12
+      ]
+    },
+    {
+      "digits": 10,
+      "bare_mean_tokens": 11.0,
+      "bare_max_tokens": 11,
+      "bare_unique_counts": [
+        11
+      ],
+      "comma_mean_tokens": 14.0,
+      "comma_unique_counts": [
+        14
+      ]
+    },
+    {
+      "digits": 11,
+      "bare_mean_tokens": 12.0,
+      "bare_max_tokens": 12,
+      "bare_unique_counts": [
+        12
+      ],
+      "comma_mean_tokens": 15.0,
+      "comma_unique_counts": [
+        15
+      ]
+    },
+    {
+      "digits": 12,
+      "bare_mean_tokens": 13.0,
+      "bare_max_tokens": 13,
+      "bare_unique_counts": [
+        13
+      ],
+      "comma_mean_tokens": 16.0,
+      "comma_unique_counts": [
+        16
+      ]
+    }
+  ],
+  "single_token_coverage": {
+    "digits_0_9": 0,
+    "ints_0_99": 0,
+    "ints_0_999": 0,
+    "ints_1000_1999": 0
+  },
+  "h133_triples_cols": [
+    "table_id",
+    "column",
+    "claim_a",
+    "claim_b",
+    "claim_c",
+    "v_correct",
+    "v_wrong",
+    "score_a",
+    "score_b",
+    "score_c"
+  ],
+  "h108_cols": [
+    "claim",
+    "chunk",
+    "label",
+    "tag"
+  ],
+  "finqa_cols": [
+    "id",
+    "question",
+    "documents",
+    "response",
+    "generation_model_name",
+    "annotating_model_name",
+    "dataset_name",
+    "documents_sentences",
+    "response_sentences",
+    "sentence_support_information",
+    "unsupported_response_sentence_keys",
+    "adherence_score",
+    "overall_supported_explanation",
+    "relevance_explanation",
+    "all_relevant_sentence_keys",
+    "all_utilized_sentence_keys",
+    "trulens_groundedness",
+    "trulens_context_relevance",
+    "ragas_faithfulness",
+    "ragas_context_relevance",
+    "gpt3_adherence",
+    "gpt3_context_relevance",
+    "gpt35_utilization",
+    "relevance_score",
+    "utilization_score",
+    "completeness_score"
+  ],
+  "census": [
+    {
+      "name": "tabfact_heldout_tables",
+      "n_strings": 3391,
+      "n_numeral_occurrences": 234373,
+      "n_unique_numerals": 20096,
+      "occurrence_weighted_tokens": {
+        "mean": 3.2767,
+        "median": 3.0,
+        "p90": 5.0,
+        "p99": 7.0,
+        "max": 16,
+        "share_1_token": 0.0,
+        "share_ge_3_tokens": 0.6251,
+        "share_ge_5_tokens": 0.2327
+      },
+      "type_weighted_mean_tokens": 6.0116,
+      "surface_form_shares": {
+        "bare_int": 0.9388,
+        "decimal": 0.0612,
+        "percent_suffixed": 0.0092
+      },
+      "top_20_numerals": [
+        {
+          "surface": "1",
+          "count": 16062,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "1"
+          ]
+        },
+        {
+          "surface": "2",
+          "count": 12279,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "2"
+          ]
+        },
+        {
+          "surface": "0",
+          "count": 10817,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "0"
+          ]
+        },
+        {
+          "surface": "3",
+          "count": 9997,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "3"
+          ]
+        },
+        {
+          "surface": "6",
+          "count": 8767,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "6"
+          ]
+        },
+        {
+          "surface": "4",
+          "count": 8527,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "4"
+          ]
+        },
+        {
+          "surface": "5",
+          "count": 6557,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "5"
+          ]
+        },
+        {
+          "surface": "7",
+          "count": 6138,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "7"
+          ]
+        },
+        {
+          "surface": "8",
+          "count": 4758,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "8"
+          ]
+        },
+        {
+          "surface": "10",
+          "count": 4506,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "1",
+            "0"
+          ]
+        },
+        {
+          "surface": "9",
+          "count": 3961,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "9"
+          ]
+        },
+        {
+          "surface": "12",
+          "count": 3446,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "1",
+            "2"
+          ]
+        },
+        {
+          "surface": "11",
+          "count": 3417,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "1",
+            "1"
+          ]
+        },
+        {
+          "surface": "13",
+          "count": 2951,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "1",
+            "3"
+          ]
+        },
+        {
+          "surface": "14",
+          "count": 2812,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "1",
+            "4"
+          ]
+        },
+        {
+          "surface": "16",
+          "count": 2585,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "1",
+            "6"
+          ]
+        },
+        {
+          "surface": "15",
+          "count": 2511,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "1",
+            "5"
+          ]
+        },
+        {
+          "surface": "17",
+          "count": 2426,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "1",
+            "7"
+          ]
+        },
+        {
+          "surface": "20",
+          "count": 2270,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0"
+          ]
+        },
+        {
+          "surface": "18",
+          "count": 2040,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "1",
+            "8"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "tabfact_train_tables",
+      "n_strings": 4000,
+      "n_numeral_occurrences": 270696,
+      "n_unique_numerals": 23007,
+      "occurrence_weighted_tokens": {
+        "mean": 3.3259,
+        "median": 3.0,
+        "p90": 5.0,
+        "p99": 7.0,
+        "max": 14,
+        "share_1_token": 0.0,
+        "share_ge_3_tokens": 0.6412,
+        "share_ge_5_tokens": 0.244
+      },
+      "type_weighted_mean_tokens": 6.0625,
+      "surface_form_shares": {
+        "bare_int": 0.9375,
+        "decimal": 0.0625,
+        "percent_suffixed": 0.0128
+      },
+      "top_20_numerals": [
+        {
+          "surface": "1",
+          "count": 18193,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "1"
+          ]
+        },
+        {
+          "surface": "2",
+          "count": 13420,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "2"
+          ]
+        },
+        {
+          "surface": "0",
+          "count": 11847,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "0"
+          ]
+        },
+        {
+          "surface": "3",
+          "count": 10898,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "3"
+          ]
+        },
+        {
+          "surface": "4",
+          "count": 9459,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "4"
+          ]
+        },
+        {
+          "surface": "6",
+          "count": 9029,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "6"
+          ]
+        },
+        {
+          "surface": "5",
+          "count": 7551,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "5"
+          ]
+        },
+        {
+          "surface": "7",
+          "count": 6810,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "7"
+          ]
+        },
+        {
+          "surface": "8",
+          "count": 5290,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "8"
+          ]
+        },
+        {
+          "surface": "10",
+          "count": 5103,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "1",
+            "0"
+          ]
+        },
+        {
+          "surface": "9",
+          "count": 4615,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "9"
+          ]
+        },
+        {
+          "surface": "11",
+          "count": 3930,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "1",
+            "1"
+          ]
+        },
+        {
+          "surface": "12",
+          "count": 3690,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "1",
+            "2"
+          ]
+        },
+        {
+          "surface": "13",
+          "count": 3265,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "1",
+            "3"
+          ]
+        },
+        {
+          "surface": "14",
+          "count": 3195,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "1",
+            "4"
+          ]
+        },
+        {
+          "surface": "15",
+          "count": 2956,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "1",
+            "5"
+          ]
+        },
+        {
+          "surface": "16",
+          "count": 2893,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "1",
+            "6"
+          ]
+        },
+        {
+          "surface": "17",
+          "count": 2734,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "1",
+            "7"
+          ]
+        },
+        {
+          "surface": "20",
+          "count": 2652,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0"
+          ]
+        },
+        {
+          "surface": "18",
+          "count": 2356,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "1",
+            "8"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "h133_v_correct_derived",
+      "n_strings": 2000,
+      "n_numeral_occurrences": 2000,
+      "n_unique_numerals": 1550,
+      "occurrence_weighted_tokens": {
+        "mean": 5.3255,
+        "median": 6.0,
+        "p90": 6.0,
+        "p99": 9.0,
+        "max": 13,
+        "share_1_token": 0.0,
+        "share_ge_3_tokens": 0.997,
+        "share_ge_5_tokens": 0.7855
+      },
+      "type_weighted_mean_tokens": 5.5535,
+      "surface_form_shares": {
+        "bare_int": 0.9065,
+        "decimal": 0.0935
+      },
+      "top_20_numerals": [
+        {
+          "surface": "4004",
+          "count": 10,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "4",
+            "0",
+            "0",
+            "4"
+          ]
+        },
+        {
+          "surface": "3972",
+          "count": 10,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "3",
+            "9",
+            "7",
+            "2"
+          ]
+        },
+        {
+          "surface": "3980",
+          "count": 7,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "3",
+            "9",
+            "8",
+            "0"
+          ]
+        },
+        {
+          "surface": "3976",
+          "count": 7,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "3",
+            "9",
+            "7",
+            "6"
+          ]
+        },
+        {
+          "surface": "28000",
+          "count": 6,
+          "n_tokens": 6,
+          "tokens": [
+            "\u2581",
+            "2",
+            "8",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        {
+          "surface": "3946",
+          "count": 6,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "3",
+            "9",
+            "4",
+            "6"
+          ]
+        },
+        {
+          "surface": "35",
+          "count": 6,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "3",
+            "5"
+          ]
+        },
+        {
+          "surface": "41",
+          "count": 6,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "4",
+            "1"
+          ]
+        },
+        {
+          "surface": "45000",
+          "count": 6,
+          "n_tokens": 6,
+          "tokens": [
+            "\u2581",
+            "4",
+            "5",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        {
+          "surface": "4006",
+          "count": 6,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "4",
+            "0",
+            "0",
+            "6"
+          ]
+        },
+        {
+          "surface": "24",
+          "count": 6,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "2",
+            "4"
+          ]
+        },
+        {
+          "surface": "38",
+          "count": 5,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "3",
+            "8"
+          ]
+        },
+        {
+          "surface": "3992",
+          "count": 5,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "3",
+            "9",
+            "9",
+            "2"
+          ]
+        },
+        {
+          "surface": "3973",
+          "count": 5,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "3",
+            "9",
+            "7",
+            "3"
+          ]
+        },
+        {
+          "surface": "4012",
+          "count": 5,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "4",
+            "0",
+            "1",
+            "2"
+          ]
+        },
+        {
+          "surface": "3916",
+          "count": 5,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "3",
+            "9",
+            "1",
+            "6"
+          ]
+        },
+        {
+          "surface": "3991",
+          "count": 5,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "3",
+            "9",
+            "9",
+            "1"
+          ]
+        },
+        {
+          "surface": "4013",
+          "count": 5,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "4",
+            "0",
+            "1",
+            "3"
+          ]
+        },
+        {
+          "surface": "36000",
+          "count": 5,
+          "n_tokens": 6,
+          "tokens": [
+            "\u2581",
+            "3",
+            "6",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        {
+          "surface": "42",
+          "count": 5,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "4",
+            "2"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "h133_v_wrong_operand",
+      "n_strings": 2000,
+      "n_numeral_occurrences": 2000,
+      "n_unique_numerals": 1506,
+      "occurrence_weighted_tokens": {
+        "mean": 5.323,
+        "median": 6.0,
+        "p90": 6.0,
+        "p99": 9.0,
+        "max": 13,
+        "share_1_token": 0.0,
+        "share_ge_3_tokens": 0.996,
+        "share_ge_5_tokens": 0.779
+      },
+      "type_weighted_mean_tokens": 5.5631,
+      "surface_form_shares": {
+        "bare_int": 0.91,
+        "decimal": 0.09
+      },
+      "top_20_numerals": [
+        {
+          "surface": "55",
+          "count": 9,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "5",
+            "5"
+          ]
+        },
+        {
+          "surface": "23000",
+          "count": 8,
+          "n_tokens": 6,
+          "tokens": [
+            "\u2581",
+            "2",
+            "3",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        {
+          "surface": "3998",
+          "count": 7,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "3",
+            "9",
+            "9",
+            "8"
+          ]
+        },
+        {
+          "surface": "3991",
+          "count": 6,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "3",
+            "9",
+            "9",
+            "1"
+          ]
+        },
+        {
+          "surface": "3997",
+          "count": 6,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "3",
+            "9",
+            "9",
+            "7"
+          ]
+        },
+        {
+          "surface": "30000",
+          "count": 6,
+          "n_tokens": 6,
+          "tokens": [
+            "\u2581",
+            "3",
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        {
+          "surface": "3958",
+          "count": 6,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "3",
+            "9",
+            "5",
+            "8"
+          ]
+        },
+        {
+          "surface": "3986",
+          "count": 6,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "3",
+            "9",
+            "8",
+            "6"
+          ]
+        },
+        {
+          "surface": "40",
+          "count": 6,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "4",
+            "0"
+          ]
+        },
+        {
+          "surface": "3928",
+          "count": 6,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "3",
+            "9",
+            "2",
+            "8"
+          ]
+        },
+        {
+          "surface": "34000",
+          "count": 6,
+          "n_tokens": 6,
+          "tokens": [
+            "\u2581",
+            "3",
+            "4",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        {
+          "surface": "3992",
+          "count": 6,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "3",
+            "9",
+            "9",
+            "2"
+          ]
+        },
+        {
+          "surface": "15",
+          "count": 5,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "1",
+            "5"
+          ]
+        },
+        {
+          "surface": "4004",
+          "count": 5,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "4",
+            "0",
+            "0",
+            "4"
+          ]
+        },
+        {
+          "surface": "3948",
+          "count": 5,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "3",
+            "9",
+            "4",
+            "8"
+          ]
+        },
+        {
+          "surface": "26",
+          "count": 5,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "2",
+            "6"
+          ]
+        },
+        {
+          "surface": "4012",
+          "count": 5,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "4",
+            "0",
+            "1",
+            "2"
+          ]
+        },
+        {
+          "surface": "3912",
+          "count": 5,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "3",
+            "9",
+            "1",
+            "2"
+          ]
+        },
+        {
+          "surface": "58",
+          "count": 5,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "5",
+            "8"
+          ]
+        },
+        {
+          "surface": "3956",
+          "count": 5,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "3",
+            "9",
+            "5",
+            "6"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "h108_lane_claims",
+      "n_strings": 40000,
+      "n_numeral_occurrences": 53812,
+      "n_unique_numerals": 5797,
+      "occurrence_weighted_tokens": {
+        "mean": 4.0419,
+        "median": 4.0,
+        "p90": 5.0,
+        "p99": 8.0,
+        "max": 17,
+        "share_1_token": 0.0,
+        "share_ge_3_tokens": 0.8423,
+        "share_ge_5_tokens": 0.4743
+      },
+      "type_weighted_mean_tokens": 5.6295,
+      "surface_form_shares": {
+        "bare_int": 0.9287,
+        "decimal": 0.0476,
+        "thousands_sep": 0.0237,
+        "percent_suffixed": 0.0169,
+        "currency_prefixed": 0.0027
+      },
+      "top_20_numerals": [
+        {
+          "surface": "2",
+          "count": 1571,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "2"
+          ]
+        },
+        {
+          "surface": "1",
+          "count": 1404,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "1"
+          ]
+        },
+        {
+          "surface": "3",
+          "count": 1062,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "3"
+          ]
+        },
+        {
+          "surface": "10",
+          "count": 1033,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "1",
+            "0"
+          ]
+        },
+        {
+          "surface": "4",
+          "count": 846,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "4"
+          ]
+        },
+        {
+          "surface": "5",
+          "count": 811,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "5"
+          ]
+        },
+        {
+          "surface": "6",
+          "count": 809,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "6"
+          ]
+        },
+        {
+          "surface": "20",
+          "count": 772,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0"
+          ]
+        },
+        {
+          "surface": "2011",
+          "count": 653,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "1",
+            "1"
+          ]
+        },
+        {
+          "surface": "30",
+          "count": 625,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "3",
+            "0"
+          ]
+        },
+        {
+          "surface": "7",
+          "count": 615,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "7"
+          ]
+        },
+        {
+          "surface": "8",
+          "count": 547,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "8"
+          ]
+        },
+        {
+          "surface": "2010",
+          "count": 532,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "1",
+            "0"
+          ]
+        },
+        {
+          "surface": "2009",
+          "count": 509,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "0",
+            "9"
+          ]
+        },
+        {
+          "surface": "2008",
+          "count": 497,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "0",
+            "8"
+          ]
+        },
+        {
+          "surface": "15",
+          "count": 451,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "1",
+            "5"
+          ]
+        },
+        {
+          "surface": "9",
+          "count": 437,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "9"
+          ]
+        },
+        {
+          "surface": "2016",
+          "count": 433,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "1",
+            "6"
+          ]
+        },
+        {
+          "surface": "21",
+          "count": 419,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "2",
+            "1"
+          ]
+        },
+        {
+          "surface": "100",
+          "count": 417,
+          "n_tokens": 4,
+          "tokens": [
+            "\u2581",
+            "1",
+            "0",
+            "0"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "finqa_documents_ANALYSIS_ONLY",
+      "n_strings": 400,
+      "n_numeral_occurrences": 23418,
+      "n_unique_numerals": 4012,
+      "occurrence_weighted_tokens": {
+        "mean": 4.6542,
+        "median": 5.0,
+        "p90": 6.0,
+        "p99": 8.0,
+        "max": 12,
+        "share_1_token": 0.0,
+        "share_ge_3_tokens": 0.925,
+        "share_ge_5_tokens": 0.6309
+      },
+      "type_weighted_mean_tokens": 5.751,
+      "surface_form_shares": {
+        "bare_int": 0.8128,
+        "decimal": 0.1872,
+        "currency_prefixed": 0.1855,
+        "percent_suffixed": 0.0356
+      },
+      "top_20_numerals": [
+        {
+          "surface": "2019",
+          "count": 1186,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "1",
+            "9"
+          ]
+        },
+        {
+          "surface": "31",
+          "count": 1131,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "3",
+            "1"
+          ]
+        },
+        {
+          "surface": "201",
+          "count": 758,
+          "n_tokens": 4,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "1"
+          ]
+        },
+        {
+          "surface": "2014",
+          "count": 639,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "1",
+            "4"
+          ]
+        },
+        {
+          "surface": "2013",
+          "count": 614,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "1",
+            "3"
+          ]
+        },
+        {
+          "surface": "1",
+          "count": 546,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "1"
+          ]
+        },
+        {
+          "surface": "2006",
+          "count": 456,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "0",
+            "6"
+          ]
+        },
+        {
+          "surface": "2018",
+          "count": 418,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "1",
+            "8"
+          ]
+        },
+        {
+          "surface": "2012",
+          "count": 382,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "1",
+            "2"
+          ]
+        },
+        {
+          "surface": "2017",
+          "count": 378,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "1",
+            "7"
+          ]
+        },
+        {
+          "surface": "2011",
+          "count": 362,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "1",
+            "1"
+          ]
+        },
+        {
+          "surface": "2007",
+          "count": 352,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "0",
+            "7"
+          ]
+        },
+        {
+          "surface": "2015",
+          "count": 339,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "1",
+            "5"
+          ]
+        },
+        {
+          "surface": "2010",
+          "count": 329,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "1",
+            "0"
+          ]
+        },
+        {
+          "surface": "2008",
+          "count": 324,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "0",
+            "8"
+          ]
+        },
+        {
+          "surface": "2005",
+          "count": 324,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "0",
+            "5"
+          ]
+        },
+        {
+          "surface": "2",
+          "count": 312,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "2"
+          ]
+        },
+        {
+          "surface": "3",
+          "count": 307,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "3"
+          ]
+        },
+        {
+          "surface": "2016",
+          "count": 302,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "1",
+            "6"
+          ]
+        },
+        {
+          "surface": "2004",
+          "count": 261,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "0",
+            "4"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "finqa_response_ANALYSIS_ONLY",
+      "n_strings": 2000,
+      "n_numeral_occurrences": 24629,
+      "n_unique_numerals": 4422,
+      "occurrence_weighted_tokens": {
+        "mean": 5.0994,
+        "median": 5.0,
+        "p90": 7.0,
+        "p99": 11.0,
+        "max": 19,
+        "share_1_token": 0.0,
+        "share_ge_3_tokens": 0.9543,
+        "share_ge_5_tokens": 0.6996
+      },
+      "type_weighted_mean_tokens": 6.0923,
+      "surface_form_shares": {
+        "bare_int": 0.6417,
+        "currency_prefixed": 0.3119,
+        "decimal": 0.2476,
+        "thousands_sep": 0.1107,
+        "percent_suffixed": 0.1009
+      },
+      "top_20_numerals": [
+        {
+          "surface": "100",
+          "count": 1657,
+          "n_tokens": 4,
+          "tokens": [
+            "\u2581",
+            "1",
+            "0",
+            "0"
+          ]
+        },
+        {
+          "surface": "31",
+          "count": 690,
+          "n_tokens": 3,
+          "tokens": [
+            "\u2581",
+            "3",
+            "1"
+          ]
+        },
+        {
+          "surface": "2012",
+          "count": 665,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "1",
+            "2"
+          ]
+        },
+        {
+          "surface": "2016",
+          "count": 624,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "1",
+            "6"
+          ]
+        },
+        {
+          "surface": "2011",
+          "count": 593,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "1",
+            "1"
+          ]
+        },
+        {
+          "surface": "2015",
+          "count": 565,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "1",
+            "5"
+          ]
+        },
+        {
+          "surface": "2007",
+          "count": 554,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "0",
+            "7"
+          ]
+        },
+        {
+          "surface": "2014",
+          "count": 550,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "1",
+            "4"
+          ]
+        },
+        {
+          "surface": "2013",
+          "count": 535,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "1",
+            "3"
+          ]
+        },
+        {
+          "surface": "2017",
+          "count": 534,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "1",
+            "7"
+          ]
+        },
+        {
+          "surface": "2008",
+          "count": 524,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "0",
+            "8"
+          ]
+        },
+        {
+          "surface": "2010",
+          "count": 503,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "1",
+            "0"
+          ]
+        },
+        {
+          "surface": "2006",
+          "count": 483,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "0",
+            "6"
+          ]
+        },
+        {
+          "surface": "2018",
+          "count": 382,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "1",
+            "8"
+          ]
+        },
+        {
+          "surface": "2005",
+          "count": 346,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "0",
+            "5"
+          ]
+        },
+        {
+          "surface": "1",
+          "count": 342,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "1"
+          ]
+        },
+        {
+          "surface": "2009",
+          "count": 334,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "0",
+            "9"
+          ]
+        },
+        {
+          "surface": "3",
+          "count": 289,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "3"
+          ]
+        },
+        {
+          "surface": "2004",
+          "count": 264,
+          "n_tokens": 5,
+          "tokens": [
+            "\u2581",
+            "2",
+            "0",
+            "0",
+            "4"
+          ]
+        },
+        {
+          "surface": "2",
+          "count": 193,
+          "n_tokens": 2,
+          "tokens": [
+            "\u2581",
+            "2"
+          ]
+        }
+      ]
+    }
+  ],
+  "adjacency_cases": [
+    {
+      "a": "10547",
+      "b": "10548",
+      "ta": 6,
+      "tb": 6,
+      "shared_prefix": 5,
+      "shared_prefix_frac": 0.8333,
+      "same_len": true,
+      "tokens_a": [
+        "\u2581",
+        "1",
+        "0",
+        "5",
+        "4",
+        "7"
+      ],
+      "tokens_b": [
+        "\u2581",
+        "1",
+        "0",
+        "5",
+        "4",
+        "8"
+      ]
+    },
+    {
+      "a": "10,547",
+      "b": "10,548",
+      "ta": 7,
+      "tb": 7,
+      "shared_prefix": 6,
+      "shared_prefix_frac": 0.8571,
+      "same_len": true,
+      "tokens_a": [
+        "\u2581",
+        "1",
+        "0",
+        ",",
+        "5",
+        "4",
+        "7"
+      ],
+      "tokens_b": [
+        "\u2581",
+        "1",
+        "0",
+        ",",
+        "5",
+        "4",
+        "8"
+      ]
+    },
+    {
+      "a": "999",
+      "b": "1000",
+      "ta": 4,
+      "tb": 5,
+      "shared_prefix": 1,
+      "shared_prefix_frac": 0.2,
+      "same_len": false,
+      "tokens_a": [
+        "\u2581",
+        "9",
+        "9",
+        "9"
+      ],
+      "tokens_b": [
+        "\u2581",
+        "1",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "a": "1,000",
+      "b": "1,001",
+      "ta": 6,
+      "tb": 6,
+      "shared_prefix": 5,
+      "shared_prefix_frac": 0.8333,
+      "same_len": true,
+      "tokens_a": [
+        "\u2581",
+        "1",
+        ",",
+        "0",
+        "0",
+        "0"
+      ],
+      "tokens_b": [
+        "\u2581",
+        "1",
+        ",",
+        "0",
+        "0",
+        "1"
+      ]
+    },
+    {
+      "a": "12.50",
+      "b": "12.51",
+      "ta": 6,
+      "tb": 6,
+      "shared_prefix": 5,
+      "shared_prefix_frac": 0.8333,
+      "same_len": true,
+      "tokens_a": [
+        "\u2581",
+        "1",
+        "2",
+        ".",
+        "5",
+        "0"
+      ],
+      "tokens_b": [
+        "\u2581",
+        "1",
+        "2",
+        ".",
+        "5",
+        "1"
+      ]
+    },
+    {
+      "a": "99.9",
+      "b": "100.0",
+      "ta": 5,
+      "tb": 6,
+      "shared_prefix": 1,
+      "shared_prefix_frac": 0.1667,
+      "same_len": false,
+      "tokens_a": [
+        "\u2581",
+        "9",
+        "9",
+        ".",
+        "9"
+      ],
+      "tokens_b": [
+        "\u2581",
+        "1",
+        "0",
+        "0",
+        ".",
+        "0"
+      ]
+    },
+    {
+      "a": "383221",
+      "b": "383222",
+      "ta": 7,
+      "tb": 7,
+      "shared_prefix": 6,
+      "shared_prefix_frac": 0.8571,
+      "same_len": true,
+      "tokens_a": [
+        "\u2581",
+        "3",
+        "8",
+        "3",
+        "2",
+        "2",
+        "1"
+      ],
+      "tokens_b": [
+        "\u2581",
+        "3",
+        "8",
+        "3",
+        "2",
+        "2",
+        "2"
+      ]
+    },
+    {
+      "a": "$ 383,221",
+      "b": "$ 383,222",
+      "ta": 9,
+      "tb": 9,
+      "shared_prefix": 8,
+      "shared_prefix_frac": 0.8889,
+      "same_len": true,
+      "tokens_a": [
+        "\u2581$",
+        "\u2581",
+        "3",
+        "8",
+        "3",
+        ",",
+        "2",
+        "2",
+        "1"
+      ],
+      "tokens_b": [
+        "\u2581$",
+        "\u2581",
+        "3",
+        "8",
+        "3",
+        ",",
+        "2",
+        "2",
+        "2"
+      ]
+    },
+    {
+      "a": "2019",
+      "b": "2020",
+      "ta": 5,
+      "tb": 5,
+      "shared_prefix": 3,
+      "shared_prefix_frac": 0.6,
+      "same_len": true,
+      "tokens_a": [
+        "\u2581",
+        "2",
+        "0",
+        "1",
+        "9"
+      ],
+      "tokens_b": [
+        "\u2581",
+        "2",
+        "0",
+        "2",
+        "0"
+      ]
+    }
+  ],
+  "adjacency_population": [
+    {
+      "style": "bare",
+      "n": 2000,
+      "mean_shared_prefix_frac": 0.8322,
+      "share_zero_shared_prefix": 0.0,
+      "share_same_token_length": 1.0,
+      "mean_tokens": 6.974
+    },
+    {
+      "style": "comma",
+      "n": 2000,
+      "mean_shared_prefix_frac": 0.8588,
+      "share_zero_shared_prefix": 0.0,
+      "share_same_token_length": 1.0,
+      "mean_tokens": 8.3705
+    }
+  ],
+  "adjacency_by_digits": [
+    {
+      "digits": 4,
+      "mean_shared_prefix_frac": 0.7732,
+      "share_same_token_length": 1.0,
+      "mean_tokens": 5.0
+    },
+    {
+      "digits": 5,
+      "mean_shared_prefix_frac": 0.8128,
+      "share_same_token_length": 1.0,
+      "mean_tokens": 6.0
+    },
+    {
+      "digits": 6,
+      "mean_shared_prefix_frac": 0.8399,
+      "share_same_token_length": 1.0,
+      "mean_tokens": 7.0
+    },
+    {
+      "digits": 7,
+      "mean_shared_prefix_frac": 0.8635,
+      "share_same_token_length": 1.0,
+      "mean_tokens": 8.0
+    },
+    {
+      "digits": 8,
+      "mean_shared_prefix_frac": 0.875,
+      "share_same_token_length": 1.0,
+      "mean_tokens": 9.0
+    }
+  ],
+  "magnitude_boundary": [
+    {
+      "a": "9",
+      "b": "90",
+      "ta": 2,
+      "tb": 3,
+      "shared_prefix": 2,
+      "shared_prefix_frac": 0.6667,
+      "same_len": false,
+      "tokens_a": [
+        "\u2581",
+        "9"
+      ],
+      "tokens_b": [
+        "\u2581",
+        "9",
+        "0"
+      ]
+    },
+    {
+      "a": "99",
+      "b": "990",
+      "ta": 3,
+      "tb": 4,
+      "shared_prefix": 3,
+      "shared_prefix_frac": 0.75,
+      "same_len": false,
+      "tokens_a": [
+        "\u2581",
+        "9",
+        "9"
+      ],
+      "tokens_b": [
+        "\u2581",
+        "9",
+        "9",
+        "0"
+      ]
+    },
+    {
+      "a": "547",
+      "b": "5470",
+      "ta": 4,
+      "tb": 5,
+      "shared_prefix": 4,
+      "shared_prefix_frac": 0.8,
+      "same_len": false,
+      "tokens_a": [
+        "\u2581",
+        "5",
+        "4",
+        "7"
+      ],
+      "tokens_b": [
+        "\u2581",
+        "5",
+        "4",
+        "7",
+        "0"
+      ]
+    },
+    {
+      "a": "1054",
+      "b": "10540",
+      "ta": 5,
+      "tb": 6,
+      "shared_prefix": 5,
+      "shared_prefix_frac": 0.8333,
+      "same_len": false,
+      "tokens_a": [
+        "\u2581",
+        "1",
+        "0",
+        "5",
+        "4"
+      ],
+      "tokens_b": [
+        "\u2581",
+        "1",
+        "0",
+        "5",
+        "4",
+        "0"
+      ]
+    },
+    {
+      "a": "10547",
+      "b": "105470",
+      "ta": 6,
+      "tb": 7,
+      "shared_prefix": 6,
+      "shared_prefix_frac": 0.8571,
+      "same_len": false,
+      "tokens_a": [
+        "\u2581",
+        "1",
+        "0",
+        "5",
+        "4",
+        "7"
+      ],
+      "tokens_b": [
+        "\u2581",
+        "1",
+        "0",
+        "5",
+        "4",
+        "7",
+        "0"
+      ]
+    }
+  ],
+  "scaled_forms": [
+    {
+      "a": "10.5 million",
+      "b": "10,500,000",
+      "ta": 6,
+      "tb": 11,
+      "jaccard_token_ids": 0.5714,
+      "shared_prefix": 3,
+      "tokens_a": [
+        "\u2581",
+        "1",
+        "0",
+        ".",
+        "5",
+        "\u2581million"
+      ],
+      "tokens_b": [
+        "\u2581",
+        "1",
+        "0",
+        ",",
+        "5",
+        "0",
+        "0",
+        ",",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "a": "10.5 million",
+      "b": "10500000",
+      "ta": 6,
+      "tb": 9,
+      "jaccard_token_ids": 0.6667,
+      "shared_prefix": 3,
+      "tokens_a": [
+        "\u2581",
+        "1",
+        "0",
+        ".",
+        "5",
+        "\u2581million"
+      ],
+      "tokens_b": [
+        "\u2581",
+        "1",
+        "0",
+        "5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "a": "10,500,000",
+      "b": "10500000",
+      "ta": 11,
+      "tb": 9,
+      "jaccard_token_ids": 0.8,
+      "shared_prefix": 3,
+      "tokens_a": [
+        "\u2581",
+        "1",
+        "0",
+        ",",
+        "5",
+        "0",
+        "0",
+        ",",
+        "0",
+        "0",
+        "0"
+      ],
+      "tokens_b": [
+        "\u2581",
+        "1",
+        "0",
+        "5",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "a": "$10.5 million",
+      "b": "$10,500,000",
+      "ta": 6,
+      "tb": 11,
+      "jaccard_token_ids": 0.5714,
+      "shared_prefix": 3,
+      "tokens_a": [
+        "\u2581$",
+        "1",
+        "0",
+        ".",
+        "5",
+        "\u2581million"
+      ],
+      "tokens_b": [
+        "\u2581$",
+        "1",
+        "0",
+        ",",
+        "5",
+        "0",
+        "0",
+        ",",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "a": "1.05 billion",
+      "b": "1,050,000,000",
+      "ta": 6,
+      "tb": 14,
+      "jaccard_token_ids": 0.5714,
+      "shared_prefix": 2,
+      "tokens_a": [
+        "\u2581",
+        "1",
+        ".",
+        "0",
+        "5",
+        "\u2581billion"
+      ],
+      "tokens_b": [
+        "\u2581",
+        "1",
+        ",",
+        "0",
+        "5",
+        "0",
+        ",",
+        "0",
+        "0",
+        "0",
+        ",",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "a": "in millions 10.5",
+      "b": "10,500,000",
+      "ta": 7,
+      "tb": 11,
+      "jaccard_token_ids": 0.5,
+      "shared_prefix": 0,
+      "tokens_a": [
+        "\u2581in",
+        "\u2581millions",
+        "\u2581",
+        "1",
+        "0",
+        ".",
+        "5"
+      ],
+      "tokens_b": [
+        "\u2581",
+        "1",
+        "0",
+        ",",
+        "5",
+        "0",
+        "0",
+        ",",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "a": "10.5",
+      "b": "10,500,000",
+      "ta": 5,
+      "tb": 11,
+      "jaccard_token_ids": 0.6667,
+      "shared_prefix": 3,
+      "tokens_a": [
+        "\u2581",
+        "1",
+        "0",
+        ".",
+        "5"
+      ],
+      "tokens_b": [
+        "\u2581",
+        "1",
+        "0",
+        ",",
+        "5",
+        "0",
+        "0",
+        ",",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "a": "12.5%",
+      "b": "0.125",
+      "ta": 6,
+      "tb": 6,
+      "jaccard_token_ids": 0.7143,
+      "shared_prefix": 1,
+      "tokens_a": [
+        "\u2581",
+        "1",
+        "2",
+        ".",
+        "5",
+        "%"
+      ],
+      "tokens_b": [
+        "\u2581",
+        "0",
+        ".",
+        "1",
+        "2",
+        "5"
+      ]
+    },
+    {
+      "a": "(1,234)",
+      "b": "-1,234",
+      "ta": 7,
+      "tb": 6,
+      "jaccard_token_ids": 0.625,
+      "shared_prefix": 0,
+      "tokens_a": [
+        "\u2581(",
+        "1",
+        ",",
+        "2",
+        "3",
+        "4",
+        ")"
+      ],
+      "tokens_b": [
+        "\u2581-",
+        "1",
+        ",",
+        "2",
+        "3",
+        "4"
+      ]
+    }
+  ],
+  "lane_surface": {
+    "heldout_table_numeral_occurrences": 208796,
+    "share_with_thousands_separator": 0.0,
+    "constructor_format": "str(int(round(v))) or f'{v:.2f}' - never emits a separator",
+    "examples": [
+      {
+        "operands_as_written": [
+          "1,234",
+          "5,678"
+        ],
+        "sum_as_lane_writes_it": "6912",
+        "sum_in_table_style": "6,912",
+        "tokens_lane": [
+          "\u2581",
+          "6",
+          "9",
+          "1",
+          "2"
+        ],
+        "tokens_table_style": [
+          "\u2581",
+          "6",
+          ",",
+          "9",
+          "1",
+          "2"
+        ],
+        "shared_prefix": 2
+      },
+      {
+        "operands_as_written": [
+          "10.5",
+          "3.25"
+        ],
+        "sum_as_lane_writes_it": "13.75",
+        "tokens_lane": [
+          "\u2581",
+          "1",
+          "3",
+          ".",
+          "7",
+          "5"
+        ]
+      }
+    ],
+    "h133_v_correct_sep_share": 0.0,
+    "h133_v_correct_decimal_share": 0.0935,
+    "h133_v_correct_token_mean": 5.3255
+  },
+  "lane_length_confound": {
+    "n": 2000,
+    "mean_tokens_correct": 5.3255,
+    "mean_tokens_wrong": 5.323,
+    "mean_signed_diff": 0.0025,
+    "share_equal_token_length": 0.8895,
+    "share_correct_longer": 0.0535,
+    "share_correct_shorter": 0.057,
+    "auroc_token_length_alone": 0.494,
+    "note": "AUROC computed on a 2000 x 400 subsample of the cross product"
+  },
+  "finqa_surface_asymmetry_ANALYSIS_ONLY": {
+    "finqa_documents_ANALYSIS_ONLY": {
+      "bare_int": 0.8128,
+      "decimal": 0.1872,
+      "currency_prefixed": 0.1855,
+      "percent_suffixed": 0.0356
+    },
+    "finqa_response_ANALYSIS_ONLY": {
+      "bare_int": 0.6417,
+      "currency_prefixed": 0.3119,
+      "decimal": 0.2476,
+      "thousands_sep": 0.1107,
+      "percent_suffixed": 0.1009
+    }
+  },
+  "vocab_digit_atomicity": {
+    "pure_digit_tokens_in_vocab": 10,
+    "multi_digit_tokens_in_vocab": 0,
+    "total_merges": 580604,
+    "digit_digit_merges": 0,
+    "verdict": "digit-atomic by vocabulary construction - no numeral above one digit exists"
+  },
+  "separator_alignment": [
+    {
+      "digits": 4,
+      "mean_shared_prefix": 2.0,
+      "mean_tokens_bare": 5.0,
+      "mean_tokens_comma": 6.0
+    },
+    {
+      "digits": 5,
+      "mean_shared_prefix": 3.0,
+      "mean_tokens_bare": 6.0,
+      "mean_tokens_comma": 7.0
+    },
+    {
+      "digits": 6,
+      "mean_shared_prefix": 4.0,
+      "mean_tokens_bare": 7.0,
+      "mean_tokens_comma": 8.0
+    },
+    {
+      "digits": 7,
+      "mean_shared_prefix": 2.0,
+      "mean_tokens_bare": 8.0,
+      "mean_tokens_comma": 10.0
+    },
+    {
+      "digits": 8,
+      "mean_shared_prefix": 3.0,
+      "mean_tokens_bare": 9.0,
+      "mean_tokens_comma": 11.0
+    },
+    {
+      "digits": 9,
+      "mean_shared_prefix": 4.0,
+      "mean_tokens_bare": 10.0,
+      "mean_tokens_comma": 12.0
+    }
+  ],
+  "place_value_misalignment": {
+    "numeric_columns_scanned": 4400,
+    "within_column_value_pairs": 511416,
+    "share_pairs_same_digit_count": 0.8051,
+    "share_pairs_different_digit_count": 0.1949,
+    "note": "different digit count = no index-wise place alignment between the two values"
+  },
+  "table_window_token_cost": {
+    "n_windows": 1500,
+    "window_chars": 1500,
+    "mean_tokens": 440.09,
+    "chars_per_token": 2.2792,
+    "p95_tokens": 814.0999999999999,
+    "share_over_512_tokens": 0.352,
+    "share_of_tokens_that_are_bare_digits": 0.2915
+  },
+  "separator_register_split": {
+    "in_domain": {
+      "tabfact_tables_chars": 2809937,
+      "tabfact_tables_sep_hits": 0,
+      "h108_lane_claims_chars": 3625494,
+      "h108_lane_claims_sep_hits": 1282,
+      "h108_lane_evidence_chars": 24667330,
+      "h108_lane_evidence_sep_hits": 18718
+    },
+    "arena_finqa_ANALYSIS_ONLY": {
+      "train": {
+        "n_rows": 12502,
+        "doc_chars": 51080063,
+        "doc_sep_hits": 0,
+        "doc_dollar": 164888,
+        "resp_chars": 5556064,
+        "resp_sep_hits": 18658,
+        "resp_dollar": 47454
+      },
+      "validation": {
+        "n_rows": 1766,
+        "doc_chars": 7111689,
+        "doc_sep_hits": 0,
+        "doc_dollar": 23640,
+        "resp_chars": 763854,
+        "resp_sep_hits": 2473,
+        "resp_dollar": 6835
+      },
+      "test": {
+        "n_rows": 2294,
+        "doc_chars": 9142135,
+        "doc_sep_hits": 0,
+        "doc_dollar": 29350,
+        "resp_chars": 1036824,
+        "resp_sep_hits": 3353,
+        "resp_dollar": 9066
+      }
+    }
+  },
+  "tokenizer_spec": {
+    "model_type": "BPE",
+    "normalizer": {
+      "type": "Replace",
+      "pattern": {
+        "String": " "
+      },
+      "content": "\u2581"
+    },
+    "pre_tokenizer": {
+      "type": "Metaspace",
+      "replacement": "\u2581",
+      "prepend_scheme": "always",
+      "split": true
+    },
+    "decoder_type": "Sequence"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "held_out_tables_parsed": 3391,
+  "tables_with_unit_bearing_header": 1039,
+  "tables_with_unit_bearing_caption": 32,
+  "tables_with_unit_bearing_header_or_caption": 1059,
+  "share_header_or_caption": 0.3123,
+  "numeric_columns": 6421,
+  "numeric_columns_with_unit_header": 1092,
+  "share_numeric_columns_unit_header": 0.1701,
+  "tables_supporting_wrong_factor_negative": 2726,
+  "share_wrong_factor_constructible": 0.8039,
+  "tables_with_thousands_separator": 0,
+  "numeric_cells": 84593,
+  "decimal_cell_share": 0.0678,
+  "cell_digit_length_hist": {
+    "1": 31134,
+    "2": 26442,
+    "3": 6518,
+    "4": 10357,
+    "5": 7792,
+    "6": 1434,
+    "7": 585,
+    "8": 167,
+    "9": 115,
+    "10": 28,
+    "11": 16,
+    "12": 4,
+    "15": 1
+  },
+  "within_column_digit_length_spread_hist": {
+    "0": 3606,
+    "1": 2410,
+    "2": 304,
+    "3": 77,
+    "4": 8,
+    "5": 9,
+    "6": 4,
+    "7": 2,
+    "12": 1
+  }
+}

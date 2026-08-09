@@ -1,0 +1,77 @@
+{
+  "gate": "H133",
+  "spec": "R14_synthesis.md R14-A4 CPU precursor / L2-C2 killgate clause 1",
+  "operations": [
+    "sum",
+    "difference",
+    "ratio",
+    "pct_change"
+  ],
+  "enumeration_caps": {
+    "max_numeric_columns_per_table": 4,
+    "max_numeric_rows_per_column": 8
+  },
+  "caps_note": "every count is a strict lower bound on true corpus constructibility",
+  "per_corpus": {
+    "tabfact": {
+      "tables_scanned": 13143,
+      "tables_admitting_at_least_one": 8438,
+      "constructible_positive_tuples": 1121632,
+      "tuples_under_per_table_cap": {
+        "1": 8438,
+        "4": 33678,
+        "16": 133492,
+        "64": 498484
+      },
+      "median_tuples_per_admitting_table": 110.0
+    },
+    "infotabs": {
+      "tables_scanned": 1431,
+      "tables_admitting_at_least_one": 48,
+      "constructible_positive_tuples": 1037,
+      "tuples_under_per_table_cap": {
+        "1": 48,
+        "4": 192,
+        "16": 654,
+        "64": 984
+      },
+      "median_tuples_per_admitting_table": 12.0
+    },
+    "feverous_full_train": {
+      "tables_scanned": 23716,
+      "tables_admitting_at_least_one": 7990,
+      "constructible_positive_tuples": 886857,
+      "tuples_under_per_table_cap": {
+        "1": 7990,
+        "4": 31721,
+        "16": 121603,
+        "64": 401515
+      },
+      "median_tuples_per_admitting_table": 88.0
+    },
+    "feverous_h108_challenge_filtered": {
+      "tables_scanned": 8667,
+      "tables_admitting_at_least_one": 2918,
+      "constructible_positive_tuples": 292156,
+      "tuples_under_per_table_cap": {
+        "1": 2918,
+        "4": 11583,
+        "16": 44323,
+        "64": 142865
+      },
+      "median_tuples_per_admitting_table": 80.0
+    }
+  },
+  "total_constructible_positive_tuples": 2009526,
+  "total_tables_admitting_at_least_one": 16476,
+  "total_tuples_under_per_table_cap": {
+    "1": 16476,
+    "4": 65591,
+    "16": 255749,
+    "64": 900983
+  },
+  "kill_threshold": 30000,
+  "clause": "KILL if fewer than 30,000 constructible positive tuples",
+  "clause_fired": "NOT_KILLED",
+  "clause_fired_conservative_one_per_table": "KILL"
+}

@@ -1,0 +1,42 @@
+{
+  "gate": "H135",
+  "spec": "R14_synthesis.md R14-A6 kill-gate clause 2",
+  "source": "/home/lab/workspace/private/ai-assistants/groundrails/experiments/grounding-semantic/R10-H108_pairs.parquet",
+  "lane_rows": 61184,
+  "paired_chunks": 6889,
+  "rows_covered_by_paired_chunks": 29779,
+  "rows_covered_frac": 0.48671221234309625,
+  "sample_n": 500,
+  "sample_seed": 0,
+  "similarity_definition": "1 - levenshtein/max(len) on raw claim characters (rapidfuzz)",
+  "pair_selection": "first label-1 and first label-0 row per chunk in file order",
+  "median_edit_similarity": 0.990049504950495,
+  "mean_edit_similarity": 0.82273640523257,
+  "p10": 0.3397349397590361,
+  "p25": 0.5866228070175439,
+  "p75": 0.9933774834437086,
+  "p90": 0.9949748743718593,
+  "frac_ge_0.80": 0.724,
+  "frac_lt_0.60": 0.254,
+  "sensitivity_best_partner_median": 0.9908675799086758,
+  "per_tag_median": {
+    "quant_feverous": {
+      "n": 359,
+      "median_sim": 0.9921259842519685
+    },
+    "quant_infotabs": {
+      "n": 128,
+      "median_sim": 0.39162754303599373
+    },
+    "quant_scitab": {
+      "n": 13,
+      "median_sim": 0.8163265306122449
+    }
+  },
+  "clauses": {
+    "PASS": ">= 0.80",
+    "KILL": "< 0.60",
+    "BETWEEN": "report"
+  },
+  "clause_fired": "PASS"
+}

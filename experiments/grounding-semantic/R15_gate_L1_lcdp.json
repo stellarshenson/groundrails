@@ -1,0 +1,103 @@
+{
+  "pct_change": {
+    "n": 500,
+    "lcdp_b": 0.166,
+    "lcdp_c": 0.172,
+    "mean_signed_lcdp_adv": -0.006,
+    "auroc_from_lcdp_alone": 0.497,
+    "auroc_from_score": 0.4861,
+    "pearson_dlcdp_dscore": 0.0277
+  },
+  "ratio": {
+    "n": 500,
+    "lcdp_b": 0.12,
+    "lcdp_c": 0.172,
+    "mean_signed_lcdp_adv": -0.052,
+    "auroc_from_lcdp_alone": 0.4698,
+    "auroc_from_score": 0.5121,
+    "pearson_dlcdp_dscore": -0.1731
+  },
+  "date_arith": {
+    "n": 639,
+    "lcdp_b": 0.277,
+    "lcdp_c": 0.294,
+    "mean_signed_lcdp_adv": -0.0172,
+    "auroc_from_lcdp_alone": 0.4948,
+    "auroc_from_score": 0.5,
+    "pearson_dlcdp_dscore": 0.085
+  },
+  "mean": {
+    "n": 500,
+    "lcdp_b": 0.838,
+    "lcdp_c": 0.62,
+    "mean_signed_lcdp_adv": 0.218,
+    "auroc_from_lcdp_alone": 0.5626,
+    "auroc_from_score": 0.5257,
+    "pearson_dlcdp_dscore": 0.0453
+  },
+  "count_agg": {
+    "n": 369,
+    "lcdp_b": 0.165,
+    "lcdp_c": 0.152,
+    "mean_signed_lcdp_adv": 0.0136,
+    "auroc_from_lcdp_alone": 0.5079,
+    "auroc_from_score": 0.4842,
+    "pearson_dlcdp_dscore": -0.0161
+  },
+  "difference": {
+    "n": 500,
+    "lcdp_b": 0.202,
+    "lcdp_c": 0.192,
+    "mean_signed_lcdp_adv": 0.01,
+    "auroc_from_lcdp_alone": 0.504,
+    "auroc_from_score": 0.4994,
+    "pearson_dlcdp_dscore": -0.0962
+  },
+  "rounding": {
+    "n": 500,
+    "lcdp_b": 3.05,
+    "lcdp_c": 0.61,
+    "mean_signed_lcdp_adv": 2.44,
+    "auroc_from_lcdp_alone": 0.94,
+    "auroc_from_score": 0.7049,
+    "pearson_dlcdp_dscore": 0.3304
+  },
+  "scale_unit": {
+    "n": 500,
+    "lcdp_b": 3.388,
+    "lcdp_c": 0.604,
+    "mean_signed_lcdp_adv": 2.784,
+    "auroc_from_lcdp_alone": 0.9319,
+    "auroc_from_score": 0.8755,
+    "pearson_dlcdp_dscore": 0.43
+  },
+  "product": {
+    "n": 500,
+    "lcdp_b": 0.16,
+    "lcdp_c": 0.134,
+    "mean_signed_lcdp_adv": 0.026,
+    "auroc_from_lcdp_alone": 0.5046,
+    "auroc_from_score": 0.5165,
+    "pearson_dlcdp_dscore": -0.0701
+  },
+  "sum": {
+    "n": 500,
+    "lcdp_b": 0.066,
+    "lcdp_c": 0.086,
+    "mean_signed_lcdp_adv": -0.02,
+    "auroc_from_lcdp_alone": 0.4872,
+    "auroc_from_score": 0.5067,
+    "pearson_dlcdp_dscore": -0.2122
+  },
+  "_H133_registered_sum_lane": {
+    "n": 2000,
+    "lcdp_correct": 0.066,
+    "lcdp_wrong": 0.089,
+    "mean_signed_lcdp_adv": -0.0235,
+    "auroc_from_lcdp_alone": 0.4871,
+    "auroc_from_score": 0.4924,
+    "digitlen_correct": 4.232,
+    "digitlen_wrong": 4.233,
+    "auroc_from_digitlen_alone": 0.4992
+  }
+}

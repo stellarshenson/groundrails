@@ -105,3 +105,29 @@ Session-owned watchers/monitors are dead after any restart - re-arm marker watch
 ### FIRST ACTION for a fresh session
 
 Read this file, then: (1) `df -h /dev/shm` - if 64M, remount 32G (command above); (2) check `nvidia-smi` + the two logs for survivors vs casualties; (3) relaunch dead jobs with the commands above (lane campaign restarts from draw 1 - accept the loss); (4) re-arm marker watchers; (5) resume the pending-decisions list. Campaign context: three lanes race the 0.7031 clean baseline, order H107 → H108 → DR (replaces H111); admission = lane mean over 2 draws blind > 0.7031, PRIMARY windowed decomposed-min read, frozen R8-H77 gate. TRAINING OF NEW ROUNDS beyond this authorized campaign, git ops, and journal writes all need the author's word.
+
+---
+
+## CURRENT 2026-08-09 14:40 - post-refresh resume (supersedes 13:15 section below)
+
+Refresh done; /dev/shm remounted 32G. Author's word "continue" received.
+
+- **H122 draw 1 RUNNING on GPU1** since 14:35 (design note group map verified: clean mix, 12→5). Relaunch after any kill: remount shm 32G, then `nohup setsid bash experiments/grounding-semantic/R12-H122_campaign.sh 1 >> logs/R12-H122_campaign_d1.log 2>&1 &` (auto-resumes). Marker `CAMPAIGN COMPLETE`. Then draw 2, then ladder H127 → H128 → H135 → H134 → H133 (task #53, session 4834cb1f)
+- **R15 resume in flight**: two fresh opus agents writing the missing `R15_hypotheses_L1_lane_construction.md` and `R15_hypotheses_L4_capacity_interaction.md` (prompts read from the wf_3aa4c9cf-9ad script, idempotent). On both landing → synthesis agent per script → `R15_synthesis.md`. If session dies first: spawn agents only for missing R15_*.md files, same pattern (task #54)
+- Awaiting-author list unchanged (6 items in 13:15 section below)
+
+## CURRENT STATE - 2026-08-09 13:15 (pre-container-refresh pause, author's order)
+
+**GPU state at pause**: all three cards idle; NO training in flight. H122 draw 1 was launched at 12:58 and DELIBERATELY KILLED ~15 min in (author ordered pause before serious GPU work) - only model loading had occurred, no steps trained, no checkpoint worth resuming. Relaunch fresh: `cd ~/workspace/private/ai-assistants/groundrails && nohup setsid bash experiments/grounding-semantic/R12-H122_campaign.sh 1 >> logs/R12-H122_campaign_d1.log 2>&1 &` (verify design note experiments/grounding-semantic/R12-H122_launch_design.md group map first; verify /dev/shm 32G; watcher greps 'CAMPAIGN COMPLETE' in that log).
+
+**GPU1 ladder (post-H129/H132 rulings)**: H122 d1/d2 -> H127 -> H128 -> H135 (~7 GPU-h) -> H134 (~12) -> H133 (~13). H131 Stage-2 BLOCKED on author ruling-7 amendment. H132 PARKED (author capacity ruling). H129 REFUTED at draw 1, draw 2 cancelled.
+
+**R15 derivation-repair workflow** (run wf_3aa4c9cf-9ad, task #59): 9 Opus agents; dies with the container. Resume = re-run the script over on-disk state: script at <session>/workflows/scripts/r15-derivation-repair-fanout-wf_3aa4c9cf-9ad.js (session dir dies too - if gone, the workflow design is described in task #59 and canonical-log Round 15 context; agents are idempotent on experiments/grounding-semantic/R15_probe_*.md / R15_hypotheses_*.md / R15_synthesis.md - check which exist, re-run only missing pieces via fresh agents).
+
+**Qwen recon COMPLETE**: experiments/grounding-semantic/R15_qwen_recon.md. Headline: Qwen3.8 is API-only (weights promised wk of 10 Aug, license unknown - DO NOT plan on it); usable = Qwen3.6 series Apache 2.0; judge pick Qwen3.6-35B-A3B-FP8 pending bake-off vs Qwen3.5-27B (3.6 has an independently confirmed instruction-following REGRESSION); generator Qwen3.6-27B-FP8; WSL2+Blackwell Mamba-cache OOM workaround: vLLM 0.23.0, bf16 KV, --gpu-memory-utilization 0.80, --max-num-seqs 256, --language-model-only.
+
+**Uncommitted in working tree** (await author commit approval): canonical log Round 14 + gate results + H117/H129 verdicts + capacity ruling; dataset doc R14 audit + DR final verdict; R14_*/R15_* artifacts; H122 trainer/campaign/design files (agent-built); R15_qwen_recon.md. Journal entry 115 committed at f06f21b; entries for the post-115 wave NOT yet journaled.
+
+**AWAITING AUTHOR**: (1) EDGAR vs GovReport financial corpus; (2) NC-class ruling (SciFact+iFixit); (3) Army-TM acquisition route; (4) H131 Stage-2 ruling-7 amendment; (5) commit approval; (6) repair-pipeline launch word (assembles after R15 synthesis + Qwen bake-off).
+
+**Env after refresh (known traps)**: /dev/shm reverts to 64M - remount 32G before any DataLoader training; FlashInfer JIT needs nvcc (cuda-nvcc-13-0 etc.) or VLLM_USE_FLASHINFER_SAMPLER=0; Triton needs python3.12-dev; verify with nvidia-smi + a real CUDA op before trusting the cards.

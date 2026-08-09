@@ -1,0 +1,154 @@
+{
+  "gate": "H134",
+  "spec": "R14_synthesis.md R14-A5 kill-gate clause 1",
+  "mix_rows": 685670,
+  "digit_fraction_definition": "count([0-9]) / len_chars, over the claim only",
+  "corruption_bearing_groups": [
+    "vitaminc",
+    "tabfact",
+    "halueval"
+  ],
+  "per_group": [
+    {
+      "group": "halueval",
+      "n": 40000,
+      "n_pos": 20000,
+      "n_neg": 20000,
+      "mean_digit_frac_label1": 0.06097433689261235,
+      "mean_digit_frac_label0": 0.011481040473640665,
+      "point_biserial_r": 0.16421426307653442,
+      "abs_r": 0.16421426307653442,
+      "p_value": 9.003467637176682e-240
+    },
+    {
+      "group": "psiloqa",
+      "n": 61712,
+      "n_pos": 6739,
+      "n_neg": 54973,
+      "mean_digit_frac_label1": 0.015907581270833453,
+      "mean_digit_frac_label0": 0.03135618156323087,
+      "point_biserial_r": -0.08805914477538275,
+      "abs_r": 0.08805914477538275,
+      "p_value": 1.761034776643652e-106
+    },
+    {
+      "group": "ragtruth_cn",
+      "n": 15090,
+      "n_pos": 8370,
+      "n_neg": 6720,
+      "mean_digit_frac_label1": 0.02755091997450646,
+      "mean_digit_frac_label0": 0.024440050465191456,
+      "point_biserial_r": 0.05275168692468481,
+      "abs_r": 0.05275168692468481,
+      "p_value": 8.928267487695072e-11
+    },
+    {
+      "group": "ragtruth_de",
+      "n": 15090,
+      "n_pos": 8369,
+      "n_neg": 6721,
+      "mean_digit_frac_label1": 0.008048935443680695,
+      "mean_digit_frac_label0": 0.007283065561255253,
+      "point_biserial_r": 0.04125653296175417,
+      "abs_r": 0.04125653296175417,
+      "p_value": 3.983444011557976e-07
+    },
+    {
+      "group": "ragtruth_en",
+      "n": 15090,
+      "n_pos": 8369,
+      "n_neg": 6721,
+      "mean_digit_frac_label1": 0.00915649919094253,
+      "mean_digit_frac_label0": 0.008087263556022111,
+      "point_biserial_r": 0.05144865265538237,
+      "abs_r": 0.05144865265538237,
+      "p_value": 2.5539500376354e-10
+    },
+    {
+      "group": "ragtruth_es",
+      "n": 15090,
+      "n_pos": 8370,
+      "n_neg": 6720,
+      "mean_digit_frac_label1": 0.008088811256108677,
+      "mean_digit_frac_label0": 0.007206880023523597,
+      "point_biserial_r": 0.047883331154060405,
+      "abs_r": 0.047883331154060405,
+      "p_value": 3.9819396154989786e-09
+    },
+    {
+      "group": "ragtruth_fr",
+      "n": 15090,
+      "n_pos": 8370,
+      "n_neg": 6720,
+      "mean_digit_frac_label1": 0.00793559364414583,
+      "mean_digit_frac_label0": 0.007113195419959136,
+      "point_biserial_r": 0.04517859265921002,
+      "abs_r": 0.04517859265921002,
+      "p_value": 2.8213706113324627e-08
+    },
+    {
+      "group": "ragtruth_hu",
+      "n": 15090,
+      "n_pos": 8370,
+      "n_neg": 6720,
+      "mean_digit_frac_label1": 0.00896504872229251,
+      "mean_digit_frac_label0": 0.00809183288482374,
+      "point_biserial_r": 0.041944548215763225,
+      "abs_r": 0.041944548215763225,
+      "p_value": 2.5448935482781857e-07
+    },
+    {
+      "group": "ragtruth_it",
+      "n": 15090,
+      "n_pos": 8369,
+      "n_neg": 6721,
+      "mean_digit_frac_label1": 0.008377109281701406,
+      "mean_digit_frac_label0": 0.007784735053095417,
+      "point_biserial_r": 0.030775335796081944,
+      "abs_r": 0.030775335796081944,
+      "p_value": 0.00015615795146717236
+    },
+    {
+      "group": "ragtruth_pl",
+      "n": 15090,
+      "n_pos": 8372,
+      "n_neg": 6718,
+      "mean_digit_frac_label1": 0.008906518075762484,
+      "mean_digit_frac_label0": 0.008217633294913946,
+      "point_biserial_r": 0.034378657033738665,
+      "abs_r": 0.034378657033738665,
+      "p_value": 2.3998305516068868e-05
+    },
+    {
+      "group": "tabfact",
+      "n": 92585,
+      "n_pos": 50994,
+      "n_neg": 41591,
+      "mean_digit_frac_label1": 0.0521677519385278,
+      "mean_digit_frac_label0": 0.05066392913738218,
+      "point_biserial_r": 0.01384811012252907,
+      "abs_r": 0.01384811012252907,
+      "p_value": 2.5108954280478857e-05
+    },
+    {
+      "group": "vitaminc",
+      "n": 370653,
+      "n_pos": 185714,
+      "n_neg": 184939,
+      "mean_digit_frac_label1": 0.028506219825872158,
+      "mean_digit_frac_label0": 0.02852666882562106,
+      "point_biserial_r": -0.0002554068405704308,
+      "abs_r": 0.0002554068405704308,
+      "p_value": 0.8764315474721526
+    }
+  ],
+  "abs_r_corruption_bearing": {
+    "vitaminc": 0.0002554068405704308,
+    "tabfact": 0.01384811012252907,
+    "halueval": 0.16421426307653442
+  },
+  "max_abs_r_corruption_bearing": 0.16421426307653442,
+  "max_abs_r_all_groups": 0.16421426307653442,
+  "clause": "KILL if |r| < 0.05 in every corruption-bearing group",
+  "clause_fired": "NOT_KILLED"
+}

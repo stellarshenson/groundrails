@@ -1204,5 +1204,206 @@
     "mean": 0.68776,
     "wins": 7,
     "model": "models/DR-lane-draw1-margin"
+  },
+  "DR-lane-draw2-margin": {
+    "per_subset": {
+      "covidqa": {
+        "n": 245,
+        "auc": 0.7517,
+        "f1": 0.6024,
+        "lettuce_auc": 0.7355
+      },
+      "delucionqa": {
+        "n": 184,
+        "auc": 0.767,
+        "f1": 0.5008,
+        "lettuce_auc": 0.7929
+      },
+      "emanual": {
+        "n": 132,
+        "auc": 0.5999,
+        "f1": 0.4141,
+        "lettuce_auc": 0.5999
+      },
+      "expertqa": {
+        "n": 203,
+        "auc": 0.7239,
+        "f1": 0.7041,
+        "lettuce_auc": 0.6503
+      },
+      "finqa": {
+        "n": 250,
+        "auc": 0.4998,
+        "f1": 0.5537,
+        "lettuce_auc": 0.717
+      },
+      "hagrid": {
+        "n": 250,
+        "auc": 0.684,
+        "f1": 0.5655,
+        "lettuce_auc": 0.5992
+      },
+      "hotpotqa": {
+        "n": 250,
+        "auc": 0.6511,
+        "f1": 0.5158,
+        "lettuce_auc": 0.5976
+      },
+      "pubmedqa": {
+        "n": 250,
+        "auc": 0.6048,
+        "f1": 0.5432,
+        "lettuce_auc": 0.5162
+      },
+      "tatqa": {
+        "n": 250,
+        "auc": 0.7603,
+        "f1": 0.5391,
+        "lettuce_auc": 0.6156
+      },
+      "techqa": {
+        "n": 250,
+        "auc": 0.5822,
+        "f1": 0.5599,
+        "lettuce_auc": 0.6363
+      }
+    },
+    "mean": 0.66247,
+    "wins": 6,
+    "model": "models/DR-lane-draw2-margin"
+  },
+  "R13-H129-draw1": {
+    "per_subset": {
+      "covidqa": {
+        "n": 245,
+        "auc": 0.7781,
+        "f1": 0.5632,
+        "lettuce_auc": 0.7355
+      },
+      "delucionqa": {
+        "n": 184,
+        "auc": 0.7849,
+        "f1": 0.5968,
+        "lettuce_auc": 0.7929
+      },
+      "emanual": {
+        "n": 132,
+        "auc": 0.6126,
+        "f1": 0.6754,
+        "lettuce_auc": 0.5999
+      },
+      "expertqa": {
+        "n": 203,
+        "auc": 0.7489,
+        "f1": 0.6941,
+        "lettuce_auc": 0.6503
+      },
+      "finqa": {
+        "n": 250,
+        "auc": 0.7111,
+        "f1": 0.6298,
+        "lettuce_auc": 0.717
+      },
+      "hagrid": {
+        "n": 250,
+        "auc": 0.6477,
+        "f1": 0.6106,
+        "lettuce_auc": 0.5992
+      },
+      "hotpotqa": {
+        "n": 250,
+        "auc": 0.5976,
+        "f1": 0.4987,
+        "lettuce_auc": 0.5976
+      },
+      "pubmedqa": {
+        "n": 250,
+        "auc": 0.6032,
+        "f1": 0.5634,
+        "lettuce_auc": 0.5162
+      },
+      "tatqa": {
+        "n": 250,
+        "auc": 0.7176,
+        "f1": 0.5898,
+        "lettuce_auc": 0.6156
+      },
+      "techqa": {
+        "n": 250,
+        "auc": 0.7012,
+        "f1": 0.6833,
+        "lettuce_auc": 0.6363
+      }
+    },
+    "mean": 0.69029,
+    "wins": 7,
+    "model": "models/R13-H129-draw1"
+  },
+  "R12-H122-draw1": {
+    "per_subset": {
+      "covidqa": {
+        "n": 245,
+        "auc": 0.7554,
+        "f1": 0.6268,
+        "lettuce_auc": 0.7355
+      },
+      "delucionqa": {
+        "n": 184,
+        "auc": 0.7141,
+        "f1": 0.6435,
+        "lettuce_auc": 0.7929
+      },
+      "emanual": {
+        "n": 132,
+        "auc": 0.6084,
+        "f1": 0.4762,
+        "lettuce_auc": 0.5999
+      },
+      "expertqa": {
+        "n": 203,
+        "auc": 0.7369,
+        "f1": 0.6693,
+        "lettuce_auc": 0.6503
+      },
+      "finqa": {
+        "n": 250,
+        "auc": 0.6611,
+        "f1": 0.6782,
+        "lettuce_auc": 0.717
+      },
+      "hagrid": {
+        "n": 250,
+        "auc": 0.6744,
+        "f1": 0.5029,
+        "lettuce_auc": 0.5992
+      },
+      "hotpotqa": {
+        "n": 250,
+        "auc": 0.6392,
+        "f1": 0.5132,
+        "lettuce_auc": 0.5976
+      },
+      "pubmedqa": {
+        "n": 250,
+        "auc": 0.6396,
+        "f1": 0.6021,
+        "lettuce_auc": 0.5162
+      },
+      "tatqa": {
+        "n": 250,
+        "auc": 0.7506,
+        "f1": 0.6888,
+        "lettuce_auc": 0.6156
+      },
+      "techqa": {
+        "n": 250,
+        "auc": 0.6927,
+        "f1": 0.6177,
+        "lettuce_auc": 0.6363
+      }
+    },
+    "mean": 0.6872400000000001,
+    "wins": 8,
+    "model": "models/R12-H122-draw1"
   }
 }

@@ -1,0 +1,52 @@
+{
+  "probe": "R15-P1 shown-work addendum",
+  "model": "/home/lab/workspace/private/ai-assistants/groundrails/models/R9-H105-mmbert-dann-clean",
+  "seed": 20260811,
+  "per_op": {
+    "sum": {
+      "n": 400,
+      "bare_correct": 0.24575,
+      "bare_wrong": 0.24183,
+      "shown_correct": 0.30169,
+      "shown_wrong": 0.30862,
+      "auroc_bare": 0.5062,
+      "auroc_shown": 0.4845
+    },
+    "difference": {
+      "n": 400,
+      "bare_correct": 0.36528,
+      "bare_wrong": 0.3685,
+      "shown_correct": 0.51086,
+      "shown_wrong": 0.51639,
+      "auroc_bare": 0.4933,
+      "auroc_shown": 0.492
+    },
+    "ratio": {
+      "n": 400,
+      "bare_correct": 0.29381,
+      "bare_wrong": 0.2924,
+      "shown_correct": 0.52894,
+      "shown_wrong": 0.52602,
+      "auroc_bare": 0.5007,
+      "auroc_shown": 0.5036
+    },
+    "pct_change": {
+      "n": 400,
+      "bare_correct": 0.43053,
+      "bare_wrong": 0.43085,
+      "shown_correct": 0.5844,
+      "shown_wrong": 0.5842,
+      "auroc_bare": 0.4996,
+      "auroc_shown": 0.5017
+    },
+    "ALL": {
+      "n": 1600,
+      "bare_correct": 0.33384,
+      "bare_wrong": 0.3334,
+      "shown_correct": 0.48147,
+      "shown_wrong": 0.48381,
+      "auroc_bare": 0.501,
+      "auroc_shown": 0.4973
+    }
+  }
+}

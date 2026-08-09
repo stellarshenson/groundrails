@@ -1,0 +1,172 @@
+{
+  "pipe": {
+    "n": 1499,
+    "chars_full_median": 877,
+    "tokens_1500char_window_mean": 425.83,
+    "tokens_1500char_window_p95": 799.0,
+    "chars_per_token": 2.2377,
+    "share_window_over_512": 0.3262,
+    "share_window_over_472_with_claim": 0.3923,
+    "tokens_full_table_median": 404,
+    "share_full_table_over_512": 0.3602,
+    "body_rows_median": 11
+  },
+  "markdown": {
+    "n": 1499,
+    "chars_full_median": 955,
+    "tokens_1500char_window_mean": 445.75,
+    "tokens_1500char_window_p95": 796.1,
+    "chars_per_token": 2.2528,
+    "share_window_over_512": 0.3689,
+    "share_window_over_472_with_claim": 0.4256,
+    "tokens_full_table_median": 433,
+    "share_full_table_over_512": 0.4049,
+    "body_rows_median": 11
+  },
+  "keyvalue": {
+    "n": 1499,
+    "chars_full_median": 1369,
+    "tokens_1500char_window_mean": 486.18,
+    "tokens_1500char_window_p95": 726.1,
+    "chars_per_token": 2.507,
+    "share_window_over_512": 0.4523,
+    "share_window_over_472_with_claim": 0.5417,
+    "tokens_full_table_median": 565,
+    "share_full_table_over_512": 0.5464,
+    "body_rows_median": 11
+  },
+  "json_records": {
+    "n": 1499,
+    "chars_full_median": 1722,
+    "tokens_1500char_window_mean": 510.09,
+    "tokens_1500char_window_p95": 686.1,
+    "chars_per_token": 2.5934,
+    "share_window_over_512": 0.5377,
+    "share_window_over_472_with_claim": 0.6785,
+    "tokens_full_table_median": 680,
+    "share_full_table_over_512": 0.6378,
+    "body_rows_median": 11
+  },
+  "narrative": {
+    "n": 1499,
+    "chars_full_median": 1380,
+    "tokens_1500char_window_mean": 413.46,
+    "tokens_1500char_window_p95": 626.2,
+    "chars_per_token": 2.9377,
+    "share_window_over_512": 0.2495,
+    "share_window_over_472_with_claim": 0.3542,
+    "tokens_full_table_median": 478,
+    "share_full_table_over_512": 0.471,
+    "body_rows_median": 11
+  },
+  "row_prose": {
+    "n": 1499,
+    "chars_full_median": 1730,
+    "tokens_1500char_window_mean": 452.96,
+    "tokens_1500char_window_p95": 621.1,
+    "chars_per_token": 2.9217,
+    "share_window_over_512": 0.3142,
+    "share_window_over_472_with_claim": 0.463,
+    "tokens_full_table_median": 612,
+    "share_full_table_over_512": 0.5911,
+    "body_rows_median": 11
+  },
+  "row_budgeted": {
+    "body_rows_6": {
+      "pipe": {
+        "tokens_median": 216,
+        "tokens_p95": 371,
+        "share_over_472": 0.0133
+      },
+      "markdown": {
+        "tokens_median": 235,
+        "tokens_p95": 391,
+        "share_over_472": 0.016
+      },
+      "keyvalue": {
+        "tokens_median": 293,
+        "tokens_p95": 521,
+        "share_over_472": 0.0753
+      },
+      "json_records": {
+        "tokens_median": 352,
+        "tokens_p95": 597,
+        "share_over_472": 0.1707
+      },
+      "narrative": {
+        "tokens_median": 250,
+        "tokens_p95": 452,
+        "share_over_472": 0.0333
+      },
+      "row_prose": {
+        "tokens_median": 314,
+        "tokens_p95": 555,
+        "share_over_472": 0.0953
+      }
+    },
+    "body_rows_8": {
+      "pipe": {
+        "tokens_median": 267,
+        "tokens_p95": 469,
+        "share_over_472": 0.0493
+      },
+      "markdown": {
+        "tokens_median": 289,
+        "tokens_p95": 493,
+        "share_over_472": 0.0567
+      },
+      "keyvalue": {
+        "tokens_median": 366,
+        "tokens_p95": 659,
+        "share_over_472": 0.2153
+      },
+      "json_records": {
+        "tokens_median": 447,
+        "tokens_p95": 761,
+        "share_over_472": 0.4147
+      },
+      "narrative": {
+        "tokens_median": 316,
+        "tokens_p95": 579,
+        "share_over_472": 0.1107
+      },
+      "row_prose": {
+        "tokens_median": 396,
+        "tokens_p95": 719,
+        "share_over_472": 0.276
+      }
+    },
+    "body_rows_10": {
+      "pipe": {
+        "tokens_median": 305,
+        "tokens_p95": 553,
+        "share_over_472": 0.1073
+      },
+      "markdown": {
+        "tokens_median": 329,
+        "tokens_p95": 582,
+        "share_over_472": 0.1433
+      },
+      "keyvalue": {
+        "tokens_median": 424,
+        "tokens_p95": 786,
+        "share_over_472": 0.3747
+      },
+      "json_records": {
+        "tokens_median": 511,
+        "tokens_p95": 928,
+        "share_over_472": 0.6153
+      },
+      "narrative": {
+        "tokens_median": 360,
+        "tokens_p95": 684,
+        "share_over_472": 0.2353
+      },
+      "row_prose": {
+        "tokens_median": 450,
+        "tokens_p95": 836,
+        "share_over_472": 0.458
+      }
+    }
+  }
+}
