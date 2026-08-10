@@ -1,0 +1,100 @@
+{
+  "gold": {
+    "auc": 0.8221,
+    "f1": 0.6673,
+    "n": 717
+  },
+  "gold_full": {
+    "auc": 0.8375,
+    "f1": 0.7249,
+    "n": 2752
+  },
+  "ragtruth_en": {
+    "auc": 0.841,
+    "f1": 0.7715,
+    "n": 600
+  },
+  "ragtruth_nonen": {
+    "auc": 0.835,
+    "per_lang": {
+      "de": 0.83,
+      "fr": 0.8257,
+      "es": 0.8449,
+      "it": 0.8432,
+      "pl": 0.8205,
+      "hu": 0.82,
+      "cn": 0.8604
+    }
+  },
+  "params_M": 307.1,
+  "lambda_max": 0.02,
+  "lane": "R13-H127 RAGTruth parallel-copy rebalance (public mix only, 12 groups, EN 4.0 / translations 0.5714)",
+  "draw": 1,
+  "seed": 1127,
+  "mix_rows": 685670,
+  "train_row_equivalents": 685670,
+  "dann_groups": 12,
+  "natural_group_counts": {
+    "halueval": 40000,
+    "psiloqa": 61712,
+    "ragtruth_cn": 15090,
+    "ragtruth_de": 15090,
+    "ragtruth_en": 15090,
+    "ragtruth_es": 15090,
+    "ragtruth_fr": 15090,
+    "ragtruth_hu": 15090,
+    "ragtruth_it": 15090,
+    "ragtruth_pl": 15090,
+    "tabfact": 92585,
+    "vitaminc": 370653
+  },
+  "row_equivalents": {
+    "halueval": 40000,
+    "psiloqa": 61712,
+    "ragtruth_cn": 8622,
+    "ragtruth_de": 8623,
+    "ragtruth_en": 60360,
+    "ragtruth_es": 8623,
+    "ragtruth_fr": 8623,
+    "ragtruth_hu": 8623,
+    "ragtruth_it": 8623,
+    "ragtruth_pl": 8623,
+    "tabfact": 92585,
+    "vitaminc": 370653
+  },
+  "per_row_weights": {
+    "halueval": 1.0,
+    "psiloqa": 1.0,
+    "ragtruth_cn": 0.571372,
+    "ragtruth_de": 0.571438,
+    "ragtruth_en": 4.0,
+    "ragtruth_es": 0.571438,
+    "ragtruth_fr": 0.571438,
+    "ragtruth_hu": 0.571438,
+    "ragtruth_it": 0.571438,
+    "ragtruth_pl": 0.571438,
+    "tabfact": 1.0,
+    "vitaminc": 1.0
+  },
+  "family_mass_natural": 120720,
+  "family_mass_realized": 120720,
+  "family_mass_registered": 120717,
+  "domain_acc_per_group_final20pct": {
+    "halueval": 0.0,
+    "psiloqa": 0.0002,
+    "ragtruth_cn": 0.0,
+    "ragtruth_de": 0.0,
+    "ragtruth_en": 0.0003,
+    "ragtruth_es": 0.0,
+    "ragtruth_fr": 0.0,
+    "ragtruth_hu": 0.0,
+    "ragtruth_it": 0.0,
+    "ragtruth_pl": 0.0,
+    "tabfact": 0.0309,
+    "vitaminc": 0.9971
+  },
+  "init_fingerprint": "b23ee8b80a1bd724b6c1c616fd18ef45",
+  "init_fingerprint_scope": "trunk+task_head",
+  "train_seconds": 19554.8,
+  "checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/R13-H127-draw1"
+}

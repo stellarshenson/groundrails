@@ -1,0 +1,274 @@
+{
+  "gate": "R16-H140 G1 frozen-composability pilot",
+  "checkpoint": "models/R10-H108-lane-draw1 (clean+H108 lane draw 1, admitted lane best single ckpt)",
+  "readout": "single-head attention pooling over (CLS, frozen-logit) window sets + 2-layer MLP",
+  "readout_params": 331266,
+  "seed": 0,
+  "readout_mean": 0.70991,
+  "hardmax_mean": 0.70618,
+  "banked_hardmax_mean": 0.70618,
+  "mean_delta": 0.00373,
+  "worst_subset_delta": -0.0518,
+  "per_subset": {
+    "covidqa": {
+      "n": 245,
+      "n_sent": 385,
+      "n_pairs": 1540,
+      "hardmax_auc": 0.7516,
+      "readout_auc": 0.7756,
+      "delta": 0.024,
+      "banked_hardmax_auc": 0.7516,
+      "hardmax_reproduces_banked": true,
+      "stratum_n": 144,
+      "stratum_hardmax_auc": 0.6595,
+      "stratum_readout_auc": 0.686,
+      "stratum_delta": 0.0265
+    },
+    "delucionqa": {
+      "n": 184,
+      "n_sent": 929,
+      "n_pairs": 5093,
+      "hardmax_auc": 0.7355,
+      "readout_auc": 0.702,
+      "delta": -0.0334,
+      "banked_hardmax_auc": 0.7355,
+      "hardmax_reproduces_banked": true,
+      "stratum_n": 86,
+      "stratum_hardmax_auc": 0.5945,
+      "stratum_readout_auc": 0.6234,
+      "stratum_delta": 0.0289
+    },
+    "emanual": {
+      "n": 132,
+      "n_sent": 748,
+      "n_pairs": 2983,
+      "hardmax_auc": 0.6719,
+      "readout_auc": 0.7119,
+      "delta": 0.04,
+      "banked_hardmax_auc": 0.6719,
+      "hardmax_reproduces_banked": true,
+      "stratum_n": 81,
+      "stratum_hardmax_auc": 0.6695,
+      "stratum_readout_auc": 0.7432,
+      "stratum_delta": 0.0737
+    },
+    "expertqa": {
+      "n": 203,
+      "n_sent": 1303,
+      "n_pairs": 13949,
+      "hardmax_auc": 0.7496,
+      "readout_auc": 0.7861,
+      "delta": 0.0365,
+      "banked_hardmax_auc": 0.7496,
+      "hardmax_reproduces_banked": true,
+      "stratum_n": 177,
+      "stratum_hardmax_auc": 0.7056,
+      "stratum_readout_auc": 0.7482,
+      "stratum_delta": 0.0426
+    },
+    "finqa": {
+      "n": 250,
+      "n_sent": 563,
+      "n_pairs": 2918,
+      "hardmax_auc": 0.7291,
+      "readout_auc": 0.7283,
+      "delta": -0.0009,
+      "banked_hardmax_auc": 0.7291,
+      "hardmax_reproduces_banked": true,
+      "stratum_n": 212,
+      "stratum_hardmax_auc": 0.7504,
+      "stratum_readout_auc": 0.8016,
+      "stratum_delta": 0.0512
+    },
+    "hagrid": {
+      "n": 250,
+      "n_sent": 537,
+      "n_pairs": 1941,
+      "hardmax_auc": 0.6599,
+      "readout_auc": 0.672,
+      "delta": 0.0122,
+      "banked_hardmax_auc": 0.6599,
+      "hardmax_reproduces_banked": true,
+      "stratum_n": 91,
+      "stratum_hardmax_auc": 0.6591,
+      "stratum_readout_auc": 0.7227,
+      "stratum_delta": 0.0636
+    },
+    "hotpotqa": {
+      "n": 250,
+      "n_sent": 293,
+      "n_pairs": 1177,
+      "hardmax_auc": 0.6965,
+      "readout_auc": 0.6448,
+      "delta": -0.0518,
+      "banked_hardmax_auc": 0.6965,
+      "hardmax_reproduces_banked": true,
+      "stratum_n": 196,
+      "stratum_hardmax_auc": 0.6961,
+      "stratum_readout_auc": 0.6377,
+      "stratum_delta": -0.0584
+    },
+    "pubmedqa": {
+      "n": 250,
+      "n_sent": 1314,
+      "n_pairs": 6570,
+      "hardmax_auc": 0.5907,
+      "readout_auc": 0.6618,
+      "delta": 0.0711,
+      "banked_hardmax_auc": 0.5907,
+      "hardmax_reproduces_banked": true,
+      "stratum_n": 238,
+      "stratum_hardmax_auc": 0.5819,
+      "stratum_readout_auc": 0.6598,
+      "stratum_delta": 0.0779
+    },
+    "tatqa": {
+      "n": 250,
+      "n_sent": 468,
+      "n_pairs": 1942,
+      "hardmax_auc": 0.7391,
+      "readout_auc": 0.6907,
+      "delta": -0.0484,
+      "banked_hardmax_auc": 0.7391,
+      "hardmax_reproduces_banked": true,
+      "stratum_n": 116,
+      "stratum_hardmax_auc": 0.7221,
+      "stratum_readout_auc": 0.5858,
+      "stratum_delta": -0.1363
+    },
+    "techqa": {
+      "n": 250,
+      "n_sent": 1737,
+      "n_pairs": 39058,
+      "hardmax_auc": 0.7379,
+      "readout_auc": 0.7259,
+      "delta": -0.012,
+      "banked_hardmax_auc": 0.7379,
+      "hardmax_reproduces_banked": true,
+      "stratum_n": 237,
+      "stratum_hardmax_auc": 0.7272,
+      "stratum_readout_auc": 0.7177,
+      "stratum_delta": -0.0095
+    }
+  },
+  "cross_window_stratum": {
+    "definition": "arena responses holding >= 1 G0-flagged cross-window sentence (anchors not co-locatable in any single 1500-char window)",
+    "pooled_n": 1578,
+    "pooled_n_total": 2264,
+    "pooled_hardmax_auc": 0.6286,
+    "pooled_readout_auc": 0.714,
+    "complement_hardmax_auc": 0.777,
+    "complement_readout_auc": 0.7689,
+    "pooled_delta": 0.0854,
+    "mean_per_subset_delta": 0.016,
+    "mean_per_subset_hardmax": 0.6766,
+    "mean_per_subset_readout": 0.6926
+  },
+  "training": {
+    "composition": {
+      "source_ids": [
+        "h108_quant_corrupt",
+        "h108_quant_feverous",
+        "h108_quant_infotabs",
+        "h108_quant_scitab",
+        "ragtruth_en"
+      ],
+      "sentence_sets_by_source": {
+        "h108_quant_corrupt": 6512,
+        "h108_quant_feverous": 2028,
+        "h108_quant_infotabs": 3223,
+        "h108_quant_scitab": 237,
+        "ragtruth_en": 100748
+      },
+      "n_sentence_sets": 112748,
+      "n_pairs": 297999,
+      "positives": 0.8107372192854863,
+      "window_set_size": {
+        "mean": 2.6430535353176996,
+        "max": 14
+      },
+      "provenance": "PUBLIC ONLY - RAGTruth train + R10-H108 manufactured lane (FEVEROUS / InfoTabs / SciTab / TabFact-corrupt). No private gold rows, no RAGBench/arena rows."
+    },
+    "val_frac": 0.08,
+    "epochs_run": 8,
+    "best_val_sentence_auc": 0.9288,
+    "history": [
+      {
+        "epoch": 0,
+        "train_loss": 0.26201602000740853,
+        "val_auc_readout": 0.9216,
+        "val_auc_hardmax": 0.838,
+        "sec": 4.7
+      },
+      {
+        "epoch": 1,
+        "train_loss": 0.24227344745254165,
+        "val_auc_readout": 0.9245,
+        "val_auc_hardmax": 0.838,
+        "sec": 4.2
+      },
+      {
+        "epoch": 2,
+        "train_loss": 0.2314508381442734,
+        "val_auc_readout": 0.9261,
+        "val_auc_hardmax": 0.838,
+        "sec": 4.1
+      },
+      {
+        "epoch": 3,
+        "train_loss": 0.22259267642496547,
+        "val_auc_readout": 0.9288,
+        "val_auc_hardmax": 0.838,
+        "sec": 4.2
+      },
+      {
+        "epoch": 4,
+        "train_loss": 0.21341421405045358,
+        "val_auc_readout": 0.9277,
+        "val_auc_hardmax": 0.838,
+        "sec": 4.2
+      },
+      {
+        "epoch": 5,
+        "train_loss": 0.203457102896548,
+        "val_auc_readout": 0.9266,
+        "val_auc_hardmax": 0.838,
+        "sec": 4.2
+      },
+      {
+        "epoch": 6,
+        "train_loss": 0.19258240053750791,
+        "val_auc_readout": 0.922,
+        "val_auc_hardmax": 0.838,
+        "sec": 4.3
+      },
+      {
+        "epoch": 7,
+        "train_loss": 0.18054654045670507,
+        "val_auc_readout": 0.9217,
+        "val_auc_hardmax": 0.838,
+        "sec": 4.2
+      }
+    ],
+    "no_gold_rows": true,
+    "no_arena_rows": true
+  },
+  "registered_bars": {
+    "trend_license": "mean >= hard-max + 0.005 AND cross-window stratum >= +0.03 (stratum read as the per-subset mean delta; pooled delta also recorded)",
+    "kill": "readout <= hard-max on BOTH mean and stratum",
+    "stratum_delta_used": 0.016,
+    "stratum_delta_pooled": 0.0854,
+    "trend_license_met": false,
+    "kill_met": false
+  },
+  "note": "Bars are RECORDED, not adjudicated here - the coordinator adjudicates.",
+  "caveats": [
+    "Pooled stratum AUROC (+0.0854) pools responses across all 10 subsets. The readout is ONE calibrated model so its scores are comparable across subsets; the frozen hard-max probabilities are NOT cross-subset calibrated. Part of the pooled gap is therefore calibration, not composition. The per-subset mean stratum delta (+0.0160) is the confound-free figure and is the one used against the registered +0.03 bar.",
+    "The readout consumes the frozen per-window scalar (as a logit) alongside the CLS vector, so it can in principle recover max-like behaviour; it does not, and its per-subset profile is a genuine re-ranking rather than a smoothing of the max.",
+    "Training-slice window sets are smaller than arena ones (mean 2.64, max 14 windows vs arena means of 3-23 and a long tail on techqa/expertqa). The readout is read out-of-distribution in set size on the two largest-evidence subsets.",
+    "Sentence-level labels in the training slice come from RAGTruth released hallucination character spans (a sentence overlapping any span is label 0); the H108 lane rows contribute single-window sets and therefore train the per-window mapping, not the pooling.",
+    "Single seed (0), as registered. No seed-noise estimate is available for the +0.00373 mean delta, which sits well inside the campaign noise bar (~0.03)."
+  ],
+  "gpu_allocation": "arena cache on GPU0 (idx0), training-slice cache and hard-max reference on GPU2 (idx2), readout training on GPU0. GPU1 untouched throughout (H135 training).",
+  "cache_fidelity": "hard-max recomputed from the cache reproduces the banked R10-H108 draw-1 windowed read to 4e-5 per subset (mean 0.706184 vs banked 0.70618) and every per-subset window-pair count matches exactly."
+}

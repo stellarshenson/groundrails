@@ -1,0 +1,30 @@
+{
+  "n_rows": 746854,
+  "n_public": 685670,
+  "n_lane": 61184,
+  "n_pairs": 6889,
+  "expected_pairs": 6889,
+  "pair_rule": "first label-1 and first label-0 row per chunk in file order",
+  "n_steps": 15560,
+  "seed": 1135,
+  "colocate": {
+    "n_pairs": 6889,
+    "p_partner_adjacent": 1.0,
+    "p_partner_same_batch": 1.0,
+    "n_adjacent": 6889,
+    "n_same_batch": 6889,
+    "flat_shuffle_baseline_p_same_batch": 6.293e-05,
+    "mean_abs_step_distance": 0.02,
+    "perm_fingerprint": "1227e10c9daa2922"
+  },
+  "control": {
+    "n_pairs": 6889,
+    "p_partner_adjacent": 0.0,
+    "p_partner_same_batch": 0.0,
+    "n_adjacent": 0,
+    "n_same_batch": 0,
+    "flat_shuffle_baseline_p_same_batch": 6.293e-05,
+    "mean_abs_step_distance": 5109.94,
+    "perm_fingerprint": "489bcfb1b8b17d99"
+  }
+}

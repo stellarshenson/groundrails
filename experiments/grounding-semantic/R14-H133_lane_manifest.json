@@ -1,0 +1,120 @@
+{
+  "rows": 40844,
+  "pairs": 20422,
+  "seed": 1133,
+  "core_pairs_target": 21250,
+  "sub_pairs_target": 3750,
+  "type_quota": {
+    "difference": 3434,
+    "ratio": 3434,
+    "pct_change": 3434,
+    "sum": 3436,
+    "rounding": 2576,
+    "mean": 2146,
+    "scale_unit": 1717,
+    "product": 1073
+  },
+  "family_quota": {
+    "difference": {
+      "N7_numeral": 343,
+      "N2_operator": 1190,
+      "N1_oom": 950,
+      "N1_arbitrary": 570,
+      "N1_near_miss": 381
+    },
+    "ratio": {
+      "N7_numeral": 343,
+      "N2_operator": 595,
+      "N1_oom": 1248,
+      "N1_arbitrary": 749,
+      "N1_near_miss": 499
+    },
+    "pct_change": {
+      "N7_numeral": 343,
+      "N2_operator": 595,
+      "N1_oom": 1248,
+      "N1_arbitrary": 749,
+      "N1_near_miss": 499
+    },
+    "sum": {
+      "N7_numeral": 344,
+      "N2_operator": 595,
+      "N1_oom": 1248,
+      "N1_arbitrary": 749,
+      "N1_near_miss": 500
+    },
+    "rounding": {
+      "N_round": 2576
+    },
+    "mean": {
+      "N7_numeral": 215,
+      "N2_operator": 744,
+      "N1_oom": 594,
+      "N1_arbitrary": 356,
+      "N1_near_miss": 237
+    },
+    "scale_unit": {
+      "N7_numeral": 172,
+      "N2_operator": 297,
+      "N1_oom": 624,
+      "N1_arbitrary": 374,
+      "N1_near_miss": 250
+    },
+    "product": {
+      "N7_numeral": 107,
+      "N2_operator": 186,
+      "N1_oom": 390,
+      "N1_arbitrary": 234,
+      "N1_near_miss": 156
+    }
+  },
+  "sub_quota": {
+    "bind_col": 1500,
+    "compare": 1500,
+    "bind_row": 750
+  },
+  "family_unfilled": {
+    "difference": {
+      "N2_operator": 180,
+      "N1_oom": 580
+    },
+    "ratio": {
+      "N1_oom": 405
+    },
+    "pct_change": {},
+    "sum": {
+      "N1_oom": 1156
+    },
+    "rounding": {
+      "N_round": 169
+    },
+    "mean": {
+      "N1_oom": 445
+    },
+    "scale_unit": {
+      "N1_oom": 307
+    },
+    "product": {
+      "N1_oom": 302
+    }
+  },
+  "sub_unfilled": {
+    "bind_col": 1034
+  },
+  "tuples_rejected_at_construction": 264228,
+  "tuples_dropped_for_operand_row_loss": 0,
+  "operand_row_loss_note": "0 by construction - R15-B1 clause 4 is implemented as row SELECTION (the retained 6 body rows are chosen to carry the operand rows) rather than a 6-row prefix; the declared price is non-contiguous rows",
+  "result_digit_length_counts": {
+    "2": 1900,
+    "3": 6259,
+    "4": 5459,
+    "5": 3139,
+    "6": 550,
+    "7": 399
+  },
+  "compare_gap_strata": {
+    "lt10pct": 498,
+    "10to100pct": 501,
+    "gt100pct": 501
+  }
+}

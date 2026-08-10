@@ -237,3 +237,10 @@ graphify-out/
 experiments/grounding-semantic/R8-H93_optuna.db
 experiments/grounding-semantic/R8-H94_ragtruth_cache.npz
 experiments/grounding-semantic/R8_analysis_h90_dump.json
+
+# Experiment binary substrate - parquet/checkpoint artifacts stay out of the public repo
+experiments/grounding-semantic/*.parquet
+experiments/grounding-semantic/*.parquet.ckpt
+experiments/grounding-semantic/R13-H129_targets_parts/
+experiments/grounding-lexical/*.parquet
+tmp/

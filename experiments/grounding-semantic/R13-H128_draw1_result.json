@@ -1,0 +1,76 @@
+{
+  "gold": {
+    "auc": 0.8123,
+    "f1": 0.6909,
+    "n": 717
+  },
+  "gold_full": {
+    "auc": 0.8127,
+    "f1": 0.6956,
+    "n": 2752
+  },
+  "ragtruth_en": {
+    "auc": 0.8257,
+    "f1": 0.727,
+    "n": 600
+  },
+  "ragtruth_nonen": {
+    "auc": 0.8335,
+    "per_lang": {
+      "de": 0.8314,
+      "fr": 0.8248,
+      "es": 0.8289,
+      "it": 0.8305,
+      "pl": 0.8266,
+      "hu": 0.8215,
+      "cn": 0.8709
+    }
+  },
+  "params_M": 307.1,
+  "lambda_max": 0.02,
+  "lane": "R13-H128 WiCE attributed-support lane (clean public mix + wice_attrib, 13 groups)",
+  "draw": 1,
+  "seed": 1128,
+  "mix_rows": 707741,
+  "clean_rows": 685670,
+  "lane_rows": 22071,
+  "lane_positive_fraction": 0.1768,
+  "dann_groups": 13,
+  "lane_groups": [
+    "wice_attrib"
+  ],
+  "group_counts": {
+    "halueval": 40000,
+    "psiloqa": 61712,
+    "ragtruth_cn": 15090,
+    "ragtruth_de": 15090,
+    "ragtruth_en": 15090,
+    "ragtruth_es": 15090,
+    "ragtruth_fr": 15090,
+    "ragtruth_hu": 15090,
+    "ragtruth_it": 15090,
+    "ragtruth_pl": 15090,
+    "tabfact": 92585,
+    "vitaminc": 370653,
+    "wice_attrib": 22071
+  },
+  "domain_acc_per_group_final20pct": {
+    "halueval": 0.0,
+    "psiloqa": 0.0002,
+    "ragtruth_cn": 0.0,
+    "ragtruth_de": 0.0,
+    "ragtruth_en": 0.0,
+    "ragtruth_es": 0.0,
+    "ragtruth_fr": 0.0,
+    "ragtruth_hu": 0.0,
+    "ragtruth_it": 0.0,
+    "ragtruth_pl": 0.0,
+    "tabfact": 0.0048,
+    "vitaminc": 0.9977,
+    "wice_attrib": 0.0
+  },
+  "init_fingerprint": "e22b71c1562be44b97ae5a9a1f68f4aa",
+  "init_fingerprint_scope": "trunk+task_head",
+  "train_seconds": 19260.3,
+  "checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/R13-H128-draw1"
+}
