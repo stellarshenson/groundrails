@@ -1,0 +1,145 @@
+{
+  "read": "R14-H133 ANTI-GAMING on the TRACE-CONDITIONED set - the MOVED A4 clause's own data (serving shape: trace-conditioned claims)",
+  "draw": 1,
+  "arm_checkpoint": "R14-H133-arm-draw1",
+  "control_checkpoint": "R9-H105-mmbert-dann-clean",
+  "control_note": "the BANKED clean draw 1 - unseeded (pre-H126); the comparison is arm-vs-banked-control, not init-paired",
+  "data": "R14-H133_antigaming_traced.parquet",
+  "n_rows": 2620,
+  "construction_note": "pairs are the banked anti-gaming pairs re-issued with a byte-identical within-pair trace that reports the evidence; word-only corruptions (scale_word, pct_pp, comparative_flip) do not survive into this set",
+  "excluded_from_nearmiss_headline": [
+    "digit_perturb",
+    "comparative_flip"
+  ],
+  "checkpoints": {
+    "R14-H133-arm-draw1": {
+      "nearmiss_all_families": {
+        "n_pos": 711,
+        "n_neg": 711,
+        "auroc_pos_vs_neg": 0.7322,
+        "mean_pos": 0.78373,
+        "mean_neg": 0.66662
+      },
+      "nearmiss_headline": {
+        "n_pos": 476,
+        "n_neg": 476,
+        "auroc_pos_vs_neg": 0.6831,
+        "mean_pos": 0.77428,
+        "mean_neg": 0.68532
+      },
+      "bind_row": {
+        "n_pos": 599,
+        "n_neg": 599,
+        "auroc_pos_vs_neg": 0.9944,
+        "mean_pos": 0.939,
+        "mean_neg": 0.07707,
+        "target": 0.95
+      },
+      "per_family": {
+        "bind_row": {
+          "n_pos": 599,
+          "n_neg": 599,
+          "auroc_pos_vs_neg": 0.9944,
+          "mean_pos": 0.939,
+          "mean_neg": 0.07707,
+          "in_nearmiss_headline": false
+        },
+        "digit_perturb": {
+          "n_pos": 235,
+          "n_neg": 235,
+          "auroc_pos_vs_neg": 0.8288,
+          "mean_pos": 0.80288,
+          "mean_neg": 0.62875,
+          "in_nearmiss_headline": false
+        },
+        "magnitude_shift": {
+          "n_pos": 236,
+          "n_neg": 236,
+          "auroc_pos_vs_neg": 0.5685,
+          "mean_pos": 0.78177,
+          "mean_neg": 0.75765,
+          "in_nearmiss_headline": true
+        },
+        "year_shift": {
+          "n_pos": 240,
+          "n_neg": 240,
+          "auroc_pos_vs_neg": 0.8143,
+          "mean_pos": 0.76692,
+          "mean_neg": 0.6142,
+          "in_nearmiss_headline": true
+        }
+      }
+    },
+    "R9-H105-mmbert-dann-clean": {
+      "nearmiss_all_families": {
+        "n_pos": 711,
+        "n_neg": 711,
+        "auroc_pos_vs_neg": 0.7925,
+        "mean_pos": 0.6446,
+        "mean_neg": 0.45066
+      },
+      "nearmiss_headline": {
+        "n_pos": 476,
+        "n_neg": 476,
+        "auroc_pos_vs_neg": 0.749,
+        "mean_pos": 0.63339,
+        "mean_neg": 0.47385
+      },
+      "bind_row": {
+        "n_pos": 599,
+        "n_neg": 599,
+        "auroc_pos_vs_neg": 0.984,
+        "mean_pos": 0.86516,
+        "mean_neg": 0.15124,
+        "target": 0.95
+      },
+      "per_family": {
+        "bind_row": {
+          "n_pos": 599,
+          "n_neg": 599,
+          "auroc_pos_vs_neg": 0.984,
+          "mean_pos": 0.86516,
+          "mean_neg": 0.15124,
+          "in_nearmiss_headline": false
+        },
+        "digit_perturb": {
+          "n_pos": 235,
+          "n_neg": 235,
+          "auroc_pos_vs_neg": 0.8737,
+          "mean_pos": 0.66729,
+          "mean_neg": 0.40369,
+          "in_nearmiss_headline": false
+        },
+        "magnitude_shift": {
+          "n_pos": 236,
+          "n_neg": 236,
+          "auroc_pos_vs_neg": 0.6677,
+          "mean_pos": 0.64257,
+          "mean_neg": 0.53801,
+          "in_nearmiss_headline": true
+        },
+        "year_shift": {
+          "n_pos": 240,
+          "n_neg": 240,
+          "auroc_pos_vs_neg": 0.84,
+          "mean_pos": 0.62437,
+          "mean_neg": 0.41076,
+          "in_nearmiss_headline": true
+        }
+      }
+    }
+  },
+  "deltas_arm_minus_control": {
+    "nearmiss_all_families": -0.0603,
+    "nearmiss_headline": -0.0659,
+    "bind_row": 0.0104,
+    "per_family": {
+      "bind_row": 0.0104,
+      "digit_perturb": -0.0449,
+      "magnitude_shift": -0.0992,
+      "year_shift": -0.0257
+    }
+  },
+  "adjudication": "NOT ADJUDICATED HERE - measurement only; the coordinator holds the verdict on the MOVED clause",
+  "scores": "R14-H133_antigaming_traced_scores.parquet"
+}

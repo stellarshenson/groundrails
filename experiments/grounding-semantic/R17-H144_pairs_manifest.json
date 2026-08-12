@@ -1,0 +1,377 @@
+{
+  "experiment": "R17-H144 Stage B - bare-claim derivation pair corpus",
+  "generator": "v2 lane reconstruction (bare claims, no traces); see module docstring",
+  "seed": 1144,
+  "rows": 30000,
+  "pairs": 15000,
+  "core_pairs_target": 12750,
+  "sub_pairs_target": 2250,
+  "label_counts": {
+    "0.0": 15000,
+    "1.0": 15000
+  },
+  "block_rows": {
+    "core": 25500,
+    "rel": 4500
+  },
+  "tag_rows": {
+    "quant_deriv": 25500,
+    "quant_relational": 4500
+  },
+  "claim_form_rows": {
+    "bare": 15282,
+    "shown": 10218,
+    "relational": 4500
+  },
+  "serial_form_rows": {
+    "keyvalue": 2840,
+    "narrative": 8640,
+    "row_prose": 9246,
+    "markdown": 3184,
+    "pipe": 4598,
+    "json_records": 1492
+  },
+  "source_rows": {
+    "tabfact": 19774,
+    "feverous": 10226
+  },
+  "negative_family_counts": {
+    "r:relational": 2250,
+    "N2_operator": 2151,
+    "N_round:wrong_direction": 773,
+    "N1_arbitrary": 2478,
+    "N_round:wrong_multiple": 773,
+    "N1_oom:misbind": 3896,
+    "N7_numeral": 1120,
+    "N1_near_miss": 1559
+  },
+  "negative_family_shares": {
+    "r:relational": 0.15,
+    "N2_operator": 0.1434,
+    "N_round:wrong_direction": 0.05153,
+    "N1_arbitrary": 0.1652,
+    "N_round:wrong_multiple": 0.05153,
+    "N1_oom:misbind": 0.25973,
+    "N7_numeral": 0.07467,
+    "N1_near_miss": 0.10393
+  },
+  "v2_reference_family_shares": {
+    "difference:N1_arbitrary": 0.0272,
+    "difference:N1_near_miss": 0.01816,
+    "difference:N1_oom:misbind": 0.04536,
+    "difference:N2_operator": 0.05473,
+    "difference:N7_numeral": 0.01614,
+    "mean:N1_arbitrary": 0.01699,
+    "mean:N1_near_miss": 0.01134,
+    "mean:N1_oom:misbind": 0.02833,
+    "mean:N2_operator": 0.03421,
+    "mean:N7_numeral": 0.01012,
+    "pct_change:N1_arbitrary": 0.03544,
+    "pct_change:N1_near_miss": 0.02362,
+    "pct_change:N1_oom:misbind": 0.05906,
+    "pct_change:N2_operator": 0.02734,
+    "pct_change:N7_numeral": 0.01614,
+    "product:N1_arbitrary": 0.01106,
+    "product:N1_near_miss": 0.00739,
+    "product:N1_oom:misbind": 0.01845,
+    "product:N2_operator": 0.00856,
+    "product:N7_numeral": 0.00504,
+    "ratio:N1_arbitrary": 0.03544,
+    "ratio:N1_near_miss": 0.02362,
+    "ratio:N1_oom:misbind": 0.05906,
+    "ratio:N2_operator": 0.02734,
+    "ratio:N7_numeral": 0.01614,
+    "rounding:N_round:wrong_direction": 0.06061,
+    "rounding:N_round:wrong_multiple": 0.06061,
+    "scale_unit:N1_arbitrary": 0.02184,
+    "scale_unit:N1_near_miss": 0.01454,
+    "scale_unit:N1_oom:misbind": 0.03633,
+    "scale_unit:N7_numeral": 0.00809,
+    "sum:N1_arbitrary": 0.04635,
+    "sum:N1_near_miss": 0.02362,
+    "sum:N1_oom:misbind": 0.05906,
+    "sum:N2_operator": 0.01647,
+    "sum:N7_numeral": 0.01619
+  },
+  "v2_reference_relational_rows": {
+    "bind_row": 750,
+    "compare": 1500,
+    "bind_col": 1500
+  },
+  "type_quota": {
+    "rounding": 1546,
+    "ratio": 2061,
+    "pct_change": 2061,
+    "sum": 2061,
+    "difference": 2061,
+    "scale_unit": 1029,
+    "mean": 1288,
+    "product": 643
+  },
+  "family_quota": {
+    "rounding": {
+      "N_round:wrong_multiple": 773,
+      "N_round:wrong_direction": 773
+    },
+    "ratio": {
+      "N1_oom:misbind": 753,
+      "N1_arbitrary": 452,
+      "N2_operator": 349,
+      "N1_near_miss": 301,
+      "N7_numeral": 206
+    },
+    "pct_change": {
+      "N1_oom:misbind": 753,
+      "N1_arbitrary": 452,
+      "N2_operator": 349,
+      "N1_near_miss": 301,
+      "N7_numeral": 206
+    },
+    "sum": {
+      "N1_oom:misbind": 753,
+      "N1_arbitrary": 591,
+      "N1_near_miss": 301,
+      "N2_operator": 210,
+      "N7_numeral": 206
+    },
+    "difference": {
+      "N2_operator": 698,
+      "N1_oom:misbind": 578,
+      "N1_arbitrary": 347,
+      "N1_near_miss": 232,
+      "N7_numeral": 206
+    },
+    "scale_unit": {
+      "N1_oom:misbind": 463,
+      "N1_arbitrary": 278,
+      "N1_near_miss": 185,
+      "N7_numeral": 103
+    },
+    "mean": {
+      "N2_operator": 436,
+      "N1_oom:misbind": 361,
+      "N1_arbitrary": 217,
+      "N1_near_miss": 145,
+      "N7_numeral": 129
+    },
+    "product": {
+      "N1_oom:misbind": 235,
+      "N1_arbitrary": 141,
+      "N2_operator": 109,
+      "N1_near_miss": 94,
+      "N7_numeral": 64
+    }
+  },
+  "sub_quota": {
+    "compare": 900,
+    "bind_col": 900,
+    "bind_row": 450
+  },
+  "family_unfilled": {
+    "rounding": {},
+    "ratio": {},
+    "pct_change": {},
+    "sum": {},
+    "difference": {},
+    "scale_unit": {},
+    "mean": {},
+    "product": {}
+  },
+  "sub_unfilled": {},
+  "family_slots_reflowed": {},
+  "tuples_rejected_at_construction": 142218,
+  "diversity": {
+    "documents": 6642,
+    "pairs_per_document_mean": 2.2584,
+    "pairs_per_document_max": 6,
+    "pairs_per_document_p50": 2,
+    "distinct_chunks": 13101,
+    "distinct_claims": 29608,
+    "result_digit_length_counts": {
+      "2": 1453,
+      "3": 4207,
+      "4": 3815,
+      "5": 2330,
+      "6": 577,
+      "7": 368
+    },
+    "compare_gap_strata": {
+      "lt10pct": 301,
+      "10to100pct": 301,
+      "gt100pct": 298
+    }
+  },
+  "disjointness": {
+    "method": "content fingerprints (the canonical numerals of each eval chunk must not sit inside a built table), because the v2 lane's FEVEROUS doc_ids are not stable across rebuilds; the v2 doc_id set is excluded as well",
+    "eval_rows": 1050,
+    "eval_rows_unmatched_to_a_v2_document": 0,
+    "eval_v2_doc_ids": 536,
+    "eval_content_fingerprints": 547,
+    "corpus_tables_matching_eval_content": 3517,
+    "corpus_documents_dropped_as_eval": 3557,
+    "built_documents": 6642,
+    "shared_doc_ids": 0,
+    "shared_by_v2_id": 0,
+    "shared_by_content": 0,
+    "shared_examples": [],
+    "shared_evidence_chunks_with_evalset": 0,
+    "shared_claim_strings_with_evalset": 3
+  },
+  "negative_direction_balance": {
+    "(('N1_arbitrary', 'difference'), 'down')": 173,
+    "(('N1_arbitrary', 'difference'), 'up')": 174,
+    "(('N1_arbitrary', 'mean'), 'down')": 108,
+    "(('N1_arbitrary', 'mean'), 'up')": 109,
+    "(('N1_arbitrary', 'pct_change'), 'down')": 226,
+    "(('N1_arbitrary', 'pct_change'), 'up')": 226,
+    "(('N1_arbitrary', 'product'), 'down')": 70,
+    "(('N1_arbitrary', 'product'), 'up')": 71,
+    "(('N1_arbitrary', 'ratio'), 'down')": 226,
+    "(('N1_arbitrary', 'ratio'), 'up')": 226,
+    "(('N1_arbitrary', 'scale_unit'), 'down')": 139,
+    "(('N1_arbitrary', 'scale_unit'), 'up')": 139,
+    "(('N1_arbitrary', 'sum'), 'down')": 295,
+    "(('N1_arbitrary', 'sum'), 'up')": 296,
+    "(('N1_near_miss', 'difference'), 'down')": 116,
+    "(('N1_near_miss', 'difference'), 'up')": 116,
+    "(('N1_near_miss', 'mean'), 'down')": 72,
+    "(('N1_near_miss', 'mean'), 'up')": 73,
+    "(('N1_near_miss', 'pct_change'), 'down')": 150,
+    "(('N1_near_miss', 'pct_change'), 'up')": 151,
+    "(('N1_near_miss', 'product'), 'down')": 47,
+    "(('N1_near_miss', 'product'), 'up')": 47,
+    "(('N1_near_miss', 'ratio'), 'down')": 150,
+    "(('N1_near_miss', 'ratio'), 'up')": 151,
+    "(('N1_near_miss', 'scale_unit'), 'down')": 92,
+    "(('N1_near_miss', 'scale_unit'), 'up')": 93,
+    "(('N1_near_miss', 'sum'), 'down')": 150,
+    "(('N1_near_miss', 'sum'), 'up')": 151,
+    "(('N1_oom:misbind', 'difference'), 'down')": 289,
+    "(('N1_oom:misbind', 'difference'), 'up')": 289,
+    "(('N1_oom:misbind', 'mean'), 'down')": 180,
+    "(('N1_oom:misbind', 'mean'), 'up')": 181,
+    "(('N1_oom:misbind', 'pct_change'), 'down')": 376,
+    "(('N1_oom:misbind', 'pct_change'), 'up')": 377,
+    "(('N1_oom:misbind', 'product'), 'down')": 117,
+    "(('N1_oom:misbind', 'product'), 'up')": 118,
+    "(('N1_oom:misbind', 'ratio'), 'down')": 376,
+    "(('N1_oom:misbind', 'ratio'), 'up')": 377,
+    "(('N1_oom:misbind', 'scale_unit'), 'down')": 231,
+    "(('N1_oom:misbind', 'scale_unit'), 'up')": 232,
+    "(('N1_oom:misbind', 'sum'), 'down')": 376,
+    "(('N1_oom:misbind', 'sum'), 'up')": 377,
+    "(('N2_operator', 'difference'), 'down')": 349,
+    "(('N2_operator', 'difference'), 'up')": 349,
+    "(('N2_operator', 'mean'), 'down')": 218,
+    "(('N2_operator', 'mean'), 'up')": 218,
+    "(('N2_operator', 'pct_change'), 'down')": 174,
+    "(('N2_operator', 'pct_change'), 'up')": 175,
+    "(('N2_operator', 'product'), 'down')": 54,
+    "(('N2_operator', 'product'), 'up')": 55,
+    "(('N2_operator', 'ratio'), 'down')": 174,
+    "(('N2_operator', 'ratio'), 'up')": 175,
+    "(('N2_operator', 'sum'), 'down')": 105,
+    "(('N2_operator', 'sum'), 'up')": 105,
+    "(('N7_numeral', 'difference'), 'down')": 103,
+    "(('N7_numeral', 'difference'), 'up')": 103,
+    "(('N7_numeral', 'mean'), 'down')": 64,
+    "(('N7_numeral', 'mean'), 'up')": 65,
+    "(('N7_numeral', 'pct_change'), 'down')": 103,
+    "(('N7_numeral', 'pct_change'), 'up')": 103,
+    "(('N7_numeral', 'product'), 'down')": 32,
+    "(('N7_numeral', 'product'), 'up')": 32,
+    "(('N7_numeral', 'ratio'), 'down')": 103,
+    "(('N7_numeral', 'ratio'), 'up')": 103,
+    "(('N7_numeral', 'scale_unit'), 'down')": 51,
+    "(('N7_numeral', 'scale_unit'), 'up')": 52,
+    "(('N7_numeral', 'sum'), 'down')": 103,
+    "(('N7_numeral', 'sum'), 'up')": 103,
+    "(('N_round:wrong_direction', 'rounding'), 'down')": 386,
+    "(('N_round:wrong_direction', 'rounding'), 'up')": 387,
+    "(('N_round:wrong_multiple', 'rounding'), 'down')": 386,
+    "(('N_round:wrong_multiple', 'rounding'), 'up')": 387
+  },
+  "verify": {
+    "claim_only_tfidf_auroc": {
+      "value": 0.5191,
+      "bar": "< 0.55",
+      "pass": true,
+      "train_docs": 4649,
+      "test_docs": 1993,
+      "test_rows": 9020
+    },
+    "within_pair_claim_only_accuracy": {
+      "per_family": {
+        "N_round:wrong_direction": {
+          "acc": 0.5593,
+          "pairs": 236
+        },
+        "N_round:wrong_multiple": {
+          "acc": 0.5349,
+          "pairs": 215
+        },
+        "N1_arbitrary": {
+          "acc": 0.477,
+          "pairs": 717
+        },
+        "N7_numeral": {
+          "acc": 0.565,
+          "pairs": 331
+        },
+        "N1_near_miss": {
+          "acc": 0.4875,
+          "pairs": 480
+        },
+        "N1_oom:misbind": {
+          "acc": 0.5074,
+          "pairs": 1151
+        },
+        "N2_operator": {
+          "acc": 0.5775,
+          "pairs": 684
+        },
+        "r:relational": {
+          "acc": 0.5065,
+          "pairs": 696
+        }
+      },
+      "worst": 0.5775,
+      "bar": "< 0.60",
+      "pass": true
+    },
+    "trailing_zero_auroc": {
+      "pooled": 0.5008,
+      "per_type": {
+        "pct_change": 0.5,
+        "product": 0.5,
+        "scale_unit": 0.5,
+        "mean": 0.5,
+        "difference": 0.5,
+        "sum": 0.5,
+        "ratio": 0.5,
+        "rounding": 0.5
+      },
+      "bar": "in [0.45, 0.55]",
+      "pass": true
+    },
+    "arithmetic_rederivation": {
+      "sampled": 1000,
+      "errors": 0,
+      "bar": "0 errors",
+      "pass": true,
+      "examples": []
+    },
+    "p_label0_given_absent": {
+      "value": 0.5,
+      "absent_rows": 25500,
+      "bar": "~= 0.5 (+/- 0.01)",
+      "pass": true
+    },
+    "report_only": {
+      "claim_char_length_auroc": 0.5001,
+      "digit_count_auroc": 0.5017,
+      "decimal_presence_auroc": 0.4999
+    },
+    "all_bars_pass": true
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "gold": {
+    "auc": 0.8195,
+    "f1": 0.7049,
+    "n": 717
+  },
+  "gold_full": {
+    "auc": 0.8358,
+    "f1": 0.722,
+    "n": 2752
+  },
+  "ragtruth_en": {
+    "auc": 0.8358,
+    "f1": 0.741,
+    "n": 600
+  },
+  "ragtruth_nonen": {
+    "auc": 0.8448,
+    "per_lang": {
+      "de": 0.8381,
+      "fr": 0.8381,
+      "es": 0.852,
+      "it": 0.8397,
+      "pl": 0.8456,
+      "hu": 0.8225,
+      "cn": 0.8773
+    }
+  },
+  "params_M": 307.1,
+  "lambda_max": 0.02,
+  "lane": "R17-H145 relational sub-block (7,500) + scale/unit family build 2 (5,672)",
+  "arm": "h145_relational_scaleunit",
+  "draw": 1,
+  "seed": 1145,
+  "mix": "clean public-only mix + relational + scale/unit (H133 derivation core and H108 lane NOT included)",
+  "mix_rows": 698842,
+  "clean_rows": 685670,
+  "lane_rows": {
+    "quant_relational": 7500,
+    "quant_scale_unit": 5672
+  },
+  "dann_groups": 14,
+  "lane_groups": [
+    "quant_relational",
+    "quant_scale_unit"
+  ],
+  "group_counts": {
+    "halueval": 40000,
+    "psiloqa": 61712,
+    "quant_relational": 7500,
+    "quant_scale_unit": 5672,
+    "ragtruth_cn": 15090,
+    "ragtruth_de": 15090,
+    "ragtruth_en": 15090,
+    "ragtruth_es": 15090,
+    "ragtruth_fr": 15090,
+    "ragtruth_hu": 15090,
+    "ragtruth_it": 15090,
+    "ragtruth_pl": 15090,
+    "tabfact": 92585,
+    "vitaminc": 370653
+  },
+  "n_steps": 14560,
+  "perm_fingerprint": "90f8c77667a667ff",
+  "init_fingerprint": "1c12292170846c4cb43575d1c9f3abf4",
+  "init_fingerprint_scope": "trunk+task_head",
+  "control": "BANKED clean pair R9-H105 (unseeded, pre-H126) - see the pairing caveat in this trainer's docstring",
+  "train_seconds": 13650.1,
+  "checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/R17-H145-arm-draw1"
+}

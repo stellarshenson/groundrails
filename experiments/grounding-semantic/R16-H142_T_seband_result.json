@@ -1,0 +1,29 @@
+{
+  "read": "R16-H142-T amendment A1 - anti-gaming hold re-priced to clean control - 2 x SE_delta (paired bootstrap)",
+  "se_delta": 0.00635,
+  "repriced_bar": 0.7438,
+  "draw1_read": 0.7507,
+  "pass": true,
+  "clean_control": 0.7565,
+  "no_tolerance_bar": 0.7565,
+  "delta_point": -0.0058,
+  "delta_in_se_units": -0.913,
+  "margin_vs_repriced_bar": 0.0069,
+  "bootstrap": {
+    "n_resamples": 10000,
+    "unit": "headline near-miss PAIR (positive + negative claim together); both checkpoints re-scored on the same resample, so the delta is paired",
+    "n_headline_pairs": 543,
+    "seed": 20260812,
+    "delta_mean": -0.0057,
+    "delta_p2_5": -0.01806,
+    "delta_p97_5": 0.00649,
+    "frac_resamples_delta_ge_0": 0.1863,
+    "excluded_families": [
+      "digit_perturb",
+      "comparative_flip"
+    ]
+  },
+  "scores_source": "R16-H142-T_antigaming_set.parquet",
+  "gpu_used": "none - the anti-gaming stage banked per-pair scores for both checkpoints at scoring time",
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+}

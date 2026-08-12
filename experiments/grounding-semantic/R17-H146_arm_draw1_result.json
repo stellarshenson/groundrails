@@ -1,0 +1,67 @@
+{
+  "gold": {
+    "auc": 0.8083,
+    "f1": 0.7011,
+    "n": 717
+  },
+  "gold_full": {
+    "auc": 0.8244,
+    "f1": 0.6744,
+    "n": 2752
+  },
+  "ragtruth_en": {
+    "auc": 0.8212,
+    "f1": 0.7412,
+    "n": 600
+  },
+  "ragtruth_nonen": {
+    "auc": 0.8305,
+    "per_lang": {
+      "de": 0.8315,
+      "fr": 0.8317,
+      "es": 0.8216,
+      "it": 0.8293,
+      "pl": 0.8234,
+      "hu": 0.8199,
+      "cn": 0.8563
+    }
+  },
+  "params_M": 307.1,
+  "lambda_max": 0.02,
+  "lane": "R17-H146 misbind-verification lane (30,000 rows / 15,000 pairs, misbound_row 21,000 / misbound_col 9,000)",
+  "arm": "h146_misbind",
+  "draw": 1,
+  "seed": 1146,
+  "mix": "clean public-only mix + misbind lane (H133 derivation core and H108 lane NOT included)",
+  "mix_rows": 715670,
+  "clean_rows": 685670,
+  "lane_rows": {
+    "quant_misbind": 30000
+  },
+  "dann_groups": 13,
+  "lane_groups": [
+    "quant_misbind"
+  ],
+  "group_counts": {
+    "halueval": 40000,
+    "psiloqa": 61712,
+    "quant_misbind": 30000,
+    "ragtruth_cn": 15090,
+    "ragtruth_de": 15090,
+    "ragtruth_en": 15090,
+    "ragtruth_es": 15090,
+    "ragtruth_fr": 15090,
+    "ragtruth_hu": 15090,
+    "ragtruth_it": 15090,
+    "ragtruth_pl": 15090,
+    "tabfact": 92585,
+    "vitaminc": 370653
+  },
+  "n_steps": 14910,
+  "perm_fingerprint": "25bd6d194ff18cc6",
+  "init_fingerprint": "0e41707ea8909a8c3d71767a333a9d0c",
+  "init_fingerprint_scope": "trunk+task_head",
+  "control": "BANKED clean pair R9-H105 (unseeded, pre-H126) - see the pairing caveat in this trainer's docstring",
+  "train_seconds": 19920.4,
+  "checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/R17-H146-arm-draw1"
+}

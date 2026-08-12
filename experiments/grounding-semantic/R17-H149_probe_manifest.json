@@ -1,0 +1,104 @@
+{
+  "seed": 20260811,
+  "pairs": 358,
+  "rows": 716,
+  "documents": 240,
+  "passages": 342,
+  "families": {
+    "direction_flip": 212,
+    "role_swap": 504
+  },
+  "corpora": {
+    "army-tm": 2,
+    "scifact": 494,
+    "faa-amt": 220
+  },
+  "extraction": {
+    "relations": 372,
+    "passages_with_relations": 355
+  },
+  "candidates": {
+    "role_swap": 255,
+    "direction_flip": 116
+  },
+  "dropped": {
+    "role_swap_direction_balance": 3,
+    "direction_flip_direction_balance": 10,
+    "verbatim_positive": 0
+  },
+  "construction": {
+    "positives": "voice recast + tense-preserving verb synonym over a dependency-extracted (subject, relation, object) proposition",
+    "role_swap": "arguments exchanged; token-multiset identical twin",
+    "direction_flip": "direction verb replaced by its antonym from the same closed pair; up/down source directions balanced 50/50",
+    "entity_swap": "object replaced by the object of a different relation in the same passage, emitted in mirrored couples",
+    "caps": {
+      "pairs_per_passage": 3,
+      "pairs_per_document": 400,
+      "target_per_family": 700
+    },
+    "sentence_veto": "negation / modality / hedging / conditionals refused"
+  },
+  "verify": {
+    "claim_only_tfidf_auroc": {
+      "value": 0.4701,
+      "bar": "< 0.55",
+      "pass": true,
+      "scoring": "5-fold document-disjoint, out of fold, direction-stratified, liblinear tol 1e-7",
+      "documents": 286,
+      "rows": 716
+    },
+    "within_pair_claim_only_accuracy": {
+      "per_family": {
+        "role_swap": {
+          "acc": 0.5139,
+          "pairs": 252
+        },
+        "direction_flip": {
+          "acc": 0.4057,
+          "pairs": 106
+        }
+      },
+      "worst": 0.5139,
+      "bar": "< 0.60",
+      "pass": true
+    },
+    "paraphrase_depth": {
+      "positive_verbatim_substring_rate": 0.0,
+      "negative_verbatim_substring_rate": 0.0,
+      "bar": "positive verbatim rate == 0",
+      "pass": true,
+      "max_contiguous_ngram_with_passage": {
+        "mean": 3.841,
+        "median": 3.0,
+        "p90": 6.0,
+        "max": 11,
+        "sampled_positives": 358
+      },
+      "token_jaccard_claim_vs_source_sentence": {
+        "mean": 0.3888,
+        "median": 0.3604,
+        "p90": 0.6183
+      },
+      "note": "template + synonym + voice recast, no LLM; content words are retained by construction, so depth is structural/lexical-verb level, not full rewriting"
+    },
+    "surface_parity": {
+      "identical_token_multiset_rate_per_family": {
+        "role_swap": 0.7103,
+        "direction_flip": 0.0
+      },
+      "claim_char_length_auroc": 0.4994,
+      "claim_token_count_auroc": 0.5,
+      "numeral_presence_auroc": 0.5,
+      "passage_token_overlap_auroc": 0.4962,
+      "bar": "each AUROC in [0.45, 0.55]",
+      "pass": true
+    },
+    "substituted_string_balance_l1": {
+      "per_family": {
+        "direction_flip": 0.0
+      },
+      "bar": "report-only (0 = perfect balance)"
+    },
+    "all_bars_pass": true
+  }
+}

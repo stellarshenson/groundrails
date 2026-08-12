@@ -1,0 +1,465 @@
+{
+  "rows": 5540,
+  "pairs": 2770,
+  "verify": {
+    "claim_only_tfidf_auroc": {
+      "value": 0.4296,
+      "bar": "< 0.55",
+      "pass": true,
+      "scoring": "5-fold document-disjoint, out of fold, direction-stratified, liblinear tol 1e-7",
+      "documents": 410,
+      "rows": 5540
+    },
+    "within_pair_claim_only_accuracy": {
+      "per_swap_family": {
+        "km2<->sqmi": {
+          "acc": 0.4384,
+          "pairs": 568,
+          "se_at_chance": 0.021,
+          "z_vs_chance": -2.94
+        },
+        "ha<->km2": {
+          "acc": 0.3767,
+          "pairs": 146,
+          "se_at_chance": 0.0414,
+          "z_vs_chance": -2.98
+        },
+        "ghz<->mhz": {
+          "acc": 0.4167,
+          "pairs": 132,
+          "se_at_chance": 0.0435,
+          "z_vs_chance": -1.91
+        },
+        "km<->m": {
+          "acc": 0.5,
+          "pairs": 782,
+          "se_at_chance": 0.0179,
+          "z_vs_chance": 0.0
+        },
+        "kg<->lb": {
+          "acc": 0.4236,
+          "pairs": 144,
+          "se_at_chance": 0.0417,
+          "z_vs_chance": -1.83
+        },
+        "kb<->mb": {
+          "acc": 0.3491,
+          "pairs": 106,
+          "se_at_chance": 0.0486,
+          "z_vs_chance": -3.11
+        },
+        "gb<->mb": {
+          "acc": 0.3581,
+          "pairs": 148,
+          "se_at_chance": 0.0411,
+          "z_vs_chance": -3.45
+        },
+        "cm<->m": {
+          "acc": 0.3992,
+          "pairs": 238,
+          "se_at_chance": 0.0324,
+          "z_vs_chance": -3.11
+        },
+        "khz<->mhz": {
+          "acc": 0.4408,
+          "pairs": 152,
+          "se_at_chance": 0.0406,
+          "z_vs_chance": -1.46
+        },
+        "km<->mm": {
+          "acc": 0.3788,
+          "pairs": 198,
+          "se_at_chance": 0.0355,
+          "z_vs_chance": -3.41
+        },
+        "kmh<->mph": {
+          "acc": 0.3654,
+          "pairs": 156,
+          "se_at_chance": 0.04,
+          "z_vs_chance": -3.36
+        }
+      },
+      "per_neg_family": {
+        "unit_swap": {
+          "acc": 0.4314,
+          "pairs": 2770,
+          "se_at_chance": 0.0095,
+          "z_vs_chance": -7.22
+        }
+      },
+      "worst": 0.5,
+      "bar": "< 0.60",
+      "pass": true,
+      "worst_two_sided_deviation_report_only": 0.1509
+    },
+    "surface_parity": {
+      "auroc": {
+        "claim_char_length": 0.499,
+        "claim_token_count": 0.4998,
+        "claim_numeral_count": 0.5,
+        "claim_chunk_overlap": 0.4999
+      },
+      "bar": "each in [0.45, 0.55]",
+      "pass": true,
+      "max_deviation": 0.001,
+      "pooled_within_pair_parity_flag_rate": 0.2657
+    },
+    "positive_verbatim_substring": {
+      "positive_verbatim_rate": 1.0,
+      "all_rows_verbatim_rate": 1.0,
+      "all_rows_canonical_rate": 0.941155,
+      "bar": "1.0 on the positive leg",
+      "pass": true
+    },
+    "minimal_pair_integrity": {
+      "pairs_checked": 2770,
+      "errors": 0,
+      "bar": "0 errors over the FULL set",
+      "pass": true,
+      "examples": []
+    },
+    "dedupe_disjointness": {
+      "duplicate_claim_chunk_label_rows": 0,
+      "documents": 410,
+      "distinct_claims": 5456,
+      "distinct_chunks": 2509,
+      "pairs_per_document_mean": 6.756,
+      "pairs_per_document_max": 32,
+      "evalset_shared_documents": 0,
+      "evalset_shared_chunks": 0,
+      "bar": "0 duplicate rows, 0 eval-set documents",
+      "pass": true
+    },
+    "claim_unit_literal_presence": {
+      "positive_leg_rate": 0.0,
+      "negative_leg_rate": 0.0,
+      "auroc": 0.5,
+      "definition": "claim unit phrase, or any token distinguishing it from its twin's unit phrase, readable in the chunk",
+      "bar": "0.0 on both legs (H148 rule: no adjacent-string solution)",
+      "pass": true
+    },
+    "value_surface_direction_parity": {
+      "per_swap_family": {
+        "gb<->mb": {
+          "digit_count_auroc": 0.5,
+          "magnitude_auroc": 0.435,
+          "decimal_auroc": 0.5,
+          "pairs": 148
+        },
+        "ha<->km2": {
+          "digit_count_auroc": 0.5,
+          "magnitude_auroc": 0.4736,
+          "decimal_auroc": 0.5,
+          "pairs": 146
+        },
+        "km<->mm": {
+          "digit_count_auroc": 0.5,
+          "magnitude_auroc": 0.4544,
+          "decimal_auroc": 0.5,
+          "pairs": 198
+        },
+        "cm<->m": {
+          "digit_count_auroc": 0.5,
+          "magnitude_auroc": 0.2909,
+          "decimal_auroc": 0.5,
+          "pairs": 238
+        },
+        "ghz<->mhz": {
+          "digit_count_auroc": 0.5,
+          "magnitude_auroc": 0.0869,
+          "decimal_auroc": 0.5,
+          "pairs": 132
+        },
+        "kmh<->mph": {
+          "digit_count_auroc": 0.5,
+          "magnitude_auroc": 0.8629,
+          "decimal_auroc": 0.5,
+          "pairs": 156
+        },
+        "kb<->mb": {
+          "digit_count_auroc": 0.5,
+          "magnitude_auroc": 0.5687,
+          "decimal_auroc": 0.5,
+          "pairs": 106
+        },
+        "km<->m": {
+          "digit_count_auroc": 0.5,
+          "magnitude_auroc": 0.5215,
+          "decimal_auroc": 0.5,
+          "pairs": 782
+        },
+        "km2<->sqmi": {
+          "digit_count_auroc": 0.5,
+          "magnitude_auroc": 0.7833,
+          "decimal_auroc": 0.5,
+          "pairs": 568
+        },
+        "kg<->lb": {
+          "digit_count_auroc": 0.5,
+          "magnitude_auroc": 0.4759,
+          "decimal_auroc": 0.5,
+          "pairs": 144
+        },
+        "khz<->mhz": {
+          "digit_count_auroc": 0.5,
+          "magnitude_auroc": 0.5718,
+          "decimal_auroc": 0.5,
+          "pairs": 152
+        }
+      },
+      "max_digit_count_deviation": 0.0,
+      "max_decimal_deviation": 0.0,
+      "bar": "digit-count AUROC in [0.45, 0.55] (report-only; enforced by bucket-matched construction)"
+    },
+    "word_label_marginal_balance": {
+      "per_word": {
+        "cm": {
+          "as_positive": 119,
+          "as_negative": 119,
+          "skew": 0.0
+        },
+        "gb": {
+          "as_positive": 74,
+          "as_negative": 74,
+          "skew": 0.0
+        },
+        "ghz": {
+          "as_positive": 66,
+          "as_negative": 66,
+          "skew": 0.0
+        },
+        "ha": {
+          "as_positive": 73,
+          "as_negative": 73,
+          "skew": 0.0
+        },
+        "kb": {
+          "as_positive": 53,
+          "as_negative": 53,
+          "skew": 0.0
+        },
+        "kg": {
+          "as_positive": 72,
+          "as_negative": 72,
+          "skew": 0.0
+        },
+        "khz": {
+          "as_positive": 76,
+          "as_negative": 76,
+          "skew": 0.0
+        },
+        "km": {
+          "as_positive": 490,
+          "as_negative": 490,
+          "skew": 0.0
+        },
+        "km2": {
+          "as_positive": 357,
+          "as_negative": 357,
+          "skew": 0.0
+        },
+        "kmh": {
+          "as_positive": 78,
+          "as_negative": 78,
+          "skew": 0.0
+        },
+        "lb": {
+          "as_positive": 72,
+          "as_negative": 72,
+          "skew": 0.0
+        },
+        "m": {
+          "as_positive": 510,
+          "as_negative": 510,
+          "skew": 0.0
+        },
+        "mb": {
+          "as_positive": 127,
+          "as_negative": 127,
+          "skew": 0.0
+        },
+        "mhz": {
+          "as_positive": 142,
+          "as_negative": 142,
+          "skew": 0.0
+        },
+        "mm": {
+          "as_positive": 99,
+          "as_negative": 99,
+          "skew": 0.0
+        },
+        "mph": {
+          "as_positive": 78,
+          "as_negative": 78,
+          "skew": 0.0
+        },
+        "sqmi": {
+          "as_positive": 284,
+          "as_negative": 284,
+          "skew": 0.0
+        }
+      },
+      "max_skew": 0.0,
+      "bar": "0.0 by construction (50/50 inside every family)"
+    },
+    "digit_surface_report_only": {
+      "trailing_zero_auroc": 0.5,
+      "digit_count_auroc": 0.5,
+      "leading_digit_auroc": 0.5,
+      "value_magnitude_auroc": 0.5
+    },
+    "unit_rederivation_audit": {
+      "sampled": 500,
+      "errors": 0,
+      "bar": "0 errors",
+      "pass": true,
+      "examples": []
+    },
+    "all_bars_pass": true,
+    "h148_and_audit_pass": true
+  },
+  "window_census": {
+    "windowing": "1500/750, final window flush to the end (byte-identical to R8-H101 / R16-H142)",
+    "clean_mix": {
+      "rows": 685670,
+      "mean_windows": 1.5071,
+      "median_windows": 1,
+      "max_windows": 40,
+      "multi_window_rows": 137622,
+      "multi_window_share": 0.2007
+    },
+    "clean_mix_per_group": {
+      "halueval": {
+        "rows": 40000,
+        "mean_windows": 2.839,
+        "median_windows": 1,
+        "max_windows": 15,
+        "multi_window_rows": 18590,
+        "multi_window_share": 0.4647
+      },
+      "psiloqa": {
+        "rows": 61712,
+        "mean_windows": 1.0705,
+        "median_windows": 1,
+        "max_windows": 25,
+        "multi_window_rows": 2705,
+        "multi_window_share": 0.0438
+      },
+      "ragtruth_cn": {
+        "rows": 15090,
+        "mean_windows": 1.58,
+        "median_windows": 1,
+        "max_windows": 11,
+        "multi_window_rows": 5248,
+        "multi_window_share": 0.3478
+      },
+      "ragtruth_de": {
+        "rows": 15090,
+        "mean_windows": 3.3121,
+        "median_windows": 3,
+        "max_windows": 16,
+        "multi_window_rows": 13291,
+        "multi_window_share": 0.8808
+      },
+      "ragtruth_en": {
+        "rows": 15090,
+        "mean_windows": 2.6871,
+        "median_windows": 2,
+        "max_windows": 14,
+        "multi_window_rows": 11496,
+        "multi_window_share": 0.7618
+      },
+      "ragtruth_es": {
+        "rows": 15090,
+        "mean_windows": 3.3156,
+        "median_windows": 3,
+        "max_windows": 17,
+        "multi_window_rows": 13345,
+        "multi_window_share": 0.8844
+      },
+      "ragtruth_fr": {
+        "rows": 15090,
+        "mean_windows": 3.44,
+        "median_windows": 3,
+        "max_windows": 16,
+        "multi_window_rows": 13730,
+        "multi_window_share": 0.9099
+      },
+      "ragtruth_hu": {
+        "rows": 15090,
+        "mean_windows": 3.0038,
+        "median_windows": 3,
+        "max_windows": 40,
+        "multi_window_rows": 12686,
+        "multi_window_share": 0.8407
+      },
+      "ragtruth_it": {
+        "rows": 15090,
+        "mean_windows": 3.3317,
+        "median_windows": 3,
+        "max_windows": 16,
+        "multi_window_rows": 13208,
+        "multi_window_share": 0.8753
+      },
+      "ragtruth_pl": {
+        "rows": 15090,
+        "mean_windows": 3.0779,
+        "median_windows": 3,
+        "max_windows": 15,
+        "multi_window_rows": 12766,
+        "multi_window_share": 0.846
+      },
+      "tabfact": {
+        "rows": 92585,
+        "mean_windows": 1.346,
+        "median_windows": 1,
+        "max_windows": 12,
+        "multi_window_rows": 20469,
+        "multi_window_share": 0.2211
+      },
+      "vitaminc": {
+        "rows": 370653,
+        "mean_windows": 1.0003,
+        "median_windows": 1,
+        "max_windows": 5,
+        "multi_window_rows": 88,
+        "multi_window_share": 0.0002
+      }
+    },
+    "misbind_lane_H146": {
+      "rows": 30000,
+      "mean_windows": 1.0,
+      "median_windows": 1,
+      "max_windows": 1,
+      "multi_window_rows": 0,
+      "multi_window_share": 0.0
+    },
+    "scaleunit_lane_H150": {
+      "rows": 5540,
+      "mean_windows": 1.0,
+      "median_windows": 1,
+      "max_windows": 1,
+      "multi_window_rows": 0,
+      "multi_window_share": 0.0
+    },
+    "combined": {
+      "rows": 721210,
+      "multi_window_rows": 137622,
+      "multi_window_share": 0.1908,
+      "mean_windows": 1.4821
+    },
+    "baseline": {
+      "multi_window_share": 0.201,
+      "mean_windows": 1.507,
+      "source": "R16-H142 G1 twin arm, clean mix alone"
+    },
+    "delta_vs_baseline": {
+      "multi_window_share": -0.0102,
+      "mean_windows": -0.0249
+    }
+  },
+  "reproducibility": {
+    "note": "run with PYTHONHASHSEED=0; the R17-H144 content-fingerprint exclusion iterates sets of strings, so table admission (and therefore the exact pair count) drifts by ~0.5% across runs under hash randomisation",
+    "seed": 1150
+  }
+}

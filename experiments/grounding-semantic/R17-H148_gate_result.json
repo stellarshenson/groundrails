@@ -1,0 +1,195 @@
+{
+  "hypothesis": "R17-H148 PROCEDURAL-REGISTER LANE - stage 1 kill-gate",
+  "gpu": "GPU2 (RTX 5000 Ada), CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=2",
+  "sources_census": {
+    "army_tm": {
+      "pdfs_on_disk": 135,
+      "crawl_targets": 1766,
+      "crawl_share": 0.0764,
+      "identifier_families": {
+        "LO": 85,
+        "TB": 43,
+        "MWO": 7,
+        "TM_operator_manuals": 0
+      },
+      "pages": 1769,
+      "procedural_blocks": 126,
+      "docs_with_blocks": 99,
+      "items": 610,
+      "licence": "public domain (17 U.S.C. 105)"
+    },
+    "faa_amt": {
+      "pdfs_on_disk": 3,
+      "pages": 2229,
+      "procedural_blocks": 303,
+      "items": 1350,
+      "licence": "public domain (17 U.S.C. 105)"
+    },
+    "multidoc2dial": {
+      "available": false,
+      "cached": "loader script only (datasets--IBM--multidoc2dial, 40 KB, no data shards); the `datasets` package is absent from the project venv",
+      "note": "no network fetch attempted - out of scope for stage 1"
+    },
+    "total_procedural_blocks": 429,
+    "total_documents": 102
+  },
+  "probe": {
+    "file": "R17-H148_probe.parquet",
+    "manifest": "R17-H148_probe_manifest.json",
+    "pairs": 978,
+    "rows": 1956,
+    "documents": 100,
+    "blocks": 393,
+    "families": {
+      "misbound_step": 1176,
+      "misbound_value": 780
+    },
+    "corpora": {
+      "army-tm": 704,
+      "faa-amt": 1252
+    },
+    "construction": {
+      "mirror_balanced_family": "misbound_step",
+      "mirror_dropped_pairs": 150,
+      "max_step_distance": 2,
+      "block_cap": 6,
+      "jaccard_max": 0.25
+    },
+    "verify": {
+      "claim_only_tfidf_auroc": {
+        "value": 0.5116,
+        "bar": "< 0.55",
+        "pass": true,
+        "scoring": "5-fold document-disjoint, out of fold, direction-stratified, liblinear tol 1e-7",
+        "documents": 100,
+        "rows": 1956
+      },
+      "within_pair_claim_only_accuracy": {
+        "per_family": {
+          "misbound_value": {
+            "acc": 0.5564,
+            "pairs": 390
+          },
+          "misbound_step": {
+            "acc": 0.4694,
+            "pairs": 588
+          }
+        },
+        "worst": 0.5564,
+        "bar": "< 0.60",
+        "pass": true,
+        "worst_two_sided_deviation_report_only": 0.0564
+      },
+      "value_presence": {
+        "cited_verbatim_rate": 1.0,
+        "correct_verbatim_rate": 1.0,
+        "bar": "1.0 for both",
+        "pass": true,
+        "note": "every asserted numeral is printed in the chunk; P(0 | absent) undefined"
+      },
+      "trailing_zero_auroc": {
+        "pooled": 0.5094,
+        "per_family": {
+          "misbound_value": 0.5223,
+          "misbound_step": 0.5
+        },
+        "bar": "in [0.45, 0.55]",
+        "pass": true
+      },
+      "digit_count_auroc": {
+        "pooled": 0.4958,
+        "per_family": {
+          "misbound_value": 0.4755,
+          "misbound_step": 0.5
+        },
+        "bar": "in [0.45, 0.55]",
+        "pass": true
+      },
+      "misbind_rederivation_audit": {
+        "sampled": 100,
+        "errors": 0,
+        "bar": "0 errors",
+        "pass": true,
+        "examples": []
+      },
+      "report_only": {
+        "claim_char_length_auroc": 0.4982,
+        "leading_digit_auroc": 0.5024,
+        "decimal_presence_auroc": 0.502,
+        "value_magnitude_auroc": 0.5181,
+        "surface_parity_rate": 0.9581
+      },
+      "all_bars_pass": true
+    }
+  },
+  "control_checkpoint": "R9-H105-mmbert-dann-clean",
+  "control_auroc": 0.7024,
+  "control_read": {
+    "auroc": 0.7024,
+    "n_pos": 978,
+    "n_neg": 978,
+    "per_family": {
+      "misbound_value": {
+        "auroc": 0.6243,
+        "within_pair_acc": 0.6615,
+        "pairs": 390
+      },
+      "misbound_step": {
+        "auroc": 0.8697,
+        "within_pair_acc": 0.9847,
+        "pairs": 588
+      }
+    },
+    "per_corpus": {
+      "faa-amt": {
+        "auroc": 0.7737,
+        "rows": 1252
+      },
+      "army-tm": {
+        "auroc": 0.6339,
+        "rows": 704
+      }
+    },
+    "within_pair_acc": 0.8558,
+    "mean_pos": 0.7127,
+    "mean_neg": 0.5128,
+    "auroc_se_hanley_mcneil": 0.0117
+  },
+  "reference_R16_H142_G0": {
+    "auroc": 0.7061,
+    "n_pos": 978,
+    "n_neg": 978,
+    "per_family": {
+      "misbound_step": {
+        "auroc": 0.9317,
+        "within_pair_acc": 0.983,
+        "pairs": 588
+      },
+      "misbound_value": {
+        "auroc": 0.5877,
+        "within_pair_acc": 0.6077,
+        "pairs": 390
+      }
+    },
+    "per_corpus": {
+      "army-tm": {
+        "auroc": 0.6039,
+        "rows": 704
+      },
+      "faa-amt": {
+        "auroc": 0.8087,
+        "rows": 1252
+      }
+    },
+    "within_pair_acc": 0.8333,
+    "mean_pos": 0.7426,
+    "mean_neg": 0.5852,
+    "auroc_se_hanley_mcneil": 0.0117,
+    "caveat": "single-window probe degenerates G0's set context to the pair's own CLS - not comparable to its banked arena reads"
+  },
+  "gate": {
+    "bar": "control AUROC <= 0.65",
+    "license": false
+  },
+  "license": false
+}

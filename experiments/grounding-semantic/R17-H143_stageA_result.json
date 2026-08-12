@@ -1,0 +1,422 @@
+{
+  "experiment": "R17-H143 Stage A - TINY-REASONER-RESIDUAL (measurement only)",
+  "per_model": {
+    "HuggingFaceTB/SmolLM2-360M-Instruct": {
+      "name": "HuggingFaceTB/SmolLM2-360M-Instruct",
+      "params_M": 362,
+      "over_budget": false,
+      "n_scored": 1000,
+      "pooled_auroc": 0.501128,
+      "pooled_auroc_literal05": 0.501128,
+      "per_family_auroc": {
+        "N1_oom:misbind": 0.4842923076923077,
+        "N1_arbitrary": 0.4712682926829268,
+        "r:relational": 0.5304533333333333,
+        "N2_operator": 0.5220555555555556,
+        "N1_near_miss": 0.5131923076923077,
+        "N7_numeral": 0.4754054054054054,
+        "N_round:wrong_direction": 0.5328461538461539,
+        "N_round:wrong_multiple": 0.5176923076923077
+      },
+      "per_claim_form_auroc": {
+        "bare": 0.49664256198347106,
+        "relational": 0.5182222222222223,
+        "shown": 0.5005208132402299
+      },
+      "parse_fail_rate": 0.018,
+      "margin_recovered_rate": 1.0,
+      "no_answer_rate": 0.056,
+      "verdict_counts": {
+        "GROUNDED": 706,
+        "UNGROUNDED": 238,
+        "None": 56
+      },
+      "latency_s_per_claim": 0.2796896262168884,
+      "mean_gen_tokens": 35.859,
+      "arithmetic_correct_rate": null,
+      "arithmetic_expressions_found": 0,
+      "arithmetic_rows_with_expressions": 0,
+      "arithmetic_subsample_n": 100,
+      "control_auroc": 0.4848,
+      "control_parse_fail_rate": 0.0,
+      "gate_exempt": false,
+      "control_gate_passed": false
+    },
+    "PleIAs/Baguettotron": {
+      "name": "PleIAs/Baguettotron",
+      "params_M": 321,
+      "over_budget": false,
+      "n_scored": 1000,
+      "pooled_auroc": 0.511696,
+      "pooled_auroc_literal05": 0.511696,
+      "per_family_auroc": {
+        "N1_oom:misbind": 0.5498153846153846,
+        "N1_arbitrary": 0.5065609756097561,
+        "r:relational": 0.4175466666666667,
+        "N2_operator": 0.5149444444444444,
+        "N1_near_miss": 0.4916923076923077,
+        "N7_numeral": 0.5402162162162162,
+        "N_round:wrong_direction": 0.5477692307692308,
+        "N_round:wrong_multiple": 0.5632307692307692
+      },
+      "per_claim_form_auroc": {
+        "bare": 0.4994260789715335,
+        "relational": 0.472,
+        "shown": 0.5540295513290382
+      },
+      "parse_fail_rate": 0.121,
+      "margin_recovered_rate": 1.0,
+      "no_answer_rate": 0.111,
+      "verdict_counts": {
+        "GROUNDED": 883,
+        "UNGROUNDED": 6,
+        "None": 111
+      },
+      "latency_s_per_claim": 1.385804617524147,
+      "mean_gen_tokens": 507.59,
+      "arithmetic_correct_rate": 0.6705882352941176,
+      "arithmetic_expressions_found": 170,
+      "arithmetic_rows_with_expressions": 44,
+      "arithmetic_subsample_n": 100,
+      "control_auroc": 0.464,
+      "control_parse_fail_rate": 0.16,
+      "gate_exempt": false,
+      "control_gate_passed": false,
+      "gate_diagnostic": {
+        "A_registered|think0": {
+          "control_auroc": 0.6944,
+          "n": 50,
+          "said_grounded": 50,
+          "said_ungrounded": 0,
+          "mean_margin_pos": 3.62554931640625,
+          "mean_margin_neg": 3.2980852127075195
+        },
+        "A_registered|think128": {
+          "control_auroc": 0.4928,
+          "n": 50,
+          "said_grounded": 50,
+          "said_ungrounded": 0,
+          "mean_margin_pos": 4.74638557434082,
+          "mean_margin_neg": 4.611059188842773
+        },
+        "B_reversed_order|think0": {
+          "control_auroc": 0.4432,
+          "n": 50,
+          "said_grounded": 0,
+          "said_ungrounded": 50,
+          "mean_margin_pos": -4.063143730163574,
+          "mean_margin_neg": -4.004349708557129
+        },
+        "B_reversed_order|think128": {
+          "control_auroc": 0.4896,
+          "n": 50,
+          "said_grounded": 0,
+          "said_ungrounded": 50,
+          "mean_margin_pos": -4.519765853881836,
+          "mean_margin_neg": -4.378199100494385
+        },
+        "C_explicit_rule|think0": {
+          "control_auroc": 0.2672,
+          "n": 50,
+          "said_grounded": 42,
+          "said_ungrounded": 8,
+          "mean_margin_pos": 0.3023102879524231,
+          "mean_margin_neg": 0.6830189228057861
+        },
+        "C_explicit_rule|think128": {
+          "control_auroc": 0.4864,
+          "n": 50,
+          "said_grounded": 42,
+          "said_ungrounded": 8,
+          "mean_margin_pos": 1.2294331789016724,
+          "mean_margin_neg": 1.1556243896484375
+        }
+      }
+    },
+    "PleIAs/Monad": {
+      "name": "PleIAs/Monad",
+      "params_M": 56,
+      "over_budget": false,
+      "n_scored": 1000,
+      "pooled_auroc": 0.502156,
+      "pooled_auroc_literal05": 0.502156,
+      "per_family_auroc": {
+        "N1_oom:misbind": 0.5034307692307692,
+        "N1_arbitrary": 0.46434146341463417,
+        "r:relational": 0.5020266666666666,
+        "N2_operator": 0.5395555555555556,
+        "N1_near_miss": 0.48015384615384615,
+        "N7_numeral": 0.4927027027027027,
+        "N_round:wrong_direction": 0.49253846153846154,
+        "N_round:wrong_multiple": 0.5789230769230769
+      },
+      "per_claim_form_auroc": {
+        "bare": 0.5160267447199265,
+        "relational": 0.4798222222222222,
+        "shown": 0.4949268932525751
+      },
+      "parse_fail_rate": 0.273,
+      "margin_recovered_rate": 1.0,
+      "no_answer_rate": 0.339,
+      "verdict_counts": {
+        "None": 339,
+        "GROUNDED": 661
+      },
+      "latency_s_per_claim": 0.6418978524208069,
+      "mean_gen_tokens": 509.298,
+      "arithmetic_correct_rate": null,
+      "arithmetic_expressions_found": 0,
+      "arithmetic_rows_with_expressions": 0,
+      "arithmetic_subsample_n": 100,
+      "control_auroc": 0.6816,
+      "control_parse_fail_rate": 0.22,
+      "gate_exempt": true,
+      "control_gate_passed": true
+    },
+    "PleIAs/Pleias-RAG-350M": {
+      "name": "PleIAs/Pleias-RAG-350M",
+      "params_M": 350,
+      "over_budget": false,
+      "n_scored": 1000,
+      "pooled_auroc": 0.513936,
+      "pooled_auroc_literal05": 0.513936,
+      "per_family_auroc": {
+        "N1_oom:misbind": 0.547,
+        "N1_arbitrary": 0.5207073170731708,
+        "r:relational": 0.4581866666666667,
+        "N2_operator": 0.4661388888888889,
+        "N1_near_miss": 0.5155384615384615,
+        "N7_numeral": 0.5447567567567567,
+        "N_round:wrong_direction": 0.4906153846153846,
+        "N_round:wrong_multiple": 0.5966923076923077
+      },
+      "per_claim_form_auroc": {
+        "bare": 0.49941173094582186,
+        "relational": 0.5157333333333334,
+        "shown": 0.536206164885614
+      },
+      "parse_fail_rate": 0.938,
+      "margin_recovered_rate": 1.0,
+      "no_answer_rate": 1.0,
+      "verdict_counts": {
+        "None": 1000
+      },
+      "latency_s_per_claim": 0.6545537581443788,
+      "mean_gen_tokens": 270.222,
+      "arithmetic_correct_rate": null,
+      "arithmetic_expressions_found": 0,
+      "arithmetic_rows_with_expressions": 0,
+      "arithmetic_subsample_n": 100,
+      "control_auroc": 0.616,
+      "control_parse_fail_rate": 0.94,
+      "gate_exempt": false,
+      "control_gate_passed": false
+    },
+    "Qwen/Qwen3-0.6B": {
+      "name": "Qwen/Qwen3-0.6B",
+      "params_M": 596,
+      "over_budget": true,
+      "n_scored": 1000,
+      "pooled_auroc": 0.851368,
+      "pooled_auroc_literal05": 0.851368,
+      "per_family_auroc": {
+        "N1_oom:misbind": 0.898,
+        "N1_arbitrary": 0.890219512195122,
+        "r:relational": 0.77368,
+        "N2_operator": 0.8093055555555555,
+        "N1_near_miss": 0.8616538461538461,
+        "N7_numeral": 0.8595675675675676,
+        "N_round:wrong_direction": 0.8041538461538461,
+        "N_round:wrong_multiple": 0.8512307692307692
+      },
+      "per_claim_form_auroc": {
+        "bare": 0.8551853764921947,
+        "relational": 0.8567111111111111,
+        "shown": 0.8488484240577138
+      },
+      "parse_fail_rate": 0.004,
+      "margin_recovered_rate": 1.0,
+      "no_answer_rate": 0.0,
+      "verdict_counts": {
+        "GROUNDED": 442,
+        "UNGROUNDED": 558
+      },
+      "latency_s_per_claim": 1.502096284866333,
+      "mean_gen_tokens": 313.652,
+      "arithmetic_correct_rate": 0.8333333333333334,
+      "arithmetic_expressions_found": 66,
+      "arithmetic_rows_with_expressions": 35,
+      "arithmetic_subsample_n": 100,
+      "control_auroc": 0.9904,
+      "control_parse_fail_rate": 0.0,
+      "gate_exempt": false,
+      "control_gate_passed": true
+    },
+    "Qwen/Qwen3-32B-FP8": {
+      "name": "Qwen/Qwen3-32B-FP8",
+      "params_M": 32800,
+      "over_budget": false,
+      "n_scored": 1000,
+      "pooled_auroc": 0.970756,
+      "pooled_auroc_literal05": 0.970756,
+      "per_family_auroc": {
+        "N1_oom:misbind": 0.9785538461538461,
+        "N1_arbitrary": 0.9795853658536585,
+        "r:relational": 0.98992,
+        "N2_operator": 0.9622777777777778,
+        "N1_near_miss": 0.9708846153846153,
+        "N7_numeral": 0.9687567567567568,
+        "N_round:wrong_direction": 0.8754615384615385,
+        "N_round:wrong_multiple": 0.97
+      },
+      "per_claim_form_auroc": {
+        "bare": 0.9740444214876033,
+        "relational": 0.9944888888888889,
+        "shown": 0.9499247714208556
+      },
+      "parse_fail_rate": 0.015,
+      "margin_recovered_rate": 1.0,
+      "no_answer_rate": 0.0,
+      "verdict_counts": {
+        "GROUNDED": 469,
+        "UNGROUNDED": 531
+      },
+      "latency_s_per_claim": 0.3168706107139588,
+      "mean_gen_tokens": 323.055,
+      "arithmetic_correct_rate": 0.8875,
+      "arithmetic_expressions_found": 80,
+      "arithmetic_rows_with_expressions": 43,
+      "arithmetic_subsample_n": 100,
+      "control_auroc": 1.0,
+      "control_parse_fail_rate": 0.0,
+      "gate_exempt": false,
+      "control_gate_passed": true,
+      "quant_path": "fp8-native"
+    },
+    "speakleash/Bielik-11B-v2.3-Instruct": {
+      "name": "speakleash/Bielik-11B-v2.3-Instruct",
+      "params_M": 11000,
+      "over_budget": false,
+      "n_scored": 1000,
+      "pooled_auroc": 0.629072,
+      "pooled_auroc_literal05": 0.629072,
+      "per_family_auroc": {
+        "N1_oom:misbind": 0.7075,
+        "N1_arbitrary": 0.5886951219512195,
+        "r:relational": 0.7481333333333333,
+        "N2_operator": 0.44480555555555557,
+        "N1_near_miss": 0.6107692307692307,
+        "N7_numeral": 0.5338918918918919,
+        "N_round:wrong_direction": 0.5874615384615385,
+        "N_round:wrong_multiple": 0.7447692307692307
+      },
+      "per_claim_form_auroc": {
+        "bare": 0.629670282369146,
+        "relational": 0.8686222222222222,
+        "shown": 0.5615909880020061
+      },
+      "parse_fail_rate": 0.0,
+      "margin_recovered_rate": 1.0,
+      "no_answer_rate": 0.02,
+      "verdict_counts": {
+        "None": 20,
+        "GROUNDED": 529,
+        "UNGROUNDED": 451
+      },
+      "latency_s_per_claim": 0.0665292319059372,
+      "mean_gen_tokens": 4.454,
+      "arithmetic_correct_rate": null,
+      "arithmetic_expressions_found": 0,
+      "arithmetic_rows_with_expressions": 0,
+      "arithmetic_subsample_n": 100,
+      "control_auroc": 1.0,
+      "control_parse_fail_rate": 0.0,
+      "gate_exempt": false,
+      "control_gate_passed": true
+    },
+    "mistralai/Mistral-Small-24B-Instruct-2501": {
+      "name": "mistralai/Mistral-Small-24B-Instruct-2501",
+      "params_M": 23600,
+      "skipped": true,
+      "error": "weights absent from the HF cache: the snapshot holds only config.json, params.json, tokenizer files and model.safetensors.index.json (12 KB total, 0 of the 10 required shards), and the blobs directory holds two orphaned .incomplete download stubs (19.7 GB and 16.2 GB of the same blob). Measuring it needs a ~47 GB download, which this run was not authorised to start."
+    }
+  },
+  "branch_evaluation": {
+    "best_in_budget_tiny": "PleIAs/Pleias-RAG-350M",
+    "best_tiny_pooled_auroc": 0.513936,
+    "tiny_bar": 0.7,
+    "family_bar": 0.65,
+    "top3_families_check": {
+      "families_used": [
+        "N1_oom:misbind",
+        "N1_arbitrary",
+        "r:relational"
+      ],
+      "families_excluding_relational": [
+        "N1_oom:misbind",
+        "N1_arbitrary",
+        "N2_operator"
+      ],
+      "per_family": {
+        "N1_oom:misbind": 0.547,
+        "N1_arbitrary": 0.5207073170731708,
+        "r:relational": 0.4581866666666667
+      },
+      "per_family_excluding_relational": {
+        "N1_oom:misbind": 0.547,
+        "N1_arbitrary": 0.5207073170731708,
+        "N2_operator": 0.4661388888888889
+      },
+      "passed": false,
+      "passed_excluding_relational": false
+    },
+    "teacher_auroc": 0.970756,
+    "teacher_model": "Qwen/Qwen3-32B-FP8",
+    "teacher_params_M": 32800,
+    "teacher_control_auroc": 1.0,
+    "teacher_per_family_auroc": {
+      "N1_oom:misbind": 0.9785538461538461,
+      "N1_arbitrary": 0.9795853658536585,
+      "r:relational": 0.98992,
+      "N2_operator": 0.9622777777777778,
+      "N1_near_miss": 0.9708846153846153,
+      "N7_numeral": 0.9687567567567568,
+      "N_round:wrong_direction": 0.8754615384615385,
+      "N_round:wrong_multiple": 0.97
+    },
+    "teacher_parse_fail_rate": 0.015,
+    "teacher_registered": "mistralai/Mistral-Small-24B-Instruct-2501",
+    "teacher_measured": true,
+    "teacher_substitute": "speakleash/Bielik-11B-v2.3-Instruct",
+    "teacher_substitute_auroc": 0.629072,
+    "teacher_substitute_params_M": 11000,
+    "teacher_bars": {
+      "distill": 0.85,
+      "route_kill_floor": 0.75
+    },
+    "branch": "DISTILL-LICENSED",
+    "branch_note": "TIER-VIABLE is ruled out on the tiny half alone (best in-budget 0.513936, bar 0.7). The registered teacher mistralai/Mistral-Small-24B-Instruct-2501 has no cached weights; the author's ordered completion measured the cached Qwen/Qwen3-32B-FP8 through the identical eval set, prompt and forced-answer discipline, and it reads 0.970756 pooled on 1.0 controls. Against the registered teacher bars (distill 0.85, route-kill floor 0.75) the branch is DISTILL-LICENSED.",
+    "qwen3_reference_only_auroc": 0.851368
+  },
+  "eval_set": {
+    "n_pairs": 1000,
+    "n_controls": 50,
+    "seed": 1143,
+    "source_file": "experiments/grounding-semantic/R14-H133_lane.v2-SUPERSEDED.parquet",
+    "family_counts": {
+      "N1_oom:misbind": 130,
+      "N1_arbitrary": 82,
+      "r:relational": 75,
+      "N2_operator": 72,
+      "N1_near_miss": 52,
+      "N7_numeral": 37,
+      "N_round:wrong_direction": 26,
+      "N_round:wrong_multiple": 26
+    },
+    "claim_form_counts": {
+      "relational": 150,
+      "shown": 322,
+      "bare": 528
+    }
+  }
+}

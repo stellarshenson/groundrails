@@ -1,0 +1,140 @@
+{
+  "amendment": "A2 - held-out control-family checkpoint selection",
+  "val_split": {
+    "examples": 1800,
+    "documents": 522,
+    "disjointness_verification": {
+      "val_rows": 1800,
+      "val_documents": 522,
+      "shared_chunks_with_evalset": 0,
+      "shared_documents_with_sft_corpus": 0,
+      "shared_chunks_with_sft_corpus": 0,
+      "sft_corpus_documents": 7219
+    },
+    "manifest": {
+      "seed": 11442,
+      "rows": 1800,
+      "pairs": 900,
+      "documents": 522,
+      "families": {
+        "lookup:adjacent_misbind": 900,
+        "lookup:absent": 900
+      },
+      "serial_forms": {
+        "pipe": 314,
+        "narrative": 554,
+        "markdown": 176,
+        "row_prose": 536,
+        "keyvalue": 142,
+        "json_records": 78
+      },
+      "sources": {
+        "tabfact": 1148,
+        "feverous": 652
+      },
+      "surface_parity_rate": 1.0,
+      "valsplit": true,
+      "eval_disjointness": {
+        "excluded_doc_ids": 7754,
+        "eval_content_fingerprints": 547,
+        "sft_content_fingerprints": 15995,
+        "content_matched_tables": 14265,
+        "admitted_tables": 1688,
+        "shared_documents": 0
+      },
+      "claim_only_probe": {
+        "claim_only_tfidf_auroc": 0.5162,
+        "bar": "< 0.55",
+        "pass": true,
+        "train_docs": 365,
+        "test_docs": 157,
+        "test_rows": 532
+      },
+      "within_pair_claim_only": {
+        "per_family": {
+          "lookup:absent": {
+            "acc": 0.5188,
+            "pairs": 133
+          },
+          "lookup:adjacent_misbind": {
+            "acc": 0.5263,
+            "pairs": 133
+          }
+        },
+        "worst": 0.5263,
+        "bar": "< 0.60",
+        "pass": true
+      }
+    }
+  },
+  "selector_rule": "argmax control-validation accuracy; tie-break lower SFT val loss",
+  "selector_scores": {
+    "ep1": 0.876667,
+    "ep2": 0.772778,
+    "ep3": 0.864444
+  },
+  "per_checkpoint": [
+    {
+      "epoch": 1,
+      "n": 1800,
+      "control_val_accuracy": 0.876667,
+      "per_family_accuracy": {
+        "lookup:absent": 0.9478,
+        "lookup:adjacent_misbind": 0.8056
+      },
+      "positive_accuracy": 0.8967,
+      "negative_accuracy": 0.8567,
+      "parse_fail_rate": 0.0006,
+      "sft_val_loss": 0.3869127608949634
+    },
+    {
+      "epoch": 2,
+      "n": 1800,
+      "control_val_accuracy": 0.772778,
+      "per_family_accuracy": {
+        "lookup:absent": 0.9867,
+        "lookup:adjacent_misbind": 0.5589
+      },
+      "positive_accuracy": 0.9756,
+      "negative_accuracy": 0.57,
+      "parse_fail_rate": 0.0,
+      "sft_val_loss": 0.35440925546808605
+    },
+    {
+      "epoch": 3,
+      "n": 1800,
+      "control_val_accuracy": 0.864444,
+      "per_family_accuracy": {
+        "lookup:absent": 0.9656,
+        "lookup:adjacent_misbind": 0.7633
+      },
+      "positive_accuracy": 0.9278,
+      "negative_accuracy": 0.8011,
+      "parse_fail_rate": 0.0,
+      "sft_val_loss": 0.34965919276282326
+    }
+  ],
+  "tied_epochs": [
+    1
+  ],
+  "selected_epoch": 1,
+  "banked_eval_of_selected": {
+    "pooled_auroc": 0.77892,
+    "control_auroc": 0.832,
+    "pooled_auroc_literal05": 0.77892,
+    "parse_fail_rate": 0.004,
+    "bars": {
+      "viable_070": false,
+      "pooled_ge_070": true,
+      "control_ge_090": false,
+      "kill_060": false
+    }
+  },
+  "banked_eval_available": true,
+  "verdict": "NOT-VIABLE-AT-BAR",
+  "verdict_basis": {
+    "pooled_ge_070": true,
+    "control_ge_090": false,
+    "kill_060": false
+  }
+}

@@ -1,0 +1,261 @@
+{
+  "candidate": {
+    "path": "/home/lab/workspace/private/ai-assistants/groundrails/experiments/grounding-semantic/R18-H150_edgar_chunks.parquet",
+    "units": 35478,
+    "documents": 4365
+  },
+  "licence_sidecar": {
+    "pass": true,
+    "sidecar_path": "/home/lab/workspace/private/ai-assistants/groundrails/data/external/datasets/dataset-edgar-restricted.md",
+    "sidecar_present": true,
+    "licence_line": "- **Licence** - Apache-2.0 (HuggingFace dataset tag); the underlying 10-K filings are US",
+    "records_apache_2_0": true,
+    "records_restriction_clauses": true,
+    "records_provenance_gate_caveat": true,
+    "_state.json": {
+      "complete": true,
+      "total_kept": 6379
+    },
+    "_counts.json": {
+      "excluded_cik_count": 546,
+      "sp500_tickers_1999_2019": 981,
+      "tickers_resolved_to_cik": 550,
+      "tickers_unresolved": 431,
+      "shards": {
+        "train": {
+          "kept": 5103,
+          "cached": true
+        },
+        "validate": {
+          "kept": 639,
+          "cached": true
+        },
+        "test": {
+          "kept": 637,
+          "cached": true
+        }
+      },
+      "total_kept": 6379
+    },
+    "fetch_complete": true
+  },
+  "restriction_reverification_raw": {
+    "pass": false,
+    "years_present": [
+      "2020"
+    ],
+    "year_clause_ok": true,
+    "sp500_ciks_resolved": 488,
+    "filer_clause_breaches": 2,
+    "breach_examples": [
+      14707,
+      78890
+    ],
+    "documents": 4365,
+    "provenance_recorded_per_document": "cik + year + filename in doc_id"
+  },
+  "admission": {
+    "raw_chunks": 35478,
+    "raw_documents": 4365,
+    "dropped_filer_clause_chunks": 32,
+    "dropped_filer_clause_ciks": [
+      14707,
+      78890
+    ],
+    "dropped_boilerplate_collision_chunks": 1432,
+    "admitted_chunks": 34014,
+    "admitted_documents": 4297,
+    "admitted_path": "/home/lab/workspace/private/ai-assistants/groundrails/experiments/grounding-semantic/R18-H150_edgar_admitted.parquet"
+  },
+  "restriction_reverification": {
+    "pass": true,
+    "years_present": [
+      "2020"
+    ],
+    "year_clause_ok": true,
+    "sp500_ciks_resolved": 488,
+    "filer_clause_breaches": 0,
+    "breach_examples": [],
+    "documents": 4297,
+    "provenance_recorded_per_document": "cik + year + filename in doc_id"
+  },
+  "provenance_gate": {
+    "pass": true,
+    "spike_control": {
+      "injected": 10,
+      "detected_total": 10,
+      "baseline_hits": 0,
+      "passes": true,
+      "candidate_units": 2000
+    },
+    "result": {
+      "instrument": "provenance_gate.py (R13 ruling 4)",
+      "mode": "jaccard",
+      "n": 8,
+      "jaccard_threshold": 0.3,
+      "thresholds": {
+        "warn": 0.005,
+        "kill": 0.02
+      },
+      "candidate": {
+        "label": "edgar_mda",
+        "n_units": 34014,
+        "n_units_scorable": 34014
+      },
+      "arena": {
+        "subsets": {
+          "finqa": 725,
+          "tatqa": 1032
+        },
+        "n_units": 1757,
+        "n_units_scorable": 1684
+      },
+      "candidate_vs_arena": {
+        "n_units": 34014,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "finqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "tatqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        },
+        "best_jaccard": {
+          "max": 0.047,
+          "p99": 0.0181,
+          "mean": 0.0016
+        }
+      },
+      "arena_vs_candidate": {
+        "n_units": 1757,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "edgar_mda": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        },
+        "best_jaccard": {
+          "max": 0.047,
+          "p99": 0.0222,
+          "mean": 0.003
+        }
+      },
+      "max_fraction": 0.0,
+      "verdict": "PASS",
+      "hit_examples": []
+    }
+  },
+  "contamination_wall": {
+    "edgar_is_a_ragbench_source_corpus": false,
+    "assertion": "EDGAR-CORPUS is not one of the ten RAGBench source corpora; the overlap below is measured anyway, not assumed",
+    "ngram_containment_all_subsets": {
+      "instrument": "provenance_gate.py (R13 ruling 4)",
+      "mode": "containment",
+      "n": 13,
+      "jaccard_threshold": null,
+      "thresholds": {
+        "warn": 0.005,
+        "kill": 0.02
+      },
+      "candidate": {
+        "label": "edgar_mda_wall",
+        "n_units": 34014,
+        "n_units_scorable": 34014
+      },
+      "arena": {
+        "subsets": {
+          "covidqa": 980,
+          "delucionqa": 552,
+          "emanual": 396,
+          "expertqa": 759,
+          "finqa": 725,
+          "hagrid": 703,
+          "hotpotqa": 998,
+          "pubmedqa": 1250,
+          "tatqa": 1032,
+          "techqa": 1250
+        },
+        "n_units": 8645,
+        "n_units_scorable": 8457
+      },
+      "candidate_vs_arena": {
+        "n_units": 34014,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "covidqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "delucionqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "emanual": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "expertqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "finqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hagrid": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hotpotqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "pubmedqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "tatqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "techqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        }
+      },
+      "arena_vs_candidate": {
+        "n_units": 8645,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "edgar_mda_wall": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        }
+      },
+      "max_fraction": 0.0,
+      "verdict": "PASS",
+      "hit_examples": []
+    },
+    "evalset_shared_chunks": 0,
+    "evalset_shared_content_fingerprints": 0,
+    "lane_shared_chunks": {
+      "R17-H144_pairs": 0,
+      "R17-H145_scaleunit": 0,
+      "R17-H146_lane": 0,
+      "R18-H150_scaleunit_lane": 0
+    },
+    "pass": true
+  },
+  "status": "GREEN",
+  "binding_instrument": "R14-H136 ruling 2: 8-gram Jaccard >= 0.3 vs finqa+tatqa, KILL > 2%. The 13-gram containment wall is carried as a second, stricter screen and its hits are EXCLUDED at admission rather than adjudicated."
+}

@@ -1,0 +1,345 @@
+{
+  "hypothesis": "R17-H149 BARE-ASSERTION PROSE LANE - stage 1 kill-gate",
+  "gpu": "GPU2 (RTX 5000 Ada), CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=2",
+  "sources_census": {
+    "scifact": {
+      "abstracts": 5183,
+      "passages": 4968,
+      "licence": "CC BY 4.0 (claims) + ODC-By (abstracts), upstream AI2"
+    },
+    "faa-amt": {
+      "pdfs": 3,
+      "docs_with_passages": 3,
+      "passages": 3794,
+      "licence": "public domain (17 U.S.C. 105)"
+    },
+    "army-tm": {
+      "pdfs": 135,
+      "docs_with_passages": 135,
+      "passages": 409,
+      "licence": "public domain (17 U.S.C. 105)"
+    },
+    "total_passages": 9005,
+    "total_documents": 5070,
+    "after_dedupe": {
+      "faa-amt": 3793,
+      "scifact": 4968,
+      "army-tm": 244
+    }
+  },
+  "probe": {
+    "file": "R17-H149_probe.parquet",
+    "manifest": "R17-H149_probe_manifest.json",
+    "pairs": 358,
+    "rows": 716,
+    "documents": 240,
+    "passages": 342,
+    "families": {
+      "direction_flip": 212,
+      "role_swap": 504
+    },
+    "corpora": {
+      "army-tm": 2,
+      "scifact": 494,
+      "faa-amt": 220
+    },
+    "extraction": {
+      "relations": 372,
+      "passages_with_relations": 355
+    },
+    "dropped": {
+      "role_swap_direction_balance": 3,
+      "direction_flip_direction_balance": 10,
+      "verbatim_positive": 0
+    },
+    "construction": {
+      "positives": "voice recast + tense-preserving verb synonym over a dependency-extracted (subject, relation, object) proposition",
+      "role_swap": "arguments exchanged; token-multiset identical twin",
+      "direction_flip": "direction verb replaced by its antonym from the same closed pair; up/down source directions balanced 50/50",
+      "entity_swap": "object replaced by the object of a different relation in the same passage, emitted in mirrored couples",
+      "caps": {
+        "pairs_per_passage": 3,
+        "pairs_per_document": 400,
+        "target_per_family": 700
+      },
+      "sentence_veto": "negation / modality / hedging / conditionals refused"
+    },
+    "verify": {
+      "claim_only_tfidf_auroc": {
+        "value": 0.4701,
+        "bar": "< 0.55",
+        "pass": true,
+        "scoring": "5-fold document-disjoint, out of fold, direction-stratified, liblinear tol 1e-7",
+        "documents": 286,
+        "rows": 716
+      },
+      "within_pair_claim_only_accuracy": {
+        "per_family": {
+          "role_swap": {
+            "acc": 0.5139,
+            "pairs": 252
+          },
+          "direction_flip": {
+            "acc": 0.4057,
+            "pairs": 106
+          }
+        },
+        "worst": 0.5139,
+        "bar": "< 0.60",
+        "pass": true
+      },
+      "paraphrase_depth": {
+        "positive_verbatim_substring_rate": 0.0,
+        "negative_verbatim_substring_rate": 0.0,
+        "bar": "positive verbatim rate == 0",
+        "pass": true,
+        "max_contiguous_ngram_with_passage": {
+          "mean": 3.841,
+          "median": 3.0,
+          "p90": 6.0,
+          "max": 11,
+          "sampled_positives": 358
+        },
+        "token_jaccard_claim_vs_source_sentence": {
+          "mean": 0.3888,
+          "median": 0.3604,
+          "p90": 0.6183
+        },
+        "note": "template + synonym + voice recast, no LLM; content words are retained by construction, so depth is structural/lexical-verb level, not full rewriting"
+      },
+      "surface_parity": {
+        "identical_token_multiset_rate_per_family": {
+          "role_swap": 0.7103,
+          "direction_flip": 0.0
+        },
+        "claim_char_length_auroc": 0.4994,
+        "claim_token_count_auroc": 0.5,
+        "numeral_presence_auroc": 0.5,
+        "passage_token_overlap_auroc": 0.4962,
+        "bar": "each AUROC in [0.45, 0.55]",
+        "pass": true
+      },
+      "substituted_string_balance_l1": {
+        "per_family": {
+          "direction_flip": 0.0
+        },
+        "bar": "report-only (0 = perfect balance)"
+      },
+      "all_bars_pass": true
+    }
+  },
+  "mechanical_audit": {
+    "method": "hand verification of a 100-pair sample (R17-H149_audit_sample.parquet, seed 20260811) - for each pair the executor read the source sentence, the positive assertion and the negative twin, and judged (i) is the positive true given the passage, (ii) does the substitution genuinely contradict the passage",
+    "sampled": 100,
+    "per_family_sampled": {
+      "role_swap": 68,
+      "direction_flip": 32
+    },
+    "hard_defects": 4,
+    "hard_defect_rate": 0.04,
+    "hard_defect_taxonomy": [
+      {
+        "class": "coordinated-subject attribution",
+        "count": 2,
+        "example": "'combined blockade of Tim-1 and Tim-4 increased lesion size' -> 'the lesion size was raised by Tim-4'; the agent is the blockade, not the conjunct",
+        "status": "partially closed - a conjunct head is refused, but a conjunct that the parser makes the phrase head still slips through"
+      },
+      {
+        "class": "hedged proposition asserted flat",
+        "count": 1,
+        "example": "'only minimally mediated by MetS' -> 'MetS brought about the effect'",
+        "status": "open - the sentence veto covers modality and negation, not degree hedges ('only minimally', 'in part')"
+      },
+      {
+        "class": "non-literal relation verb",
+        "count": 1,
+        "example": "'MSNA followed a similar trend' -> 'MSNA came after the similar trend'",
+        "status": "open - needs word-sense disambiguation, not a lexicon rule"
+      }
+    ],
+    "borderline_not_counted": 3,
+    "borderline_note": "positive is direction-preserving but an awkward paraphrase, or a span is truncated at a modifier; the negative is still false in each case",
+    "cosmetic_not_counted": 3,
+    "cosmetic_note": "subject-verb agreement slips and stray punctuation in a span; no effect on which twin the passage supports",
+    "closed_by_earlier_audit_rounds": [
+      "participial / relative-clause verbs mis-assigning subject and object roles",
+      "agent phrase read as an intransitive subject ('inhibited by FTO' -> 'FTO fell')",
+      "prepositional idioms read as magnitude change ('is limited to', 'falls in between')",
+      "structured-abstract section headings swept into a span ('CONCLUSIONS enhanced.')",
+      "coordinated verb phrases moving the object off the directional verb",
+      "dimensional and mis-valenced directional verbs ('the sheets are expanded' -> 'were raised'; 'blunted the viremia' -> 'worsened the viremia')"
+    ],
+    "audit_history": {
+      "round_1": {
+        "build_pairs": 949,
+        "hard_defects": 9
+      },
+      "round_2": {
+        "build_pairs": 466,
+        "hard_defects": 5
+      },
+      "round_3_final": {
+        "build_pairs": 358,
+        "hard_defects": 4
+      }
+    },
+    "bar": "the registered discipline is 0 errors; this probe does NOT meet it",
+    "pass": false,
+    "effect_on_the_gate": "4% label noise pulls a control AUROC of ~0.70 toward 0.5 by roughly 0.008 - well inside the read's own standard error - and it biases the read DOWNWARD, i.e. toward licensing. A KILL verdict is therefore safe against this defect; a LICENSE verdict carries it as a caveat."
+  },
+  "control_checkpoint": "R9-H105-mmbert-dann-clean",
+  "control_auroc": 0.6986,
+  "control_read": {
+    "auroc": 0.6986,
+    "auroc_se_hanley_mcneil": 0.0195,
+    "pairs": 358,
+    "within_pair_acc": 0.8631,
+    "mean_pos": 0.6158,
+    "mean_neg": 0.3894,
+    "per_neg_family": {
+      "direction_flip": {
+        "auroc": 0.8136,
+        "auroc_se_hanley_mcneil": 0.0295,
+        "pairs": 106,
+        "within_pair_acc": 0.9623,
+        "mean_pos": 0.5556,
+        "mean_neg": 0.2159
+      },
+      "role_swap": {
+        "auroc": 0.6589,
+        "auroc_se_hanley_mcneil": 0.0241,
+        "pairs": 252,
+        "within_pair_acc": 0.8214,
+        "mean_pos": 0.6411,
+        "mean_neg": 0.4624
+      }
+    },
+    "per_corpus": {
+      "army-tm": {
+        "auroc": 1.0,
+        "auroc_se_hanley_mcneil": 0.0,
+        "pairs": 1,
+        "within_pair_acc": 1.0,
+        "mean_pos": 0.9898,
+        "mean_neg": 0.982
+      },
+      "faa-amt": {
+        "auroc": 0.6883,
+        "auroc_se_hanley_mcneil": 0.0356,
+        "pairs": 110,
+        "within_pair_acc": 0.8455,
+        "mean_pos": 0.6883,
+        "mean_neg": 0.4758
+      },
+      "scifact": {
+        "auroc": 0.7098,
+        "auroc_se_hanley_mcneil": 0.0231,
+        "pairs": 247,
+        "within_pair_acc": 0.8704,
+        "mean_pos": 0.582,
+        "mean_neg": 0.3485
+      }
+    },
+    "per_direction": {
+      "active": {
+        "auroc": 0.6582,
+        "auroc_se_hanley_mcneil": 0.0342,
+        "pairs": 126,
+        "within_pair_acc": 0.8095,
+        "mean_pos": 0.6291,
+        "mean_neg": 0.4608
+      },
+      "down|intrans": {
+        "auroc": 0.75,
+        "auroc_se_hanley_mcneil": 0.2763,
+        "pairs": 2,
+        "within_pair_acc": 1.0,
+        "mean_pos": 0.0352,
+        "mean_neg": 0.0267
+      },
+      "down|passive_noagent": {
+        "auroc": 0.84,
+        "auroc_se_hanley_mcneil": 0.1348,
+        "pairs": 5,
+        "within_pair_acc": 1.0,
+        "mean_pos": 0.6155,
+        "mean_neg": 0.2323
+      },
+      "up|intrans": {
+        "auroc": 1.0,
+        "auroc_se_hanley_mcneil": 0.0,
+        "pairs": 2,
+        "within_pair_acc": 1.0,
+        "mean_pos": 0.5407,
+        "mean_neg": 0.0676
+      },
+      "passive": {
+        "auroc": 0.6609,
+        "auroc_se_hanley_mcneil": 0.0341,
+        "pairs": 126,
+        "within_pair_acc": 0.8333,
+        "mean_pos": 0.6532,
+        "mean_neg": 0.464
+      },
+      "up|passive_noagent": {
+        "auroc": 0.8889,
+        "auroc_se_hanley_mcneil": 0.1533,
+        "pairs": 3,
+        "within_pair_acc": 0.6667,
+        "mean_pos": 0.5623,
+        "mean_neg": 0.0667
+      },
+      "up|passive": {
+        "auroc": 0.9048,
+        "auroc_se_hanley_mcneil": 0.0489,
+        "pairs": 21,
+        "within_pair_acc": 1.0,
+        "mean_pos": 0.5461,
+        "mean_neg": 0.1297
+      },
+      "up|active": {
+        "auroc": 0.8807,
+        "auroc_se_hanley_mcneil": 0.0479,
+        "pairs": 27,
+        "within_pair_acc": 1.0,
+        "mean_pos": 0.6597,
+        "mean_neg": 0.1934
+      },
+      "down|passive": {
+        "auroc": 0.6976,
+        "auroc_se_hanley_mcneil": 0.0745,
+        "pairs": 25,
+        "within_pair_acc": 0.92,
+        "mean_pos": 0.5299,
+        "mean_neg": 0.3406
+      },
+      "down|active": {
+        "auroc": 0.7664,
+        "auroc_se_hanley_mcneil": 0.0739,
+        "pairs": 21,
+        "within_pair_acc": 0.9524,
+        "mean_pos": 0.4975,
+        "mean_neg": 0.2321
+      }
+    }
+  },
+  "gate": {
+    "bar": "control AUROC <= 0.7",
+    "license": true
+  },
+  "license_flag": true,
+  "read_notes": {
+    "margin_to_bar_in_se": 0.07,
+    "margin_to_bar_absolute": 0.0014,
+    "per_family_spread": 0.1547,
+    "pooled_read_is_mix_dependent": "role_swap carries 252 of 358 pairs; the pooled figure moves with the family mix, so the flag is not independent of probe composition",
+    "within_pair_accuracy_pooled": 0.8631,
+    "within_pair_accuracy_per_family": {
+      "direction_flip": 0.9623,
+      "role_swap": 0.8214
+    },
+    "within_pair_vs_auroc": "the control ranks the twins of a pair correctly on 86.3% of pairs while the pooled AUROC is 0.6986 - the gap is cross-pair score dispersion (calibration), not an inability to tell the twins apart",
+    "army_tm_pairs": 1,
+    "power_shortfall": "358 pairs against the registered ~1,000, and 106 in direction_flip against the >= 600-per-family instruction; supply was cut by the truth guards the hand audit forced"
+  }
+}

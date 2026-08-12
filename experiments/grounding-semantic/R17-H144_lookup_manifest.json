@@ -1,0 +1,51 @@
+{
+  "seed": 11441,
+  "rows": 7000,
+  "pairs": 3500,
+  "documents": 1751,
+  "families": {
+    "lookup:absent": 3500,
+    "lookup:adjacent_misbind": 3500
+  },
+  "serial_forms": {
+    "pipe": 1058,
+    "row_prose": 2056,
+    "narrative": 2172,
+    "markdown": 636,
+    "json_records": 368,
+    "keyvalue": 710
+  },
+  "sources": {
+    "feverous": 2316,
+    "tabfact": 4684
+  },
+  "surface_parity_rate": 0.7417,
+  "eval_disjointness": {
+    "excluded_doc_ids": 536,
+    "content_matched_tables": 3516,
+    "shared_documents": 0
+  },
+  "claim_only_probe": {
+    "claim_only_tfidf_auroc": 0.5364,
+    "bar": "< 0.55",
+    "pass": true,
+    "train_docs": 1225,
+    "test_docs": 526,
+    "test_rows": 2102
+  },
+  "within_pair_claim_only": {
+    "per_family": {
+      "lookup:adjacent_misbind": {
+        "acc": 0.5,
+        "pairs": 526
+      },
+      "lookup:absent": {
+        "acc": 0.5619,
+        "pairs": 525
+      }
+    },
+    "worst": 0.5619,
+    "bar": "< 0.60",
+    "pass": true
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "gold": {
+    "auc": 0.8575,
+    "f1": 0.7765,
+    "n": 717
+  },
+  "gold_full": {
+    "auc": 0.871,
+    "f1": 0.7805,
+    "n": 2752
+  },
+  "ragtruth_en": {
+    "auc": 0.831,
+    "f1": 0.7447,
+    "n": 600
+  },
+  "ragtruth_nonen": {
+    "auc": 0.8402,
+    "per_lang": {
+      "de": 0.8381,
+      "fr": 0.8385,
+      "es": 0.8398,
+      "it": 0.8414,
+      "pl": 0.8333,
+      "hu": 0.8319,
+      "cn": 0.8583
+    }
+  },
+  "params_M": 307.1,
+  "lambda_max": 0.02,
+  "lane": "R14-H133 derivation-parity lane (A4), data-only form",
+  "arm": "h133_lane",
+  "draw": 1,
+  "seed": 1133,
+  "mix": "clean public-only mix + H133 lane (H108 lane NOT included)",
+  "mix_rows": 735670,
+  "clean_rows": 685670,
+  "lane_rows": 50000,
+  "dann_groups": 14,
+  "lane_groups": [
+    "quant_deriv",
+    "quant_relational"
+  ],
+  "group_counts": {
+    "halueval": 40000,
+    "psiloqa": 61712,
+    "quant_deriv": 42500,
+    "quant_relational": 7500,
+    "ragtruth_cn": 15090,
+    "ragtruth_de": 15090,
+    "ragtruth_en": 15090,
+    "ragtruth_es": 15090,
+    "ragtruth_fr": 15090,
+    "ragtruth_hu": 15090,
+    "ragtruth_it": 15090,
+    "ragtruth_pl": 15090,
+    "tabfact": 92585,
+    "vitaminc": 370653
+  },
+  "n_steps": 15327,
+  "perm_fingerprint": "51dce43a8ae07065",
+  "init_fingerprint": "fe741ad949204204fd27a7b080c17da6",
+  "init_fingerprint_scope": "trunk+task_head",
+  "control": "BANKED clean pair R9-H105 (unseeded, pre-H126) - see the pairing caveat in this trainer's docstring",
+  "train_seconds": 21510.6,
+  "checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/R14-H133-arm-draw1"
+}

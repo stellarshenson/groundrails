@@ -1,0 +1,3952 @@
+{
+  "per_subset": {
+    "hagrid": {
+      "n": 250,
+      "grounded_rate": 0.848,
+      "read": "windowed decomposed-min (1500/750, max-over-windows, min-over-sentences)",
+      "checkpoints": {
+        "clean_d1": {
+          "auc_standard_error": 0.046,
+          "n_scored_sentences_mapped": 472,
+          "n_unsupported_scored_sentences": 53,
+          "sentence_level_auc": 0.6245,
+          "mean_score_supported_sent": 0.617,
+          "mean_score_unsupported_sent": 0.4453,
+          "argmin_localisation_rate": 0.6667,
+          "n_ungrounded_items_with_located_bad_sentence": 33,
+          "by_sentence_register": {
+            "declarative": {
+              "n_sentences": 459,
+              "n_mapped": 409,
+              "unsupported_rate": 0.1051,
+              "mean_score": 0.5907,
+              "mean_score_supported": 0.6189,
+              "mean_score_unsupported": 0.4357,
+              "within_register_sentence_auc": 0.6372
+            },
+            "discourse_frame": {
+              "n_sentences": 75,
+              "n_mapped": 60,
+              "unsupported_rate": 0.1167,
+              "mean_score": 0.6059,
+              "mean_score_supported": 0.6036,
+              "mean_score_unsupported": 0.6736,
+              "within_register_sentence_auc": 0.3801
+            },
+            "reference_line": {
+              "n_sentences": 3,
+              "n_mapped": 3,
+              "unsupported_rate": 1.0,
+              "mean_score": 0.0498,
+              "mean_score_supported": null,
+              "mean_score_unsupported": 0.0498,
+              "within_register_sentence_auc": null
+            }
+          },
+          "auc_by_item_slice": {
+            "single_scored_sentence": {
+              "n": 140,
+              "n_pos": 125,
+              "auc": 0.4923
+            },
+            "multi_sentence": {
+              "n": 110,
+              "n_pos": 87,
+              "auc": 0.6667
+            },
+            "no_list_structure": {
+              "n": 250,
+              "n_pos": 212,
+              "auc": 0.6259
+            },
+            "faithful_oracle_reachable (o4_strict == 1)": {
+              "n": 153,
+              "n_pos": 148,
+              "auc": 0.4541
+            },
+            "faithful_oracle_unreachable (o4_strict == 0)": {
+              "n": 97,
+              "n_pos": 64,
+              "auc": 0.6274
+            },
+            "single_doc_evidence": {
+              "n": 70,
+              "n_pos": 57,
+              "auc": 0.5965
+            },
+            "multi_doc_evidence (>= 3)": {
+              "n": 109,
+              "n_pos": 92,
+              "auc": 0.6074
+            }
+          },
+          "aggregation_counterfactual_auc": {
+            "min_all (the shipped rule)": 0.6259,
+            "mean": 0.5603,
+            "max": 0.4512,
+            "min_drop_first_sentence": 0.5931,
+            "min_drop_single_lowest": 0.6151,
+            "min_excluding_discourse_frames": 0.6275,
+            "min_excluding_imperative_steps": 0.6259,
+            "min_over_declarative_only": 0.6274
+          },
+          "auc": 0.6259,
+          "operating_threshold": 0.0468,
+          "n_errors": 41,
+          "n_false_negatives": 18,
+          "n_false_positives": 23,
+          "margin_errors_mean": 0.3284,
+          "margin_corrects_mean": 0.4628,
+          "score_mean_pos": 0.4999,
+          "score_mean_neg": 0.3838
+        },
+        "clean_d2": {
+          "auc_standard_error": 0.045,
+          "n_scored_sentences_mapped": 472,
+          "n_unsupported_scored_sentences": 53,
+          "sentence_level_auc": 0.6065,
+          "mean_score_supported_sent": 0.5896,
+          "mean_score_unsupported_sent": 0.4661,
+          "argmin_localisation_rate": 0.6667,
+          "n_ungrounded_items_with_located_bad_sentence": 33,
+          "by_sentence_register": {
+            "declarative": {
+              "n_sentences": 459,
+              "n_mapped": 409,
+              "unsupported_rate": 0.1051,
+              "mean_score": 0.5686,
+              "mean_score_supported": 0.59,
+              "mean_score_unsupported": 0.4674,
+              "within_register_sentence_auc": 0.605
+            },
+            "discourse_frame": {
+              "n_sentences": 75,
+              "n_mapped": 60,
+              "unsupported_rate": 0.1167,
+              "mean_score": 0.5865,
+              "mean_score_supported": 0.5866,
+              "mean_score_unsupported": 0.6146,
+              "within_register_sentence_auc": 0.5094
+            },
+            "reference_line": {
+              "n_sentences": 3,
+              "n_mapped": 3,
+              "unsupported_rate": 1.0,
+              "mean_score": 0.101,
+              "mean_score_supported": null,
+              "mean_score_unsupported": 0.101,
+              "within_register_sentence_auc": null
+            }
+          },
+          "auc_by_item_slice": {
+            "single_scored_sentence": {
+              "n": 140,
+              "n_pos": 125,
+              "auc": 0.5717
+            },
+            "multi_sentence": {
+              "n": 110,
+              "n_pos": 87,
+              "auc": 0.6207
+            },
+            "no_list_structure": {
+              "n": 250,
+              "n_pos": 212,
+              "auc": 0.642
+            },
+            "faithful_oracle_reachable (o4_strict == 1)": {
+              "n": 153,
+              "n_pos": 148,
+              "auc": 0.523
+            },
+            "faithful_oracle_unreachable (o4_strict == 0)": {
+              "n": 97,
+              "n_pos": 64,
+              "auc": 0.6326
+            },
+            "single_doc_evidence": {
+              "n": 70,
+              "n_pos": 57,
+              "auc": 0.6869
+            },
+            "multi_doc_evidence (>= 3)": {
+              "n": 109,
+              "n_pos": 92,
+              "auc": 0.585
+            }
+          },
+          "aggregation_counterfactual_auc": {
+            "min_all (the shipped rule)": 0.642,
+            "mean": 0.5762,
+            "max": 0.4726,
+            "min_drop_first_sentence": 0.6221,
+            "min_drop_single_lowest": 0.6315,
+            "min_excluding_discourse_frames": 0.6301,
+            "min_excluding_imperative_steps": 0.642,
+            "min_over_declarative_only": 0.6301
+          },
+          "auc": 0.642,
+          "operating_threshold": 0.0122,
+          "n_errors": 40,
+          "n_false_negatives": 16,
+          "n_false_positives": 24,
+          "margin_errors_mean": 0.3178,
+          "margin_corrects_mean": 0.4722,
+          "score_mean_pos": 0.4794,
+          "score_mean_neg": 0.3433
+        },
+        "h108_d1": {
+          "auc_standard_error": 0.0439,
+          "n_scored_sentences_mapped": 472,
+          "n_unsupported_scored_sentences": 53,
+          "sentence_level_auc": 0.6153,
+          "mean_score_supported_sent": 0.64,
+          "mean_score_unsupported_sent": 0.4721,
+          "argmin_localisation_rate": 0.6364,
+          "n_ungrounded_items_with_located_bad_sentence": 33,
+          "by_sentence_register": {
+            "declarative": {
+              "n_sentences": 459,
+              "n_mapped": 409,
+              "unsupported_rate": 0.1051,
+              "mean_score": 0.6239,
+              "mean_score_supported": 0.6488,
+              "mean_score_unsupported": 0.4917,
+              "within_register_sentence_auc": 0.6024
+            },
+            "discourse_frame": {
+              "n_sentences": 75,
+              "n_mapped": 60,
+              "unsupported_rate": 0.1167,
+              "mean_score": 0.5582,
+              "mean_score_supported": 0.579,
+              "mean_score_unsupported": 0.5234,
+              "within_register_sentence_auc": 0.5795
+            },
+            "reference_line": {
+              "n_sentences": 3,
+              "n_mapped": 3,
+              "unsupported_rate": 1.0,
+              "mean_score": 0.0701,
+              "mean_score_supported": null,
+              "mean_score_unsupported": 0.0701,
+              "within_register_sentence_auc": null
+            }
+          },
+          "auc_by_item_slice": {
+            "single_scored_sentence": {
+              "n": 140,
+              "n_pos": 125,
+              "auc": 0.6331
+            },
+            "multi_sentence": {
+              "n": 110,
+              "n_pos": 87,
+              "auc": 0.6282
+            },
+            "no_list_structure": {
+              "n": 250,
+              "n_pos": 212,
+              "auc": 0.6599
+            },
+            "faithful_oracle_reachable (o4_strict == 1)": {
+              "n": 153,
+              "n_pos": 148,
+              "auc": 0.6432
+            },
+            "faithful_oracle_unreachable (o4_strict == 0)": {
+              "n": 97,
+              "n_pos": 64,
+              "auc": 0.6425
+            },
+            "single_doc_evidence": {
+              "n": 70,
+              "n_pos": 57,
+              "auc": 0.7287
+            },
+            "multi_doc_evidence (>= 3)": {
+              "n": 109,
+              "n_pos": 92,
+              "auc": 0.6253
+            }
+          },
+          "aggregation_counterfactual_auc": {
+            "min_all (the shipped rule)": 0.6599,
+            "mean": 0.6226,
+            "max": 0.4878,
+            "min_drop_first_sentence": 0.6478,
+            "min_drop_single_lowest": 0.6606,
+            "min_excluding_discourse_frames": 0.6545,
+            "min_excluding_imperative_steps": 0.6599,
+            "min_over_declarative_only": 0.6545
+          },
+          "auc": 0.6599,
+          "operating_threshold": 0.0731,
+          "n_errors": 57,
+          "n_false_negatives": 37,
+          "n_false_positives": 20,
+          "margin_errors_mean": 0.2244,
+          "margin_corrects_mean": 0.5259,
+          "score_mean_pos": 0.5409,
+          "score_mean_neg": 0.3486
+        },
+        "h108_d2": {
+          "auc_standard_error": 0.0454,
+          "n_scored_sentences_mapped": 472,
+          "n_unsupported_scored_sentences": 53,
+          "sentence_level_auc": 0.6138,
+          "mean_score_supported_sent": 0.6148,
+          "mean_score_unsupported_sent": 0.4655,
+          "argmin_localisation_rate": 0.6667,
+          "n_ungrounded_items_with_located_bad_sentence": 33,
+          "by_sentence_register": {
+            "declarative": {
+              "n_sentences": 459,
+              "n_mapped": 409,
+              "unsupported_rate": 0.1051,
+              "mean_score": 0.5935,
+              "mean_score_supported": 0.619,
+              "mean_score_unsupported": 0.467,
+              "within_register_sentence_auc": 0.6093
+            },
+            "discourse_frame": {
+              "n_sentences": 75,
+              "n_mapped": 60,
+              "unsupported_rate": 0.1167,
+              "mean_score": 0.5861,
+              "mean_score_supported": 0.5856,
+              "mean_score_unsupported": 0.6333,
+              "within_register_sentence_auc": 0.504
+            },
+            "reference_line": {
+              "n_sentences": 3,
+              "n_mapped": 3,
+              "unsupported_rate": 1.0,
+              "mean_score": 0.0521,
+              "mean_score_supported": null,
+              "mean_score_unsupported": 0.0521,
+              "within_register_sentence_auc": null
+            }
+          },
+          "auc_by_item_slice": {
+            "single_scored_sentence": {
+              "n": 140,
+              "n_pos": 125,
+              "auc": 0.5381
+            },
+            "multi_sentence": {
+              "n": 110,
+              "n_pos": 87,
+              "auc": 0.6712
+            },
+            "no_list_structure": {
+              "n": 250,
+              "n_pos": 212,
+              "auc": 0.6354
+            },
+            "faithful_oracle_reachable (o4_strict == 1)": {
+              "n": 153,
+              "n_pos": 148,
+              "auc": 0.5595
+            },
+            "faithful_oracle_unreachable (o4_strict == 0)": {
+              "n": 97,
+              "n_pos": 64,
+              "auc": 0.6231
+            },
+            "single_doc_evidence": {
+              "n": 70,
+              "n_pos": 57,
+              "auc": 0.6775
+            },
+            "multi_doc_evidence (>= 3)": {
+              "n": 109,
+              "n_pos": 92,
+              "auc": 0.5953
+            }
+          },
+          "aggregation_counterfactual_auc": {
+            "min_all (the shipped rule)": 0.6354,
+            "mean": 0.572,
+            "max": 0.4649,
+            "min_drop_first_sentence": 0.607,
+            "min_drop_single_lowest": 0.6172,
+            "min_excluding_discourse_frames": 0.6257,
+            "min_excluding_imperative_steps": 0.6354,
+            "min_over_declarative_only": 0.6257
+          },
+          "auc": 0.6354,
+          "operating_threshold": 0.0213,
+          "n_errors": 33,
+          "n_false_negatives": 4,
+          "n_false_positives": 29,
+          "margin_errors_mean": 0.4154,
+          "margin_corrects_mean": 0.4771,
+          "score_mean_pos": 0.5093,
+          "score_mean_neg": 0.3794
+        },
+        "g0_adapter": {
+          "auc_standard_error": 0.0425,
+          "n_scored_sentences_mapped": 472,
+          "n_unsupported_scored_sentences": 53,
+          "sentence_level_auc": 0.6646,
+          "mean_score_supported_sent": 0.8943,
+          "mean_score_unsupported_sent": 0.6819,
+          "argmin_localisation_rate": 0.7273,
+          "n_ungrounded_items_with_located_bad_sentence": 33,
+          "by_sentence_register": {
+            "declarative": {
+              "n_sentences": 459,
+              "n_mapped": 409,
+              "unsupported_rate": 0.1051,
+              "mean_score": 0.8832,
+              "mean_score_supported": 0.9014,
+              "mean_score_unsupported": 0.7109,
+              "within_register_sentence_auc": 0.6384
+            },
+            "discourse_frame": {
+              "n_sentences": 75,
+              "n_mapped": 60,
+              "unsupported_rate": 0.1167,
+              "mean_score": 0.8285,
+              "mean_score_supported": 0.8457,
+              "mean_score_unsupported": 0.7501,
+              "within_register_sentence_auc": 0.6442
+            },
+            "reference_line": {
+              "n_sentences": 3,
+              "n_mapped": 3,
+              "unsupported_rate": 1.0,
+              "mean_score": 0.1064,
+              "mean_score_supported": null,
+              "mean_score_unsupported": 0.1064,
+              "within_register_sentence_auc": null
+            }
+          },
+          "auc_by_item_slice": {
+            "single_scored_sentence": {
+              "n": 140,
+              "n_pos": 125,
+              "auc": 0.6101
+            },
+            "multi_sentence": {
+              "n": 110,
+              "n_pos": 87,
+              "auc": 0.6907
+            },
+            "no_list_structure": {
+              "n": 250,
+              "n_pos": 212,
+              "auc": 0.6805
+            },
+            "faithful_oracle_reachable (o4_strict == 1)": {
+              "n": 153,
+              "n_pos": 148,
+              "auc": 0.6122
+            },
+            "faithful_oracle_unreachable (o4_strict == 0)": {
+              "n": 97,
+              "n_pos": 64,
+              "auc": 0.6643
+            },
+            "single_doc_evidence": {
+              "n": 70,
+              "n_pos": 57,
+              "auc": 0.6343
+            },
+            "multi_doc_evidence (>= 3)": {
+              "n": 109,
+              "n_pos": 92,
+              "auc": 0.6937
+            }
+          },
+          "aggregation_counterfactual_auc": {
+            "min_all (the shipped rule)": 0.6805,
+            "mean": 0.6464,
+            "max": 0.4829,
+            "min_drop_first_sentence": 0.6285,
+            "min_drop_single_lowest": 0.6257,
+            "min_excluding_discourse_frames": 0.672,
+            "min_excluding_imperative_steps": 0.6805,
+            "min_over_declarative_only": 0.672
+          },
+          "auc": 0.6805,
+          "operating_threshold": 0.7431,
+          "n_errors": 58,
+          "n_false_negatives": 40,
+          "n_false_positives": 18,
+          "margin_errors_mean": 0.294,
+          "margin_corrects_mean": 0.2156,
+          "score_mean_pos": 0.8351,
+          "score_mean_neg": 0.6161
+        }
+      },
+      "oracle": {
+        "oracle_o1": 1.0,
+        "oracle_o2": 0.9342,
+        "oracle_o3": 0.9319,
+        "oracle_o4_strict": 0.7833,
+        "oracle_o4_lenient": 0.9319,
+        "banked_r12_o4_strict": 0.7833,
+        "banked_r12_o4_lenient": 0.9319,
+        "reproduces_banked": true,
+        "best_checkpoint_read": 0.6805,
+        "headroom_to_faithful_ceiling": 0.1028,
+        "headroom_to_lenient_ceiling": 0.2514
+      },
+      "measurement_precision": {
+        "n_positive": 212,
+        "n_negative": 38,
+        "mean_auc_standard_error": 0.0446,
+        "observed_seed_spread_clean_pair": 0.0161,
+        "observed_seed_spread_h108_pair": 0.0245,
+        "range_over_5_checkpoints": 0.0546,
+        "reading": "the AUROC's precision is set by the minority (ungrounded) class; a per-subset delta smaller than ~2 standard errors is not a result"
+      },
+      "consensus_errors": {
+        "definition": "item mis-classified by >= 3 of the 5 banked checkpoints at each checkpoint's own macro-F1-optimal threshold",
+        "n": 38,
+        "share_of_items": 0.152,
+        "n_errored_by_all_5": 16,
+        "n_errored_by_none": 154
+      },
+      "cross_checkpoint": {
+        "pairwise_error_jaccard": {
+          "clean_d1|clean_d2": 0.5882,
+          "clean_d1|h108_d1": 0.5077,
+          "clean_d1|h108_d2": 0.48,
+          "clean_d1|g0_adapter": 0.375,
+          "clean_d2|h108_d1": 0.5156,
+          "clean_d2|h108_d2": 0.5208,
+          "clean_d2|g0_adapter": 0.3243,
+          "h108_d1|h108_d2": 0.3433,
+          "h108_d1|g0_adapter": 0.369,
+          "h108_d2|g0_adapter": 0.2639
+        },
+        "mean_jaccard": 0.4288,
+        "mean_jaccard_within_seed_pairs": 0.4657,
+        "score_rank_correlation": {
+          "clean_d1|clean_d2": 0.9043,
+          "clean_d1|h108_d1": 0.8816,
+          "clean_d1|h108_d2": 0.8985,
+          "clean_d1|g0_adapter": 0.8155,
+          "clean_d2|h108_d1": 0.9037,
+          "clean_d2|h108_d2": 0.9168,
+          "clean_d2|g0_adapter": 0.7878,
+          "h108_d1|h108_d2": 0.9445,
+          "h108_d1|g0_adapter": 0.8447,
+          "h108_d2|g0_adapter": 0.7965
+        }
+      },
+      "error_taxonomy": {
+        "consensus": [
+          {
+            "axis": "n_unsupported",
+            "errors_mean": 0.8684,
+            "corrects_mean": 0.1179,
+            "errors_median": 1.0,
+            "corrects_median": 0.0,
+            "test": "mannwhitney",
+            "p": 0.0,
+            "effect_rank_biserial": 0.531
+          },
+          {
+            "axis": "label_is_grounded",
+            "errors_mean": 0.3947,
+            "corrects_mean": 0.9292,
+            "errors_median": 0.0,
+            "corrects_median": 1.0,
+            "test": "fisher",
+            "p": 0.0,
+            "effect_rank_biserial": -0.5345
+          },
+          {
+            "axis": "n_sent_low_overlap",
+            "errors_mean": 0.3947,
+            "corrects_mean": 0.1274,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "mannwhitney",
+            "p": 0.00011,
+            "effect_rank_biserial": 0.2371
+          },
+          {
+            "axis": "sent_score_spread",
+            "errors_mean": 0.4103,
+            "corrects_mean": 0.1922,
+            "errors_median": 0.1417,
+            "corrects_median": 0.0,
+            "test": "mannwhitney",
+            "p": 0.00017,
+            "effect_rank_biserial": 0.3476
+          },
+          {
+            "axis": "frac_discourse_sent",
+            "errors_mean": 0.2979,
+            "corrects_mean": 0.1137,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "mannwhitney",
+            "p": 0.00019,
+            "effect_rank_biserial": 0.2849
+          },
+          {
+            "axis": "n_discourse_sent",
+            "errors_mean": 0.6053,
+            "corrects_mean": 0.2453,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "mannwhitney",
+            "p": 0.00021,
+            "effect_rank_biserial": 0.281
+          },
+          {
+            "axis": "n_sent_h92",
+            "errors_mean": 2.8684,
+            "corrects_mean": 2.0189,
+            "errors_median": 2.0,
+            "corrects_median": 1.0,
+            "test": "mannwhitney",
+            "p": 0.00143,
+            "effect_rank_biserial": 0.2942
+          },
+          {
+            "axis": "n_ann_sent",
+            "errors_mean": 2.8684,
+            "corrects_mean": 2.0189,
+            "errors_median": 2.0,
+            "corrects_median": 1.0,
+            "test": "mannwhitney",
+            "p": 0.00145,
+            "effect_rank_biserial": 0.2943
+          },
+          {
+            "axis": "lex_overlap_min",
+            "errors_mean": 0.6127,
+            "corrects_mean": 0.7752,
+            "errors_median": 0.7574,
+            "corrects_median": 0.8333,
+            "test": "mannwhitney",
+            "p": 0.00485,
+            "effect_rank_biserial": -0.2849
+          },
+          {
+            "axis": "n_distinct_argmax_docs",
+            "errors_mean": 1.8158,
+            "corrects_mean": 1.3726,
+            "errors_median": 1.0,
+            "corrects_median": 1.0,
+            "test": "mannwhitney",
+            "p": 0.00528,
+            "effect_rank_biserial": 0.2272
+          },
+          {
+            "axis": "min_sent_rel_pos",
+            "errors_mean": 0.2134,
+            "corrects_mean": 0.107,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "mannwhitney",
+            "p": 0.0055,
+            "effect_rank_biserial": 0.1961
+          },
+          {
+            "axis": "n_support_docs",
+            "errors_mean": 1.1579,
+            "corrects_mean": 1.5,
+            "errors_median": 1.0,
+            "corrects_median": 1.0,
+            "test": "mannwhitney",
+            "p": 0.01177,
+            "effect_rank_biserial": -0.245
+          },
+          {
+            "axis": "resp_chars",
+            "errors_mean": 358.0789,
+            "corrects_mean": 245.467,
+            "errors_median": 305.5,
+            "corrects_median": 139.5,
+            "test": "mannwhitney",
+            "p": 0.01842,
+            "effect_rank_biserial": 0.2403
+          },
+          {
+            "axis": "min_sent_lex_overlap",
+            "errors_mean": 0.6592,
+            "corrects_mean": 0.8034,
+            "errors_median": 0.7889,
+            "corrects_median": 0.8571,
+            "test": "mannwhitney",
+            "p": 0.01957,
+            "effect_rank_biserial": -0.2349
+          },
+          {
+            "axis": "max_sent_score",
+            "errors_mean": 0.7981,
+            "corrects_mean": 0.6914,
+            "errors_median": 0.9534,
+            "corrects_median": 0.8317,
+            "test": "mannwhitney",
+            "p": 0.02509,
+            "effect_rank_biserial": 0.2284
+          },
+          {
+            "axis": "min_sent_is_discourse",
+            "errors_mean": 0.2368,
+            "corrects_mean": 0.0991,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "fisher",
+            "p": 0.02684,
+            "effect_rank_biserial": 0.1378
+          },
+          {
+            "axis": "lex_overlap_mean",
+            "errors_mean": 0.7214,
+            "corrects_mean": 0.8353,
+            "errors_median": 0.8042,
+            "corrects_median": 0.875,
+            "test": "mannwhitney",
+            "p": 0.03199,
+            "effect_rank_biserial": -0.217
+          },
+          {
+            "axis": "support_spans_docs",
+            "errors_mean": 0.1316,
+            "corrects_mean": 0.2925,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "fisher",
+            "p": 0.04616,
+            "effect_rank_biserial": -0.1609
+          },
+          {
+            "axis": "n_sent_no_single_window",
+            "errors_mean": 0.2632,
+            "corrects_mean": 0.4009,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "mannwhitney",
+            "p": 0.0571,
+            "effect_rank_biserial": -0.1511
+          },
+          {
+            "axis": "n_sent_support_multidoc",
+            "errors_mean": 0.2632,
+            "corrects_mean": 0.3915,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "mannwhitney",
+            "p": 0.06413,
+            "effect_rank_biserial": -0.1462
+          },
+          {
+            "axis": "n_supporting_keys",
+            "errors_mean": 2.5789,
+            "corrects_mean": 3.0519,
+            "errors_median": 1.0,
+            "corrects_median": 2.0,
+            "test": "mannwhitney",
+            "p": 0.06553,
+            "effect_rank_biserial": -0.1848
+          },
+          {
+            "axis": "n_h92_unmapped",
+            "errors_mean": 0.5263,
+            "corrects_mean": 0.2123,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "mannwhitney",
+            "p": 0.11982,
+            "effect_rank_biserial": 0.1022
+          },
+          {
+            "axis": "min_sent_chars",
+            "errors_mean": 111.0263,
+            "corrects_mean": 105.217,
+            "errors_median": 111.5,
+            "corrects_median": 90.0,
+            "test": "mannwhitney",
+            "p": 0.33528,
+            "effect_rank_biserial": 0.0983
+          },
+          {
+            "axis": "any_doc_over_window",
+            "errors_mean": 0.0526,
+            "corrects_mean": 0.1085,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "fisher",
+            "p": 0.3885,
+            "effect_rank_biserial": -0.0559
+          },
+          {
+            "axis": "sent_chars_mean",
+            "errors_mean": 113.9755,
+            "corrects_mean": 108.0205,
+            "errors_median": 110.6667,
+            "corrects_median": 99.0,
+            "test": "mannwhitney",
+            "p": 0.45599,
+            "effect_rank_biserial": 0.0761
+          },
+          {
+            "axis": "sent_chars_min",
+            "errors_mean": 85.5526,
+            "corrects_mean": 89.316,
+            "errors_median": 75.5,
+            "corrects_median": 79.0,
+            "test": "mannwhitney",
+            "p": 0.48366,
+            "effect_rank_biserial": -0.0715
+          },
+          {
+            "axis": "n_docs",
+            "errors_mean": 3.1053,
+            "corrects_mean": 2.7594,
+            "errors_median": 2.0,
+            "corrects_median": 2.0,
+            "test": "mannwhitney",
+            "p": 0.49027,
+            "effect_rank_biserial": 0.0686
+          },
+          {
+            "axis": "question_chars",
+            "errors_mean": 38.0263,
+            "corrects_mean": 40.316,
+            "errors_median": 37.0,
+            "corrects_median": 38.0,
+            "test": "mannwhitney",
+            "p": 0.5423,
+            "effect_rank_biserial": -0.0622
+          },
+          {
+            "axis": "evidence_chars",
+            "errors_mean": 2126.6579,
+            "corrects_mean": 1986.8302,
+            "errors_median": 1651.5,
+            "corrects_median": 1491.5,
+            "test": "mannwhitney",
+            "p": 0.54331,
+            "effect_rank_biserial": 0.0621
+          },
+          {
+            "axis": "n_windows",
+            "errors_mean": 3.2368,
+            "corrects_mean": 2.9292,
+            "errors_median": 2.0,
+            "corrects_median": 2.0,
+            "test": "mannwhitney",
+            "p": 0.60106,
+            "effect_rank_biserial": 0.0521
+          },
+          {
+            "axis": "evidence_chars_max_doc",
+            "errors_mean": 943.6316,
+            "corrects_mean": 939.2028,
+            "errors_median": 898.5,
+            "corrects_median": 841.0,
+            "test": "mannwhitney",
+            "p": 0.89534,
+            "effect_rank_biserial": 0.0135
+          },
+          {
+            "axis": "has_citation",
+            "errors_mean": 0.0,
+            "corrects_mean": 0.0,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "fisher",
+            "p": 1.0,
+            "effect_rank_biserial": 0.0
+          },
+          {
+            "axis": "has_context_ref",
+            "errors_mean": 0.0,
+            "corrects_mean": 0.0047,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "fisher",
+            "p": 1.0,
+            "effect_rank_biserial": -0.0047
+          },
+          {
+            "axis": "has_url",
+            "errors_mean": 0.0,
+            "corrects_mean": 0.0094,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "fisher",
+            "p": 1.0,
+            "effect_rank_biserial": -0.0094
+          },
+          {
+            "axis": "has_list",
+            "errors_mean": 0.0,
+            "corrects_mean": 0.0,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "fisher",
+            "p": 1.0,
+            "effect_rank_biserial": 0.0
+          }
+        ],
+        "clean_d1": [
+          {
+            "axis": "n_unsupported",
+            "errors_mean": 0.7805,
+            "corrects_mean": 0.1244,
+            "errors_median": 1.0,
+            "corrects_median": 0.0,
+            "test": "mannwhitney",
+            "p": 0.0,
+            "effect_rank_biserial": 0.4821
+          },
+          {
+            "axis": "label_is_grounded",
+            "errors_mean": 0.439,
+            "corrects_mean": 0.9282,
+            "errors_median": 0.0,
+            "corrects_median": 1.0,
+            "test": "fisher",
+            "p": 0.0,
+            "effect_rank_biserial": -0.4892
+          },
+          {
+            "axis": "n_sent_low_overlap",
+            "errors_mean": 0.3902,
+            "corrects_mean": 0.1244,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "mannwhitney",
+            "p": 6e-05,
+            "effect_rank_biserial": 0.2391
+          },
+          {
+            "axis": "frac_discourse_sent",
+            "errors_mean": 0.2968,
+            "corrects_mean": 0.1113,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "mannwhitney",
+            "p": 0.00017,
+            "effect_rank_biserial": 0.2783
+          },
+          {
+            "axis": "n_discourse_sent",
+            "errors_mean": 0.561,
+            "corrects_mean": 0.2488,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "mannwhitney",
+            "p": 0.00033,
+            "effect_rank_biserial": 0.2643
+          },
+          {
+            "axis": "sent_score_spread",
+            "errors_mean": 0.3913,
+            "corrects_mean": 0.1928,
+            "errors_median": 0.08,
+            "corrects_median": 0.0,
+            "test": "mannwhitney",
+            "p": 0.00041,
+            "effect_rank_biserial": 0.3173
+          },
+          {
+            "axis": "n_sent_h92",
+            "errors_mean": 2.9268,
+            "corrects_mean": 1.9952,
+            "errors_median": 2.0,
+            "corrects_median": 1.0,
+            "test": "mannwhitney",
+            "p": 0.00105,
+            "effect_rank_biserial": 0.293
+          },
+          {
+            "axis": "n_ann_sent",
+            "errors_mean": 2.9268,
+            "corrects_mean": 1.9952,
+            "errors_median": 2.0,
+            "corrects_median": 1.0,
+            "test": "mannwhitney",
+            "p": 0.00109,
+            "effect_rank_biserial": 0.2928
+          },
+          {
+            "axis": "n_distinct_argmax_docs",
+            "errors_mean": 1.8537,
+            "corrects_mean": 1.3589,
+            "errors_median": 1.0,
+            "corrects_median": 1.0,
+            "test": "mannwhitney",
+            "p": 0.00121,
+            "effect_rank_biserial": 0.2555
+          },
+          {
+            "axis": "resp_chars",
+            "errors_mean": 380.439,
+            "corrects_mean": 239.4641,
+            "errors_median": 307.0,
+            "corrects_median": 132.0,
+            "test": "mannwhitney",
+            "p": 0.00296,
+            "effect_rank_biserial": 0.2937
+          },
+          {
+            "axis": "lex_overlap_min",
+            "errors_mean": 0.6213,
+            "corrects_mean": 0.7758,
+            "errors_median": 0.7647,
+            "corrects_median": 0.8333,
+            "test": "mannwhitney",
+            "p": 0.00315,
+            "effect_rank_biserial": -0.2895
+          },
+          {
+            "axis": "min_sent_rel_pos",
+            "errors_mean": 0.2201,
+            "corrects_mean": 0.1042,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "mannwhitney",
+            "p": 0.0036,
+            "effect_rank_biserial": 0.1994
+          },
+          {
+            "axis": "min_sent_lex_overlap",
+            "errors_mean": 0.6583,
+            "corrects_mean": 0.8056,
+            "errors_median": 0.7778,
+            "corrects_median": 0.8571,
+            "test": "mannwhitney",
+            "p": 0.00932,
+            "effect_rank_biserial": -0.2536
+          },
+          {
+            "axis": "min_sent_is_discourse",
+            "errors_mean": 0.2439,
+            "corrects_mean": 0.0957,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "fisher",
+            "p": 0.01505,
+            "effect_rank_biserial": 0.1482
+          },
+          {
+            "axis": "lex_overlap_mean",
+            "errors_mean": 0.7285,
+            "corrects_mean": 0.8356,
+            "errors_median": 0.8083,
+            "corrects_median": 0.875,
+            "test": "mannwhitney",
+            "p": 0.02784,
+            "effect_rank_biserial": -0.2158
+          },
+          {
+            "axis": "n_support_docs",
+            "errors_mean": 1.2927,
+            "corrects_mean": 1.4785,
+            "errors_median": 1.0,
+            "corrects_median": 1.0,
+            "test": "mannwhitney",
+            "p": 0.03976,
+            "effect_rank_biserial": -0.194
+          },
+          {
+            "axis": "sent_chars_mean",
+            "errors_mean": 120.9301,
+            "corrects_mean": 106.5707,
+            "errors_median": 121.1667,
+            "corrects_median": 97.0,
+            "test": "mannwhitney",
+            "p": 0.06912,
+            "effect_rank_biserial": 0.1797
+          },
+          {
+            "axis": "min_sent_chars",
+            "errors_mean": 116.5366,
+            "corrects_mean": 104.0526,
+            "errors_median": 112.0,
+            "corrects_median": 89.0,
+            "test": "mannwhitney",
+            "p": 0.09992,
+            "effect_rank_biserial": 0.1627
+          },
+          {
+            "axis": "n_supporting_keys",
+            "errors_mean": 3.2439,
+            "corrects_mean": 2.9282,
+            "errors_median": 1.0,
+            "corrects_median": 2.0,
+            "test": "mannwhitney",
+            "p": 0.13361,
+            "effect_rank_biserial": -0.146
+          },
+          {
+            "axis": "max_sent_score",
+            "errors_mean": 0.7492,
+            "corrects_mean": 0.6994,
+            "errors_median": 0.9541,
+            "corrects_median": 0.8331,
+            "test": "mannwhitney",
+            "p": 0.14307,
+            "effect_rank_biserial": 0.1448
+          },
+          {
+            "axis": "evidence_chars",
+            "errors_mean": 2267.5122,
+            "corrects_mean": 1957.1914,
+            "errors_median": 1751.0,
+            "corrects_median": 1454.0,
+            "test": "mannwhitney",
+            "p": 0.14599,
+            "effect_rank_biserial": 0.1438
+          },
+          {
+            "axis": "n_h92_unmapped",
+            "errors_mean": 0.4878,
+            "corrects_mean": 0.2153,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "mannwhitney",
+            "p": 0.19964,
+            "effect_rank_biserial": 0.0817
+          },
+          {
+            "axis": "evidence_chars_max_doc",
+            "errors_mean": 1001.2439,
+            "corrects_mean": 927.8373,
+            "errors_median": 958.0,
+            "corrects_median": 827.0,
+            "test": "mannwhitney",
+            "p": 0.23155,
+            "effect_rank_biserial": 0.1183
+          },
+          {
+            "axis": "n_docs",
+            "errors_mean": 3.1707,
+            "corrects_mean": 2.7416,
+            "errors_median": 3.0,
+            "corrects_median": 2.0,
+            "test": "mannwhitney",
+            "p": 0.23741,
+            "effect_rank_biserial": 0.1139
+          },
+          {
+            "axis": "n_windows",
+            "errors_mean": 3.3415,
+            "corrects_mean": 2.9043,
+            "errors_median": 3.0,
+            "corrects_median": 2.0,
+            "test": "mannwhitney",
+            "p": 0.24149,
+            "effect_rank_biserial": 0.1131
+          },
+          {
+            "axis": "n_sent_no_single_window",
+            "errors_mean": 0.3415,
+            "corrects_mean": 0.3876,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "mannwhitney",
+            "p": 0.31524,
+            "effect_rank_biserial": -0.0774
+          },
+          {
+            "axis": "support_spans_docs",
+            "errors_mean": 0.1951,
+            "corrects_mean": 0.2823,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "fisher",
+            "p": 0.33497,
+            "effect_rank_biserial": -0.0872
+          },
+          {
+            "axis": "n_sent_support_multidoc",
+            "errors_mean": 0.3415,
+            "corrects_mean": 0.378,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "mannwhitney",
+            "p": 0.34594,
+            "effect_rank_biserial": -0.0722
+          },
+          {
+            "axis": "question_chars",
+            "errors_mean": 38.0,
+            "corrects_mean": 40.3541,
+            "errors_median": 37.0,
+            "corrects_median": 38.0,
+            "test": "mannwhitney",
+            "p": 0.46091,
+            "effect_rank_biserial": -0.0729
+          },
+          {
+            "axis": "sent_chars_min",
+            "errors_mean": 90.8537,
+            "corrects_mean": 88.3301,
+            "errors_median": 81.0,
+            "corrects_median": 78.0,
+            "test": "mannwhitney",
+            "p": 0.97079,
+            "effect_rank_biserial": 0.0037
+          },
+          {
+            "axis": "has_citation",
+            "errors_mean": 0.0,
+            "corrects_mean": 0.0,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "fisher",
+            "p": 1.0,
+            "effect_rank_biserial": 0.0
+          },
+          {
+            "axis": "has_context_ref",
+            "errors_mean": 0.0,
+            "corrects_mean": 0.0048,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "fisher",
+            "p": 1.0,
+            "effect_rank_biserial": -0.0048
+          },
+          {
+            "axis": "has_url",
+            "errors_mean": 0.0,
+            "corrects_mean": 0.0096,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "fisher",
+            "p": 1.0,
+            "effect_rank_biserial": -0.0096
+          },
+          {
+            "axis": "has_list",
+            "errors_mean": 0.0,
+            "corrects_mean": 0.0,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "fisher",
+            "p": 1.0,
+            "effect_rank_biserial": 0.0
+          },
+          {
+            "axis": "any_doc_over_window",
+            "errors_mean": 0.0976,
+            "corrects_mean": 0.1005,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "fisher",
+            "p": 1.0,
+            "effect_rank_biserial": -0.0029
+          }
+        ]
+      },
+      "error_concentration": {
+        "consensus": {
+          "n_errors": 38,
+          "gate": "R15 convention: a slice qualifies at share_of_errors >= 0.30; lift > 1.0 is required in addition, since a slice covering 30% of the subset trivially carries 30% of its errors",
+          "qualifying_slices": [
+            {
+              "slice": "ungrounded (label=0)",
+              "n": 38,
+              "prevalence": 0.152,
+              "errors_in_slice": 23,
+              "share_of_errors": 0.6053,
+              "lift": 3.982,
+              "error_rate_in": 0.6053,
+              "error_rate_out": 0.0708,
+              "share_of_rank_loss": 0.5
+            },
+            {
+              "slice": "oracle_o4_strict == 0 (read cannot express the support)",
+              "n": 97,
+              "prevalence": 0.388,
+              "errors_in_slice": 22,
+              "share_of_errors": 0.5789,
+              "lift": 1.492,
+              "error_rate_in": 0.2268,
+              "error_rate_out": 0.1046,
+              "share_of_rank_loss": 0.5777
+            },
+            {
+              "slice": "long_evidence (evidence_chars > subset median)",
+              "n": 125,
+              "prevalence": 0.5,
+              "errors_in_slice": 20,
+              "share_of_errors": 0.5263,
+              "lift": 1.053,
+              "error_rate_in": 0.16,
+              "error_rate_out": 0.144,
+              "share_of_rank_loss": 0.494
+            },
+            {
+              "slice": "multi_doc_evidence (n_docs >= 3)",
+              "n": 109,
+              "prevalence": 0.436,
+              "errors_in_slice": 18,
+              "share_of_errors": 0.4737,
+              "lift": 1.086,
+              "error_rate_in": 0.1651,
+              "error_rate_out": 0.1418,
+              "share_of_rank_loss": 0.4567
+            },
+            {
+              "slice": "response_has_a_discourse_frame_sentence",
+              "n": 60,
+              "prevalence": 0.24,
+              "errors_in_slice": 18,
+              "share_of_errors": 0.4737,
+              "lift": 1.974,
+              "error_rate_in": 0.3,
+              "error_rate_out": 0.1053,
+              "share_of_rank_loss": 0.3866
+            },
+            {
+              "slice": "argmax_windows_span_multiple_docs (read)",
+              "n": 73,
+              "prevalence": 0.292,
+              "errors_in_slice": 18,
+              "share_of_errors": 0.4737,
+              "lift": 1.622,
+              "error_rate_in": 0.2466,
+              "error_rate_out": 0.113,
+              "share_of_rank_loss": 0.343
+            },
+            {
+              "slice": "no_supporting_keys_recorded",
+              "n": 52,
+              "prevalence": 0.208,
+              "errors_in_slice": 18,
+              "share_of_errors": 0.4737,
+              "lift": 2.277,
+              "error_rate_in": 0.3462,
+              "error_rate_out": 0.101,
+              "share_of_rank_loss": 0.3931
+            },
+            {
+              "slice": "multi_sentence (n_sent_h92 >= 3)",
+              "n": 72,
+              "prevalence": 0.288,
+              "errors_in_slice": 17,
+              "share_of_errors": 0.4474,
+              "lift": 1.553,
+              "error_rate_in": 0.2361,
+              "error_rate_out": 0.118,
+              "share_of_rank_loss": 0.3263
+            },
+            {
+              "slice": "any_sentence_lex_overlap < 0.5",
+              "n": 35,
+              "prevalence": 0.14,
+              "errors_in_slice": 13,
+              "share_of_errors": 0.3421,
+              "lift": 2.444,
+              "error_rate_in": 0.3714,
+              "error_rate_out": 0.1163,
+              "share_of_rank_loss": 0.2302
+            }
+          ],
+          "all_slices": [
+            {
+              "slice": "ungrounded (label=0)",
+              "n": 38,
+              "prevalence": 0.152,
+              "errors_in_slice": 23,
+              "share_of_errors": 0.6053,
+              "lift": 3.982,
+              "error_rate_in": 0.6053,
+              "error_rate_out": 0.0708,
+              "share_of_rank_loss": 0.5
+            },
+            {
+              "slice": "oracle_o4_strict == 0 (read cannot express the support)",
+              "n": 97,
+              "prevalence": 0.388,
+              "errors_in_slice": 22,
+              "share_of_errors": 0.5789,
+              "lift": 1.492,
+              "error_rate_in": 0.2268,
+              "error_rate_out": 0.1046,
+              "share_of_rank_loss": 0.5777
+            },
+            {
+              "slice": "long_evidence (evidence_chars > subset median)",
+              "n": 125,
+              "prevalence": 0.5,
+              "errors_in_slice": 20,
+              "share_of_errors": 0.5263,
+              "lift": 1.053,
+              "error_rate_in": 0.16,
+              "error_rate_out": 0.144,
+              "share_of_rank_loss": 0.494
+            },
+            {
+              "slice": "multi_doc_evidence (n_docs >= 3)",
+              "n": 109,
+              "prevalence": 0.436,
+              "errors_in_slice": 18,
+              "share_of_errors": 0.4737,
+              "lift": 1.086,
+              "error_rate_in": 0.1651,
+              "error_rate_out": 0.1418,
+              "share_of_rank_loss": 0.4567
+            },
+            {
+              "slice": "response_has_a_discourse_frame_sentence",
+              "n": 60,
+              "prevalence": 0.24,
+              "errors_in_slice": 18,
+              "share_of_errors": 0.4737,
+              "lift": 1.974,
+              "error_rate_in": 0.3,
+              "error_rate_out": 0.1053,
+              "share_of_rank_loss": 0.3866
+            },
+            {
+              "slice": "argmax_windows_span_multiple_docs (read)",
+              "n": 73,
+              "prevalence": 0.292,
+              "errors_in_slice": 18,
+              "share_of_errors": 0.4737,
+              "lift": 1.622,
+              "error_rate_in": 0.2466,
+              "error_rate_out": 0.113,
+              "share_of_rank_loss": 0.343
+            },
+            {
+              "slice": "no_supporting_keys_recorded",
+              "n": 52,
+              "prevalence": 0.208,
+              "errors_in_slice": 18,
+              "share_of_errors": 0.4737,
+              "lift": 2.277,
+              "error_rate_in": 0.3462,
+              "error_rate_out": 0.101,
+              "share_of_rank_loss": 0.3931
+            },
+            {
+              "slice": "multi_sentence (n_sent_h92 >= 3)",
+              "n": 72,
+              "prevalence": 0.288,
+              "errors_in_slice": 17,
+              "share_of_errors": 0.4474,
+              "lift": 1.553,
+              "error_rate_in": 0.2361,
+              "error_rate_out": 0.118,
+              "share_of_rank_loss": 0.3263
+            },
+            {
+              "slice": "grounded (label=1)",
+              "n": 212,
+              "prevalence": 0.848,
+              "errors_in_slice": 15,
+              "share_of_errors": 0.3947,
+              "lift": 0.465,
+              "error_rate_in": 0.0708,
+              "error_rate_out": 0.6053,
+              "share_of_rank_loss": 0.5
+            },
+            {
+              "slice": "any_sentence_lex_overlap < 0.5",
+              "n": 35,
+              "prevalence": 0.14,
+              "errors_in_slice": 13,
+              "share_of_errors": 0.3421,
+              "lift": 2.444,
+              "error_rate_in": 0.3714,
+              "error_rate_out": 0.1163,
+              "share_of_rank_loss": 0.2302
+            },
+            {
+              "slice": "single_scored_sentence (n_sent_h92 == 1)",
+              "n": 140,
+              "prevalence": 0.56,
+              "errors_in_slice": 12,
+              "share_of_errors": 0.3158,
+              "lift": 0.564,
+              "error_rate_in": 0.0857,
+              "error_rate_out": 0.2364,
+              "share_of_rank_loss": 0.5204
+            },
+            {
+              "slice": "short_response (resp_chars < subset median)",
+              "n": 125,
+              "prevalence": 0.5,
+              "errors_in_slice": 12,
+              "share_of_errors": 0.3158,
+              "lift": 0.632,
+              "error_rate_in": 0.096,
+              "error_rate_out": 0.208,
+              "share_of_rank_loss": 0.4707
+            },
+            {
+              "slice": "single_doc_evidence (n_docs == 1)",
+              "n": 70,
+              "prevalence": 0.28,
+              "errors_in_slice": 11,
+              "share_of_errors": 0.2895,
+              "lift": 1.034,
+              "error_rate_in": 0.1571,
+              "error_rate_out": 0.15,
+              "share_of_rank_loss": 0.3043
+            },
+            {
+              "slice": "min_sentence_lex_overlap < 0.5 (read)",
+              "n": 29,
+              "prevalence": 0.116,
+              "errors_in_slice": 11,
+              "share_of_errors": 0.2895,
+              "lift": 2.495,
+              "error_rate_in": 0.3793,
+              "error_rate_out": 0.1222,
+              "share_of_rank_loss": 0.1951
+            },
+            {
+              "slice": "min_sentence_is_discourse_frame (read)",
+              "n": 30,
+              "prevalence": 0.12,
+              "errors_in_slice": 9,
+              "share_of_errors": 0.2368,
+              "lift": 1.974,
+              "error_rate_in": 0.3,
+              "error_rate_out": 0.1318,
+              "share_of_rank_loss": 0.2102
+            },
+            {
+              "slice": "h92_splitter_dropped_annotated_sentence",
+              "n": 41,
+              "prevalence": 0.164,
+              "errors_in_slice": 9,
+              "share_of_errors": 0.2368,
+              "lift": 1.444,
+              "error_rate_in": 0.2195,
+              "error_rate_out": 0.1388,
+              "share_of_rank_loss": 0.1822
+            },
+            {
+              "slice": "support_spans_multiple_docs (annotation)",
+              "n": 67,
+              "prevalence": 0.268,
+              "errors_in_slice": 5,
+              "share_of_errors": 0.1316,
+              "lift": 0.491,
+              "error_rate_in": 0.0746,
+              "error_rate_out": 0.1803,
+              "share_of_rank_loss": 0.2052
+            },
+            {
+              "slice": "oracle_o4_strict_unreachable_positive",
+              "n": 64,
+              "prevalence": 0.256,
+              "errors_in_slice": 3,
+              "share_of_errors": 0.0789,
+              "lift": 0.308,
+              "error_rate_in": 0.0469,
+              "error_rate_out": 0.1882,
+              "share_of_rank_loss": 0.1634
+            },
+            {
+              "slice": "any_doc_exceeds_window (>1500 chars)",
+              "n": 25,
+              "prevalence": 0.1,
+              "errors_in_slice": 2,
+              "share_of_errors": 0.0526,
+              "lift": 0.526,
+              "error_rate_in": 0.08,
+              "error_rate_out": 0.16,
+              "share_of_rank_loss": 0.0954
+            },
+            {
+              "slice": "multi_window (n_windows > n_docs)",
+              "n": 25,
+              "prevalence": 0.1,
+              "errors_in_slice": 2,
+              "share_of_errors": 0.0526,
+              "lift": 0.526,
+              "error_rate_in": 0.08,
+              "error_rate_out": 0.16,
+              "share_of_rank_loss": 0.0954
+            },
+            {
+              "slice": "has_prose_context_reference (\"...in context 3\")",
+              "n": 1,
+              "prevalence": 0.004,
+              "errors_in_slice": 0,
+              "share_of_errors": 0.0,
+              "lift": 0.0,
+              "error_rate_in": 0.0,
+              "error_rate_out": 0.1526,
+              "share_of_rank_loss": 0.0013
+            }
+          ]
+        },
+        "clean_d1": {
+          "n_errors": 41,
+          "gate": "R15 convention: a slice qualifies at share_of_errors >= 0.30; lift > 1.0 is required in addition, since a slice covering 30% of the subset trivially carries 30% of its errors",
+          "qualifying_slices": [
+            {
+              "slice": "oracle_o4_strict == 0 (read cannot express the support)",
+              "n": 97,
+              "prevalence": 0.388,
+              "errors_in_slice": 26,
+              "share_of_errors": 0.6341,
+              "lift": 1.634,
+              "error_rate_in": 0.268,
+              "error_rate_out": 0.098,
+              "share_of_rank_loss": 0.5635
+            },
+            {
+              "slice": "long_evidence (evidence_chars > subset median)",
+              "n": 125,
+              "prevalence": 0.5,
+              "errors_in_slice": 25,
+              "share_of_errors": 0.6098,
+              "lift": 1.22,
+              "error_rate_in": 0.2,
+              "error_rate_out": 0.128,
+              "share_of_rank_loss": 0.4852
+            },
+            {
+              "slice": "ungrounded (label=0)",
+              "n": 38,
+              "prevalence": 0.152,
+              "errors_in_slice": 23,
+              "share_of_errors": 0.561,
+              "lift": 3.691,
+              "error_rate_in": 0.6053,
+              "error_rate_out": 0.0849,
+              "share_of_rank_loss": 0.5
+            },
+            {
+              "slice": "multi_doc_evidence (n_docs >= 3)",
+              "n": 109,
+              "prevalence": 0.436,
+              "errors_in_slice": 21,
+              "share_of_errors": 0.5122,
+              "lift": 1.175,
+              "error_rate_in": 0.1927,
+              "error_rate_out": 0.1418,
+              "share_of_rank_loss": 0.4496
+            },
+            {
+              "slice": "argmax_windows_span_multiple_docs (read)",
+              "n": 73,
+              "prevalence": 0.292,
+              "errors_in_slice": 20,
+              "share_of_errors": 0.4878,
+              "lift": 1.671,
+              "error_rate_in": 0.274,
+              "error_rate_out": 0.1186,
+              "share_of_rank_loss": 0.327
+            },
+            {
+              "slice": "multi_sentence (n_sent_h92 >= 3)",
+              "n": 72,
+              "prevalence": 0.288,
+              "errors_in_slice": 19,
+              "share_of_errors": 0.4634,
+              "lift": 1.609,
+              "error_rate_in": 0.2639,
+              "error_rate_out": 0.1236,
+              "share_of_rank_loss": 0.3087
+            },
+            {
+              "slice": "response_has_a_discourse_frame_sentence",
+              "n": 60,
+              "prevalence": 0.24,
+              "errors_in_slice": 19,
+              "share_of_errors": 0.4634,
+              "lift": 1.931,
+              "error_rate_in": 0.3167,
+              "error_rate_out": 0.1158,
+              "share_of_rank_loss": 0.4059
+            },
+            {
+              "slice": "no_supporting_keys_recorded",
+              "n": 52,
+              "prevalence": 0.208,
+              "errors_in_slice": 19,
+              "share_of_errors": 0.4634,
+              "lift": 2.228,
+              "error_rate_in": 0.3654,
+              "error_rate_out": 0.1111,
+              "share_of_rank_loss": 0.4081
+            },
+            {
+              "slice": "any_sentence_lex_overlap < 0.5",
+              "n": 35,
+              "prevalence": 0.14,
+              "errors_in_slice": 14,
+              "share_of_errors": 0.3415,
+              "lift": 2.439,
+              "error_rate_in": 0.4,
+              "error_rate_out": 0.1256,
+              "share_of_rank_loss": 0.2417
+            }
+          ],
+          "all_slices": [
+            {
+              "slice": "oracle_o4_strict == 0 (read cannot express the support)",
+              "n": 97,
+              "prevalence": 0.388,
+              "errors_in_slice": 26,
+              "share_of_errors": 0.6341,
+              "lift": 1.634,
+              "error_rate_in": 0.268,
+              "error_rate_out": 0.098,
+              "share_of_rank_loss": 0.5635
+            },
+            {
+              "slice": "long_evidence (evidence_chars > subset median)",
+              "n": 125,
+              "prevalence": 0.5,
+              "errors_in_slice": 25,
+              "share_of_errors": 0.6098,
+              "lift": 1.22,
+              "error_rate_in": 0.2,
+              "error_rate_out": 0.128,
+              "share_of_rank_loss": 0.4852
+            },
+            {
+              "slice": "ungrounded (label=0)",
+              "n": 38,
+              "prevalence": 0.152,
+              "errors_in_slice": 23,
+              "share_of_errors": 0.561,
+              "lift": 3.691,
+              "error_rate_in": 0.6053,
+              "error_rate_out": 0.0849,
+              "share_of_rank_loss": 0.5
+            },
+            {
+              "slice": "multi_doc_evidence (n_docs >= 3)",
+              "n": 109,
+              "prevalence": 0.436,
+              "errors_in_slice": 21,
+              "share_of_errors": 0.5122,
+              "lift": 1.175,
+              "error_rate_in": 0.1927,
+              "error_rate_out": 0.1418,
+              "share_of_rank_loss": 0.4496
+            },
+            {
+              "slice": "argmax_windows_span_multiple_docs (read)",
+              "n": 73,
+              "prevalence": 0.292,
+              "errors_in_slice": 20,
+              "share_of_errors": 0.4878,
+              "lift": 1.671,
+              "error_rate_in": 0.274,
+              "error_rate_out": 0.1186,
+              "share_of_rank_loss": 0.327
+            },
+            {
+              "slice": "multi_sentence (n_sent_h92 >= 3)",
+              "n": 72,
+              "prevalence": 0.288,
+              "errors_in_slice": 19,
+              "share_of_errors": 0.4634,
+              "lift": 1.609,
+              "error_rate_in": 0.2639,
+              "error_rate_out": 0.1236,
+              "share_of_rank_loss": 0.3087
+            },
+            {
+              "slice": "response_has_a_discourse_frame_sentence",
+              "n": 60,
+              "prevalence": 0.24,
+              "errors_in_slice": 19,
+              "share_of_errors": 0.4634,
+              "lift": 1.931,
+              "error_rate_in": 0.3167,
+              "error_rate_out": 0.1158,
+              "share_of_rank_loss": 0.4059
+            },
+            {
+              "slice": "no_supporting_keys_recorded",
+              "n": 52,
+              "prevalence": 0.208,
+              "errors_in_slice": 19,
+              "share_of_errors": 0.4634,
+              "lift": 2.228,
+              "error_rate_in": 0.3654,
+              "error_rate_out": 0.1111,
+              "share_of_rank_loss": 0.4081
+            },
+            {
+              "slice": "grounded (label=1)",
+              "n": 212,
+              "prevalence": 0.848,
+              "errors_in_slice": 18,
+              "share_of_errors": 0.439,
+              "lift": 0.518,
+              "error_rate_in": 0.0849,
+              "error_rate_out": 0.6053,
+              "share_of_rank_loss": 0.5
+            },
+            {
+              "slice": "single_scored_sentence (n_sent_h92 == 1)",
+              "n": 140,
+              "prevalence": 0.56,
+              "errors_in_slice": 14,
+              "share_of_errors": 0.3415,
+              "lift": 0.61,
+              "error_rate_in": 0.1,
+              "error_rate_out": 0.2455,
+              "share_of_rank_loss": 0.5473
+            },
+            {
+              "slice": "any_sentence_lex_overlap < 0.5",
+              "n": 35,
+              "prevalence": 0.14,
+              "errors_in_slice": 14,
+              "share_of_errors": 0.3415,
+              "lift": 2.439,
+              "error_rate_in": 0.4,
+              "error_rate_out": 0.1256,
+              "share_of_rank_loss": 0.2417
+            },
+            {
+              "slice": "short_response (resp_chars < subset median)",
+              "n": 125,
+              "prevalence": 0.5,
+              "errors_in_slice": 12,
+              "share_of_errors": 0.2927,
+              "lift": 0.585,
+              "error_rate_in": 0.096,
+              "error_rate_out": 0.232,
+              "share_of_rank_loss": 0.4932
+            },
+            {
+              "slice": "min_sentence_lex_overlap < 0.5 (read)",
+              "n": 29,
+              "prevalence": 0.116,
+              "errors_in_slice": 12,
+              "share_of_errors": 0.2927,
+              "lift": 2.523,
+              "error_rate_in": 0.4138,
+              "error_rate_out": 0.1312,
+              "share_of_rank_loss": 0.2089
+            },
+            {
+              "slice": "single_doc_evidence (n_docs == 1)",
+              "n": 70,
+              "prevalence": 0.28,
+              "errors_in_slice": 10,
+              "share_of_errors": 0.2439,
+              "lift": 0.871,
+              "error_rate_in": 0.1429,
+              "error_rate_out": 0.1722,
+              "share_of_rank_loss": 0.3243
+            },
+            {
+              "slice": "min_sentence_is_discourse_frame (read)",
+              "n": 30,
+              "prevalence": 0.12,
+              "errors_in_slice": 10,
+              "share_of_errors": 0.2439,
+              "lift": 2.033,
+              "error_rate_in": 0.3333,
+              "error_rate_out": 0.1409,
+              "share_of_rank_loss": 0.247
+            },
+            {
+              "slice": "h92_splitter_dropped_annotated_sentence",
+              "n": 41,
+              "prevalence": 0.164,
+              "errors_in_slice": 9,
+              "share_of_errors": 0.2195,
+              "lift": 1.338,
+              "error_rate_in": 0.2195,
+              "error_rate_out": 0.1531,
+              "share_of_rank_loss": 0.1938
+            },
+            {
+              "slice": "support_spans_multiple_docs (annotation)",
+              "n": 67,
+              "prevalence": 0.268,
+              "errors_in_slice": 8,
+              "share_of_errors": 0.1951,
+              "lift": 0.728,
+              "error_rate_in": 0.1194,
+              "error_rate_out": 0.1803,
+              "share_of_rank_loss": 0.1928
+            },
+            {
+              "slice": "oracle_o4_strict_unreachable_positive",
+              "n": 64,
+              "prevalence": 0.256,
+              "errors_in_slice": 7,
+              "share_of_errors": 0.1707,
+              "lift": 0.667,
+              "error_rate_in": 0.1094,
+              "error_rate_out": 0.1828,
+              "share_of_rank_loss": 0.1616
+            },
+            {
+              "slice": "any_doc_exceeds_window (>1500 chars)",
+              "n": 25,
+              "prevalence": 0.1,
+              "errors_in_slice": 4,
+              "share_of_errors": 0.0976,
+              "lift": 0.976,
+              "error_rate_in": 0.16,
+              "error_rate_out": 0.1644,
+              "share_of_rank_loss": 0.0886
+            },
+            {
+              "slice": "multi_window (n_windows > n_docs)",
+              "n": 25,
+              "prevalence": 0.1,
+              "errors_in_slice": 4,
+              "share_of_errors": 0.0976,
+              "lift": 0.976,
+              "error_rate_in": 0.16,
+              "error_rate_out": 0.1644,
+              "share_of_rank_loss": 0.0886
+            },
+            {
+              "slice": "has_prose_context_reference (\"...in context 3\")",
+              "n": 1,
+              "prevalence": 0.004,
+              "errors_in_slice": 0,
+              "share_of_errors": 0.0,
+              "lift": 0.0,
+              "error_rate_in": 0.0,
+              "error_rate_out": 0.1647,
+              "share_of_rank_loss": 0.0005
+            }
+          ]
+        }
+      }
+    },
+    "emanual": {
+      "n": 132,
+      "grounded_rate": 0.8939,
+      "read": "windowed decomposed-min (1500/750, max-over-windows, min-over-sentences)",
+      "checkpoints": {
+        "clean_d1": {
+          "auc_standard_error": 0.0666,
+          "n_scored_sentences_mapped": 731,
+          "n_unsupported_scored_sentences": 36,
+          "sentence_level_auc": 0.6246,
+          "mean_score_supported_sent": 0.831,
+          "mean_score_unsupported_sent": 0.75,
+          "argmin_localisation_rate": 0.3077,
+          "n_ungrounded_items_with_located_bad_sentence": 13,
+          "by_sentence_register": {
+            "declarative": {
+              "n_sentences": 487,
+              "n_mapped": 472,
+              "unsupported_rate": 0.0424,
+              "mean_score": 0.8299,
+              "mean_score_supported": 0.8332,
+              "mean_score_unsupported": 0.7257,
+              "within_register_sentence_auc": 0.6708
+            },
+            "discourse_frame": {
+              "n_sentences": 106,
+              "n_mapped": 104,
+              "unsupported_rate": 0.0192,
+              "mean_score": 0.7654,
+              "mean_score_supported": 0.7589,
+              "mean_score_unsupported": 0.8903,
+              "within_register_sentence_auc": null
+            },
+            "imperative_step": {
+              "n_sentences": 154,
+              "n_mapped": 154,
+              "unsupported_rate": 0.0909,
+              "mean_score": 0.8658,
+              "mean_score_supported": 0.8759,
+              "mean_score_unsupported": 0.7646,
+              "within_register_sentence_auc": 0.6694
+            },
+            "reference_line": {
+              "n_sentences": 1,
+              "n_mapped": 1,
+              "unsupported_rate": 0.0,
+              "mean_score": 0.9137,
+              "mean_score_supported": 0.9137,
+              "mean_score_unsupported": null,
+              "within_register_sentence_auc": null
+            }
+          },
+          "auc_by_item_slice": {
+            "multi_sentence": {
+              "n": 120,
+              "n_pos": 106,
+              "auc": 0.6833
+            },
+            "has_list_structure": {
+              "n": 70,
+              "n_pos": 57,
+              "auc": 0.5371
+            },
+            "no_list_structure": {
+              "n": 62,
+              "n_pos": 61,
+              "auc": 1.0
+            },
+            "faithful_oracle_reachable (o4_strict == 1)": {
+              "n": 84,
+              "n_pos": 83,
+              "auc": 0.6145
+            },
+            "faithful_oracle_unreachable (o4_strict == 0)": {
+              "n": 48,
+              "n_pos": 35,
+              "auc": 0.6901
+            },
+            "multi_doc_evidence (>= 3)": {
+              "n": 132,
+              "n_pos": 118,
+              "auc": 0.6883
+            }
+          },
+          "aggregation_counterfactual_auc": {
+            "min_all (the shipped rule)": 0.6883,
+            "mean": 0.6217,
+            "max": 0.4973,
+            "min_drop_first_sentence": 0.6265,
+            "min_drop_single_lowest": 0.6308,
+            "min_excluding_discourse_frames": 0.635,
+            "min_excluding_imperative_steps": 0.6616,
+            "min_over_declarative_only": 0.6126
+          },
+          "auc": 0.6883,
+          "operating_threshold": 0.1327,
+          "n_errors": 12,
+          "n_false_negatives": 1,
+          "n_false_positives": 11,
+          "margin_errors_mean": 0.3709,
+          "margin_corrects_mean": 0.4704,
+          "score_mean_pos": 0.6104,
+          "score_mean_neg": 0.4449
+        },
+        "clean_d2": {
+          "auc_standard_error": 0.0642,
+          "n_scored_sentences_mapped": 731,
+          "n_unsupported_scored_sentences": 36,
+          "sentence_level_auc": 0.6288,
+          "mean_score_supported_sent": 0.6661,
+          "mean_score_unsupported_sent": 0.532,
+          "argmin_localisation_rate": 0.4615,
+          "n_ungrounded_items_with_located_bad_sentence": 13,
+          "by_sentence_register": {
+            "declarative": {
+              "n_sentences": 487,
+              "n_mapped": 472,
+              "unsupported_rate": 0.0424,
+              "mean_score": 0.6725,
+              "mean_score_supported": 0.6801,
+              "mean_score_unsupported": 0.5069,
+              "within_register_sentence_auc": 0.6729
+            },
+            "discourse_frame": {
+              "n_sentences": 106,
+              "n_mapped": 104,
+              "unsupported_rate": 0.0192,
+              "mean_score": 0.4908,
+              "mean_score_supported": 0.4779,
+              "mean_score_unsupported": 0.9167,
+              "within_register_sentence_auc": null
+            },
+            "imperative_step": {
+              "n_sentences": 154,
+              "n_mapped": 154,
+              "unsupported_rate": 0.0909,
+              "mean_score": 0.734,
+              "mean_score_supported": 0.7561,
+              "mean_score_unsupported": 0.513,
+              "within_register_sentence_auc": 0.7168
+            },
+            "reference_line": {
+              "n_sentences": 1,
+              "n_mapped": 1,
+              "unsupported_rate": 0.0,
+              "mean_score": 0.9113,
+              "mean_score_supported": 0.9113,
+              "mean_score_unsupported": null,
+              "within_register_sentence_auc": null
+            }
+          },
+          "auc_by_item_slice": {
+            "multi_sentence": {
+              "n": 120,
+              "n_pos": 106,
+              "auc": 0.6995
+            },
+            "has_list_structure": {
+              "n": 70,
+              "n_pos": 57,
+              "auc": 0.5223
+            },
+            "no_list_structure": {
+              "n": 62,
+              "n_pos": 61,
+              "auc": 0.9836
+            },
+            "faithful_oracle_reachable (o4_strict == 1)": {
+              "n": 84,
+              "n_pos": 83,
+              "auc": 0.6145
+            },
+            "faithful_oracle_unreachable (o4_strict == 0)": {
+              "n": 48,
+              "n_pos": 35,
+              "auc": 0.6462
+            },
+            "multi_doc_evidence (>= 3)": {
+              "n": 132,
+              "n_pos": 118,
+              "auc": 0.707
+            }
+          },
+          "aggregation_counterfactual_auc": {
+            "min_all (the shipped rule)": 0.707,
+            "mean": 0.6616,
+            "max": 0.3971,
+            "min_drop_first_sentence": 0.6489,
+            "min_drop_single_lowest": 0.6713,
+            "min_excluding_discourse_frames": 0.687,
+            "min_excluding_imperative_steps": 0.6804,
+            "min_over_declarative_only": 0.6314
+          },
+          "auc": 0.707,
+          "operating_threshold": 0.0607,
+          "n_errors": 20,
+          "n_false_negatives": 10,
+          "n_false_positives": 10,
+          "margin_errors_mean": 0.0828,
+          "margin_corrects_mean": 0.3312,
+          "score_mean_pos": 0.3725,
+          "score_mean_neg": 0.1578
+        },
+        "h108_d1": {
+          "auc_standard_error": 0.0685,
+          "n_scored_sentences_mapped": 731,
+          "n_unsupported_scored_sentences": 36,
+          "sentence_level_auc": 0.6723,
+          "mean_score_supported_sent": 0.67,
+          "mean_score_unsupported_sent": 0.4708,
+          "argmin_localisation_rate": 0.5385,
+          "n_ungrounded_items_with_located_bad_sentence": 13,
+          "by_sentence_register": {
+            "declarative": {
+              "n_sentences": 487,
+              "n_mapped": 472,
+              "unsupported_rate": 0.0424,
+              "mean_score": 0.674,
+              "mean_score_supported": 0.6843,
+              "mean_score_unsupported": 0.4453,
+              "within_register_sentence_auc": 0.7179
+            },
+            "discourse_frame": {
+              "n_sentences": 106,
+              "n_mapped": 104,
+              "unsupported_rate": 0.0192,
+              "mean_score": 0.5377,
+              "mean_score_supported": 0.5241,
+              "mean_score_unsupported": 0.8431,
+              "within_register_sentence_auc": null
+            },
+            "imperative_step": {
+              "n_sentences": 154,
+              "n_mapped": 154,
+              "unsupported_rate": 0.0909,
+              "mean_score": 0.7056,
+              "mean_score_supported": 0.7307,
+              "mean_score_unsupported": 0.4541,
+              "within_register_sentence_auc": 0.7031
+            },
+            "reference_line": {
+              "n_sentences": 1,
+              "n_mapped": 1,
+              "unsupported_rate": 0.0,
+              "mean_score": 0.5896,
+              "mean_score_supported": 0.5896,
+              "mean_score_unsupported": null,
+              "within_register_sentence_auc": null
+            }
+          },
+          "auc_by_item_slice": {
+            "multi_sentence": {
+              "n": 120,
+              "n_pos": 106,
+              "auc": 0.6536
+            },
+            "has_list_structure": {
+              "n": 70,
+              "n_pos": 57,
+              "auc": 0.4737
+            },
+            "no_list_structure": {
+              "n": 62,
+              "n_pos": 61,
+              "auc": 0.9836
+            },
+            "faithful_oracle_reachable (o4_strict == 1)": {
+              "n": 84,
+              "n_pos": 83,
+              "auc": 0.4337
+            },
+            "faithful_oracle_unreachable (o4_strict == 0)": {
+              "n": 48,
+              "n_pos": 35,
+              "auc": 0.6066
+            },
+            "multi_doc_evidence (>= 3)": {
+              "n": 132,
+              "n_pos": 118,
+              "auc": 0.6719
+            }
+          },
+          "aggregation_counterfactual_auc": {
+            "min_all (the shipped rule)": 0.6719,
+            "mean": 0.6659,
+            "max": 0.4561,
+            "min_drop_first_sentence": 0.6592,
+            "min_drop_single_lowest": 0.6907,
+            "min_excluding_discourse_frames": 0.6895,
+            "min_excluding_imperative_steps": 0.6544,
+            "min_over_declarative_only": 0.6531
+          },
+          "auc": 0.6719,
+          "operating_threshold": 0.0479,
+          "n_errors": 18,
+          "n_false_negatives": 7,
+          "n_false_positives": 11,
+          "margin_errors_mean": 0.1177,
+          "margin_corrects_mean": 0.3532,
+          "score_mean_pos": 0.3875,
+          "score_mean_neg": 0.1864
+        },
+        "h108_d2": {
+          "auc_standard_error": 0.0744,
+          "n_scored_sentences_mapped": 731,
+          "n_unsupported_scored_sentences": 36,
+          "sentence_level_auc": 0.6154,
+          "mean_score_supported_sent": 0.6406,
+          "mean_score_unsupported_sent": 0.5197,
+          "argmin_localisation_rate": 0.7692,
+          "n_ungrounded_items_with_located_bad_sentence": 13,
+          "by_sentence_register": {
+            "declarative": {
+              "n_sentences": 487,
+              "n_mapped": 472,
+              "unsupported_rate": 0.0424,
+              "mean_score": 0.6244,
+              "mean_score_supported": 0.6317,
+              "mean_score_unsupported": 0.4796,
+              "within_register_sentence_auc": 0.6494
+            },
+            "discourse_frame": {
+              "n_sentences": 106,
+              "n_mapped": 104,
+              "unsupported_rate": 0.0192,
+              "mean_score": 0.5964,
+              "mean_score_supported": 0.5975,
+              "mean_score_unsupported": 0.8887,
+              "within_register_sentence_auc": null
+            },
+            "imperative_step": {
+              "n_sentences": 154,
+              "n_mapped": 154,
+              "unsupported_rate": 0.0909,
+              "mean_score": 0.6872,
+              "mean_score_supported": 0.7035,
+              "mean_score_unsupported": 0.5243,
+              "within_register_sentence_auc": 0.676
+            },
+            "reference_line": {
+              "n_sentences": 1,
+              "n_mapped": 1,
+              "unsupported_rate": 0.0,
+              "mean_score": 0.2514,
+              "mean_score_supported": 0.2514,
+              "mean_score_unsupported": null,
+              "within_register_sentence_auc": null
+            }
+          },
+          "auc_by_item_slice": {
+            "multi_sentence": {
+              "n": 120,
+              "n_pos": 106,
+              "auc": 0.6051
+            },
+            "has_list_structure": {
+              "n": 70,
+              "n_pos": 57,
+              "auc": 0.5182
+            },
+            "no_list_structure": {
+              "n": 62,
+              "n_pos": 61,
+              "auc": 0.9016
+            },
+            "faithful_oracle_reachable (o4_strict == 1)": {
+              "n": 84,
+              "n_pos": 83,
+              "auc": 0.2771
+            },
+            "faithful_oracle_unreachable (o4_strict == 0)": {
+              "n": 48,
+              "n_pos": 35,
+              "auc": 0.5077
+            },
+            "multi_doc_evidence (>= 3)": {
+              "n": 132,
+              "n_pos": 118,
+              "auc": 0.6132
+            }
+          },
+          "aggregation_counterfactual_auc": {
+            "min_all (the shipped rule)": 0.6132,
+            "mean": 0.5787,
+            "max": 0.467,
+            "min_drop_first_sentence": 0.6162,
+            "min_drop_single_lowest": 0.6531,
+            "min_excluding_discourse_frames": 0.6314,
+            "min_excluding_imperative_steps": 0.5696,
+            "min_over_declarative_only": 0.5599
+          },
+          "auc": 0.6132,
+          "operating_threshold": 0.1531,
+          "n_errors": 33,
+          "n_false_negatives": 25,
+          "n_false_positives": 8,
+          "margin_errors_mean": 0.1231,
+          "margin_corrects_mean": 0.3105,
+          "score_mean_pos": 0.3958,
+          "score_mean_neg": 0.2929
+        },
+        "g0_adapter": {
+          "auc_standard_error": 0.0695,
+          "n_scored_sentences_mapped": 731,
+          "n_unsupported_scored_sentences": 36,
+          "sentence_level_auc": 0.6907,
+          "mean_score_supported_sent": 0.9337,
+          "mean_score_unsupported_sent": 0.8117,
+          "argmin_localisation_rate": 0.6923,
+          "n_ungrounded_items_with_located_bad_sentence": 13,
+          "by_sentence_register": {
+            "declarative": {
+              "n_sentences": 487,
+              "n_mapped": 472,
+              "unsupported_rate": 0.0424,
+              "mean_score": 0.9214,
+              "mean_score_supported": 0.9261,
+              "mean_score_unsupported": 0.7937,
+              "within_register_sentence_auc": 0.7278
+            },
+            "discourse_frame": {
+              "n_sentences": 106,
+              "n_mapped": 104,
+              "unsupported_rate": 0.0192,
+              "mean_score": 0.9463,
+              "mean_score_supported": 0.9446,
+              "mean_score_unsupported": 0.9843,
+              "within_register_sentence_auc": null
+            },
+            "imperative_step": {
+              "n_sentences": 154,
+              "n_mapped": 154,
+              "unsupported_rate": 0.0909,
+              "mean_score": 0.9376,
+              "mean_score_supported": 0.9501,
+              "mean_score_unsupported": 0.8127,
+              "within_register_sentence_auc": 0.6995
+            },
+            "reference_line": {
+              "n_sentences": 1,
+              "n_mapped": 1,
+              "unsupported_rate": 0.0,
+              "mean_score": 0.979,
+              "mean_score_supported": 0.979,
+              "mean_score_unsupported": null,
+              "within_register_sentence_auc": null
+            }
+          },
+          "auc_by_item_slice": {
+            "multi_sentence": {
+              "n": 120,
+              "n_pos": 106,
+              "auc": 0.655
+            },
+            "has_list_structure": {
+              "n": 70,
+              "n_pos": 57,
+              "auc": 0.5169
+            },
+            "no_list_structure": {
+              "n": 62,
+              "n_pos": 61,
+              "auc": 0.9836
+            },
+            "faithful_oracle_reachable (o4_strict == 1)": {
+              "n": 84,
+              "n_pos": 83,
+              "auc": 0.241
+            },
+            "faithful_oracle_unreachable (o4_strict == 0)": {
+              "n": 48,
+              "n_pos": 35,
+              "auc": 0.6747
+            },
+            "multi_doc_evidence (>= 3)": {
+              "n": 132,
+              "n_pos": 118,
+              "auc": 0.6628
+            }
+          },
+          "aggregation_counterfactual_auc": {
+            "min_all (the shipped rule)": 0.6628,
+            "mean": 0.6519,
+            "max": 0.4479,
+            "min_drop_first_sentence": 0.6725,
+            "min_drop_single_lowest": 0.6895,
+            "min_excluding_discourse_frames": 0.6416,
+            "min_excluding_imperative_steps": 0.6768,
+            "min_over_declarative_only": 0.6362
+          },
+          "auc": 0.6628,
+          "operating_threshold": 0.4389,
+          "n_errors": 18,
+          "n_false_negatives": 8,
+          "n_false_positives": 10,
+          "margin_errors_mean": 0.3243,
+          "margin_corrects_mean": 0.4088,
+          "score_mean_pos": 0.8095,
+          "score_mean_neg": 0.6508
+        }
+      },
+      "oracle": {
+        "oracle_o1": 1.0,
+        "oracle_o2": 0.9643,
+        "oracle_o3": 0.9643,
+        "oracle_o4_strict": 0.816,
+        "oracle_o4_lenient": 0.9643,
+        "banked_r12_o4_strict": 0.816,
+        "banked_r12_o4_lenient": 0.9643,
+        "reproduces_banked": true,
+        "best_checkpoint_read": 0.707,
+        "headroom_to_faithful_ceiling": 0.109,
+        "headroom_to_lenient_ceiling": 0.2573
+      },
+      "measurement_precision": {
+        "n_positive": 118,
+        "n_negative": 14,
+        "mean_auc_standard_error": 0.0686,
+        "observed_seed_spread_clean_pair": 0.0187,
+        "observed_seed_spread_h108_pair": 0.0587,
+        "range_over_5_checkpoints": 0.0938,
+        "reading": "the AUROC's precision is set by the minority (ungrounded) class; a per-subset delta smaller than ~2 standard errors is not a result"
+      },
+      "consensus_errors": {
+        "definition": "item mis-classified by >= 3 of the 5 banked checkpoints at each checkpoint's own macro-F1-optimal threshold",
+        "n": 16,
+        "share_of_items": 0.1212,
+        "n_errored_by_all_5": 6,
+        "n_errored_by_none": 92
+      },
+      "cross_checkpoint": {
+        "pairwise_error_jaccard": {
+          "clean_d1|clean_d2": 0.5238,
+          "clean_d1|h108_d1": 0.5789,
+          "clean_d1|h108_d2": 0.25,
+          "clean_d1|g0_adapter": 0.5,
+          "clean_d2|h108_d1": 0.52,
+          "clean_d2|h108_d2": 0.4324,
+          "clean_d2|g0_adapter": 0.4074,
+          "h108_d1|h108_d2": 0.4167,
+          "h108_d1|g0_adapter": 0.3846,
+          "h108_d2|g0_adapter": 0.275
+        },
+        "mean_jaccard": 0.4289,
+        "mean_jaccard_within_seed_pairs": 0.4703,
+        "score_rank_correlation": {
+          "clean_d1|clean_d2": 0.7689,
+          "clean_d1|h108_d1": 0.7149,
+          "clean_d1|h108_d2": 0.4981,
+          "clean_d1|g0_adapter": 0.7869,
+          "clean_d2|h108_d1": 0.7759,
+          "clean_d2|h108_d2": 0.5657,
+          "clean_d2|g0_adapter": 0.6909,
+          "h108_d1|h108_d2": 0.6895,
+          "h108_d1|g0_adapter": 0.8032,
+          "h108_d2|g0_adapter": 0.553
+        }
+      },
+      "error_taxonomy": {
+        "consensus": [
+          {
+            "axis": "n_unsupported",
+            "errors_mean": 2.0,
+            "corrects_mean": 0.0517,
+            "errors_median": 2.0,
+            "corrects_median": 0.0,
+            "test": "mannwhitney",
+            "p": 0.0,
+            "effect_rank_biserial": 0.6681
+          },
+          {
+            "axis": "label_is_grounded",
+            "errors_mean": 0.3125,
+            "corrects_mean": 0.9741,
+            "errors_median": 0.0,
+            "corrects_median": 1.0,
+            "test": "fisher",
+            "p": 0.0,
+            "effect_rank_biserial": -0.6616
+          },
+          {
+            "axis": "has_list",
+            "errors_mean": 1.0,
+            "corrects_mean": 0.4655,
+            "errors_median": 1.0,
+            "corrects_median": 0.0,
+            "test": "fisher",
+            "p": 2e-05,
+            "effect_rank_biserial": 0.5345
+          },
+          {
+            "axis": "n_distinct_argmax_docs",
+            "errors_mean": 2.1875,
+            "corrects_mean": 1.5862,
+            "errors_median": 2.0,
+            "corrects_median": 1.0,
+            "test": "mannwhitney",
+            "p": 0.00083,
+            "effect_rank_biserial": 0.472
+          },
+          {
+            "axis": "sent_chars_min",
+            "errors_mean": 53.3125,
+            "corrects_mean": 78.8879,
+            "errors_median": 52.0,
+            "corrects_median": 70.0,
+            "test": "mannwhitney",
+            "p": 0.0034,
+            "effect_rank_biserial": -0.4531
+          },
+          {
+            "axis": "lex_overlap_min",
+            "errors_mean": 0.4423,
+            "corrects_mean": 0.5892,
+            "errors_median": 0.4444,
+            "corrects_median": 0.6056,
+            "test": "mannwhitney",
+            "p": 0.00471,
+            "effect_rank_biserial": -0.437
+          },
+          {
+            "axis": "sent_score_spread",
+            "errors_mean": 0.4931,
+            "corrects_mean": 0.3255,
+            "errors_median": 0.485,
+            "corrects_median": 0.3,
+            "test": "mannwhitney",
+            "p": 0.00846,
+            "effect_rank_biserial": 0.4073
+          },
+          {
+            "axis": "sent_chars_mean",
+            "errors_mean": 95.4635,
+            "corrects_mean": 119.2049,
+            "errors_median": 95.55,
+            "corrects_median": 113.0556,
+            "test": "mannwhitney",
+            "p": 0.0104,
+            "effect_rank_biserial": -0.3966
+          },
+          {
+            "axis": "n_sent_low_overlap",
+            "errors_mean": 0.9375,
+            "corrects_mean": 0.4224,
+            "errors_median": 1.0,
+            "corrects_median": 0.0,
+            "test": "mannwhitney",
+            "p": 0.01098,
+            "effect_rank_biserial": 0.3319
+          },
+          {
+            "axis": "min_sent_chars",
+            "errors_mean": 92.0625,
+            "corrects_mean": 117.2069,
+            "errors_median": 83.0,
+            "corrects_median": 105.5,
+            "test": "mannwhitney",
+            "p": 0.02365,
+            "effect_rank_biserial": -0.3502
+          },
+          {
+            "axis": "min_sent_lex_overlap",
+            "errors_mean": 0.5973,
+            "corrects_mean": 0.7173,
+            "errors_median": 0.5774,
+            "corrects_median": 0.75,
+            "test": "mannwhitney",
+            "p": 0.02692,
+            "effect_rank_biserial": -0.3421
+          },
+          {
+            "axis": "n_windows",
+            "errors_mean": 3.1875,
+            "corrects_mean": 4.1293,
+            "errors_median": 3.0,
+            "corrects_median": 3.0,
+            "test": "mannwhitney",
+            "p": 0.03185,
+            "effect_rank_biserial": -0.2942
+          },
+          {
+            "axis": "n_ann_sent",
+            "errors_mean": 8.0625,
+            "corrects_mean": 6.2759,
+            "errors_median": 7.5,
+            "corrects_median": 5.5,
+            "test": "mannwhitney",
+            "p": 0.04489,
+            "effect_rank_biserial": 0.3093
+          },
+          {
+            "axis": "n_sent_h92",
+            "errors_mean": 7.125,
+            "corrects_mean": 5.4655,
+            "errors_median": 7.0,
+            "corrects_median": 5.0,
+            "test": "mannwhitney",
+            "p": 0.05327,
+            "effect_rank_biserial": 0.2974
+          },
+          {
+            "axis": "lex_overlap_mean",
+            "errors_mean": 0.7555,
+            "corrects_mean": 0.7989,
+            "errors_median": 0.7471,
+            "corrects_median": 0.8008,
+            "test": "mannwhitney",
+            "p": 0.05431,
+            "effect_rank_biserial": -0.298
+          },
+          {
+            "axis": "any_doc_over_window",
+            "errors_mean": 0.1875,
+            "corrects_mean": 0.4397,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "fisher",
+            "p": 0.06217,
+            "effect_rank_biserial": -0.2522
+          },
+          {
+            "axis": "n_discourse_sent",
+            "errors_mean": 1.1875,
+            "corrects_mean": 0.75,
+            "errors_median": 1.0,
+            "corrects_median": 1.0,
+            "test": "mannwhitney",
+            "p": 0.07271,
+            "effect_rank_biserial": 0.2586
+          },
+          {
+            "axis": "evidence_chars_max_doc",
+            "errors_mean": 1180.3125,
+            "corrects_mean": 1722.9914,
+            "errors_median": 1153.0,
+            "corrects_median": 1441.0,
+            "test": "mannwhitney",
+            "p": 0.07686,
+            "effect_rank_biserial": -0.2737
+          },
+          {
+            "axis": "evidence_chars",
+            "errors_mean": 2285.0,
+            "corrects_mean": 2990.7759,
+            "errors_median": 2316.5,
+            "corrects_median": 2683.0,
+            "test": "mannwhitney",
+            "p": 0.1706,
+            "effect_rank_biserial": -0.2123
+          },
+          {
+            "axis": "frac_discourse_sent",
+            "errors_mean": 0.1698,
+            "corrects_mean": 0.127,
+            "errors_median": 0.1548,
+            "corrects_median": 0.0833,
+            "test": "mannwhitney",
+            "p": 0.17861,
+            "effect_rank_biserial": 0.1988
+          },
+          {
+            "axis": "resp_chars",
+            "errors_mean": 744.5,
+            "corrects_mean": 630.8621,
+            "errors_median": 656.0,
+            "corrects_median": 566.0,
+            "test": "mannwhitney",
+            "p": 0.18758,
+            "effect_rank_biserial": 0.2042
+          },
+          {
+            "axis": "question_chars",
+            "errors_mean": 46.5625,
+            "corrects_mean": 42.5603,
+            "errors_median": 42.5,
+            "corrects_median": 40.0,
+            "test": "mannwhitney",
+            "p": 0.26262,
+            "effect_rank_biserial": 0.1735
+          },
+          {
+            "axis": "n_h92_unmapped",
+            "errors_mean": 0.0,
+            "corrects_mean": 0.1466,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "mannwhitney",
+            "p": 0.31902,
+            "effect_rank_biserial": -0.0603
+          },
+          {
+            "axis": "n_support_docs",
+            "errors_mean": 1.625,
+            "corrects_mean": 1.4655,
+            "errors_median": 1.0,
+            "corrects_median": 1.0,
+            "test": "mannwhitney",
+            "p": 0.54125,
+            "effect_rank_biserial": 0.0862
+          },
+          {
+            "axis": "n_sent_support_multidoc",
+            "errors_mean": 0.9375,
+            "corrects_mean": 0.7586,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "mannwhitney",
+            "p": 0.64372,
+            "effect_rank_biserial": 0.0566
+          },
+          {
+            "axis": "n_sent_no_single_window",
+            "errors_mean": 0.9375,
+            "corrects_mean": 0.7759,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "mannwhitney",
+            "p": 0.72039,
+            "effect_rank_biserial": 0.0447
+          },
+          {
+            "axis": "min_sent_is_discourse",
+            "errors_mean": 0.1875,
+            "corrects_mean": 0.1638,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "fisher",
+            "p": 0.73058,
+            "effect_rank_biserial": 0.0237
+          },
+          {
+            "axis": "support_spans_docs",
+            "errors_mean": 0.3125,
+            "corrects_mean": 0.2672,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "fisher",
+            "p": 0.7664,
+            "effect_rank_biserial": 0.0453
+          },
+          {
+            "axis": "n_supporting_keys",
+            "errors_mean": 6.875,
+            "corrects_mean": 8.1207,
+            "errors_median": 6.0,
+            "corrects_median": 7.0,
+            "test": "mannwhitney",
+            "p": 0.8668,
+            "effect_rank_biserial": -0.0264
+          },
+          {
+            "axis": "max_sent_score",
+            "errors_mean": 0.9623,
+            "corrects_mean": 0.9354,
+            "errors_median": 0.9817,
+            "corrects_median": 0.9826,
+            "test": "mannwhitney",
+            "p": 0.92778,
+            "effect_rank_biserial": 0.0145
+          },
+          {
+            "axis": "min_sent_rel_pos",
+            "errors_mean": 0.3726,
+            "corrects_mean": 0.3781,
+            "errors_median": 0.4444,
+            "corrects_median": 0.1181,
+            "test": "mannwhitney",
+            "p": 0.9408,
+            "effect_rank_biserial": -0.0113
+          },
+          {
+            "axis": "n_docs",
+            "errors_mean": 3.0,
+            "corrects_mean": 3.0,
+            "errors_median": 3.0,
+            "corrects_median": 3.0,
+            "test": "mannwhitney",
+            "p": 1.0,
+            "effect_rank_biserial": 0.0
+          },
+          {
+            "axis": "has_citation",
+            "errors_mean": 0.0,
+            "corrects_mean": 0.0,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "fisher",
+            "p": 1.0,
+            "effect_rank_biserial": 0.0
+          },
+          {
+            "axis": "has_context_ref",
+            "errors_mean": 0.0,
+            "corrects_mean": 0.0,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "fisher",
+            "p": 1.0,
+            "effect_rank_biserial": 0.0
+          },
+          {
+            "axis": "has_url",
+            "errors_mean": 0.0,
+            "corrects_mean": 0.0086,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "fisher",
+            "p": 1.0,
+            "effect_rank_biserial": -0.0086
+          }
+        ],
+        "clean_d1": [
+          {
+            "axis": "n_unsupported",
+            "errors_mean": 2.6667,
+            "corrects_mean": 0.05,
+            "errors_median": 2.0,
+            "corrects_median": 0.0,
+            "test": "mannwhitney",
+            "p": 0.0,
+            "effect_rank_biserial": 0.9
+          },
+          {
+            "axis": "label_is_grounded",
+            "errors_mean": 0.0833,
+            "corrects_mean": 0.975,
+            "errors_median": 0.0,
+            "corrects_median": 1.0,
+            "test": "fisher",
+            "p": 0.0,
+            "effect_rank_biserial": -0.8917
+          },
+          {
+            "axis": "has_list",
+            "errors_mean": 1.0,
+            "corrects_mean": 0.4833,
+            "errors_median": 1.0,
+            "corrects_median": 0.0,
+            "test": "fisher",
+            "p": 0.00037,
+            "effect_rank_biserial": 0.5167
+          },
+          {
+            "axis": "min_sent_lex_overlap",
+            "errors_mean": 0.5244,
+            "corrects_mean": 0.7206,
+            "errors_median": 0.4868,
+            "corrects_median": 0.75,
+            "test": "mannwhitney",
+            "p": 0.00144,
+            "effect_rank_biserial": -0.559
+          },
+          {
+            "axis": "n_distinct_argmax_docs",
+            "errors_mean": 2.25,
+            "corrects_mean": 1.6,
+            "errors_median": 2.0,
+            "corrects_median": 1.0,
+            "test": "mannwhitney",
+            "p": 0.00256,
+            "effect_rank_biserial": 0.4833
+          },
+          {
+            "axis": "n_sent_low_overlap",
+            "errors_mean": 1.0833,
+            "corrects_mean": 0.425,
+            "errors_median": 1.0,
+            "corrects_median": 0.0,
+            "test": "mannwhitney",
+            "p": 0.00776,
+            "effect_rank_biserial": 0.3944
+          },
+          {
+            "axis": "lex_overlap_min",
+            "errors_mean": 0.4342,
+            "corrects_mean": 0.5851,
+            "errors_median": 0.4222,
+            "corrects_median": 0.6,
+            "test": "mannwhitney",
+            "p": 0.01037,
+            "effect_rank_biserial": -0.45
+          },
+          {
+            "axis": "sent_chars_min",
+            "errors_mean": 54.25,
+            "corrects_mean": 77.9417,
+            "errors_median": 52.0,
+            "corrects_median": 70.0,
+            "test": "mannwhitney",
+            "p": 0.01793,
+            "effect_rank_biserial": -0.416
+          },
+          {
+            "axis": "n_ann_sent",
+            "errors_mean": 8.5833,
+            "corrects_mean": 6.2833,
+            "errors_median": 8.0,
+            "corrects_median": 6.0,
+            "test": "mannwhitney",
+            "p": 0.03695,
+            "effect_rank_biserial": 0.3653
+          },
+          {
+            "axis": "sent_chars_mean",
+            "errors_mean": 94.9187,
+            "corrects_mean": 118.468,
+            "errors_median": 99.1,
+            "corrects_median": 112.6875,
+            "test": "mannwhitney",
+            "p": 0.03772,
+            "effect_rank_biserial": -0.3653
+          },
+          {
+            "axis": "lex_overlap_mean",
+            "errors_mean": 0.7445,
+            "corrects_mean": 0.7986,
+            "errors_median": 0.7471,
+            "corrects_median": 0.8008,
+            "test": "mannwhitney",
+            "p": 0.04272,
+            "effect_rank_biserial": -0.3562
+          },
+          {
+            "axis": "sent_score_spread",
+            "errors_mean": 0.4785,
+            "corrects_mean": 0.3326,
+            "errors_median": 0.4644,
+            "corrects_median": 0.3074,
+            "test": "mannwhitney",
+            "p": 0.04305,
+            "effect_rank_biserial": 0.3556
+          },
+          {
+            "axis": "n_sent_h92",
+            "errors_mean": 7.5,
+            "corrects_mean": 5.4833,
+            "errors_median": 7.0,
+            "corrects_median": 5.0,
+            "test": "mannwhitney",
+            "p": 0.05008,
+            "effect_rank_biserial": 0.3424
+          },
+          {
+            "axis": "n_windows",
+            "errors_mean": 3.25,
+            "corrects_mean": 4.0917,
+            "errors_median": 3.0,
+            "corrects_median": 3.0,
+            "test": "mannwhitney",
+            "p": 0.14132,
+            "effect_rank_biserial": -0.2292
+          },
+          {
+            "axis": "resp_chars",
+            "errors_mean": 793.6667,
+            "corrects_mean": 629.7333,
+            "errors_median": 658.5,
+            "corrects_median": 577.0,
+            "test": "mannwhitney",
+            "p": 0.14635,
+            "effect_rank_biserial": 0.2556
+          },
+          {
+            "axis": "evidence_chars",
+            "errors_mean": 2210.25,
+            "corrects_mean": 2974.725,
+            "errors_median": 2164.5,
+            "corrects_median": 2683.0,
+            "test": "mannwhitney",
+            "p": 0.15529,
+            "effect_rank_biserial": -0.25
+          },
+          {
+            "axis": "min_sent_chars",
+            "errors_mean": 98.5,
+            "corrects_mean": 115.725,
+            "errors_median": 87.0,
+            "corrects_median": 105.0,
+            "test": "mannwhitney",
+            "p": 0.17208,
+            "effect_rank_biserial": -0.2403
+          },
+          {
+            "axis": "evidence_chars_max_doc",
+            "errors_mean": 1199.0,
+            "corrects_mean": 1703.0333,
+            "errors_median": 1153.0,
+            "corrects_median": 1441.0,
+            "test": "mannwhitney",
+            "p": 0.18976,
+            "effect_rank_biserial": -0.2306
+          },
+          {
+            "axis": "n_discourse_sent",
+            "errors_mean": 1.0833,
+            "corrects_mean": 0.775,
+            "errors_median": 1.0,
+            "corrects_median": 1.0,
+            "test": "mannwhitney",
+            "p": 0.27808,
+            "effect_rank_biserial": 0.1778
+          },
+          {
+            "axis": "question_chars",
+            "errors_mean": 46.5833,
+            "corrects_mean": 42.6917,
+            "errors_median": 42.5,
+            "corrects_median": 40.0,
+            "test": "mannwhitney",
+            "p": 0.32778,
+            "effect_rank_biserial": 0.1722
+          },
+          {
+            "axis": "any_doc_over_window",
+            "errors_mean": 0.25,
+            "corrects_mean": 0.425,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "fisher",
+            "p": 0.35803,
+            "effect_rank_biserial": -0.175
+          },
+          {
+            "axis": "n_h92_unmapped",
+            "errors_mean": 0.0,
+            "corrects_mean": 0.1417,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "mannwhitney",
+            "p": 0.3976,
+            "effect_rank_biserial": -0.0583
+          },
+          {
+            "axis": "min_sent_is_discourse",
+            "errors_mean": 0.25,
+            "corrects_mean": 0.1583,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "fisher",
+            "p": 0.42081,
+            "effect_rank_biserial": 0.0917
+          },
+          {
+            "axis": "n_supporting_keys",
+            "errors_mean": 6.1667,
+            "corrects_mean": 8.15,
+            "errors_median": 6.0,
+            "corrects_median": 7.0,
+            "test": "mannwhitney",
+            "p": 0.50767,
+            "effect_rank_biserial": -0.1167
+          },
+          {
+            "axis": "frac_discourse_sent",
+            "errors_mean": 0.1276,
+            "corrects_mean": 0.1327,
+            "errors_median": 0.1214,
+            "corrects_median": 0.0833,
+            "test": "mannwhitney",
+            "p": 0.59533,
+            "effect_rank_biserial": 0.0896
+          },
+          {
+            "axis": "min_sent_rel_pos",
+            "errors_mean": 0.3311,
+            "corrects_mean": 0.3821,
+            "errors_median": 0.1667,
+            "corrects_median": 0.125,
+            "test": "mannwhitney",
+            "p": 0.6672,
+            "effect_rank_biserial": -0.0715
+          },
+          {
+            "axis": "n_support_docs",
+            "errors_mean": 1.5833,
+            "corrects_mean": 1.475,
+            "errors_median": 1.0,
+            "corrects_median": 1.0,
+            "test": "mannwhitney",
+            "p": 0.73367,
+            "effect_rank_biserial": 0.0549
+          },
+          {
+            "axis": "n_sent_no_single_window",
+            "errors_mean": 0.5833,
+            "corrects_mean": 0.8167,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "mannwhitney",
+            "p": 0.74736,
+            "effect_rank_biserial": -0.0458
+          },
+          {
+            "axis": "max_sent_score",
+            "errors_mean": 0.9806,
+            "corrects_mean": 0.9344,
+            "errors_median": 0.9817,
+            "corrects_median": 0.9826,
+            "test": "mannwhitney",
+            "p": 0.76962,
+            "effect_rank_biserial": 0.0521
+          },
+          {
+            "axis": "n_sent_support_multidoc",
+            "errors_mean": 0.5833,
+            "corrects_mean": 0.8,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "mannwhitney",
+            "p": 0.81243,
+            "effect_rank_biserial": -0.0333
+          },
+          {
+            "axis": "n_docs",
+            "errors_mean": 3.0,
+            "corrects_mean": 3.0,
+            "errors_median": 3.0,
+            "corrects_median": 3.0,
+            "test": "mannwhitney",
+            "p": 1.0,
+            "effect_rank_biserial": 0.0
+          },
+          {
+            "axis": "has_citation",
+            "errors_mean": 0.0,
+            "corrects_mean": 0.0,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "fisher",
+            "p": 1.0,
+            "effect_rank_biserial": 0.0
+          },
+          {
+            "axis": "has_context_ref",
+            "errors_mean": 0.0,
+            "corrects_mean": 0.0,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "fisher",
+            "p": 1.0,
+            "effect_rank_biserial": 0.0
+          },
+          {
+            "axis": "has_url",
+            "errors_mean": 0.0,
+            "corrects_mean": 0.0083,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "fisher",
+            "p": 1.0,
+            "effect_rank_biserial": -0.0083
+          },
+          {
+            "axis": "support_spans_docs",
+            "errors_mean": 0.25,
+            "corrects_mean": 0.275,
+            "errors_median": 0.0,
+            "corrects_median": 0.0,
+            "test": "fisher",
+            "p": 1.0,
+            "effect_rank_biserial": -0.025
+          }
+        ]
+      },
+      "error_concentration": {
+        "consensus": {
+          "n_errors": 16,
+          "gate": "R15 convention: a slice qualifies at share_of_errors >= 0.30; lift > 1.0 is required in addition, since a slice covering 30% of the subset trivially carries 30% of its errors",
+          "qualifying_slices": [
+            {
+              "slice": "has_list_structure",
+              "n": 70,
+              "prevalence": 0.5303,
+              "errors_in_slice": 16,
+              "share_of_errors": 1.0,
+              "lift": 1.886,
+              "error_rate_in": 0.2286,
+              "error_rate_out": 0.0,
+              "share_of_rank_loss": 0.8303
+            },
+            {
+              "slice": "multi_sentence (n_sent_h92 >= 3)",
+              "n": 95,
+              "prevalence": 0.7197,
+              "errors_in_slice": 15,
+              "share_of_errors": 0.9375,
+              "lift": 1.303,
+              "error_rate_in": 0.1579,
+              "error_rate_out": 0.027,
+              "share_of_rank_loss": 0.8506
+            },
+            {
+              "slice": "argmax_windows_span_multiple_docs (read)",
+              "n": 67,
+              "prevalence": 0.5076,
+              "errors_in_slice": 15,
+              "share_of_errors": 0.9375,
+              "lift": 1.847,
+              "error_rate_in": 0.2239,
+              "error_rate_out": 0.0154,
+              "share_of_rank_loss": 0.7541
+            },
+            {
+              "slice": "oracle_o4_strict == 0 (read cannot express the support)",
+              "n": 48,
+              "prevalence": 0.3636,
+              "errors_in_slice": 13,
+              "share_of_errors": 0.8125,
+              "lift": 2.234,
+              "error_rate_in": 0.2708,
+              "error_rate_out": 0.0357,
+              "share_of_rank_loss": 0.6131
+            },
+            {
+              "slice": "ungrounded (label=0)",
+              "n": 14,
+              "prevalence": 0.1061,
+              "errors_in_slice": 11,
+              "share_of_errors": 0.6875,
+              "lift": 6.482,
+              "error_rate_in": 0.7857,
+              "error_rate_out": 0.0424,
+              "share_of_rank_loss": 0.5
+            },
+            {
+              "slice": "response_has_a_discourse_frame_sentence",
+              "n": 73,
+              "prevalence": 0.553,
+              "errors_in_slice": 11,
+              "share_of_errors": 0.6875,
+              "lift": 1.243,
+              "error_rate_in": 0.1507,
+              "error_rate_out": 0.0847,
+              "share_of_rank_loss": 0.5863
+            },
+            {
+              "slice": "any_sentence_lex_overlap < 0.5",
+              "n": 46,
+              "prevalence": 0.3485,
+              "errors_in_slice": 10,
+              "share_of_errors": 0.625,
+              "lift": 1.793,
+              "error_rate_in": 0.2174,
+              "error_rate_out": 0.0698,
+              "share_of_rank_loss": 0.5691
+            },
+            {
+              "slice": "min_sentence_lex_overlap < 0.5 (read)",
+              "n": 18,
+              "prevalence": 0.1364,
+              "errors_in_slice": 6,
+              "share_of_errors": 0.375,
+              "lift": 2.75,
+              "error_rate_in": 0.3333,
+              "error_rate_out": 0.0877,
+              "share_of_rank_loss": 0.3435
+            },
+            {
+              "slice": "support_spans_multiple_docs (annotation)",
+              "n": 36,
+              "prevalence": 0.2727,
+              "errors_in_slice": 5,
+              "share_of_errors": 0.3125,
+              "lift": 1.146,
+              "error_rate_in": 0.1389,
+              "error_rate_out": 0.1146,
+              "share_of_rank_loss": 0.2532
+            }
+          ],
+          "all_slices": [
+            {
+              "slice": "has_list_structure",
+              "n": 70,
+              "prevalence": 0.5303,
+              "errors_in_slice": 16,
+              "share_of_errors": 1.0,
+              "lift": 1.886,
+              "error_rate_in": 0.2286,
+              "error_rate_out": 0.0,
+              "share_of_rank_loss": 0.8303
+            },
+            {
+              "slice": "multi_sentence (n_sent_h92 >= 3)",
+              "n": 95,
+              "prevalence": 0.7197,
+              "errors_in_slice": 15,
+              "share_of_errors": 0.9375,
+              "lift": 1.303,
+              "error_rate_in": 0.1579,
+              "error_rate_out": 0.027,
+              "share_of_rank_loss": 0.8506
+            },
+            {
+              "slice": "argmax_windows_span_multiple_docs (read)",
+              "n": 67,
+              "prevalence": 0.5076,
+              "errors_in_slice": 15,
+              "share_of_errors": 0.9375,
+              "lift": 1.847,
+              "error_rate_in": 0.2239,
+              "error_rate_out": 0.0154,
+              "share_of_rank_loss": 0.7541
+            },
+            {
+              "slice": "oracle_o4_strict == 0 (read cannot express the support)",
+              "n": 48,
+              "prevalence": 0.3636,
+              "errors_in_slice": 13,
+              "share_of_errors": 0.8125,
+              "lift": 2.234,
+              "error_rate_in": 0.2708,
+              "error_rate_out": 0.0357,
+              "share_of_rank_loss": 0.6131
+            },
+            {
+              "slice": "ungrounded (label=0)",
+              "n": 14,
+              "prevalence": 0.1061,
+              "errors_in_slice": 11,
+              "share_of_errors": 0.6875,
+              "lift": 6.482,
+              "error_rate_in": 0.7857,
+              "error_rate_out": 0.0424,
+              "share_of_rank_loss": 0.5
+            },
+            {
+              "slice": "response_has_a_discourse_frame_sentence",
+              "n": 73,
+              "prevalence": 0.553,
+              "errors_in_slice": 11,
+              "share_of_errors": 0.6875,
+              "lift": 1.243,
+              "error_rate_in": 0.1507,
+              "error_rate_out": 0.0847,
+              "share_of_rank_loss": 0.5863
+            },
+            {
+              "slice": "any_sentence_lex_overlap < 0.5",
+              "n": 46,
+              "prevalence": 0.3485,
+              "errors_in_slice": 10,
+              "share_of_errors": 0.625,
+              "lift": 1.793,
+              "error_rate_in": 0.2174,
+              "error_rate_out": 0.0698,
+              "share_of_rank_loss": 0.5691
+            },
+            {
+              "slice": "long_evidence (evidence_chars > subset median)",
+              "n": 66,
+              "prevalence": 0.5,
+              "errors_in_slice": 7,
+              "share_of_errors": 0.4375,
+              "lift": 0.875,
+              "error_rate_in": 0.1061,
+              "error_rate_out": 0.1364,
+              "share_of_rank_loss": 0.4659
+            },
+            {
+              "slice": "min_sentence_lex_overlap < 0.5 (read)",
+              "n": 18,
+              "prevalence": 0.1364,
+              "errors_in_slice": 6,
+              "share_of_errors": 0.375,
+              "lift": 2.75,
+              "error_rate_in": 0.3333,
+              "error_rate_out": 0.0877,
+              "share_of_rank_loss": 0.3435
+            },
+            {
+              "slice": "grounded (label=1)",
+              "n": 118,
+              "prevalence": 0.8939,
+              "errors_in_slice": 5,
+              "share_of_errors": 0.3125,
+              "lift": 0.35,
+              "error_rate_in": 0.0424,
+              "error_rate_out": 0.7857,
+              "share_of_rank_loss": 0.5
+            },
+            {
+              "slice": "support_spans_multiple_docs (annotation)",
+              "n": 36,
+              "prevalence": 0.2727,
+              "errors_in_slice": 5,
+              "share_of_errors": 0.3125,
+              "lift": 1.146,
+              "error_rate_in": 0.1389,
+              "error_rate_out": 0.1146,
+              "share_of_rank_loss": 0.2532
+            },
+            {
+              "slice": "short_response (resp_chars < subset median)",
+              "n": 65,
+              "prevalence": 0.4924,
+              "errors_in_slice": 4,
+              "share_of_errors": 0.25,
+              "lift": 0.508,
+              "error_rate_in": 0.0615,
+              "error_rate_out": 0.1791,
+              "share_of_rank_loss": 0.3755
+            },
+            {
+              "slice": "any_doc_exceeds_window (>1500 chars)",
+              "n": 54,
+              "prevalence": 0.4091,
+              "errors_in_slice": 3,
+              "share_of_errors": 0.1875,
+              "lift": 0.458,
+              "error_rate_in": 0.0556,
+              "error_rate_out": 0.1667,
+              "share_of_rank_loss": 0.309
+            },
+            {
+              "slice": "multi_window (n_windows > n_docs)",
+              "n": 54,
+              "prevalence": 0.4091,
+              "errors_in_slice": 3,
+              "share_of_errors": 0.1875,
+              "lift": 0.458,
+              "error_rate_in": 0.0556,
+              "error_rate_out": 0.1667,
+              "share_of_rank_loss": 0.309
+            },
+            {
+              "slice": "min_sentence_is_discourse_frame (read)",
+              "n": 22,
+              "prevalence": 0.1667,
+              "errors_in_slice": 3,
+              "share_of_errors": 0.1875,
+              "lift": 1.125,
+              "error_rate_in": 0.1364,
+              "error_rate_out": 0.1182,
+              "share_of_rank_loss": 0.1848
+            },
+            {
+              "slice": "oracle_o4_strict_unreachable_positive",
+              "n": 35,
+              "prevalence": 0.2652,
+              "errors_in_slice": 3,
+              "share_of_errors": 0.1875,
+              "lift": 0.707,
+              "error_rate_in": 0.0857,
+              "error_rate_out": 0.134,
+              "share_of_rank_loss": 0.1771
+            },
+            {
+              "slice": "single_scored_sentence (n_sent_h92 == 1)",
+              "n": 12,
+              "prevalence": 0.0909,
+              "errors_in_slice": 0,
+              "share_of_errors": 0.0,
+              "lift": 0.0,
+              "error_rate_in": 0.0,
+              "error_rate_out": 0.1333,
+              "share_of_rank_loss": 0.0381
+            },
+            {
+              "slice": "h92_splitter_dropped_annotated_sentence",
+              "n": 7,
+              "prevalence": 0.053,
+              "errors_in_slice": 0,
+              "share_of_errors": 0.0,
+              "lift": 0.0,
+              "error_rate_in": 0.0,
+              "error_rate_out": 0.128,
+              "share_of_rank_loss": 0.0146
+            },
+            {
+              "slice": "no_supporting_keys_recorded",
+              "n": 7,
+              "prevalence": 0.053,
+              "errors_in_slice": 0,
+              "share_of_errors": 0.0,
+              "lift": 0.0,
+              "error_rate_in": 0.0,
+              "error_rate_out": 0.128,
+              "share_of_rank_loss": 0.0146
+            }
+          ]
+        },
+        "clean_d1": {
+          "n_errors": 12,
+          "gate": "R15 convention: a slice qualifies at share_of_errors >= 0.30; lift > 1.0 is required in addition, since a slice covering 30% of the subset trivially carries 30% of its errors",
+          "qualifying_slices": [
+            {
+              "slice": "has_list_structure",
+              "n": 70,
+              "prevalence": 0.5303,
+              "errors_in_slice": 12,
+              "share_of_errors": 1.0,
+              "lift": 1.886,
+              "error_rate_in": 0.1714,
+              "error_rate_out": 0.0,
+              "share_of_rank_loss": 0.833
+            },
+            {
+              "slice": "ungrounded (label=0)",
+              "n": 14,
+              "prevalence": 0.1061,
+              "errors_in_slice": 11,
+              "share_of_errors": 0.9167,
+              "lift": 8.643,
+              "error_rate_in": 0.7857,
+              "error_rate_out": 0.0085,
+              "share_of_rank_loss": 0.5
+            },
+            {
+              "slice": "multi_sentence (n_sent_h92 >= 3)",
+              "n": 95,
+              "prevalence": 0.7197,
+              "errors_in_slice": 11,
+              "share_of_errors": 0.9167,
+              "lift": 1.274,
+              "error_rate_in": 0.1158,
+              "error_rate_out": 0.027,
+              "share_of_rank_loss": 0.8476
+            },
+            {
+              "slice": "argmax_windows_span_multiple_docs (read)",
+              "n": 67,
+              "prevalence": 0.5076,
+              "errors_in_slice": 11,
+              "share_of_errors": 0.9167,
+              "lift": 1.806,
+              "error_rate_in": 0.1642,
+              "error_rate_out": 0.0154,
+              "share_of_rank_loss": 0.7388
+            },
+            {
+              "slice": "oracle_o4_strict == 0 (read cannot express the support)",
+              "n": 48,
+              "prevalence": 0.3636,
+              "errors_in_slice": 11,
+              "share_of_errors": 0.9167,
+              "lift": 2.521,
+              "error_rate_in": 0.2292,
+              "error_rate_out": 0.0119,
+              "share_of_rank_loss": 0.6058
+            },
+            {
+              "slice": "any_sentence_lex_overlap < 0.5",
+              "n": 46,
+              "prevalence": 0.3485,
+              "errors_in_slice": 8,
+              "share_of_errors": 0.6667,
+              "lift": 1.913,
+              "error_rate_in": 0.1739,
+              "error_rate_out": 0.0465,
+              "share_of_rank_loss": 0.5922
+            },
+            {
+              "slice": "response_has_a_discourse_frame_sentence",
+              "n": 73,
+              "prevalence": 0.553,
+              "errors_in_slice": 8,
+              "share_of_errors": 0.6667,
+              "lift": 1.205,
+              "error_rate_in": 0.1096,
+              "error_rate_out": 0.0678,
+              "share_of_rank_loss": 0.5748
+            },
+            {
+              "slice": "min_sentence_lex_overlap < 0.5 (read)",
+              "n": 18,
+              "prevalence": 0.1364,
+              "errors_in_slice": 6,
+              "share_of_errors": 0.5,
+              "lift": 3.667,
+              "error_rate_in": 0.3333,
+              "error_rate_out": 0.0526,
+              "share_of_rank_loss": 0.3728
+            }
+          ],
+          "all_slices": [
+            {
+              "slice": "has_list_structure",
+              "n": 70,
+              "prevalence": 0.5303,
+              "errors_in_slice": 12,
+              "share_of_errors": 1.0,
+              "lift": 1.886,
+              "error_rate_in": 0.1714,
+              "error_rate_out": 0.0,
+              "share_of_rank_loss": 0.833
+            },
+            {
+              "slice": "ungrounded (label=0)",
+              "n": 14,
+              "prevalence": 0.1061,
+              "errors_in_slice": 11,
+              "share_of_errors": 0.9167,
+              "lift": 8.643,
+              "error_rate_in": 0.7857,
+              "error_rate_out": 0.0085,
+              "share_of_rank_loss": 0.5
+            },
+            {
+              "slice": "multi_sentence (n_sent_h92 >= 3)",
+              "n": 95,
+              "prevalence": 0.7197,
+              "errors_in_slice": 11,
+              "share_of_errors": 0.9167,
+              "lift": 1.274,
+              "error_rate_in": 0.1158,
+              "error_rate_out": 0.027,
+              "share_of_rank_loss": 0.8476
+            },
+            {
+              "slice": "argmax_windows_span_multiple_docs (read)",
+              "n": 67,
+              "prevalence": 0.5076,
+              "errors_in_slice": 11,
+              "share_of_errors": 0.9167,
+              "lift": 1.806,
+              "error_rate_in": 0.1642,
+              "error_rate_out": 0.0154,
+              "share_of_rank_loss": 0.7388
+            },
+            {
+              "slice": "oracle_o4_strict == 0 (read cannot express the support)",
+              "n": 48,
+              "prevalence": 0.3636,
+              "errors_in_slice": 11,
+              "share_of_errors": 0.9167,
+              "lift": 2.521,
+              "error_rate_in": 0.2292,
+              "error_rate_out": 0.0119,
+              "share_of_rank_loss": 0.6058
+            },
+            {
+              "slice": "any_sentence_lex_overlap < 0.5",
+              "n": 46,
+              "prevalence": 0.3485,
+              "errors_in_slice": 8,
+              "share_of_errors": 0.6667,
+              "lift": 1.913,
+              "error_rate_in": 0.1739,
+              "error_rate_out": 0.0465,
+              "share_of_rank_loss": 0.5922
+            },
+            {
+              "slice": "response_has_a_discourse_frame_sentence",
+              "n": 73,
+              "prevalence": 0.553,
+              "errors_in_slice": 8,
+              "share_of_errors": 0.6667,
+              "lift": 1.205,
+              "error_rate_in": 0.1096,
+              "error_rate_out": 0.0678,
+              "share_of_rank_loss": 0.5748
+            },
+            {
+              "slice": "min_sentence_lex_overlap < 0.5 (read)",
+              "n": 18,
+              "prevalence": 0.1364,
+              "errors_in_slice": 6,
+              "share_of_errors": 0.5,
+              "lift": 3.667,
+              "error_rate_in": 0.3333,
+              "error_rate_out": 0.0526,
+              "share_of_rank_loss": 0.3728
+            },
+            {
+              "slice": "long_evidence (evidence_chars > subset median)",
+              "n": 66,
+              "prevalence": 0.5,
+              "errors_in_slice": 5,
+              "share_of_errors": 0.4167,
+              "lift": 0.833,
+              "error_rate_in": 0.0758,
+              "error_rate_out": 0.1061,
+              "share_of_rank_loss": 0.499
+            },
+            {
+              "slice": "any_doc_exceeds_window (>1500 chars)",
+              "n": 54,
+              "prevalence": 0.4091,
+              "errors_in_slice": 3,
+              "share_of_errors": 0.25,
+              "lift": 0.611,
+              "error_rate_in": 0.0556,
+              "error_rate_out": 0.1154,
+              "share_of_rank_loss": 0.3388
+            },
+            {
+              "slice": "multi_window (n_windows > n_docs)",
+              "n": 54,
+              "prevalence": 0.4091,
+              "errors_in_slice": 3,
+              "share_of_errors": 0.25,
+              "lift": 0.611,
+              "error_rate_in": 0.0556,
+              "error_rate_out": 0.1154,
+              "share_of_rank_loss": 0.3388
+            },
+            {
+              "slice": "short_response (resp_chars < subset median)",
+              "n": 65,
+              "prevalence": 0.4924,
+              "errors_in_slice": 3,
+              "share_of_errors": 0.25,
+              "lift": 0.508,
+              "error_rate_in": 0.0462,
+              "error_rate_out": 0.1343,
+              "share_of_rank_loss": 0.3631
+            },
+            {
+              "slice": "min_sentence_is_discourse_frame (read)",
+              "n": 22,
+              "prevalence": 0.1667,
+              "errors_in_slice": 3,
+              "share_of_errors": 0.25,
+              "lift": 1.5,
+              "error_rate_in": 0.1364,
+              "error_rate_out": 0.0818,
+              "share_of_rank_loss": 0.199
+            },
+            {
+              "slice": "support_spans_multiple_docs (annotation)",
+              "n": 36,
+              "prevalence": 0.2727,
+              "errors_in_slice": 3,
+              "share_of_errors": 0.25,
+              "lift": 0.917,
+              "error_rate_in": 0.0833,
+              "error_rate_out": 0.0938,
+              "share_of_rank_loss": 0.2447
+            },
+            {
+              "slice": "grounded (label=1)",
+              "n": 118,
+              "prevalence": 0.8939,
+              "errors_in_slice": 1,
+              "share_of_errors": 0.0833,
+              "lift": 0.093,
+              "error_rate_in": 0.0085,
+              "error_rate_out": 0.7857,
+              "share_of_rank_loss": 0.5
+            },
+            {
+              "slice": "oracle_o4_strict_unreachable_positive",
+              "n": 35,
+              "prevalence": 0.2652,
+              "errors_in_slice": 1,
+              "share_of_errors": 0.0833,
+              "lift": 0.314,
+              "error_rate_in": 0.0286,
+              "error_rate_out": 0.1134,
+              "share_of_rank_loss": 0.1534
+            },
+            {
+              "slice": "single_scored_sentence (n_sent_h92 == 1)",
+              "n": 12,
+              "prevalence": 0.0909,
+              "errors_in_slice": 0,
+              "share_of_errors": 0.0,
+              "lift": 0.0,
+              "error_rate_in": 0.0,
+              "error_rate_out": 0.1,
+              "share_of_rank_loss": 0.0437
+            },
+            {
+              "slice": "h92_splitter_dropped_annotated_sentence",
+              "n": 7,
+              "prevalence": 0.053,
+              "errors_in_slice": 0,
+              "share_of_errors": 0.0,
+              "lift": 0.0,
+              "error_rate_in": 0.0,
+              "error_rate_out": 0.096,
+              "share_of_rank_loss": 0.0087
+            },
+            {
+              "slice": "no_supporting_keys_recorded",
+              "n": 7,
+              "prevalence": 0.053,
+              "errors_in_slice": 0,
+              "share_of_errors": 0.0,
+              "lift": 0.0,
+              "error_rate_in": 0.0,
+              "error_rate_out": 0.096,
+              "share_of_rank_loss": 0.0087
+            }
+          ]
+        }
+      }
+    }
+  },
+  "positive_control": {
+    "clean_d1/hagrid": {
+      "reproduced": 0.625869,
+      "banked": 0.6259,
+      "abs_delta": 3.1e-05,
+      "pass": true
+    },
+    "clean_d1/emanual": {
+      "reproduced": 0.688257,
+      "banked": 0.6883,
+      "abs_delta": 4.3e-05,
+      "pass": true
+    },
+    "clean_d2/hagrid": {
+      "reproduced": 0.642006,
+      "banked": 0.642,
+      "abs_delta": 6e-06,
+      "pass": true
+    },
+    "clean_d2/emanual": {
+      "reproduced": 0.707022,
+      "banked": 0.707,
+      "abs_delta": 2.2e-05,
+      "pass": true
+    },
+    "h108_d1/hagrid": {
+      "reproduced": 0.659881,
+      "banked": 0.6599,
+      "abs_delta": 1.9e-05,
+      "pass": true
+    },
+    "h108_d1/emanual": {
+      "reproduced": 0.671913,
+      "banked": 0.6719,
+      "abs_delta": 1.3e-05,
+      "pass": true
+    },
+    "h108_d2/hagrid": {
+      "reproduced": 0.635427,
+      "banked": 0.6354,
+      "abs_delta": 2.7e-05,
+      "pass": true
+    },
+    "h108_d2/emanual": {
+      "reproduced": 0.613196,
+      "banked": 0.6132,
+      "abs_delta": 4e-06,
+      "pass": true
+    },
+    "g0_adapter/hagrid": {
+      "reproduced": 0.680487,
+      "banked": 0.6805,
+      "abs_delta": 1.3e-05,
+      "pass": true
+    },
+    "g0_adapter/emanual": {
+      "reproduced": 0.662833,
+      "banked": 0.6628,
+      "abs_delta": 3.3e-05,
+      "pass": true
+    }
+  },
+  "mechanism_candidates": [
+    {
+      "name": "procedural list-register verification (emanual)",
+      "evidence": "The list-structured slice is 70 of 132 emanual items (53.0%) and carries 16 of 16 consensus errors - share 1.000, lift 1.89, in-slice error rate 0.229 against 0.000 outside. Its AUROC is at chance on ALL FIVE banked checkpoints (0.4737 / 0.5169 / 0.5182 / 0.5223 / 0.5371) while the non-list half reads 0.9016-1.0000. 13 of emanual's 14 ungrounded items are list-structured. Imperative-step sentences are 154 of 748 scored sentences (20.6%) and carry a 9.09% annotated-unsupported rate against 4.24% for declaratives.",
+      "caveats": "The non-list half contains ONE ungrounded item, so its ~1.0 AUROC is a single-item measurement; the robust half of the contrast is the list slice's chance reading, which rests on 13 negatives x 57 positives. Prior art: the DR procedural lane already read emanual 0.8117 (draw 1 margin) against 0.6556 control but 0.6901 on draw 2 - a 0.12 draw spread on a subset whose AUROC standard error is 0.0686. An earlier procedural-manual hypothesis was refuted at review, but on a DIFFERENT mechanism (truncation, which windowing fixed); this evidence is register discrimination at fixed geometry.",
+      "buildable_from_public_data": true,
+      "public_sources": "army-tm (1,766 public-domain US Army operator/maintenance manuals), FAA AMT handbooks, multidoc2dial - all already staged in data/external/datasets",
+      "recommendation": "build",
+      "condition": "the registration must be powered on a held-out procedural probe, NOT on emanual's arena AUROC (see the measurement-precision defect)"
+    },
+    {
+      "name": "bare-assertion absent-proposition verification (hagrid)",
+      "evidence": "140 of 250 hagrid items (56.0%) are single-scored-sentence responses; their AUROC across the five checkpoints is 0.4923 / 0.5381 / 0.5717 / 0.6101 / 0.6331 (mean 0.569) against 0.6207-0.6907 (mean 0.655) on multi-sentence items. The observed false-positive mode is a lone declarative naming the right entity and asserting an evidence-absent proposition, scored 0.82-0.84. Declarative-register within-sentence AUROC is 0.6024-0.6384 - plain-declarative discrimination is the binding number, and it is the prose analogue of the H144 lookup gap.",
+      "caveats": "Only 15 of the 140 single-sentence items are ungrounded, and the draw-to-draw range on this slice is 0.14 - three times the subset's own standard error. The slice is a hypothesis generator, not a bar.",
+      "buildable_from_public_data": true,
+      "public_sources": "FEVER/VitaminC/WICE are already in the mix; the missing construction is open-domain absent-proposition negatives at document scale (present entity, absent proposition, surface parity) - the prose analogue of the H144 verbatim-lookup family",
+      "recommendation": "build",
+      "condition": "measured on a held-out constructed probe with pre-registered bars"
+    },
+    {
+      "name": "aggregation or sentence-exclusion redesign",
+      "evidence": "Eight re-aggregations of the SAME banked per-sentence scores. The shipped min is best or within 0.03 of best on every checkpoint of both subsets: hagrid clean_d1 min 0.6259 against mean 0.5603, max 0.4512, drop-first 0.5931, drop-single-lowest 0.6151, exclude-discourse 0.6275, declarative-only 0.6274; emanual clean_d1 min 0.6883 against mean 0.6217, drop-first 0.6265, drop-single-lowest 0.6308, exclude-imperative 0.6616. Reproduces the R8 precursor-P-B oracle bound on the two floor subsets specifically.",
+      "caveats": "none - the bound covers the whole rule class, learned rules included",
+      "buildable_from_public_data": true,
+      "recommendation": "kill"
+    },
+    {
+      "name": "retrieval geometry - window size, stride, evidence dispersion",
+      "evidence": "Direct answer to the registered dispersion question: failure is NOT concentrated where evidence spans documents. hagrid support_spans_multiple_docs carries 13.2% of errors at 26.8% prevalence (lift 0.49, anti-concentrated); emanual 31.2% at 27.3% (lift 1.15, inside noise on 16 errors). any_doc_exceeds_window lift 0.53 (hagrid) / 0.46 (emanual). R12 measures 0.0% of supported sentences with no window carrying any support, and the oracle ladder shows window geometry costs nothing at O3 -> O4-lenient.",
+      "caveats": "The READ-side slice argmax_windows_span_multiple_docs does concentrate (lift 1.62 hagrid / 1.85 emanual) but is confounded with response length - it can only exceed 1 when the response has at least two scored sentences.",
+      "buildable_from_public_data": true,
+      "recommendation": "kill"
+    },
+    {
+      "name": "per-sentence entailment quality (the binding constraint)",
+      "evidence": "Sentence-level AUROC on annotated scored sentences is 0.6065-0.6646 (hagrid) and 0.6154-0.6907 (emanual) - equal to the response-level AUROC of the same checkpoints. Arg-min localisation is 0.636-0.727 on hagrid: the MIN mostly hands the response score to the genuinely unsupported sentence. There is therefore no aggregation loss to recover; the floor is the entailer's per-sentence discrimination on these two registers.",
+      "caveats": "This is the framing for candidates 1 and 2, not an independent lever",
+      "buildable_from_public_data": true,
+      "recommendation": "build",
+      "condition": "only through a register-coverage data lane - candidates 1 and 2"
+    },
+    {
+      "name": "emanual as an adjudication instrument (measurement defect)",
+      "evidence": "emanual carries 14 ungrounded items in 132; the Hanley-McNeil standard error of its AUROC is 0.0686. The campaign's standing per-subset hold (no subset below control-pair - 0.06) is INSIDE ONE standard error on this subset. The H108 pair - identical data and recipe, different seed - spreads 0.0587 on emanual, and the five banked checkpoints range 0.0938. hagrid is better but not comfortable: 38 negatives, standard error 0.0446, H108 pair spread 0.0245.",
+      "caveats": "emanual's RAGBench test split is 132 rows in total and is already read whole, so the negative pool cannot be widened from the arena. The only remedies are re-pricing the clause or reading the register on a constructed held-out set.",
+      "buildable_from_public_data": true,
+      "recommendation": "build",
+      "condition": "a coordinator re-pricing of the emanual hold clause, or its demotion to advisory - not a training arm"
+    },
+    {
+      "name": "window-ensemble adapter (R16-H142 G0) on the floor subsets",
+      "evidence": "Recorded observationally. hagrid 0.6805 against its own base h108_d1 0.6599 (+0.0206, 0.46 standard errors) - the best hagrid read in the campaign; emanual 0.6628 against 0.6719 (-0.0091, 0.13 standard errors). The hagrid gain sits in the multi-sentence half (0.6282 -> 0.6907); the adapter does not move emanual's list slice (0.4737 -> 0.5169).",
+      "caveats": "both deltas are inside two standard errors of their subsets",
+      "buildable_from_public_data": true,
+      "recommendation": "kill",
+      "condition": "as a floor-subset lever specifically; the adapter's own registration (H142 G1) is adjudicated on its own bars"
+    }
+  ],
+  "meta": {
+    "experiment": "R17-H147 FLOOR-SUBSET AUTOPSY (hagrid + emanual)",
+    "licence": "ANALYSIS ONLY - no training, no lane building, no tuning of any kind was performed on these findings; arena statistics inform the diagnosis only (the H141 discipline)",
+    "checkpoints": {
+      "clean_d1": "/home/lab/workspace/private/ai-assistants/groundrails/models/R9-H105-mmbert-dann-clean",
+      "clean_d2": "/home/lab/workspace/private/ai-assistants/groundrails/models/R9-H105-draw2",
+      "h108_d1": "/home/lab/workspace/private/ai-assistants/groundrails/models/R10-H108-lane-draw1",
+      "h108_d2": "/home/lab/workspace/private/ai-assistants/groundrails/models/R10-H108-lane-draw2",
+      "g0_adapter": "/home/lab/workspace/private/ai-assistants/groundrails/models/R16-H142-G0"
+    },
+    "gpu": "NVIDIA RTX 5000 Ada Generation",
+    "runtime_seconds": 192.2,
+    "artifacts": {
+      "item_scores": "/home/lab/workspace/private/ai-assistants/groundrails/experiments/grounding-semantic/R17-H147_item_scores.parquet",
+      "json": "/home/lab/workspace/private/ai-assistants/groundrails/experiments/grounding-semantic/R17-H147_autopsy.json"
+    }
+  }
+}

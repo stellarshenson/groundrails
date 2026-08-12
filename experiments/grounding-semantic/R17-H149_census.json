@@ -1,0 +1,26 @@
+{
+  "scifact": {
+    "abstracts": 5183,
+    "passages": 4968,
+    "licence": "CC BY 4.0 (claims) + ODC-By (abstracts), upstream AI2"
+  },
+  "faa-amt": {
+    "pdfs": 3,
+    "docs_with_passages": 3,
+    "passages": 3794,
+    "licence": "public domain (17 U.S.C. 105)"
+  },
+  "army-tm": {
+    "pdfs": 135,
+    "docs_with_passages": 135,
+    "passages": 409,
+    "licence": "public domain (17 U.S.C. 105)"
+  },
+  "total_passages": 9005,
+  "total_documents": 5070,
+  "after_dedupe": {
+    "faa-amt": 3793,
+    "scifact": 4968,
+    "army-tm": 244
+  }
+}

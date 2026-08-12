@@ -1,6 +1,6 @@
 {
-  "rows": 40844,
-  "pairs": 20422,
+  "rows": 50000,
+  "pairs": 25000,
   "seed": 1133,
   "core_pairs_target": 21250,
   "sub_pairs_target": 3750,
@@ -16,56 +16,52 @@
   },
   "family_quota": {
     "difference": {
-      "N7_numeral": 343,
-      "N2_operator": 1190,
-      "N1_oom": 950,
-      "N1_arbitrary": 570,
-      "N1_near_miss": 381
+      "a:misbound_row": 1683,
+      "a:misbound_col": 721,
+      "b:operation_word": 755,
+      "c:conclusion": 275
     },
     "ratio": {
-      "N7_numeral": 343,
-      "N2_operator": 595,
-      "N1_oom": 1248,
-      "N1_arbitrary": 749,
-      "N1_near_miss": 499
+      "a:misbound_row": 1683,
+      "a:misbound_col": 721,
+      "b:operation_word": 755,
+      "c:conclusion": 275
     },
     "pct_change": {
-      "N7_numeral": 343,
-      "N2_operator": 595,
-      "N1_oom": 1248,
-      "N1_arbitrary": 749,
-      "N1_near_miss": 499
+      "a:misbound_row": 1683,
+      "a:misbound_col": 721,
+      "b:operation_word": 755,
+      "c:conclusion": 275
     },
     "sum": {
-      "N7_numeral": 344,
-      "N2_operator": 595,
-      "N1_oom": 1248,
-      "N1_arbitrary": 749,
-      "N1_near_miss": 500
+      "a:misbound_row": 1684,
+      "a:misbound_col": 721,
+      "b:operation_word": 756,
+      "c:conclusion": 275
     },
     "rounding": {
-      "N_round": 2576
+      "a:misbound_row": 1451,
+      "a:misbound_col": 541,
+      "b:operation_word": 378,
+      "c:conclusion": 206
     },
     "mean": {
-      "N7_numeral": 215,
-      "N2_operator": 744,
-      "N1_oom": 594,
-      "N1_arbitrary": 356,
-      "N1_near_miss": 237
+      "a:misbound_row": 1051,
+      "a:misbound_col": 451,
+      "b:operation_word": 472,
+      "c:conclusion": 172
     },
     "scale_unit": {
-      "N7_numeral": 172,
-      "N2_operator": 297,
-      "N1_oom": 624,
-      "N1_arbitrary": 374,
-      "N1_near_miss": 250
+      "a:misbound_row": 841,
+      "a:misbound_col": 361,
+      "b:operation_word": 378,
+      "c:conclusion": 137
     },
     "product": {
-      "N7_numeral": 107,
-      "N2_operator": 186,
-      "N1_oom": 390,
-      "N1_arbitrary": 234,
-      "N1_near_miss": 156
+      "a:misbound_row": 526,
+      "a:misbound_col": 225,
+      "b:operation_word": 236,
+      "c:conclusion": 86
     }
   },
   "sub_quota": {
@@ -74,47 +70,101 @@
     "bind_row": 750
   },
   "family_unfilled": {
-    "difference": {
-      "N2_operator": 180,
-      "N1_oom": 580
-    },
-    "ratio": {
-      "N1_oom": 405
-    },
+    "difference": {},
+    "ratio": {},
     "pct_change": {},
-    "sum": {
-      "N1_oom": 1156
-    },
-    "rounding": {
-      "N_round": 169
-    },
-    "mean": {
-      "N1_oom": 445
-    },
-    "scale_unit": {
-      "N1_oom": 307
-    },
-    "product": {
-      "N1_oom": 302
-    }
+    "sum": {},
+    "rounding": {},
+    "mean": {},
+    "scale_unit": {},
+    "product": {}
   },
-  "sub_unfilled": {
-    "bind_col": 1034
-  },
-  "tuples_rejected_at_construction": 264228,
+  "sub_unfilled": {},
+  "tuples_rejected_at_construction": 104877,
   "tuples_dropped_for_operand_row_loss": 0,
-  "operand_row_loss_note": "0 by construction - R15-B1 clause 4 is implemented as row SELECTION (the retained 6 body rows are chosen to carry the operand rows) rather than a 6-row prefix; the declared price is non-contiguous rows",
+  "operand_row_loss_note": "R15-B1 clause 4 is implemented as row SELECTION (the retained 6 body rows are chosen to carry the operand rows) rather than a 6-row prefix, so the only operand loss left is the 1,500-character serving cap truncating a retained row; those tuples are dropped and counted here",
   "result_digit_length_counts": {
-    "2": 1900,
-    "3": 6259,
-    "4": 5459,
-    "5": 3139,
-    "6": 550,
-    "7": 399
+    "2": 4042,
+    "3": 6852,
+    "4": 5543,
+    "5": 3100,
+    "6": 951,
+    "7": 762
   },
   "compare_gap_strata": {
     "lt10pct": 498,
     "10to100pct": 501,
     "gt100pct": 501
-  }
+  },
+  "negative_direction_balance": {
+    "('place', 'hundred', 0)": 126,
+    "('place', 'ten', 0)": 126,
+    "('place', 'thousand', 0)": 126,
+    "('word', 'difference', 0)": 721,
+    "('word', 'difference', 1)": 755,
+    "('word', 'mean', 0)": 479,
+    "('word', 'mean', 1)": 472,
+    "('word', 'pct_change', 0)": 762,
+    "('word', 'pct_change', 1)": 755,
+    "('word', 'product', 0)": 243,
+    "('word', 'product', 1)": 236,
+    "('word', 'ratio', 0)": 761,
+    "('word', 'ratio', 1)": 755,
+    "('word', 'rounding', 0)": 378,
+    "('word', 'rounding', 1)": 378,
+    "('word', 'scale_unit', 0)": 378,
+    "('word', 'scale_unit', 1)": 378,
+    "('word', 'sum', 0)": 763,
+    "('word', 'sum', 1)": 756,
+    "(('a:misbound_col', 'difference'), 'down')": 360,
+    "(('a:misbound_col', 'difference'), 'up')": 361,
+    "(('a:misbound_col', 'mean'), 'down')": 225,
+    "(('a:misbound_col', 'mean'), 'up')": 226,
+    "(('a:misbound_col', 'pct_change'), 'down')": 360,
+    "(('a:misbound_col', 'pct_change'), 'up')": 361,
+    "(('a:misbound_col', 'product'), 'down')": 112,
+    "(('a:misbound_col', 'product'), 'up')": 113,
+    "(('a:misbound_col', 'ratio'), 'down')": 360,
+    "(('a:misbound_col', 'ratio'), 'up')": 361,
+    "(('a:misbound_col', 'rounding'), 'down')": 270,
+    "(('a:misbound_col', 'rounding'), 'up')": 271,
+    "(('a:misbound_col', 'scale_unit'), 'down')": 180,
+    "(('a:misbound_col', 'scale_unit'), 'up')": 181,
+    "(('a:misbound_col', 'sum'), 'down')": 360,
+    "(('a:misbound_col', 'sum'), 'up')": 361,
+    "(('a:misbound_row', 'difference'), 'down')": 841,
+    "(('a:misbound_row', 'difference'), 'up')": 842,
+    "(('a:misbound_row', 'mean'), 'down')": 525,
+    "(('a:misbound_row', 'mean'), 'up')": 526,
+    "(('a:misbound_row', 'pct_change'), 'down')": 841,
+    "(('a:misbound_row', 'pct_change'), 'up')": 842,
+    "(('a:misbound_row', 'product'), 'down')": 263,
+    "(('a:misbound_row', 'product'), 'up')": 263,
+    "(('a:misbound_row', 'ratio'), 'down')": 841,
+    "(('a:misbound_row', 'ratio'), 'up')": 842,
+    "(('a:misbound_row', 'rounding'), 'down')": 725,
+    "(('a:misbound_row', 'rounding'), 'up')": 726,
+    "(('a:misbound_row', 'scale_unit'), 'down')": 420,
+    "(('a:misbound_row', 'scale_unit'), 'up')": 421,
+    "(('a:misbound_row', 'sum'), 'down')": 842,
+    "(('a:misbound_row', 'sum'), 'up')": 842,
+    "(('c:conclusion', 'difference'), 'down')": 137,
+    "(('c:conclusion', 'difference'), 'up')": 138,
+    "(('c:conclusion', 'mean'), 'down')": 86,
+    "(('c:conclusion', 'mean'), 'up')": 86,
+    "(('c:conclusion', 'pct_change'), 'down')": 137,
+    "(('c:conclusion', 'pct_change'), 'up')": 138,
+    "(('c:conclusion', 'product'), 'down')": 43,
+    "(('c:conclusion', 'product'), 'up')": 43,
+    "(('c:conclusion', 'ratio'), 'down')": 137,
+    "(('c:conclusion', 'ratio'), 'up')": 138,
+    "(('c:conclusion', 'rounding'), 'down')": 103,
+    "(('c:conclusion', 'rounding'), 'up')": 103,
+    "(('c:conclusion', 'scale_unit'), 'down')": 68,
+    "(('c:conclusion', 'scale_unit'), 'up')": 69,
+    "(('c:conclusion', 'sum'), 'down')": 137,
+    "(('c:conclusion', 'sum'), 'up')": 138
+  },
+  "family_slots_reflowed": {},
+  "reflow_note": "surface parity (v2) makes some family/type combinations unconstructible; the unfillable remainder is moved to a sibling family inside the same type and recorded here"
 }

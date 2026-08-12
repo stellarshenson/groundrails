@@ -1,0 +1,692 @@
+{
+  "experiment": "R17-H145 scale/unit verification pair corpus (amendment A1, clause ii)",
+  "build": 2,
+  "build_history": {
+    "build_1": {
+      "rows": 2116,
+      "pairs": 1058,
+      "documents": 252,
+      "exclusions": "R17-H143 eval set (content) AND R17-H144 documents",
+      "unit_bearing_tables": {
+        "admitted": 309,
+        "dropped_evalset": 190,
+        "dropped_h144": 593
+      },
+      "balanced_ceiling": 1820,
+      "verify": {
+        "claim_only_tfidf_auroc": 0.4594,
+        "worst_family_within_pair": 0.5395,
+        "word_marginal_max_skew": 0.0,
+        "value_presence_rate": 1.0,
+        "all_bars_pass": true
+      },
+      "families": {
+        "million<->percent": 456,
+        "km<->m": 282,
+        "kmh<->mph": 76,
+        "cm<->km": 58,
+        "billion<->percent": 42,
+        "g<->kg": 40,
+        "kg<->lb": 40,
+        "km<->mile": 32,
+        "km<->mm": 32
+      },
+      "outcome": "all bars passed but only 35% of the 3,000-pair target; the H144 document exclusion cost 593 of 902 unit-bearing tables. Superseded by build 2 on the coordinator's ruling - same construction, superset supply, no quarantine"
+    }
+  },
+  "seed": 1145,
+  "target_pairs": 3000,
+  "doc_cap": 8,
+  "rows": 5672,
+  "pairs": 2836,
+  "label_counts": {
+    "0.0": 2836,
+    "1.0": 2836
+  },
+  "families": {
+    "million<->percent": {
+      "pairs": 928,
+      "dimension": "magnitude",
+      "directions": {
+        "percent->million": 464,
+        "million->percent": 464
+      }
+    },
+    "km<->m": {
+      "pairs": 734,
+      "dimension": "length",
+      "directions": {
+        "m->km": 367,
+        "km->m": 367
+      }
+    },
+    "cm<->km": {
+      "pairs": 266,
+      "dimension": "length",
+      "directions": {
+        "cm->km": 133,
+        "km->cm": 133
+      }
+    },
+    "billion<->percent": {
+      "pairs": 206,
+      "dimension": "magnitude",
+      "directions": {
+        "billion->percent": 103,
+        "percent->billion": 103
+      }
+    },
+    "kmh<->mph": {
+      "pairs": 132,
+      "dimension": "speed",
+      "directions": {
+        "kmh->mph": 66,
+        "mph->kmh": 66
+      }
+    },
+    "ft<->km": {
+      "pairs": 100,
+      "dimension": "length",
+      "directions": {
+        "km->ft": 50,
+        "ft->km": 50
+      }
+    },
+    "ha<->km2": {
+      "pairs": 86,
+      "dimension": "area",
+      "directions": {
+        "ha->km2": 43,
+        "km2->ha": 43
+      }
+    },
+    "km<->mm": {
+      "pairs": 82,
+      "dimension": "length",
+      "directions": {
+        "mm->km": 41,
+        "km->mm": 41
+      }
+    },
+    "kg<->lb": {
+      "pairs": 82,
+      "dimension": "mass",
+      "directions": {
+        "lb->kg": 41,
+        "kg->lb": 41
+      }
+    },
+    "km<->mile": {
+      "pairs": 70,
+      "dimension": "length",
+      "directions": {
+        "km->mile": 35,
+        "mile->km": 35
+      }
+    },
+    "acre<->km2": {
+      "pairs": 64,
+      "dimension": "area",
+      "directions": {
+        "acre->km2": 32,
+        "km2->acre": 32
+      }
+    },
+    "g<->kg": {
+      "pairs": 52,
+      "dimension": "mass",
+      "directions": {
+        "kg->g": 26,
+        "g->kg": 26
+      }
+    },
+    "kg<->ton": {
+      "pairs": 34,
+      "dimension": "mass",
+      "directions": {
+        "kg->ton": 17,
+        "ton->kg": 17
+      }
+    }
+  },
+  "family_construction": {
+    "area": {
+      "hub": "km2",
+      "families": {
+        "ha<->km2": {
+          "kept": 86,
+          "offered": 86,
+          "supply": {
+            "ha": 59,
+            "km2": 610
+          }
+        },
+        "acre<->km2": {
+          "kept": 64,
+          "offered": 64,
+          "supply": {
+            "acre": 32,
+            "km2": 610
+          }
+        }
+      }
+    },
+    "length": {
+      "hub": "km",
+      "families": {
+        "km<->m": {
+          "kept": 734,
+          "offered": 734,
+          "supply": {
+            "m": 421,
+            "km": 629
+          }
+        },
+        "cm<->km": {
+          "kept": 266,
+          "offered": 266,
+          "supply": {
+            "cm": 133,
+            "km": 629
+          }
+        },
+        "km<->mm": {
+          "kept": 82,
+          "offered": 82,
+          "supply": {
+            "mm": 62,
+            "km": 629
+          }
+        },
+        "ft<->km": {
+          "kept": 100,
+          "offered": 100,
+          "supply": {
+            "ft": 50,
+            "km": 629
+          }
+        },
+        "km<->mile": {
+          "kept": 70,
+          "offered": 70,
+          "supply": {
+            "mile": 47,
+            "km": 629
+          }
+        }
+      }
+    },
+    "magnitude": {
+      "hub": "percent",
+      "families": {
+        "million<->percent": {
+          "kept": 2750,
+          "offered": 2750,
+          "supply": {
+            "million": 1478,
+            "percent": 1691
+          }
+        },
+        "billion<->percent": {
+          "kept": 206,
+          "offered": 206,
+          "supply": {
+            "billion": 103,
+            "percent": 1691
+          }
+        }
+      }
+    },
+    "mass": {
+      "hub": "kg",
+      "families": {
+        "kg<->lb": {
+          "kept": 82,
+          "offered": 82,
+          "supply": {
+            "lb": 41,
+            "kg": 298
+          }
+        },
+        "g<->kg": {
+          "kept": 52,
+          "offered": 52,
+          "supply": {
+            "g": 26,
+            "kg": 298
+          }
+        },
+        "kg<->ton": {
+          "kept": 34,
+          "offered": 34,
+          "supply": {
+            "ton": 17,
+            "kg": 298
+          }
+        },
+        "kg<->tonne": {
+          "kept": 0,
+          "offered": 16,
+          "supply": {
+            "tonne": 8,
+            "kg": 214
+          }
+        }
+      }
+    },
+    "power": {
+      "hub": "kw",
+      "families": {
+        "hp<->kw": {
+          "kept": 0,
+          "offered": 14,
+          "supply": {
+            "hp": 7,
+            "kw": 58
+          }
+        }
+      }
+    },
+    "speed": {
+      "hub": "mph",
+      "families": {
+        "kmh<->mph": {
+          "kept": 132,
+          "offered": 132,
+          "supply": {
+            "kmh": 66,
+            "mph": 179
+          }
+        }
+      }
+    }
+  },
+  "allocation": {
+    "target": 3000,
+    "magnitude_cap": 0.4,
+    "offered": {
+      "unit": 1702,
+      "magnitude": 2956
+    },
+    "allocated": {
+      "unit": 1702,
+      "magnitude": 1134
+    },
+    "magnitude_share": 0.3999
+  },
+  "dimension_pairs": {
+    "length": 1252,
+    "magnitude": 1134,
+    "speed": 132,
+    "mass": 168,
+    "area": 150
+  },
+  "unit_carrier_pairs": {
+    "cell": 1175,
+    "header": 1661
+  },
+  "serial_form_pairs": {
+    "markdown": 289,
+    "keyvalue": 627,
+    "pipe": 116,
+    "row_prose": 807,
+    "narrative": 707,
+    "json_records": 290
+  },
+  "template_pairs": {
+    "{key} has a {col} of {val} {unit}.": 482,
+    "The table lists the {col} of {key} as {val} {unit}.": 447,
+    "The {col} of {key} is {val} {unit}.": 469,
+    "For {key}, the {col} is {val} {unit}.": 441,
+    "According to the record, the {col} of {key} is {val} {unit}.": 518,
+    "The {col} recorded for {key} is {val} {unit}.": 479
+  },
+  "source_pairs": {
+    "tabfact": 2095,
+    "feverous": 741
+  },
+  "qualified_tables": {
+    "corpus_tables": 23423,
+    "unit_bearing_admitted": 897,
+    "unit_bearing_dropped_evalset": 190,
+    "admitted_tables_also_in_h144": 589,
+    "unit_supply_as_built": {
+      "acre": {
+        "cells": 85,
+        "tables": 4
+      },
+      "billion": {
+        "cells": 606,
+        "tables": 15
+      },
+      "cm": {
+        "cells": 341,
+        "tables": 18
+      },
+      "ft": {
+        "cells": 138,
+        "tables": 9
+      },
+      "g": {
+        "cells": 30,
+        "tables": 5
+      },
+      "ha": {
+        "cells": 141,
+        "tables": 9
+      },
+      "hp": {
+        "cells": 7,
+        "tables": 1
+      },
+      "kg": {
+        "cells": 636,
+        "tables": 65
+      },
+      "km": {
+        "cells": 1327,
+        "tables": 103
+      },
+      "km2": {
+        "cells": 1656,
+        "tables": 95
+      },
+      "kmh": {
+        "cells": 167,
+        "tables": 12
+      },
+      "kw": {
+        "cells": 61,
+        "tables": 10
+      },
+      "lb": {
+        "cells": 120,
+        "tables": 10
+      },
+      "m": {
+        "cells": 1241,
+        "tables": 89
+      },
+      "mile": {
+        "cells": 84,
+        "tables": 10
+      },
+      "million": {
+        "cells": 3032,
+        "tables": 218
+      },
+      "mm": {
+        "cells": 137,
+        "tables": 12
+      },
+      "mph": {
+        "cells": 232,
+        "tables": 26
+      },
+      "percent": {
+        "cells": 7644,
+        "tables": 273
+      },
+      "ton": {
+        "cells": 25,
+        "tables": 3
+      },
+      "tonne": {
+        "cells": 69,
+        "tables": 15
+      }
+    },
+    "balanced_ceiling_as_built": {
+      "area": {
+        "acre": 32,
+        "ha": 72,
+        "km2": 104
+      },
+      "length": {
+        "cm": 144,
+        "ft": 72,
+        "km": 824,
+        "m": 712,
+        "mile": 80,
+        "mm": 96
+      },
+      "magnitude": {
+        "billion": 120,
+        "million": 1744,
+        "percent": 1864
+      },
+      "mass": {
+        "g": 30,
+        "kg": 203,
+        "lb": 80,
+        "ton": 24,
+        "tonne": 69
+      },
+      "power": {
+        "hp": 7,
+        "kw": 7
+      },
+      "speed": {
+        "kmh": 96,
+        "mph": 96
+      }
+    },
+    "balanced_ceiling_as_built_total": 6476,
+    "unbuildable_families": "percent <-> percentage points is not built: 'percentage point(s)' occurs in one corpus table and can never be a POSITIVE, so the family cannot be direction-balanced and an unbalanced one would hand the claim-only probe the rule 'percentage points => label 0'. 'thousand' is excluded on a MEASUREMENT rather than on supply: it reaches 40 positives once the H144 exclusion lifts, enough for an 80-pair family, but from only FIVE tables whose column names repeat, and the family measured 0.70 within-pair claim-only accuracy against the 0.60 bar - the only family ever to breach it. Percent is balanced against million and billion instead, capped at MAGNITUDE_CAP."
+  },
+  "diversity": {
+    "documents": 732,
+    "pairs_per_document_mean": 3.8743,
+    "pairs_per_document_max": 8,
+    "pairs_per_document_p50": 3,
+    "distinct_chunks": 2465,
+    "distinct_claims": 5599
+  },
+  "disjointness": {
+    "evalset": {
+      "method": "content fingerprints per the R17-H144 build (the v2 lane's FEVEROUS doc_ids are not stable across rebuilds), plus the v2 doc_id set",
+      "eval_rows": 1050,
+      "eval_rows_unmatched_to_a_v2_document": 0,
+      "eval_v2_doc_ids": 536,
+      "eval_content_fingerprints": 547,
+      "corpus_tables_matching_eval_content": 3518,
+      "unit_bearing_tables_dropped": 190,
+      "shared_doc_ids": 0,
+      "shared_evidence_chunks": 0,
+      "shared_claim_strings": 0
+    },
+    "h144_pairs": {
+      "method": "NOT ENFORCED in build 2 - the coordinator dropped the H144 document exclusion (H144 feeds the student decoder, this family feeds the encoder, the benches are disjoint, no leak path). Overlap is measured and recorded. Both corpora come from the same loader in the same order, so the ids are comparable",
+      "enforced": false,
+      "h144_documents": 6642,
+      "admitted_tables_also_in_h144": 589,
+      "shared_doc_ids": 478,
+      "shared_evidence_chunks": 13,
+      "shared_claim_strings": 0
+    }
+  },
+  "verify": {
+    "claim_only_tfidf_auroc": {
+      "value": 0.504,
+      "bar": "< 0.55",
+      "pass": true,
+      "scoring": "5-fold document-disjoint, out of fold",
+      "documents": 732,
+      "rows": 5672
+    },
+    "within_pair_claim_only_accuracy": {
+      "per_family": {
+        "billion<->percent": {
+          "acc": 0.4369,
+          "pairs": 206
+        },
+        "kmh<->mph": {
+          "acc": 0.5,
+          "pairs": 132
+        },
+        "km<->mile": {
+          "acc": 0.3714,
+          "pairs": 70
+        },
+        "kg<->lb": {
+          "acc": 0.4146,
+          "pairs": 82
+        },
+        "kg<->ton": {
+          "acc": 0.3235,
+          "pairs": 34
+        },
+        "ha<->km2": {
+          "acc": 0.4767,
+          "pairs": 86
+        },
+        "km<->m": {
+          "acc": 0.4755,
+          "pairs": 734
+        },
+        "km<->mm": {
+          "acc": 0.4756,
+          "pairs": 82
+        },
+        "cm<->km": {
+          "acc": 0.4361,
+          "pairs": 266
+        },
+        "million<->percent": {
+          "acc": 0.5302,
+          "pairs": 928
+        },
+        "g<->kg": {
+          "acc": 0.4423,
+          "pairs": 52
+        },
+        "ft<->km": {
+          "acc": 0.47,
+          "pairs": 100
+        },
+        "acre<->km2": {
+          "acc": 0.3906,
+          "pairs": 64
+        }
+      },
+      "worst": 0.5302,
+      "bar": "< 0.60",
+      "pass": true,
+      "worst_two_sided_deviation_report_only": 0.1765
+    },
+    "word_label_marginal_balance": {
+      "per_word": {
+        "acre": {
+          "as_positive": 32,
+          "as_negative": 32,
+          "skew": 0.0
+        },
+        "billion": {
+          "as_positive": 103,
+          "as_negative": 103,
+          "skew": 0.0
+        },
+        "cm": {
+          "as_positive": 133,
+          "as_negative": 133,
+          "skew": 0.0
+        },
+        "ft": {
+          "as_positive": 50,
+          "as_negative": 50,
+          "skew": 0.0
+        },
+        "g": {
+          "as_positive": 26,
+          "as_negative": 26,
+          "skew": 0.0
+        },
+        "ha": {
+          "as_positive": 43,
+          "as_negative": 43,
+          "skew": 0.0
+        },
+        "kg": {
+          "as_positive": 84,
+          "as_negative": 84,
+          "skew": 0.0
+        },
+        "km": {
+          "as_positive": 626,
+          "as_negative": 626,
+          "skew": 0.0
+        },
+        "km2": {
+          "as_positive": 75,
+          "as_negative": 75,
+          "skew": 0.0
+        },
+        "kmh": {
+          "as_positive": 66,
+          "as_negative": 66,
+          "skew": 0.0
+        },
+        "lb": {
+          "as_positive": 41,
+          "as_negative": 41,
+          "skew": 0.0
+        },
+        "m": {
+          "as_positive": 367,
+          "as_negative": 367,
+          "skew": 0.0
+        },
+        "mile": {
+          "as_positive": 35,
+          "as_negative": 35,
+          "skew": 0.0
+        },
+        "million": {
+          "as_positive": 464,
+          "as_negative": 464,
+          "skew": 0.0
+        },
+        "mm": {
+          "as_positive": 41,
+          "as_negative": 41,
+          "skew": 0.0
+        },
+        "mph": {
+          "as_positive": 66,
+          "as_negative": 66,
+          "skew": 0.0
+        },
+        "percent": {
+          "as_positive": 567,
+          "as_negative": 567,
+          "skew": 0.0
+        },
+        "ton": {
+          "as_positive": 17,
+          "as_negative": 17,
+          "skew": 0.0
+        }
+      },
+      "max_skew": 0.0,
+      "bar": "max skew <= 0.02",
+      "pass": true
+    },
+    "value_presence_rate": {
+      "value": 1.0,
+      "bar": "== 1.0",
+      "pass": true
+    },
+    "unit_surface_discipline": {
+      "positive_unit_readable_in_evidence": 1.0,
+      "negative_unit_absent_from_evidence": 1.0,
+      "bar": "both == 1.0",
+      "pass": true
+    },
+    "report_only": {
+      "claim_char_length_auroc": 0.5004,
+      "value_digit_count_auroc": 0.5,
+      "within_pair_digit_surfaces_identical": true
+    },
+    "all_bars_pass": true
+  }
+}

@@ -1,0 +1,570 @@
+{
+  "teacher_gen": {
+    "n_generated": 30000,
+    "n_accepted": 28526,
+    "acceptance_rate": 0.9508666666666666,
+    "acceptance_rate_per_family": {
+      "N1_arbitrary": 0.9416868442292171,
+      "N1_near_miss": 0.9457985888389994,
+      "N1_oom:misbind": 0.9508470225872689,
+      "N2_operator": 0.9514179451417946,
+      "N7_numeral": 0.9388392857142858,
+      "N_round:wrong_direction": 0.9450194049159121,
+      "N_round:wrong_multiple": 0.9676584734799483,
+      "r:relational": 0.9662222222222222
+    },
+    "acceptance_rate_by_label": {
+      "0": 0.9706666666666667,
+      "1": 0.9310666666666667
+    },
+    "free_trace_parse_fail_rate": 0.01633333333333333,
+    "think_closed_rate": 0.8801333333333333,
+    "think_len_stats": {
+      "mean": 315.6327,
+      "p50": 290.0,
+      "p90": 512.0,
+      "max": 513.0
+    }
+  },
+  "sft": {
+    "epochs_run": [
+      1,
+      2,
+      3
+    ],
+    "best_val_epoch": 3,
+    "stopped": null,
+    "history": [
+      {
+        "epoch": 1,
+        "train_loss": 0.5767938841895358,
+        "train_loss_tail": 0.4013507343812281,
+        "val_loss": 0.4046536831229515,
+        "n": 200,
+        "format_rate": 0.965,
+        "verdict_agree": 0.73
+      },
+      {
+        "epoch": 2,
+        "train_loss": 0.36655238919917876,
+        "train_loss_tail": 0.35237901017211554,
+        "val_loss": 0.3688691621363337,
+        "n": 200,
+        "format_rate": 0.945,
+        "verdict_agree": 0.82
+      },
+      {
+        "epoch": 3,
+        "train_loss": 0.33730590146797435,
+        "train_loss_tail": 0.3222199334775568,
+        "val_loss": 0.3645819905584098,
+        "n": 200,
+        "format_rate": 0.945,
+        "verdict_agree": 0.815
+      }
+    ],
+    "data": {
+      "n_accepted": 28526,
+      "n_examples": 27936,
+      "n_evidence_trimmed": 1409,
+      "n_dropped_overlong": 590,
+      "mean_len": 740.787406930126
+    },
+    "config": {
+      "epochs": 3,
+      "lr": 3e-05,
+      "micro_bs": 8,
+      "accum": 8,
+      "max_len": 1024,
+      "seed": 1144
+    },
+    "final_train_loss": 0.33730590146797435,
+    "final_val_loss": 0.3645819905584098,
+    "best_val_loss": 0.3645819905584098,
+    "verdict_format_rate": 0.945
+  },
+  "student_eval": {
+    "primary_checkpoint_epoch": 3,
+    "pooled_auroc": 0.817148,
+    "control_auroc": 0.8696,
+    "control_gate_passed": false,
+    "untrained_baseline_control_auroc": 0.4848,
+    "per_family_auroc": {
+      "N1_arbitrary": 0.8510975609756097,
+      "N1_near_miss": 0.8148461538461539,
+      "N1_oom:misbind": 0.8348230769230769,
+      "N2_operator": 0.7897083333333333,
+      "N7_numeral": 0.8596216216216216,
+      "N_round:wrong_direction": 0.7215,
+      "N_round:wrong_multiple": 0.7819615384615385,
+      "r:relational": 0.8017333333333333
+    },
+    "parse_fail_rate": 0.01,
+    "pooled_auroc_literal05": 0.817148,
+    "per_checkpoint": [
+      {
+        "checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/R17-H144-student/epoch2",
+        "n_scored": 1000,
+        "pooled_auroc": 0.792412,
+        "pooled_auroc_literal05": 0.792412,
+        "control_auroc": 0.7936,
+        "control_gate_passed": false,
+        "per_family_auroc": {
+          "N1_arbitrary": 0.8357560975609756,
+          "N1_near_miss": 0.7892307692307692,
+          "N1_oom:misbind": 0.8023076923076923,
+          "N2_operator": 0.7795,
+          "N7_numeral": 0.8277837837837838,
+          "N_round:wrong_direction": 0.7179230769230769,
+          "N_round:wrong_multiple": 0.7403076923076923,
+          "r:relational": 0.7689066666666666
+        },
+        "parse_fail_rate": 0.009,
+        "no_answer_rate": 0.0,
+        "mean_gen_tokens": 307.26,
+        "epoch": 2,
+        "is_best_val": false
+      },
+      {
+        "checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/R17-H144-student/epoch3",
+        "n_scored": 1000,
+        "pooled_auroc": 0.817148,
+        "pooled_auroc_literal05": 0.817148,
+        "control_auroc": 0.8696,
+        "control_gate_passed": false,
+        "per_family_auroc": {
+          "N1_arbitrary": 0.8510975609756097,
+          "N1_near_miss": 0.8148461538461539,
+          "N1_oom:misbind": 0.8348230769230769,
+          "N2_operator": 0.7897083333333333,
+          "N7_numeral": 0.8596216216216216,
+          "N_round:wrong_direction": 0.7215,
+          "N_round:wrong_multiple": 0.7819615384615385,
+          "r:relational": 0.8017333333333333
+        },
+        "parse_fail_rate": 0.01,
+        "no_answer_rate": 0.0,
+        "mean_gen_tokens": 310.921,
+        "epoch": 3,
+        "is_best_val": true
+      }
+    ],
+    "untrained_baseline_pooled_auroc": 0.5011,
+    "untrained_baseline_source": "banked Stage A read, not re-run"
+  },
+  "bars": {
+    "viable_070": false,
+    "pooled_ge_070": true,
+    "control_ge_090": false,
+    "kill_060": false,
+    "gray": false
+  },
+  "cycle2": {
+    "teacher_gen": {
+      "n_generated": 30000,
+      "n_accepted": 28526,
+      "acceptance_rate": 0.9508666666666666,
+      "acceptance_rate_per_family": {
+        "N1_arbitrary": 0.9416868442292171,
+        "N1_near_miss": 0.9457985888389994,
+        "N1_oom:misbind": 0.9508470225872689,
+        "N2_operator": 0.9514179451417946,
+        "N7_numeral": 0.9388392857142858,
+        "N_round:wrong_direction": 0.9450194049159121,
+        "N_round:wrong_multiple": 0.9676584734799483,
+        "r:relational": 0.9662222222222222
+      },
+      "acceptance_rate_by_label": {
+        "0": 0.9706666666666667,
+        "1": 0.9310666666666667
+      },
+      "free_trace_parse_fail_rate": 0.01633333333333333,
+      "think_closed_rate": 0.8801333333333333,
+      "think_len_stats": {
+        "mean": 315.6327,
+        "p50": 290.0,
+        "p90": 512.0,
+        "max": 513.0
+      }
+    },
+    "sft": {
+      "epochs_run": [
+        1,
+        2,
+        3
+      ],
+      "best_val_epoch": 3,
+      "stopped": null,
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.5529876123427038,
+          "train_loss_tail": 0.37732378397275385,
+          "val_loss": 0.3869127608949634,
+          "n": 200,
+          "format_rate": 0.995,
+          "verdict_agree": 0.865
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.34556355372342007,
+          "train_loss_tail": 0.32260291046406403,
+          "val_loss": 0.35440925546808605,
+          "n": 200,
+          "format_rate": 0.985,
+          "verdict_agree": 0.82
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.31693054101084533,
+          "train_loss_tail": 0.32485276469032953,
+          "val_loss": 0.34965919276282326,
+          "n": 200,
+          "format_rate": 0.975,
+          "verdict_agree": 0.835
+        }
+      ],
+      "data": {
+        "n_accepted": 28526,
+        "n_derivation": 28526,
+        "n_lookup": 7000,
+        "cycle2": true,
+        "n_examples": 34919,
+        "n_evidence_trimmed": 1424,
+        "n_dropped_overlong": 607,
+        "mean_len": 689.8585011025516
+      },
+      "config": {
+        "epochs": 3,
+        "lr": 3e-05,
+        "micro_bs": 8,
+        "accum": 8,
+        "max_len": 1024,
+        "seed": 1144
+      },
+      "final_train_loss": 0.31693054101084533,
+      "final_val_loss": 0.34965919276282326,
+      "best_val_loss": 0.34965919276282326,
+      "verdict_format_rate": 0.975
+    },
+    "student_eval": {
+      "primary_checkpoint_epoch": 3,
+      "pooled_auroc": 0.80957,
+      "control_auroc": 0.872,
+      "control_gate_passed": false,
+      "untrained_baseline_control_auroc": 0.4848,
+      "per_family_auroc": {
+        "N1_arbitrary": 0.8608780487804878,
+        "N1_near_miss": 0.7993076923076923,
+        "N1_oom:misbind": 0.8386461538461538,
+        "N2_operator": 0.7899444444444444,
+        "N7_numeral": 0.84,
+        "N_round:wrong_direction": 0.7199230769230769,
+        "N_round:wrong_multiple": 0.7598076923076923,
+        "r:relational": 0.7623466666666666
+      },
+      "parse_fail_rate": 0.01,
+      "pooled_auroc_literal05": 0.80957,
+      "per_checkpoint": [
+        {
+          "checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/R17-H144-student-c2/epoch1",
+          "n_scored": 1000,
+          "pooled_auroc": 0.77892,
+          "pooled_auroc_literal05": 0.77892,
+          "control_auroc": 0.832,
+          "control_gate_passed": false,
+          "per_family_auroc": {
+            "N1_arbitrary": 0.7967195121951219,
+            "N1_near_miss": 0.7827307692307692,
+            "N1_oom:misbind": 0.8030846153846154,
+            "N2_operator": 0.7794166666666666,
+            "N7_numeral": 0.8046216216216217,
+            "N_round:wrong_direction": 0.6914615384615385,
+            "N_round:wrong_multiple": 0.7115769230769231,
+            "r:relational": 0.75544
+          },
+          "parse_fail_rate": 0.004,
+          "no_answer_rate": 0.0,
+          "mean_gen_tokens": 292.24,
+          "epoch": 1,
+          "is_best_val": false,
+          "bars": {
+            "viable_070": false,
+            "pooled_ge_070": true,
+            "control_ge_090": false,
+            "kill_060": false
+          }
+        },
+        {
+          "checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/R17-H144-student-c2/epoch2",
+          "n_scored": 1000,
+          "pooled_auroc": 0.805074,
+          "pooled_auroc_literal05": 0.805074,
+          "control_auroc": 0.9872,
+          "control_gate_passed": true,
+          "per_family_auroc": {
+            "N1_arbitrary": 0.8503414634146341,
+            "N1_near_miss": 0.7833846153846153,
+            "N1_oom:misbind": 0.8393307692307692,
+            "N2_operator": 0.7745833333333333,
+            "N7_numeral": 0.849081081081081,
+            "N_round:wrong_direction": 0.7719230769230769,
+            "N_round:wrong_multiple": 0.7335384615384616,
+            "r:relational": 0.7550933333333333
+          },
+          "parse_fail_rate": 0.004,
+          "no_answer_rate": 0.0,
+          "mean_gen_tokens": 288.804,
+          "epoch": 2,
+          "is_best_val": false,
+          "bars": {
+            "viable_070": true,
+            "pooled_ge_070": true,
+            "control_ge_090": true,
+            "kill_060": false
+          }
+        },
+        {
+          "checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/R17-H144-student-c2/epoch3",
+          "n_scored": 1000,
+          "pooled_auroc": 0.80957,
+          "pooled_auroc_literal05": 0.80957,
+          "control_auroc": 0.872,
+          "control_gate_passed": false,
+          "per_family_auroc": {
+            "N1_arbitrary": 0.8608780487804878,
+            "N1_near_miss": 0.7993076923076923,
+            "N1_oom:misbind": 0.8386461538461538,
+            "N2_operator": 0.7899444444444444,
+            "N7_numeral": 0.84,
+            "N_round:wrong_direction": 0.7199230769230769,
+            "N_round:wrong_multiple": 0.7598076923076923,
+            "r:relational": 0.7623466666666666
+          },
+          "parse_fail_rate": 0.01,
+          "no_answer_rate": 0.0,
+          "mean_gen_tokens": 297.476,
+          "epoch": 3,
+          "is_best_val": true,
+          "bars": {
+            "viable_070": false,
+            "pooled_ge_070": true,
+            "control_ge_090": false,
+            "kill_060": false
+          }
+        }
+      ],
+      "untrained_baseline_pooled_auroc": 0.5011,
+      "untrained_baseline_source": "banked Stage A read, not re-run"
+    },
+    "bars": {
+      "viable_070": false,
+      "pooled_ge_070": true,
+      "control_ge_090": false,
+      "kill_060": false,
+      "gray": false,
+      "any_checkpoint_viable": true,
+      "viable_checkpoint_epochs": [
+        2
+      ],
+      "primary_selection_rule": "lowest SFT validation loss",
+      "selection_note": "no held-out signal available to this harness selects the viable checkpoint: validation loss picks the final epoch, validation verdict-agreement picks epoch 1. Selecting on the bar set itself would be selection on the test set - the coordinator adjudicates"
+    },
+    "lookup_family": {
+      "seed": 11441,
+      "rows": 7000,
+      "pairs": 3500,
+      "documents": 1751,
+      "families": {
+        "lookup:absent": 3500,
+        "lookup:adjacent_misbind": 3500
+      },
+      "serial_forms": {
+        "pipe": 1058,
+        "row_prose": 2056,
+        "narrative": 2172,
+        "markdown": 636,
+        "json_records": 368,
+        "keyvalue": 710
+      },
+      "sources": {
+        "feverous": 2316,
+        "tabfact": 4684
+      },
+      "surface_parity_rate": 0.7417,
+      "eval_disjointness": {
+        "excluded_doc_ids": 536,
+        "content_matched_tables": 3516,
+        "shared_documents": 0
+      },
+      "claim_only_probe": {
+        "claim_only_tfidf_auroc": 0.5364,
+        "bar": "< 0.55",
+        "pass": true,
+        "train_docs": 1225,
+        "test_docs": 526,
+        "test_rows": 2102
+      },
+      "within_pair_claim_only": {
+        "per_family": {
+          "lookup:adjacent_misbind": {
+            "acc": 0.5,
+            "pairs": 526
+          },
+          "lookup:absent": {
+            "acc": 0.5619,
+            "pairs": 525
+          }
+        },
+        "worst": 0.5619,
+        "bar": "< 0.60",
+        "pass": true
+      }
+    },
+    "amendment": "A1 - mixed corpus (teacher traces + verbatim-lookup family)",
+    "cycle1_deltas": {
+      "pooled": -0.0076,
+      "control": 0.0024
+    },
+    "selector_A2": {
+      "amendment": "A2 - held-out control-family checkpoint selection",
+      "val_split": {
+        "examples": 1800,
+        "documents": 522,
+        "disjointness_verification": {
+          "val_rows": 1800,
+          "val_documents": 522,
+          "shared_chunks_with_evalset": 0,
+          "shared_documents_with_sft_corpus": 0,
+          "shared_chunks_with_sft_corpus": 0,
+          "sft_corpus_documents": 7219
+        },
+        "manifest": {
+          "seed": 11442,
+          "rows": 1800,
+          "pairs": 900,
+          "documents": 522,
+          "families": {
+            "lookup:adjacent_misbind": 900,
+            "lookup:absent": 900
+          },
+          "serial_forms": {
+            "pipe": 314,
+            "narrative": 554,
+            "markdown": 176,
+            "row_prose": 536,
+            "keyvalue": 142,
+            "json_records": 78
+          },
+          "sources": {
+            "tabfact": 1148,
+            "feverous": 652
+          },
+          "surface_parity_rate": 1.0,
+          "valsplit": true,
+          "eval_disjointness": {
+            "excluded_doc_ids": 7754,
+            "eval_content_fingerprints": 547,
+            "sft_content_fingerprints": 15995,
+            "content_matched_tables": 14265,
+            "admitted_tables": 1688,
+            "shared_documents": 0
+          },
+          "claim_only_probe": {
+            "claim_only_tfidf_auroc": 0.5162,
+            "bar": "< 0.55",
+            "pass": true,
+            "train_docs": 365,
+            "test_docs": 157,
+            "test_rows": 532
+          },
+          "within_pair_claim_only": {
+            "per_family": {
+              "lookup:absent": {
+                "acc": 0.5188,
+                "pairs": 133
+              },
+              "lookup:adjacent_misbind": {
+                "acc": 0.5263,
+                "pairs": 133
+              }
+            },
+            "worst": 0.5263,
+            "bar": "< 0.60",
+            "pass": true
+          }
+        }
+      },
+      "selector_rule": "argmax control-validation accuracy; tie-break lower SFT val loss",
+      "selector_scores": {
+        "ep1": 0.876667,
+        "ep2": 0.772778,
+        "ep3": 0.864444
+      },
+      "per_checkpoint": [
+        {
+          "epoch": 1,
+          "n": 1800,
+          "control_val_accuracy": 0.876667,
+          "per_family_accuracy": {
+            "lookup:absent": 0.9478,
+            "lookup:adjacent_misbind": 0.8056
+          },
+          "positive_accuracy": 0.8967,
+          "negative_accuracy": 0.8567,
+          "parse_fail_rate": 0.0006,
+          "sft_val_loss": 0.3869127608949634
+        },
+        {
+          "epoch": 2,
+          "n": 1800,
+          "control_val_accuracy": 0.772778,
+          "per_family_accuracy": {
+            "lookup:absent": 0.9867,
+            "lookup:adjacent_misbind": 0.5589
+          },
+          "positive_accuracy": 0.9756,
+          "negative_accuracy": 0.57,
+          "parse_fail_rate": 0.0,
+          "sft_val_loss": 0.35440925546808605
+        },
+        {
+          "epoch": 3,
+          "n": 1800,
+          "control_val_accuracy": 0.864444,
+          "per_family_accuracy": {
+            "lookup:absent": 0.9656,
+            "lookup:adjacent_misbind": 0.7633
+          },
+          "positive_accuracy": 0.9278,
+          "negative_accuracy": 0.8011,
+          "parse_fail_rate": 0.0,
+          "sft_val_loss": 0.34965919276282326
+        }
+      ],
+      "tied_epochs": [
+        1
+      ],
+      "selected_epoch": 1,
+      "banked_eval_of_selected": {
+        "pooled_auroc": 0.77892,
+        "control_auroc": 0.832,
+        "pooled_auroc_literal05": 0.77892,
+        "parse_fail_rate": 0.004,
+        "bars": {
+          "viable_070": false,
+          "pooled_ge_070": true,
+          "control_ge_090": false,
+          "kill_060": false
+        }
+      },
+      "banked_eval_available": true,
+      "verdict": "NOT-VIABLE-AT-BAR",
+      "verdict_basis": {
+        "pooled_ge_070": true,
+        "control_ge_090": false,
+        "kill_060": false
+      }
+    }
+  }
+}

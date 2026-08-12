@@ -1,0 +1,38 @@
+{
+  "method": "hand verification of a 100-pair sample (R17-H149_audit_sample.parquet, seed 20260811) - for each pair the executor read the source sentence, the positive assertion and the negative twin, and judged (i) is the positive true given the passage, (ii) does the substitution genuinely contradict the passage",
+  "sampled": 100,
+  "per_family_sampled": {"role_swap": 68, "direction_flip": 32},
+  "hard_defects": 4,
+  "hard_defect_rate": 0.04,
+  "hard_defect_taxonomy": [
+    {"class": "coordinated-subject attribution", "count": 2,
+     "example": "'combined blockade of Tim-1 and Tim-4 increased lesion size' -> 'the lesion size was raised by Tim-4'; the agent is the blockade, not the conjunct",
+     "status": "partially closed - a conjunct head is refused, but a conjunct that the parser makes the phrase head still slips through"},
+    {"class": "hedged proposition asserted flat", "count": 1,
+     "example": "'only minimally mediated by MetS' -> 'MetS brought about the effect'",
+     "status": "open - the sentence veto covers modality and negation, not degree hedges ('only minimally', 'in part')"},
+    {"class": "non-literal relation verb", "count": 1,
+     "example": "'MSNA followed a similar trend' -> 'MSNA came after the similar trend'",
+     "status": "open - needs word-sense disambiguation, not a lexicon rule"}
+  ],
+  "borderline_not_counted": 3,
+  "borderline_note": "positive is direction-preserving but an awkward paraphrase, or a span is truncated at a modifier; the negative is still false in each case",
+  "cosmetic_not_counted": 3,
+  "cosmetic_note": "subject-verb agreement slips and stray punctuation in a span; no effect on which twin the passage supports",
+  "closed_by_earlier_audit_rounds": [
+    "participial / relative-clause verbs mis-assigning subject and object roles",
+    "agent phrase read as an intransitive subject ('inhibited by FTO' -> 'FTO fell')",
+    "prepositional idioms read as magnitude change ('is limited to', 'falls in between')",
+    "structured-abstract section headings swept into a span ('CONCLUSIONS enhanced.')",
+    "coordinated verb phrases moving the object off the directional verb",
+    "dimensional and mis-valenced directional verbs ('the sheets are expanded' -> 'were raised'; 'blunted the viremia' -> 'worsened the viremia')"
+  ],
+  "audit_history": {
+    "round_1": {"build_pairs": 949, "hard_defects": 9},
+    "round_2": {"build_pairs": 466, "hard_defects": 5},
+    "round_3_final": {"build_pairs": 358, "hard_defects": 4}
+  },
+  "bar": "the registered discipline is 0 errors; this probe does NOT meet it",
+  "pass": false,
+  "effect_on_the_gate": "4% label noise pulls a control AUROC of ~0.70 toward 0.5 by roughly 0.008 - well inside the read's own standard error - and it biases the read DOWNWARD, i.e. toward licensing. A KILL verdict is therefore safe against this defect; a LICENSE verdict carries it as a caveat."
+}

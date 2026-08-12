@@ -1,0 +1,42 @@
+{
+  "gold": {
+    "auc": 0.8333,
+    "f1": 0.7365,
+    "n": 717
+  },
+  "gold_full": {
+    "auc": 0.8562,
+    "f1": 0.7541,
+    "n": 2752
+  },
+  "ragtruth_en": {
+    "auc": 0.8315,
+    "f1": 0.7095,
+    "n": 600
+  },
+  "ragtruth_nonen": {
+    "auc": 0.8454,
+    "per_lang": {
+      "de": 0.8445,
+      "fr": 0.8478,
+      "es": 0.8495,
+      "it": 0.8424,
+      "pl": 0.8303,
+      "hu": 0.8329,
+      "cn": 0.8703
+    }
+  },
+  "run": "twin",
+  "adapter_active": false,
+  "seed": 2142,
+  "experiment": "R16-H142-T twin draw 2 (confirming draw, seed 2142)",
+  "init_fingerprint": "9377707d7a926278c850bb5bff8e6b07",
+  "perm_fingerprint": "eebe673dabeef46f",
+  "mix_rows": 685670,
+  "dann_groups": 12,
+  "n_steps": 14300,
+  "recovery": {
+    "reason": "container interruption after train, mid in-domain suite",
+    "method": "banked load_run + evaluate() on the completed 15:17 checkpoint; no retraining. Fingerprints/census from the draw-2 log."
+  }
+}

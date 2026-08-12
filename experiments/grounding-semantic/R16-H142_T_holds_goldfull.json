@@ -1,0 +1,25 @@
+{
+  "read": "R16-H142-T twin promotion holds - gold_full + windowed spot reproduction",
+  "checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/R16-H142-G1-twin",
+  "gold_full": {
+    "auc": 0.8484,
+    "f1": 0.732,
+    "n": 2752,
+    "bar": 0.84,
+    "pass": true,
+    "banked_train_time_value": 0.8484,
+    "reproduces_banked": true
+  },
+  "checkpoint_verification": {
+    "adapter_output_layer_all_zero": true,
+    "adapter_active_flag": false,
+    "trained_trunk_task_head_blake2b_128": "c9118a4a261e1504fecb4a47f616d876",
+    "n_params_fingerprinted": 306940417,
+    "spot_subset": "hotpotqa",
+    "spot_windowed_auc": 0.6728,
+    "banked_spot_windowed_auc": 0.6728,
+    "reproduces_banked_windowed": true,
+    "banked_windowed_mean": 0.72498
+  },
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+}

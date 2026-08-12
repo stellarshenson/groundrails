@@ -1,0 +1,39 @@
+{
+  "PleIAs/Baguettotron": {
+    "control_auroc": 0.464,
+    "gate_exempt": false,
+    "passed": false,
+    "parse_fail_rate": 0.16
+  },
+  "PleIAs/Pleias-RAG-350M": {
+    "control_auroc": 0.616,
+    "gate_exempt": false,
+    "passed": false,
+    "parse_fail_rate": 0.94
+  },
+  "PleIAs/Monad": {
+    "control_auroc": 0.6816,
+    "gate_exempt": true,
+    "passed": true,
+    "parse_fail_rate": 0.22
+  },
+  "HuggingFaceTB/SmolLM2-360M-Instruct": {
+    "control_auroc": 0.4848,
+    "gate_exempt": false,
+    "passed": false,
+    "parse_fail_rate": 0.0
+  },
+  "Qwen/Qwen3-0.6B": {
+    "control_auroc": 0.9904,
+    "gate_exempt": false,
+    "passed": true,
+    "parse_fail_rate": 0.0
+  },
+  "Qwen/Qwen3-32B-FP8": {
+    "control_auroc": 1.0,
+    "gate_exempt": false,
+    "passed": true,
+    "parse_fail_rate": 0.0,
+    "quant_path": "fp8-native"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "read": "R16-H142 G1 (A1) arm, truncated decomposed-min read",
+  "run": "arm",
+  "checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/R16-H142-G1-arm",
+  "per_subset": {
+    "covidqa": {
+      "n": 245,
+      "n_sent": 385,
+      "n_pairs": 1540,
+      "auc": 0.7873,
+      "f1": 0.5975,
+      "lettuce_auc": 0.7355
+    },
+    "delucionqa": {
+      "n": 184,
+      "n_sent": 929,
+      "n_pairs": 2787,
+      "auc": 0.6734,
+      "f1": 0.4424,
+      "lettuce_auc": 0.7929
+    },
+    "emanual": {
+      "n": 132,
+      "n_sent": 748,
+      "n_pairs": 2244,
+      "auc": 0.5539,
+      "f1": 0.4398,
+      "lettuce_auc": 0.5999
+    },
+    "expertqa": {
+      "n": 203,
+      "n_sent": 1303,
+      "n_pairs": 5468,
+      "auc": 0.709,
+      "f1": 0.5952,
+      "lettuce_auc": 0.6503
+    },
+    "finqa": {
+      "n": 250,
+      "n_sent": 563,
+      "n_pairs": 1620,
+      "auc": 0.6565,
+      "f1": 0.5898,
+      "lettuce_auc": 0.717
+    },
+    "hagrid": {
+      "n": 250,
+      "n_sent": 537,
+      "n_pairs": 1809,
+      "auc": 0.655,
+      "f1": 0.625,
+      "lettuce_auc": 0.5992
+    },
+    "hotpotqa": {
+      "n": 250,
+      "n_sent": 293,
+      "n_pairs": 1170,
+      "auc": 0.6741,
+      "f1": 0.4766,
+      "lettuce_auc": 0.5976
+    },
+    "pubmedqa": {
+      "n": 250,
+      "n_sent": 1314,
+      "n_pairs": 6570,
+      "auc": 0.5612,
+      "f1": 0.4992,
+      "lettuce_auc": 0.5162
+    },
+    "tatqa": {
+      "n": 250,
+      "n_sent": 468,
+      "n_pairs": 1923,
+      "auc": 0.6958,
+      "f1": 0.546,
+      "lettuce_auc": 0.6156
+    },
+    "techqa": {
+      "n": 250,
+      "n_sent": 1737,
+      "n_pairs": 8685,
+      "auc": 0.7064,
+      "f1": 0.656,
+      "lettuce_auc": 0.6363
+    }
+  },
+  "mean": 0.66726,
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+}

@@ -1,0 +1,54 @@
+{
+  "set": "R14-H133_antigaming_traced.parquet",
+  "source": "R14-H133_antigaming.build_nearmiss + .build_bindrow, rebuilt at SEED 20260810; pair_id is the row index of the set that script banks",
+  "banked_pairs_rebuilt": {
+    "nearmiss": 1000,
+    "bind_row": 601
+  },
+  "traced_pairs": 1310,
+  "rows": 2620,
+  "traced_pairs_by_family": {
+    "year_shift": 240,
+    "magnitude_shift": 236,
+    "digit_perturb": 235,
+    "bind_row": 599
+  },
+  "rows_by_kind": {
+    "bind_row": 1198,
+    "nearmiss": 1422
+  },
+  "not_trace_attachable": {
+    "nearmiss:true_value_not_in_evidence:magnitude_shift": 14,
+    "nearmiss:word_only_corruption:comparative_flip": 207,
+    "nearmiss:true_value_not_in_evidence:year_shift": 10,
+    "nearmiss:word_only_corruption:pct_pp": 21,
+    "nearmiss:true_value_not_in_evidence:digit_perturb": 15,
+    "nearmiss:word_only_corruption:scale_word": 22,
+    "bind_row:true_value_trimmed_away": 2
+  },
+  "not_trace_attachable_total": 291,
+  "trace_shape": {
+    "identical_within_pair": true,
+    "note": "the trace reports the EVIDENCE, so it is byte-identical between a pair's two members and contributes no surface signal; the negative is detected by the trace contradicting the claim's value"
+  },
+  "residual_surface_asymmetry": {
+    "note": "inherited from the banked claim's own numeral and deliberately NOT distorted, per the build order; counts are over traced pairs",
+    "traced_pairs": 1310,
+    "decimal_presence_mismatch": 17,
+    "digit_count_mismatch": 350,
+    "leading_digit_mismatch": 512,
+    "trailing_zero_mismatch": 470,
+    "decimal_presence_mismatch_share": 0.01298,
+    "digit_count_mismatch_share": 0.26718,
+    "leading_digit_mismatch_share": 0.39084,
+    "trailing_zero_mismatch_share": 0.35878
+  },
+  "token_budget": {
+    "max_len": 512,
+    "pair_tokens_median": 408,
+    "pair_tokens_p95": 556,
+    "share_over_512": 0.06336,
+    "auroc_from_pair_token_length_alone": 0.4992,
+    "policy": "evidence body rows trimmed, traces never; the caption, the header and every line carrying the trace's quoted value are protected"
+  }
+}

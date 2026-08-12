@@ -1,0 +1,486 @@
+{
+  "experiment": "R18-H150 unit_swap held-out PROBE (measurement only, never trains)",
+  "seed": 11500,
+  "target_pairs": 500,
+  "rows": 280,
+  "pairs": 140,
+  "documents": 42,
+  "pairs_per_document": 3.333,
+  "min_family_pairs": 32,
+  "doc_cap": 32,
+  "tag": "quant_scale_unit",
+  "families": {
+    "unit_swap": 280
+  },
+  "swap_families": {
+    "kmh<->kt": 64,
+    "kg<->tonne": 96,
+    "kw<->mw": 120
+  },
+  "dimensions": {
+    "speed": 64,
+    "power": 120,
+    "mass": 96
+  },
+  "unit_carrier": {
+    "header": 124,
+    "cell": 156
+  },
+  "distractor_in_chunk": {
+    "False": 280
+  },
+  "diversity": {
+    "serial_forms": {
+      "pipe": 20,
+      "row_prose": 80,
+      "narrative": 62,
+      "markdown": 24,
+      "json_records": 10,
+      "keyvalue": 84
+    },
+    "templates": {
+      "0": 48,
+      "4": 46,
+      "2": 46,
+      "5": 46,
+      "1": 48,
+      "3": 46
+    },
+    "sources": {
+      "tabfact": 144,
+      "feverous": 136
+    },
+    "distinct_claims": 278,
+    "distinct_chunks": 115,
+    "distinct_columns": 26
+  },
+  "lane_disjointness": {
+    "lane_file": "R18-H150_scaleunit_lane.parquet",
+    "lane_documents": 410,
+    "lane_documents_dropped_from_supply": 410,
+    "shared_documents": 0,
+    "shared_chunks": 0,
+    "method": "doc_id exclusion, enforced; a shared table is impossible so a shared chunk or row key is impossible"
+  },
+  "eval_disjointness": {
+    "evalset_rows": 1050,
+    "excluded_doc_ids": 536,
+    "content_matched_tables": 3516,
+    "tables_dropped": 3556,
+    "tables_admitted": 16328,
+    "shared_documents": 0,
+    "shared_chunks": 0,
+    "method": "content-based (R17-H144 method), enforced"
+  },
+  "overlap_permitted": [
+    {
+      "file": "R17-H144_pairs.parquet",
+      "present": true,
+      "shared_doc_ids": 18,
+      "shared_chunks": 0,
+      "their_docs": 6642,
+      "note": "H144 pair corpus: permitted, measured not enforced"
+    },
+    {
+      "file": "R17-H145_scaleunit.parquet",
+      "present": true,
+      "shared_doc_ids": 12,
+      "shared_chunks": 2,
+      "their_docs": 732,
+      "note": "H145 lane: permitted, measured not enforced"
+    },
+    {
+      "file": "R17-H146_lane.parquet",
+      "present": true,
+      "shared_doc_ids": 17,
+      "shared_chunks": 0,
+      "their_docs": 7514,
+      "note": "H146 lane: permitted, measured not enforced"
+    }
+  ],
+  "supply": {
+    "pairs_at_full_supply": 140,
+    "trimmed_to": 140,
+    "target_pairs": 500
+  },
+  "census": {
+    "unit_bearing_tables": 638,
+    "positives_built": 5935,
+    "dropped_claim_phrase_present": 37553,
+    "dropped_carrier_truncated": 0,
+    "dropped_no_chunk": 425,
+    "dropped_lane_chunk": 0,
+    "dropped_satisfiable_negative": 0,
+    "dropped_small_families": {}
+  },
+  "family_construction": {
+    "area": {
+      "hub": null,
+      "families": {},
+      "note": "single word (['km2']), no in-dimension partner"
+    },
+    "frequency": {
+      "hubs": [
+        "mhz"
+      ],
+      "families": {
+        "ghz<->mhz": {
+          "kept": 0,
+          "offered": 0,
+          "supply": {
+            "ghz": 3,
+            "mhz": 249
+          },
+          "note": "below MIN_FAMILY_PAIRS=32 after value-surface stratification"
+        }
+      }
+    },
+    "length": {
+      "hubs": [
+        "m"
+      ],
+      "families": {
+        "km<->m": {
+          "kept": 0,
+          "offered": 0,
+          "supply": {
+            "km": 56,
+            "m": 64
+          },
+          "note": "below MIN_FAMILY_PAIRS=32 after value-surface stratification"
+        },
+        "ft<->m": {
+          "kept": 0,
+          "offered": 0,
+          "supply": {
+            "ft": 26,
+            "m": 64
+          },
+          "note": "below MIN_FAMILY_PAIRS=32 after value-surface stratification"
+        },
+        "m<->mile": {
+          "kept": 0,
+          "offered": 8,
+          "supply": {
+            "mile": 6,
+            "m": 64
+          },
+          "note": "below MIN_FAMILY_PAIRS=32 after value-surface stratification"
+        },
+        "cm<->m": {
+          "kept": 0,
+          "offered": 0,
+          "supply": {
+            "cm": 5,
+            "m": 64
+          },
+          "note": "below MIN_FAMILY_PAIRS=32 after value-surface stratification"
+        }
+      }
+    },
+    "magnitude": {
+      "hubs": [
+        "million"
+      ],
+      "families": {
+        "million<->thousand": {
+          "kept": 0,
+          "offered": 4,
+          "supply": {
+            "thousand": 16,
+            "million": 206
+          },
+          "note": "below MIN_FAMILY_PAIRS=32 after value-surface stratification"
+        },
+        "billion<->million": {
+          "kept": 0,
+          "offered": 18,
+          "supply": {
+            "billion": 15,
+            "million": 206
+          },
+          "note": "below MIN_FAMILY_PAIRS=32 after value-surface stratification"
+        }
+      }
+    },
+    "mass": {
+      "hubs": [
+        "kg",
+        "tonne"
+      ],
+      "families": {
+        "kg<->tonne": {
+          "kept": 48,
+          "offered": 48,
+          "hub_pass": 1,
+          "supply": {
+            "tonne": 51,
+            "kg": 145
+          }
+        },
+        "g<->kg": {
+          "kept": 0,
+          "offered": 4,
+          "supply": {
+            "g": 7,
+            "kg": 145
+          },
+          "note": "below MIN_FAMILY_PAIRS=32 after value-surface stratification"
+        },
+        "g<->tonne": {
+          "kept": 0,
+          "offered": 4,
+          "supply": {
+            "g": 7,
+            "tonne": 51
+          },
+          "note": "below MIN_FAMILY_PAIRS=32 after value-surface stratification"
+        }
+      }
+    },
+    "percentish": {
+      "hub": null,
+      "families": {},
+      "note": "single word (['percent']), no in-dimension partner"
+    },
+    "power": {
+      "hubs": [
+        "mw"
+      ],
+      "families": {
+        "kw<->mw": {
+          "kept": 60,
+          "offered": 60,
+          "hub_pass": 1,
+          "supply": {
+            "kw": 32,
+            "mw": 171
+          }
+        }
+      }
+    },
+    "speed": {
+      "hubs": [
+        "kt",
+        "mph"
+      ],
+      "families": {
+        "kt<->mph": {
+          "kept": 0,
+          "offered": 0,
+          "supply": {
+            "mph": 107,
+            "kt": 154
+          },
+          "note": "below MIN_FAMILY_PAIRS=32 after value-surface stratification"
+        },
+        "kmh<->kt": {
+          "kept": 32,
+          "offered": 32,
+          "hub_pass": 1,
+          "supply": {
+            "kmh": 40,
+            "kt": 154
+          }
+        },
+        "kmh<->mph": {
+          "kept": 0,
+          "offered": 0,
+          "supply": {
+            "kmh": 40,
+            "mph": 107
+          },
+          "note": "below MIN_FAMILY_PAIRS=32 after value-surface stratification"
+        }
+      }
+    },
+    "storage": {
+      "hub": null,
+      "families": {},
+      "note": "single word (['gb']), no in-dimension partner"
+    },
+    "volume": {
+      "hubs": [
+        "cc"
+      ],
+      "families": {
+        "cc<->l": {
+          "kept": 0,
+          "offered": 0,
+          "supply": {
+            "l": 2,
+            "cc": 93
+          },
+          "note": "below MIN_FAMILY_PAIRS=32 after value-surface stratification"
+        }
+      }
+    }
+  },
+  "usage": "REPORTED-SECONDARY read for the H150 arm. Measurement infrastructure: it is never added to a training mix and never selected on.",
+  "verify": {
+    "claim_only_tfidf_auroc": {
+      "value": 0.5078,
+      "bar": "< 0.55",
+      "pass": true,
+      "scoring": "5-fold document-disjoint, out of fold, direction-stratified, liblinear tol 1e-7",
+      "documents": 42,
+      "rows": 280
+    },
+    "within_pair_claim_only_accuracy": {
+      "per_swap_family": {
+        "kmh<->kt": {
+          "acc": 0.5,
+          "pairs": 32,
+          "se_at_chance": 0.0884,
+          "z_vs_chance": 0.0
+        },
+        "kg<->tonne": {
+          "acc": 0.4792,
+          "pairs": 48,
+          "se_at_chance": 0.0722,
+          "z_vs_chance": -0.29
+        },
+        "kw<->mw": {
+          "acc": 0.5,
+          "pairs": 60,
+          "se_at_chance": 0.0645,
+          "z_vs_chance": 0.0
+        }
+      },
+      "per_neg_family": {
+        "unit_swap": {
+          "acc": 0.4929,
+          "pairs": 140,
+          "se_at_chance": 0.0423,
+          "z_vs_chance": -0.17
+        }
+      },
+      "worst": 0.5,
+      "bar": "< 0.60",
+      "pass": true,
+      "worst_two_sided_deviation_report_only": 0.0208
+    },
+    "surface_parity": {
+      "auroc": {
+        "claim_char_length": 0.4931,
+        "claim_token_count": 0.491,
+        "claim_numeral_count": 0.5,
+        "claim_chunk_overlap": 0.4981
+      },
+      "bar": "each in [0.45, 0.55]",
+      "pass": true,
+      "max_deviation": 0.009,
+      "pooled_within_pair_parity_flag_rate": 0.4286
+    },
+    "positive_verbatim_substring": {
+      "positive_verbatim_rate": 1.0,
+      "all_rows_verbatim_rate": 1.0,
+      "all_rows_canonical_rate": 0.992857,
+      "bar": "1.0 on the positive leg",
+      "pass": true
+    },
+    "minimal_pair_integrity": {
+      "pairs_checked": 140,
+      "errors": 0,
+      "bar": "0 errors over the FULL set",
+      "pass": true,
+      "examples": []
+    },
+    "dedupe_disjointness": {
+      "duplicate_claim_chunk_label_rows": 0,
+      "documents": 42,
+      "distinct_claims": 278,
+      "distinct_chunks": 115,
+      "pairs_per_document_mean": 3.333,
+      "pairs_per_document_max": 12,
+      "evalset_shared_documents": 0,
+      "evalset_shared_chunks": 0,
+      "bar": "0 duplicate rows, 0 eval-set documents",
+      "pass": true
+    },
+    "claim_unit_literal_presence": {
+      "positive_leg_rate": 0.0,
+      "negative_leg_rate": 0.0,
+      "auroc": 0.5,
+      "definition": "claim unit phrase, or any token distinguishing it from its twin's unit phrase, readable in the chunk",
+      "bar": "0.0 on both legs (H148 rule: no adjacent-string solution)",
+      "pass": true
+    },
+    "value_surface_direction_parity": {
+      "per_swap_family": {
+        "kg<->tonne": {
+          "digit_count_auroc": 0.5,
+          "magnitude_auroc": 0.8507,
+          "decimal_auroc": 0.5,
+          "pairs": 48
+        },
+        "kw<->mw": {
+          "digit_count_auroc": 0.5,
+          "magnitude_auroc": 0.3144,
+          "decimal_auroc": 0.5,
+          "pairs": 60
+        },
+        "kmh<->kt": {
+          "digit_count_auroc": 0.5,
+          "magnitude_auroc": 0.5059,
+          "decimal_auroc": 0.5,
+          "pairs": 32
+        }
+      },
+      "max_digit_count_deviation": 0.0,
+      "max_decimal_deviation": 0.0,
+      "bar": "digit-count AUROC in [0.45, 0.55] (report-only; enforced by bucket-matched construction)"
+    },
+    "word_label_marginal_balance": {
+      "per_word": {
+        "kg": {
+          "as_positive": 24,
+          "as_negative": 24,
+          "skew": 0.0
+        },
+        "kmh": {
+          "as_positive": 16,
+          "as_negative": 16,
+          "skew": 0.0
+        },
+        "kt": {
+          "as_positive": 16,
+          "as_negative": 16,
+          "skew": 0.0
+        },
+        "kw": {
+          "as_positive": 30,
+          "as_negative": 30,
+          "skew": 0.0
+        },
+        "mw": {
+          "as_positive": 30,
+          "as_negative": 30,
+          "skew": 0.0
+        },
+        "tonne": {
+          "as_positive": 24,
+          "as_negative": 24,
+          "skew": 0.0
+        }
+      },
+      "max_skew": 0.0,
+      "bar": "0.0 by construction (50/50 inside every family)"
+    },
+    "digit_surface_report_only": {
+      "trailing_zero_auroc": 0.5,
+      "digit_count_auroc": 0.5,
+      "leading_digit_auroc": 0.5,
+      "value_magnitude_auroc": 0.5
+    },
+    "unit_rederivation_audit": {
+      "sampled": 140,
+      "errors": 0,
+      "bar": "0 errors",
+      "pass": true,
+      "examples": []
+    },
+    "all_bars_pass": true,
+    "h148_and_audit_pass": true
+  }
+}

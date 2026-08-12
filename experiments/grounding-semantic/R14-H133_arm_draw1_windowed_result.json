@@ -1,0 +1,103 @@
+{
+  "per_subset": {
+    "covidqa": {
+      "n": 245,
+      "auc": 0.7646,
+      "f1": 0.6791,
+      "baseline_h90": 0.7755,
+      "delta": -0.0109,
+      "lettuce_auc": 0.7355,
+      "n_window_pairs": 1540
+    },
+    "delucionqa": {
+      "n": 184,
+      "auc": 0.829,
+      "f1": 0.6273,
+      "baseline_h90": 0.7263,
+      "delta": 0.1027,
+      "lettuce_auc": 0.7929,
+      "n_window_pairs": 5093
+    },
+    "emanual": {
+      "n": 132,
+      "auc": 0.7264,
+      "f1": 0.5525,
+      "baseline_h90": 0.7058,
+      "delta": 0.0206,
+      "lettuce_auc": 0.5999,
+      "n_window_pairs": 2983
+    },
+    "expertqa": {
+      "n": 203,
+      "auc": 0.7456,
+      "f1": 0.6054,
+      "baseline_h90": 0.8248,
+      "delta": -0.0792,
+      "lettuce_auc": 0.6503,
+      "n_window_pairs": 13949
+    },
+    "finqa": {
+      "n": 250,
+      "auc": 0.687,
+      "f1": 0.6212,
+      "baseline_h90": 0.673,
+      "delta": 0.014,
+      "lettuce_auc": 0.717,
+      "n_window_pairs": 2918
+    },
+    "hagrid": {
+      "n": 250,
+      "auc": 0.6353,
+      "f1": 0.5921,
+      "baseline_h90": 0.6516,
+      "delta": -0.0163,
+      "lettuce_auc": 0.5992,
+      "n_window_pairs": 1941
+    },
+    "hotpotqa": {
+      "n": 250,
+      "auc": 0.6125,
+      "f1": 0.4734,
+      "baseline_h90": 0.7253,
+      "delta": -0.1128,
+      "lettuce_auc": 0.5976,
+      "n_window_pairs": 1177
+    },
+    "pubmedqa": {
+      "n": 250,
+      "auc": 0.585,
+      "f1": 0.522,
+      "baseline_h90": 0.6058,
+      "delta": -0.0208,
+      "lettuce_auc": 0.5162,
+      "n_window_pairs": 6570
+    },
+    "tatqa": {
+      "n": 250,
+      "auc": 0.7049,
+      "f1": 0.5636,
+      "baseline_h90": 0.7718,
+      "delta": -0.0669,
+      "lettuce_auc": 0.6156,
+      "n_window_pairs": 1942
+    },
+    "techqa": {
+      "n": 250,
+      "auc": 0.7471,
+      "f1": 0.6753,
+      "baseline_h90": 0.7529,
+      "delta": -0.0058,
+      "lettuce_auc": 0.6363,
+      "n_window_pairs": 39058
+    }
+  },
+  "mean": 0.70374,
+  "baseline_mean": 0.72128,
+  "mean_lettuce": 0.64605,
+  "finqa_delta": 0.014,
+  "delucionqa_delta": 0.1027,
+  "verdict": "REFUTED (bar missed, kill not triggered)",
+  "model": "models/R14-H133-arm-draw1",
+  "window": 1500,
+  "stride": 750
+}

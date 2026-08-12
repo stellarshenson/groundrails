@@ -1,0 +1,87 @@
+{
+  "read": "R16-H142-T twin promotion HOLDS on the banked draw-1 checkpoint (models/R16-H142-G1-twin) - measurement only, no training",
+  "checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/R16-H142-G1-twin",
+  "gold_full": {
+    "value": 0.8484,
+    "bar": 0.84,
+    "pass": true,
+    "f1": 0.732,
+    "n": 2752,
+    "bar_source": "R16-H142-T TWIN PROMOTION registration, docs/experiments/semantic-grounding-experiments.md (gold_full >= 0.84); the campaign's standing hold is the stricter 0.8414 (R16-H142_G1_arm.BARS.gold_full_min) - cleared as well",
+    "campaign_standing_bar": 0.8414,
+    "pass_campaign_standing_bar": true,
+    "protocol": "all 2,752 gold claims, max over the claim's chunk list, chunks cut to CFG.chunk_max_chars - R16-H142_G1_arm.evaluate's own gold_full read, through the adapter-aware load_run path",
+    "reproduces_banked_train_time_value": true,
+    "banked_train_time_value": 0.8484
+  },
+  "antigaming": {
+    "value": 0.7507,
+    "bar": 0.7565,
+    "bar_source": "docs/experiments/semantic-grounding-experiments.md - the standing no-tolerance form 'anti-gaming untraced near-miss >= the clean 0.7565' (R14-H145 registration bars, and repeated verbatim in the R17-H146 registration); the script's own clause is relative - arm headline must not fall below the clean-recipe control read in the same pass (R14-H133_antigaming.py, clauses.anti_gaming). The in-pass control read 0.7565, identical to the banked value, so both readings of the bar agree",
+    "pass": false,
+    "control_value_in_pass": 0.7565,
+    "delta_vs_control": -0.0058,
+    "headline_n": 543,
+    "nearmiss_all_families_arm": 0.7712,
+    "nearmiss_all_families_control": 0.7721,
+    "bind_row": {
+      "value": 0.9832,
+      "bar": 0.95,
+      "bar_source": "R15-B4 binding amendment (i), R14-H133_antigaming.BINDROW_BAR",
+      "pass": true,
+      "control": 0.9835
+    },
+    "per_family_delta_vs_control": {
+      "comparative_flip": 0.0177,
+      "digit_perturb": 0.0004,
+      "magnitude_shift": 0.0047,
+      "year_shift": -0.0173
+    },
+    "artifacts": [
+      "R16-H142-T_antigaming_draw1_result.json",
+      "R16-H142-T_antigaming_set.parquet"
+    ],
+    "amendment_A1_repricing": {
+      "status": "the anti-gaming hold was re-priced by amendment A1 (registered after this read) to clean control - 2 x SE_delta; the value above is unchanged, only the bar moved",
+      "se_delta": 0.00635,
+      "repriced_bar": 0.7438,
+      "pass_under_A1": true,
+      "artifact": "R16-H142_T_seband_result.json"
+    }
+  },
+  "checkpoint_verified": {
+    "method": "two independent reproductions of banked draw-1 numbers in fresh processes on a different card (GPU0), plus the adapter zero assertion",
+    "gold_full_reread": 0.8484,
+    "gold_full_banked": 0.8484,
+    "gold_full_exact_match": true,
+    "windowed_spot_subset": "hotpotqa",
+    "windowed_spot_reread": 0.6728,
+    "windowed_spot_banked": 0.6728,
+    "windowed_spot_exact_match": true,
+    "banked_windowed_mean": 0.72498,
+    "adapter_output_layer_all_zero": true,
+    "adapter_active_flag": false,
+    "trained_trunk_task_head_blake2b_128": "c9118a4a261e1504fecb4a47f616d876",
+    "n_params_fingerprinted": 306940417,
+    "loading_path": "R16-H142_G1_arm.load_run verbatim (adapter-aware; refuses a twin whose adapter moved off zero). The anti-gaming stage loads via R15_gate_common.load_ckpt (trunk + task_head only) - equivalent here because the twin's adapter output layer is exactly zero, and its evidence strings are cut to 1,500 chars = one window, so the windowed and single-pair read paths coincide"
+  },
+  "defects": [
+    "R14-H133_antigaming.py resolves its checkpoint as models/<arm>-arm-draw<N>, which cannot name models/R16-H142-G1-twin from any --arm prefix; a symlink models/R16-H142-T-arm-draw1 -> R16-H142-G1-twin was created so the stage ran unmodified. The symlink is an untracked artifact in models/ and can be removed after adjudication",
+    "gold_full re-read ran on GPU0 (RTX PRO 4000) rather than the training card GPU1; it reproduced the banked value to 4 decimals, so no cross-card read drift is present"
+  ],
+  "disjointness": {
+    "eval_tables": 1177,
+    "lane_documents": 10914,
+    "lane_tabfact_tables": 7290,
+    "shared_with_tabfact_train": 0,
+    "shared_with_lane_tables": 0,
+    "shared_claim_strings_with_lane": 0,
+    "table_disjoint": true,
+    "operator_disjointness": "every negative here edits a numeral verbatim present in the evidence; every H133 derivation-core negative asserts a value absent from it. The headline additionally excludes ['digit_perturb', 'comparative_flip'], the nearest lane analogues (N7 last-digit corruption and the `compare` sub-block)."
+  },
+  "logs": [
+    "logs/R16-H142_T_holds.log",
+    "logs/R16-H142_T_antigaming.log"
+  ],
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+}

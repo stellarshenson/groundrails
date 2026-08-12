@@ -1,0 +1,20 @@
+{
+  "faa-amt": {
+    "pdfs": 3,
+    "pages": 2229,
+    "blocks_raw": 304,
+    "blocks_clean": 303,
+    "docs_with_blocks": 3,
+    "items": 1350
+  },
+  "army-tm": {
+    "pdfs": 135,
+    "pages": 1769,
+    "blocks_raw": 159,
+    "blocks_clean": 126,
+    "docs_with_blocks": 99,
+    "items": 610
+  },
+  "total_blocks": 429,
+  "total_documents": 102
+}

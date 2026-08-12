@@ -1,0 +1,172 @@
+{
+  "gate_status": "GREEN",
+  "min_family_pairs": 100,
+  "restore_condition_pairs": 3000,
+  "edgar_mda": {
+    "chunks": 34014,
+    "caption_chunks_by_scale": {
+      "thousand": 2235,
+      "million": 588,
+      "billion": 18
+    },
+    "A_caption_bound_adjacency_proof": {
+      "items_by_direction": {
+        "thousand->million": 10981,
+        "million->billion": 474,
+        "thousand->billion": 816,
+        "million->thousand": 5,
+        "billion->million": 8
+      },
+      "balanced_families": {
+        "million<->thousand": {
+          "per_direction": 5,
+          "balanced_pairs": 10,
+          "buildable": false
+        },
+        "billion<->thousand": {
+          "per_direction": 0,
+          "balanced_pairs": 0,
+          "buildable": false
+        },
+        "billion<->million": {
+          "per_direction": 8,
+          "balanced_pairs": 16,
+          "buildable": false
+        }
+      }
+    },
+    "B_identical_numeral_adjacency_proof": {
+      "chunks": 31,
+      "items_by_direction": {
+        "million->billion": 28,
+        "billion->million": 28,
+        "million->thousand": 4,
+        "thousand->million": 4
+      },
+      "balanced_families": {
+        "million<->thousand": {
+          "per_direction": 4,
+          "balanced_pairs": 8,
+          "buildable": false
+        },
+        "billion<->thousand": {
+          "per_direction": 0,
+          "balanced_pairs": 0,
+          "buildable": false
+        },
+        "billion<->million": {
+          "per_direction": 28,
+          "balanced_pairs": 56,
+          "buildable": false
+        }
+      }
+    },
+    "baseline_plain_quantity_ADJACENCY_SOLVABLE": {
+      "items_by_direction": {
+        "million->thousand": 11186,
+        "million->billion": 11435,
+        "billion->million": 5771,
+        "thousand->million": 1818,
+        "billion->thousand": 291,
+        "thousand->billion": 82
+      },
+      "balanced_families": {
+        "million<->thousand": {
+          "per_direction": 1818,
+          "balanced_pairs": 3636,
+          "buildable": true
+        },
+        "billion<->thousand": {
+          "per_direction": 82,
+          "balanced_pairs": 164,
+          "buildable": true
+        },
+        "billion<->million": {
+          "per_direction": 5771,
+          "balanced_pairs": 11542,
+          "buildable": true
+        }
+      },
+      "note": "sized for comparison only - this form is the H148 failure mode and is NOT built"
+    },
+    "pct_pp": {
+      "pp_bearing_with_percent": 1432,
+      "pp_bearing": 274
+    }
+  },
+  "infotabs": {
+    "chunks": 1733,
+    "caption_chunks_by_scale": {},
+    "A_caption_bound_adjacency_proof": {
+      "items_by_direction": {},
+      "balanced_families": {
+        "million<->thousand": {
+          "per_direction": 0,
+          "balanced_pairs": 0,
+          "buildable": false
+        },
+        "billion<->thousand": {
+          "per_direction": 0,
+          "balanced_pairs": 0,
+          "buildable": false
+        },
+        "billion<->million": {
+          "per_direction": 0,
+          "balanced_pairs": 0,
+          "buildable": false
+        }
+      }
+    },
+    "B_identical_numeral_adjacency_proof": {
+      "chunks": 0,
+      "items_by_direction": {},
+      "balanced_families": {
+        "million<->thousand": {
+          "per_direction": 0,
+          "balanced_pairs": 0,
+          "buildable": false
+        },
+        "billion<->thousand": {
+          "per_direction": 0,
+          "balanced_pairs": 0,
+          "buildable": false
+        },
+        "billion<->million": {
+          "per_direction": 0,
+          "balanced_pairs": 0,
+          "buildable": false
+        }
+      }
+    },
+    "baseline_plain_quantity_ADJACENCY_SOLVABLE": {
+      "items_by_direction": {
+        "million->billion": 17,
+        "billion->million": 13,
+        "million->thousand": 2
+      },
+      "balanced_families": {
+        "million<->thousand": {
+          "per_direction": 0,
+          "balanced_pairs": 0,
+          "buildable": false
+        },
+        "billion<->thousand": {
+          "per_direction": 0,
+          "balanced_pairs": 0,
+          "buildable": false
+        },
+        "billion<->million": {
+          "per_direction": 13,
+          "balanced_pairs": 26,
+          "buildable": false
+        }
+      },
+      "note": "sized for comparison only - this form is the H148 failure mode and is NOT built"
+    },
+    "pct_pp": {},
+    "unique_tables": 1733
+  },
+  "max_adjacency_proof_balanced_pairs": 56,
+  "restore_condition_met": false,
+  "verdict": "scale_word is NOT buildable under the unit_swap discipline from either approved source. Prose co-locates the scale word with its numeral, so the large families are adjacency-solvable (the H148 rule forbids exactly this). The two adjacency-proof constructions are supply-blocked: the caption route is single-direction (EDGAR writes 'in thousands' at volume and 'in millions' rarely, and the minority direction needs the majority word present as a distractor), and the identical-numeral route yields tens of items, not thousands. InfoTabs carries no scale captions at all."
+}

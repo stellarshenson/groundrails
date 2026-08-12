@@ -1,0 +1,200 @@
+{
+  "experiment": "R16-H142 G1 amendment A1 - adapter ablation pair, arm minus twin",
+  "difference_under_test": "the zero-init adapter side-head; presentation, mix, objective, seed, init draws and dropout stream shared",
+  "pairing": {
+    "init_fingerprints": {
+      "twin": "9d679fcb803bfe72b92c2d2bd59c3dcb",
+      "arm": "9d679fcb803bfe72b92c2d2bd59c3dcb"
+    },
+    "init_paired": true,
+    "perm_fingerprints": {
+      "twin": "a8b2cf491a236bba",
+      "arm": "a8b2cf491a236bba"
+    },
+    "perm_matched": true,
+    "twin_adapter_active": false,
+    "arm_adapter_active": true
+  },
+  "windowed_primary_read": {
+    "per_subset": {
+      "covidqa": {
+        "twin": 0.7645,
+        "arm": 0.7873,
+        "delta": 0.0228,
+        "banked_control_pair": 0.7878
+      },
+      "delucionqa": {
+        "twin": 0.7636,
+        "arm": 0.7529,
+        "delta": -0.0107,
+        "banked_control_pair": 0.8167
+      },
+      "emanual": {
+        "twin": 0.6683,
+        "arm": 0.6786,
+        "delta": 0.0103,
+        "banked_control_pair": 0.6977
+      },
+      "expertqa": {
+        "twin": 0.7834,
+        "arm": 0.7443,
+        "delta": -0.0391,
+        "banked_control_pair": 0.7728
+      },
+      "finqa": {
+        "twin": 0.7093,
+        "arm": 0.653,
+        "delta": -0.0563,
+        "banked_control_pair": 0.6333
+      },
+      "hagrid": {
+        "twin": 0.6461,
+        "arm": 0.6392,
+        "delta": -0.0069,
+        "banked_control_pair": 0.634
+      },
+      "hotpotqa": {
+        "twin": 0.6728,
+        "arm": 0.6756,
+        "delta": 0.0028,
+        "banked_control_pair": 0.6668,
+        "delta_in_seed_sd": 0.19
+      },
+      "pubmedqa": {
+        "twin": 0.6725,
+        "arm": 0.5612,
+        "delta": -0.1113,
+        "banked_control_pair": 0.6063,
+        "delta_in_seed_sd": -5.15
+      },
+      "tatqa": {
+        "twin": 0.7948,
+        "arm": 0.6967,
+        "delta": -0.0981,
+        "banked_control_pair": 0.732,
+        "delta_in_seed_sd": -3.38
+      },
+      "techqa": {
+        "twin": 0.7745,
+        "arm": 0.738,
+        "delta": -0.0365,
+        "banked_control_pair": 0.684
+      }
+    },
+    "means": {
+      "twin": 0.72498,
+      "arm": 0.69268
+    }
+  },
+  "truncated_read": {
+    "means": {
+      "twin": 0.70381,
+      "arm": 0.66726
+    },
+    "per_subset": {
+      "covidqa": {
+        "twin": 0.7645,
+        "arm": 0.7873,
+        "delta": 0.0228
+      },
+      "delucionqa": {
+        "twin": 0.7214,
+        "arm": 0.6734,
+        "delta": -0.048
+      },
+      "emanual": {
+        "twin": 0.5763,
+        "arm": 0.5539,
+        "delta": -0.0224
+      },
+      "expertqa": {
+        "twin": 0.7674,
+        "arm": 0.709,
+        "delta": -0.0584
+      },
+      "finqa": {
+        "twin": 0.6965,
+        "arm": 0.6565,
+        "delta": -0.04
+      },
+      "hagrid": {
+        "twin": 0.6601,
+        "arm": 0.655,
+        "delta": -0.0051
+      },
+      "hotpotqa": {
+        "twin": 0.6728,
+        "arm": 0.6741,
+        "delta": 0.0013
+      },
+      "pubmedqa": {
+        "twin": 0.6725,
+        "arm": 0.5612,
+        "delta": -0.1113
+      },
+      "tatqa": {
+        "twin": 0.7909,
+        "arm": 0.6958,
+        "delta": -0.0951
+      },
+      "techqa": {
+        "twin": 0.7157,
+        "arm": 0.7064,
+        "delta": -0.0093
+      }
+    }
+  },
+  "pair_flags": {
+    "pubmedqa_delta_ge_2sd": false,
+    "pubmedqa_delta_ge_1sd": false,
+    "pubmedqa_delta_below_1sd_kill_shaped": true,
+    "hotpotqa_delta_within_2sd": true,
+    "tatqa_delta_within_2sd": false,
+    "arena_mean_delta": -0.0323
+  },
+  "absolute_flags": {
+    "twin": {
+      "arena_mean": 0.72498,
+      "arena_mean_ge_bar": true,
+      "pubmedqa_ge_bar": true,
+      "hotpotqa_ge_bar": true,
+      "tatqa_ge_bar": true,
+      "gold_full": 0.8484,
+      "gold_full_ge_bar": true,
+      "ragtruth_nonen": 0.8415,
+      "ragtruth_nonen_ge_bar": true
+    },
+    "arm": {
+      "arena_mean": 0.69268,
+      "arena_mean_ge_bar": false,
+      "pubmedqa_ge_bar": false,
+      "hotpotqa_ge_bar": true,
+      "tatqa_ge_bar": true,
+      "gold_full": 0.8373,
+      "gold_full_ge_bar": false,
+      "ragtruth_nonen": 0.8421,
+      "ragtruth_nonen_ge_bar": true
+    }
+  },
+  "bars": {
+    "pubmedqa_primary_min": 0.6495,
+    "pubmedqa_kill_below": 0.6279,
+    "hotpotqa_min": 0.638,
+    "tatqa_min": 0.674,
+    "arena_mean_min": 0.70311,
+    "gold_full_min": 0.8414,
+    "ragtruth_nonen_min": 0.82
+  },
+  "seed_sd": {
+    "pubmedqa": 0.0216,
+    "hotpotqa": 0.0144,
+    "tatqa": 0.029
+  },
+  "banked_control_pair": {
+    "pubmedqa": 0.6063,
+    "hotpotqa": 0.6668,
+    "tatqa": 0.732,
+    "arena_mean": 0.70311
+  },
+  "note": "Flags are threshold measurements. Numbers recorded, not adjudicated - the coordinator adjudicates."
+}

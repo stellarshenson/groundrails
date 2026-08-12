@@ -1,0 +1,190 @@
+{
+  "gate": "R16-H142 G0 adapter side-head (window-ensemble conditioning, hard max/min aggregation unchanged)",
+  "base_checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/R10-H108-lane-draw1",
+  "architecture": {
+    "ensemble_pooling": "mean-pool over the sentence's window-set [CLS] vectors",
+    "adapter": "Linear(2*768 -> 512) + GELU + Linear(512 -> 1), zero-initialised output layer, added to the score-head logit (parallel branch on the residual stream)",
+    "aggregation": "max over windows, then min over sentences - UNCHANGED",
+    "adapter_plus_head_params": 791298,
+    "trunk_trainable_params": 10030080,
+    "frozen": "all trunk parameters except the last 2 layers"
+  },
+  "seed": 1142,
+  "precision": "bf16 autocast for training, fp32 for both reads (read protocol byte-identical to the banked windowed read)",
+  "blind_mean": 0.71756,
+  "baseline_blind_mean": 0.70618,
+  "baseline_lane_2draw_mean": 0.70496,
+  "blind_mean_delta": 0.01138,
+  "per_subset": {
+    "covidqa": {
+      "n": 245,
+      "n_sent": 385,
+      "n_window_pairs": 1540,
+      "adapter_auc": 0.7765,
+      "f1": 0.66,
+      "baseline_hardmax_auc": 0.7516,
+      "delta": 0.0249
+    },
+    "delucionqa": {
+      "n": 184,
+      "n_sent": 929,
+      "n_window_pairs": 5093,
+      "adapter_auc": 0.78,
+      "f1": 0.6908,
+      "baseline_hardmax_auc": 0.7355,
+      "delta": 0.0445
+    },
+    "emanual": {
+      "n": 132,
+      "n_sent": 748,
+      "n_window_pairs": 2983,
+      "adapter_auc": 0.6628,
+      "f1": 0.5636,
+      "baseline_hardmax_auc": 0.6719,
+      "delta": -0.0091
+    },
+    "expertqa": {
+      "n": 203,
+      "n_sent": 1303,
+      "n_window_pairs": 13949,
+      "adapter_auc": 0.7689,
+      "f1": 0.6946,
+      "baseline_hardmax_auc": 0.7496,
+      "delta": 0.0193
+    },
+    "finqa": {
+      "n": 250,
+      "n_sent": 563,
+      "n_window_pairs": 2918,
+      "adapter_auc": 0.7157,
+      "f1": 0.6179,
+      "baseline_hardmax_auc": 0.7291,
+      "delta": -0.0134
+    },
+    "hagrid": {
+      "n": 250,
+      "n_sent": 537,
+      "n_window_pairs": 1941,
+      "adapter_auc": 0.6805,
+      "f1": 0.5863,
+      "baseline_hardmax_auc": 0.6599,
+      "delta": 0.0206
+    },
+    "hotpotqa": {
+      "n": 250,
+      "n_sent": 293,
+      "n_window_pairs": 1177,
+      "adapter_auc": 0.6332,
+      "f1": 0.5158,
+      "baseline_hardmax_auc": 0.6965,
+      "delta": -0.0633
+    },
+    "pubmedqa": {
+      "n": 250,
+      "n_sent": 1314,
+      "n_window_pairs": 6570,
+      "adapter_auc": 0.6542,
+      "f1": 0.621,
+      "baseline_hardmax_auc": 0.5907,
+      "delta": 0.0635
+    },
+    "tatqa": {
+      "n": 250,
+      "n_sent": 468,
+      "n_window_pairs": 1942,
+      "adapter_auc": 0.7449,
+      "f1": 0.5623,
+      "baseline_hardmax_auc": 0.7391,
+      "delta": 0.0058
+    },
+    "techqa": {
+      "n": 250,
+      "n_sent": 1737,
+      "n_window_pairs": 39058,
+      "adapter_auc": 0.7589,
+      "f1": 0.6618,
+      "baseline_hardmax_auc": 0.7379,
+      "delta": 0.021
+    }
+  },
+  "gold_full": {
+    "auc": 0.8671,
+    "f1": 0.7663,
+    "n": 2752,
+    "n_pairs": 123579
+  },
+  "baseline_gold_full": {
+    "auc": 0.8589,
+    "f1": 0.7333,
+    "n": 2752
+  },
+  "training": {
+    "best_val_sentence_auc": 0.9384,
+    "history": [
+      {
+        "step": 2196,
+        "epoch": 0,
+        "val_sentence_auc": 0.9198,
+        "sec": 866.4
+      },
+      {
+        "step": 4392,
+        "epoch": 0,
+        "val_sentence_auc": 0.9311,
+        "sec": 1749.6
+      },
+      {
+        "step": 6588,
+        "epoch": 1,
+        "val_sentence_auc": 0.9357,
+        "sec": 2647.8
+      },
+      {
+        "step": 8784,
+        "epoch": 1,
+        "val_sentence_auc": 0.9384,
+        "sec": 3565.2
+      },
+      {
+        "step": 8788,
+        "epoch": 1,
+        "val_sentence_auc": 0.9384,
+        "sec": 3683.7
+      }
+    ],
+    "total_steps": 8788,
+    "train_seconds": 3683.9,
+    "composition": {
+      "n_sentence_sets": 112748,
+      "n_pairs": 297999,
+      "positives": 0.8107371926307678,
+      "sentence_sets_by_source": {
+        "h108_quant_corrupt": 6512,
+        "h108_quant_feverous": 2028,
+        "h108_quant_infotabs": 3223,
+        "h108_quant_scitab": 237,
+        "ragtruth_en": 100748
+      },
+      "window_set_size": {
+        "mean": 2.6430535353176996,
+        "max": 14
+      },
+      "provenance": "PUBLIC ONLY - RAGTruth train + R10-H108 manufactured lane, imported from R16-H140_G1_cache.py. No private gold rows, no RAGBench/arena rows."
+    },
+    "epochs": 2,
+    "pairs_per_batch": 64,
+    "lr_trunk": 1e-05,
+    "lr_head": 0.001,
+    "val_frac": 0.08,
+    "no_gold_rows": true,
+    "no_arena_rows": true
+  },
+  "kill": {
+    "non_finite_loss": false,
+    "blind_mean_below_0.65": false,
+    "gold_full_below_0.75": false,
+    "any": false,
+    "definition": "non-finite training loss OR blind mean < 0.65 OR gold_full < 0.75"
+  },
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+}

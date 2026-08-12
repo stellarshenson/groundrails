@@ -1,0 +1,50 @@
+{
+  "A_registered|think0": {
+    "control_auroc": 0.6944,
+    "n": 50,
+    "said_grounded": 50,
+    "said_ungrounded": 0,
+    "mean_margin_pos": 3.62554931640625,
+    "mean_margin_neg": 3.2980852127075195
+  },
+  "A_registered|think128": {
+    "control_auroc": 0.4928,
+    "n": 50,
+    "said_grounded": 50,
+    "said_ungrounded": 0,
+    "mean_margin_pos": 4.74638557434082,
+    "mean_margin_neg": 4.611059188842773
+  },
+  "B_reversed_order|think0": {
+    "control_auroc": 0.4432,
+    "n": 50,
+    "said_grounded": 0,
+    "said_ungrounded": 50,
+    "mean_margin_pos": -4.063143730163574,
+    "mean_margin_neg": -4.004349708557129
+  },
+  "B_reversed_order|think128": {
+    "control_auroc": 0.4896,
+    "n": 50,
+    "said_grounded": 0,
+    "said_ungrounded": 50,
+    "mean_margin_pos": -4.519765853881836,
+    "mean_margin_neg": -4.378199100494385
+  },
+  "C_explicit_rule|think0": {
+    "control_auroc": 0.2672,
+    "n": 50,
+    "said_grounded": 42,
+    "said_ungrounded": 8,
+    "mean_margin_pos": 0.3023102879524231,
+    "mean_margin_neg": 0.6830189228057861
+  },
+  "C_explicit_rule|think128": {
+    "control_auroc": 0.4864,
+    "n": 50,
+    "said_grounded": 42,
+    "said_ungrounded": 8,
+    "mean_margin_pos": 1.2294331789016724,
+    "mean_margin_neg": 1.1556243896484375
+  }
+}

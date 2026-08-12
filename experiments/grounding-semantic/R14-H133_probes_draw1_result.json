@@ -1,0 +1,346 @@
+{
+  "read": "R14-H133 probe bank - pre-registered mechanism reading (report-only)",
+  "draw": 1,
+  "arm_checkpoint": "R14-H133-arm-draw1",
+  "control_checkpoint": "R9-H105-mmbert-dann-clean",
+  "control_note": "the BANKED clean draw 1 - unseeded (pre-H126); the comparison is arm-vs-banked-control, not init-paired",
+  "data": "R15_P1_typeprobe.build / R14_H133_probe.build / R15_gate_B4.build rebuilt at their banked seeds, plus compare and bind_row built here, all over held-out TabFact test+validation, table_id-disjoint from every train split",
+  "seed_compare_bindrow": 20260810,
+  "references": {
+    "tier1_target_above": 0.6,
+    "tier1_baseline_h105_draw1": {
+      "sum": 0.5067,
+      "difference": 0.4994,
+      "ratio": 0.5121,
+      "pct_change": 0.4861
+    },
+    "scale_unit_void_absolute": 0.8,
+    "scale_unit_void_erosion": 0.05,
+    "scale_unit_void_rebased_below": 0.4548,
+    "scale_unit_ruling": "review correction F2 (2026-08-10): the absolute 0.80 clause is RESTORED for this arm (VOID if < 0.80 OR < control - 0.05); the 0.4548 rebase applies only to H108-lane-carrying compositions and is printed for lineage only",
+    "verbatim_mean_at_or_above": 0.85,
+    "verbatim_mean_banked": 0.90507,
+    "auroc_a_vs_b_at_or_above": 0.9,
+    "auroc_a_vs_b_banked": 0.9643,
+    "b4": {
+      "bind_col": 0.7,
+      "compare": 0.65,
+      "bind_row": 0.95
+    }
+  },
+  "checkpoints": {
+    "R14-H133-arm-draw1": {
+      "p1_quads": {
+        "n": 4122,
+        "per_type": {
+          "sum": {
+            "n": 500,
+            "mean_a_verbatim": 0.95037,
+            "mean_b_correct": 0.28295,
+            "mean_c_wrong_operand": 0.29859,
+            "auroc_b_vs_c": 0.4691,
+            "auroc_b_vs_d": 0.4574,
+            "auroc_a_vs_b": 0.9818
+          },
+          "difference": {
+            "n": 500,
+            "mean_a_verbatim": 0.9457,
+            "mean_b_correct": 0.47537,
+            "mean_c_wrong_operand": 0.47194,
+            "auroc_b_vs_c": 0.5071,
+            "auroc_b_vs_d": 0.5345,
+            "auroc_a_vs_b": 0.957
+          },
+          "mean": {
+            "n": 500,
+            "mean_a_verbatim": 0.94961,
+            "mean_b_correct": 0.29976,
+            "mean_c_wrong_operand": 0.28969,
+            "auroc_b_vs_c": 0.5158,
+            "auroc_b_vs_d": 0.5117,
+            "auroc_a_vs_b": 0.9784
+          },
+          "ratio": {
+            "n": 500,
+            "mean_a_verbatim": 0.94615,
+            "mean_b_correct": 0.3626,
+            "mean_c_wrong_operand": 0.36018,
+            "auroc_b_vs_c": 0.5021,
+            "auroc_b_vs_d": 0.6996,
+            "auroc_a_vs_b": 0.972
+          },
+          "pct_change": {
+            "n": 500,
+            "mean_a_verbatim": 0.93847,
+            "mean_b_correct": 0.31919,
+            "mean_c_wrong_operand": 0.32279,
+            "auroc_b_vs_c": 0.489,
+            "auroc_b_vs_d": 0.5388,
+            "auroc_a_vs_b": 0.976
+          },
+          "product": {
+            "n": 500,
+            "mean_a_verbatim": 0.94021,
+            "mean_b_correct": 0.29333,
+            "mean_c_wrong_operand": 0.28744,
+            "auroc_b_vs_c": 0.5096,
+            "auroc_b_vs_d": 0.665,
+            "auroc_a_vs_b": 0.9779
+          },
+          "scale_unit": {
+            "n": 500,
+            "mean_a_verbatim": 0.9331,
+            "mean_b_correct": 0.71364,
+            "mean_c_wrong_operand": 0.13779,
+            "auroc_b_vs_c": 0.9582,
+            "auroc_b_vs_d": 0.8728,
+            "auroc_a_vs_b": 0.9012
+          },
+          "rounding": {
+            "n": 500,
+            "mean_a_verbatim": 0.91275,
+            "mean_b_correct": 0.2189,
+            "mean_c_wrong_operand": 0.0868,
+            "auroc_b_vs_c": 0.7251,
+            "auroc_b_vs_d": 0.5865,
+            "auroc_a_vs_b": 0.9669
+          },
+          "count_agg": {
+            "n": 0,
+            "note": "under 30 - not adjudicated"
+          },
+          "date_arith": {
+            "n": 122,
+            "mean_a_verbatim": 0.97479,
+            "mean_b_correct": 0.35625,
+            "mean_c_wrong_operand": 0.35914,
+            "auroc_b_vs_c": 0.4948,
+            "auroc_b_vs_d": 0.6643,
+            "auroc_a_vs_b": 0.9812
+          }
+        },
+        "tier1_auroc_b_vs_c": {
+          "difference": 0.5071,
+          "ratio": 0.5021,
+          "pct_change": 0.489,
+          "sum": 0.4691
+        },
+        "verbatim_mean_pooled": 0.94059,
+        "auroc_a_vs_b_pooled": 0.9656,
+        "scale_unit_auroc_b_vs_c": 0.9582
+      },
+      "h133_triples": {
+        "n": 2000,
+        "mean_a_verbatim": 0.91721,
+        "mean_b_correct": 0.29168,
+        "mean_c_wrong_operand": 0.30661,
+        "gap_a_minus_b": 0.62553,
+        "auroc_b_vs_c": 0.4697,
+        "auroc_a_vs_b": 0.9677
+      },
+      "b4_relational": {
+        "bind_col": {
+          "n": 600,
+          "auroc_pos_vs_neg": 0.9084,
+          "controlled": "digit-length AND magnitude matched (R15_gate_B4)"
+        },
+        "compare": {
+          "n": 600,
+          "auroc_pos_vs_neg": 0.5272,
+          "per_gap_stratum": {
+            "lt10pct": {
+              "n": 200,
+              "auroc_pos_vs_neg": 0.5173
+            },
+            "10to100pct": {
+              "n": 200,
+              "auroc_pos_vs_neg": 0.531
+            },
+            "gt100pct": {
+              "n": 200,
+              "auroc_pos_vs_neg": 0.5347
+            }
+          }
+        },
+        "bind_row": {
+          "n": 601,
+          "auroc_pos_vs_neg": 0.993
+        },
+        "registered_references": {
+          "bind_col": 0.7,
+          "compare": 0.65,
+          "bind_row": 0.95
+        }
+      }
+    },
+    "R9-H105-mmbert-dann-clean": {
+      "p1_quads": {
+        "n": 4122,
+        "per_type": {
+          "sum": {
+            "n": 500,
+            "mean_a_verbatim": 0.93898,
+            "mean_b_correct": 0.23093,
+            "mean_c_wrong_operand": 0.23356,
+            "auroc_b_vs_c": 0.4915,
+            "auroc_b_vs_d": 0.5022,
+            "auroc_a_vs_b": 0.978
+          },
+          "difference": {
+            "n": 500,
+            "mean_a_verbatim": 0.93387,
+            "mean_b_correct": 0.35756,
+            "mean_c_wrong_operand": 0.35654,
+            "auroc_b_vs_c": 0.5026,
+            "auroc_b_vs_d": 0.4287,
+            "auroc_a_vs_b": 0.963
+          },
+          "mean": {
+            "n": 500,
+            "mean_a_verbatim": 0.93747,
+            "mean_b_correct": 0.24327,
+            "mean_c_wrong_operand": 0.23991,
+            "auroc_b_vs_c": 0.506,
+            "auroc_b_vs_d": 0.459,
+            "auroc_a_vs_b": 0.976
+          },
+          "ratio": {
+            "n": 500,
+            "mean_a_verbatim": 0.93762,
+            "mean_b_correct": 0.2869,
+            "mean_c_wrong_operand": 0.2811,
+            "auroc_b_vs_c": 0.5142,
+            "auroc_b_vs_d": 0.6683,
+            "auroc_a_vs_b": 0.9736
+          },
+          "pct_change": {
+            "n": 500,
+            "mean_a_verbatim": 0.92908,
+            "mean_b_correct": 0.41692,
+            "mean_c_wrong_operand": 0.41777,
+            "auroc_b_vs_c": 0.4947,
+            "auroc_b_vs_d": 0.5724,
+            "auroc_a_vs_b": 0.9467
+          },
+          "product": {
+            "n": 500,
+            "mean_a_verbatim": 0.93036,
+            "mean_b_correct": 0.26726,
+            "mean_c_wrong_operand": 0.26701,
+            "auroc_b_vs_c": 0.5001,
+            "auroc_b_vs_d": 0.5965,
+            "auroc_a_vs_b": 0.9737
+          },
+          "scale_unit": {
+            "n": 500,
+            "mean_a_verbatim": 0.92712,
+            "mean_b_correct": 0.49081,
+            "mean_c_wrong_operand": 0.19164,
+            "auroc_b_vs_c": 0.8604,
+            "auroc_b_vs_d": 0.6874,
+            "auroc_a_vs_b": 0.9365
+          },
+          "rounding": {
+            "n": 500,
+            "mean_a_verbatim": 0.90158,
+            "mean_b_correct": 0.18291,
+            "mean_c_wrong_operand": 0.0874,
+            "auroc_b_vs_c": 0.6937,
+            "auroc_b_vs_d": 0.5507,
+            "auroc_a_vs_b": 0.9694
+          },
+          "count_agg": {
+            "n": 0,
+            "note": "under 30 - not adjudicated"
+          },
+          "date_arith": {
+            "n": 122,
+            "mean_a_verbatim": 0.97296,
+            "mean_b_correct": 0.36562,
+            "mean_c_wrong_operand": 0.36573,
+            "auroc_b_vs_c": 0.4938,
+            "auroc_b_vs_d": 0.6868,
+            "auroc_a_vs_b": 0.9818
+          }
+        },
+        "tier1_auroc_b_vs_c": {
+          "difference": 0.5026,
+          "ratio": 0.5142,
+          "pct_change": 0.4947,
+          "sum": 0.4915
+        },
+        "verbatim_mean_pooled": 0.9308,
+        "auroc_a_vs_b_pooled": 0.9647,
+        "scale_unit_auroc_b_vs_c": 0.8604
+      },
+      "h133_triples": {
+        "n": 2000,
+        "mean_a_verbatim": 0.90743,
+        "mean_b_correct": 0.24434,
+        "mean_c_wrong_operand": 0.24708,
+        "gap_a_minus_b": 0.66309,
+        "auroc_b_vs_c": 0.4933,
+        "auroc_a_vs_b": 0.9655
+      },
+      "b4_relational": {
+        "bind_col": {
+          "n": 600,
+          "auroc_pos_vs_neg": 0.5301,
+          "controlled": "digit-length AND magnitude matched (R15_gate_B4)"
+        },
+        "compare": {
+          "n": 600,
+          "auroc_pos_vs_neg": 0.5068,
+          "per_gap_stratum": {
+            "lt10pct": {
+              "n": 200,
+              "auroc_pos_vs_neg": 0.5007
+            },
+            "10to100pct": {
+              "n": 200,
+              "auroc_pos_vs_neg": 0.5139
+            },
+            "gt100pct": {
+              "n": 200,
+              "auroc_pos_vs_neg": 0.5076
+            }
+          }
+        },
+        "bind_row": {
+          "n": 601,
+          "auroc_pos_vs_neg": 0.9843
+        },
+        "registered_references": {
+          "bind_col": 0.7,
+          "compare": 0.65,
+          "bind_row": 0.95
+        }
+      }
+    }
+  },
+  "headline": {
+    "tier1_arm": {
+      "difference": 0.5071,
+      "ratio": 0.5021,
+      "pct_change": 0.489,
+      "sum": 0.4691
+    },
+    "tier1_control": {
+      "difference": 0.5026,
+      "ratio": 0.5142,
+      "pct_change": 0.4947,
+      "sum": 0.4915
+    },
+    "scale_unit_arm": 0.9582,
+    "scale_unit_control": 0.8604,
+    "scale_unit_void": false,
+    "scale_unit_below_rebased_void": false,
+    "verbatim_mean_arm": 0.94059,
+    "auroc_a_vs_b_arm": 0.9656,
+    "bind_col_arm": 0.9084,
+    "compare_arm": 0.5272,
+    "bind_row_arm": 0.993
+  },
+  "adjudication": "NOT ADJUDICATED HERE - the coordinator holds the verdict",
+  "scores": "R14-H133_probe_scores.parquet"
+}

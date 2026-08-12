@@ -1,0 +1,103 @@
+{
+  "per_subset": {
+    "covidqa": {
+      "n": 245,
+      "auc": 0.7509,
+      "f1": 0.6286,
+      "baseline_h90": 0.7755,
+      "delta": -0.0246,
+      "lettuce_auc": 0.7355,
+      "n_window_pairs": 1540
+    },
+    "delucionqa": {
+      "n": 184,
+      "auc": 0.8716,
+      "f1": 0.7931,
+      "baseline_h90": 0.7263,
+      "delta": 0.1453,
+      "lettuce_auc": 0.7929,
+      "n_window_pairs": 5093
+    },
+    "emanual": {
+      "n": 132,
+      "auc": 0.6241,
+      "f1": 0.614,
+      "baseline_h90": 0.7058,
+      "delta": -0.0817,
+      "lettuce_auc": 0.5999,
+      "n_window_pairs": 2983
+    },
+    "expertqa": {
+      "n": 203,
+      "auc": 0.7717,
+      "f1": 0.7145,
+      "baseline_h90": 0.8248,
+      "delta": -0.0531,
+      "lettuce_auc": 0.6503,
+      "n_window_pairs": 13949
+    },
+    "finqa": {
+      "n": 250,
+      "auc": 0.5959,
+      "f1": 0.5326,
+      "baseline_h90": 0.673,
+      "delta": -0.0771,
+      "lettuce_auc": 0.717,
+      "n_window_pairs": 2918
+    },
+    "hagrid": {
+      "n": 250,
+      "auc": 0.6332,
+      "f1": 0.5899,
+      "baseline_h90": 0.6516,
+      "delta": -0.0184,
+      "lettuce_auc": 0.5992,
+      "n_window_pairs": 1941
+    },
+    "hotpotqa": {
+      "n": 250,
+      "auc": 0.6602,
+      "f1": 0.4983,
+      "baseline_h90": 0.7253,
+      "delta": -0.0651,
+      "lettuce_auc": 0.5976,
+      "n_window_pairs": 1177
+    },
+    "pubmedqa": {
+      "n": 250,
+      "auc": 0.5256,
+      "f1": 0.5393,
+      "baseline_h90": 0.6058,
+      "delta": -0.0802,
+      "lettuce_auc": 0.5162,
+      "n_window_pairs": 6570
+    },
+    "tatqa": {
+      "n": 250,
+      "auc": 0.6998,
+      "f1": 0.6196,
+      "baseline_h90": 0.7718,
+      "delta": -0.072,
+      "lettuce_auc": 0.6156,
+      "n_window_pairs": 1942
+    },
+    "techqa": {
+      "n": 250,
+      "auc": 0.6822,
+      "f1": 0.6266,
+      "baseline_h90": 0.7529,
+      "delta": -0.0707,
+      "lettuce_auc": 0.6363,
+      "n_window_pairs": 39058
+    }
+  },
+  "mean": 0.6815199999999999,
+  "baseline_mean": 0.72128,
+  "mean_lettuce": 0.64605,
+  "finqa_delta": -0.0771,
+  "delucionqa_delta": 0.1453,
+  "verdict": "KILLED (a losing-subset delta < +0.01)",
+  "model": "models/R14-H135-arm-draw1",
+  "window": 1500,
+  "stride": 750
+}

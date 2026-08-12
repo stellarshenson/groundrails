@@ -1,0 +1,51 @@
+{
+  "data": {
+    "n_accepted": 28526,
+    "n_derivation": 28526,
+    "n_lookup": 7000,
+    "cycle2": true,
+    "n_examples": 34919,
+    "n_evidence_trimmed": 1424,
+    "n_dropped_overlong": 607,
+    "mean_len": 689.8585011025516
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.5529876123427038,
+      "train_loss_tail": 0.37732378397275385,
+      "val_loss": 0.3869127608949634,
+      "n": 200,
+      "format_rate": 0.995,
+      "verdict_agree": 0.865
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.34556355372342007,
+      "train_loss_tail": 0.32260291046406403,
+      "val_loss": 0.35440925546808605,
+      "n": 200,
+      "format_rate": 0.985,
+      "verdict_agree": 0.82
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.31693054101084533,
+      "train_loss_tail": 0.32485276469032953,
+      "val_loss": 0.34965919276282326,
+      "n": 200,
+      "format_rate": 0.975,
+      "verdict_agree": 0.835
+    }
+  ],
+  "stopped": null,
+  "best_epoch": 3,
+  "config": {
+    "epochs": 3,
+    "lr": 3e-05,
+    "micro_bs": 8,
+    "accum": 8,
+    "max_len": 1024,
+    "seed": 1144
+  }
+}

@@ -1,0 +1,279 @@
+{
+  "lane": "R14-H133_lane.parquet",
+  "rows": 50000,
+  "pairs": 25000,
+  "label_counts": {
+    "0.0": 25000,
+    "1.0": 25000
+  },
+  "block_rows": {
+    "core": 42500,
+    "rel": 7500
+  },
+  "block_share": {
+    "core": 0.85,
+    "rel": 0.15
+  },
+  "tag_rows": {
+    "quant_deriv": 42500,
+    "quant_relational": 7500
+  },
+  "core_type_pairs": {
+    "difference": 3434,
+    "mean": 2146,
+    "pct_change": 3434,
+    "product": 1073,
+    "ratio": 3434,
+    "rounding": 2576,
+    "scale_unit": 1717,
+    "sum": 3436
+  },
+  "core_type_share": {
+    "difference": 0.1616,
+    "mean": 0.10099,
+    "pct_change": 0.1616,
+    "product": 0.05049,
+    "ratio": 0.1616,
+    "rounding": 0.12122,
+    "scale_unit": 0.0808,
+    "sum": 0.16169
+  },
+  "core_negative_family": {
+    "a:misbound_col": 4462,
+    "a:misbound_row": 10602,
+    "b:operation_word": 4485,
+    "c:conclusion": 1701
+  },
+  "core_negative_family_share": {
+    "a:misbound_col": 0.20998,
+    "a:misbound_row": 0.49892,
+    "b:operation_word": 0.21106,
+    "c:conclusion": 0.08005
+  },
+  "core_claim_form_share": {
+    "trace": 1.0
+  },
+  "serial_form_share": {
+    "json_records": 0.05056,
+    "keyvalue": 0.1022,
+    "markdown": 0.10028,
+    "narrative": 0.29568,
+    "pipe": 0.14936,
+    "row_prose": 0.30192
+  },
+  "rel_arm_pairs": {
+    "bind_col": 1500,
+    "bind_row": 750,
+    "compare": 1500
+  },
+  "rel_arm_share_of_subblock": {
+    "bind_col": 0.4,
+    "bind_row": 0.2,
+    "compare": 0.4
+  },
+  "rel_compare_gap_strata": {
+    "10to100pct": 501,
+    "gt100pct": 501,
+    "lt10pct": 498
+  },
+  "source_rows": {
+    "feverous": 16982,
+    "tabfact": 33018
+  },
+  "absent_rows_lane": 42766,
+  "p_label0_given_absent_lane": 0.5,
+  "absent_rows_core": 42500,
+  "p_label0_given_absent_core": 0.5,
+  "absent_share_of_core": 1.0,
+  "absent_share_of_subblock": 0.03547,
+  "p_label0_given_absent_banked_detector": 0.50932,
+  "absent_rows_banked_detector": 40120,
+  "absence_detector_note": "the banked P3/L2 detector (R15_gate_common.canon_set) cannot see a numeral followed by a full stop, so it under-reads every prose serialization; the lane's own absence rule uses the punctuation-tolerant form",
+  "asserted_value_absent_share_core": 1.0,
+  "asserted_value_absent_share_subblock": 0.0172,
+  "p_label0_given_asserted_value_absent_core": 0.5,
+  "trace_rederivation": {
+    "traces_checked": 42500,
+    "unparsable": 0,
+    "arithmetic_wrong": 0,
+    "conclusion_not_trace_result": 0,
+    "conclusion_is_trace_result_but_family_c": 0,
+    "errors": 0,
+    "examples": [],
+    "bar": "0 errors - every trace's arithmetic is internally correct and its conclusion quotes it, except family (c) which contradicts it by design"
+  },
+  "positive_trace_groundability": {
+    "positives": 21250,
+    "operand_not_in_chunk": 0,
+    "operand_not_quoted_in_trace": 0,
+    "groundable_share": 1.0,
+    "bar": "1.0 - every positive trace quotes operands that are verbatim in its chunk"
+  },
+  "a_negative_mismatch_confirmable": {
+    "a_negatives": 15064,
+    "cited_equals_true": 0,
+    "true_value_not_in_chunk": 0,
+    "cited_value_not_in_claim": 0,
+    "mechanically_confirmable": 15064,
+    "confirmable_share": 1.0,
+    "bar": "1.0 - the cited value differs from the true cell, the true cell is in the evidence, and the cited value is in the claim"
+  },
+  "family_c_share_of_negatives": 0.08005,
+  "family_c_cap": "10% of negatives (author ruling)",
+  "pair_identity_breaches": {},
+  "pair_identity_note": "checked on pairs shaped `numeral_only` - families (a) and (c) and the bind arms, where the two claims must be identical once every numeral is masked. Family (b) is `word_only` (the numeral is untouched and the operation word differs) and `compare` is `binding_swap`; both are exempt",
+  "digit_length_parity_breaches": {
+    "compare": 15
+  },
+  "result_digit_length_share": {
+    "2": 0.19021,
+    "3": 0.32245,
+    "4": 0.26085,
+    "5": 0.14588,
+    "6": 0.04475,
+    "7": 0.03586
+  },
+  "result_digit_length_max_share": 0.32245,
+  "trailing_zero_auroc": {
+    "per_type": {
+      "difference": 0.5,
+      "mean": 0.5,
+      "pct_change": 0.5,
+      "product": 0.5,
+      "ratio": 0.5,
+      "rounding": 0.5,
+      "scale_unit": 0.5,
+      "sum": 0.5,
+      "bind_col": 0.5,
+      "bind_row": 0.5,
+      "compare": 0.524
+    },
+    "bar": "derivation types must sit inside [0.45, 0.55]",
+    "breaches": []
+  },
+  "claim_only_leak": {
+    "features": "TF-IDF char_wb(2,4) + word(1,2), logistic regression",
+    "split": "document-disjoint 80/20 on doc_id",
+    "train_rows": 39952,
+    "test_rows": 10048,
+    "held_out_auroc": 0.5236,
+    "auroc_bar": "abort above 0.55",
+    "v1_defective_reading": 0.638,
+    "per_family_within_pair_accuracy": {
+      "b:operation_word": {
+        "held_out_pairs": 865,
+        "within_pair_accuracy": 0.6116
+      },
+      "c:conclusion": {
+        "held_out_pairs": 369,
+        "within_pair_accuracy": 0.5203
+      },
+      "a:misbound_col": {
+        "held_out_pairs": 913,
+        "within_pair_accuracy": 0.5115
+      },
+      "bind_col": {
+        "held_out_pairs": 317,
+        "within_pair_accuracy": 0.4543
+      },
+      "bind_row": {
+        "held_out_pairs": 148,
+        "within_pair_accuracy": 0.4662
+      },
+      "compare": {
+        "held_out_pairs": 289,
+        "within_pair_accuracy": 0.4706
+      },
+      "a:misbound_row": {
+        "held_out_pairs": 2123,
+        "within_pair_accuracy": 0.5082
+      }
+    },
+    "within_pair_bar": "abort any family above 0.60; family (c) exempt by design, capped at 10% of negatives instead",
+    "within_pair_breaches": [
+      "b:operation_word"
+    ]
+  },
+  "token_length": {
+    "n_sampled": 50000,
+    "auroc_from_claim_token_length_alone": 0.5001,
+    "auroc_from_pair_token_length_alone": 0.5,
+    "bar": "abort the build above 0.55",
+    "share_over_512": 0.07722,
+    "share_over_512_bar": "manifest clause - under 0.10",
+    "pair_tokens_median": 365,
+    "pair_tokens_p95": 531,
+    "per_serial_form": {
+      "markdown": {
+        "n": 5014,
+        "median": 315,
+        "share_over_512": 0.02453
+      },
+      "json_records": {
+        "n": 2528,
+        "median": 394,
+        "share_over_512": 0.07911
+      },
+      "keyvalue": {
+        "n": 5110,
+        "median": 360,
+        "share_over_512": 0.05695
+      },
+      "narrative": {
+        "n": 14784,
+        "median": 384,
+        "share_over_512": 0.09382
+      },
+      "row_prose": {
+        "n": 15096,
+        "median": 400,
+        "share_over_512": 0.11758
+      },
+      "pipe": {
+        "n": 7468,
+        "median": 282,
+        "share_over_512": 0.01138
+      }
+    }
+  },
+  "diversity": {
+    "distinct_documents": 10914,
+    "pairs_per_document_mean": 2.2906,
+    "pairs_per_document_max": 5,
+    "pairs_per_document_histogram": {
+      "1": 773,
+      "2": 7531,
+      "3": 1518,
+      "4": 849,
+      "5": 243
+    },
+    "documents_by_source": {
+      "feverous": 3624,
+      "tabfact": 7290
+    },
+    "rows_per_document_mean": 4.5813
+  },
+  "h108_disjointness": {
+    "h108_rows": 61184,
+    "shared_claim_chunk_rows": 0,
+    "shared_claim_strings": 0,
+    "shared_chunk_strings": 0
+  },
+  "trainer_read_path": {
+    "checked_against": "R10-H108_lane.py lane_train() - pl.read_parquet(LANE) then claim / chunk[:chunk_max_chars] / label.cast(Float32) / tag",
+    "n_claims": 50000,
+    "n_chunks": 50000,
+    "label_dtype": "Float32",
+    "label_values": [
+      0.0,
+      1.0
+    ],
+    "distinct_tags": [
+      "quant_deriv",
+      "quant_relational"
+    ],
+    "nulls_in_required_columns": 0,
+    "max_chunk_chars": 1500,
+    "empty_claims": 0
+  }
+}

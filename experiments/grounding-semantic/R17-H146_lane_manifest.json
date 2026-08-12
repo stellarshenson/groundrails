@@ -1,0 +1,164 @@
+{
+  "seed": 1146,
+  "rows": 30000,
+  "pairs": 15000,
+  "documents": 7514,
+  "pairs_per_document": 1.996,
+  "doc_cap": 8,
+  "families": {
+    "misbound_col": 9000,
+    "misbound_row": 21000
+  },
+  "family_shares": {
+    "misbound_col": 0.3,
+    "misbound_row": 0.7
+  },
+  "directions": {
+    "misbound_col:down": 4500,
+    "misbound_row:down": 10500,
+    "misbound_col:up": 4500,
+    "misbound_row:up": 10500
+  },
+  "parity_rates": {
+    "pooled": 0.506,
+    "per_family": {
+      "misbound_row": 0.6792,
+      "misbound_col": 0.1018
+    }
+  },
+  "diversity": {
+    "serial_forms": {
+      "pipe": 4730,
+      "row_prose": 9078,
+      "json_records": 1384,
+      "keyvalue": 2946,
+      "narrative": 8938,
+      "markdown": 2924
+    },
+    "templates": {
+      "1": 5000,
+      "2": 5000,
+      "0": 5000,
+      "5": 5000,
+      "3": 5000,
+      "4": 5000
+    },
+    "sources": {
+      "feverous": 10110,
+      "tabfact": 19890
+    },
+    "n_templates": 6,
+    "distinct_claims": 29699,
+    "distinct_chunks": 12889,
+    "distinct_columns": 2157
+  },
+  "eval_disjointness": {
+    "evalset_rows": 1050,
+    "excluded_doc_ids": 536,
+    "content_matched_tables": 3516,
+    "tables_dropped": 3556,
+    "tables_admitted": 10256,
+    "shared_documents": 0,
+    "shared_chunks": 0,
+    "method": "content-based (R17-H144 method), enforced"
+  },
+  "overlap_permitted": [
+    {
+      "file": "R17-H144_pairs.parquet",
+      "present": true,
+      "shared_doc_ids": 4922,
+      "shared_chunks": 310,
+      "their_docs": 6642,
+      "note": "H144 pair corpus: permitted, measured not enforced"
+    },
+    {
+      "file": "R17-H144_lookup.parquet",
+      "present": true,
+      "shared_doc_ids": 1218,
+      "shared_chunks": 73,
+      "their_docs": 1751,
+      "note": "H144 lookup family: permitted, measured not enforced"
+    },
+    {
+      "file": "R17-H145_scaleunit.parquet",
+      "present": true,
+      "shared_doc_ids": 464,
+      "shared_chunks": 10,
+      "their_docs": 732,
+      "note": "H145 scale/unit lane: permitted, measured not enforced"
+    }
+  ],
+  "verify": {
+    "claim_only_tfidf_auroc": {
+      "value": 0.5053,
+      "bar": "< 0.55",
+      "pass": true,
+      "scoring": "5-fold document-disjoint, out of fold, direction-stratified, liblinear tol 1e-7",
+      "documents": 7514,
+      "rows": 30000
+    },
+    "within_pair_claim_only_accuracy": {
+      "per_family": {
+        "misbound_col": {
+          "acc": 0.516,
+          "pairs": 4500
+        },
+        "misbound_row": {
+          "acc": 0.4991,
+          "pairs": 10500
+        }
+      },
+      "worst": 0.516,
+      "bar": "< 0.60",
+      "pass": true,
+      "worst_two_sided_deviation_report_only": 0.016
+    },
+    "value_presence": {
+      "cited_verbatim_rate": 1.0,
+      "correct_verbatim_rate": 1.0,
+      "cited_canonical_rate": 1.0,
+      "correct_canonical_rate": 1.0,
+      "bar": "1.0 for both cited and correct",
+      "pass": true
+    },
+    "p_label0_given_absent": {
+      "value": null,
+      "absent_rows": 0,
+      "bar": "n/a - all asserted values present by construction",
+      "note": "presence 1.0 on both legs; the quantity is undefined here",
+      "pass": true
+    },
+    "trailing_zero_auroc": {
+      "pooled": 0.5005,
+      "per_family": {
+        "misbound_col": 0.498,
+        "misbound_row": 0.5016
+      },
+      "bar": "in [0.45, 0.55]",
+      "pass": true
+    },
+    "digit_count_auroc": {
+      "pooled": 0.5005,
+      "per_family": {
+        "misbound_col": 0.5017,
+        "misbound_row": 0.5002
+      },
+      "bar": "in [0.45, 0.55]",
+      "pass": true
+    },
+    "misbind_rederivation_audit": {
+      "sampled": 500,
+      "errors": 0,
+      "bar": "0 errors",
+      "pass": true,
+      "examples": []
+    },
+    "report_only": {
+      "claim_char_length_auroc": 0.5001,
+      "leading_digit_auroc": 0.5006,
+      "decimal_presence_auroc": 0.5006,
+      "value_magnitude_auroc": 0.5002
+    },
+    "all_bars_pass": true
+  }
+}

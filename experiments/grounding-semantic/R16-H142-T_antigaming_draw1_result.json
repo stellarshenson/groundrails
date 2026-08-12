@@ -1,0 +1,146 @@
+{
+  "read": "R14-H133 ANTI-GAMING - held-out present-value near-miss + bind_row non-regression (A4 anti-gaming clause; R15-B4 binding amendment (i))",
+  "draw": 1,
+  "arm_checkpoint": "R16-H142-T-arm-draw1",
+  "control_checkpoint": "R9-H105-mmbert-dann-clean",
+  "control_note": "the BANKED clean draw 1 - unseeded (pre-H126); the comparison is arm-vs-banked-control, not init-paired",
+  "seed": 20260810,
+  "construction": {
+    "nearmiss": "TabFact test+validation ENTAILED statements whose numeral is verbatim in the serialized evidence, corrupted by the H108 operator bank (R10-H108_data.FAMILIES); value-checked families additionally require the corrupted numeral to be absent from the evidence",
+    "bind_row": "right column, right row label, the value of a different row - both values printed in the evidence (the lane's own bind_row construction)",
+    "per_table_cap": 2,
+    "excluded_from_headline": [
+      "digit_perturb",
+      "comparative_flip"
+    ]
+  },
+  "disjointness": {
+    "eval_tables": 1177,
+    "lane_documents": 10914,
+    "lane_tabfact_tables": 7290,
+    "shared_with_tabfact_train": 0,
+    "shared_with_lane_tables": 0,
+    "shared_claim_strings_with_lane": 0,
+    "table_disjoint": true,
+    "operator_disjointness": "every negative here edits a numeral verbatim present in the evidence; every H133 derivation-core negative asserts a value absent from it. The headline additionally excludes ['digit_perturb', 'comparative_flip'], the nearest lane analogues (N7 last-digit corruption and the `compare` sub-block)."
+  },
+  "n_nearmiss": 1000,
+  "n_bind_row": 600,
+  "checkpoints": {
+    "R16-H142-T-arm-draw1": {
+      "nearmiss_headline": {
+        "n": 543,
+        "auroc_pos_vs_neg": 0.7507,
+        "mean_pos": 0.71351,
+        "mean_neg": 0.47386,
+        "frac_pos_higher": 0.8435
+      },
+      "nearmiss_all_families": {
+        "n": 1000,
+        "auroc_pos_vs_neg": 0.7712
+      },
+      "per_family": {
+        "comparative_flip": {
+          "n": 207,
+          "auroc_pos_vs_neg": 0.6804,
+          "in_headline": false
+        },
+        "digit_perturb": {
+          "n": 250,
+          "auroc_pos_vs_neg": 0.8779,
+          "in_headline": false
+        },
+        "magnitude_shift": {
+          "n": 250,
+          "auroc_pos_vs_neg": 0.6889,
+          "in_headline": true
+        },
+        "pct_pp": {
+          "n": 21,
+          "note": "under 30 - not adjudicated"
+        },
+        "scale_word": {
+          "n": 22,
+          "note": "under 30 - not adjudicated"
+        },
+        "year_shift": {
+          "n": 250,
+          "auroc_pos_vs_neg": 0.858,
+          "in_headline": true
+        }
+      },
+      "bind_row": {
+        "n": 600,
+        "auroc_pos_vs_neg": 0.9832,
+        "mean_pos": 0.88177,
+        "mean_neg": 0.06458,
+        "target": 0.95
+      }
+    },
+    "R9-H105-mmbert-dann-clean": {
+      "nearmiss_headline": {
+        "n": 543,
+        "auroc_pos_vs_neg": 0.7565,
+        "mean_pos": 0.72818,
+        "mean_neg": 0.48459,
+        "frac_pos_higher": 0.8195
+      },
+      "nearmiss_all_families": {
+        "n": 1000,
+        "auroc_pos_vs_neg": 0.7721
+      },
+      "per_family": {
+        "comparative_flip": {
+          "n": 207,
+          "auroc_pos_vs_neg": 0.6627,
+          "in_headline": false
+        },
+        "digit_perturb": {
+          "n": 250,
+          "auroc_pos_vs_neg": 0.8775,
+          "in_headline": false
+        },
+        "magnitude_shift": {
+          "n": 250,
+          "auroc_pos_vs_neg": 0.6842,
+          "in_headline": true
+        },
+        "pct_pp": {
+          "n": 21,
+          "note": "under 30 - not adjudicated"
+        },
+        "scale_word": {
+          "n": 22,
+          "note": "under 30 - not adjudicated"
+        },
+        "year_shift": {
+          "n": 250,
+          "auroc_pos_vs_neg": 0.8753,
+          "in_headline": true
+        }
+      },
+      "bind_row": {
+        "n": 600,
+        "auroc_pos_vs_neg": 0.9835,
+        "mean_pos": 0.91721,
+        "mean_neg": 0.08824,
+        "target": 0.95
+      }
+    }
+  },
+  "reads": {
+    "nearmiss_headline_arm": 0.7507,
+    "nearmiss_headline_control": 0.7565,
+    "nearmiss_headline_delta": -0.0058,
+    "clause_arm_not_below_control": false,
+    "bind_row_arm": 0.9832,
+    "bind_row_control": 0.9835,
+    "clause_bind_row_at_or_above_target": true
+  },
+  "clauses": {
+    "anti_gaming": "arm headline near-miss AUROC must not fall below the clean-recipe value (A4, binding)",
+    "bind_row": "arm bind_row AUROC >= 0.95 (R15-B4 amendment (i), binding)"
+  },
+  "adjudication": "NOT ADJUDICATED HERE - the coordinator holds the verdict",
+  "eval_set": "R16-H142-T_antigaming_set.parquet"
+}
