@@ -1,0 +1,271 @@
+{
+  "experiment": "R14 lexical arena crossover - RAGBench blind read",
+  "mean_auroc_min_read": 0.63434,
+  "mean_auroc_mean_claim_diagnostic": 0.64199,
+  "n_subsets": 10,
+  "n_items": 2264,
+  "per_subset": {
+    "covidqa": {
+      "subset": "ragbench__covidqa",
+      "n_items": 245,
+      "pos_rate": 0.8408,
+      "claims_per_item_mean": 1.559,
+      "claims_per_item_max": 5,
+      "zero_claim_rate": 0.0082,
+      "blocked_claims": 6,
+      "error_claims": 0,
+      "first_error": null,
+      "min_auroc": 0.6325,
+      "min_f1_macro_at_050": 0.5429,
+      "min_tpr_at_050": 0.8155,
+      "min_tnr_at_050": 0.2821,
+      "min_confusion_at_050": {
+        "tp": 168,
+        "tn": 11,
+        "fp": 28,
+        "fn": 38
+      },
+      "mean_claim_diagnostic_auroc": 0.6355,
+      "runtime_s": 6.0
+    },
+    "delucionqa": {
+      "subset": "ragbench__delucionqa",
+      "n_items": 184,
+      "pos_rate": 0.9348,
+      "claims_per_item_mean": 5.12,
+      "claims_per_item_max": 16,
+      "zero_claim_rate": 0.0163,
+      "blocked_claims": 0,
+      "error_claims": 0,
+      "first_error": null,
+      "min_auroc": 0.5334,
+      "min_f1_macro_at_050": 0.397,
+      "min_tpr_at_050": 0.5465,
+      "min_tnr_at_050": 0.4167,
+      "min_confusion_at_050": {
+        "tp": 94,
+        "tn": 5,
+        "fp": 7,
+        "fn": 78
+      },
+      "mean_claim_diagnostic_auroc": 0.6962,
+      "runtime_s": 5.0
+    },
+    "emanual": {
+      "subset": "ragbench__emanual",
+      "n_items": 132,
+      "pos_rate": 0.8939,
+      "claims_per_item_mean": 5.614,
+      "claims_per_item_max": 14,
+      "zero_claim_rate": 0.0,
+      "blocked_claims": 0,
+      "error_claims": 0,
+      "first_error": null,
+      "min_auroc": 0.6925,
+      "min_f1_macro_at_050": 0.4723,
+      "min_tpr_at_050": 0.5424,
+      "min_tnr_at_050": 0.7143,
+      "min_confusion_at_050": {
+        "tp": 64,
+        "tn": 10,
+        "fp": 4,
+        "fn": 54
+      },
+      "mean_claim_diagnostic_auroc": 0.658,
+      "runtime_s": 2.1
+    },
+    "expertqa": {
+      "subset": "ragbench__expertqa",
+      "n_items": 203,
+      "pos_rate": 0.468,
+      "claims_per_item_mean": 6.601,
+      "claims_per_item_max": 18,
+      "zero_claim_rate": 0.0,
+      "blocked_claims": 1,
+      "error_claims": 0,
+      "first_error": null,
+      "min_auroc": 0.7393,
+      "min_f1_macro_at_050": 0.5741,
+      "min_tpr_at_050": 0.2526,
+      "min_tnr_at_050": 0.9907,
+      "min_confusion_at_050": {
+        "tp": 24,
+        "tn": 107,
+        "fp": 1,
+        "fn": 71
+      },
+      "mean_claim_diagnostic_auroc": 0.7695,
+      "runtime_s": 1.2
+    },
+    "finqa": {
+      "subset": "ragbench__finqa",
+      "n_items": 250,
+      "pos_rate": 0.92,
+      "claims_per_item_mean": 3.42,
+      "claims_per_item_max": 8,
+      "zero_claim_rate": 0.0,
+      "blocked_claims": 0,
+      "error_claims": 0,
+      "first_error": null,
+      "min_auroc": 0.4267,
+      "min_f1_macro_at_050": 0.3093,
+      "min_tpr_at_050": 0.3348,
+      "min_tnr_at_050": 0.6,
+      "min_confusion_at_050": {
+        "tp": 77,
+        "tn": 12,
+        "fp": 8,
+        "fn": 153
+      },
+      "mean_claim_diagnostic_auroc": 0.4157,
+      "runtime_s": 4.5
+    },
+    "hagrid": {
+      "subset": "ragbench__hagrid",
+      "n_items": 250,
+      "pos_rate": 0.848,
+      "claims_per_item_mean": 2.072,
+      "claims_per_item_max": 10,
+      "zero_claim_rate": 0.008,
+      "blocked_claims": 2,
+      "error_claims": 0,
+      "first_error": null,
+      "min_auroc": 0.7329,
+      "min_f1_macro_at_050": 0.6686,
+      "min_tpr_at_050": 0.8349,
+      "min_tnr_at_050": 0.5789,
+      "min_confusion_at_050": {
+        "tp": 177,
+        "tn": 22,
+        "fp": 16,
+        "fn": 35
+      },
+      "mean_claim_diagnostic_auroc": 0.6992,
+      "runtime_s": 4.5
+    },
+    "hotpotqa": {
+      "subset": "ragbench__hotpotqa",
+      "n_items": 250,
+      "pos_rate": 0.932,
+      "claims_per_item_mean": 1.16,
+      "claims_per_item_max": 3,
+      "zero_claim_rate": 0.004,
+      "blocked_claims": 0,
+      "error_claims": 0,
+      "first_error": null,
+      "min_auroc": 0.6296,
+      "min_f1_macro_at_050": 0.5212,
+      "min_tpr_at_050": 0.8884,
+      "min_tnr_at_050": 0.1765,
+      "min_confusion_at_050": {
+        "tp": 207,
+        "tn": 3,
+        "fp": 14,
+        "fn": 26
+      },
+      "mean_claim_diagnostic_auroc": 0.6233,
+      "runtime_s": 4.2
+    },
+    "pubmedqa": {
+      "subset": "ragbench__pubmedqa",
+      "n_items": 250,
+      "pos_rate": 0.692,
+      "claims_per_item_mean": 5.356,
+      "claims_per_item_max": 13,
+      "zero_claim_rate": 0.0,
+      "blocked_claims": 4,
+      "error_claims": 0,
+      "first_error": null,
+      "min_auroc": 0.6536,
+      "min_f1_macro_at_050": 0.4712,
+      "min_tpr_at_050": 0.3121,
+      "min_tnr_at_050": 0.8312,
+      "min_confusion_at_050": {
+        "tp": 54,
+        "tn": 64,
+        "fp": 13,
+        "fn": 119
+      },
+      "mean_claim_diagnostic_auroc": 0.6098,
+      "runtime_s": 2.6
+    },
+    "tatqa": {
+      "subset": "ragbench__tatqa",
+      "n_items": 250,
+      "pos_rate": 0.944,
+      "claims_per_item_mean": 2.308,
+      "claims_per_item_max": 7,
+      "zero_claim_rate": 0.0,
+      "blocked_claims": 0,
+      "error_claims": 0,
+      "first_error": null,
+      "min_auroc": 0.5999,
+      "min_f1_macro_at_050": 0.4225,
+      "min_tpr_at_050": 0.5551,
+      "min_tnr_at_050": 0.6429,
+      "min_confusion_at_050": {
+        "tp": 131,
+        "tn": 9,
+        "fp": 5,
+        "fn": 105
+      },
+      "mean_claim_diagnostic_auroc": 0.5548,
+      "runtime_s": 2.1
+    },
+    "techqa": {
+      "subset": "ragbench__techqa",
+      "n_items": 250,
+      "pos_rate": 0.564,
+      "claims_per_item_mean": 7.596,
+      "claims_per_item_max": 22,
+      "zero_claim_rate": 0.0,
+      "blocked_claims": 1,
+      "error_claims": 0,
+      "first_error": null,
+      "min_auroc": 0.703,
+      "min_f1_macro_at_050": 0.5435,
+      "min_tpr_at_050": 0.3121,
+      "min_tnr_at_050": 0.8899,
+      "min_confusion_at_050": {
+        "tp": 44,
+        "tn": 97,
+        "fp": 12,
+        "fn": 97
+      },
+      "mean_claim_diagnostic_auroc": 0.7579,
+      "runtime_s": 2.5
+    }
+  },
+  "comparison_vs_semantic": {
+    "lettucedetect_v2_mean": 0.6461,
+    "twin_d1_mean": 0.72498,
+    "twin_d2_mean": 0.70073,
+    "h150_d1_mean": 0.71436
+  },
+  "comparison_table_markdown": "| subset | lexical (R14) | lettucedetect-v2 | twin d1 | twin d2 | H150 d1 |\n|---|---|---|---|---|---|\n| covidqa | 0.6325 | 0.7355 | 0.7645 | 0.7661 | 0.7685 |\n| delucionqa | 0.5334 | 0.7929 | 0.7636 | 0.7878 | 0.8009 |\n| emanual | 0.6925 | 0.5999 | 0.6683 | 0.6949 | 0.6973 |\n| expertqa | 0.7393 | 0.6503 | 0.7834 | 0.7685 | 0.7969 |\n| finqa | 0.4267 | 0.7170 | 0.7093 | 0.6757 | 0.6515 |\n| hagrid | 0.7329 | 0.5992 | 0.6461 | 0.6279 | 0.6423 |\n| hotpotqa | 0.6296 | 0.5976 | 0.6728 | 0.6377 | 0.6766 |\n| pubmedqa | 0.6536 | 0.5162 | 0.6725 | 0.6273 | 0.5893 |\n| tatqa | 0.5999 | 0.6156 | 0.7948 | 0.7188 | 0.7842 |\n| techqa | 0.7030 | 0.6363 | 0.7745 | 0.7026 | 0.7361 |\n| **mean** | **0.6343** | **0.6461** | **0.7250** | **0.7007** | **0.7144** |",
+  "provenance": {
+    "config_path": "/home/lab/workspace/private/ai-assistants/groundrails/src/groundrails/config_document_processing.yaml",
+    "config_sha256": "ff64afdb08ee9393f5a5958b1db38933220529585e7ce2f26b4ec562873aa423",
+    "pipeline_entry": "groundrails.extract.extract_claims(response) -> per claim groundrails.grounding.ground(claim, documents, config=cfg) -> lex_p = m.verdict_probability if m.verdict_probability >= 0 else m.agreement_score",
+    "extractor": "regex extract_claims (English verb/copula gate) - the shipped CLI extractor",
+    "frozen_cut": 0.5,
+    "item_score": "min over claim lex_p; zero-claimed item scores 1.0 (R13 convention)",
+    "blocked_claim_policy": "UnsupportedLanguageError claims are skipped; an item with no scored claim scores 1.0",
+    "env": {
+      "GROUNDRAILS_ARGOS_AUTO_INSTALL": "0",
+      "cuda_vars_set": false
+    },
+    "sanity_A": {
+      "items": 8,
+      "float_fields_compared": 80,
+      "max_abs_diff": 0.0,
+      "mismatches": [],
+      "passed": true,
+      "method": "tests/test_equivalence_golden.py _snapshot() vs tests/data/grounding_golden.json (subprocess)"
+    },
+    "sanity_B": {
+      "counts_match": true,
+      "note": "expected census covidqa 245, delucionqa 184, emanual 132, expertqa 203, finqa/hagrid/hotpotqa/pubmedqa/tatqa/techqa 250 (banked arena read)"
+    }
+  }
+}

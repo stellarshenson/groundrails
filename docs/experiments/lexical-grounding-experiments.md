@@ -311,6 +311,39 @@ Results - real gold v2, grounding held fixed at the shipped lexical verdict (`le
 | non-EN (1333) | **0.615** | 0.564 | 0.564 |
 | admission % (ALL) | 88.9 | 99.5 | 100 |
 
+## Publication-arena crossover, round 14: the shipped lexical tier measured blind on RAGBench and RAGTruth (registered pre-measurement)
+
+Every lexical number above sits on the private gold v2, VitaminC, or articles; the semantic track (`semantic-grounding-experiments.md`) competes on the public RAGBench arena, and the two tiers have never been measured on the same benchmark. This round closes that gap: the shipped lexical pipeline (extraction + MT bridge + R12 manifold `lex_p`, global cut 0.50, weights frozen) run eval-only over the identical arena protocol the semantic reads use - same zip, same filter, same seed-0 sample of ≤250 per subset, same 8-chunk cap. No fitting, no threshold search, no arena statistics touched beyond the final blind read. The deliverable is the two-tier publication table: cheap deterministic first pass vs semantic residual model, one benchmark.
+
+- **Setup** - RAGBench `*__test.parquet` from `data/external/datasets/dataset-ragbench.zip` under the frozen gate protocol (adherence non-null, response > 20 chars, documents non-empty, ≥40 items with both classes, `sample(min(250, n), seed=0)`, `documents[:8]`) plus the RAGTruth English eval slice. Per item the shipped pipeline extracts claims from the response and grounds each against the item's documents; item score = min over claim `lex_p` (the decomposed-min analog; an item whose response yields no claims defaults to a supported pass per the R13 convention). Metric: per-subset AUROC (threshold-free), 10-subset equal-weight mean; secondary frozen-cut F1/TNR/TPR at the pre-registered 0.50. `experiments/grounding-lexical/arena_crossover.py`
+- **R14-H1 the lexical tier scores 0.55-0.70 mean AUROC on the arena** - because RAGBench negatives are natural model drift (fabricated/unsupported specifics, the profile the tier was built to catch) rather than VitaminC-style contrastive flips (where it collapses to 0.586 macro-F1), predict a mean well above the contrastive floor but clearly below the semantic flagship (0.70496). Wide per-subset spread expected: tabular/structured subsets (tatqa, finqa) weakest - numeric misbinding is a known lexical blind spot the semantic H150 recipe attacks with dedicated data
+- **Legality** - eval-only under the contamination wall: the lexical manifold never trained on RAGBench or RAGTruth (its fit data is gold v2 + VitaminC + synthetic negatives), and AUROC fits nothing. Asymmetry note for the two-tier table: the semantic track trains on `ragtruth_en`, so on RAGTruth only the lexical side is a clean read; the RAGBench side is blind for both tiers
+- **Bars** - none; this is a measurement, no ship decision rides on it. The result lands in the publication narrative either way: a strong read makes the two-tier story (lexical clears the easy majority, semantic handles the residual); a weak read bounds the lexical tier's deployment scope to the private-RAG profile
+
+**Measured (2026-08-13, verified)**: mean AUROC **0.6343** (min-read; 0.6420 mean-claim diagnostic) over 2,264 items - inside the predicted 0.55-0.70 band, so **R14-H1 CONFIRMED**. Wiring proven two ways: the pipeline reproduces the golden-equivalence snapshot byte-exact (80 float fields, max abs diff 0.0), and the item census is byte-identical to the semantic track's banked arena read (per-subset counts and base rates match exactly). RAGTruth English: AUROC **0.6991** (600 items; lexical-side clean read only - the semantic track trains on this slice).
+
+Results - per-subset AUROC, lexical vs the neural incumbent vs the semantic track's banked reads:
+
+| subset | lexical (R14) | lettucedetect-v2 | twin d1 | twin d2 | H150 d1 |
+|---|---|---|---|---|---|
+| covidqa | 0.6325 | 0.7355 | 0.7645 | 0.7661 | 0.7685 |
+| delucionqa | 0.5334 | 0.7929 | 0.7636 | 0.7878 | 0.8009 |
+| emanual | 0.6925 | 0.5999 | 0.6683 | 0.6949 | 0.6973 |
+| expertqa | 0.7393 | 0.6503 | 0.7834 | 0.7685 | 0.7969 |
+| finqa | 0.4267 | 0.7170 | 0.7093 | 0.6757 | 0.6515 |
+| hagrid | 0.7329 | 0.5992 | 0.6461 | 0.6279 | 0.6423 |
+| hotpotqa | 0.6296 | 0.5976 | 0.6728 | 0.6377 | 0.6766 |
+| pubmedqa | 0.6536 | 0.5162 | 0.6725 | 0.6273 | 0.5893 |
+| tatqa | 0.5999 | 0.6156 | 0.7948 | 0.7188 | 0.7842 |
+| techqa | 0.7030 | 0.6363 | 0.7745 | 0.7026 | 0.7361 |
+| **mean** | **0.6343** | **0.6461** | **0.7250** | **0.7007** | **0.7144** |
+
+- **Verdict** - **CONFIRMED** (measurement, no ship decision). The torch-free lexical tier sits 0.012 under the neural incumbent on the mean and beats it on 6 of 10 subsets (emanual, expertqa, hagrid, hotpotqa, pubmedqa, techqa) - the incumbent's mean survives on the high-base-rate subsets where GPT-4 labels are near-ceiling and small score noise decides the ranking
+- **The blind spot is worse than predicted** - finqa is **anti-predictive** (0.4267, below chance): numeric-misbind claims score as confidently grounded precisely because the numbers appear in the evidence bound to different cells. tatqa 0.5999 same mechanism, milder. This is the exact failure mode the semantic track's misbind lane (R17-H146 / R18-H150) was built against, and the crossover table shows the semantic recipe repairing it: finqa 0.4267 → 0.6515 (H150 d1)
+- **Complementarity is measured, not asserted** - the lexical tier beats the semantic track's best single model on pubmedqa (0.6536 vs 0.5893) and hagrid (0.7329 vs 0.6423). The two-tier cascade narrative (cheap deterministic first pass, neural residual) now has per-subset evidence on the publication benchmark
+- **The frozen cut does not transfer to the arena** - macro-F1 at the pre-registered 0.50 runs 0.31-0.67 per subset against base rates of 0.47-0.94: the cut was calibrated on private gold's balance, and on near-ceiling-base-rate arena items it over-flags. AUROC is the honest cross-benchmark read; a deployment cut on a new domain must be calibrated on that domain (gold-v2 methodology), never borrowed
+- **Instrument notes** - 3.9 claims/item mean, zero-claim rate ≤ 1.6% everywhere, 14 blocked claims total (lingua misdetecting biomedical English as la/eo with no argos bridge - the shipped UnsupportedLanguageError path, correctly skipped); runtime 0.8 min CPU for the full arena. One pre-measurement orchestration defect (fork deadlock from MT thread pools after the in-process sanity run) was fixed by moving the sanity read to a subprocess; determinism re-verified byte-identical on a full subset re-score. Runner: `experiments/grounding-lexical/arena_crossover.py`; results: `arena_crossover_ragbench.json`, `arena_crossover_ragtruth.json`, per-item checkpoints under `arena_crossover_ckpt/`
+
 ## Lessons learned
 
 - **Features beat model class** - the gain came from the lexical recall + claim-intrinsic features, not from a nonlinear learner; a regularised logistic is the right head for these few-context data

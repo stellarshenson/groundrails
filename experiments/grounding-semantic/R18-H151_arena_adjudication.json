@@ -1,0 +1,161 @@
+{
+  "experiment": "R18-H151c blind arena adjudication - H151b-selected pooling variant vs max",
+  "registered_bars": "PASS if the selected variant's per-seed arena mean is within 0.003 of max on BOTH seeds AND the two-seed mean spread shrinks >= 30% vs max's spread; FAIL -> max stands, variance attack moves to the training lever (EMA) only",
+  "inputs": {
+    "dumps": [
+      "R18-H151_scores_1142.parquet",
+      "R18-H151_scores_2142.parquet"
+    ],
+    "selection": "R18-H151_pooling_selection.json",
+    "banked_windowed_results": {
+      "1142": "R16-H142_G1_twin_windowed_result.json",
+      "2142": "R16-H142_T_draw2_windowed_result.json"
+    }
+  },
+  "subsets_in_dump": [
+    "tatqa",
+    "techqa",
+    "pubmedqa",
+    "hotpotqa",
+    "covidqa",
+    "emanual"
+  ],
+  "subsets_missing_from_dump": [
+    "delucionqa",
+    "expertqa",
+    "finqa",
+    "hagrid"
+  ],
+  "mean_scope": "all means/spreads are over the 6 dumped arena subsets; the 4 missing subsets keep their banked max-read values (context only, never mixed into any variant mean)",
+  "selected_variant": "max",
+  "degeneracy_note": "H151b's gold-side selection returned max itself (lowest two-seed spread among eligible variants), so the two registered arena reads coincide: clause 1 is vacuously satisfied and clause 2 vacuously fails (0% shrink). Per the contamination wall no non-max variant was read on the arena dumps.",
+  "per_subset": {
+    "tatqa": {
+      "1142": {
+        "max": 0.7947941888619855,
+        "selected": 0.7947941888619855
+      },
+      "2142": {
+        "max": 0.7188256658595642,
+        "selected": 0.7188256658595642
+      }
+    },
+    "techqa": {
+      "1142": {
+        "max": 0.7745461643568221,
+        "selected": 0.7745461643568221
+      },
+      "2142": {
+        "max": 0.7026481879107294,
+        "selected": 0.7026481879107294
+      }
+    },
+    "pubmedqa": {
+      "1142": {
+        "max": 0.6724720366338863,
+        "selected": 0.6724720366338863
+      },
+      "2142": {
+        "max": 0.6272802342166504,
+        "selected": 0.6272802342166504
+      }
+    },
+    "hotpotqa": {
+      "1142": {
+        "max": 0.6728098964907852,
+        "selected": 0.6728098964907852
+      },
+      "2142": {
+        "max": 0.6377177480434233,
+        "selected": 0.6377177480434233
+      }
+    },
+    "covidqa": {
+      "1142": {
+        "max": 0.7645008712969878,
+        "selected": 0.7645008712969878
+      },
+      "2142": {
+        "max": 0.766118994274334,
+        "selected": 0.766118994274334
+      }
+    },
+    "emanual": {
+      "1142": {
+        "max": 0.6682808716707022,
+        "selected": 0.6682808716707022
+      },
+      "2142": {
+        "max": 0.6949152542372882,
+        "selected": 0.6949152542372882
+      }
+    }
+  },
+  "per_seed_means": {
+    "max": {
+      "1142": 0.7245673382185281,
+      "2142": 0.6912510140903315
+    },
+    "selected": {
+      "1142": 0.7245673382185281,
+      "2142": 0.6912510140903315
+    }
+  },
+  "two_seed_mean": {
+    "max": 0.7079091761544298,
+    "selected": 0.7079091761544298
+  },
+  "two_seed_spread": {
+    "max": 0.03331632412819663,
+    "selected": 0.03331632412819663
+  },
+  "spread_reduction": 0.0,
+  "bars": {
+    "clause1_selected_within_0.003_of_max_both_seeds": {
+      "mean_abs_diff_per_seed": {
+        "1142": 0.0,
+        "2142": 0.0
+      },
+      "pass": true
+    },
+    "clause2_spread_shrink_ge_30pct": {
+      "max_spread": 0.03331632412819663,
+      "selected_spread": 0.03331632412819663,
+      "reduction": 0.0,
+      "pass": false
+    },
+    "pass": false
+  },
+  "verdict": "FAIL - max stands as the PRIMARY read; the pooling front of the variance attack is closed and the attack moves to the training lever (EMA, R18-H152) only",
+  "context_only_banked_max_read": {
+    "warning": "banked 4-subset and 10-subset max-read values, context only - NOT part of the adjudication",
+    "missing_subsets_per_seed": {
+      "1142": {
+        "delucionqa": 0.7636,
+        "expertqa": 0.7834,
+        "finqa": 0.7093,
+        "hagrid": 0.6461
+      },
+      "2142": {
+        "delucionqa": 0.7878,
+        "expertqa": 0.7685,
+        "finqa": 0.6757,
+        "hagrid": 0.6279
+      }
+    },
+    "ten_subset_mean_per_seed": {
+      "1142": 0.7249800000000001,
+      "2142": 0.7007300000000001
+    },
+    "ten_subset_spread": 0.024249999999999994
+  },
+  "sanity": "max-pooled per-subset AUROCs reproduce the banked windowed reads within 0.0001 on all 6 subsets x 2 seeds (asserted; the adjudication adds nothing beyond recomputation for the max read)",
+  "seeds": {
+    "draw1": 1142,
+    "draw2": 2142
+  },
+  "checkpoints": {
+    "1142": "R16-H142-G1-twin",
+    "2142": "R16-H142-T-draw2"
+  }
+}

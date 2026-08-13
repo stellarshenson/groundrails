@@ -1,0 +1,76 @@
+{
+  "experiment": "R18-H151b pooling-variant selection (gold_full only)",
+  "scope": "computed on the gold_full dumps of both seeds ONLY; the arena dumps took no part in this choice (H151c adjudicates the selected variant blind on the arena dumps)",
+  "poolings": {
+    "max": "sentence score = max over windows (banked baseline)",
+    "top2_mean": "mean of the top-2 window scores",
+    "top3_mean": "mean of the top-3 window scores",
+    "top10pct_mean": "mean of the top-ceil(10%) window scores, min 1",
+    "logsumexp_tau1.0": "tau * log(sum(exp(score/tau))), tau = 1.0, logit scale",
+    "logsumexp_tau4.0": "same, tau = 4.0 (softer, closer to mean)"
+  },
+  "item_aggregation": "min over sentences (unchanged)",
+  "subset_blind": true,
+  "selection_rule": "among variants with two-seed mean >= max's two-seed mean - 0.002, pick the lowest two-seed spread; tie-break toward max",
+  "max_two_seed_mean": 0.8495090844612871,
+  "variants": [
+    {
+      "variant": "max",
+      "auc_1142": 0.8468131259399616,
+      "auc_2142": 0.8522050429826128,
+      "two_seed_mean": 0.8495090844612871,
+      "two_seed_spread": 0.005391917042651184,
+      "eligible": true
+    },
+    {
+      "variant": "top2_mean",
+      "auc_1142": 0.8492644679655931,
+      "auc_2142": 0.855372761888491,
+      "two_seed_mean": 0.8523186149270421,
+      "two_seed_spread": 0.006108293922897912,
+      "eligible": true
+    },
+    {
+      "variant": "top3_mean",
+      "auc_1142": 0.8367560228722895,
+      "auc_2142": 0.8403870894260961,
+      "two_seed_mean": 0.8385715561491928,
+      "two_seed_spread": 0.003631066553806628,
+      "eligible": false
+    },
+    {
+      "variant": "top10pct_mean",
+      "auc_1142": 0.8246462120682648,
+      "auc_2142": 0.83150582808508,
+      "two_seed_mean": 0.8280760200766724,
+      "two_seed_spread": 0.006859616016815173,
+      "eligible": false
+    },
+    {
+      "variant": "logsumexp_tau1.0",
+      "auc_1142": 0.7739581796391066,
+      "auc_2142": 0.776177847840774,
+      "two_seed_mean": 0.7750680137399404,
+      "two_seed_spread": 0.002219668201667413,
+      "eligible": false
+    },
+    {
+      "variant": "logsumexp_tau4.0",
+      "auc_1142": 0.5850741226809968,
+      "auc_2142": 0.5810042995555487,
+      "two_seed_mean": 0.5830392111182727,
+      "two_seed_spread": 0.004069823125448124,
+      "eligible": false
+    }
+  ],
+  "selected_variant": "max",
+  "notes": [
+    "H151b prediction REFUTED on the gold-side selection: no variant cuts the two-seed spread within the 0.002 mean budget - max itself carries the lowest spread (0.0054) of the eligible set; top2_mean is the only other eligible variant and its spread is worse (0.0061) despite a +0.0028 higher mean",
+    "softer poolings fail the mean budget on gold_full (top3 -0.011, top10pct -0.021, lse_tau1.0 -0.074, lse_tau4.0 -0.267 vs max)",
+    "lse collapse mechanism: with near-equal window scores, tau*log(sum(exp(x/tau))) ~= max + tau*log(nwin) - a per-item offset proportional to log(windows/item) that scrambles the cross-item ranking under min-over-sentences (gold_full averages ~47 windows/sentence); the larger tau, the larger the length bias, hence lse_tau4.0 AUROC ~0.58"
+  ],
+  "seeds": {
+    "draw1": 1142,
+    "draw2": 2142
+  }
+}

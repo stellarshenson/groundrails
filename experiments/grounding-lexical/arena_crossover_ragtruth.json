@@ -1,0 +1,50 @@
+{
+  "experiment": "R14 lexical arena crossover - RAGTruth EN eval slice",
+  "caveat": "asymmetry: the semantic track TRAINS on ragtruth_en, so this slice is a clean read for the LEXICAL tier only; the lexical manifold's fit data is gold v2 + VitaminC + synthetic negatives, never RAGTruth",
+  "subset": "ragtruth_en",
+  "n_items": 600,
+  "pos_rate": 0.65,
+  "claims_per_item_mean": 6.713,
+  "claims_per_item_max": 18,
+  "zero_claim_rate": 0.0,
+  "blocked_claims": 0,
+  "error_claims": 0,
+  "first_error": null,
+  "min_auroc": 0.6991,
+  "min_f1_macro_at_050": 0.5109,
+  "min_tpr_at_050": 0.2872,
+  "min_tnr_at_050": 0.9571,
+  "min_confusion_at_050": {
+    "tp": 112,
+    "tn": 201,
+    "fp": 9,
+    "fn": 278
+  },
+  "mean_claim_diagnostic_auroc": 0.7785,
+  "runtime_s": 5.6,
+  "provenance": {
+    "config_path": "/home/lab/workspace/private/ai-assistants/groundrails/src/groundrails/config_document_processing.yaml",
+    "config_sha256": "ff64afdb08ee9393f5a5958b1db38933220529585e7ce2f26b4ec562873aa423",
+    "pipeline_entry": "groundrails.extract.extract_claims(response) -> per claim groundrails.grounding.ground(claim, documents, config=cfg) -> lex_p = m.verdict_probability if m.verdict_probability >= 0 else m.agreement_score",
+    "extractor": "regex extract_claims (English verb/copula gate) - the shipped CLI extractor",
+    "frozen_cut": 0.5,
+    "item_score": "min over claim lex_p; zero-claimed item scores 1.0 (R13 convention)",
+    "blocked_claim_policy": "UnsupportedLanguageError claims are skipped; an item with no scored claim scores 1.0",
+    "env": {
+      "GROUNDRAILS_ARGOS_AUTO_INSTALL": "0",
+      "cuda_vars_set": false
+    },
+    "sanity_A": {
+      "items": 8,
+      "float_fields_compared": 80,
+      "max_abs_diff": 0.0,
+      "mismatches": [],
+      "passed": true,
+      "method": "tests/test_equivalence_golden.py _snapshot() vs tests/data/grounding_golden.json (subprocess)"
+    },
+    "sanity_B": {
+      "counts_match": true,
+      "note": "expected census covidqa 245, delucionqa 184, emanual 132, expertqa 203, finqa/hagrid/hotpotqa/pubmedqa/tatqa/techqa 250 (banked arena read)"
+    }
+  }
+}

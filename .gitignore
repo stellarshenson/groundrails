@@ -244,3 +244,4 @@ experiments/grounding-semantic/*.parquet.ckpt
 experiments/grounding-semantic/R13-H129_targets_parts/
 experiments/grounding-lexical/*.parquet
 tmp/
+experiments/grounding-semantic/_equiv_state_*.pt

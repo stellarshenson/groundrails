@@ -1,0 +1,206 @@
+{
+  "experiment": "R18-H151a variance anatomy",
+  "seeds": {
+    "draw1": 1142,
+    "draw2": 2142
+  },
+  "checkpoints": {
+    "1142": "R16-H142-G1-twin",
+    "2142": "R16-H142-T-draw2"
+  },
+  "method": {
+    "argmax_flip_rate": "fraction of sentences whose argmax window_id differs across seeds; ties break to lowest window_id on both sides",
+    "score_drift": "mean |score_1142 - score_2142| over all (sentence, window) pairs of the subset",
+    "swing_decomposition": "swing = auc_1142 - auc_2142 under the banked max-over-windows/min-over-sentences read; flip component = draw-2 AUROC gain when re-scored at draw-1's argmax windows (and symmetrically); drift residual = what remains; each direction sums exactly to the signed swing"
+  },
+  "per_subset": [
+    {
+      "subset": "tatqa",
+      "n_items": 250,
+      "n_sentences": 468,
+      "n_pairs": 1942,
+      "mean_windows_per_item": 4.16,
+      "auc_1142": 0.7947941888619855,
+      "auc_2142": 0.7188256658595642,
+      "swing_1142_minus_2142": 0.0759685230024213,
+      "abs_swing": 0.0759685230024213,
+      "argmax_flip_rate": 0.11752136752136752,
+      "n_argmax_flips": 55,
+      "score_drift_mean_abs_delta": 0.8275178074836731,
+      "score_std_1142": 2.3367927074432373,
+      "score_std_2142": 2.4165306091308594,
+      "drift_over_mean_std": 0.3481849133968353,
+      "decomposition": {
+        "auc_2142_at_1142_argmax": 0.7151937046004841,
+        "flip_component_from_2142_side": -0.003631961259080052,
+        "drift_residual_from_2142_side": 0.07960048426150135,
+        "auc_1142_at_2142_argmax": 0.7866222760290557,
+        "flip_component_from_1142_side": 0.00817191283292984,
+        "drift_residual_from_1142_side": 0.06779661016949146,
+        "flip_component_mean": 0.0022699757869248938,
+        "drift_residual_mean": 0.0736985472154964
+      }
+    },
+    {
+      "subset": "techqa",
+      "n_items": 250,
+      "n_sentences": 1737,
+      "n_pairs": 39058,
+      "mean_windows_per_item": 22.496,
+      "auc_1142": 0.7745461643568221,
+      "auc_2142": 0.7026481879107294,
+      "swing_1142_minus_2142": 0.07189797644609275,
+      "abs_swing": 0.07189797644609275,
+      "argmax_flip_rate": 0.514104778353483,
+      "n_argmax_flips": 893,
+      "score_drift_mean_abs_delta": 1.0155967473983765,
+      "score_std_1142": 1.6363050937652588,
+      "score_std_2142": 1.6742839813232422,
+      "drift_over_mean_std": 0.6135444045066833,
+      "decomposition": {
+        "auc_2142_at_1142_argmax": 0.7252911705380962,
+        "flip_component_from_2142_side": 0.02264298262736686,
+        "drift_residual_from_2142_side": 0.04925499381872589,
+        "auc_1142_at_2142_argmax": 0.7551564838310885,
+        "flip_component_from_1142_side": 0.019389680525733644,
+        "drift_residual_from_1142_side": 0.052508295920359105,
+        "flip_component_mean": 0.02101633157655025,
+        "drift_residual_mean": 0.0508816448695425
+      }
+    },
+    {
+      "subset": "pubmedqa",
+      "n_items": 250,
+      "n_sentences": 1314,
+      "n_pairs": 6570,
+      "mean_windows_per_item": 5.0,
+      "auc_1142": 0.6724720366338863,
+      "auc_2142": 0.6272802342166504,
+      "swing_1142_minus_2142": 0.04519180241723597,
+      "abs_swing": 0.04519180241723597,
+      "argmax_flip_rate": 0.2800608828006088,
+      "n_argmax_flips": 368,
+      "score_drift_mean_abs_delta": 0.7882784008979797,
+      "score_std_1142": 1.9592443704605103,
+      "score_std_2142": 1.7125431299209595,
+      "drift_over_mean_std": 0.42937037348747253,
+      "decomposition": {
+        "auc_2142_at_1142_argmax": 0.6178965543127393,
+        "flip_component_from_2142_side": -0.00938367990391109,
+        "drift_residual_from_2142_side": 0.05457548232114706,
+        "auc_1142_at_2142_argmax": 0.6630883567299751,
+        "flip_component_from_1142_side": 0.009383679903911202,
+        "drift_residual_from_1142_side": 0.03580812251332477,
+        "flip_component_mean": 5.551115123125783e-17,
+        "drift_residual_mean": 0.045191802417235916
+      }
+    },
+    {
+      "subset": "hotpotqa",
+      "n_items": 250,
+      "n_sentences": 293,
+      "n_pairs": 1177,
+      "mean_windows_per_item": 4.016,
+      "auc_1142": 0.6728098964907852,
+      "auc_2142": 0.6377177480434233,
+      "swing_1142_minus_2142": 0.03509214844736186,
+      "abs_swing": 0.03509214844736186,
+      "argmax_flip_rate": 0.24573378839590443,
+      "n_argmax_flips": 72,
+      "score_drift_mean_abs_delta": 0.6969012022018433,
+      "score_std_1142": 1.708287000656128,
+      "score_std_2142": 1.8019039630889893,
+      "drift_over_mean_std": 0.39707309007644653,
+      "decomposition": {
+        "auc_2142_at_1142_argmax": 0.602120676596819,
+        "flip_component_from_2142_side": -0.03559707144660429,
+        "drift_residual_from_2142_side": 0.07068921989396615,
+        "auc_1142_at_2142_argmax": 0.6192880585710681,
+        "flip_component_from_1142_side": 0.0535218379197171,
+        "drift_residual_from_1142_side": -0.018429689472355237,
+        "flip_component_mean": 0.008962383236556404,
+        "drift_residual_mean": 0.026129765210805456
+      }
+    },
+    {
+      "subset": "covidqa",
+      "n_items": 245,
+      "n_sentences": 385,
+      "n_pairs": 1540,
+      "mean_windows_per_item": 4.0,
+      "auc_1142": 0.7645008712969878,
+      "auc_2142": 0.766118994274334,
+      "swing_1142_minus_2142": -0.0016181229773462036,
+      "abs_swing": 0.0016181229773462036,
+      "argmax_flip_rate": 0.15064935064935064,
+      "n_argmax_flips": 58,
+      "score_drift_mean_abs_delta": 1.0034514665603638,
+      "score_std_1142": 3.0592148303985596,
+      "score_std_2142": 2.7709150314331055,
+      "drift_over_mean_std": 0.3442295491695404,
+      "decomposition": {
+        "auc_2142_at_1142_argmax": 0.7656211102813045,
+        "flip_component_from_2142_side": -0.0004978839930295242,
+        "drift_residual_from_2142_side": -0.0011202389843166793,
+        "auc_1142_at_2142_argmax": 0.7712223052028877,
+        "flip_component_from_1142_side": -0.006721433905899854,
+        "drift_residual_from_1142_side": 0.00510331092855365,
+        "flip_component_mean": -0.003609658949464689,
+        "drift_residual_mean": 0.0019915359721184855
+      }
+    },
+    {
+      "subset": "emanual",
+      "n_items": 132,
+      "n_sentences": 748,
+      "n_pairs": 2983,
+      "mean_windows_per_item": 4.015151515151516,
+      "auc_1142": 0.6682808716707022,
+      "auc_2142": 0.6949152542372882,
+      "swing_1142_minus_2142": -0.026634382566586012,
+      "abs_swing": 0.026634382566586012,
+      "argmax_flip_rate": 0.22727272727272727,
+      "n_argmax_flips": 170,
+      "score_drift_mean_abs_delta": 0.9891952872276306,
+      "score_std_1142": 2.568077802658081,
+      "score_std_2142": 2.6026298999786377,
+      "drift_over_mean_std": 0.3826150596141815,
+      "decomposition": {
+        "auc_2142_at_1142_argmax": 0.6567796610169492,
+        "flip_component_from_2142_side": -0.03813559322033899,
+        "drift_residual_from_2142_side": 0.01150121065375298,
+        "auc_1142_at_2142_argmax": 0.6531476997578693,
+        "flip_component_from_1142_side": 0.01513317191283281,
+        "drift_residual_from_1142_side": -0.04176755447941882,
+        "flip_component_mean": -0.011501210653753091,
+        "drift_residual_mean": -0.015133171912832921
+      }
+    }
+  ],
+  "regressions": {
+    "abs_swing_vs_mean_windows_per_item": {
+      "slope": 0.0019632640206328654,
+      "intercept": 0.028438923853901767,
+      "pearson_r": 0.5200709173524407,
+      "r_squared": 0.27047375907580923,
+      "n": 6
+    },
+    "flip_rate_vs_mean_windows_per_item": {
+      "slope": 0.0171520248639135,
+      "intercept": 0.1310032976620012,
+      "pearson_r": 0.9125329324885048,
+      "r_squared": 0.8327163528760699,
+      "n": 6
+    }
+  },
+  "prediction_test": {
+    "prediction": "subset AUROC swing scales with mean windows/item (max-selection amplification); stable subsets flip rarely",
+    "supported": true,
+    "evidence": {
+      "slope_abs_swing_per_window": 0.0019632640206328654,
+      "pearson_r_abs_swing": 0.5200709173524407,
+      "pearson_r_flip_rate": 0.9125329324885048
+    }
+  },
+  "sanity": "per-seed max-pooled AUROCs reproduce the banked windowed reads within 0.0001 on all 6 subsets (asserted)"
+}

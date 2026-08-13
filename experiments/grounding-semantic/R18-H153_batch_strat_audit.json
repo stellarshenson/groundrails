@@ -1,0 +1,114 @@
+{
+  "n_rows": 685670,
+  "n_batches": 14300,
+  "mix_share": {
+    "halueval": 0.0583,
+    "psiloqa": 0.09,
+    "ragtruth_cn": 0.022,
+    "ragtruth_de": 0.022,
+    "ragtruth_en": 0.022,
+    "ragtruth_es": 0.022,
+    "ragtruth_fr": 0.022,
+    "ragtruth_hu": 0.022,
+    "ragtruth_it": 0.022,
+    "ragtruth_pl": 0.022,
+    "tabfact": 0.135,
+    "vitaminc": 0.5406
+  },
+  "per_batch": {
+    "halueval": {
+      "mean": 0.0584,
+      "p05": 0.0,
+      "p95": 0.125,
+      "zero_share": 0.0559
+    },
+    "psiloqa": {
+      "mean": 0.09,
+      "p05": 0.0208,
+      "p95": 0.1667,
+      "zero_share": 0.0103
+    },
+    "ragtruth_cn": {
+      "mean": 0.022,
+      "p05": 0.0,
+      "p95": 0.0625,
+      "zero_share": 0.3456
+    },
+    "ragtruth_de": {
+      "mean": 0.022,
+      "p05": 0.0,
+      "p95": 0.0625,
+      "zero_share": 0.3423
+    },
+    "ragtruth_en": {
+      "mean": 0.022,
+      "p05": 0.0,
+      "p95": 0.0625,
+      "zero_share": 0.3431
+    },
+    "ragtruth_es": {
+      "mean": 0.022,
+      "p05": 0.0,
+      "p95": 0.0625,
+      "zero_share": 0.3395
+    },
+    "ragtruth_fr": {
+      "mean": 0.022,
+      "p05": 0.0,
+      "p95": 0.0625,
+      "zero_share": 0.3418
+    },
+    "ragtruth_hu": {
+      "mean": 0.022,
+      "p05": 0.0,
+      "p95": 0.0625,
+      "zero_share": 0.3445
+    },
+    "ragtruth_it": {
+      "mean": 0.022,
+      "p05": 0.0,
+      "p95": 0.0625,
+      "zero_share": 0.3448
+    },
+    "ragtruth_pl": {
+      "mean": 0.022,
+      "p05": 0.0,
+      "p95": 0.0625,
+      "zero_share": 0.3409
+    },
+    "tabfact": {
+      "mean": 0.135,
+      "p05": 0.0625,
+      "p95": 0.2292,
+      "zero_share": 0.0009
+    },
+    "vitaminc": {
+      "mean": 0.5405,
+      "p05": 0.4167,
+      "p95": 0.6667,
+      "zero_share": 0.0
+    },
+    "w1": {
+      "mean": 0.7992,
+      "p05": 0.7083,
+      "p95": 0.8958
+    },
+    "w2_3": {
+      "mean": 0.1359,
+      "p05": 0.0625,
+      "p95": 0.2292
+    },
+    "w4p": {
+      "mean": 0.065,
+      "p05": 0.0208,
+      "p95": 0.125
+    }
+  },
+  "multi_window_share": {
+    "mean": 0.2008,
+    "p05": 0.1042,
+    "p95": 0.2917,
+    "min": 0.0208,
+    "max": 0.4565
+  }
+}
