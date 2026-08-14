@@ -310,18 +310,21 @@ The deliverable line, graduated on the 2-draw adjudication of 2026-08-13: the cl
 - **Memory and cost** - peak ~57 GB reserved per step: the bill is the resident window stacks (96 pairs x dozens of 1,500-char windows), not the 150M trunk - the registered batch geometry requires the 96 GB card; ~4.0-4.4 GPU-h per draw
 - **Serving read** - identical to the training presentation by construction: sentence decomposition (terminal-punctuation regex, min 25 chars, cap 12), every (sentence, window) pair scored, per-sentence MAX over all windows of all chunks (OR over evidence), per-response hard MIN over sentences (AND over claims)
 
-**Dataset recipe** - 721,210 pairs, 14 corpus groups, public sources only:
+**Dataset recipe** - 721,210 pairs, 14 corpus groups, public sources only. Each source supplies a different support structure - the mix is a stack of four negative types, not a pile of QA pairs:
 
-| source | pairs | contribution |
-|---|---|---|
-| RAGTruth EN train | 15,090 | span-annotated responses; label = no evident-conflict AND no baseless-info |
-| RAGTruth translations (de, fr, es, it, pl, hu, cn) | 105,630 | the multilingual carrier |
-| HaluEval | 40,000 | synthetic hallucination pairs |
-| PsiloQA | 61,712 | multilingual QA hallucinations |
-| VitaminC | 370,653 | near-miss evidence negatives - the boundary-sharpening mass |
-| TabFact | 92,585 | tabular register |
-| **quant_misbind (R17-H146 lane)** | 30,000 | adjacent-cell numeric misbind minimal pairs - teaches column/row binding (bind_col probe 0.95-0.96, bind_row 0.99) |
-| **quant_scale_unit (R18-H150 lane)** | 5,540 | unit/scale swap negatives (kw↔mw, kg↔tonne, kmh↔kt families) |
+| source | pairs | support signal (label structure) | register |
+|---|---|---|---|
+| RAGTruth EN train | 15,090 | human span-level annotations of unsupported content in RAG responses, collapsed to a response-level label (negative = carries an evident-conflict or baseless-info span) - the only corpus whose negatives are hand-marked spans inside otherwise fluent responses | English news/encyclopedic QA + summarization |
+| RAGTruth translations (de, fr, es, it, pl, hu, cn) | 105,630 | the same span-derived labels over machine-translated pairs - the multilingual carrier | 7 languages, same domains |
+| HaluEval | 40,000 | synthetic pair-level labels - LLM-fabricated hallucinated answers vs faithful ones | English encyclopedic QA |
+| PsiloQA | 61,712 | synthetic hallucinated QA answers, pair-level labels | multilingual QA |
+| VitaminC | 370,653 | claim/evidence verification: SUPPORTS → 1, REFUTES and NEI → 0; REFUTES items are minimal factual perturbations mined from Wikipedia revision pairs - near-miss negatives, the boundary-sharpening mass | Wikipedia articles |
+| TabFact | 92,585 | table-entailment labels - a claim is supported or refuted by an evidence table | Wikipedia tables (structured evidence) |
+| **quant_misbind (R17-H146 lane)** | 30,000 | synthetic minimal pairs - the same sentence with its number swapped for an adjacent cell's value; negative = misbound (bind_col probe 0.95-0.96, bind_row 0.99) | tables, numeric |
+| **quant_scale_unit (R18-H150 lane)** | 5,540 | synthetic unit/scale swap negatives (kw↔mw, kg↔tonne, kmh↔kt families) | tables, numeric |
+
+- **Composition logic** - four negative structures stacked: span-level HUMAN negatives (RAGTruth block), near-miss factual negatives (VitaminC, 51% of the mix by design), structured-evidence entailment (TabFact - the register behind the arena's table-heavy subsets), synthetic numeric-binding negatives (the two quant lanes); multilingual coverage rides on the translations plus PsiloQA
+- **DANN group geometry** - the 14 corpus groups the discriminator tries (and fails) to predict: the 8 RAGTruth language blocks plus each remaining source as its own group - domain identity is a training target for the adversarial head only, never a model input
 
 - **Excluded by protocol, unchanged** - ALL private/client data and RAGBench (never touched by anything, ever); test sets fully held out: RAGBench blind (frozen R8-H77 gate, 10 subsets, 2,264 responses) and the full private gold (2,752 claims)
 - **Not carried** - the R10-H108 quantitative-nearmiss lane (the previous flagship's additive): the twin protocol plus the binding lanes superseded it on the mean bar and on every subset where the instrument resolves; composing it back is an open, unregistered arm

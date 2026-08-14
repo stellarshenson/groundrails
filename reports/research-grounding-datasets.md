@@ -98,6 +98,26 @@ Three probes, each under a day, in this order. Stop at the first one that fails.
 
 **Kill criterion**: if probe 1 shows the cascade already at parity on public test splits AND probe 2 shows a public-trained verifier failing on our gold, then public data is a different problem and the honest conclusion is to spend the budget on annotating more private traces instead.
 
+## Re-survey 2026-08-13 - the 2023-2026 hallucination-detection circuit beyond the register
+
+A web reconnaissance pass over the post-2023 literature (licences verified at source - card YAML, repo LICENSE files - not from marketing pages; contamination-wall derivation checked against each paper's construction section). Everything already in the mix, the register, or the licence-excluded list was out of scope. Net: four admit-candidates and two high-value flagged items; the rest of the circuit is licence-dead, evidence-less, eval-only, or inside the contamination wall.
+
+**ADMIT-CANDIDATES** (clean licence, evidence ships, wall-clean; admission ruling is the author's):
+
+- **FAVA fava-data** (2024, arXiv 2401.06855, CC-BY-4.0) - 30,073 train rows: long-form responses with span-level tags across six error types against embedded reference passages, plus 460 human-annotated gold. The only span-level long-form taxonomy set found; synthetic negatives. Caveat: Wikipedia/web register, not business documents
+- **PubHealth** (2020, EMNLP, MIT) - 12,288 real-world public-health fact-checks (Snopes/PolitiFact/Full Fact lineage) with source article text and journalist explanations; human labels throughout, a register nothing in the mix covers. Mapping of the 4-way verdict needs a ruling (recommend unproven/mixture -> 0 or drop); per-row evidence completeness unverified (HF viewer disabled - check on pull)
+- **MiniCheck C2D/D2C** (2024, EMNLP, MIT on the card) - 14,395 (claim, doc) pairs, GPT-4-synthesised for multi-fact, multi-sentence checking. Gate before mixing: the seed corpora are named only in the paper's Appendix D - run the R13-style 8-gram provenance instrument against the ten walled corpora on pull; if seeds are HotpotQA-derived it dies at the gate
+- **FActScore labeled biographies** (2023, EMNLP, MIT) - order 10k human-labeled atomic facts over LM biographies against Wikipedia. Small; a high-precision slice or a held-out long-form probe, not bulk supervision
+
+**FLAGGED - rulings needed**:
+
+- **FinDVer** (2024, EMNLP, MIT) - 2,400 claims over 2024 SEC 10-K/10-Q filings with paragraph/table evidence indices; the ONLY candidate filling the financial numeric-derivation gap directly (the flagship's sole losing register). Flag: shares the SEC EDGAR population with the walled FinQA/TAT-QA lineage - but its documents are 2024 filings, the walled corpora are pre-2020, so document overlap is structurally impossible. The register's own EDGAR restricted slice was admitted under the same population logic with the 8-gram instrument at 0.0; FinDVer inherits that gate
+- **AttributionBench** (2024, ACL Findings, Apache-2.0) - 26.4k attribution pairs BUT its train split contains walled ExpertQA (4,442 rows) and HAGRID (1,088). A carve-out via the `src_dataset` field keeps ~18k clean pairs (Stanford-GenSearch, AttributedQA, LFQA, BEGIN, AttrEval); precedent: the RAGBench fetch itself excluded MS MARCO/CUAD subsets. Gate verifies zero walled rows on pull
+
+Also flagged and parked: FACTS Grounding (licence unverified at source; Class B only), Climate-FEVER / HealthVer / COVID-Fact (licence absent; the latter two also sit on the CORD-19 population near walled CovidQA), DialFact (upstream WoW/TopicalChat licence chain unverified), MNBM XSum annotations (BBC redistribution provenance).
+
+**Dead on arrival** (recorded so they are never re-surveyed): CRAG, HalluLens, FaithBench, FELM, HaluQuestQA, MultiFC, AVeriTeC, HealthFC (all NC-class licences); Hover (HotpotQA-derived - walled), MedHallu (PubMedQA-derived - walled); TofuEval (explicit no-training terms); RAGChecker (gated components); X-Fact / Poly-FEVER / LongFact (no evidence ships); HaluEval-Wild (no grounding labels); ASQA/QAMPARI/ELI5 (no support labels - Class B at best); FRANK/FactCC/SummEval/QAGS/Polytope (no data licence, CNN/DM-XSum provenance); TRUE (aggregate of the above); FAME/FactualBench/HALoGEN/CCHall/MultiHal/REFUTE-v3/DiaHalu (eval-only); WildHallucinations (never released); Kaggle sci-hallucination 2025 (competition licence).
+
 ## Sources
 
 - [wandb/RAGTruth-processed](https://huggingface.co/datasets/wandb/RAGTruth-processed) and [ParticleMedia/RAGTruth](https://github.com/ParticleMedia/RAGTruth)

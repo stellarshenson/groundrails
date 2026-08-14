@@ -1,0 +1,139 @@
+{
+  "corpus": "fava",
+  "instrument": "provenance_gate.py (R14-H136 ruling 2 form: 8-gram, Jaccard >= 0.3, bidirectional, KILL > 2%)",
+  "licence_sidecar": {
+    "pass": true,
+    "path": "/home/lab/workspace/private/ai-assistants/groundrails/data/external/datasets/dataset-fava.md",
+    "present": true,
+    "records_licence_token": true,
+    "records_r19_registration": true
+  },
+  "restriction_reverification": {
+    "pass": true,
+    "rows": 30073,
+    "prompt_structure_parsed": 30073,
+    "prompt_structure_rate": 1.0,
+    "completions_with_error_tags": 29436,
+    "gold_rows_banked_not_gated": 460
+  },
+  "provenance_gate": {
+    "pass": true,
+    "spike_control": {
+      "injected": 10,
+      "detected_total": 10,
+      "baseline_hits": 0,
+      "passes": true,
+      "candidate_units": 2000
+    },
+    "result": {
+      "instrument": "provenance_gate.py (R13 ruling 4)",
+      "mode": "jaccard",
+      "n": 8,
+      "jaccard_threshold": 0.3,
+      "thresholds": {
+        "warn": 0.005,
+        "kill": 0.02
+      },
+      "candidate": {
+        "label": "r19_fava",
+        "n_units": 30072,
+        "n_units_scorable": 30072
+      },
+      "arena": {
+        "subsets": {
+          "covidqa": 980,
+          "delucionqa": 552,
+          "emanual": 396,
+          "expertqa": 759,
+          "finqa": 725,
+          "hagrid": 703,
+          "hotpotqa": 998,
+          "pubmedqa": 1250,
+          "tatqa": 1032,
+          "techqa": 1250
+        },
+        "n_units": 8645,
+        "n_units_scorable": 8555
+      },
+      "candidate_vs_arena": {
+        "n_units": 30072,
+        "units_with_hit": 1,
+        "fraction": 3.3e-05,
+        "per_arena_subset": {
+          "covidqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "delucionqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "emanual": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "expertqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "finqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hagrid": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hotpotqa": {
+            "units_with_hit": 1,
+            "fraction": 3.3e-05
+          },
+          "pubmedqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "tatqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "techqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        },
+        "best_jaccard": {
+          "max": 0.3103,
+          "p99": 0.0081,
+          "mean": 0.0004
+        }
+      },
+      "arena_vs_candidate": {
+        "n_units": 8645,
+        "units_with_hit": 1,
+        "fraction": 0.000116,
+        "per_arena_subset": {
+          "r19_fava": {
+            "units_with_hit": 1,
+            "fraction": 0.000116
+          }
+        },
+        "best_jaccard": {
+          "max": 0.3103,
+          "p99": 0.0099,
+          "mean": 0.0008
+        }
+      },
+      "max_fraction": 0.000116,
+      "verdict": "PASS",
+      "hit_examples": [
+        {
+          "candidate_unit": 2437,
+          "bucket": "hotpotqa",
+          "unit": 103,
+          "jaccard": 0.3103
+        }
+      ]
+    }
+  },
+  "status": "GREEN"
+}

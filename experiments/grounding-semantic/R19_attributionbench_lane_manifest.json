@@ -1,0 +1,55 @@
+{
+  "experiment": "R19 supply wave lane - attributionbench (SUPPLY ONLY; no training use without a registered hypothesis)",
+  "registration": "docs/experiments/semantic-dataset-enhancements.md, section 'R19 supply wave' (2026-08-13)",
+  "rows": 16444,
+  "documents": 12139,
+  "label_distribution": {
+    "1": 10656,
+    "0": 5788
+  },
+  "source_distribution": {
+    "test_ood": 597,
+    "train": 14125,
+    "test": 995,
+    "dev": 727
+  },
+  "tag": "attributionbench",
+  "provenance_columns": [
+    "src_dataset",
+    "question",
+    "ab_id",
+    "n_references"
+  ],
+  "build_stats": {
+    "rows_in": 16524
+  },
+  "gate": "R19_attributionbench_gate.json (status GREEN)",
+  "fetch": "data/external/datasets/dataset-attributionbench.zip",
+  "verify": {
+    "integrity": {
+      "labels_in_01": true,
+      "empty_claims": 0,
+      "empty_chunks": 0,
+      "duplicate_claim_chunk_label_rows": 0,
+      "pass": true
+    },
+    "claim_only_tfidf_auroc": {
+      "value": 0.6538,
+      "bar": "< 0.55 on synthetic minimal-pair lanes",
+      "pass": false,
+      "applicability": "measurement only for supply lanes - real corpora carry legitimate claim-side signal; banking is decided by the licence + contamination gates",
+      "scoring": "5-fold document-disjoint (GroupKFold on doc_id), liblinear tol 1e-7",
+      "documents": 12139,
+      "rows": 16444
+    },
+    "disjointness": {
+      "evalset_present": true,
+      "evalset_shared_content_fingerprints": 0,
+      "distinct_claims": 13826,
+      "distinct_chunks": 12139,
+      "distinct_documents": 12139,
+      "pass": true
+    },
+    "all_integrity_pass": true
+  }
+}

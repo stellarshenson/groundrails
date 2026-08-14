@@ -1,0 +1,129 @@
+{
+  "gold": {
+    "auc": 0.8333,
+    "f1": 0.7408,
+    "n": 717
+  },
+  "gold_full": {
+    "auc": 0.8456,
+    "f1": 0.7292,
+    "n": 2752
+  },
+  "ragtruth_en": {
+    "auc": 0.7902,
+    "f1": 0.716,
+    "n": 600
+  },
+  "ragtruth_nonen": {
+    "auc": 0.838,
+    "per_lang": {
+      "de": 0.8375,
+      "fr": 0.8311,
+      "es": 0.8451,
+      "it": 0.8303,
+      "pl": 0.8334,
+      "hu": 0.8229,
+      "cn": 0.8656
+    }
+  },
+  "run": "twin",
+  "draw": 2,
+  "arm": "h152_regularized_twin_draw2",
+  "executor": "split",
+  "split": {
+    "pass_a_chunk": 32,
+    "pass_b_chunk": 8,
+    "equivalence_proof": "R18-H152_exec_equivalence.json"
+  },
+  "adapter_active": false,
+  "seed": 3152,
+  "init_fingerprint": "15537f92ad39e09ecb223b1edb347e4f",
+  "perm_fingerprint": "70d71966b2f7ebcb",
+  "window_census": {
+    "mean_windows_per_row": 1.5071,
+    "median_windows_per_row": 1,
+    "p90_windows_per_row": 3,
+    "max_windows_per_row": 40,
+    "rows_with_multi_window_set": 137622,
+    "multi_window_share": 0.2007,
+    "total_pairs": 1033365,
+    "histogram_clipped_at_10": {
+      "1": 548048,
+      "2": 51038,
+      "3": 42105,
+      "4": 17501,
+      "5": 9482,
+      "6": 5569,
+      "7": 3828,
+      "8": 2675,
+      "9": 1818,
+      "10": 3606
+    },
+    "per_group": {
+      "halueval": {
+        "rows": 40000,
+        "mean_windows": 2.839,
+        "max_windows": 15
+      },
+      "psiloqa": {
+        "rows": 61712,
+        "mean_windows": 1.07,
+        "max_windows": 25
+      },
+      "ragtruth_cn": {
+        "rows": 15090,
+        "mean_windows": 1.58,
+        "max_windows": 11
+      },
+      "ragtruth_de": {
+        "rows": 15090,
+        "mean_windows": 3.312,
+        "max_windows": 16
+      },
+      "ragtruth_en": {
+        "rows": 15090,
+        "mean_windows": 2.687,
+        "max_windows": 14
+      },
+      "ragtruth_es": {
+        "rows": 15090,
+        "mean_windows": 3.316,
+        "max_windows": 17
+      },
+      "ragtruth_fr": {
+        "rows": 15090,
+        "mean_windows": 3.44,
+        "max_windows": 16
+      },
+      "ragtruth_hu": {
+        "rows": 15090,
+        "mean_windows": 3.004,
+        "max_windows": 40
+      },
+      "ragtruth_it": {
+        "rows": 15090,
+        "mean_windows": 3.332,
+        "max_windows": 16
+      },
+      "ragtruth_pl": {
+        "rows": 15090,
+        "mean_windows": 3.078,
+        "max_windows": 15
+      },
+      "tabfact": {
+        "rows": 92585,
+        "mean_windows": 1.346,
+        "max_windows": 12
+      },
+      "vitaminc": {
+        "rows": 370653,
+        "mean_windows": 1.0,
+        "max_windows": 5
+      }
+    }
+  },
+  "n_steps": 14300,
+  "train_seconds": 32543.9,
+  "checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/R18-H152-ema-draw2",
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+}

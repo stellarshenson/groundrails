@@ -1,0 +1,57 @@
+{
+  "experiment": "R19 supply wave lane - fava (SUPPLY ONLY; no training use without a registered hypothesis)",
+  "registration": "docs/experiments/semantic-dataset-enhancements.md, section 'R19 supply wave' (2026-08-13)",
+  "rows": 30073,
+  "documents": 30073,
+  "label_distribution": {
+    "1": 637,
+    "0": 29436
+  },
+  "source_distribution": {
+    "train": 30073
+  },
+  "tag": "fava",
+  "provenance_columns": [
+    "n_spans",
+    "error_types",
+    "spans_json",
+    "completion_tagged",
+    "reconstruction_matches_draft"
+  ],
+  "build_stats": {
+    "rows_in": 30073,
+    "rows_with_orphan_tag_markup": 22310,
+    "orphan_markup_note": "LLM-written completions carry unclosed or wrapper-less tags (e.g. a bare <delete>early</delete>); the label rule counts any error-tag open, so labels are unaffected - only span completeness is",
+    "reconstruction_match_rate": 0.922688,
+    "reconstruction_note": "share of rows where the tag-resolved completion reproduces the prompt's draft byte-for-byte; the claim is the prompt's draft regardless, so a miss costs nothing - it flags annotation/draft drift on that row"
+  },
+  "gate": "R19_fava_gate.json (status GREEN)",
+  "fetch": "data/external/datasets/dataset-fava.zip",
+  "verify": {
+    "integrity": {
+      "labels_in_01": true,
+      "empty_claims": 0,
+      "empty_chunks": 0,
+      "duplicate_claim_chunk_label_rows": 0,
+      "pass": true
+    },
+    "claim_only_tfidf_auroc": {
+      "value": 0.8527,
+      "bar": "< 0.55 on synthetic minimal-pair lanes",
+      "pass": false,
+      "applicability": "measurement only for supply lanes - real corpora carry legitimate claim-side signal; banking is decided by the licence + contamination gates",
+      "scoring": "5-fold document-disjoint (GroupKFold on doc_id), liblinear tol 1e-7",
+      "documents": 30073,
+      "rows": 30073
+    },
+    "disjointness": {
+      "evalset_present": true,
+      "evalset_shared_content_fingerprints": 0,
+      "distinct_claims": 30073,
+      "distinct_chunks": 30072,
+      "distinct_documents": 30073,
+      "pass": true
+    },
+    "all_integrity_pass": true
+  }
+}

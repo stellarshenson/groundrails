@@ -1,0 +1,3167 @@
+{
+  "sample": {
+    "n": 250,
+    "n_positive": 230,
+    "n_negative": 20,
+    "note": "20 negatives in 250 -> the negative-side instrument SE is ~0.10; classes the instrument cannot resolve are labelled unresolvable"
+  },
+  "positive_control": {
+    "draw1": {
+      "reproduced": 0.651522,
+      "banked": 0.6515,
+      "abs_delta": 2.2e-05,
+      "pass": true,
+      "source": "re-verified from the banked per-draw parquet"
+    },
+    "draw2": {
+      "reproduced": 0.713478,
+      "banked": 0.7135,
+      "abs_delta": 2.2e-05,
+      "pass": true,
+      "source": "re-verified from the banked per-draw parquet"
+    }
+  },
+  "per_draw": {
+    "draw1": {
+      "auc": 0.6515,
+      "operating_threshold": 0.166,
+      "n_errors": 42,
+      "false_positives": {
+        "count": 11,
+        "base": 20,
+        "rate": 0.55,
+        "rate_binomial_se": 0.1112
+      },
+      "false_negatives": {
+        "count": 31,
+        "base": 230,
+        "rate": 0.1348,
+        "rate_binomial_se": 0.0225
+      },
+      "rank_loss_by_error_type": {
+        "fp_share": 0.5,
+        "fn_share": 0.5
+      }
+    },
+    "draw2": {
+      "auc": 0.7135,
+      "operating_threshold": 0.0548,
+      "n_errors": 23,
+      "false_positives": {
+        "count": 15,
+        "base": 20,
+        "rate": 0.75,
+        "rate_binomial_se": 0.0968
+      },
+      "false_negatives": {
+        "count": 8,
+        "base": 230,
+        "rate": 0.0348,
+        "rate_binomial_se": 0.0121
+      },
+      "rank_loss_by_error_type": {
+        "fp_share": 0.5,
+        "fn_share": 0.5
+      }
+    }
+  },
+  "draw_agreement": {
+    "erred_by_both": 15,
+    "erred_only_draw1": 27,
+    "erred_only_draw2": 8,
+    "correct_in_both": 200,
+    "error_jaccard": 0.3,
+    "both_items": [
+      36,
+      71,
+      85,
+      101,
+      114,
+      116,
+      147,
+      168,
+      200,
+      205,
+      213,
+      215,
+      217,
+      221,
+      229
+    ],
+    "response_score_spearman": 0.7029
+  },
+  "taxonomy": {
+    "per_draw": {
+      "draw1": {
+        "derivation_arithmetic": {
+          "count": 24,
+          "share_of_errors": 0.5714,
+          "share_binomial_se": 0.0764,
+          "resolvable": true
+        },
+        "table_binding": {
+          "count": 8,
+          "share_of_errors": 0.1905,
+          "share_binomial_se": 0.0606,
+          "resolvable": true
+        },
+        "scale_unit": {
+          "count": 2,
+          "share_of_errors": 0.0476,
+          "share_binomial_se": 0.0329,
+          "resolvable": false
+        },
+        "entity_confusion": {
+          "count": 2,
+          "share_of_errors": 0.0476,
+          "share_binomial_se": 0.0329,
+          "resolvable": false
+        },
+        "window_boundary": {
+          "count": 1,
+          "share_of_errors": 0.0238,
+          "share_binomial_se": 0.0235,
+          "resolvable": false
+        },
+        "other_ambiguous": {
+          "count": 5,
+          "share_of_errors": 0.119,
+          "share_binomial_se": 0.05,
+          "resolvable": true
+        }
+      },
+      "draw2": {
+        "derivation_arithmetic": {
+          "count": 12,
+          "share_of_errors": 0.5217,
+          "share_binomial_se": 0.1042,
+          "resolvable": true
+        },
+        "table_binding": {
+          "count": 4,
+          "share_of_errors": 0.1739,
+          "share_binomial_se": 0.079,
+          "resolvable": true
+        },
+        "scale_unit": {
+          "count": 2,
+          "share_of_errors": 0.087,
+          "share_binomial_se": 0.0588,
+          "resolvable": false
+        },
+        "entity_confusion": {
+          "count": 2,
+          "share_of_errors": 0.087,
+          "share_binomial_se": 0.0588,
+          "resolvable": false
+        },
+        "window_boundary": {
+          "count": 0,
+          "share_of_errors": 0.0,
+          "share_binomial_se": 0.0,
+          "resolvable": true
+        },
+        "other_ambiguous": {
+          "count": 3,
+          "share_of_errors": 0.1304,
+          "share_binomial_se": 0.0702,
+          "resolvable": false
+        }
+      }
+    },
+    "consensus": {
+      "derivation_arithmetic": {
+        "count": 7,
+        "share_of_errors": 0.4667,
+        "share_binomial_se": 0.1288,
+        "resolvable": true
+      },
+      "table_binding": {
+        "count": 3,
+        "share_of_errors": 0.2,
+        "share_binomial_se": 0.1033,
+        "resolvable": false
+      },
+      "scale_unit": {
+        "count": 1,
+        "share_of_errors": 0.0667,
+        "share_binomial_se": 0.0644,
+        "resolvable": false
+      },
+      "entity_confusion": {
+        "count": 2,
+        "share_of_errors": 0.1333,
+        "share_binomial_se": 0.0878,
+        "resolvable": false
+      },
+      "window_boundary": {
+        "count": 0,
+        "share_of_errors": 0.0,
+        "share_binomial_se": 0.0,
+        "resolvable": true
+      },
+      "other_ambiguous": {
+        "count": 2,
+        "share_of_errors": 0.1333,
+        "share_binomial_se": 0.0878,
+        "resolvable": false
+      }
+    },
+    "consensus_class_agreement_between_draws": 1.0,
+    "rank_loss_share_by_class": {
+      "derivation_arithmetic": 0.2797,
+      "table_binding": 0.1141,
+      "scale_unit": 0.0811,
+      "entity_confusion": 0.0722,
+      "window_boundary": 0.0051,
+      "other_ambiguous": 0.1021
+    }
+  },
+  "probe_cross_reference": {
+    "probe_bank": {
+      "bind_col": {
+        "draw1": 0.9603,
+        "draw2": 0.948,
+        "reading": "installed"
+      },
+      "bind_row": {
+        "draw1": 0.992,
+        "draw2": 0.9881,
+        "reading": "installed"
+      },
+      "scale_unit": {
+        "draw1": 0.8587,
+        "draw2": 0.8747,
+        "control": 0.8655,
+        "reading": "flat vs control"
+      },
+      "relational_compare": {
+        "value": 0.51,
+        "reading": "chance - derivation absent"
+      }
+    },
+    "residual_consensus_counts": {
+      "derivation_arithmetic": 7,
+      "table_binding": 3,
+      "scale_unit": 1
+    },
+    "residual_rank_loss_mass": {
+      "derivation_arithmetic": 0.2797,
+      "table_binding": 0.1141
+    },
+    "verdict": "confirm",
+    "rationale": "the probe bank reads binding installed (bind_col ~0.95, bind_row ~0.99) and derivation absent (relational compare 0.51, chance); a derivation-dominated residual CONFIRMS the probe story, a binding-dominated residual CONTRADICTS it"
+  },
+  "error_items": [
+    {
+      "draw": "draw1",
+      "item": 24,
+      "item_id": "finqa_7391",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.1058,
+      "threshold": 0.166,
+      "question": "in 2015 what was the ratio of the nol carry forward for the federal to the foreign taxes",
+      "sinking_sentence": "The ratio of federal to foreign net operating loss carryforwards in 2015 can be calculated as follows:\n\nFederal NOL Carryforward / Foreign NOL Carryforward\n= $135 million / $700 million\n= 0.19285714\n\nTherefore, the ratio of the federal to the foreign net operating loss carryforwards in 2015 was approximately 0.19.",
+      "sinking_sent_idx": 1,
+      "sinking_score": 0.1058,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"( in millions )\", \"2015\", \"2014\", \"2013\"], [\"balance january 1\", \"$ 1171\", \"$ 1701\", \"$ 1573\"], [\"additions based on tax positions related to the current year\", \"67\", \"63\", \"90\"], [\"additions based on tax positions related to prior years\", \"98\", \"111\", \"201\"], [\"additions from acquired subsidiaries\", \"2014\", \"2014\", \"268\"], [\"reductions for tax positions of prior years\", \"-84 ( 84 )\", \"-220 ( 220 )\", \"-141 ( 141 )\"], [\"reductions due to expiration of statutes of limitations\", \"-41 ( 41 )\", \"-448 ( 448 )\", \"-3 ( 3 )\"], [\"settlements with tax authorities\", \"-75 ( 75 )\", \"-36 ( 36 )\", \"-287 ( 287 )\"], [\"balance december 31\", \"$ 1136\", \"$ 1171\", \"$ 1701\"]]",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 6,
+        "n_absent_verbatim": 2,
+        "n_absent_in_argmax_window": 4,
+        "absent_numbers": [
+          "0.19285714",
+          "0.19"
+        ],
+        "derivation_register": true,
+        "derivation_candidates": [
+          {
+            "a": 135.0,
+            "b": 700.0,
+            "op": "a/b",
+            "result": 0.19285714285714287
+          },
+          {
+            "a": 98.0,
+            "b": 510.0,
+            "op": "a/b",
+            "result": 0.19215686274509805
+          },
+          {
+            "a": 220.0,
+            "b": 1136.0,
+            "op": "a/b",
+            "result": 0.1936619718309859
+          }
+        ],
+        "scale_candidates": [],
+        "support_fit": "covered",
+        "argmax_window_has_support": false,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 30,
+      "item_id": "finqa_6754",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.1311,
+      "threshold": 0.166,
+      "question": "by how much did company 2019s gross liability , excluding interest and penalties , for unrecognized tax benefits increase from 2014 to 2014?",
+      "sinking_sentence": "From 2013 to 2014, the company's gross liability for unrecognized tax benefits increased by $17,290 ($195,237 - $177,947).",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.1311,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"balance at january 1 2013\", \"$ 180993\"], [\"increases in current period tax positions\", \"27229\"], [\"decreases in prior period measurement of tax positions\", \"-30275 ( 30275 )\"], [\"balance at december 31 2013\", \"$ 177947\"], [\"increases in current period tax positions\", \"53818\"], [\"decreases in prior period measurement of tax positions\", \"-36528 ( 36528 )\"], [\"balance at december 31 2014\", \"$ 195237\"]]",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 5,
+        "n_absent_verbatim": 1,
+        "n_absent_in_argmax_window": 1,
+        "absent_numbers": [
+          "17,290"
+        ],
+        "derivation_register": false,
+        "derivation_candidates": [
+          {
+            "a": 53818.0,
+            "b": 36528.0,
+            "op": "a-b",
+            "result": 17290.0
+          },
+          {
+            "a": 195237.0,
+            "b": 177947.0,
+            "op": "a-b",
+            "result": 17290.0
+          },
+          {
+            "a": 27229.0,
+            "b": 157.0,
+            "op": "(a-b)/|b|*100",
+            "result": 17243.31210191083
+          }
+        ],
+        "scale_candidates": [],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 35,
+      "item_id": "finqa_7098",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.1267,
+      "threshold": 0.166,
+      "question": "what was the operating margin in the 4th quarter",
+      "sinking_sentence": "To calculate the operating margin for the fourth quarter of 2014, we need to use the following formula:\n\nOperating Margin = (Operating Income / Total Sales) * 100\n\nFrom the provided context, we can see that the operating income for the 4th quarter of 2014 was $144 million and the sales and service revenues were $1927 million.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.1267,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"( $ in millions except per share amounts )\", \"year ended december 31 2014 1st qtr\", \"year ended december 31 2014 2nd qtr\", \"year ended december 31 2014 3rd qtr\", \"year ended december 31 2014 4th qtr ( 3 )\"], [\"sales and service revenues\", \"$ 1594\", \"$ 1719\", \"$ 1717\", \"$ 1927\"], [\"operating income ( loss )\", \"159\", \"181\", \"171\", \"144\"], [\"earnings ( loss ) before income taxes\", \"132\", \"152\", \"144\", \"79\"], [\"net earnings ( loss )\", \"90\", \"100\", \"96\", \"52\"], [\"dividends declared per share\", \"$ 0.20\", \"$ 0.20\", \"$ 0.20\", \"$ 0.40\"], [\"basic earnings ( loss ) per share\", \"$ 1.83\", \"$ 2.05\", \"$ 1.97\", \"$ 1.07\"], [\"diluted earnings ( loss ) per share\", \"$ 1.81\", \"$ 2.04\", \"$ 1.96\", \"$ 1.05\"]]",
+      "rule_class": "table_binding",
+      "final_class": "other_ambiguous",
+      "signals": {
+        "n_numbers_in_sinking": 6,
+        "n_absent_verbatim": 0,
+        "n_absent_in_argmax_window": 0,
+        "absent_numbers": [],
+        "derivation_register": true,
+        "derivation_candidates": [],
+        "scale_candidates": [],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 36,
+      "item_id": "finqa_6821",
+      "label": 0,
+      "error_type": "fp",
+      "score": 0.2185,
+      "threshold": 0.166,
+      "question": "as of december 312012 what was the percent of the scheduled maturities of long term debt as part of the long term debt",
+      "sinking_sentence": "Based on the information provided:\n\nThe total scheduled maturities of long-term debt as of December 31, 2011 was $77,724,000.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.2185,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"2012\", \"$ 6882\"], [\"2013 ( 1 )\", \"65919\"], [\"2014\", \"2972\"], [\"2015\", \"1951\"], [\"2016\", \"2014\"], [\"total scheduled maturities of long term debt\", \"77724\"], [\"less current maturities of long term debt\", \"-6882 ( 6882 )\"], [\"long term debt obligations\", \"$ 70842\"]]",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "entity_confusion",
+      "signals": {
+        "n_numbers_in_sinking": 3,
+        "n_absent_verbatim": 1,
+        "n_absent_in_argmax_window": 3,
+        "absent_numbers": [
+          "77,724,000"
+        ],
+        "derivation_register": true,
+        "derivation_candidates": [],
+        "scale_candidates": [
+          {
+            "evidence": 77724.0,
+            "factor": 1000
+          }
+        ],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "The statement applies the accurate calculation results to the incorrect year (2012 instead of 2011), and as such, is not supported by documents which only provide data explicitly for December 31, 2011.",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": false,
+        "sinking_is_annotated_unsupported": false
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 37,
+      "item_id": "finqa_6804",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.1207,
+      "threshold": 0.166,
+      "question": "assuming the same rate of growth as in 2005 , what would the projected risk free interest rate be in 2006?",
+      "sinking_sentence": "Based on the information provided, the risk-free interest rate for 2006 would be 4.18% (4.18%), assuming the same rate of growth as in 2005.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.1207,
+      "argmax_doc": 0,
+      "argmax_win": 1,
+      "argmax_window_text": "d due to the company 2019s reported net losses . ( t ) translation of foreign currencies the u.s . dollar is the functional currency for the company 2019s single foreign subsidiary , abiomed b.v . the financial statements of abiomed b.v . are remeasured into u.s . dollars using current rates of exchange for monetary assets and liabilities and historical rates of exchange for nonmonetary assets . foreign exchange gains and losses are included in the results of operations in other income , net . ( u ) recent accounting pronouncements in november 2004 , the financial accounting standards board ( fasb ) issued sfas no . 151 , inventory costs ( fas 151 ) , which adopts wording from the international accounting standards board 2019s ( iasb ) standard no . 2 , inventories , in an effort to improve the comparability of international financial reporting . the new standard indicates that abnormal freight , handling costs , and wasted materials ( spoilage ) are required to be treated as current period charges rather than as a portion of inventory cost . additionally , the standard clarifies that fixed production overhead should be allocated based on the normal capacity of a production facility . the statement is effective for the company beginning in the first quarter of fiscal year 2007 . adoption is not expected to have a material impact on the company 2019s results of operations , financial position or cash flows . in december 2004 , the fasb issued sfas no . 153 , exchanges of nonmo",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 4,
+        "n_absent_verbatim": 2,
+        "n_absent_in_argmax_window": 4,
+        "absent_numbers": [
+          "4.18",
+          "4.18"
+        ],
+        "derivation_register": true,
+        "derivation_candidates": [],
+        "scale_candidates": [],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 67,
+      "item_id": "finqa_7390",
+      "label": 0,
+      "error_type": "fp",
+      "score": 0.3385,
+      "threshold": 0.166,
+      "question": "what portion of total smokeless products shipments are related to copenhagen segment during 2014?",
+      "sinking_sentence": "The portion of total smokeless products shipments related to the Copenhagen segment during 2014 is 448.6 million cans and packs.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.3385,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"( cans and packs in millions )\", \"shipment volumefor the years ended december 31 , 2014\", \"shipment volumefor the years ended december 31 , 2013\", \"shipment volumefor the years ended december 31 , 2012\"], [\"copenhagen\", \"448.6\", \"426.1\", \"392.5\"], [\"skoal\", \"269.6\", \"283.8\", \"288.4\"], [\"copenhagenandskoal\", \"718.2\", \"709.9\", \"680.9\"], [\"other\", \"75.1\", \"77.6\", \"82.4\"], [\"total smokeless products\", \"793.3\", \"787.5\", \"763.3\"]]",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 2,
+        "n_absent_verbatim": 0,
+        "n_absent_in_argmax_window": 0,
+        "absent_numbers": [],
+        "derivation_register": true,
+        "derivation_candidates": [],
+        "scale_candidates": [],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "The response correctly cites the shipment volume for Copenhagen in 2014 as 448.6 million from Document 1. However, the response does not fulfill the requirement of the question which asks for this figure as a portion or percentage of the total smokeless products shipments, which was 793.3 million in 2014, also from Document 1. Thus, the response needs to provide this ratio to be fully supportive.",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": false,
+        "sinking_is_annotated_unsupported": false
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 71,
+      "item_id": "finqa_6407",
+      "label": 0,
+      "error_type": "fp",
+      "score": 0.5992,
+      "threshold": 0.166,
+      "question": "what was the value in thousands of unvested restricted stock and performance awards at the weighted-averagegrant-datefair value as of december 31 , 2017?\\\\n",
+      "sinking_sentence": "The value in thousands of unvested restricted stock and performance awards at the weighted-average grant-date fair value as of December 31, 2017, was $78.29 million.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.5992,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"\", \"shares ( in thousands )\", \"weighted-averagegrant-datefair value\"], [\"unvested at may 31 2015\", \"1848\", \"$ 28.97\"], [\"granted\", \"461\", \"57.04\"], [\"vested\", \"-633 ( 633 )\", \"27.55\"], [\"forfeited\", \"-70 ( 70 )\", \"34.69\"], [\"unvested at may 31 2016\", \"1606\", \"37.25\"], [\"granted\", \"348\", \"74.26\"], [\"vested\", \"-639 ( 639 )\", \"31.38\"], [\"forfeited\", \"-52 ( 52 )\", \"45.27\"], [\"unvested at december 31 2016\", \"1263\", \"49.55\"], [\"granted\", \"899\", \"79.79\"], [\"vested\", \"-858 ( 858 )\", \"39.26\"], [\"forfeited\", \"-78 ( 78 )\", \"59.56\"], [\"unvested at december 31 2017\", \"1226\", \"78.29\"], [\"granted\", \"650\", \"109.85\"], [\"vested\", \"-722 ( 722 )\", \"60.08\"], [\"forfeited\", \"-70 ( 70 )\", \"91.47\"], [\"unvested at december 31 2018\", \"1084\", \"$ 108.51\"]]",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "scale_unit",
+      "signals": {
+        "n_numbers_in_sinking": 3,
+        "n_absent_verbatim": 0,
+        "n_absent_in_argmax_window": 0,
+        "absent_numbers": [],
+        "derivation_register": true,
+        "derivation_candidates": [],
+        "scale_candidates": [],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "The document provides the weighted-average grant-date fair value per share as $78.29 but does not give the total value in millions for the unvested shares. The response wrongly assumes this per share value to be the total value in millions, which is not supported by the text.",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": false,
+        "sinking_is_annotated_unsupported": false
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 85,
+      "item_id": "finqa_6478",
+      "label": 0,
+      "error_type": "fp",
+      "score": 0.4702,
+      "threshold": 0.166,
+      "question": "what are the pre-tax earnings in 2016 , in billions?",
+      "sinking_sentence": "However, the passage does not explicitly mention the pre-tax earnings for 2016.",
+      "sinking_sent_idx": 1,
+      "sinking_score": 0.4702,
+      "argmax_doc": 2,
+      "argmax_win": 4,
+      "argmax_window_text": "note 3 to the consolidated financial statements for further information about asu no . 2014-09 , 201crevenue from contracts with customers ( topic 606 ) . 201d 2017 versus 2016 . net revenues in investment management were $ 6.22 billion for 2017 , 7% ( 7 % ) higher than 2016 , due to higher management and other fees , reflecting higher average assets under supervision , and higher transaction revenues . during 2017 , total assets under supervision increased $ 115 billion to $ 1.49 trillion . long-term assets under supervision increased $ 128 billion , including net market appreciation of $ 86 billion , primarily in equity and fixed income assets , and net inflows of $ 42 billion ( which includes $ 20 billion of inflows in connection with the verus acquisition and $ 5 billion of equity asset outflows in connection with the australian divestiture ) , primarily in fixed income and alternative investment assets . liquidity products decreased $ 13 billion ( which includes $ 3 billion of inflows in connection with the verus acquisition ) . operating expenses were $ 4.80 billion for 2017 , 3% ( 3 % ) higher than 2016 , primarily due to increased compensation and benefits expenses , reflecting higher net revenues . pre-tax earnings were $ 1.42 billion in 2017 , 25% ( 25 % ) higher than geographic data see note 25 to the consolidated financial statements for a summary of our total net revenues , pre-tax earnings and net earnings by geographic region . 62 goldman sachs 2018 form 10-k .",
+      "rule_class": "table_binding",
+      "final_class": "other_ambiguous",
+      "signals": {
+        "n_numbers_in_sinking": 1,
+        "n_absent_verbatim": 0,
+        "n_absent_in_argmax_window": 0,
+        "absent_numbers": [],
+        "derivation_register": false,
+        "derivation_candidates": [],
+        "scale_candidates": [],
+        "support_fit": "no_keys",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "This statement is partially incorrect as the documents do contain the pre-tax earnings for 2016, specifically in Document 2, sentence 2x. | As with 'b.', this statement is incorrect in asserting the absence of 2016's earnings data, which can be found in Document 2, sentence 2x.",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": true,
+        "sinking_is_annotated_unsupported": true
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 93,
+      "item_id": "finqa_6538",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.0709,
+      "threshold": 0.166,
+      "question": "in 2001 , the company awarded how many total shares to employees?",
+      "sinking_sentence": "In 2001, the company awarded a total of 353,582 shares to employees - 64,001 shares at $0.003 per share and 289,581 shares at $3.60 per share.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.0709,
+      "argmax_doc": 0,
+      "argmax_win": 2,
+      "argmax_window_text": "re of common stock held . non-voting common stock is convertible on a one-for-one basis into shares of common stock at any time subject to a limitation on conversion to the extent such conversion would result in a stockholder , together with its affiliates , owning more than 9.99% ( 9.99 % ) of the outstanding shares of common stock . on march 30 , 2004 , the company 2019s board of directors authorized , and on november 1 , 2004 the company effectuated , a one-for-three reverse stock split of shares of common stock and non-voting common stock to be effective prior to the closing of the company 2019s initial public offering . all references in these financial statements to the number of shares of common stock and non-voting common stock of the company , securities convertible or exercisable therefor and per share amounts have been restated for all periods presented to reflect the effect of the common stock reverse stock split . in 2004 and 2003 , the company had 1939734 shares and 1937141 shares , respectively , of common stock that were issued to employees . included in these amounts , in 2001 , the company awarded 64001 shares and 289581 shares to employees at $ .003 and $ 3.60 , respectively , per share . the common stock subscribed was issued in 2001 in exchange for three-year promissory notes ( 64001 shares ) and eleven-year promissory notes ( 289581 shares ) , which bear interest at the applicable federal rate and are collateralized by the subscribed shares . the promiss",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 6,
+        "n_absent_verbatim": 2,
+        "n_absent_in_argmax_window": 2,
+        "absent_numbers": [
+          "353,582",
+          "0.003"
+        ],
+        "derivation_register": true,
+        "derivation_candidates": [
+          {
+            "a": 64001.0,
+            "b": 289581.0,
+            "op": "a+b",
+            "result": 353582.0
+          },
+          {
+            "a": 289581.0,
+            "b": 64001.0,
+            "op": "a+b",
+            "result": 353582.0
+          }
+        ],
+        "scale_candidates": [
+          {
+            "evidence": 3.0,
+            "factor": 0
+          }
+        ],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 100,
+      "item_id": "finqa_6879",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.1358,
+      "threshold": 0.166,
+      "question": "are the 2018 environmental reserves greater than asbestos-related claim reserves?",
+      "sinking_sentence": "Therefore, the 2018 environmental reserves of $291 million are greater than the asbestos-related claim reserves of $180 million.",
+      "sinking_sent_idx": 1,
+      "sinking_score": 0.1358,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"( $ in millions )\", \"2018\", \"2017\"], [\"new jersey chrome\", \"$ 151\", \"$ 136\"], [\"glass and chemical\", \"90\", \"71\"], [\"other\", \"50\", \"51\"], [\"total\", \"$ 291\", \"$ 258\"], [\"current portion\", \"$ 105\", \"$ 73\"]]",
+      "rule_class": "table_binding",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 3,
+        "n_absent_verbatim": 0,
+        "n_absent_in_argmax_window": 1,
+        "absent_numbers": [],
+        "derivation_register": false,
+        "derivation_candidates": [],
+        "scale_candidates": [],
+        "support_fit": "no_keys",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 101,
+      "item_id": "finqa_6510",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.0936,
+      "threshold": 0.166,
+      "question": "what was the net change in asset retirement liability between 2002 and september 25 2004 , in millions?",
+      "sinking_sentence": "The net change in asset retirement liability between 2002 and September 25, 2004, was $2.7 million.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.0936,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"asset retirement liability as of september 29 2002\", \"$ 5.5\"], [\"additional asset retirement obligations recognized\", \"0.5\"], [\"accretion recognized\", \"1.2\"], [\"asset retirement liability as of september 27 2003\", \"$ 7.2\"], [\"additional asset retirement obligations recognized\", \"0.5\"], [\"accretion recognized\", \"0.5\"], [\"asset retirement liability as of september 25 2004\", \"$ 8.2\"]]",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 4,
+        "n_absent_verbatim": 1,
+        "n_absent_in_argmax_window": 1,
+        "absent_numbers": [
+          "2.7"
+        ],
+        "derivation_register": true,
+        "derivation_candidates": [
+          {
+            "a": 27.0,
+            "b": 10.0,
+            "op": "a/b",
+            "result": 2.7
+          },
+          {
+            "a": 8.2,
+            "b": 5.5,
+            "op": "a-b",
+            "result": 2.6999999999999993
+          }
+        ],
+        "scale_candidates": [
+          {
+            "evidence": 27.0,
+            "factor": 0
+          }
+        ],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 112,
+      "item_id": "finqa_7302",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.132,
+      "threshold": 0.166,
+      "question": "based on the fair value of the grant , how much money did the company lose when some of their grants were forfeited .",
+      "sinking_sentence": "This is calculated by multiplying the number of forfeited shares by the weighted-average grant-date fair value: 150 x $23.44 = $3,516,000.",
+      "sinking_sent_idx": 1,
+      "sinking_score": 0.132,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"non-vested shares\", \"number of shares\", \"weighted-average grant-date fair value\"], [\"non-vested at september 27 2008\", \"1461\", \"$ 31.23\"], [\"granted .\", \"1669\", \"14.46\"], [\"vested\", \"-210 ( 210 )\", \"23.87\"], [\"forfeited\", \"-150 ( 150 )\", \"23.44\"], [\"non-vested at september 26 2009\", \"2770\", \"$ 21.96\"]]",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 3,
+        "n_absent_verbatim": 1,
+        "n_absent_in_argmax_window": 1,
+        "absent_numbers": [
+          "3,516,000"
+        ],
+        "derivation_register": true,
+        "derivation_candidates": [],
+        "scale_candidates": [],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 114,
+      "item_id": "finqa_6680",
+      "label": 0,
+      "error_type": "fp",
+      "score": 0.4191,
+      "threshold": 0.166,
+      "question": "what was the percent of the outstanding notes under the ati 7.25% ( 7.25 % ) notes , for 2006 to 2005",
+      "sinking_sentence": "The percent of the outstanding notes under the ati 7.25% (7.25%) notes decreased from $400.0 million in 2005 to $325.1 million in 2006.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.4191,
+      "argmax_doc": 0,
+      "argmax_win": 0,
+      "argmax_window_text": "american tower corporation and subsidiaries notes to consolidated financial statements 2014 ( continued ) ati 7.25% ( 7.25 % ) notes 2014during the year ended december 31 , 2006 , the company repurchased in privately negotiated transactions $ 74.9 million principal amount of ati 7.25% ( 7.25 % ) notes for $ 77.3 million in cash . in connection with these transactions , the company recorded a charge of $ 3.9 million related to amounts paid in excess of carrying value and the write-off of related deferred financing fees , which is reflected in loss on retirement of long-term obligations in the accompanying consolidated statement of operations for the year ended december 31 , 2006 . as of december 31 , 2006 and 2005 , the company had $ 325.1 million and $ 400.0 million outstanding under the ati 7.25% ( 7.25 % ) notes , respectively . capital lease obligations and notes payable 2014the company 2019s capital lease obligations and notes payable approximated $ 59.8 million and $ 60.4 million as of december 31 , 2006 and 2005 , respectively . these obligations bear interest at rates ranging from 6.3% ( 6.3 % ) to 9.5% ( 9.5 % ) and mature in periods ranging from less than one year to approximately seventy years . maturities 2014as of december 31 , 2006 , aggregate carrying value of long-term debt , including capital leases , for the next five years and thereafter are estimated to be ( in thousands ) : year ending december 31 .",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 6,
+        "n_absent_verbatim": 0,
+        "n_absent_in_argmax_window": 0,
+        "absent_numbers": [],
+        "derivation_register": true,
+        "derivation_candidates": [
+          {
+            "a": 74.9,
+            "b": 400.0,
+            "op": "a/b*100",
+            "result": 18.725
+          },
+          {
+            "a": 9.5,
+            "b": 8.0,
+            "op": "(a-b)/|b|*100",
+            "result": 18.75
+          },
+          {
+            "a": 60.4,
+            "b": 325.1,
+            "op": "a/b*100",
+            "result": 18.578898800369114
+          }
+        ],
+        "scale_candidates": [],
+        "support_fit": "covered",
+        "argmax_window_has_support": true,
+        "unsupported_explanation": "The amount used here ($74.9 million) refers to the amount repurchased, not the decrease in outstanding notes; hence, this calculation is incorrect. | This sentence represents an incorrect result due to the miscalculation in sentence e. It is not supported by the documents because the actual numerical reasoning based on correct values would lead to a different result. | This sentence repeats the erroneous calculation from sentence f. Since the calculation is incorrect, this sentence is also unsupported.",
+        "unsupported_number_absent": true,
+        "unsupported_numbers_all_present": false,
+        "sinking_is_annotated_unsupported": false
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 116,
+      "item_id": "finqa_7211",
+      "label": 0,
+      "error_type": "fp",
+      "score": 0.3247,
+      "threshold": 0.166,
+      "question": "how satisfied will customers be in 2010 if the 2008 satisfaction index increase occurs again in 2009?",
+      "sinking_sentence": "Therefore, if a similar increase occurs in 2009, the satisfaction index would become 87 in 2010.",
+      "sinking_sent_idx": 2,
+      "sinking_score": 0.3247,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"\", \"2009\", \"2008\", \"2007\", \"% (  % ) change 2009 v 2008\", \"% (  % ) change 2008 v 2007\"], [\"average train speed ( miles per hour )\", \"27.3\", \"23.5\", \"21.8\", \"16 % (  % )\", \"8 % (  % )\"], [\"average terminal dwell time ( hours )\", \"24.8\", \"24.9\", \"25.1\", \"-\", \"( 1 ) % (  % )\"], [\"average rail car inventory ( thousands )\", \"283.1\", \"300.7\", \"309.9\", \"( 6 ) % (  % )\", \"( 3 ) % (  % )\"], [\"gross ton-miles ( billions )\", \"846.5\", \"1020.4\", \"1052.3\", \"( 17 ) % (  % )\", \"( 3 ) % (  % )\"], [\"revenue ton-miles ( billions )\", \"479.2\", \"562.6\", \"561.8\", \"( 15 ) % (  % )\", \"-\"], [\"operating ratio\", \"76.0\", \"77.3\", \"79.3\", \"( 1.3 ) pt\", \"( 2.0 ) pt\"], [\"employees ( average )\", \"43531\", \"48242\", \"50089\", \"( 10 ) % (  % )\", \"( 4 ) % (  % )\"], [\"customer satisfaction index\", \"88\", \"83\", \"79\", \"5 pt\", \"4 pt\"]]",
+      "rule_class": "other_ambiguous",
+      "final_class": "other_ambiguous",
+      "signals": {
+        "n_numbers_in_sinking": 3,
+        "n_absent_verbatim": 2,
+        "n_absent_in_argmax_window": 2,
+        "absent_numbers": [
+          "87",
+          "2010"
+        ],
+        "derivation_register": true,
+        "derivation_candidates": [
+          {
+            "a": 4.0,
+            "b": 83.0,
+            "op": "a+b",
+            "result": 87.0
+          },
+          {
+            "a": 8.0,
+            "b": 79.0,
+            "op": "a+b",
+            "result": 87.0
+          },
+          {
+            "a": 79.0,
+            "b": 8.0,
+            "op": "a+b",
+            "result": 87.0
+          }
+        ],
+        "scale_candidates": [
+          {
+            "evidence": 2.0,
+            "factor": 1000
+          }
+        ],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "This sentence predicts the customer satisfaction index for 2010 based on the repetition of the 2008 increase occurring again in 2009. While the idea is rooted in documented text for 2008, the exact prediction for 2010 is speculative and unsupported. | This sentence extends the pattern of increase in the satisfaction index from 2008 to 2009. Although the data for an increase in 2009 is documented, the sentence makes a speculative claim about 2010 that is unsupported by any direct information or trend.",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": false,
+        "sinking_is_annotated_unsupported": false
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 119,
+      "item_id": "finqa_6799",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.1303,
+      "threshold": 0.166,
+      "question": "what is the percentage effect of the hedges on the anticipated increase in the 2014 increase in fuel expenses",
+      "sinking_sentence": "In other words, the hedges are expected to reduce the impact of the $1 per barrel increase in crude oil price by 16.3%.",
+      "sinking_sent_idx": 4,
+      "sinking_score": 0.1303,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"year\", \"gallons consumed ( in millions )\", \"average costper gallon\", \"total cost ( in millions )\", \"percent of total operating expenses\"], [\"2011\", \"2756\", \"$ 3.01\", \"$ 8304\", \"33.2% ( 33.2 % )\"], [\"2012\", \"2723\", \"$ 3.20\", \"$ 8717\", \"35.3% ( 35.3 % )\"], [\"2013\", \"2806\", \"$ 3.09\", \"$ 8959\", \"35.3% ( 35.3 % )\"]]",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 2,
+        "n_absent_verbatim": 1,
+        "n_absent_in_argmax_window": 2,
+        "absent_numbers": [
+          "16.3"
+        ],
+        "derivation_register": true,
+        "derivation_candidates": [
+          {
+            "a": 35.3,
+            "b": 19.0,
+            "op": "a-b",
+            "result": 16.299999999999997
+          },
+          {
+            "a": 3.09,
+            "b": 19.0,
+            "op": "a/b*100",
+            "result": 16.26315789473684
+          },
+          {
+            "a": 19.0,
+            "b": 2.62,
+            "op": "a-b",
+            "result": 16.38
+          }
+        ],
+        "scale_candidates": [],
+        "support_fit": "no_keys",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 120,
+      "item_id": "finqa_6554",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.1452,
+      "threshold": 0.166,
+      "question": "what is the growth rate in total assets in 2013?",
+      "sinking_sentence": "However, it does provide the total assets values for December 2012 and December 2013:\n\nTotal Assets in 2012: $938,555 million\nTotal Assets in 2013: $911,507 million\n\nTo calculate the growth rate, we can use the formula:\nGrowth Rate = (2013 Value - 2012 Value) / 2012 Value\n\nPlugging in the values:\nGrowth Rate = ($911,507 million - $938,555 million) / $938,555 million\n            = -2.88%\n\nSo the growth rate in total assets from 2012 to 2013 was -2.88%, indicating a decrease in total assets.",
+      "sinking_sent_idx": 1,
+      "sinking_score": 0.1452,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"$ in millions\", \"as of december 2013\", \"as of december 2012\"], [\"total level 1 financial assets\", \"$ 156030\", \"$ 190737\"], [\"total level 2 financial assets\", \"499480\", \"502293\"], [\"total level 3 financial assets\", \"40013\", \"47095\"], [\"cash collateral and counterparty netting\", \"-95350 ( 95350 )\", \"-101612 ( 101612 )\"], [\"total financial assets at fair value\", \"$ 600173\", \"$ 638513\"], [\"total assets1\", \"$ 911507\", \"$ 938555\"], [\"total level 3 financial assets as a percentage of total assets\", \"4.4% ( 4.4 % )\", \"5.0% ( 5.0 % )\"], [\"total level 3 financial assets as a percentage of total financial assets at fair value\", \"6.7% ( 6.7 % )\", \"7.4% ( 7.4 % )\"], [\"total level 1 financialliabilities\", \"$ 68412\", \"$ 65994\"], [\"total level 2 financial liabilities\", \"300583\", \"318764\"], [\"total level 3 financial liabilities\", \"12046\", \"25679\"], [\"cash collateral and counterparty netting\", \"-25868 ( 25868 )\", \"-32760 ( 32760 )\"], [\"total financial liabilities at fair value\", \"$ 355173\", \"$ 377677\"], [\"total level 3 financial liabilities as a percentage of total financial liabilities at fairvalue\", \"3.4% ( 3.4 % )\", \"6.8% ( 6.8 % )\"]]",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 16,
+        "n_absent_verbatim": 2,
+        "n_absent_in_argmax_window": 2,
+        "absent_numbers": [
+          "2.88",
+          "2.88"
+        ],
+        "derivation_register": true,
+        "derivation_candidates": [
+          {
+            "a": 190737.0,
+            "b": 65994.0,
+            "op": "a/b",
+            "result": 2.8902172924811347
+          },
+          {
+            "a": 911507.0,
+            "b": 318764.0,
+            "op": "a/b",
+            "result": 2.8595042100111683
+          }
+        ],
+        "scale_candidates": [],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 132,
+      "item_id": "finqa_7221",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.1143,
+      "threshold": 0.166,
+      "question": "by what percentage did the average price of wti crude oil increase from 2011 to 2013?",
+      "sinking_sentence": "To calculate the percentage increase in the average price of WTI crude oil from 2011 to 2013, I will use the following formula:\n\nPercentage increase = (2013 price - 2011 price) / 2011 price x 100\n\nThe average price of WTI crude oil in 2011 was $95.11 per barrel.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.1143,
+      "argmax_doc": 0,
+      "argmax_win": 2,
+      "argmax_window_text": "erially from those set forth in the forward-looking statements . for additional risk factors affecting our business , see item 1a . risk factors in this annual report on form 10-k . management 2019s discussion and analysis of financial condition and results of operations should be read in conjunction with the information under item 1 . business , item 1a . risk factors and item 8 . financial statements and supplementary data found in this annual report on form 10-k . spin-off downstream business on june 30 , 2011 , the spin-off of marathon 2019s downstream business was completed , creating two independent energy companies : marathon oil and mpc . marathon stockholders at the close of business on the record date of june 27 , 2011 received one share of mpc common stock for every two shares of marathon common stock held . a private letter tax ruling received in june 2011 from the irs affirmed the tax-free nature of the spin-off . activities related to the downstream business have been treated as discontinued operations for all periods prior to the spin-off ( see item 8 . financial statements and supplementary data 2013 note 3 to the consolidated financial statements for additional information ) . overview 2013 market conditions prevailing prices for the various qualities of crude oil and natural gas that we produce significantly impact our revenues and cash flows . the following table lists benchmark crude oil and natural gas price averages relative to our north america e&p and ",
+      "rule_class": "table_binding",
+      "final_class": "other_ambiguous",
+      "signals": {
+        "n_numbers_in_sinking": 8,
+        "n_absent_verbatim": 0,
+        "n_absent_in_argmax_window": 2,
+        "absent_numbers": [],
+        "derivation_register": true,
+        "derivation_candidates": [],
+        "scale_candidates": [],
+        "support_fit": "no_keys",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 147,
+      "item_id": "finqa_7109",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.0929,
+      "threshold": 0.166,
+      "question": "what is the net change in aon 2019s unpaid restructuring liabilities during 2007?",
+      "sinking_sentence": "The net change in Aon 2019's unpaid restructuring liabilities during 2007 was a decrease of $71 million.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.0929,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"balance at january 1 2005\", \"$ 2014\"], [\"expensed in 2005\", \"141\"], [\"cash payments in 2005\", \"-23 ( 23 )\"], [\"foreign currency revaluation\", \"-2 ( 2 )\"], [\"balance at december 31 2005\", \"116\"], [\"expensed in 2006\", \"155\"], [\"cash payments in 2006\", \"-141 ( 141 )\"], [\"foreign currency revaluation\", \"4\"], [\"balance at december 31 2006\", \"134\"], [\"expensed in 2007\", \"38\"], [\"cash payments in 2007\", \"-110 ( 110 )\"], [\"foreign currency revaluation\", \"1\"], [\"balance at december 31 2007\", \"$ 63\"]]",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 3,
+        "n_absent_verbatim": 1,
+        "n_absent_in_argmax_window": 2,
+        "absent_numbers": [
+          "71"
+        ],
+        "derivation_register": true,
+        "derivation_candidates": [
+          {
+            "a": 134.0,
+            "b": 63.0,
+            "op": "a-b",
+            "result": 71.0
+          },
+          {
+            "a": 110.0,
+            "b": 155.0,
+            "op": "a/b*100",
+            "result": 70.96774193548387
+          },
+          {
+            "a": 141.0,
+            "b": 2.0,
+            "op": "a/b",
+            "result": 70.5
+          }
+        ],
+        "scale_candidates": [],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 148,
+      "item_id": "finqa_6968",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.1463,
+      "threshold": 0.166,
+      "question": "what was the five year change in the s&p 500 index?",
+      "sinking_sentence": "The graph shows that a $100 investment in the S&P 500 index on December 31, 2009 would have grown to $205 by December 31, 2014, representing a 105% increase over the five-year period.",
+      "sinking_sent_idx": 1,
+      "sinking_score": 0.1463,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"\", \"2009\", \"2010\", \"2011\", \"2012\", \"2013\", \"2014\"], [\"vornado realty trust\", \"$ 100\", \"$ 123\", \"$ 118\", \"$ 128\", \"$ 147\", \"$ 201\"], [\"s&p 500 index\", \"100\", \"115\", \"117\", \"136\", \"180\", \"205\"], [\"the nareit all equity index\", \"100\", \"128\", \"139\", \"166\", \"171\", \"218\"]]",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 8,
+        "n_absent_verbatim": 1,
+        "n_absent_in_argmax_window": 3,
+        "absent_numbers": [
+          "105"
+        ],
+        "derivation_register": true,
+        "derivation_candidates": [
+          {
+            "a": 205.0,
+            "b": 100.0,
+            "op": "(a-b)/|b|*100",
+            "result": 105.0
+          },
+          {
+            "a": 136.0,
+            "b": 31.0,
+            "op": "a-b",
+            "result": 105.0
+          },
+          {
+            "a": 205.0,
+            "b": 100.0,
+            "op": "a-b",
+            "result": 105.0
+          }
+        ],
+        "scale_candidates": [],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 155,
+      "item_id": "finqa_6356",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.1089,
+      "threshold": 0.166,
+      "question": "considering the years 2016-2018 , what is the average ending balance for valuation allowances for deferred income tax assets?",
+      "sinking_sentence": "- For 2017, the ending balance is $ 466,421.",
+      "sinking_sent_idx": 2,
+      "sinking_score": 0.1089,
+      "argmax_doc": 2,
+      "argmax_win": 1,
+      "argmax_window_text": "rs . as described above , these nols as well as other less significant future tax benefits , have been evaluated for the likelihood of utilization , and valuation allowances have been established for the portion of these deferred income tax assets that do not meet the 201cmore likely than not 201d threshold . the balance of unrecognized tax benefits at december 31 , 2018 , was $ 29 million , resulting from the tax treatment of its research and experimental expenditures related to certain innovations in its horizontal drilling and completion projects , of which $ 12 million may potentially have an earnings impact . eog records interest and penalties related to unrecognized tax benefits to its income tax provision . currently $ 2 million of interest has been recognized in the consolidated statements of income ( loss ) and comprehensive income ( loss ) . eog does not anticipate that the amount of the unrecognized tax benefits will change materially during the next twelve months . eog and its subsidiaries file income tax returns and are subject to tax audits in the u.s . and various state , local and foreign jurisdictions . eog's earliest open tax years in its principal jurisdictions are as follows : u.s . federal ( 2016 ) , canada ( 2014 ) , trinidad ( 2013 ) and china ( 2008 ) . eog's foreign subsidiaries' undistributed earnings are not considered to be permanently reinvested outside of the u.s . accordingly , eog may be required to accrue certain u.s . federal , state , and fo",
+      "rule_class": "table_binding",
+      "final_class": "table_binding",
+      "signals": {
+        "n_numbers_in_sinking": 2,
+        "n_absent_verbatim": 0,
+        "n_absent_in_argmax_window": 2,
+        "absent_numbers": [],
+        "derivation_register": false,
+        "derivation_candidates": [],
+        "scale_candidates": [],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 156,
+      "item_id": "finqa_6826",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.1204,
+      "threshold": 0.166,
+      "question": "what was the percentage change in net earnings from continuing operations from 2014 to 2015?",
+      "sinking_sentence": "In 2014, net earnings from continuing operations were $3480 million.",
+      "sinking_sent_idx": 1,
+      "sinking_score": 0.1204,
+      "argmax_doc": 0,
+      "argmax_win": 3,
+      "argmax_window_text": "ct to 2015 financial results sikorsky 2019s financial results have been included in our consolidated financial results only for the period from the november 6 , 2015 acquisition date through december 31 , 2015 . as a result , our consolidated financial results for the year ended december 31 , 2015 do not reflect a full year of sikorsky 2019s results . from the november 6 , 2015 acquisition date through december 31 , 2015 , sikorsky generated net sales of approximately $ 400 million and operating loss of approximately $ 45 million , inclusive of intangible amortization and adjustments required to account for the acquisition . we incurred approximately $ 38 million of non-recoverable transaction costs associated with the sikorsky acquisition in 2015 that were expensed as incurred . these costs are included in 201cother income , net 201d on our consolidated statements of earnings . we also incurred approximately $ 48 million in costs associated with issuing the $ 7.0 billion november 2015 notes used to repay all outstanding borrowings under the 364-day facility used to finance the acquisition . the financing costs were recorded as a reduction of debt and will be amortized to interest expense over the term of the related debt . supplemental pro forma financial information ( unaudited ) the following table presents summarized unaudited pro forma financial information as if sikorsky had been included in our financial results for the entire years in 2015 and 2014 ( in millions ) : .",
+      "rule_class": "table_binding",
+      "final_class": "table_binding",
+      "signals": {
+        "n_numbers_in_sinking": 2,
+        "n_absent_verbatim": 0,
+        "n_absent_in_argmax_window": 1,
+        "absent_numbers": [],
+        "derivation_register": false,
+        "derivation_candidates": [],
+        "scale_candidates": [],
+        "support_fit": "covered",
+        "argmax_window_has_support": false,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 160,
+      "item_id": "finqa_6394",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.0788,
+      "threshold": 0.166,
+      "question": "for 2007 and 2006 in millions , what was average residential mortgage loan balance?",
+      "sinking_sentence": "For 2006, the residential mortgage loan balance was $6.3 billion.",
+      "sinking_sent_idx": 1,
+      "sinking_score": 0.0788,
+      "argmax_doc": 2,
+      "argmax_win": 2,
+      "argmax_window_text": "ments when due . we do not believe that these product features create a concentration of credit risk . we also originate home equity loans and lines of credit that result in a credit concentration of high loan-to-value ratio loan products at the time of origination . in addition , these loans are concentrated in our primary geographic markets as discussed above . at december 31 , 2007 , $ 2.7 billion of the $ 14.4 billion of home equity loans ( included in 201cconsumer 201d in the table above ) had a loan-to-value ratio greater than 90% ( 90 % ) . these loans are collateralized primarily by 1-4 family residential properties . as part of our asset and liability management activities , we also periodically purchase residential mortgage loans that are collateralized by 1-4 family residential properties . at december 31 , 2007 , $ 3.0 billion of the $ 9.6 billion of residential mortgage loans were interest- only loans . we realized net gains from sales of commercial mortgages of $ 39 million in 2007 , $ 55 million in 2006 and $ 61 million in 2005 . gains on sales of education loans totaled $ 24 million in 2007 , $ 33 million in 2006 and $ 19 million in 2005 . loans held for sale are reported separately on the consolidated balance sheet and are not included in the table above . interest income from total loans held for sale was $ 184 million for 2007 , $ 157 million for 2006 and $ 104 million for 2005 and is included in other interest income in our consolidated income statement. .",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "scale_unit",
+      "signals": {
+        "n_numbers_in_sinking": 2,
+        "n_absent_verbatim": 1,
+        "n_absent_in_argmax_window": 1,
+        "absent_numbers": [
+          "6.3"
+        ],
+        "derivation_register": false,
+        "derivation_candidates": [
+          {
+            "a": 990.0,
+            "b": 157.0,
+            "op": "a/b",
+            "result": 6.305732484076433
+          },
+          {
+            "a": 19.0,
+            "b": 3.0,
+            "op": "a/b",
+            "result": 6.333333333333333
+          },
+          {
+            "a": 90.0,
+            "b": 14.4,
+            "op": "a/b",
+            "result": 6.25
+          }
+        ],
+        "scale_candidates": [
+          {
+            "evidence": 6337.0,
+            "factor": 0
+          }
+        ],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 162,
+      "item_id": "finqa_7010",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.1322,
+      "threshold": 0.166,
+      "question": "what was the tax rate applied applied to the goodwill impairment charge in the fourth quarter of 2008",
+      "sinking_sentence": "The tax rate applied to the goodwill impairment charge in the fourth quarter of 2008 was 9.6 billion pretax (8.7 billion after-tax), which indicates that the tax rate applied was 9.6 billion - 8.7 billion = 0.9 billion.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.1322,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"reporting unit ( 1 )\", \"fair value as a % (  % ) of allocated book value\", \"goodwill\"], [\"north america regional consumer banking\", \"174% ( 174 % )\", \"$ 2453\"], [\"emea regional consumer banking\", \"163\", \"255\"], [\"asia regional consumer banking\", \"303\", \"5533\"], [\"latin america regional consumer banking\", \"215\", \"1352\"], [\"securities and banking\", \"203\", \"8784\"], [\"transaction services\", \"2079\", \"1573\"], [\"brokerage and asset management\", \"161\", \"759\"], [\"local consumer lending 2014cards\", \"112\", \"4683\"]]",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 6,
+        "n_absent_verbatim": 1,
+        "n_absent_in_argmax_window": 6,
+        "absent_numbers": [
+          "0.9"
+        ],
+        "derivation_register": true,
+        "derivation_candidates": [
+          {
+            "a": 9.6,
+            "b": 8.7,
+            "op": "a-b",
+            "result": 0.9000000000000004
+          },
+          {
+            "a": 8.7,
+            "b": 9.6,
+            "op": "a/b",
+            "result": 0.90625
+          }
+        ],
+        "scale_candidates": [],
+        "support_fit": "covered",
+        "argmax_window_has_support": false,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 167,
+      "item_id": "finqa_7114",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.1531,
+      "threshold": 0.166,
+      "question": "what was the total balance in 2018 , if the company was to include interest and penalty liabilities?",
+      "sinking_sentence": "Based on the information provided in the financial statements, the total balance of unrecognized tax benefits at the end of fiscal year 2018, including the liabilities for estimated interest and penalties, was $197.5 million.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.1531,
+      "argmax_doc": 2,
+      "argmax_win": 2,
+      "argmax_window_text": "lties for unrecognized tax benefits . our results of operations for the fiscal year ended september 30 , 2018 , 2017 and 2016 include expense of $ 5.8 million , $ 7.4 million and $ 2.9 million , respectively , net of indirect benefits , related to estimated interest and penalties with respect to the liability for unrecognized tax benefits . as of september 30 , 2018 , it is reasonably possible that our unrecognized tax benefits will decrease by up to $ 5.5 million in the next twelve months due to expiration of various statues of limitations and settlement of issues . we file federal , state and local income tax returns in the u.s . and various foreign jurisdictions . with few exceptions , we are no longer subject to u.s . federal and state and local income tax examinations by tax authorities for years prior to fiscal 2015 and fiscal 2008 , respectively . we are no longer subject to non-u.s . income tax examinations by tax authorities for years prior to fiscal 2011 , except for brazil for which we are not subject to tax examinations for years prior to 2005 . while we believe our tax positions are appropriate , they are subject to audit or other modifications and there can be no assurance that any modifications will not materially and adversely affect our results of operations , financial condition or cash flows . note 6 . segment information we report our financial results of operations in the following three reportable segments : corrugated packaging , which consists of our c",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 2,
+        "n_absent_verbatim": 1,
+        "n_absent_in_argmax_window": 1,
+        "absent_numbers": [
+          "197.5"
+        ],
+        "derivation_register": true,
+        "derivation_candidates": [
+          {
+            "a": 70.4,
+            "b": 127.1,
+            "op": "a+b",
+            "result": 197.5
+          },
+          {
+            "a": 127.1,
+            "b": 70.4,
+            "op": "a+b",
+            "result": 197.5
+          },
+          {
+            "a": 15.2,
+            "b": 7.7,
+            "op": "a/b*100",
+            "result": 197.4025974025974
+          }
+        ],
+        "scale_candidates": [],
+        "support_fit": "no_keys",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 168,
+      "item_id": "finqa_7201",
+      "label": 0,
+      "error_type": "fp",
+      "score": 0.2646,
+      "threshold": 0.166,
+      "question": "without the loss of in volume/weather , what percent increase would net revenue have experienced between 2016 and 2017?",
+      "sinking_sentence": "To calculate the percent increase in net revenue between 2016 and 2017 without the loss in volume/weather, we can use the following steps:\n\n1.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.2646,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"\", \"amount ( in millions )\"], [\"2016 net revenue\", \"$ 705.4\"], [\"volume/weather\", \"-18.2 ( 18.2 )\"], [\"retail electric price\", \"13.5\"], [\"other\", \"2.4\"], [\"2017 net revenue\", \"$ 703.1\"]]",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 3,
+        "n_absent_verbatim": 0,
+        "n_absent_in_argmax_window": 1,
+        "absent_numbers": [],
+        "derivation_register": true,
+        "derivation_candidates": [],
+        "scale_candidates": [],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "This conclusion is an assertion that contradicts the computed percentage in 'i.' where it claimed a decrease (-2.8%), this sentence incorrectly frames it as an increase.",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": false,
+        "sinking_is_annotated_unsupported": false
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 170,
+      "item_id": "finqa_6482",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.1398,
+      "threshold": 0.166,
+      "question": "what was the percent change in the aggregate net asset values of the collateral pools underlying ssga lending funds between 2008 and 2009?",
+      "sinking_sentence": "In 2008, the aggregate net asset value of the collateral pools underlying ssga lending funds was $31 billion, and in 2009 it was $24 billion.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.1398,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"( in billions )\", \"december 31 2009\", \"december 31 2008\", \"december 31 2007 ( 1 )\"], [\"direct lending collateral pools\", \"$ 85\", \"$ 85\", \"$ 150\"], [\"collateral pools underlying ssga lending funds\", \"24\", \"31\", \"44\"]]",
+      "rule_class": "table_binding",
+      "final_class": "table_binding",
+      "signals": {
+        "n_numbers_in_sinking": 4,
+        "n_absent_verbatim": 0,
+        "n_absent_in_argmax_window": 0,
+        "absent_numbers": [],
+        "derivation_register": false,
+        "derivation_candidates": [],
+        "scale_candidates": [],
+        "support_fit": "no_keys",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 186,
+      "item_id": "finqa_6889",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.1151,
+      "threshold": 0.166,
+      "question": "what was the percent of the change in the company 2019s uncertain tax positions from 2007 to 2008",
+      "sinking_sentence": "The change in the company's uncertain tax positions from 2007 to 2008 was an increase of $2402 thousand.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.1151,
+      "argmax_doc": 0,
+      "argmax_win": 2,
+      "argmax_window_text": "for as a credit to additional paid-in capital , if and when realized , rather than a reduction of the tax provision . the company 2019s manufacturing operations in singapore operate under various tax holidays and incentives that begin to expire in 2018 . for the year ended december 28 , 2008 , these tax holidays and incentives resulted in an approximate $ 1.9 million decrease to the tax provision and an increase to net income per diluted share of $ 0.01 . residual u.s . income taxes have not been provided on $ 14.7 million of undistributed earnings of foreign subsidiaries as of december 28 , 2008 , since the earnings are considered to be indefinitely invested in the operations of such subsidiaries . effective january 1 , 2007 , the company adopted fin no . 48 , accounting for uncertainty in income taxes 2014 an interpretation of fasb statement no . 109 , which clarifies the accounting for uncertainty in tax positions . fin no . 48 requires recognition of the impact of a tax position in the company 2019s financial statements only if that position is more likely than not of being sustained upon examination by taxing authorities , based on the technical merits of the position . the adoption of fin no . 48 did not result in an adjustment to the company 2019s opening stockholders 2019 equity since there was no cumulative effect from the change in accounting principle . the following table summarizes the gross amount of the company 2019s uncertain tax positions ( in thousands ) : .",
+      "rule_class": "table_binding",
+      "final_class": "table_binding",
+      "signals": {
+        "n_numbers_in_sinking": 3,
+        "n_absent_verbatim": 0,
+        "n_absent_in_argmax_window": 1,
+        "absent_numbers": [],
+        "derivation_register": true,
+        "derivation_candidates": [],
+        "scale_candidates": [],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 189,
+      "item_id": "finqa_6644",
+      "label": 0,
+      "error_type": "fp",
+      "score": 0.3371,
+      "threshold": 0.166,
+      "question": "for the 2010 currency maturities , what would the value be without the euro maturities , in us$ millions?",
+      "sinking_sentence": "The total value of currency maturities for 2010, excluding the euro maturities, would be $305 million.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.3371,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"currency\", \"2010 maturity ( in $ millions )\"], [\"euro\", \"-372 ( 372 )\"], [\"british pound sterling\", \"-90 ( 90 )\"], [\"chinese renminbi\", \"-200 ( 200 )\"], [\"mexican peso\", \"-5 ( 5 )\"], [\"singapore dollar\", \"27\"], [\"canadian dollar\", \"-48 ( 48 )\"], [\"japanese yen\", \"8\"], [\"brazilian real\", \"-11 ( 11 )\"], [\"swedish krona\", \"15\"], [\"other\", \"-1 ( 1 )\"], [\"total\", \"-677 ( 677 )\"]]",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 2,
+        "n_absent_verbatim": 1,
+        "n_absent_in_argmax_window": 1,
+        "absent_numbers": [
+          "305"
+        ],
+        "derivation_register": true,
+        "derivation_candidates": [
+          {
+            "a": 677.0,
+            "b": 372.0,
+            "op": "a-b",
+            "result": 305.0
+          },
+          {
+            "a": 333.0,
+            "b": 27.0,
+            "op": "a-b",
+            "result": 306.0
+          },
+          {
+            "a": 276.0,
+            "b": 90.0,
+            "op": "a/b*100",
+            "result": 306.6666666666667
+          }
+        ],
+        "scale_candidates": [],
+        "support_fit": "no_keys",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "The total value provided in the response is incorrect in signage ('-$305 million' should be correct, not $305 million as stated).",
+        "unsupported_number_absent": true,
+        "unsupported_numbers_all_present": false,
+        "sinking_is_annotated_unsupported": true
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 190,
+      "item_id": "finqa_6267",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.1499,
+      "threshold": 0.166,
+      "question": "assuming each continent has the same number of destinations , approximately how many destinations does each continent have?",
+      "sinking_sentence": "455 destinations / 7 continents = approximately 65 destinations per continent.",
+      "sinking_sent_idx": 1,
+      "sinking_score": 0.1499,
+      "argmax_doc": 0,
+      "argmax_win": 0,
+      "argmax_window_text": "notes to the consolidated financial statements note 1 . general description of business we are a global cruise company . we own royal caribbean international , celebrity cruises , pullmantur , azamara club cruises , cdf croisi e8res de france and a 50% ( 50 % ) joint venture interest in tui cruises . together , these six brands operate a combined 41 ships as of december 31 , 2012 . our ships operate on a selection of worldwide itineraries that call on approximately 455 destinations on all seven continents . basis for preparation of consolidated financial statements the consolidated financial statements are prepared in accordance with accounting principles generally accepted in the united states of america ( 201cgaap 201d ) . estimates are required for the preparation of financial statements in accordance with these principles . actual results could differ from these estimates . all significant intercompany accounts and transactions are eliminated in consolidation . we consolidate entities over which we have control , usually evidenced by a direct ownership interest of greater than 50% ( 50 % ) , and variable interest entities where we are determined to be the primary beneficiary . see note 6 . other assets for further information regarding our variable interest entities . for affiliates we do not control but over which we have significant influence on financial and operat- ing policies , usually evidenced by a direct ownership interest from 20% ( 20 % ) to 50% ( 50 % ) , the ",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 3,
+        "n_absent_verbatim": 2,
+        "n_absent_in_argmax_window": 2,
+        "absent_numbers": [
+          "7",
+          "65"
+        ],
+        "derivation_register": false,
+        "derivation_candidates": [
+          {
+            "a": 10.0,
+            "b": 3.0,
+            "op": "a-b",
+            "result": 7.0
+          },
+          {
+            "a": 12.0,
+            "b": 5.0,
+            "op": "a-b",
+            "result": 7.0
+          },
+          {
+            "a": 13.0,
+            "b": 6.0,
+            "op": "a-b",
+            "result": 7.0
+          }
+        ],
+        "scale_candidates": [],
+        "support_fit": "no_keys",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 191,
+      "item_id": "finqa_6656",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.0874,
+      "threshold": 0.166,
+      "question": "what is the total share-based compensation cost in the last three years?",
+      "sinking_sentence": "The total share-based compensation cost in the last three years is $ 172 million + $ 179 million + $ 147 million = $ 498 million.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.0874,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"\", \"2014\", \"2013\", \"2012\"], [\"expected term ( in years ) ( 1 )\", \"4.80\", \"6.08\", \"6.02\"], [\"risk-free rate of return ( 2 )\", \"1.3% ( 1.3 % )\", \"0.8% ( 0.8 % )\", \"1.2% ( 1.2 % )\"], [\"expected volatility ( 3 )\", \"25.2% ( 25.2 % )\", \"29.3% ( 29.3 % )\", \"34.9% ( 34.9 % )\"], [\"expected dividend yield ( 4 )\", \"0.8% ( 0.8 % )\", \"0.9% ( 0.9 % )\", \"0.9% ( 0.9 % )\"], [\"fair value per option granted\", \"$ 44.11\", \"$ 39.03\", \"$ 29.65\"]]",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 4,
+        "n_absent_verbatim": 1,
+        "n_absent_in_argmax_window": 4,
+        "absent_numbers": [
+          "498"
+        ],
+        "derivation_register": true,
+        "derivation_candidates": [
+          {
+            "a": 10.0,
+            "b": 2.0,
+            "op": "a/b*100",
+            "result": 500.0
+          },
+          {
+            "a": 147.0,
+            "b": 29.65,
+            "op": "a/b*100",
+            "result": 495.7841483979764
+          },
+          {
+            "a": 147.0,
+            "b": 29.3,
+            "op": "a/b*100",
+            "result": 501.7064846416382
+          }
+        ],
+        "scale_candidates": [],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 199,
+      "item_id": "finqa_7036",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.1514,
+      "threshold": 0.166,
+      "question": "how many shares were issued during the period of 2016 to 2018 , in millions?",
+      "sinking_sentence": "Therefore, the number of shares issued during the period of 2016 to 2018 was:\n1,224 million - 1,214 million = 10 million shares.",
+      "sinking_sent_idx": 2,
+      "sinking_score": 0.1514,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"\", \"shares issued\", \"treasury shares\", \"shares outstanding\"], [\"balance at january 3 2016\", \"1214\", \"2014\", \"1214\"], [\"exercise of stock options issuance of other stock awards and other\", \"5\", \"-2 ( 2 )\", \"3\"], [\"balance at december 31 2016\", \"1219\", \"-2 ( 2 )\", \"1217\"], [\"exercise of stock options issuance of other stock awards and other\", \"2\", \"2014\", \"2\"], [\"balance at december 30 2017\", \"1221\", \"-2 ( 2 )\", \"1219\"], [\"exercise of stock options issuance of other stock awards and other\", \"3\", \"-2 ( 2 )\", \"1\"], [\"balance at december 29 2018\", \"1224\", \"-4 ( 4 )\", \"1220\"]]",
+      "rule_class": "table_binding",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 5,
+        "n_absent_verbatim": 0,
+        "n_absent_in_argmax_window": 1,
+        "absent_numbers": [],
+        "derivation_register": false,
+        "derivation_candidates": [],
+        "scale_candidates": [],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 200,
+      "item_id": "finqa_6767",
+      "label": 0,
+      "error_type": "fp",
+      "score": 0.6371,
+      "threshold": 0.166,
+      "question": "what was the ratio of the net increase in the in securities sold under agreements to repurchase to the net transfers in",
+      "sinking_sentence": "Based on the information provided in the context, we can calculate the ratio of the net increase in securities sold under agreements to repurchase to the net transfers in.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.6371,
+      "argmax_doc": 0,
+      "argmax_win": 0,
+      "argmax_window_text": "the decrease in mortgage servicing rights of $ 2.7 billion was primarily 2022 attributed to mark-to-market losses recognized in the portfolio due to decreases in the mortgage interest rates and increases in refinancing . the increase in securities sold under agreements to repurchase of $ 5 2022 billion is driven by a $ 6.2 billion increase from net transfers in as the continued credit crisis impacted the availability of observable inputs for the underlying securities related to this liability . this was offset by a reduction from net settlements of $ 1.4 billion . the decrease in short-term borrowings of $ 3.7 billion is due to net transfers 2022 out of $ 1.8 billion as valuation methodology inputs considered to be unobservable were determined not to be significant to the overall valuation . in addition , net payments of $ 1.8 billion were made during the year . the increase in 2022 long-term debt of $ 2.2 billion is driven by : the net transfers in of $ 38.8 billion , substantially all of which related 2013 to the transfer of consolidated siv debt in the first quarter of 2008 , as the availability of observable inputs continued to decline due to the current crisis ; offset by $ 2.2 billion in gains recognized as credit spreads widened during the 2013 year ; and $ 34.3 billion decrease from net settlements/payments . included in 2013 these settlements were $ 21 billion of payments made on maturing siv debt and the replacement of $ 17 billion of non-recourse , consolidated siv",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "table_binding",
+      "signals": {
+        "n_numbers_in_sinking": 0,
+        "n_absent_verbatim": 0,
+        "n_absent_in_argmax_window": 0,
+        "absent_numbers": [],
+        "derivation_register": true,
+        "derivation_candidates": [
+          {
+            "a": 2.1,
+            "b": 3.1,
+            "op": "a+b",
+            "result": 5.2
+          },
+          {
+            "a": 2.2,
+            "b": 3.0,
+            "op": "a+b",
+            "result": 5.2
+          },
+          {
+            "a": 2.5,
+            "b": 2.7,
+            "op": "a+b",
+            "result": 5.2
+          }
+        ],
+        "scale_candidates": [],
+        "support_fit": "no_keys",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "The response incorrectly states a figure of $5.2 billion, while the document states a $5 billion increase. Therefore, this statement is not supported. | Statement correctly identifies which values need to be used for a ratio, but combining these particular figures is not supported as a valid approach or comparison for this calculation from the documents. | The conclusion follows from the calculation in 'f.' However, because the initial data and the approach were incorrect, this concluding statement is also unsupported.",
+        "unsupported_number_absent": true,
+        "unsupported_numbers_all_present": false,
+        "sinking_is_annotated_unsupported": false
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 202,
+      "item_id": "finqa_6731",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.0993,
+      "threshold": 0.166,
+      "question": "what was the change in level 3 financial assets from 2016 to 2017 in millions?",
+      "sinking_sentence": "The change in level 3 financial assets from 2016 to 2017 was a decrease of $4,079 million ($23,280 million in 2016 to $19,201 million in 2017).",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.0993,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"$ in millions\", \"as of december 2017\", \"as of december 2016\"], [\"cash instruments\", \"$ 15395\", \"$ 18035\"], [\"derivatives\", \"3802\", \"5190\"], [\"other financial assets\", \"4\", \"55\"], [\"total\", \"$ 19201\", \"$ 23280\"]]",
+      "rule_class": "window_boundary",
+      "final_class": "window_boundary",
+      "signals": {
+        "n_numbers_in_sinking": 8,
+        "n_absent_verbatim": 1,
+        "n_absent_in_argmax_window": 2,
+        "absent_numbers": [
+          "4,079"
+        ],
+        "derivation_register": true,
+        "derivation_candidates": [
+          {
+            "a": 23280.0,
+            "b": 19201.0,
+            "op": "a-b",
+            "result": 4079.0
+          }
+        ],
+        "scale_candidates": [],
+        "support_fit": "split",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 205,
+      "item_id": "finqa_6888",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.1532,
+      "threshold": 0.166,
+      "question": "what is the total exposure to government related derivatives , in millions?",
+      "sinking_sentence": "Based on the information provided, the total exposure to government-related derivatives (including sovereign governments, regional governments, and not-for-profit organizations) is $3,085 million.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.1532,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"industry\", \"otc derivative products ( 1 ) ( dollars in millions )\"], [\"utilities\", \"$ 3142\"], [\"banks and securities firms\", \"2358\"], [\"funds exchanges and other financial services ( 2 )\", \"2433\"], [\"special purpose vehicles\", \"1908\"], [\"regional governments\", \"1597\"], [\"healthcare\", \"1089\"], [\"industrials\", \"914\"], [\"sovereign governments\", \"816\"], [\"not-for-profit organizations\", \"672\"], [\"insurance\", \"538\"], [\"real estate\", \"503\"], [\"consumer staples\", \"487\"], [\"other\", \"1157\"], [\"total\", \"$ 17614\"]]",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 1,
+        "n_absent_verbatim": 1,
+        "n_absent_in_argmax_window": 1,
+        "absent_numbers": [
+          "3,085"
+        ],
+        "derivation_register": true,
+        "derivation_candidates": [
+          {
+            "a": 672.0,
+            "b": 2433.0,
+            "op": "a+b",
+            "result": 3105.0
+          },
+          {
+            "a": 2433.0,
+            "b": 672.0,
+            "op": "a+b",
+            "result": 3105.0
+          },
+          {
+            "a": 3142.0,
+            "b": 31.0,
+            "op": "a-b",
+            "result": 3111.0
+          }
+        ],
+        "scale_candidates": [
+          {
+            "evidence": 31.0,
+            "factor": 100
+          }
+        ],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 211,
+      "item_id": "finqa_6918",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.1157,
+      "threshold": 0.166,
+      "question": "what was the two-year total for specific reserves in the alll , in millions?",
+      "sinking_sentence": "The two-year total for specific reserves in the alll was $1,167 million ($587 million at December 31, 2012 and $580 million at December 31, 2011).",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.1157,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"in millions\", \"dec . 312012\", \"dec . 312011\"], [\"total consumer lending ( a )\", \"$ 2318\", \"$ 1798\"], [\"total commercial lending\", \"541\", \"405\"], [\"total tdrs\", \"$ 2859\", \"$ 2203\"], [\"nonperforming\", \"$ 1589\", \"$ 1141\"], [\"accruing ( b )\", \"1037\", \"771\"], [\"credit card ( c )\", \"233\", \"291\"], [\"total tdrs\", \"$ 2859\", \"$ 2203\"]]",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 7,
+        "n_absent_verbatim": 1,
+        "n_absent_in_argmax_window": 7,
+        "absent_numbers": [
+          "1,167"
+        ],
+        "derivation_register": true,
+        "derivation_candidates": [
+          {
+            "a": 580.0,
+            "b": 587.0,
+            "op": "a+b",
+            "result": 1167.0
+          },
+          {
+            "a": 587.0,
+            "b": 580.0,
+            "op": "a+b",
+            "result": 1167.0
+          },
+          {
+            "a": 2203.0,
+            "b": 1037.0,
+            "op": "a-b",
+            "result": 1166.0
+          }
+        ],
+        "scale_candidates": [],
+        "support_fit": "covered",
+        "argmax_window_has_support": false,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 213,
+      "item_id": "finqa_6492",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.0414,
+      "threshold": 0.166,
+      "question": "what is the growth rate in net revenue in 2015 for entergy corporation?",
+      "sinking_sentence": "The growth rate in net revenue in 2015 for Entergy Corporation is approximately 1.6% ($5829 - $5735) / $5735 = 0.016.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.0414,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"\", \"amount ( in millions )\"], [\"2014 net revenue\", \"$ 5735\"], [\"retail electric price\", \"187\"], [\"volume/weather\", \"95\"], [\"waterford 3 replacement steam generator provision\", \"-32 ( 32 )\"], [\"miso deferral\", \"-35 ( 35 )\"], [\"louisiana business combination customer credits\", \"-107 ( 107 )\"], [\"other\", \"-14 ( 14 )\"], [\"2015 net revenue\", \"$ 5829\"]]",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 6,
+        "n_absent_verbatim": 2,
+        "n_absent_in_argmax_window": 2,
+        "absent_numbers": [
+          "1.6",
+          "0.016"
+        ],
+        "derivation_register": true,
+        "derivation_candidates": [
+          {
+            "a": 3.0,
+            "b": 187.0,
+            "op": "a/b*100",
+            "result": 1.6042780748663104
+          },
+          {
+            "a": 56.2,
+            "b": 35.0,
+            "op": "a/b",
+            "result": 1.6057142857142859
+          },
+          {
+            "a": 3.0,
+            "b": 187.0,
+            "op": "a/b",
+            "result": 0.016042780748663103
+          }
+        ],
+        "scale_candidates": [
+          {
+            "evidence": 16.0,
+            "factor": 0
+          },
+          {
+            "evidence": 16.0,
+            "factor": 0
+          }
+        ],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 215,
+      "item_id": "finqa_6711",
+      "label": 0,
+      "error_type": "fp",
+      "score": 0.2093,
+      "threshold": 0.166,
+      "question": "with a similar improvement as in 2010 , what would expected operating ratio be in 2011?",
+      "sinking_sentence": "If we assume a similar improvement in 2011 compared to 2010, we can expect the operating ratio in 2011 to be around 65.1%.",
+      "sinking_sent_idx": 1,
+      "sinking_score": 0.2093,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"millions except percentages\", \"2011\", \"2010\", \"2009\"], [\"net income\", \"$ 3292\", \"$ 2780\", \"$ 1890\"], [\"average equity\", \"$ 18171\", \"$ 17282\", \"$ 16058\"], [\"return on average commonshareholders 2019 equity\", \"18.1% ( 18.1 % )\", \"16.1% ( 16.1 % )\", \"11.8% ( 11.8 % )\"]]",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 4,
+        "n_absent_verbatim": 1,
+        "n_absent_in_argmax_window": 1,
+        "absent_numbers": [
+          "65.1"
+        ],
+        "derivation_register": true,
+        "derivation_candidates": [
+          {
+            "a": 70.6,
+            "b": 5.5,
+            "op": "a-b",
+            "result": 65.1
+          },
+          {
+            "a": 11.8,
+            "b": 18.1,
+            "op": "a/b*100",
+            "result": 65.19337016574586
+          },
+          {
+            "a": 70.7,
+            "b": 5.5,
+            "op": "a-b",
+            "result": 65.2
+          }
+        ],
+        "scale_candidates": [],
+        "support_fit": "no_keys",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "This sentence is not supported because the documents indicate that the operating ratio increased in 2011, contradicting the assumption in the sentence. | This sentence is not supported by the documents. While mathematically correct based on sentence 'f's calculation, it extends an incorrect assumption from 'b'.",
+        "unsupported_number_absent": true,
+        "unsupported_numbers_all_present": false,
+        "sinking_is_annotated_unsupported": true
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 217,
+      "item_id": "finqa_6828",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.0547,
+      "threshold": 0.166,
+      "question": "in december 2015 what was the ratio of the restricted cash and marketable securities to the allowance for doubtful accounts",
+      "sinking_sentence": "The allowance for doubtful accounts balance at the end of 2015 was $46.7 million.",
+      "sinking_sent_idx": 1,
+      "sinking_score": 0.0547,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"\", \"2015\", \"2014\", \"2013\"], [\"balance at beginning of year\", \"$ 38.9\", \"$ 38.3\", \"$ 45.3\"], [\"additions charged to expense\", \"22.7\", \"22.6\", \"16.1\"], [\"accounts written-off\", \"-14.9 ( 14.9 )\", \"-22.0 ( 22.0 )\", \"-23.1 ( 23.1 )\"], [\"balance at end of year\", \"$ 46.7\", \"$ 38.9\", \"$ 38.3\"]]",
+      "rule_class": "table_binding",
+      "final_class": "table_binding",
+      "signals": {
+        "n_numbers_in_sinking": 2,
+        "n_absent_verbatim": 0,
+        "n_absent_in_argmax_window": 0,
+        "absent_numbers": [],
+        "derivation_register": false,
+        "derivation_candidates": [],
+        "scale_candidates": [],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 221,
+      "item_id": "finqa_7222",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.1292,
+      "threshold": 0.166,
+      "question": "interest rate derivatives made up how much of the net total derivatives for 2015?",
+      "sinking_sentence": "According to the table in the context, the net derivative receivables for interest rate derivatives was $26,363 million in 2015.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.1292,
+      "argmax_doc": 0,
+      "argmax_win": 1,
+      "argmax_window_text": " revolving credit facilities ) and guarantees , to meet the financing needs of its customers . the contractual amounts of these financial instruments represent the maximum possible credit risk should the counterparties draw down on these commitments or the firm fulfills its obligations under these guarantees , and the counterparties subsequently fail to perform according to the terms of these contracts . in the firm 2019s view , the total contractual amount of these wholesale lending-related commitments is not representative of the firm 2019s likely actual future credit exposure or funding requirements . in determining the amount of credit risk exposure the firm has to wholesale lending-related commitments , which is used as the basis for allocating credit risk capital to these commitments , the firm has established a 201cloan-equivalent 201d amount for each commitment ; this amount represents the portion of the unused commitment or other contingent exposure that is expected , based on average portfolio historical experience , to become drawn upon in an event of a default by an obligor . the loan-equivalent amount of the firm 2019s lending- related commitments was $ 212.4 billion and $ 216.5 billion as of december 31 , 2015 and 2014 , respectively . clearing services the firm provides clearing services for clients entering into securities and derivative transactions . through the provision of these services the firm is exposed to the risk of non-performance by its clients and",
+      "rule_class": "table_binding",
+      "final_class": "table_binding",
+      "signals": {
+        "n_numbers_in_sinking": 2,
+        "n_absent_verbatim": 0,
+        "n_absent_in_argmax_window": 1,
+        "absent_numbers": [],
+        "derivation_register": true,
+        "derivation_candidates": [],
+        "scale_candidates": [],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 222,
+      "item_id": "finqa_6270",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.1271,
+      "threshold": 0.166,
+      "question": "in 2010 and 2009 , what was the total fair value in billions of assets segregated for the benefit of securities and futures brokerage customers?",
+      "sinking_sentence": "In 2010, the total fair value of assets segregated for the benefit of securities and futures brokerage customers was $25.0 billion.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.1271,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"year ended december 31 ( in millions )\", \"2010\", \"2009\", \"2008\"], [\"u.s .\", \"$ 16568\", \"$ 6263\", \"$ -2094 ( 2094 )\"], [\"non-u.s. ( a )\", \"8291\", \"9804\", \"4867\"], [\"income before incometax expense/ ( benefit ) andextraordinary gain\", \"$ 24859\", \"$ 16067\", \"$ 2773\"]]",
+      "rule_class": "table_binding",
+      "final_class": "table_binding",
+      "signals": {
+        "n_numbers_in_sinking": 2,
+        "n_absent_verbatim": 0,
+        "n_absent_in_argmax_window": 1,
+        "absent_numbers": [],
+        "derivation_register": true,
+        "derivation_candidates": [],
+        "scale_candidates": [],
+        "support_fit": "covered",
+        "argmax_window_has_support": false,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 229,
+      "item_id": "finqa_6609",
+      "label": 0,
+      "error_type": "fp",
+      "score": 0.3179,
+      "threshold": 0.166,
+      "question": "in 2009 what was the ratio of the statutory capital and surplus to the statutory net income of the bermuda subsidiaries",
+      "sinking_sentence": "To calculate the ratio of the statutory capital and surplus to the statutory net income of the Bermuda subsidiaries in 2009, we need to find the values of the statutory capital and surplus and the statutory net income for that year.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.3179,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"( in millions of u.s . dollars )\", \"bermuda subsidiaries 2008\", \"bermuda subsidiaries 2007\", \"bermuda subsidiaries 2006\", \"bermuda subsidiaries 2008\", \"bermuda subsidiaries 2007\", \"2006\"], [\"statutory capital and surplus\", \"$ 7001\", \"$ 8579\", \"$ 7605\", \"$ 5337\", \"$ 5321\", \"$ 4431\"], [\"statutory net income\", \"$ 684\", \"$ 1535\", \"$ 1527\", \"$ 798\", \"$ 873\", \"$ 724\"]]",
+      "rule_class": "entity_confusion",
+      "final_class": "entity_confusion",
+      "signals": {
+        "n_numbers_in_sinking": 1,
+        "n_absent_verbatim": 0,
+        "n_absent_in_argmax_window": 1,
+        "absent_numbers": [],
+        "derivation_register": true,
+        "derivation_candidates": [],
+        "scale_candidates": [],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "This sentence claims to introduce data for 2009. However, the documents do not provide data for 2009, thus there is no support for this statement in the documents. | The specified value for statutory capital and surplus is mentioned for earlier years but not for 2009. Therefore, this specific claim about 2009 data is unsupported. | The specified value for statutory net income is mentioned for earlier years but not for 2009. Thus, this specific claim about 2009 data is unsupportable. | As the data used to reach this conclusion is inaccurate or unsubstantiated for 2009, this conclusion is unsupported.",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": false,
+        "sinking_is_annotated_unsupported": false
+      }
+    },
+    {
+      "draw": "draw1",
+      "item": 231,
+      "item_id": "finqa_6442",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.0307,
+      "threshold": 0.166,
+      "question": "considering the average exercise price of options , what is the increase in the total value of stock options observed during 2016 and 2017 , in millions of dollars?",
+      "sinking_sentence": "The total value of stock options in 2016 = 1 million shares \u00d7 $26.93 per share = $26.93 million\n\nIn 2017, the average exercise price of options per share was $33.32 and the number of potential shares of common stock related to stock options was 1 million.",
+      "sinking_sent_idx": 4,
+      "sinking_score": 0.0307,
+      "argmax_doc": 2,
+      "argmax_win": 0,
+      "argmax_window_text": "( 1 ) the average exercise price of options per share was $ 26.79 , $ 33.32 , and $ 26.93 for 2018 , 2017 , and 2016 , respectively . in 2017 , had arconic generated sufficient net income , 30 million , 14 million , 5 million , and 1 million potential shares of common stock related to the mandatory convertible preferred stock , convertible notes , stock awards , and stock options , respectively , would have been included in diluted average shares outstanding . the mandatory convertible preferred stock converted on october 2 , 2017 ( see note i ) . in 2016 , had arconic generated sufficient net income , 28 million , 10 million , 4 million , and 1 million potential shares of common stock related to the mandatory convertible preferred stock , convertible notes , stock awards , and stock options , respectively , would have been included in diluted average shares outstanding. .",
+      "rule_class": "other_ambiguous",
+      "final_class": "other_ambiguous",
+      "signals": {
+        "n_numbers_in_sinking": 7,
+        "n_absent_verbatim": 0,
+        "n_absent_in_argmax_window": 0,
+        "absent_numbers": [],
+        "derivation_register": true,
+        "derivation_candidates": [],
+        "scale_candidates": [],
+        "support_fit": "covered",
+        "argmax_window_has_support": true,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw2",
+      "item": 31,
+      "item_id": "finqa_6930",
+      "label": 0,
+      "error_type": "fp",
+      "score": 0.1796,
+      "threshold": 0.0548,
+      "question": "what was the change in millions of total shareholders' equity from 2012 to 2013?",
+      "sinking_sentence": "Total shareholders' equity decreased by $2,749 million from 2012 to 2013.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.1796,
+      "argmax_doc": 0,
+      "argmax_win": 0,
+      "argmax_window_text": "management 2019s discussion and analysis balance sheet analysis and metrics as of december 2013 , total assets on our consolidated statements of financial condition were $ 911.51 billion , a decrease of $ 27.05 billion from december 2012 . this decrease was primarily due to a decrease in financial instruments owned , at fair value of $ 67.89 billion , primarily due to decreases in u.s . government and federal agency obligations , non-u.s . government and agency obligations , derivatives and commodities , and a decrease in other assets of $ 17.11 billion , primarily due to the sale of a majority stake in our americas reinsurance business in april 2013 . these decreases were partially offset by an increase in collateralized agreements of $ 48.07 billion , due to firm and client activity . as of december 2013 , total liabilities on our consolidated statements of financial condition were $ 833.04 billion , a decrease of $ 29.80 billion from december 2012 . this decrease was primarily due to a decrease in other liabilities and accrued expenses of $ 26.35 billion , primarily due to the sale of a majority stake in both our americas reinsurance business in april 2013 and our european insurance business in december 2013 , and a decrease in collateralized financings of $ 9.24 billion , primarily due to firm financing activities . this decrease was partially offset by an increase in payables to customers and counterparties of $ 10.21 billion . as of december 2013 , our total securities ",
+      "rule_class": "scale_unit",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 3,
+        "n_absent_verbatim": 1,
+        "n_absent_in_argmax_window": 1,
+        "absent_numbers": [
+          "2,749"
+        ],
+        "derivation_register": true,
+        "derivation_candidates": [
+          {
+            "a": 78467.0,
+            "b": 75716.0,
+            "op": "a-b",
+            "result": 2751.0
+          },
+          {
+            "a": 167305.0,
+            "b": 61.0,
+            "op": "a/b",
+            "result": 2742.7049180327867
+          },
+          {
+            "a": 201.0,
+            "b": 7.0,
+            "op": "(a-b)/|b|*100",
+            "result": 2771.4285714285716
+          }
+        ],
+        "scale_candidates": [],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "The sentence incorrectly states the trend in shareholders' equity as a decrease, while the equity actually increased by $2,751 million from 2012 to 2013 as per Document 1.",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": false,
+        "sinking_is_annotated_unsupported": false
+      }
+    },
+    {
+      "draw": "draw2",
+      "item": 36,
+      "item_id": "finqa_6821",
+      "label": 0,
+      "error_type": "fp",
+      "score": 0.2534,
+      "threshold": 0.0548,
+      "question": "as of december 312012 what was the percent of the scheduled maturities of long term debt as part of the long term debt",
+      "sinking_sentence": "Based on the information provided:\n\nThe total scheduled maturities of long-term debt as of December 31, 2011 was $77,724,000.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.2534,
+      "argmax_doc": 0,
+      "argmax_win": 0,
+      "argmax_window_text": "borrowings under the credit facility bear interest based on the daily balance outstanding at libor ( with no rate floor ) plus an applicable margin ( varying from 1.25% ( 1.25 % ) to 1.75% ( 1.75 % ) ) or , in certain cases a base rate ( based on a certain lending institution 2019s prime rate or as otherwise specified in the credit agreement , with no rate floor ) plus an applicable margin ( varying from 0.25% ( 0.25 % ) to 0.75% ( 0.75 % ) ) . the credit facility also carries a commitment fee equal to the unused borrowings multiplied by an applicable margin ( varying from 0.25% ( 0.25 % ) to 0.35% ( 0.35 % ) ) . the applicable margins are calculated quarterly and vary based on the company 2019s leverage ratio as set forth in the credit agreement . upon entering into the credit facility in march 2011 , the company terminated its prior $ 200.0 million revolving credit facility . the prior revolving credit facility was collateralized by substantially all of the company 2019s assets , other than trademarks , and included covenants , conditions and other terms similar to the company 2019s new credit facility . in may 2011 , the company borrowed $ 25.0 million under the term loan facility to finance a portion of the acquisition of the company 2019s corporate headquarters . the interest rate on the term loan was 1.5% ( 1.5 % ) during the year ended december 31 , 2011 . the maturity date of the term loan is march 2015 , which is the end of the credit facility term . the company expe",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "entity_confusion",
+      "signals": {
+        "n_numbers_in_sinking": 3,
+        "n_absent_verbatim": 1,
+        "n_absent_in_argmax_window": 1,
+        "absent_numbers": [
+          "77,724,000"
+        ],
+        "derivation_register": true,
+        "derivation_candidates": [],
+        "scale_candidates": [
+          {
+            "evidence": 77724.0,
+            "factor": 1000
+          }
+        ],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "The statement applies the accurate calculation results to the incorrect year (2012 instead of 2011), and as such, is not supported by documents which only provide data explicitly for December 31, 2011.",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": false,
+        "sinking_is_annotated_unsupported": false
+      }
+    },
+    {
+      "draw": "draw2",
+      "item": 41,
+      "item_id": "finqa_7333",
+      "label": 0,
+      "error_type": "fp",
+      "score": 0.2599,
+      "threshold": 0.0548,
+      "question": "how much money did the company pay for the repurchase of shares on non-announced plans or programs?",
+      "sinking_sentence": "The company paid a total of approximately $82,660,099 for the repurchase of shares on non-announced plans or programs ($109.32 per share x 75,671 shares).",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.2599,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"period\", \"total number ofshares purchased ( 1 )\", \"average price paidper share ( 2 )\", \"total number of sharespurchased as part ofpublicly announcedplans or programs ( 3 )\", \"approximate dollarvalue of shares thatmay yet be purchasedunder the plans or programs\"], [\"august 4 2019 through august 31 2019\", \"199231\", \"$ 109.00\", \"194849\", \"$ 2213017633\"], [\"september 1 2019 through september 28 2019\", \"342313\", \"$ 113.39\", \"338534\", \"$ 2174639499\"], [\"september 29 2019 through november 2 2019\", \"1023202\", \"$ 109.32\", \"949531\", \"$ 2070927831\"], [\"total\", \"1564746\", \"$ 110.17\", \"1482914\", \"$ 2070927831\"]]",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 3,
+        "n_absent_verbatim": 2,
+        "n_absent_in_argmax_window": 2,
+        "absent_numbers": [
+          "82,660,099",
+          "75,671"
+        ],
+        "derivation_register": true,
+        "derivation_candidates": [
+          {
+            "a": 81832.0,
+            "b": 109.0,
+            "op": "a/b*100",
+            "result": 75075.22935779816
+          },
+          {
+            "a": 81832.0,
+            "b": 109.0,
+            "op": "(a-b)/|b|*100",
+            "result": 74975.22935779816
+          }
+        ],
+        "scale_candidates": [],
+        "support_fit": "no_keys",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "The response uses a calculated figure ($82,660,099) and number of shares (75,671) which are not mentioned or supported by any information directly in the documents. While the average price per share and some purchase data are documented, these specific figures and the context of non-publicly announced plans do not appear explicitly. The calculations or deductions made by the respondent are not traceable to specific data in the provided documents.",
+        "unsupported_number_absent": true,
+        "unsupported_numbers_all_present": false,
+        "sinking_is_annotated_unsupported": true
+      }
+    },
+    {
+      "draw": "draw2",
+      "item": 43,
+      "item_id": "finqa_7061",
+      "label": 0,
+      "error_type": "fp",
+      "score": 0.0645,
+      "threshold": 0.0548,
+      "question": "total purchase commitments over the next two years are what ( in thousands ) ?\\\\n\\\\n\\\\n",
+      "sinking_sentence": "Total purchase commitments over the next two years are $3,772,000.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.0645,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"2006\", \"$ 2408\"], [\"2007\", \"1364\"], [\"total\", \"$ 3772\"]]",
+      "rule_class": "scale_unit",
+      "final_class": "scale_unit",
+      "signals": {
+        "n_numbers_in_sinking": 1,
+        "n_absent_verbatim": 1,
+        "n_absent_in_argmax_window": 1,
+        "absent_numbers": [
+          "3,772,000"
+        ],
+        "derivation_register": true,
+        "derivation_candidates": [],
+        "scale_candidates": [
+          {
+            "evidence": 3772.0,
+            "factor": 1000
+          }
+        ],
+        "support_fit": "no_keys",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "The response sentence overstates the amount because it misinterprets the 'in thousands' notation. While Document 1 does provide the figures which sum to $3,772, the statement should be interpreted as $3,772,000, not simply $3,772 as indicated by the 'in thousands' context from Document 0, sentence 0c.",
+        "unsupported_number_absent": true,
+        "unsupported_numbers_all_present": false,
+        "sinking_is_annotated_unsupported": true
+      }
+    },
+    {
+      "draw": "draw2",
+      "item": 70,
+      "item_id": "finqa_6373",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.0244,
+      "threshold": 0.0548,
+      "question": "what portion of cash and cash equivalents on hand are held in u.s . as of december 31 , 2016?",
+      "sinking_sentence": "as of December 31, 2016 was $327 million - $184 million = $143 million.",
+      "sinking_sent_idx": 2,
+      "sinking_score": 0.0244,
+      "argmax_doc": 0,
+      "argmax_win": 1,
+      "argmax_window_text": "held outside of the u.s . as of december 31 , 2015 , we had $ 26 million of deferred tax liabilities for pre-acquisition foreign earnings associated with the legacy nalco entities and legacy champion entities that we intended to repatriate . these liabilities were recorded as part of the respective purchase price accounting of each transaction . the remaining foreign earnings were repatriated in 2016 , reducing the deferred tax liabilities to zero at december 31 , 2016 . we consider the remaining portion of our foreign earnings to be indefinitely reinvested in foreign jurisdictions and we have no intention to repatriate such funds . we continue to be focused on building our global business and these funds are available for use by our international operations . to the extent the remaining portion of the foreign earnings would be repatriated , such amounts would be subject to income tax or foreign withholding tax liabilities that may be fully or partially offset by foreign tax credits , both in the u.s . and in various applicable foreign jurisdictions . as of december 31 , 2016 we had a $ 2.0 billion multi-year credit facility , which expires in december 2019 . the credit facility has been established with a diverse syndicate of banks . there were no borrowings under our credit facility as of december 31 , 2016 or 2015 . the credit facility supports our $ 2.0 billion u.s . commercial paper program and $ 2.0 billion european commercial paper program . we increased the european c",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 5,
+        "n_absent_verbatim": 1,
+        "n_absent_in_argmax_window": 3,
+        "absent_numbers": [
+          "143"
+        ],
+        "derivation_register": false,
+        "derivation_candidates": [
+          {
+            "a": 327.0,
+            "b": 184.0,
+            "op": "a-b",
+            "result": 143.0
+          },
+          {
+            "a": 218.0,
+            "b": 153.0,
+            "op": "a/b*100",
+            "result": 142.48366013071896
+          },
+          {
+            "a": 102.0,
+            "b": 71.0,
+            "op": "a/b*100",
+            "result": 143.66197183098592
+          }
+        ],
+        "scale_candidates": [],
+        "support_fit": "no_keys",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw2",
+      "item": 71,
+      "item_id": "finqa_6407",
+      "label": 0,
+      "error_type": "fp",
+      "score": 0.4648,
+      "threshold": 0.0548,
+      "question": "what was the value in thousands of unvested restricted stock and performance awards at the weighted-averagegrant-datefair value as of december 31 , 2017?\\\\n",
+      "sinking_sentence": "The value in thousands of unvested restricted stock and performance awards at the weighted-average grant-date fair value as of December 31, 2017, was $78.29 million.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.4648,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"\", \"shares ( in thousands )\", \"weighted-averagegrant-datefair value\"], [\"unvested at may 31 2015\", \"1848\", \"$ 28.97\"], [\"granted\", \"461\", \"57.04\"], [\"vested\", \"-633 ( 633 )\", \"27.55\"], [\"forfeited\", \"-70 ( 70 )\", \"34.69\"], [\"unvested at may 31 2016\", \"1606\", \"37.25\"], [\"granted\", \"348\", \"74.26\"], [\"vested\", \"-639 ( 639 )\", \"31.38\"], [\"forfeited\", \"-52 ( 52 )\", \"45.27\"], [\"unvested at december 31 2016\", \"1263\", \"49.55\"], [\"granted\", \"899\", \"79.79\"], [\"vested\", \"-858 ( 858 )\", \"39.26\"], [\"forfeited\", \"-78 ( 78 )\", \"59.56\"], [\"unvested at december 31 2017\", \"1226\", \"78.29\"], [\"granted\", \"650\", \"109.85\"], [\"vested\", \"-722 ( 722 )\", \"60.08\"], [\"forfeited\", \"-70 ( 70 )\", \"91.47\"], [\"unvested at december 31 2018\", \"1084\", \"$ 108.51\"]]",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "scale_unit",
+      "signals": {
+        "n_numbers_in_sinking": 3,
+        "n_absent_verbatim": 0,
+        "n_absent_in_argmax_window": 0,
+        "absent_numbers": [],
+        "derivation_register": true,
+        "derivation_candidates": [],
+        "scale_candidates": [],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "The document provides the weighted-average grant-date fair value per share as $78.29 but does not give the total value in millions for the unvested shares. The response wrongly assumes this per share value to be the total value in millions, which is not supported by the text.",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": false,
+        "sinking_is_annotated_unsupported": false
+      }
+    },
+    {
+      "draw": "draw2",
+      "item": 85,
+      "item_id": "finqa_6478",
+      "label": 0,
+      "error_type": "fp",
+      "score": 0.2895,
+      "threshold": 0.0548,
+      "question": "what are the pre-tax earnings in 2016 , in billions?",
+      "sinking_sentence": "But it does not provide the 2016 pre-tax earnings figure.",
+      "sinking_sent_idx": 3,
+      "sinking_score": 0.2895,
+      "argmax_doc": 2,
+      "argmax_win": 2,
+      "argmax_window_text": "cantly higher incentive fees , as a result of harvesting . management and other fees were also higher , reflecting higher average assets under supervision and the impact of the recently adopted revenue recognition standard , partially offset by shifts in the mix of client assets and strategies . in addition , transaction revenues were higher . see note 3 to the consolidated financial statements for further information about asu no . 2014-09 , 201crevenue from contracts with customers ( topic 606 ) . 201d during 2018 , total assets under supervision increased $ 48 billion to $ 1.54 trillion . long-term assets under supervision decreased $ 4 billion , including net market depreciation of $ 41 billion primarily in equity assets , largely offset by net inflows of $ 37 billion , primarily in fixed income and equity assets . liquidity products increased $ 52 billion . operating expenses were $ 5.27 billion for 2018 , 10% ( 10 % ) higher than 2017 , primarily due to the impact of the recently adopted revenue recognition standard and increased compensation and benefits expenses , reflecting higher net revenues . pre-tax earnings were $ 1.76 billion in 2018 , 24% ( 24 % ) higher than 2017 . see note 3 to the consolidated financial statements for further information about asu no . 2014-09 , 201crevenue from contracts with customers ( topic 606 ) . 201d 2017 versus 2016 . net revenues in investment management were $ 6.22 billion for 2017 , 7% ( 7 % ) higher than 2016 , due to higher man",
+      "rule_class": "table_binding",
+      "final_class": "other_ambiguous",
+      "signals": {
+        "n_numbers_in_sinking": 1,
+        "n_absent_verbatim": 0,
+        "n_absent_in_argmax_window": 0,
+        "absent_numbers": [],
+        "derivation_register": false,
+        "derivation_candidates": [],
+        "scale_candidates": [],
+        "support_fit": "no_keys",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "This statement is partially incorrect as the documents do contain the pre-tax earnings for 2016, specifically in Document 2, sentence 2x. | As with 'b.', this statement is incorrect in asserting the absence of 2016's earnings data, which can be found in Document 2, sentence 2x.",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": true,
+        "sinking_is_annotated_unsupported": true
+      }
+    },
+    {
+      "draw": "draw2",
+      "item": 101,
+      "item_id": "finqa_6510",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.0257,
+      "threshold": 0.0548,
+      "question": "what was the net change in asset retirement liability between 2002 and september 25 2004 , in millions?",
+      "sinking_sentence": "The net change in asset retirement liability between 2002 and September 25, 2004, was $2.7 million.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.0257,
+      "argmax_doc": 2,
+      "argmax_win": 0,
+      "argmax_window_text": "long-lived assets including goodwill and other acquired intangible assets the company reviews property , plant , and equipment and certain identifiable intangibles , excluding goodwill , for impairment whenever events or changes in circumstances indicate the carrying amount of an asset may not be recoverable . recoverability of these assets is measured by comparison of its carrying amount to future undiscounted cash flows the assets are expected to generate . if property , plant , and equipment and certain identifiable intangibles are considered to be impaired , the impairment to be recognized equals the amount by which the carrying value of the assets exceeds its fair market value . for the three years ended september 25 , 2004 , september 27 , 2003 , and september 28 , 2002 the company had no material impairment of its long-lived assets , except for the impairment of certain assets in connection with the restructuring actions described in note 5 . the company adopted sfas no . 142 , goodwill and other intangible assets , in the first quarter of fiscal 2002 . sfas no . 142 requires that goodwill and intangible assets with indefinite useful lives no longer be amortized , but instead be tested for impairment at least annually or sooner whenever events or changes in circumstances indicate that they may be impaired . prior to fiscal 2002 , goodwill was amortized using the straight-line method over its estimated useful life . the company completed its transitional goodwill impair",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 4,
+        "n_absent_verbatim": 1,
+        "n_absent_in_argmax_window": 1,
+        "absent_numbers": [
+          "2.7"
+        ],
+        "derivation_register": true,
+        "derivation_candidates": [
+          {
+            "a": 27.0,
+            "b": 10.0,
+            "op": "a/b",
+            "result": 2.7
+          },
+          {
+            "a": 8.2,
+            "b": 5.5,
+            "op": "a-b",
+            "result": 2.6999999999999993
+          }
+        ],
+        "scale_candidates": [
+          {
+            "evidence": 27.0,
+            "factor": 0
+          }
+        ],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw2",
+      "item": 114,
+      "item_id": "finqa_6680",
+      "label": 0,
+      "error_type": "fp",
+      "score": 0.1627,
+      "threshold": 0.0548,
+      "question": "what was the percent of the outstanding notes under the ati 7.25% ( 7.25 % ) notes , for 2006 to 2005",
+      "sinking_sentence": "To calculate the percent decrease, we can use the formula:\n\nPercent decrease = ((Old Amount - New Amount) / Old Amount) * 100\n\nPercent decrease = (($400.0 million - $325.1 million) / $400.0 million) * 100\nPercent decrease = ($74.9 million / $400.0 million) * 100\nPercent decrease \u2248 18.73%\n\nTherefore, the percent of the outstanding notes under the ati 7.25% (7.25%) notes decreased by approximately 18.73% from 2005 to 2006.",
+      "sinking_sent_idx": 1,
+      "sinking_score": 0.1627,
+      "argmax_doc": 0,
+      "argmax_win": 0,
+      "argmax_window_text": "american tower corporation and subsidiaries notes to consolidated financial statements 2014 ( continued ) ati 7.25% ( 7.25 % ) notes 2014during the year ended december 31 , 2006 , the company repurchased in privately negotiated transactions $ 74.9 million principal amount of ati 7.25% ( 7.25 % ) notes for $ 77.3 million in cash . in connection with these transactions , the company recorded a charge of $ 3.9 million related to amounts paid in excess of carrying value and the write-off of related deferred financing fees , which is reflected in loss on retirement of long-term obligations in the accompanying consolidated statement of operations for the year ended december 31 , 2006 . as of december 31 , 2006 and 2005 , the company had $ 325.1 million and $ 400.0 million outstanding under the ati 7.25% ( 7.25 % ) notes , respectively . capital lease obligations and notes payable 2014the company 2019s capital lease obligations and notes payable approximated $ 59.8 million and $ 60.4 million as of december 31 , 2006 and 2005 , respectively . these obligations bear interest at rates ranging from 6.3% ( 6.3 % ) to 9.5% ( 9.5 % ) and mature in periods ranging from less than one year to approximately seventy years . maturities 2014as of december 31 , 2006 , aggregate carrying value of long-term debt , including capital leases , for the next five years and thereafter are estimated to be ( in thousands ) : year ending december 31 .",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 14,
+        "n_absent_verbatim": 2,
+        "n_absent_in_argmax_window": 5,
+        "absent_numbers": [
+          "18.73",
+          "18.73"
+        ],
+        "derivation_register": true,
+        "derivation_candidates": [
+          {
+            "a": 74.9,
+            "b": 400.0,
+            "op": "a/b*100",
+            "result": 18.725
+          },
+          {
+            "a": 9.5,
+            "b": 8.0,
+            "op": "(a-b)/|b|*100",
+            "result": 18.75
+          },
+          {
+            "a": 60.4,
+            "b": 325.1,
+            "op": "a/b*100",
+            "result": 18.578898800369114
+          }
+        ],
+        "scale_candidates": [],
+        "support_fit": "covered",
+        "argmax_window_has_support": true,
+        "unsupported_explanation": "The amount used here ($74.9 million) refers to the amount repurchased, not the decrease in outstanding notes; hence, this calculation is incorrect. | This sentence represents an incorrect result due to the miscalculation in sentence e. It is not supported by the documents because the actual numerical reasoning based on correct values would lead to a different result. | This sentence repeats the erroneous calculation from sentence f. Since the calculation is incorrect, this sentence is also unsupported.",
+        "unsupported_number_absent": true,
+        "unsupported_numbers_all_present": false,
+        "sinking_is_annotated_unsupported": true
+      }
+    },
+    {
+      "draw": "draw2",
+      "item": 116,
+      "item_id": "finqa_7211",
+      "label": 0,
+      "error_type": "fp",
+      "score": 0.1809,
+      "threshold": 0.0548,
+      "question": "how satisfied will customers be in 2010 if the 2008 satisfaction index increase occurs again in 2009?",
+      "sinking_sentence": "Therefore, if a similar increase occurs in 2009, the satisfaction index would become 87 in 2010.",
+      "sinking_sent_idx": 2,
+      "sinking_score": 0.1809,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"\", \"2009\", \"2008\", \"2007\", \"% (  % ) change 2009 v 2008\", \"% (  % ) change 2008 v 2007\"], [\"average train speed ( miles per hour )\", \"27.3\", \"23.5\", \"21.8\", \"16 % (  % )\", \"8 % (  % )\"], [\"average terminal dwell time ( hours )\", \"24.8\", \"24.9\", \"25.1\", \"-\", \"( 1 ) % (  % )\"], [\"average rail car inventory ( thousands )\", \"283.1\", \"300.7\", \"309.9\", \"( 6 ) % (  % )\", \"( 3 ) % (  % )\"], [\"gross ton-miles ( billions )\", \"846.5\", \"1020.4\", \"1052.3\", \"( 17 ) % (  % )\", \"( 3 ) % (  % )\"], [\"revenue ton-miles ( billions )\", \"479.2\", \"562.6\", \"561.8\", \"( 15 ) % (  % )\", \"-\"], [\"operating ratio\", \"76.0\", \"77.3\", \"79.3\", \"( 1.3 ) pt\", \"( 2.0 ) pt\"], [\"employees ( average )\", \"43531\", \"48242\", \"50089\", \"( 10 ) % (  % )\", \"( 4 ) % (  % )\"], [\"customer satisfaction index\", \"88\", \"83\", \"79\", \"5 pt\", \"4 pt\"]]",
+      "rule_class": "other_ambiguous",
+      "final_class": "other_ambiguous",
+      "signals": {
+        "n_numbers_in_sinking": 3,
+        "n_absent_verbatim": 2,
+        "n_absent_in_argmax_window": 2,
+        "absent_numbers": [
+          "87",
+          "2010"
+        ],
+        "derivation_register": true,
+        "derivation_candidates": [
+          {
+            "a": 4.0,
+            "b": 83.0,
+            "op": "a+b",
+            "result": 87.0
+          },
+          {
+            "a": 8.0,
+            "b": 79.0,
+            "op": "a+b",
+            "result": 87.0
+          },
+          {
+            "a": 79.0,
+            "b": 8.0,
+            "op": "a+b",
+            "result": 87.0
+          }
+        ],
+        "scale_candidates": [
+          {
+            "evidence": 2.0,
+            "factor": 1000
+          }
+        ],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "This sentence predicts the customer satisfaction index for 2010 based on the repetition of the 2008 increase occurring again in 2009. While the idea is rooted in documented text for 2008, the exact prediction for 2010 is speculative and unsupported. | This sentence extends the pattern of increase in the satisfaction index from 2008 to 2009. Although the data for an increase in 2009 is documented, the sentence makes a speculative claim about 2010 that is unsupported by any direct information or trend.",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": false,
+        "sinking_is_annotated_unsupported": false
+      }
+    },
+    {
+      "draw": "draw2",
+      "item": 147,
+      "item_id": "finqa_7109",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.0298,
+      "threshold": 0.0548,
+      "question": "what is the net change in aon 2019s unpaid restructuring liabilities during 2007?",
+      "sinking_sentence": "Therefore, the total change in unpaid restructuring liabilities during 2007 was -$71 million.",
+      "sinking_sent_idx": 2,
+      "sinking_score": 0.0298,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"balance at january 1 2005\", \"$ 2014\"], [\"expensed in 2005\", \"141\"], [\"cash payments in 2005\", \"-23 ( 23 )\"], [\"foreign currency revaluation\", \"-2 ( 2 )\"], [\"balance at december 31 2005\", \"116\"], [\"expensed in 2006\", \"155\"], [\"cash payments in 2006\", \"-141 ( 141 )\"], [\"foreign currency revaluation\", \"4\"], [\"balance at december 31 2006\", \"134\"], [\"expensed in 2007\", \"38\"], [\"cash payments in 2007\", \"-110 ( 110 )\"], [\"foreign currency revaluation\", \"1\"], [\"balance at december 31 2007\", \"$ 63\"]]",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 2,
+        "n_absent_verbatim": 1,
+        "n_absent_in_argmax_window": 1,
+        "absent_numbers": [
+          "71"
+        ],
+        "derivation_register": true,
+        "derivation_candidates": [
+          {
+            "a": 134.0,
+            "b": 63.0,
+            "op": "a-b",
+            "result": 71.0
+          },
+          {
+            "a": 110.0,
+            "b": 155.0,
+            "op": "a/b*100",
+            "result": 70.96774193548387
+          },
+          {
+            "a": 141.0,
+            "b": 2.0,
+            "op": "a/b",
+            "result": 70.5
+          }
+        ],
+        "scale_candidates": [],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw2",
+      "item": 157,
+      "item_id": "finqa_7363",
+      "label": 0,
+      "error_type": "fp",
+      "score": 0.1083,
+      "threshold": 0.0548,
+      "question": "in 2007 what was the percent of the total debt compared to lease obligations and purchase obligations as part of the contractual obligations for future payments",
+      "sinking_sentence": "In 2007, the total debt was $3,165 million and the sum of lease obligations and purchase obligations was $2,473 million ($144 million lease obligations + $2,329 million purchase obligations).",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.1083,
+      "argmax_doc": 0,
+      "argmax_win": 1,
+      "argmax_window_text": " paper replaced its matur- ing $ 750 million revolving bank credit agreement with a 364-day $ 500 million fully committed revolv- ing bank credit agreement that expires in march 2007 and has a facility fee of 0.08% ( 0.08 % ) payable quarterly , and replaced its $ 1.25 billion revolving bank credit agreement with a $ 1.5 billion fully committed revolv- ing bank credit agreement that expires in march 2011 and has a facility fee of 0.10% ( 0.10 % ) payable quarterly . in addition , in october 2006 , the company amended its existing receivables securitization program that pro- vides for up to $ 1.2 billion of commercial paper- based financings with a facility fee of 0.20% ( 0.20 % ) and an expiration date in november 2007 , to provide up to $ 1.0 billion of available commercial paper-based financings with a facility fee of 0.10% ( 0.10 % ) and an expira- tion date of october 2009 . at december 31 , 2006 , there were no borrowings under either of the bank credit agreements or the receivables securitization program . additionally , international paper investments ( luxembourg ) s.ar.l. , a wholly-owned subsidiary of international paper , has a $ 100 million bank credit agreement maturing in december 2007 , with $ 40 million in borrowings outstanding as of december 31 , 2006 . the company will continue to rely upon debt and capital markets for the majority of any necessary long-term funding not provided by operating cash flow or divestiture proceeds . funding decisions will be guid",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 5,
+        "n_absent_verbatim": 1,
+        "n_absent_in_argmax_window": 4,
+        "absent_numbers": [
+          "2,473"
+        ],
+        "derivation_register": true,
+        "derivation_candidates": [
+          {
+            "a": 3165.0,
+            "b": 692.0,
+            "op": "a-b",
+            "result": 2473.0
+          },
+          {
+            "a": 144.0,
+            "b": 2329.0,
+            "op": "a+b",
+            "result": 2473.0
+          },
+          {
+            "a": 2329.0,
+            "b": 144.0,
+            "op": "a+b",
+            "result": 2473.0
+          }
+        ],
+        "scale_candidates": [],
+        "support_fit": "no_keys",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "The calculation result stated is based on incorrect data, thus leading to an unsupported conclusion. The correct figures would not yield the same percentage.",
+        "unsupported_number_absent": true,
+        "unsupported_numbers_all_present": false,
+        "sinking_is_annotated_unsupported": false
+      }
+    },
+    {
+      "draw": "draw2",
+      "item": 168,
+      "item_id": "finqa_7201",
+      "label": 0,
+      "error_type": "fp",
+      "score": 0.1512,
+      "threshold": 0.0548,
+      "question": "without the loss of in volume/weather , what percent increase would net revenue have experienced between 2016 and 2017?",
+      "sinking_sentence": "To calculate the percent increase in net revenue between 2016 and 2017 without the loss in volume/weather, we can use the following steps:\n\n1.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.1512,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"\", \"amount ( in millions )\"], [\"2016 net revenue\", \"$ 705.4\"], [\"volume/weather\", \"-18.2 ( 18.2 )\"], [\"retail electric price\", \"13.5\"], [\"other\", \"2.4\"], [\"2017 net revenue\", \"$ 703.1\"]]",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 3,
+        "n_absent_verbatim": 0,
+        "n_absent_in_argmax_window": 1,
+        "absent_numbers": [],
+        "derivation_register": true,
+        "derivation_candidates": [],
+        "scale_candidates": [],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "This conclusion is an assertion that contradicts the computed percentage in 'i.' where it claimed a decrease (-2.8%), this sentence incorrectly frames it as an increase.",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": false,
+        "sinking_is_annotated_unsupported": false
+      }
+    },
+    {
+      "draw": "draw2",
+      "item": 198,
+      "item_id": "finqa_6370",
+      "label": 0,
+      "error_type": "fp",
+      "score": 0.0845,
+      "threshold": 0.0548,
+      "question": "for equity investment balances including unfunded commitments what was the change in millions between december 31 , 2014 and december 31 , 2013/",
+      "sinking_sentence": "- The equity investment balances including unfunded commitments were $10,560 million at December 31, 2013.",
+      "sinking_sent_idx": 2,
+      "sinking_score": 0.0845,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"in millions\", \"december 312014\", \"december 312013\"], [\"blackrock\", \"$ 6265\", \"$ 5940\"], [\"tax credit investments ( a )\", \"2616\", \"2572\"], [\"private equity\", \"1615\", \"1656\"], [\"visa\", \"77\", \"158\"], [\"other\", \"155\", \"234\"], [\"total\", \"$ 10728\", \"$ 10560\"]]",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 3,
+        "n_absent_verbatim": 0,
+        "n_absent_in_argmax_window": 2,
+        "absent_numbers": [],
+        "derivation_register": false,
+        "derivation_candidates": [],
+        "scale_candidates": [],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "This statement claims a decrease of $85 million, which is unsupported by the documents. Documents show a decrease of $168 million instead. | While the calculation is correct, it contradicts the earlier statement of a $85 million decrease, showing inconsistency in the response.",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": false,
+        "sinking_is_annotated_unsupported": false
+      }
+    },
+    {
+      "draw": "draw2",
+      "item": 200,
+      "item_id": "finqa_6767",
+      "label": 0,
+      "error_type": "fp",
+      "score": 0.5047,
+      "threshold": 0.0548,
+      "question": "what was the ratio of the net increase in the in securities sold under agreements to repurchase to the net transfers in",
+      "sinking_sentence": "Based on the information provided in the context, we can calculate the ratio of the net increase in securities sold under agreements to repurchase to the net transfers in.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.5047,
+      "argmax_doc": 0,
+      "argmax_win": 0,
+      "argmax_window_text": "the decrease in mortgage servicing rights of $ 2.7 billion was primarily 2022 attributed to mark-to-market losses recognized in the portfolio due to decreases in the mortgage interest rates and increases in refinancing . the increase in securities sold under agreements to repurchase of $ 5 2022 billion is driven by a $ 6.2 billion increase from net transfers in as the continued credit crisis impacted the availability of observable inputs for the underlying securities related to this liability . this was offset by a reduction from net settlements of $ 1.4 billion . the decrease in short-term borrowings of $ 3.7 billion is due to net transfers 2022 out of $ 1.8 billion as valuation methodology inputs considered to be unobservable were determined not to be significant to the overall valuation . in addition , net payments of $ 1.8 billion were made during the year . the increase in 2022 long-term debt of $ 2.2 billion is driven by : the net transfers in of $ 38.8 billion , substantially all of which related 2013 to the transfer of consolidated siv debt in the first quarter of 2008 , as the availability of observable inputs continued to decline due to the current crisis ; offset by $ 2.2 billion in gains recognized as credit spreads widened during the 2013 year ; and $ 34.3 billion decrease from net settlements/payments . included in 2013 these settlements were $ 21 billion of payments made on maturing siv debt and the replacement of $ 17 billion of non-recourse , consolidated siv",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "table_binding",
+      "signals": {
+        "n_numbers_in_sinking": 0,
+        "n_absent_verbatim": 0,
+        "n_absent_in_argmax_window": 0,
+        "absent_numbers": [],
+        "derivation_register": true,
+        "derivation_candidates": [
+          {
+            "a": 2.1,
+            "b": 3.1,
+            "op": "a+b",
+            "result": 5.2
+          },
+          {
+            "a": 2.2,
+            "b": 3.0,
+            "op": "a+b",
+            "result": 5.2
+          },
+          {
+            "a": 2.5,
+            "b": 2.7,
+            "op": "a+b",
+            "result": 5.2
+          }
+        ],
+        "scale_candidates": [],
+        "support_fit": "no_keys",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "The response incorrectly states a figure of $5.2 billion, while the document states a $5 billion increase. Therefore, this statement is not supported. | Statement correctly identifies which values need to be used for a ratio, but combining these particular figures is not supported as a valid approach or comparison for this calculation from the documents. | The conclusion follows from the calculation in 'f.' However, because the initial data and the approach were incorrect, this concluding statement is also unsupported.",
+        "unsupported_number_absent": true,
+        "unsupported_numbers_all_present": false,
+        "sinking_is_annotated_unsupported": false
+      }
+    },
+    {
+      "draw": "draw2",
+      "item": 204,
+      "item_id": "finqa_7330",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.0543,
+      "threshold": 0.0548,
+      "question": "what is the range of losses on undesignated foreign exchange derivatives , in millions?",
+      "sinking_sentence": "Based on the information provided in the \"Supplemental Financial Information\" table, the range of losses on undesignated foreign exchange derivatives is:\n\nLowest loss: $3 million (in 2016)\nHighest loss: $14 million (in 2018)\n\nSo the range of losses on undesignated foreign exchange derivatives is $3 million to $14 million.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.0543,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"( millions of dollars )\", \"2018\", \"2017\", \"2016\"], [\"losses on debt extinguishment ( a )\", \"$ -16 ( 16 )\", \"$ -73 ( 73 )\", \"$ 2014\"], [\"vyaire medical-related amounts ( b )\", \"288\", \"-3 ( 3 )\", \"2014\"], [\"other equity investment income\", \"8\", \"3\", \"8\"], [\"losses on undesignated foreign exchange derivatives net\", \"-14 ( 14 )\", \"-11 ( 11 )\", \"-3 ( 3 )\"], [\"royalty income ( c )\", \"51\", \"2014\", \"2014\"], [\"gains on previously held investments ( d )\", \"2014\", \"24\", \"2014\"], [\"other\", \"2014\", \"3\", \"7\"], [\"other income ( expense ) net\", \"$ 318\", \"$ -57 ( 57 )\", \"$ 11\"]]",
+      "rule_class": "other_ambiguous",
+      "final_class": "other_ambiguous",
+      "signals": {
+        "n_numbers_in_sinking": 6,
+        "n_absent_verbatim": 0,
+        "n_absent_in_argmax_window": 0,
+        "absent_numbers": [],
+        "derivation_register": false,
+        "derivation_candidates": [],
+        "scale_candidates": [],
+        "support_fit": "covered",
+        "argmax_window_has_support": true,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw2",
+      "item": 205,
+      "item_id": "finqa_6888",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.0363,
+      "threshold": 0.0548,
+      "question": "what is the total exposure to government related derivatives , in millions?",
+      "sinking_sentence": "Based on the information provided, the total exposure to government-related derivatives (including sovereign governments, regional governments, and not-for-profit organizations) is $3,085 million.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.0363,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"industry\", \"otc derivative products ( 1 ) ( dollars in millions )\"], [\"utilities\", \"$ 3142\"], [\"banks and securities firms\", \"2358\"], [\"funds exchanges and other financial services ( 2 )\", \"2433\"], [\"special purpose vehicles\", \"1908\"], [\"regional governments\", \"1597\"], [\"healthcare\", \"1089\"], [\"industrials\", \"914\"], [\"sovereign governments\", \"816\"], [\"not-for-profit organizations\", \"672\"], [\"insurance\", \"538\"], [\"real estate\", \"503\"], [\"consumer staples\", \"487\"], [\"other\", \"1157\"], [\"total\", \"$ 17614\"]]",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 1,
+        "n_absent_verbatim": 1,
+        "n_absent_in_argmax_window": 1,
+        "absent_numbers": [
+          "3,085"
+        ],
+        "derivation_register": true,
+        "derivation_candidates": [
+          {
+            "a": 672.0,
+            "b": 2433.0,
+            "op": "a+b",
+            "result": 3105.0
+          },
+          {
+            "a": 2433.0,
+            "b": 672.0,
+            "op": "a+b",
+            "result": 3105.0
+          },
+          {
+            "a": 3142.0,
+            "b": 31.0,
+            "op": "a-b",
+            "result": 3111.0
+          }
+        ],
+        "scale_candidates": [
+          {
+            "evidence": 31.0,
+            "factor": 100
+          }
+        ],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw2",
+      "item": 213,
+      "item_id": "finqa_6492",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.0317,
+      "threshold": 0.0548,
+      "question": "what is the growth rate in net revenue in 2015 for entergy corporation?",
+      "sinking_sentence": "The growth rate in net revenue in 2015 for Entergy Corporation is approximately 1.6% ($5829 - $5735) / $5735 = 0.016.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.0317,
+      "argmax_doc": 0,
+      "argmax_win": 0,
+      "argmax_window_text": "entergy corporation and subsidiaries management 2019s financial discussion and analysis a result of the entergy louisiana and entergy gulf states louisiana business combination , results of operations for 2015 also include two items that occurred in october 2015 : 1 ) a deferred tax asset and resulting net increase in tax basis of approximately $ 334 million and 2 ) a regulatory liability of $ 107 million ( $ 66 million net-of-tax ) as a result of customer credits to be realized by electric customers of entergy louisiana , consistent with the terms of the stipulated settlement in the business combination proceeding . see note 2 to the financial statements for further discussion of the business combination and customer credits . results of operations for 2015 also include the sale in december 2015 of the 583 mw rhode island state energy center for a realized gain of $ 154 million ( $ 100 million net-of-tax ) on the sale and the $ 77 million ( $ 47 million net-of-tax ) write-off and regulatory charges to recognize that a portion of the assets associated with the waterford 3 replacement steam generator project is no longer probable of recovery . see note 14 to the financial statements for further discussion of the rhode island state energy center sale . see note 2 to the financial statements for further discussion of the waterford 3 write-off . results of operations for 2014 include $ 154 million ( $ 100 million net-of-tax ) of charges related to vermont yankee primarily resulti",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 6,
+        "n_absent_verbatim": 2,
+        "n_absent_in_argmax_window": 5,
+        "absent_numbers": [
+          "1.6",
+          "0.016"
+        ],
+        "derivation_register": true,
+        "derivation_candidates": [
+          {
+            "a": 3.0,
+            "b": 187.0,
+            "op": "a/b*100",
+            "result": 1.6042780748663104
+          },
+          {
+            "a": 56.2,
+            "b": 35.0,
+            "op": "a/b",
+            "result": 1.6057142857142859
+          },
+          {
+            "a": 3.0,
+            "b": 187.0,
+            "op": "a/b",
+            "result": 0.016042780748663103
+          }
+        ],
+        "scale_candidates": [
+          {
+            "evidence": 16.0,
+            "factor": 0
+          },
+          {
+            "evidence": 16.0,
+            "factor": 0
+          }
+        ],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw2",
+      "item": 215,
+      "item_id": "finqa_6711",
+      "label": 0,
+      "error_type": "fp",
+      "score": 0.1724,
+      "threshold": 0.0548,
+      "question": "with a similar improvement as in 2010 , what would expected operating ratio be in 2011?",
+      "sinking_sentence": "If we assume a similar improvement in 2011 compared to 2010, we can expect the operating ratio in 2011 to be around 65.1%.",
+      "sinking_sent_idx": 1,
+      "sinking_score": 0.1724,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"millions except percentages\", \"2011\", \"2010\", \"2009\"], [\"net income\", \"$ 3292\", \"$ 2780\", \"$ 1890\"], [\"average equity\", \"$ 18171\", \"$ 17282\", \"$ 16058\"], [\"return on average commonshareholders 2019 equity\", \"18.1% ( 18.1 % )\", \"16.1% ( 16.1 % )\", \"11.8% ( 11.8 % )\"]]",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "derivation_arithmetic",
+      "signals": {
+        "n_numbers_in_sinking": 4,
+        "n_absent_verbatim": 1,
+        "n_absent_in_argmax_window": 1,
+        "absent_numbers": [
+          "65.1"
+        ],
+        "derivation_register": true,
+        "derivation_candidates": [
+          {
+            "a": 70.6,
+            "b": 5.5,
+            "op": "a-b",
+            "result": 65.1
+          },
+          {
+            "a": 11.8,
+            "b": 18.1,
+            "op": "a/b*100",
+            "result": 65.19337016574586
+          },
+          {
+            "a": 70.7,
+            "b": 5.5,
+            "op": "a-b",
+            "result": 65.2
+          }
+        ],
+        "scale_candidates": [],
+        "support_fit": "no_keys",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "This sentence is not supported because the documents indicate that the operating ratio increased in 2011, contradicting the assumption in the sentence. | This sentence is not supported by the documents. While mathematically correct based on sentence 'f's calculation, it extends an incorrect assumption from 'b'.",
+        "unsupported_number_absent": true,
+        "unsupported_numbers_all_present": false,
+        "sinking_is_annotated_unsupported": true
+      }
+    },
+    {
+      "draw": "draw2",
+      "item": 217,
+      "item_id": "finqa_6828",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.0366,
+      "threshold": 0.0548,
+      "question": "in december 2015 what was the ratio of the restricted cash and marketable securities to the allowance for doubtful accounts",
+      "sinking_sentence": "The allowance for doubtful accounts balance at the end of 2015 was $46.7 million.",
+      "sinking_sent_idx": 1,
+      "sinking_score": 0.0366,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"\", \"2015\", \"2014\", \"2013\"], [\"balance at beginning of year\", \"$ 38.9\", \"$ 38.3\", \"$ 45.3\"], [\"additions charged to expense\", \"22.7\", \"22.6\", \"16.1\"], [\"accounts written-off\", \"-14.9 ( 14.9 )\", \"-22.0 ( 22.0 )\", \"-23.1 ( 23.1 )\"], [\"balance at end of year\", \"$ 46.7\", \"$ 38.9\", \"$ 38.3\"]]",
+      "rule_class": "table_binding",
+      "final_class": "table_binding",
+      "signals": {
+        "n_numbers_in_sinking": 2,
+        "n_absent_verbatim": 0,
+        "n_absent_in_argmax_window": 0,
+        "absent_numbers": [],
+        "derivation_register": false,
+        "derivation_candidates": [],
+        "scale_candidates": [],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw2",
+      "item": 221,
+      "item_id": "finqa_7222",
+      "label": 1,
+      "error_type": "fn",
+      "score": 0.043,
+      "threshold": 0.0548,
+      "question": "interest rate derivatives made up how much of the net total derivatives for 2015?",
+      "sinking_sentence": "According to the table in the context, the net derivative receivables for interest rate derivatives was $26,363 million in 2015.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.043,
+      "argmax_doc": 0,
+      "argmax_win": 0,
+      "argmax_window_text": "jpmorgan chase & co./2015 annual report 127 receivables from customers receivables from customers primarily represent margin loans to prime and retail brokerage clients that are collateralized through a pledge of assets maintained in clients 2019 brokerage accounts which are subject to daily minimum collateral requirements . in the event that the collateral value decreases , a maintenance margin call is made to the client to provide additional collateral into the account . if additional collateral is not provided by the client , the client 2019s position may be liquidated by the firm to meet the minimum collateral requirements . lending-related commitments the firm uses lending-related financial instruments , such as commitments ( including revolving credit facilities ) and guarantees , to meet the financing needs of its customers . the contractual amounts of these financial instruments represent the maximum possible credit risk should the counterparties draw down on these commitments or the firm fulfills its obligations under these guarantees , and the counterparties subsequently fail to perform according to the terms of these contracts . in the firm 2019s view , the total contractual amount of these wholesale lending-related commitments is not representative of the firm 2019s likely actual future credit exposure or funding requirements . in determining the amount of credit risk exposure the firm has to wholesale lending-related commitments , which is used as the basis for a",
+      "rule_class": "table_binding",
+      "final_class": "table_binding",
+      "signals": {
+        "n_numbers_in_sinking": 2,
+        "n_absent_verbatim": 0,
+        "n_absent_in_argmax_window": 1,
+        "absent_numbers": [],
+        "derivation_register": true,
+        "derivation_candidates": [],
+        "scale_candidates": [],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": null,
+        "sinking_is_annotated_unsupported": null
+      }
+    },
+    {
+      "draw": "draw2",
+      "item": 229,
+      "item_id": "finqa_6609",
+      "label": 0,
+      "error_type": "fp",
+      "score": 0.3134,
+      "threshold": 0.0548,
+      "question": "in 2009 what was the ratio of the statutory capital and surplus to the statutory net income of the bermuda subsidiaries",
+      "sinking_sentence": "To calculate the ratio of the statutory capital and surplus to the statutory net income of the Bermuda subsidiaries in 2009, we need to find the values of the statutory capital and surplus and the statutory net income for that year.",
+      "sinking_sent_idx": 0,
+      "sinking_score": 0.3134,
+      "argmax_doc": 0,
+      "argmax_win": 0,
+      "argmax_window_text": "n o t e s t o c o n s o l i d a t e d f i n a n c i a l s t a t e m e n t s ( continued ) ace limited and subsidiaries there are no statutory restrictions on the payment of dividends from retained earnings by any of the bermuda subsidiaries as the minimum statutory capital and surplus requirements are satisfied by the share capital and additional paid-in capital of each of the bermuda subsidiaries . the company 2019s u.s . subsidiaries file financial statements prepared in accordance with statutory accounting practices prescribed or permitted by insurance regulators . statutory accounting differs from gaap in the reporting of certain reinsurance contracts , investments , subsidiaries , acquis- ition expenses , fixed assets , deferred income taxes , and certain other items . the statutory capital and surplus of the u.s . subsidiaries met regulatory requirements for 2008 , 2007 , and 2006 . the amount of dividends available to be paid in 2009 , without prior approval from the state insurance departments , totals $ 835 million . the combined statutory capital and surplus and statutory net income of the bermuda and u.s . subsidiaries as of and for the years ended december 31 , 2008 , 2007 , and 2006 , are as follows: .",
+      "rule_class": "entity_confusion",
+      "final_class": "entity_confusion",
+      "signals": {
+        "n_numbers_in_sinking": 1,
+        "n_absent_verbatim": 0,
+        "n_absent_in_argmax_window": 0,
+        "absent_numbers": [],
+        "derivation_register": true,
+        "derivation_candidates": [],
+        "scale_candidates": [],
+        "support_fit": "unmapped",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "This sentence claims to introduce data for 2009. However, the documents do not provide data for 2009, thus there is no support for this statement in the documents. | The specified value for statutory capital and surplus is mentioned for earlier years but not for 2009. Therefore, this specific claim about 2009 data is unsupported. | The specified value for statutory net income is mentioned for earlier years but not for 2009. Thus, this specific claim about 2009 data is unsupportable. | As the data used to reach this conclusion is inaccurate or unsubstantiated for 2009, this conclusion is unsupported.",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": false,
+        "sinking_is_annotated_unsupported": false
+      }
+    },
+    {
+      "draw": "draw2",
+      "item": 242,
+      "item_id": "finqa_6454",
+      "label": 0,
+      "error_type": "fp",
+      "score": 0.1155,
+      "threshold": 0.0548,
+      "question": "what portion of the woburn property is used by the american tower corporation?",
+      "sinking_sentence": "So the portion of the Woburn property used by American Tower Corporation is approximately 57,800 square feet out of the total 163,000 square feet.",
+      "sinking_sent_idx": 3,
+      "sinking_score": 0.1155,
+      "argmax_doc": 1,
+      "argmax_win": 0,
+      "argmax_window_text": "[[\"location\", \"function\", \"size ( square feet )\", \"property interest\"], [\"boston ma\", \"corporate headquarters us tower division headquarters and american tower international headquarters\", \"19600\", \"leased\"], [\"southborough ma\", \"information technology data center\", \"13900\", \"leased\"], [\"woburn ma\", \"us tower division lease administration site leasing management and broadcast division headquarters\", \"57800\", \"owned ( 1 )\"], [\"atlanta ga\", \"us tower division accounting services headquarters\", \"21400\", \"leased\"], [\"cary north carolina\", \"us tower division new site development site operations and structural engineering services headquarters\", \"17500\", \"leased\"], [\"mexico city mexico\", \"mexico headquarters\", \"11000\", \"leased\"], [\"sao paulo brazil\", \"brazil headquarters\", \"5200\", \"leased\"]]",
+      "rule_class": "derivation_arithmetic",
+      "final_class": "table_binding",
+      "signals": {
+        "n_numbers_in_sinking": 2,
+        "n_absent_verbatim": 0,
+        "n_absent_in_argmax_window": 1,
+        "absent_numbers": [],
+        "derivation_register": true,
+        "derivation_candidates": [],
+        "scale_candidates": [],
+        "support_fit": "no_keys",
+        "argmax_window_has_support": null,
+        "unsupported_explanation": "This sentence inaccurately states the amount of space occupied by American Tower Corporation's offices. The correct figure, according to Document 2, should be 'approximately 57,100 square feet' not '57,800 square feet'.",
+        "unsupported_number_absent": false,
+        "unsupported_numbers_all_present": true,
+        "sinking_is_annotated_unsupported": false
+      }
+    }
+  ],
+  "meta": {
+    "experiment": "R18-H157 FINQA FAILURE-MODE AUTOPSY",
+    "licence": "ANALYSIS ONLY - no training, tuning, or selection on arena statistics; levers are named, not built (the H141 discipline)",
+    "read": "PRIMARY windowed decomposed-min (1500/750, max over windows on the logit, min over sentences), banked G1 load_run path",
+    "checkpoints": {
+      "draw1": "/home/lab/workspace/private/ai-assistants/groundrails/models/R18-H150-arm-draw1",
+      "draw2": "/home/lab/workspace/private/ai-assistants/groundrails/models/R18-H150-arm-draw2"
+    },
+    "n_manual_overrides": 15,
+    "runtime_seconds": 3.3
+  }
+}

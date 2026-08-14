@@ -280,3 +280,28 @@ Author's question: are finqa/delucionqa-like registers under-represented in the 
 ## DR corruption-generation dataset - earned-its-keep verdict, final (2026-08-09)
 
 R11-H117 REFUTED (margin pair 0.69186 vs bar 0.71270, below its own control pair; canonical log Round 11/14). With the lane NOT ADMITTED as training rows and the margin loss refuted, the sentence-level DR dataset carries NO admitted training use. What the corruption ENGINE keeps: the H108 quantitative-nearmiss lane (the campaign's only ADMITTED lane, finqa pair 0.7182), the licensed R14-H135 co-location arm built on that lane, the R14-H133 derivation-parity lane machinery (gate-licensed), and the judge/veto certification pipeline reusable for the register-gap corpus lane. The 30,369-row DR lane parquet is retained as evidence and H135/H133 substrate only.
+
+## R19 supply wave - six new corpora from the 2026-08-13 recon, build ordered by the author (2026-08-13 ~21:25)
+
+The dataset recon (register addendum, `reports/research-grounding-datasets.md` "Re-survey 2026-08-13") returned four clean candidates and two flagged items; the author ordered the build ("attempt build to enrich our dataset"), adopting the coordinator's recommendations on both flagged items. This wave is SUPPLY ONLY: fetch, sidecar, gate, pair-format, bank - nothing enters a training mix without its own registered hypothesis and arm.
+
+- **Corpora**: FAVA fava-data (30,073, CC-BY-4.0, span-level long-form); PubHealth (12,288, MIT, real-world health fact-checks); MiniCheck C2D/D2C (14,395, MIT, multi-fact synthetic); FActScore labeled biographies (~10k atomic judgments, MIT); FinDVer (2,400 over 2024 SEC filings, MIT - admitted under the EDGAR population precedent: 2024 documents vs the walled pre-2020 FinQA/TAT-QA corpora make document overlap structurally impossible; the 8-gram instrument still runs); AttributionBench (Apache-2.0) under the src_dataset carve-out - walled ExpertQA (4,442) and HAGRID (1,088) rows dropped BY CONSTRUCTION, gate verifies zero remain (~18k kept expected)
+- **Gates, per corpus**: licence sidecar + restriction re-verification; the R14-H136 8-gram Jaccard contamination instrument against the ten walled arena corpora (bar 0.02 max fraction + spike control, the R18-H150 EDGAR gate tooling); MiniCheck additionally gets the seed-provenance probe (seeds named only in the paper's Appendix D). Any corpus failing quarantines - reported, not banked
+- **Label mappings (coordinator rulings, author may override)**: PubHealth 4-way - true -> 1; false/unproven/mixture -> 0 (our task is support, not truth; unverifiable reads as not-supported); FAVA - response level, any error span -> 0 else 1, span metadata retained for future fine-grained use; FActScore - S/NS -> 1/0 per atomic fact; FinDVer - entailed/refuted -> 1/0, subset tags (IE/math/knowledge) retained; AttributionBench - attributable/not -> 1/0
+- **Deliverables per corpus**: `data/external/datasets/` content (gitignored) + tracked sidecar `dataset-<name>.md` per the round-7 pattern, lane parquet + manifest + verify JSON under the R14-H136 conventions
+
+**R19 - BUILD VERDICT: all six corpora GATE GREEN and BANKED; 89,177 pairs of new supply; nothing quarantined, nothing admitted to a mix (2026-08-14 05:20, build complete; the detached fetcher outlived its executor's API death and finished unattended)**
+
+| corpus | rows | labels (1 / 0) | documents | notes |
+|---|---|---|---|---|
+| FAVA | 30,073 | 637 / 29,436 | 30,073 | span-level long-form; heavily negative by construction (any error span → 0) - a NEGATIVE-mass lane, not a balanced one |
+| AttributionBench | 16,444 | 10,656 / 5,788 | 12,139 | carve-out VERIFIED in the banked parquet: src_dataset ∈ {Stanford-GenSearch 9,802, LFQA 3,561, AttributedQA 2,484, BEGIN 435, AttrScore-GenSearch 162} - zero ExpertQA, zero HAGRID rows survive |
+| MiniCheck C2D/D2C | 14,356 | 6,638 / 7,718 | 6,155 | balanced synthetic multi-fact; c2d 7,069 / d2c 7,287 |
+| FActScore | 13,653 | 9,332 / 4,321 | 181 | atomic biography judgments over 181 pinned Wikipedia revisions (2 topics failed, recorded); 3 generator sources |
+| PubHealth | 12,251 | 6,306 / 5,945 | 12,251 | best-balanced lane in the wave; health-domain register absent from the current mix |
+| FinDVer | 2,400 | 1,201 / 1,199 | 539 | exactly balanced; 2024 SEC filings - the derivation-lane supply H157 named |
+
+- **Contamination**: all six pass the R14-H136 8-gram Jaccard instrument against the ten walled arena corpora (bar 0.02 max fraction), each with its spike control (10/10 injected detected, 0 baseline hits). FinDVer's EDGAR-population admission held under measurement: max fraction 0.0. MiniCheck's seed-provenance probe passed on 6,155 units
+- **Integrity**: every lane clean on labels-in-{0,1}, no empty claims/chunks, no duplicate (claim, chunk, label) rows, document-disjoint verification. Claim-only TF-IDF AUROC is recorded per lane as MEASUREMENT ONLY (0.645 FActScore, 0.654 AttributionBench) - the < 0.55 bar governs synthetic minimal-pair lanes; real corpora carry legitimate claim-side signal, so banking rests on the licence and contamination gates as registered
+- **Supply-only clause stands**: no corpus enters a training mix without its own registered hypothesis and arm. Nearest named use: FinDVer + EDGAR synthetics as the finqa derivation lane (R18-H157 lever 1), unregistered pending the author's word
+- **Toolchain**: fetched through `scripts/fetch_grounding_datasets.py` spec entries per the datascience dataset skill; sidecars generated from the spec and re-rendered post-fetch with observed counts; gitignore verified (`git check-ignore -v` - `.gitignore:9` ignores the archives, `:10` un-ignores the `.md` sidecars)

@@ -1,0 +1,48 @@
+{
+  "experiment": "R19 supply wave lane - minicheck (SUPPLY ONLY; no training use without a registered hypothesis)",
+  "registration": "docs/experiments/semantic-dataset-enhancements.md, section 'R19 supply wave' (2026-08-13)",
+  "rows": 14356,
+  "documents": 6155,
+  "label_distribution": {
+    "0": 7718,
+    "1": 6638
+  },
+  "source_distribution": {
+    "c2d": 7069,
+    "d2c": 7287
+  },
+  "tag": "minicheck",
+  "provenance_columns": [],
+  "build_stats": {
+    "rows_in": 14395
+  },
+  "gate": "R19_minicheck_gate.json (status GREEN)",
+  "fetch": "data/external/datasets/dataset-minicheck.zip",
+  "verify": {
+    "integrity": {
+      "labels_in_01": true,
+      "empty_claims": 0,
+      "empty_chunks": 0,
+      "duplicate_claim_chunk_label_rows": 0,
+      "pass": true
+    },
+    "claim_only_tfidf_auroc": {
+      "value": 0.6257,
+      "bar": "< 0.55 on synthetic minimal-pair lanes",
+      "pass": false,
+      "applicability": "measurement only for supply lanes - real corpora carry legitimate claim-side signal; banking is decided by the licence + contamination gates",
+      "scoring": "5-fold document-disjoint (GroupKFold on doc_id), liblinear tol 1e-7",
+      "documents": 6155,
+      "rows": 14356
+    },
+    "disjointness": {
+      "evalset_present": true,
+      "evalset_shared_content_fingerprints": 0,
+      "distinct_claims": 3396,
+      "distinct_chunks": 6155,
+      "distinct_documents": 6155,
+      "pass": true
+    },
+    "all_integrity_pass": true
+  }
+}
