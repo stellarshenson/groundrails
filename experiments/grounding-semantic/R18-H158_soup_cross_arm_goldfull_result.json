@@ -1,0 +1,8 @@
+{
+  "checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/R18-H158-soup-cross_arm",
+  "gold_full": {
+    "auc": 0.8785,
+    "f1": 0.7645,
+    "n": 2752
+  }
+}

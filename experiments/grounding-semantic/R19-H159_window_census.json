@@ -1,0 +1,39 @@
+{
+  "combined": {
+    "rows": 796716,
+    "multi_window_share": 0.2339,
+    "mean_windows": 1.6264,
+    "max_windows": 95,
+    "total_pairs": 1295811
+  },
+  "over_cap_drop": {
+    "attributionbench": {
+      "rows_in_parquet": 16444,
+      "rows_dropped": 18,
+      "rows_kept": 16426,
+      "cap": 96,
+      "dropped_pairs": 3338,
+      "dropped_window_counts": [
+        533,
+        512,
+        377,
+        198,
+        185,
+        136,
+        132,
+        129,
+        129,
+        116,
+        116,
+        113,
+        113,
+        112,
+        112,
+        110,
+        108,
+        107
+      ],
+      "rule": "len(windows(chunk)) > PAIRS_PER_BATCH, the banked trainer's own BATCH-CAP guard threshold"
+    }
+  }
+}

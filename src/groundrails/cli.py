@@ -6,6 +6,8 @@ Subcommands:
     check-consistency  - intra-document numeric/entity divergence detector
     config             - show the resolved grounding config + calibration block
     setup              - first-run: write the semantic model/cache config
+    dataset            - corpus preprocessing pipeline (fetch/contaminate/format/shape/
+                         assemble/census); needs the [dataset] extra
 
 Sources are read as plain UTF-8 text. Binary document readers (PDF / OCR / docx)
 are a document-processing concern and live outside groundrails.
@@ -839,6 +841,12 @@ def _build_parser() -> argparse.ArgumentParser:
         help="Calibration JSON block to evaluate (from `calibration fit`)",
     )
     ca_eval.set_defaults(func=cmd_calibration_eval)
+
+    # The dataset pipeline owns its own stage subcommands; imported here rather
+    # than at module level so the grounding commands do not pay for it.
+    from groundrails.dataset._cli import add_parser as add_dataset_parser
+
+    add_dataset_parser(sub)
 
     return parser
 

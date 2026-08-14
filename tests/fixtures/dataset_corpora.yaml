@@ -1,0 +1,54 @@
+# Synthetic two-corpus manifest for the dataset-pipeline tests. Deliberately
+# small: one declarative corpus exercising every mapping feature (list join,
+# value map, hashed doc_id, renamed provenance), one adapter corpus.
+version: 1
+
+corpora:
+  - name: tiny
+    title: Tiny declarative corpus
+    licence:
+      tag: MIT
+      commercial_use: true
+      verified: test fixture
+    source:
+      kind: hf_files
+      repo: example/tiny
+      files:
+        train: train.parquet
+    task_shape: claim -> claim; refs -> evidence; supported -> 1
+    format:
+      claim: statement
+      chunk:
+        column: refs
+        join: "\n\n"
+      label:
+        column: verdict
+        map:
+          supported: 1
+          refuted: 0
+      doc_id:
+        hash: chunk
+      retain: [topic]
+      retain_as:
+        raw_verdict: verdict
+    expected:
+      rows: 3
+      positives: 2
+
+  - name: tiny-adapter
+    title: Tiny adapter corpus
+    licence:
+      tag: Apache-2.0
+      commercial_use: true
+      verified: test fixture
+    source:
+      kind: adapter
+      fetcher: tiny_fetcher
+    storage: tree
+    task_shape: parsed text -> claim; parsed text -> evidence
+    format:
+      adapter: tiny_adapter
+    presentation:
+      window_chars: 100
+      stride_chars: 50
+      pairs_per_batch: 4

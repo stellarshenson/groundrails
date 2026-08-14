@@ -1,0 +1,166 @@
+{
+  "cell": "cross_init",
+  "status": "read",
+  "diagnostic_only": "no number in this record is a record, a flagship or a publication claim - the arm cannot promote by construction",
+  "ingredients": {
+    "a": {
+      "label": "H150 draw 1 (seed 1150)",
+      "checkpoint": "R18-H150-arm-draw1",
+      "windowed_mean": 0.71436,
+      "per_subset": {
+        "covidqa": 0.7685,
+        "delucionqa": 0.8009,
+        "emanual": 0.6973,
+        "expertqa": 0.7969,
+        "finqa": 0.6515,
+        "hagrid": 0.6423,
+        "hotpotqa": 0.6766,
+        "pubmedqa": 0.5893,
+        "tatqa": 0.7842,
+        "techqa": 0.7361
+      },
+      "gold_full": 0.8659,
+      "source_windowed": "R18-H150_arm_draw1_windowed_result.json",
+      "source_train": "R18-H150_arm_draw1_result.json"
+    },
+    "b": {
+      "label": "H150 draw 2 (seed 2150)",
+      "checkpoint": "R18-H150-arm-draw2",
+      "windowed_mean": 0.71661,
+      "per_subset": {
+        "covidqa": 0.7458,
+        "delucionqa": 0.7888,
+        "emanual": 0.6586,
+        "expertqa": 0.7822,
+        "finqa": 0.7135,
+        "hagrid": 0.6425,
+        "hotpotqa": 0.6647,
+        "pubmedqa": 0.6298,
+        "tatqa": 0.8093,
+        "techqa": 0.7309
+      },
+      "gold_full": 0.8644,
+      "source_windowed": "R18-H150_arm_draw2_windowed_result.json",
+      "source_train": "R18-H150_arm_draw2_result.json"
+    }
+  },
+  "checks": {
+    "init_fingerprint_a": "a8dfdd7275073adf0057cfb40344c45b",
+    "init_fingerprint_b": "5dcb52aef4e34c55b649369d7e038b7b",
+    "init_fingerprint_shared": false,
+    "n_trunk_tensors": 134,
+    "trunk_dtypes": [
+      "torch.float32"
+    ],
+    "non_float_trunk_buffers": [],
+    "task_head_keys": [
+      "bias",
+      "weight"
+    ],
+    "adapter_zero_a": true,
+    "adapter_zero_b": true,
+    "domain_head_shapes_a": {
+      "0.weight": [
+        256,
+        768
+      ],
+      "0.bias": [
+        256
+      ],
+      "3.weight": [
+        14,
+        256
+      ],
+      "3.bias": [
+        14
+      ]
+    },
+    "domain_head_shapes_b": {
+      "0.weight": [
+        256,
+        768
+      ],
+      "0.bias": [
+        256
+      ],
+      "3.weight": [
+        14,
+        256
+      ],
+      "3.bias": [
+        14
+      ]
+    },
+    "domain_head_shapes_agree": true,
+    "domain_head_note": "training-only, NOT averaged - copied from ingredient A verbatim",
+    "n_groups_a": 14,
+    "n_groups_b": 14,
+    "seed_a": 1150,
+    "seed_b": 2150,
+    "perm_fingerprint_a": "7d13f9ac86a79574",
+    "perm_fingerprint_b": "8fb06248240a78e1"
+  },
+  "basin": {
+    "l2_diff_trunk_plus_task_head": 14.342132,
+    "l2_diff_trunk_only": 14.319107,
+    "cosine_trunk_raw": 0.999880534,
+    "raw_cosine_note": "saturated by shared pretrained mass - every endpoint in this campaign fine-tunes the SAME pretrained mmBERT trunk, so this number cannot discriminate the cells; the update-space cosine below is the one that does",
+    "update_space": {
+      "available": true,
+      "anchor": "pretrained mmBERT-base trunk",
+      "cosine_trunk_update": 0.211303,
+      "l2_update_a": 11.363661,
+      "l2_update_b": 11.438306,
+      "l2_diff_over_mean_update": 1.255954
+    }
+  },
+  "expectation": "middle basin distance",
+  "soup_checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/R18-H158-soup-cross_init",
+  "soup": {
+    "windowed_mean": 0.72306,
+    "per_subset": {
+      "covidqa": 0.7585,
+      "delucionqa": 0.7786,
+      "emanual": 0.6998,
+      "expertqa": 0.7591,
+      "finqa": 0.7048,
+      "hagrid": 0.6616,
+      "hotpotqa": 0.6418,
+      "pubmedqa": 0.6572,
+      "tatqa": 0.8447,
+      "techqa": 0.7245
+    },
+    "gold_full": 0.8794
+  },
+  "per_subset_delta_vs_ingredient_mean": {
+    "covidqa": 0.00135,
+    "delucionqa": -0.01625,
+    "emanual": 0.02185,
+    "expertqa": -0.03045,
+    "finqa": 0.0223,
+    "hagrid": 0.0192,
+    "hotpotqa": -0.02885,
+    "pubmedqa": 0.04765,
+    "tatqa": 0.04795,
+    "techqa": -0.009
+  },
+  "arena": {
+    "ingredient_mean": 0.71548,
+    "better_ingredient": 0.71661,
+    "soup_minus_ingredient_mean": 0.00758,
+    "soup_minus_better_ingredient": 0.00645,
+    "reporting_band": 0.005,
+    "verdict": "POSITIVE",
+    "reason": "soup is +0.00645 above the better ingredient (0.71661), at or over the 0.005 reporting band"
+  },
+  "gold_full_vs_ingredients": {
+    "ingredient_mean": 0.86515,
+    "better_ingredient": 0.8659,
+    "soup_minus_ingredient_mean": 0.01425,
+    "soup_minus_better_ingredient": 0.0135,
+    "reporting_band": 0.005,
+    "verdict": "POSITIVE",
+    "reason": "soup is +0.01350 above the better ingredient (0.86590), at or over the 0.005 reporting band"
+  },
+  "elapsed_seconds": 1943.3
+}

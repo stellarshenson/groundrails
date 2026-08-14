@@ -1,0 +1,386 @@
+# Corpus manifest - the dataset pipeline's single source of truth.
+#
+# One entry per corpus: where it comes from, the licence tag read at the source,
+# how its columns map onto the pair schema (claim, chunk, label, doc_id, source,
+# tag), the counts a formatted lane must reproduce, and the presentation the
+# shape stage rules on. Adding a corpus is adding an entry here; Python is
+# needed only when the source itself needs bespoke download or parse logic, and
+# then only for that one registered adapter.
+#
+# Every corpus listed passed three filters together: a licence permitting
+# commercial use, source documents shipping alongside the claims, and a task
+# shape that maps onto (claim, evidence) -> supported. Corpora excluded on
+# licence alone: TrueTeacher (CC-BY-NC), HaluBench (CC-BY-NC), MS MARCO
+# (non-commercial), ANLI (CC-BY-NC), MEMERAG (card forbids training).
+#
+# An entry without a `format` block is fetchable and gate-able but not yet
+# pair-formatted - the format stage refuses it until a block or adapter exists.
+
+version: 1
+
+corpora:
+  - name: ragtruth
+    title: RAGTruth
+    licence:
+      tag: MIT
+      commercial_use: true
+      verified: "HF card YAML `license: mit`"
+    source:
+      kind: hf_dataset
+      repos: [wandb/RAGTruth-processed]
+    task_shape: >-
+      response span -> claim; retrieved passage -> evidence; any hallucinated span in a
+      sentence -> that claim is unsupported
+    notes: >-
+      Naturally occurring LLM hallucinations over real retrieval prompts, human span
+      annotation. English only; MS MARCO / CNN-DM / Yelp register.
+
+  - name: ragtruth-translated
+    title: RAGTruth, machine-translated into 7 languages
+    licence:
+      tag: MIT
+      commercial_use: true
+      verified: "HF card YAML `license: mit`, inherited from the English original"
+    source:
+      kind: hf_dataset
+      repos:
+        - KRLabsOrg/ragtruth-de-translated
+        - KRLabsOrg/ragtruth-fr-translated
+        - KRLabsOrg/ragtruth-es-translated
+        - KRLabsOrg/ragtruth-it-translated
+        - KRLabsOrg/ragtruth-pl-translated
+        - KRLabsOrg/ragtruth-hu-translated
+        - KRLabsOrg/ragtruth-cn-translated
+    task_shape: as RAGTruth, per language
+    notes: >-
+      Machine-translated; only 300 German rows are human-verified, so non-English label
+      alignment is inherited rather than checked. Weaker supervision than the original.
+
+  - name: lettucedetect-prose
+    title: LettuceDetect v2 prose hallucination
+    licence:
+      tag: CC-BY-4.0
+      commercial_use: true
+      verified: "HF card YAML `license: cc-by-4.0`"
+    source:
+      kind: hf_dataset
+      repos: [KRLabsOrg/lettucedetect-prose-hallucination]
+    task_shape: answer sentence -> claim; context field -> evidence; tagged span -> unsupported
+    notes: >-
+      Near-miss negatives at multilingual scale - localized replacement edits applied
+      deterministically. ACL papers, READMEs and Wikipedia markdown: language coverage,
+      not domain coverage. Labels are LLM-generated, not human-verified.
+
+  - name: psiloqa
+    title: PsiloQA
+    licence:
+      tag: CC-BY-4.0
+      commercial_use: true
+      verified: "HF card YAML `license: cc-by-4.0`"
+    source:
+      kind: hf_dataset
+      repos: [s-nlp/PsiloQA]
+    task_shape: answer -> claim; retrieved Wikipedia passage -> evidence
+    notes: >-
+      14 languages, error profile dominated by wrong entity / date / number. Entirely
+      LLM-annotated (GPT-4o end to end), so label noise is real and unmeasured.
+
+  - name: ragbench
+    title: RAGBench (safe core - MS MARCO and CUAD subsets EXCLUDED)
+    licence:
+      tag: CC-BY-4.0
+      commercial_use: true
+      verified: >-
+        collection-level tag only - it sits over 12 upstream corpora including MS MARCO
+        (non-commercial) and CUAD; a vendor tag does not extinguish an upstream
+        restriction, so those two subsets are excluded by construction below
+    source:
+      kind: hf_dataset
+      repos: [galileo-ai/ragbench]
+      subsets:
+        [techqa, emanual, delucionqa, expertqa, hagrid, finqa, tatqa, covidqa, pubmedqa, hotpotqa]
+    task_shape: response sentence -> claim; retrieved documents -> evidence
+    notes: >-
+      The one large corpus whose documents resemble business material - support tickets,
+      manuals, financial and legal filings. Labels are GPT-4, not human.
+
+  - name: faithdial
+    title: FaithDial
+    licence:
+      tag: MIT
+      commercial_use: true
+      verified: "HF card YAML `license: mit`"
+    source:
+      kind: hf_dataset
+      repos: [McGill-NLP/FaithDial]
+    task_shape: utterance -> claim; knowledge snippet -> evidence; BEGIN label -> verdict
+    notes: >-
+      NOT CURRENTLY FETCHABLE - the repo ships a loading script and datasets 5.x removed
+      script support. Needs a parquet mirror before use. Both sides of the conversation
+      are human, and the negatives are hallucinations a person actually wrote.
+
+  - name: nomiracl
+    title: NoMIRACL
+    licence:
+      tag: Apache-2.0
+      commercial_use: true
+      verified: "HF card YAML `license: apache-2.0`"
+    source:
+      kind: hf_dataset
+      repos: [miracl/nomiracl]
+    task_shape: query -> claim proxy; passage -> evidence; no-relevant -> unsupported
+    notes: >-
+      The no-relevant-evidence case in 18 languages - the true-negative supply where
+      models manufacture support. May be gated on the Hub.
+
+  - name: vitaminc
+    title: VitaminC
+    licence:
+      tag: CC-BY-SA-3.0
+      commercial_use: true
+      verified: >-
+        Wikipedia-derived share-alike - commercial use is permitted, but the share-alike
+        term travels with derivatives; verify before shipping a model trained on it
+    source:
+      kind: hf_dataset
+      repos: [tals/vitaminc]
+    task_shape: claim -> claim; evidence -> evidence; SUPPORTS -> 1, REFUTES and NEI -> 0
+    notes: >-
+      Contrastive Wikipedia revisions - the negative differs from its positive by one
+      number, entity or qualifier and nothing else. The best-built near-miss negatives in
+      the field. English only, Wikipedia register.
+
+  - name: tabfact
+    title: TabFact
+    licence:
+      tag: CC-BY-4.0
+      commercial_use: true
+      verified: repo LICENSE and the retired HF loading scripts
+    source:
+      kind: adapter
+      fetcher: tabfact
+      url: https://github.com/wenhuchen/Table-Fact-Checking/archive/refs/heads/master.zip
+    task_shape: >-
+      statement -> claim; caption + linearized table -> evidence; ENTAILED -> 1,
+      REFUTED -> 0
+    notes: >-
+      Every HF mirror ships a loading script and datasets 5.x removed script support, so
+      the statement/table pairs are rebuilt from the upstream GitHub repo those scripts
+      downloaded from. Counterfactual statements against the SAME table that entails the
+      positives - near-miss in the numeric-tabular register.
+
+  - name: halueval
+    title: HaluEval
+    licence:
+      tag: MIT
+      commercial_use: true
+      verified: "HF card YAML `license: mit`"
+    source:
+      kind: hf_dataset
+      repos: [pminervini/HaluEval]
+      subsets: [qa, summarization, dialogue, general]
+    task_shape: answer -> claim; knowledge field -> evidence
+    notes: >-
+      `qa` and `summarization` carry a knowledge/document field and map onto the task;
+      `dialogue` and `general` are fetched for completeness but have no retrievable
+      evidence. Only the 5k real-query slice carries human labels. Widely used for
+      evaluation - holding it out of training preserves it as a comparison point.
+
+  # ------------------------------------------------------------------------ #
+  # R19 supply wave - pair-formatted lanes exist for these six.
+  # ------------------------------------------------------------------------ #
+  - name: fava
+    title: FAVA fava-data - span-tagged long-form hallucination corpus
+    licence:
+      tag: CC-BY-4.0
+      commercial_use: true
+      verified: "HF card YAML `license: cc-by-4.0`, re-verified at the Hub 2026-08-13"
+    source:
+      kind: hf_files
+      repo: fava-uw/fava-data
+      files:
+        train: training.json
+        gold: annotations.json
+    task_shape: >-
+      prompt `Text:` passage -> claim; `Reference [i]` blocks -> evidence; any error span
+      in the tagged completion -> 0, clean -> 1
+    format:
+      adapter: fava
+    expected:
+      rows: 30073
+      positives: 637
+      documents: 30073
+    notes: >-
+      The claim is the draft passage embedded in the prompt after `Text:`, and the tagged
+      completion is retained as a provenance column. Silver labels; the 460 gold passages
+      are banked alongside, not pair-formatted.
+
+  - name: pubhealth
+    title: PubHealth (health_fact) - real-world public-health fact-checks
+    licence:
+      tag: MIT
+      commercial_use: true
+      verified: >-
+        HF card YAML `license: mit`, re-verified at the Hub 2026-08-13; the loader script
+        carries an Apache-2.0 code header - data licence per the card
+    source:
+      kind: adapter
+      fetcher: pubhealth
+      url: https://drive.google.com/uc?export=download&id=1eTtRs5cUlBP5dXsx-FTAlmXuB6JQi2qj
+    task_shape: >-
+      claim -> claim; source article `main_text` -> evidence; true -> 1,
+      false/unproven/mixture -> 0
+    format:
+      claim: claim
+      chunk:
+        column: main_text
+      label:
+        column: label
+        map:
+          "true": 1
+          "false": 0
+          unproven: 0
+          mixture: 0
+      doc_id:
+        column: claim_id
+        prefix: pubhealth_
+      retain: [explanation, fact_checkers, subjects, date_published]
+      retain_as:
+        verdict: label
+    expected:
+      rows: 12251
+      positives: 6306
+      documents: 12251
+    notes: >-
+      The HF repo ships only a loading script, so the data comes from the authors' Drive
+      zip the script names (needs `gdown`). Rows with empty `main_text` or stray labels
+      stay in the archive and are dropped from the lane. The verdict maps onto SUPPORT,
+      not truth: unproven and mixture read as not-supported.
+
+  - name: minicheck
+    title: MiniCheck C2D/D2C - multi-fact claim/document checking pairs
+    licence:
+      tag: MIT
+      commercial_use: true
+      verified: "HF card YAML `license: mit`, re-verified at the Hub 2026-08-13"
+    source:
+      kind: hf_files
+      repo: lytang/C2D-and-D2C-MiniCheck
+      files:
+        c2d: data/c2d-*.parquet
+        d2c: data/d2c-*.parquet
+    task_shape: claim -> claim; doc -> evidence; shipped label (1 supported / 0 not)
+    format:
+      claim: claim
+      chunk:
+        column: doc
+      label:
+        column: label
+      doc_id:
+        hash: chunk
+    expected:
+      rows: 14356
+      positives: 6638
+      documents: 6155
+    notes: >-
+      Multi-fact, multi-sentence checking - support has to be assembled from several
+      sentences. Filenames are globbed live so a re-upload with new content hashes still
+      resolves. Seeds are Wikipedia claims with cited web articles (C2D) and Google News
+      articles scraped since November 2023 (D2C); neither is a walled corpus, and the
+      8-gram instrument runs regardless.
+
+  - name: factscore
+    title: FActScore labeled biographies - human-judged atomic facts
+    licence:
+      tag: MIT
+      commercial_use: true
+      verified: repo LICENSE file at github.com/shmsw25/FActScore, re-read at fetch 2026-08-13
+    source:
+      kind: adapter
+      fetcher: factscore
+      url: https://drive.google.com/drive/folders/1kFey69z8hGXScln01mVxrOhrqgM62X7I
+    storage: tree
+    task_shape: >-
+      atomic fact -> claim; the topic's pinned Wikipedia article -> evidence; S -> 1,
+      NS -> 0 (IR excluded - off-topic, support undefined)
+    format:
+      adapter: factscore
+    expected:
+      rows: 13653
+      positives: 9332
+      documents: 181
+    notes: >-
+      Evidence is the topic's FULL Wikipedia article at the last revision on or before
+      2023-04-01, pulled through the public API. 183 articles carry every row, so the
+      corpus fails the shape stage's document-reuse and pair-share bars - it is a
+      high-precision probe, not bulk supervision.
+
+  - name: findver
+    title: FinDVer - claim verification over 2024 SEC filings
+    licence:
+      tag: MIT
+      commercial_use: true
+      verified: repo LICENSE file at github.com/yilunzhao/FinDVer, re-read at fetch 2026-08-13
+    source:
+      kind: http_zip
+      url: https://codeload.github.com/yilunzhao/FinDVer/zip/refs/heads/main
+      keep_prefixes: [LICENSE, README.md, "data/", "financial_reports/"]
+    storage: tree
+    task_shape: >-
+      statement -> claim; the annotated `relevant_context` passages -> evidence;
+      entailed -> 1, refuted -> 0
+    format:
+      adapter: findver
+    expected:
+      rows: 2400
+      positives: 1201
+      documents: 539
+    notes: >-
+      The financial numeric-derivation register. Admitted under the EDGAR-population
+      precedent - 2024 filings against pre-2020 walled corpora make document overlap
+      structurally impossible; the instrument runs anyway. Claims are benchmark items
+      banked as supply.
+
+  - name: attributionbench
+    title: AttributionBench (full_data config) - with the ExpertQA/HAGRID carve-out
+    licence:
+      tag: Apache-2.0
+      commercial_use: true
+      verified: "HF card YAML `license: apache-2.0`, re-verified at the Hub 2026-08-13"
+    source:
+      kind: hf_files
+      repo: osunlp/AttributionBench
+      files:
+        train: merged_train.jsonl
+        dev: dev_all_subset_balanced.jsonl
+        test: test_all_subset_balanced.jsonl
+        test_ood: test_ood_all_subset_balanced.jsonl
+      drop_where:
+        src_dataset: [ExpertQA, HAGRID]
+    task_shape: >-
+      claim -> claim; references -> evidence; attributable -> 1, not attributable -> 0
+    format:
+      claim: claim
+      chunk:
+        column: references
+        join: "\n\n"
+      label:
+        column: attribution_label
+        map:
+          attributable: 1
+          not attributable: 0
+      doc_id:
+        hash: chunk
+      retain: [src_dataset, question]
+      retain_as:
+        ab_id: id
+    expected:
+      rows: 16444
+      positives: 10656
+      documents: 12138
+    notes: >-
+      The carve-out is applied AT FETCH - every row whose `src_dataset` is a walled
+      RAGBench source corpus is dropped by construction, and the contamination gate
+      re-derives zero walled rows from the kept frame rather than trusting this note. A
+      handful of rows concatenate very long reference sets: the shape stage reports them
+      as an over-cap drop rather than letting the trainer discover them.

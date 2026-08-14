@@ -1,0 +1,8 @@
+{
+  "checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/R18-H158-soup-same_init",
+  "gold_full": {
+    "auc": 0.819,
+    "f1": 0.7193,
+    "n": 2752
+  }
+}
