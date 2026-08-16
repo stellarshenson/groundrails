@@ -1,0 +1,767 @@
+{
+  "experiment": "R19-H161 lane A0 - shared evidence substrate",
+  "licence": "ANALYSIS ONLY - nothing here trains, tunes or selects; the RAGBench arena is read-only evidence",
+  "read": "PRIMARY windowed decomposed-min (1500/750, MAX over windows on the logit, then MIN over sentences), banked R16-H142_G1_arm.load_run path",
+  "grain": "one row per (subset, item, sentence, window)",
+  "columns": [
+    {
+      "name": "subset",
+      "dtype": "str",
+      "meaning": "arena subset name"
+    },
+    {
+      "name": "item_id",
+      "dtype": "i32",
+      "meaning": "0-based index into the frozen per-subset sample, in load order"
+    },
+    {
+      "name": "label",
+      "dtype": "i8",
+      "meaning": "item-level gold adherence used by the banked read (1 = adherent)"
+    },
+    {
+      "name": "n_sent_item",
+      "dtype": "i16",
+      "meaning": "sentences in this response"
+    },
+    {
+      "name": "sent_idx",
+      "dtype": "i16",
+      "meaning": "0-based sentence index"
+    },
+    {
+      "name": "n_win_sent",
+      "dtype": "i16",
+      "meaning": "windows scored for this sentence"
+    },
+    {
+      "name": "doc_idx",
+      "dtype": "i16",
+      "meaning": "source document index of this window"
+    },
+    {
+      "name": "win_idx",
+      "dtype": "i16",
+      "meaning": "0-based window index within the sentence's full window list"
+    },
+    {
+      "name": "logit",
+      "dtype": "f32",
+      "meaning": "raw pre-sigmoid cross-encoder output for this (sentence, window)"
+    },
+    {
+      "name": "is_argmax",
+      "dtype": "bool",
+      "meaning": "this window is the sentence's max (first max on a tie)"
+    },
+    {
+      "name": "sent_score",
+      "dtype": "f32",
+      "meaning": "max over the sentence's windows, in logit space"
+    },
+    {
+      "name": "item_score",
+      "dtype": "f32",
+      "meaning": "min over the item's sentence scores, in logit space"
+    },
+    {
+      "name": "is_sinking",
+      "dtype": "bool",
+      "meaning": "this sentence is the item's min (first min on a tie)"
+    },
+    {
+      "name": "tok_jaccard",
+      "dtype": "f32",
+      "meaning": "Jaccard of content-token sets, sentence vs window"
+    },
+    {
+      "name": "tok_containment",
+      "dtype": "f32",
+      "meaning": "|sentence & window| / |sentence| over content tokens"
+    },
+    {
+      "name": "num_containment",
+      "dtype": "f32",
+      "meaning": "fraction of the sentence's numerals present in the window; null when the sentence has no numeral"
+    },
+    {
+      "name": "max_common_ngram",
+      "dtype": "i16",
+      "meaning": "length of the longest common contiguous token n-gram"
+    },
+    {
+      "name": "n_num_sent",
+      "dtype": "i16",
+      "meaning": "count of numerals in the sentence"
+    },
+    {
+      "name": "char_len_sent",
+      "dtype": "i32",
+      "meaning": "characters in the sentence"
+    },
+    {
+      "name": "char_len_win",
+      "dtype": "i32",
+      "meaning": "characters in the window"
+    }
+  ],
+  "feature_definitions": {
+    "content_tokens": "lowercased [a-z0-9]+ regex matches minus the fixed stopword list",
+    "stopwords": [
+      "a",
+      "an",
+      "and",
+      "are",
+      "as",
+      "at",
+      "be",
+      "been",
+      "being",
+      "but",
+      "by",
+      "for",
+      "from",
+      "if",
+      "in",
+      "is",
+      "it",
+      "its",
+      "of",
+      "on",
+      "or",
+      "that",
+      "the",
+      "these",
+      "this",
+      "those",
+      "to",
+      "was",
+      "were",
+      "with"
+    ],
+    "numeral_regex": "[-+]?\\d[\\d,]*(?:\\.\\d+)?",
+    "numeral_comparison": "commas stripped from both sides, then the sentence's numeral surface form is looked up in the set of the window's numeral surface forms",
+    "max_common_ngram_tokens": "raw lowercased [a-z0-9]+ token sequence, stopwords INCLUDED - it measures verbatim copying",
+    "tie_convention": "is_argmax and is_sinking mark the FIRST max / min in pair order, so exactly one window per sentence and one sentence per item carry the flag"
+  },
+  "checkpoints": {
+    "h150d1": {
+      "path": "/home/lab/workspace/private/ai-assistants/groundrails/models/R18-H150-arm-draw1",
+      "banked_read": "R18-H150_arm_draw1_windowed_result.json"
+    },
+    "h150d2": {
+      "path": "/home/lab/workspace/private/ai-assistants/groundrails/models/R18-H150-arm-draw2",
+      "banked_read": "R18-H150_arm_draw2_windowed_result.json"
+    },
+    "h159d1": {
+      "path": "/home/lab/workspace/private/ai-assistants/groundrails/models/R19-H159-arm-draw1",
+      "banked_read": "R19-H159_arm_draw1_windowed_result.json"
+    }
+  },
+  "positive_control": {
+    "h150d1": {
+      "per_subset": [
+        {
+          "subset": "covidqa",
+          "reproduced_auc": 0.768484,
+          "banked_auc": 0.7685,
+          "abs_delta": 1.6e-05,
+          "auc_pass": true,
+          "fingerprint": {
+            "n": 245,
+            "n_sent": 385,
+            "n_pairs": 1540
+          },
+          "banked_fingerprint": {
+            "n": 245,
+            "n_sent": 385,
+            "n_pairs": 1540
+          },
+          "fingerprint_pass": true
+        },
+        {
+          "subset": "delucionqa",
+          "reproduced_auc": 0.800872,
+          "banked_auc": 0.8009,
+          "abs_delta": 2.8e-05,
+          "auc_pass": true,
+          "fingerprint": {
+            "n": 184,
+            "n_sent": 929,
+            "n_pairs": 5093
+          },
+          "banked_fingerprint": {
+            "n": 184,
+            "n_sent": 929,
+            "n_pairs": 5093
+          },
+          "fingerprint_pass": true
+        },
+        {
+          "subset": "emanual",
+          "reproduced_auc": 0.697337,
+          "banked_auc": 0.6973,
+          "abs_delta": 3.7e-05,
+          "auc_pass": true,
+          "fingerprint": {
+            "n": 132,
+            "n_sent": 748,
+            "n_pairs": 2983
+          },
+          "banked_fingerprint": {
+            "n": 132,
+            "n_sent": 748,
+            "n_pairs": 2983
+          },
+          "fingerprint_pass": true
+        },
+        {
+          "subset": "expertqa",
+          "reproduced_auc": 0.796881,
+          "banked_auc": 0.7969,
+          "abs_delta": 1.9e-05,
+          "auc_pass": true,
+          "fingerprint": {
+            "n": 203,
+            "n_sent": 1303,
+            "n_pairs": 13949
+          },
+          "banked_fingerprint": {
+            "n": 203,
+            "n_sent": 1303,
+            "n_pairs": 13949
+          },
+          "fingerprint_pass": true
+        },
+        {
+          "subset": "finqa",
+          "reproduced_auc": 0.651522,
+          "banked_auc": 0.6515,
+          "abs_delta": 2.2e-05,
+          "auc_pass": true,
+          "fingerprint": {
+            "n": 250,
+            "n_sent": 563,
+            "n_pairs": 2918
+          },
+          "banked_fingerprint": {
+            "n": 250,
+            "n_sent": 563,
+            "n_pairs": 2918
+          },
+          "fingerprint_pass": true
+        },
+        {
+          "subset": "hagrid",
+          "reproduced_auc": 0.642254,
+          "banked_auc": 0.6423,
+          "abs_delta": 4.6e-05,
+          "auc_pass": true,
+          "fingerprint": {
+            "n": 250,
+            "n_sent": 537,
+            "n_pairs": 1941
+          },
+          "banked_fingerprint": {
+            "n": 250,
+            "n_sent": 537,
+            "n_pairs": 1941
+          },
+          "fingerprint_pass": true
+        },
+        {
+          "subset": "hotpotqa",
+          "reproduced_auc": 0.676597,
+          "banked_auc": 0.6766,
+          "abs_delta": 3e-06,
+          "auc_pass": true,
+          "fingerprint": {
+            "n": 250,
+            "n_sent": 293,
+            "n_pairs": 1177
+          },
+          "banked_fingerprint": {
+            "n": 250,
+            "n_sent": 293,
+            "n_pairs": 1177
+          },
+          "fingerprint_pass": true
+        },
+        {
+          "subset": "pubmedqa",
+          "reproduced_auc": 0.589295,
+          "banked_auc": 0.5893,
+          "abs_delta": 5e-06,
+          "auc_pass": true,
+          "fingerprint": {
+            "n": 250,
+            "n_sent": 1314,
+            "n_pairs": 6570
+          },
+          "banked_fingerprint": {
+            "n": 250,
+            "n_sent": 1314,
+            "n_pairs": 6570
+          },
+          "fingerprint_pass": true
+        },
+        {
+          "subset": "tatqa",
+          "reproduced_auc": 0.784201,
+          "banked_auc": 0.7842,
+          "abs_delta": 1e-06,
+          "auc_pass": true,
+          "fingerprint": {
+            "n": 250,
+            "n_sent": 468,
+            "n_pairs": 1942
+          },
+          "banked_fingerprint": {
+            "n": 250,
+            "n_sent": 468,
+            "n_pairs": 1942
+          },
+          "fingerprint_pass": true
+        },
+        {
+          "subset": "techqa",
+          "reproduced_auc": 0.736092,
+          "banked_auc": 0.7361,
+          "abs_delta": 8e-06,
+          "auc_pass": true,
+          "fingerprint": {
+            "n": 250,
+            "n_sent": 1737,
+            "n_pairs": 39058
+          },
+          "banked_fingerprint": {
+            "n": 250,
+            "n_sent": 1737,
+            "n_pairs": 39058
+          },
+          "fingerprint_pass": true
+        }
+      ],
+      "pass": true,
+      "max_abs_auc_delta": 4.6e-05
+    },
+    "h150d2": {
+      "per_subset": [
+        {
+          "subset": "covidqa",
+          "reproduced_auc": 0.74583,
+          "banked_auc": 0.7458,
+          "abs_delta": 3e-05,
+          "auc_pass": true,
+          "fingerprint": {
+            "n": 245,
+            "n_sent": 385,
+            "n_pairs": 1540
+          },
+          "banked_fingerprint": {
+            "n": 245,
+            "n_sent": 385,
+            "n_pairs": 1540
+          },
+          "fingerprint_pass": true
+        },
+        {
+          "subset": "delucionqa",
+          "reproduced_auc": 0.78876,
+          "banked_auc": 0.7888,
+          "abs_delta": 4e-05,
+          "auc_pass": true,
+          "fingerprint": {
+            "n": 184,
+            "n_sent": 929,
+            "n_pairs": 5093
+          },
+          "banked_fingerprint": {
+            "n": 184,
+            "n_sent": 929,
+            "n_pairs": 5093
+          },
+          "fingerprint_pass": true
+        },
+        {
+          "subset": "emanual",
+          "reproduced_auc": 0.658596,
+          "banked_auc": 0.6586,
+          "abs_delta": 4e-06,
+          "auc_pass": true,
+          "fingerprint": {
+            "n": 132,
+            "n_sent": 748,
+            "n_pairs": 2983
+          },
+          "banked_fingerprint": {
+            "n": 132,
+            "n_sent": 748,
+            "n_pairs": 2983
+          },
+          "fingerprint_pass": true
+        },
+        {
+          "subset": "expertqa",
+          "reproduced_auc": 0.782164,
+          "banked_auc": 0.7822,
+          "abs_delta": 3.6e-05,
+          "auc_pass": true,
+          "fingerprint": {
+            "n": 203,
+            "n_sent": 1303,
+            "n_pairs": 13949
+          },
+          "banked_fingerprint": {
+            "n": 203,
+            "n_sent": 1303,
+            "n_pairs": 13949
+          },
+          "fingerprint_pass": true
+        },
+        {
+          "subset": "finqa",
+          "reproduced_auc": 0.713478,
+          "banked_auc": 0.7135,
+          "abs_delta": 2.2e-05,
+          "auc_pass": true,
+          "fingerprint": {
+            "n": 250,
+            "n_sent": 563,
+            "n_pairs": 2918
+          },
+          "banked_fingerprint": {
+            "n": 250,
+            "n_sent": 563,
+            "n_pairs": 2918
+          },
+          "fingerprint_pass": true
+        },
+        {
+          "subset": "hagrid",
+          "reproduced_auc": 0.642502,
+          "banked_auc": 0.6425,
+          "abs_delta": 2e-06,
+          "auc_pass": true,
+          "fingerprint": {
+            "n": 250,
+            "n_sent": 537,
+            "n_pairs": 1941
+          },
+          "banked_fingerprint": {
+            "n": 250,
+            "n_sent": 537,
+            "n_pairs": 1941
+          },
+          "fingerprint_pass": true
+        },
+        {
+          "subset": "hotpotqa",
+          "reproduced_auc": 0.664731,
+          "banked_auc": 0.6647,
+          "abs_delta": 3.1e-05,
+          "auc_pass": true,
+          "fingerprint": {
+            "n": 250,
+            "n_sent": 293,
+            "n_pairs": 1177
+          },
+          "banked_fingerprint": {
+            "n": 250,
+            "n_sent": 293,
+            "n_pairs": 1177
+          },
+          "fingerprint_pass": true
+        },
+        {
+          "subset": "pubmedqa",
+          "reproduced_auc": 0.629758,
+          "banked_auc": 0.6298,
+          "abs_delta": 4.2e-05,
+          "auc_pass": true,
+          "fingerprint": {
+            "n": 250,
+            "n_sent": 1314,
+            "n_pairs": 6570
+          },
+          "banked_fingerprint": {
+            "n": 250,
+            "n_sent": 1314,
+            "n_pairs": 6570
+          },
+          "fingerprint_pass": true
+        },
+        {
+          "subset": "tatqa",
+          "reproduced_auc": 0.809322,
+          "banked_auc": 0.8093,
+          "abs_delta": 2.2e-05,
+          "auc_pass": true,
+          "fingerprint": {
+            "n": 250,
+            "n_sent": 468,
+            "n_pairs": 1942
+          },
+          "banked_fingerprint": {
+            "n": 250,
+            "n_sent": 468,
+            "n_pairs": 1942
+          },
+          "fingerprint_pass": true
+        },
+        {
+          "subset": "techqa",
+          "reproduced_auc": 0.730887,
+          "banked_auc": 0.7309,
+          "abs_delta": 1.3e-05,
+          "auc_pass": true,
+          "fingerprint": {
+            "n": 250,
+            "n_sent": 1737,
+            "n_pairs": 39058
+          },
+          "banked_fingerprint": {
+            "n": 250,
+            "n_sent": 1737,
+            "n_pairs": 39058
+          },
+          "fingerprint_pass": true
+        }
+      ],
+      "pass": true,
+      "max_abs_auc_delta": 4.2e-05
+    },
+    "h159d1": {
+      "per_subset": [
+        {
+          "subset": "covidqa",
+          "reproduced_auc": 0.767986,
+          "banked_auc": 0.768,
+          "abs_delta": 1.4e-05,
+          "auc_pass": true,
+          "fingerprint": {
+            "n": 245,
+            "n_sent": 385,
+            "n_pairs": 1540
+          },
+          "banked_fingerprint": {
+            "n": 245,
+            "n_sent": 385,
+            "n_pairs": 1540
+          },
+          "fingerprint_pass": true
+        },
+        {
+          "subset": "delucionqa",
+          "reproduced_auc": 0.692345,
+          "banked_auc": 0.6923,
+          "abs_delta": 4.5e-05,
+          "auc_pass": true,
+          "fingerprint": {
+            "n": 184,
+            "n_sent": 929,
+            "n_pairs": 5093
+          },
+          "banked_fingerprint": {
+            "n": 184,
+            "n_sent": 929,
+            "n_pairs": 5093
+          },
+          "fingerprint_pass": true
+        },
+        {
+          "subset": "emanual",
+          "reproduced_auc": 0.705206,
+          "banked_auc": 0.7052,
+          "abs_delta": 6e-06,
+          "auc_pass": true,
+          "fingerprint": {
+            "n": 132,
+            "n_sent": 748,
+            "n_pairs": 2983
+          },
+          "banked_fingerprint": {
+            "n": 132,
+            "n_sent": 748,
+            "n_pairs": 2983
+          },
+          "fingerprint_pass": true
+        },
+        {
+          "subset": "expertqa",
+          "reproduced_auc": 0.805166,
+          "banked_auc": 0.8052,
+          "abs_delta": 3.4e-05,
+          "auc_pass": true,
+          "fingerprint": {
+            "n": 203,
+            "n_sent": 1303,
+            "n_pairs": 13949
+          },
+          "banked_fingerprint": {
+            "n": 203,
+            "n_sent": 1303,
+            "n_pairs": 13949
+          },
+          "fingerprint_pass": true
+        },
+        {
+          "subset": "finqa",
+          "reproduced_auc": 0.539565,
+          "banked_auc": 0.5396,
+          "abs_delta": 3.5e-05,
+          "auc_pass": true,
+          "fingerprint": {
+            "n": 250,
+            "n_sent": 563,
+            "n_pairs": 2918
+          },
+          "banked_fingerprint": {
+            "n": 250,
+            "n_sent": 563,
+            "n_pairs": 2918
+          },
+          "fingerprint_pass": true
+        },
+        {
+          "subset": "hagrid",
+          "reproduced_auc": 0.707423,
+          "banked_auc": 0.7074,
+          "abs_delta": 2.3e-05,
+          "auc_pass": true,
+          "fingerprint": {
+            "n": 250,
+            "n_sent": 537,
+            "n_pairs": 1941
+          },
+          "banked_fingerprint": {
+            "n": 250,
+            "n_sent": 537,
+            "n_pairs": 1941
+          },
+          "fingerprint_pass": true
+        },
+        {
+          "subset": "hotpotqa",
+          "reproduced_auc": 0.679121,
+          "banked_auc": 0.6791,
+          "abs_delta": 2.1e-05,
+          "auc_pass": true,
+          "fingerprint": {
+            "n": 250,
+            "n_sent": 293,
+            "n_pairs": 1177
+          },
+          "banked_fingerprint": {
+            "n": 250,
+            "n_sent": 293,
+            "n_pairs": 1177
+          },
+          "fingerprint_pass": true
+        },
+        {
+          "subset": "pubmedqa",
+          "reproduced_auc": 0.620599,
+          "banked_auc": 0.6206,
+          "abs_delta": 1e-06,
+          "auc_pass": true,
+          "fingerprint": {
+            "n": 250,
+            "n_sent": 1314,
+            "n_pairs": 6570
+          },
+          "banked_fingerprint": {
+            "n": 250,
+            "n_sent": 1314,
+            "n_pairs": 6570
+          },
+          "fingerprint_pass": true
+        },
+        {
+          "subset": "tatqa",
+          "reproduced_auc": 0.664044,
+          "banked_auc": 0.664,
+          "abs_delta": 4.4e-05,
+          "auc_pass": true,
+          "fingerprint": {
+            "n": 250,
+            "n_sent": 468,
+            "n_pairs": 1942
+          },
+          "banked_fingerprint": {
+            "n": 250,
+            "n_sent": 468,
+            "n_pairs": 1942
+          },
+          "fingerprint_pass": true
+        },
+        {
+          "subset": "techqa",
+          "reproduced_auc": 0.712668,
+          "banked_auc": 0.7127,
+          "abs_delta": 3.2e-05,
+          "auc_pass": true,
+          "fingerprint": {
+            "n": 250,
+            "n_sent": 1737,
+            "n_pairs": 39058
+          },
+          "banked_fingerprint": {
+            "n": 250,
+            "n_sent": 1737,
+            "n_pairs": 39058
+          },
+          "fingerprint_pass": true
+        }
+      ],
+      "pass": true,
+      "max_abs_auc_delta": 4.5e-05
+    }
+  },
+  "max_auroc_deviation": 4.6e-05,
+  "rows": {
+    "h150d1": 77171,
+    "h150d2": 77171,
+    "h159d1": 77171
+  },
+  "rows_per_subset": {
+    "h150d1": {
+      "covidqa": 1540,
+      "delucionqa": 5093,
+      "emanual": 2983,
+      "expertqa": 13949,
+      "finqa": 2918,
+      "hagrid": 1941,
+      "hotpotqa": 1177,
+      "pubmedqa": 6570,
+      "tatqa": 1942,
+      "techqa": 39058
+    },
+    "h150d2": {
+      "covidqa": 1540,
+      "delucionqa": 5093,
+      "emanual": 2983,
+      "expertqa": 13949,
+      "finqa": 2918,
+      "hagrid": 1941,
+      "hotpotqa": 1177,
+      "pubmedqa": 6570,
+      "tatqa": 1942,
+      "techqa": 39058
+    },
+    "h159d1": {
+      "covidqa": 1540,
+      "delucionqa": 5093,
+      "emanual": 2983,
+      "expertqa": 13949,
+      "finqa": 2918,
+      "hagrid": 1941,
+      "hotpotqa": 1177,
+      "pubmedqa": 6570,
+      "tatqa": 1942,
+      "techqa": 39058
+    }
+  },
+  "encode_batch": 64,
+  "runtime_seconds": 3912.4
+}

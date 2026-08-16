@@ -1,0 +1,443 @@
+{
+  "lane": "L3",
+  "hypothesis": "H3 adversarial group geometry",
+  "question": "does the 19-group adversary erase more of the prose-versus-table distinction from the trunk than the 14-group adversary did",
+  "method": "frozen trunks, [CLS] from the banked R16-H142_G1_arm.load_run + model.encode path (the vector both pair_logits and domain_head read), logistic probes at C=1.0 under 5-fold stratified CV with the scaler fitted inside each fold",
+  "checkpoints": {
+    "h150d1": "models/R18-H150-arm-draw1",
+    "h150d2": "models/R18-H150-arm-draw2",
+    "h159d1": "models/R19-H159-arm-draw1"
+  },
+  "data": "banked R19-H159 19-group training mix (assembled by R19-H159_arm_run.make_build_mix unchanged, window census cross-checked), 500 rows per group, one uniformly drawn window per row, seed 191613",
+  "register_map": {
+    "table": [
+      "findver",
+      "quant_misbind",
+      "quant_scale_unit",
+      "tabfact"
+    ],
+    "prose": [
+      "attributionbench",
+      "fava",
+      "halueval",
+      "minicheck",
+      "psiloqa",
+      "pubhealth",
+      "ragtruth_cn",
+      "ragtruth_de",
+      "ragtruth_en",
+      "ragtruth_es",
+      "ragtruth_fr",
+      "ragtruth_hu",
+      "ragtruth_it",
+      "ragtruth_pl",
+      "vitaminc"
+    ]
+  },
+  "new_groups_in_h159": [
+    "attributionbench",
+    "fava",
+    "findver",
+    "minicheck",
+    "pubhealth"
+  ],
+  "shared_groups": [
+    "halueval",
+    "psiloqa",
+    "quant_misbind",
+    "quant_scale_unit",
+    "ragtruth_cn",
+    "ragtruth_de",
+    "ragtruth_en",
+    "ragtruth_es",
+    "ragtruth_fr",
+    "ragtruth_hu",
+    "ragtruth_it",
+    "ragtruth_pl",
+    "tabfact",
+    "vitaminc"
+  ],
+  "reads": {
+    "table_vs_prose_shared14": {
+      "note": "PRIMARY - only the 14 flagship groups, so the row set is identical for all three checkpoints and every row was trained on by all three",
+      "n": 3000,
+      "groups": [
+        "halueval",
+        "psiloqa",
+        "quant_misbind",
+        "quant_scale_unit",
+        "ragtruth_cn",
+        "ragtruth_de",
+        "ragtruth_en",
+        "ragtruth_es",
+        "ragtruth_fr",
+        "ragtruth_hu",
+        "ragtruth_it",
+        "ragtruth_pl",
+        "tabfact",
+        "vitaminc"
+      ],
+      "n_table": 1500,
+      "n_prose": 1500,
+      "h150d1": {
+        "pooled": 1.0,
+        "fold_mean": 1.0,
+        "fold_sd": 0.0,
+        "folds": [
+          0.99999,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "n": 3000
+      },
+      "h150d2": {
+        "pooled": 1.0,
+        "fold_mean": 1.0,
+        "fold_sd": 1e-05,
+        "folds": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          0.99998
+        ],
+        "n": 3000
+      },
+      "h159d1": {
+        "pooled": 0.99998,
+        "fold_mean": 0.99998,
+        "fold_sd": 2e-05,
+        "folds": [
+          0.99997,
+          1.0,
+          0.99997,
+          0.99999,
+          1.0
+        ],
+        "n": 3000
+      }
+    },
+    "table_vs_prose_all19": {
+      "note": "SECONDARY - includes the five new lanes (findver on the table side), which h150d1/h150d2 never saw; not a like-for-like read",
+      "n": 3000,
+      "groups": [
+        "attributionbench",
+        "fava",
+        "findver",
+        "halueval",
+        "minicheck",
+        "psiloqa",
+        "pubhealth",
+        "quant_misbind",
+        "quant_scale_unit",
+        "ragtruth_cn",
+        "ragtruth_de",
+        "ragtruth_en",
+        "ragtruth_es",
+        "ragtruth_fr",
+        "ragtruth_hu",
+        "ragtruth_it",
+        "ragtruth_pl",
+        "tabfact",
+        "vitaminc"
+      ],
+      "n_table": 1500,
+      "n_prose": 1500,
+      "h150d1": {
+        "pooled": 0.999,
+        "fold_mean": 0.99898,
+        "fold_sd": 0.00085,
+        "folds": [
+          1.0,
+          0.99909,
+          0.99899,
+          0.99918,
+          0.99764
+        ],
+        "n": 3000
+      },
+      "h150d2": {
+        "pooled": 0.99884,
+        "fold_mean": 0.99887,
+        "fold_sd": 0.00077,
+        "folds": [
+          0.99958,
+          0.99952,
+          0.99906,
+          0.99843,
+          0.99777
+        ],
+        "n": 3000
+      },
+      "h159d1": {
+        "pooled": 0.99977,
+        "fold_mean": 0.99976,
+        "fold_sd": 0.00021,
+        "folds": [
+          0.9998,
+          0.9995,
+          0.99991,
+          0.99959,
+          1.0
+        ],
+        "n": 3000
+      }
+    },
+    "group14way": {
+      "note": "identical 14-way label space and identical rows across all three checkpoints - the comparable multi-way read",
+      "n": 7000,
+      "groups": [
+        "halueval",
+        "psiloqa",
+        "quant_misbind",
+        "quant_scale_unit",
+        "ragtruth_cn",
+        "ragtruth_de",
+        "ragtruth_en",
+        "ragtruth_es",
+        "ragtruth_fr",
+        "ragtruth_hu",
+        "ragtruth_it",
+        "ragtruth_pl",
+        "tabfact",
+        "vitaminc"
+      ],
+      "h150d1": {
+        "pooled": 0.96514,
+        "fold_mean": 0.96514,
+        "fold_sd": 0.00516,
+        "folds": [
+          0.97071,
+          0.96786,
+          0.95714,
+          0.96357,
+          0.96643
+        ],
+        "n": 7000,
+        "per_group_recall": {
+          "halueval": 0.966,
+          "psiloqa": 0.952,
+          "quant_misbind": 0.996,
+          "quant_scale_unit": 0.99,
+          "ragtruth_cn": 0.984,
+          "ragtruth_de": 0.944,
+          "ragtruth_en": 0.96,
+          "ragtruth_es": 0.93,
+          "ragtruth_fr": 0.942,
+          "ragtruth_hu": 0.984,
+          "ragtruth_it": 0.944,
+          "ragtruth_pl": 0.942,
+          "tabfact": 0.994,
+          "vitaminc": 0.984
+        }
+      },
+      "h150d2": {
+        "pooled": 0.95471,
+        "fold_mean": 0.95471,
+        "fold_sd": 0.0012,
+        "folds": [
+          0.95286,
+          0.95571,
+          0.95571,
+          0.95429,
+          0.955
+        ],
+        "n": 7000,
+        "per_group_recall": {
+          "halueval": 0.944,
+          "psiloqa": 0.938,
+          "quant_misbind": 0.99,
+          "quant_scale_unit": 1.0,
+          "ragtruth_cn": 0.98,
+          "ragtruth_de": 0.948,
+          "ragtruth_en": 0.958,
+          "ragtruth_es": 0.888,
+          "ragtruth_fr": 0.94,
+          "ragtruth_hu": 0.972,
+          "ragtruth_it": 0.896,
+          "ragtruth_pl": 0.924,
+          "tabfact": 0.996,
+          "vitaminc": 0.992
+        }
+      },
+      "h159d1": {
+        "pooled": 0.94257,
+        "fold_mean": 0.94257,
+        "fold_sd": 0.00932,
+        "folds": [
+          0.94571,
+          0.95,
+          0.94357,
+          0.94714,
+          0.92643
+        ],
+        "n": 7000,
+        "per_group_recall": {
+          "halueval": 0.954,
+          "psiloqa": 0.942,
+          "quant_misbind": 0.97,
+          "quant_scale_unit": 0.978,
+          "ragtruth_cn": 0.98,
+          "ragtruth_de": 0.91,
+          "ragtruth_en": 0.966,
+          "ragtruth_es": 0.868,
+          "ragtruth_fr": 0.898,
+          "ragtruth_hu": 0.954,
+          "ragtruth_it": 0.88,
+          "ragtruth_pl": 0.924,
+          "tabfact": 0.98,
+          "vitaminc": 0.992
+        }
+      }
+    },
+    "group19way": {
+      "note": "INFORMATIONAL ONLY - a 19-way read is not comparable with the 14-way one and h150 never saw five of the classes",
+      "n": 9500,
+      "groups": [
+        "attributionbench",
+        "fava",
+        "findver",
+        "halueval",
+        "minicheck",
+        "psiloqa",
+        "pubhealth",
+        "quant_misbind",
+        "quant_scale_unit",
+        "ragtruth_cn",
+        "ragtruth_de",
+        "ragtruth_en",
+        "ragtruth_es",
+        "ragtruth_fr",
+        "ragtruth_hu",
+        "ragtruth_it",
+        "ragtruth_pl",
+        "tabfact",
+        "vitaminc"
+      ],
+      "h150d1": {
+        "pooled": 0.95305,
+        "fold_mean": 0.95305,
+        "fold_sd": 0.00336,
+        "folds": [
+          0.95368,
+          0.95211,
+          0.95684,
+          0.95474,
+          0.94789
+        ],
+        "n": 9500,
+        "per_group_recall": {
+          "attributionbench": 0.878,
+          "fava": 0.96,
+          "findver": 0.976,
+          "halueval": 0.93,
+          "minicheck": 0.93,
+          "psiloqa": 0.928,
+          "pubhealth": 0.93,
+          "quant_misbind": 0.992,
+          "quant_scale_unit": 0.986,
+          "ragtruth_cn": 0.986,
+          "ragtruth_de": 0.942,
+          "ragtruth_en": 0.95,
+          "ragtruth_es": 0.924,
+          "ragtruth_fr": 0.94,
+          "ragtruth_hu": 0.98,
+          "ragtruth_it": 0.95,
+          "ragtruth_pl": 0.94,
+          "tabfact": 0.994,
+          "vitaminc": 0.992
+        }
+      },
+      "h150d2": {
+        "pooled": 0.93789,
+        "fold_mean": 0.93789,
+        "fold_sd": 0.00286,
+        "folds": [
+          0.93579,
+          0.93684,
+          0.94263,
+          0.93842,
+          0.93579
+        ],
+        "n": 9500,
+        "per_group_recall": {
+          "attributionbench": 0.862,
+          "fava": 0.966,
+          "findver": 0.962,
+          "halueval": 0.924,
+          "minicheck": 0.9,
+          "psiloqa": 0.902,
+          "pubhealth": 0.912,
+          "quant_misbind": 0.984,
+          "quant_scale_unit": 0.996,
+          "ragtruth_cn": 0.97,
+          "ragtruth_de": 0.944,
+          "ragtruth_en": 0.916,
+          "ragtruth_es": 0.886,
+          "ragtruth_fr": 0.934,
+          "ragtruth_hu": 0.986,
+          "ragtruth_it": 0.866,
+          "ragtruth_pl": 0.93,
+          "tabfact": 0.994,
+          "vitaminc": 0.986
+        }
+      },
+      "h159d1": {
+        "pooled": 0.94789,
+        "fold_mean": 0.94789,
+        "fold_sd": 0.00529,
+        "folds": [
+          0.95579,
+          0.94789,
+          0.94421,
+          0.94211,
+          0.94947
+        ],
+        "n": 9500,
+        "per_group_recall": {
+          "attributionbench": 0.908,
+          "fava": 1.0,
+          "findver": 0.978,
+          "halueval": 0.956,
+          "minicheck": 0.974,
+          "psiloqa": 0.922,
+          "pubhealth": 0.974,
+          "quant_misbind": 0.976,
+          "quant_scale_unit": 0.97,
+          "ragtruth_cn": 0.98,
+          "ragtruth_de": 0.9,
+          "ragtruth_en": 0.94,
+          "ragtruth_es": 0.864,
+          "ragtruth_fr": 0.904,
+          "ragtruth_hu": 0.962,
+          "ragtruth_it": 0.89,
+          "ragtruth_pl": 0.946,
+          "tabfact": 0.978,
+          "vitaminc": 0.988
+        }
+      }
+    }
+  },
+  "ruling": {
+    "verdict": "SUPPORTED",
+    "reading": "the enriched trunk makes table-vs-prose decodably weaker than either flagship draw, by more than the flagship's own 2-draw gap",
+    "primary_read": "table_vs_prose_shared14",
+    "h150d1": 1.0,
+    "h150d2": 1.0,
+    "h159d1": 0.99998,
+    "flagship_2draw_gap": 0.0,
+    "enriched_minus_nearest_flagship": -2e-05,
+    "bar": "h159d1 < min(h150d1, h150d2) - |h150d1 - h150d2|",
+    "bar_value": 1.0,
+    "clears_noise_floor": true
+  },
+  "caveats": [
+    "No holdout exists - the trainer runs one epoch over the full mix and keeps no eval split, so every sampled row was trained on by the checkpoints that own it. Decodability on trained rows is an upper bound; the primary read keeps the comparison fair by using only rows all three checkpoints saw.",
+    "findver is a NEW group and also table-like, so the enriched mix added table supply as well as prose supply. The primary read excludes it, so it measures erasure on the flagship's own register geometry rather than the enriched mix's larger table pool.",
+    "One window per row is sampled, not the whole window set - the probe reads the per-pair representation, which is what the domain head is trained on.",
+    "ANALYSIS ONLY - nothing trains, nothing is tuned on arena statistics, and the arena is not touched at all."
+  ],
+  "note": "Numbers recorded, not adjudicated - the coordinator holds the verdict."
+}

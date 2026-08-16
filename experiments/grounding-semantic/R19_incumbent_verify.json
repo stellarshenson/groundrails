@@ -1,0 +1,61 @@
+{
+ "check": "incumbent scoring-variant match",
+ "model": "KRLabsOrg/lettucedect-v2-mmbert-base",
+ "per_subset": {
+  "covidqa": {
+   "reproduced": 0.7354,
+   "banked": 0.7355,
+   "delta": -6e-05
+  },
+  "delucionqa": {
+   "reproduced": 0.7929,
+   "banked": 0.7929,
+   "delta": -2e-05
+  },
+  "emanual": {
+   "reproduced": 0.5999,
+   "banked": 0.5999,
+   "delta": -2e-05
+  },
+  "expertqa": {
+   "reproduced": 0.6505,
+   "banked": 0.6503,
+   "delta": 0.00019
+  },
+  "finqa": {
+   "reproduced": 0.717,
+   "banked": 0.717,
+   "delta": -4e-05
+  },
+  "hagrid": {
+   "reproduced": 0.5991,
+   "banked": 0.5992,
+   "delta": -8e-05
+  },
+  "hotpotqa": {
+   "reproduced": 0.5976,
+   "banked": 0.5976,
+   "delta": -2e-05
+  },
+  "pubmedqa": {
+   "reproduced": 0.5162,
+   "banked": 0.5162,
+   "delta": -2e-05
+  },
+  "tatqa": {
+   "reproduced": 0.6156,
+   "banked": 0.6156,
+   "delta": 2e-05
+  },
+  "techqa": {
+   "reproduced": 0.6364,
+   "banked": 0.6363,
+   "delta": 0.00014
+  }
+ },
+ "reproduced_mean": 0.64606,
+ "banked_mean": 0.64605,
+ "max_abs_delta": 0.00019,
+ "pass": true,
+ "convention": "the incumbent's OWN: token-classification, answer-only mask, 1-max P(halluc) per chunk, max over chunks - our sentence-decomposed-min is NOT imposed on it"
+}

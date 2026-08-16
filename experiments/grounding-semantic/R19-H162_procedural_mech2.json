@@ -1,0 +1,362 @@
+{
+  "emanual": {
+    "n_items": 132,
+    "n_negative": 14,
+    "auroc_model": 0.69734,
+    "auroc_lexical": 0.77633,
+    "provenance_concentration": {
+      "mean_docs_used_supported": 1.653,
+      "mean_docs_used_unsupported": 2.286,
+      "mean_modal_share_supported": 0.836,
+      "mean_modal_share_unsupported": 0.6896,
+      "auroc_modal_share_alone": 0.72276,
+      "spearman_modal_share_vs_model": 0.4621
+    },
+    "identifier_strata": {
+      "no_identifier_in_response": {
+        "n": 132,
+        "base_rate_supported": 0.8939,
+        "auroc_model": 0.6973,
+        "auroc_lexical": 0.7763
+      },
+      "all_identifiers_present_in_evidence": {
+        "n": 0,
+        "base_rate_supported": null,
+        "auroc_model": null,
+        "auroc_lexical": null
+      },
+      "some_identifier_absent_from_evidence": {
+        "n": 0,
+        "base_rate_supported": null,
+        "auroc_model": null,
+        "auroc_lexical": null
+      }
+    },
+    "lexical_beats_model": {
+      "supported_items_lexical_ranks_higher": [
+        {
+          "item_id": 62,
+          "model_pct": 0.045,
+          "lex_pct": 0.754
+        },
+        {
+          "item_id": 10,
+          "model_pct": 0.348,
+          "lex_pct": 0.97
+        },
+        {
+          "item_id": 31,
+          "model_pct": 0.152,
+          "lex_pct": 0.754
+        },
+        {
+          "item_id": 41,
+          "model_pct": 0.076,
+          "lex_pct": 0.621
+        },
+        {
+          "item_id": 56,
+          "model_pct": 0.038,
+          "lex_pct": 0.572
+        },
+        {
+          "item_id": 44,
+          "model_pct": 0.462,
+          "lex_pct": 0.97
+        },
+        {
+          "item_id": 101,
+          "model_pct": 0.106,
+          "lex_pct": 0.606
+        },
+        {
+          "item_id": 46,
+          "model_pct": 0.508,
+          "lex_pct": 0.992
+        }
+      ],
+      "unsupported_items_model_ranks_higher": [
+        {
+          "item_id": 15,
+          "model_pct": 0.735,
+          "lex_pct": 0.277
+        },
+        {
+          "item_id": 83,
+          "model_pct": 0.576,
+          "lex_pct": 0.144
+        },
+        {
+          "item_id": 114,
+          "model_pct": 0.417,
+          "lex_pct": 0.129
+        },
+        {
+          "item_id": 108,
+          "model_pct": 0.227,
+          "lex_pct": 0.083
+        },
+        {
+          "item_id": 127,
+          "model_pct": 0.568,
+          "lex_pct": 0.466
+        },
+        {
+          "item_id": 43,
+          "model_pct": 0.424,
+          "lex_pct": 0.356
+        },
+        {
+          "item_id": 17,
+          "model_pct": 0.341,
+          "lex_pct": 0.277
+        },
+        {
+          "item_id": 65,
+          "model_pct": 0.621,
+          "lex_pct": 0.595
+        }
+      ]
+    }
+  },
+  "techqa": {
+    "n_items": 250,
+    "n_negative": 109,
+    "auroc_model": 0.73609,
+    "auroc_lexical": 0.74621,
+    "provenance_concentration": {
+      "mean_docs_used_supported": 2.149,
+      "mean_docs_used_unsupported": 3.009,
+      "mean_modal_share_supported": 0.7517,
+      "mean_modal_share_unsupported": 0.5948,
+      "auroc_modal_share_alone": 0.6993,
+      "spearman_modal_share_vs_model": 0.4121
+    },
+    "identifier_strata": {
+      "no_identifier_in_response": {
+        "n": 124,
+        "base_rate_supported": 0.5484,
+        "auroc_model": 0.7891,
+        "auroc_lexical": 0.7985
+      },
+      "all_identifiers_present_in_evidence": {
+        "n": 87,
+        "base_rate_supported": 0.6207,
+        "auroc_model": 0.6824,
+        "auroc_lexical": 0.6942
+      },
+      "some_identifier_absent_from_evidence": {
+        "n": 39,
+        "base_rate_supported": 0.4872,
+        "auroc_model": 0.6316,
+        "auroc_lexical": 0.7
+      }
+    },
+    "lexical_beats_model": {
+      "supported_items_lexical_ranks_higher": [
+        {
+          "item_id": 41,
+          "model_pct": 0.056,
+          "lex_pct": 0.966
+        },
+        {
+          "item_id": 83,
+          "model_pct": 0.096,
+          "lex_pct": 0.998
+        },
+        {
+          "item_id": 82,
+          "model_pct": 0.088,
+          "lex_pct": 0.858
+        },
+        {
+          "item_id": 85,
+          "model_pct": 0.068,
+          "lex_pct": 0.83
+        },
+        {
+          "item_id": 215,
+          "model_pct": 0.064,
+          "lex_pct": 0.81
+        },
+        {
+          "item_id": 38,
+          "model_pct": 0.18,
+          "lex_pct": 0.83
+        },
+        {
+          "item_id": 88,
+          "model_pct": 0.38,
+          "lex_pct": 0.966
+        },
+        {
+          "item_id": 19,
+          "model_pct": 0.308,
+          "lex_pct": 0.892
+        }
+      ],
+      "unsupported_items_model_ranks_higher": [
+        {
+          "item_id": 200,
+          "model_pct": 0.8,
+          "lex_pct": 0.256
+        },
+        {
+          "item_id": 205,
+          "model_pct": 0.624,
+          "lex_pct": 0.106
+        },
+        {
+          "item_id": 150,
+          "model_pct": 0.58,
+          "lex_pct": 0.106
+        },
+        {
+          "item_id": 221,
+          "model_pct": 0.476,
+          "lex_pct": 0.012
+        },
+        {
+          "item_id": 9,
+          "model_pct": 0.652,
+          "lex_pct": 0.198
+        },
+        {
+          "item_id": 72,
+          "model_pct": 0.688,
+          "lex_pct": 0.242
+        },
+        {
+          "item_id": 178,
+          "model_pct": 0.52,
+          "lex_pct": 0.078
+        },
+        {
+          "item_id": 117,
+          "model_pct": 0.592,
+          "lex_pct": 0.158
+        }
+      ]
+    }
+  },
+  "delucionqa": {
+    "n_items": 184,
+    "n_negative": 12,
+    "auroc_model": 0.80087,
+    "auroc_lexical": 0.58891,
+    "provenance_concentration": {
+      "mean_docs_used_supported": 1.709,
+      "mean_docs_used_unsupported": 1.917,
+      "mean_modal_share_supported": 0.8152,
+      "mean_modal_share_unsupported": 0.7442,
+      "auroc_modal_share_alone": 0.59617,
+      "spearman_modal_share_vs_model": 0.4561
+    },
+    "identifier_strata": {
+      "no_identifier_in_response": {
+        "n": 177,
+        "base_rate_supported": 0.9322,
+        "auroc_model": 0.8005,
+        "auroc_lexical": 0.5917
+      },
+      "all_identifiers_present_in_evidence": {
+        "n": 7,
+        "base_rate_supported": 1.0,
+        "auroc_model": null,
+        "auroc_lexical": null
+      },
+      "some_identifier_absent_from_evidence": {
+        "n": 0,
+        "base_rate_supported": null,
+        "auroc_model": null,
+        "auroc_lexical": null
+      }
+    },
+    "lexical_beats_model": {
+      "supported_items_lexical_ranks_higher": [
+        {
+          "item_id": 38,
+          "model_pct": 0.049,
+          "lex_pct": 0.796
+        },
+        {
+          "item_id": 43,
+          "model_pct": 0.168,
+          "lex_pct": 0.864
+        },
+        {
+          "item_id": 19,
+          "model_pct": 0.19,
+          "lex_pct": 0.829
+        },
+        {
+          "item_id": 12,
+          "model_pct": 0.261,
+          "lex_pct": 0.859
+        },
+        {
+          "item_id": 37,
+          "model_pct": 0.315,
+          "lex_pct": 0.886
+        },
+        {
+          "item_id": 11,
+          "model_pct": 0.06,
+          "lex_pct": 0.622
+        },
+        {
+          "item_id": 2,
+          "model_pct": 0.31,
+          "lex_pct": 0.796
+        },
+        {
+          "item_id": 58,
+          "model_pct": 0.348,
+          "lex_pct": 0.829
+        }
+      ],
+      "unsupported_items_model_ranks_higher": [
+        {
+          "item_id": 82,
+          "model_pct": 0.625,
+          "lex_pct": 0.47
+        },
+        {
+          "item_id": 130,
+          "model_pct": 0.071,
+          "lex_pct": 0.046
+        },
+        {
+          "item_id": 65,
+          "model_pct": 0.777,
+          "lex_pct": 0.772
+        },
+        {
+          "item_id": 77,
+          "model_pct": 0.63,
+          "lex_pct": 0.679
+        },
+        {
+          "item_id": 106,
+          "model_pct": 0.043,
+          "lex_pct": 0.128
+        },
+        {
+          "item_id": 93,
+          "model_pct": 0.13,
+          "lex_pct": 0.255
+        },
+        {
+          "item_id": 175,
+          "model_pct": 0.136,
+          "lex_pct": 0.291
+        },
+        {
+          "item_id": 168,
+          "model_pct": 0.065,
+          "lex_pct": 0.274
+        }
+      ]
+    }
+  }
+}

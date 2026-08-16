@@ -1,0 +1,14 @@
+=== H160 DRAW 3 2026-08-14 16:43:13 ===
+recipe: R18-H150 flagship VERBATIM - clean 685,670 + misbind 30,000 + unit_swap 5,540 = 721,210 rows, 14 DANN groups
+seed: draw 3 -> 3150, draw 4 -> 4150; adapter frozen at zero; no EMA, no window dropout
+executor: R19-H160_split_exec.py (cotangent window-chunked, pass A 32 / pass B 8)
+checkpoint models/R19-H160-arm-draw3
+draw bar: blind windowed decomposed-min mean >= 0.7079 (the H150 registered draw bar)
+0, NVIDIA RTX PRO 4000 Blackwell, 0 MiB
+1, NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition, 4 MiB
+2, NVIDIA RTX 5000 Ada Generation, 10182 MiB
+shm              64M  4.5M   60M   7% /dev/shm
+
+--- H160 draw3 train + in-domain suite  2026-08-14 16:43:13 ---
+GPU PLACEMENT ABORT: GPU1 is reserved exclusively for R19-H159
+=== FAILED: H160 draw3 train + in-domain suite ===

@@ -1,0 +1,100 @@
+{
+  "arm": "R19-H171b incumbent, full vendor chunking path",
+  "model": "KRLabsOrg/lettucedect-v2-mmbert-base",
+  "max_length": 4096,
+  "per_subset": {
+    "covidqa": {
+      "n": 245,
+      "chunked_auc": 0.7425,
+      "native_truncated_auc": 0.7432,
+      "harness_auc": 0.7355,
+      "items_needing_multiple_chunks": 0,
+      "delta_vs_harness": 0.00697
+    },
+    "delucionqa": {
+      "n": 184,
+      "chunked_auc": 0.7016,
+      "native_truncated_auc": 0.7018,
+      "harness_auc": 0.7929,
+      "items_needing_multiple_chunks": 0,
+      "delta_vs_harness": -0.09135
+    },
+    "emanual": {
+      "n": 132,
+      "chunked_auc": 0.77,
+      "native_truncated_auc": 0.7694,
+      "harness_auc": 0.5999,
+      "items_needing_multiple_chunks": 0,
+      "delta_vs_harness": 0.17008
+    },
+    "expertqa": {
+      "n": 203,
+      "chunked_auc": 0.7932,
+      "native_truncated_auc": 0.8098,
+      "harness_auc": 0.6503,
+      "items_needing_multiple_chunks": 29,
+      "delta_vs_harness": 0.14293
+    },
+    "finqa": {
+      "n": 250,
+      "chunked_auc": 0.6143,
+      "native_truncated_auc": 0.6137,
+      "harness_auc": 0.717,
+      "items_needing_multiple_chunks": 0,
+      "delta_vs_harness": -0.10265
+    },
+    "hagrid": {
+      "n": 250,
+      "chunked_auc": 0.7547,
+      "native_truncated_auc": 0.7542,
+      "harness_auc": 0.5992,
+      "items_needing_multiple_chunks": 0,
+      "delta_vs_harness": 0.15552
+    },
+    "hotpotqa": {
+      "n": 250,
+      "chunked_auc": 0.6173,
+      "native_truncated_auc": 0.6161,
+      "harness_auc": 0.5976,
+      "items_needing_multiple_chunks": 0,
+      "delta_vs_harness": 0.01967
+    },
+    "pubmedqa": {
+      "n": 250,
+      "chunked_auc": 0.6065,
+      "native_truncated_auc": 0.607,
+      "harness_auc": 0.5162,
+      "items_needing_multiple_chunks": 0,
+      "delta_vs_harness": 0.09032
+    },
+    "tatqa": {
+      "n": 250,
+      "chunked_auc": 0.5275,
+      "native_truncated_auc": 0.5275,
+      "harness_auc": 0.6156,
+      "items_needing_multiple_chunks": 0,
+      "delta_vs_harness": -0.08806
+    },
+    "techqa": {
+      "n": 250,
+      "chunked_auc": 0.5927,
+      "native_truncated_auc": 0.6536,
+      "harness_auc": 0.6363,
+      "items_needing_multiple_chunks": 193,
+      "delta_vs_harness": -0.04358
+    }
+  },
+  "means": {
+    "chunked": 0.67203,
+    "native_truncated": 0.67963,
+    "harness": 0.64605
+  },
+  "incumbent_best_mean": 0.67963,
+  "which_is_best": "native_truncated",
+  "flagship_mean": 0.71549,
+  "published_margin_vs_harness": 0.06944,
+  "honest_margin_vs_best": 0.03586,
+  "margin_shrinkage": 0.03358,
+  "rule": "the margin is recomputed against the incumbent's BEST convention",
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+}

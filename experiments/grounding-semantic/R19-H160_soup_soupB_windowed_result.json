@@ -1,0 +1,101 @@
+{
+  "read": "R16-H142 G1 (A1) twin, windowed decomposed-min read",
+  "run": "twin",
+  "checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/R19-H160-soup-B",
+  "per_subset": {
+    "covidqa": {
+      "n": 245,
+      "n_sent": 385,
+      "n_pairs": 1540,
+      "auc": 0.7588,
+      "f1": 0.5054,
+      "lettuce_auc": 0.7355,
+      "banked_control_windowed": 0.7878
+    },
+    "delucionqa": {
+      "n": 184,
+      "n_sent": 929,
+      "n_pairs": 5093,
+      "auc": 0.6943,
+      "f1": 0.7103,
+      "lettuce_auc": 0.7929,
+      "banked_control_windowed": 0.8167
+    },
+    "emanual": {
+      "n": 132,
+      "n_sent": 748,
+      "n_pairs": 2983,
+      "auc": 0.7107,
+      "f1": 0.505,
+      "lettuce_auc": 0.5999,
+      "banked_control_windowed": 0.6977
+    },
+    "expertqa": {
+      "n": 203,
+      "n_sent": 1303,
+      "n_pairs": 13949,
+      "auc": 0.7355,
+      "f1": 0.566,
+      "lettuce_auc": 0.6503,
+      "banked_control_windowed": 0.7728
+    },
+    "finqa": {
+      "n": 250,
+      "n_sent": 563,
+      "n_pairs": 2918,
+      "auc": 0.6876,
+      "f1": 0.5135,
+      "lettuce_auc": 0.717,
+      "banked_control_windowed": 0.6333
+    },
+    "hagrid": {
+      "n": 250,
+      "n_sent": 537,
+      "n_pairs": 1941,
+      "auc": 0.6413,
+      "f1": 0.6221,
+      "lettuce_auc": 0.5992,
+      "banked_control_windowed": 0.634
+    },
+    "hotpotqa": {
+      "n": 250,
+      "n_sent": 293,
+      "n_pairs": 1177,
+      "auc": 0.6274,
+      "f1": 0.442,
+      "lettuce_auc": 0.5976,
+      "banked_control_windowed": 0.6668
+    },
+    "pubmedqa": {
+      "n": 250,
+      "n_sent": 1314,
+      "n_pairs": 6570,
+      "auc": 0.6638,
+      "f1": 0.6041,
+      "lettuce_auc": 0.5162,
+      "banked_control_windowed": 0.6063
+    },
+    "tatqa": {
+      "n": 250,
+      "n_sent": 468,
+      "n_pairs": 1942,
+      "auc": 0.7294,
+      "f1": 0.5781,
+      "lettuce_auc": 0.6156,
+      "banked_control_windowed": 0.732
+    },
+    "techqa": {
+      "n": 250,
+      "n_sent": 1737,
+      "n_pairs": 39058,
+      "auc": 0.7434,
+      "f1": 0.724,
+      "lettuce_auc": 0.6363,
+      "banked_control_windowed": 0.684
+    }
+  },
+  "mean": 0.69922,
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates.",
+  "banked_control_windowed_mean": 0.70311,
+  "mean_delta_vs_banked_control": -0.00389
+}

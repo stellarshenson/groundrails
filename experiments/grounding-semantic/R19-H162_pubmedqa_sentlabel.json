@@ -1,0 +1,268 @@
+{
+  "covidqa": {
+    "n_aligned": 382,
+    "align_rate": 0.9922,
+    "mean_align_sim": 0.9959,
+    "n_unsupported": 42,
+    "unsupported_rate": 0.1099,
+    "TRUE_sent_auroc_model": 0.7945,
+    "TRUE_sent_auroc_containment": 0.7073,
+    "mean_containment_supported": 0.7082,
+    "mean_containment_unsupported": 0.5437,
+    "mean_score_supported": 1.8224,
+    "mean_score_unsupported": -0.8771
+  },
+  "delucionqa": {
+    "n_aligned": 921,
+    "align_rate": 0.9914,
+    "mean_align_sim": 0.9817,
+    "n_unsupported": 16,
+    "unsupported_rate": 0.0174,
+    "TRUE_sent_auroc_model": 0.7774,
+    "TRUE_sent_auroc_containment": 0.7277,
+    "mean_containment_supported": 0.7867,
+    "mean_containment_unsupported": 0.6047,
+    "mean_score_supported": 2.0588,
+    "mean_score_unsupported": -0.9113
+  },
+  "emanual": {
+    "n_aligned": 741,
+    "align_rate": 0.9906,
+    "mean_align_sim": 0.9786,
+    "n_unsupported": 36,
+    "unsupported_rate": 0.0486,
+    "TRUE_sent_auroc_model": 0.6814,
+    "TRUE_sent_auroc_containment": 0.6345,
+    "mean_containment_supported": 0.7381,
+    "mean_containment_unsupported": 0.6476,
+    "mean_score_supported": 1.5328,
+    "mean_score_unsupported": 0.0442
+  },
+  "expertqa": {
+    "n_aligned": 1291,
+    "align_rate": 0.9908,
+    "mean_align_sim": 0.9959,
+    "n_unsupported": 444,
+    "unsupported_rate": 0.3439,
+    "TRUE_sent_auroc_model": 0.7843,
+    "TRUE_sent_auroc_containment": 0.7657,
+    "mean_containment_supported": 0.5007,
+    "mean_containment_unsupported": 0.2644,
+    "mean_score_supported": 0.8901,
+    "mean_score_unsupported": -1.1865
+  },
+  "finqa": {
+    "n_aligned": 435,
+    "align_rate": 0.7726,
+    "mean_align_sim": 0.9333,
+    "n_unsupported": 12,
+    "unsupported_rate": 0.0276,
+    "TRUE_sent_auroc_model": 0.5368,
+    "TRUE_sent_auroc_containment": 0.5277,
+    "mean_containment_supported": 0.4694,
+    "mean_containment_unsupported": 0.45,
+    "mean_score_supported": -0.0457,
+    "mean_score_unsupported": -0.3288
+  },
+  "hagrid": {
+    "n_aligned": 526,
+    "align_rate": 0.9795,
+    "mean_align_sim": 0.9937,
+    "n_unsupported": 48,
+    "unsupported_rate": 0.0913,
+    "TRUE_sent_auroc_model": 0.541,
+    "TRUE_sent_auroc_containment": 0.6387,
+    "mean_containment_supported": 0.758,
+    "mean_containment_unsupported": 0.621,
+    "mean_score_supported": 0.7007,
+    "mean_score_unsupported": 0.218
+  },
+  "hotpotqa": {
+    "n_aligned": 289,
+    "align_rate": 0.9863,
+    "mean_align_sim": 0.989,
+    "n_unsupported": 17,
+    "unsupported_rate": 0.0588,
+    "TRUE_sent_auroc_model": 0.6622,
+    "TRUE_sent_auroc_containment": 0.5418,
+    "mean_containment_supported": 0.6269,
+    "mean_containment_unsupported": 0.595,
+    "mean_score_supported": -2.7292,
+    "mean_score_unsupported": -3.8735
+  },
+  "pubmedqa": {
+    "n_aligned": 1301,
+    "align_rate": 0.9901,
+    "mean_align_sim": 0.9842,
+    "n_unsupported": 165,
+    "unsupported_rate": 0.1268,
+    "TRUE_sent_auroc_model": 0.67,
+    "TRUE_sent_auroc_containment": 0.666,
+    "mean_containment_supported": 0.5015,
+    "mean_containment_unsupported": 0.3207,
+    "mean_score_supported": -1.9903,
+    "mean_score_unsupported": -3.1592,
+    "explanation_taxonomy_primary": {
+      "inference_not_stated": {
+        "n": 61,
+        "share": 0.3697,
+        "se": 0.0376
+      },
+      "unclassified": {
+        "n": 41,
+        "share": 0.2485,
+        "se": 0.0336
+      },
+      "aim_vs_finding": {
+        "n": 26,
+        "share": 0.1576,
+        "se": 0.0284
+      },
+      "relation_not_attested": {
+        "n": 12,
+        "share": 0.0727,
+        "se": 0.0202
+      },
+      "scope_overextension": {
+        "n": 10,
+        "share": 0.0606,
+        "se": 0.0186
+      },
+      "contradiction": {
+        "n": 10,
+        "share": 0.0606,
+        "se": 0.0186
+      },
+      "entity_substitution": {
+        "n": 4,
+        "share": 0.0242,
+        "se": 0.012
+      },
+      "false_absence": {
+        "n": 1,
+        "share": 0.0061,
+        "se": 0.006
+      }
+    },
+    "explanation_taxonomy_multilabel": {
+      "inference_not_stated": {
+        "n": 83,
+        "share": 0.503
+      },
+      "aim_vs_finding": {
+        "n": 26,
+        "share": 0.1576
+      },
+      "scope_overextension": {
+        "n": 17,
+        "share": 0.103
+      },
+      "relation_not_attested": {
+        "n": 15,
+        "share": 0.0909
+      },
+      "contradiction": {
+        "n": 10,
+        "share": 0.0606
+      },
+      "entity_substitution": {
+        "n": 5,
+        "share": 0.0303
+      },
+      "false_absence": {
+        "n": 2,
+        "share": 0.0121
+      }
+    },
+    "n_explanations_classified": 165,
+    "per_class_discrimination": {
+      "aim_vs_finding": {
+        "n": 26,
+        "share_of_unsupported": 0.1576,
+        "auroc_model_vs_supported": 0.6463,
+        "auroc_containment_vs_supported": 0.6641,
+        "mean_score": -2.9996,
+        "mean_containment": 0.3194
+      },
+      "contradiction": {
+        "n": 10,
+        "share_of_unsupported": 0.0606,
+        "auroc_model_vs_supported": 0.6833,
+        "auroc_containment_vs_supported": 0.537,
+        "mean_score": -3.1488,
+        "mean_containment": 0.4669
+      },
+      "entity_substitution": {
+        "n": 4,
+        "note": "n<5, not read"
+      },
+      "false_absence": {
+        "n": 1,
+        "note": "n<5, not read"
+      },
+      "inference_not_stated": {
+        "n": 61,
+        "share_of_unsupported": 0.3697,
+        "auroc_model_vs_supported": 0.6861,
+        "auroc_containment_vs_supported": 0.7074,
+        "mean_score": -3.3118,
+        "mean_containment": 0.2751
+      },
+      "relation_not_attested": {
+        "n": 12,
+        "share_of_unsupported": 0.0727,
+        "auroc_model_vs_supported": 0.6338,
+        "auroc_containment_vs_supported": 0.7144,
+        "mean_score": -2.9994,
+        "mean_containment": 0.2664
+      },
+      "scope_overextension": {
+        "n": 10,
+        "share_of_unsupported": 0.0606,
+        "auroc_model_vs_supported": 0.6832,
+        "auroc_containment_vs_supported": 0.686,
+        "mean_score": -3.1277,
+        "mean_containment": 0.2996
+      },
+      "unclassified": {
+        "n": 41,
+        "share_of_unsupported": 0.2485,
+        "auroc_model_vs_supported": 0.6582,
+        "auroc_containment_vs_supported": 0.6076,
+        "mean_score": -3.0416,
+        "mean_containment": 0.3861
+      }
+    },
+    "reference_supported": {
+      "n": 1136,
+      "mean_score": -1.9903,
+      "mean_containment": 0.5015
+    }
+  },
+  "tatqa": {
+    "n_aligned": 407,
+    "align_rate": 0.8697,
+    "mean_align_sim": 0.9653,
+    "n_unsupported": 13,
+    "unsupported_rate": 0.0319,
+    "TRUE_sent_auroc_model": 0.6708,
+    "TRUE_sent_auroc_containment": 0.5471,
+    "mean_containment_supported": 0.6387,
+    "mean_containment_unsupported": 0.5924,
+    "mean_score_supported": 0.1375,
+    "mean_score_unsupported": -0.7602
+  },
+  "techqa": {
+    "n_aligned": 1702,
+    "align_rate": 0.9799,
+    "mean_align_sim": 0.9752,
+    "n_unsupported": 572,
+    "unsupported_rate": 0.3361,
+    "TRUE_sent_auroc_model": 0.7458,
+    "TRUE_sent_auroc_containment": 0.7368,
+    "mean_containment_supported": 0.541,
+    "mean_containment_unsupported": 0.2908,
+    "mean_score_supported": 1.3106,
+    "mean_score_unsupported": -0.0828
+  }
+}

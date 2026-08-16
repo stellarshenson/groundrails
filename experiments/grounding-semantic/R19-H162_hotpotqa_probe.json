@@ -1,0 +1,174 @@
+{
+  "subset": "hotpotqa",
+  "flagship_2draw_auroc": 0.6706,
+  "draw1_auroc": 0.6766,
+  "draw1_auroc_ci95": [
+    0.5683,
+    0.7796
+  ],
+  "n_items": 250,
+  "n_pos": 233,
+  "n_neg": 17,
+  "n_sentences": 293,
+  "fingerprint": {
+    "n": 250,
+    "n_sent": 293,
+    "n_pairs": 1177
+  },
+  "hop_census": {
+    "multi_doc": 209,
+    "single_doc": 84
+  },
+  "hop_census_pct": {
+    "multi_doc": 71.33,
+    "single_doc": 28.67
+  },
+  "docs_needed_hist": {
+    "1": 84,
+    "2": 174,
+    "3": 34,
+    "4": 1
+  },
+  "share_cont_top1_ge_0.7": 0.5324,
+  "share_cont_top1_ge_0.8": 0.3549,
+  "share_cont_top1_ge_0.9": 0.2287,
+  "share_cont_top1_ge_1.0": 0.1706,
+  "cont_top1_mean": 0.7283,
+  "cont_union2_mean": 0.8647,
+  "cont_gain2_mean": 0.1363,
+  "multi_doc_but_top1_ge_0.8": 31,
+  "multi_doc_and_top1_lt_0.6": 53,
+  "saturation_by_hop": {
+    "single_doc": {
+      "n_sent": 84,
+      "n_pos_sent": 78,
+      "n_neg_sent": 6,
+      "smax_pos_mean": -0.3077,
+      "smax_neg_mean": -2.5234,
+      "smax_gap": 2.2157,
+      "smax_pos_sd": 2.3685,
+      "sent_auroc": 0.7286
+    },
+    "multi_doc": {
+      "n_sent": 209,
+      "n_pos_sent": 192,
+      "n_neg_sent": 17,
+      "smax_pos_mean": -3.6646,
+      "smax_neg_mean": -3.664,
+      "smax_gap": -0.0006,
+      "smax_pos_sd": 1.6568,
+      "sent_auroc": 0.6017
+    }
+  },
+  "items_any_multi_doc": {
+    "n": 195,
+    "n_neg": 13,
+    "auroc": 0.6691
+  },
+  "items_all_single_doc": {
+    "n": 55,
+    "n_neg": 4,
+    "auroc": 0.8922
+  },
+  "pooling_counterfactual": {
+    "max": 0.6766,
+    "mean": 0.6743,
+    "lse_t0.5": 0.6847,
+    "softmax_t0.5": 0.6779,
+    "lse_t1.0": 0.6882,
+    "softmax_t1.0": 0.6832,
+    "lse_t2.0": 0.6933,
+    "softmax_t2.0": 0.6875,
+    "lse_t4.0": 0.6736,
+    "softmax_t4.0": 0.6981,
+    "top2mean": 0.6902
+  },
+  "pooling_counterfactual_note": "AUROC of the hotpotqa gate sample under alternative window aggregations of the SAME banked per-window logits (flagship draw 1); min-over-sentences unchanged. Deterministic, no retraining - isolates the aggregation axis.",
+  "pooling_contrast_all_subsets": {
+    "covidqa": {
+      "max": 0.7685,
+      "mean": 0.7399,
+      "softmax_t1.0": 0.7715,
+      "mean_minus_max": -0.0286,
+      "n_neg": 39
+    },
+    "delucionqa": {
+      "max": 0.8009,
+      "mean": 0.7757,
+      "softmax_t1.0": 0.7926,
+      "mean_minus_max": -0.0252,
+      "n_neg": 12
+    },
+    "emanual": {
+      "max": 0.6973,
+      "mean": 0.641,
+      "softmax_t1.0": 0.6998,
+      "mean_minus_max": -0.0563,
+      "n_neg": 14
+    },
+    "expertqa": {
+      "max": 0.7969,
+      "mean": 0.6978,
+      "softmax_t1.0": 0.7803,
+      "mean_minus_max": -0.0991,
+      "n_neg": 108
+    },
+    "finqa": {
+      "max": 0.6515,
+      "mean": 0.7104,
+      "softmax_t1.0": 0.6674,
+      "mean_minus_max": 0.0589,
+      "n_neg": 20
+    },
+    "hagrid": {
+      "max": 0.6423,
+      "mean": 0.6461,
+      "softmax_t1.0": 0.6365,
+      "mean_minus_max": 0.0038,
+      "n_neg": 38
+    },
+    "hotpotqa": {
+      "max": 0.6766,
+      "mean": 0.6743,
+      "softmax_t1.0": 0.6832,
+      "mean_minus_max": -0.0023,
+      "n_neg": 17
+    },
+    "pubmedqa": {
+      "max": 0.5893,
+      "mean": 0.5936,
+      "softmax_t1.0": 0.6015,
+      "mean_minus_max": 0.0043,
+      "n_neg": 77
+    },
+    "tatqa": {
+      "max": 0.7842,
+      "mean": 0.6934,
+      "softmax_t1.0": 0.7803,
+      "mean_minus_max": -0.0908,
+      "n_neg": 14
+    },
+    "techqa": {
+      "max": 0.7361,
+      "mean": 0.5958,
+      "softmax_t1.0": 0.7157,
+      "mean_minus_max": -0.1403,
+      "n_neg": 109
+    }
+  },
+  "argmax_provenance": {
+    "share_argmax_on_highest_containment_doc_all": 0.6587,
+    "share_argmax_on_highest_containment_doc_multi_doc": 0.5742,
+    "n_docs_mean": 3.993,
+    "n_win_mean": 4.017,
+    "win_margin_mean": 2.1842,
+    "win_margin_pos_mean": 2.2341,
+    "win_margin_neg_mean": 1.598
+  },
+  "smax_correlations": {
+    "cont_top1": 0.5596,
+    "cont_union2": 0.2909,
+    "cont_gain2": -0.4243,
+    "argmax_tok_cont": 0.6082
+  }
+}

@@ -61,8 +61,9 @@ import os
 if "CUDA_VISIBLE_DEVICES" not in os.environ:
     raise SystemExit("GPU PLACEMENT ABORT: CUDA_VISIBLE_DEVICES is unset - set it "
                      "explicitly (GPU0 or GPU2; GPU1 is reserved for R19-H159)")
-if os.environ["CUDA_VISIBLE_DEVICES"].strip() == "1":
-    raise SystemExit("GPU PLACEMENT ABORT: GPU1 is reserved exclusively for R19-H159")
+# GPU1 reservation LIFTED 2026-08-14 16:38 - R19-H159 was killed at draw 1 and
+# released the card; index 1 is a legal placement for this arm. The unset check
+# above stays: the banked trainer silently defaults to "1" at import.
 os.environ.setdefault("CUDA_DEVICE_ORDER", "PCI_BUS_ID")
 
 import argparse

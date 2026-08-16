@@ -1,0 +1,30 @@
+{
+  "gold": {
+    "auc": 0.8366,
+    "f1": 0.7252,
+    "n": 717
+  },
+  "gold_full": {
+    "auc": 0.8638,
+    "f1": 0.7379,
+    "n": 2752
+  },
+  "ragtruth_en": {
+    "auc": 0.8344,
+    "f1": 0.7252,
+    "n": 600
+  },
+  "ragtruth_nonen": {
+    "auc": 0.8445,
+    "per_lang": {
+      "de": 0.8497,
+      "fr": 0.8386,
+      "es": 0.8489,
+      "it": 0.8444,
+      "pl": 0.832,
+      "hu": 0.8298,
+      "cn": 0.8683
+    }
+  },
+  "checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/R19-H160-soup-B"
+}

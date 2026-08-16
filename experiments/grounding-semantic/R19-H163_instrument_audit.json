@@ -1,0 +1,262 @@
+{
+ "arm": "R19-H163 probe-bank instrument audit",
+ "question": "does any probe in the bank predict the arena quantity it claims to speak to",
+ "status": "NOT ADJUDICATED HERE - the coordinator holds the verdict",
+ "analysis_only": true,
+ "n_checkpoints": 9,
+ "seed": 191663,
+ "pairs": [
+  {
+   "probe": "R14-H133_probes_draw1_result.json",
+   "arena": "R14-H133_arm_draw1_windowed_result.json"
+  },
+  {
+   "probe": "R14-H133_probes_draw2_result.json",
+   "arena": "R14-H133_arm_draw2_windowed_result.json"
+  },
+  {
+   "probe": "R17-H145_probes_draw1_result.json",
+   "arena": "R17-H145_arm_draw1_windowed_result.json"
+  },
+  {
+   "probe": "R17-H146_probes_draw1_result.json",
+   "arena": "R17-H146_arm_draw1_windowed_result.json"
+  },
+  {
+   "probe": "R18-H150_probes_draw1_result.json",
+   "arena": "R18-H150_arm_draw1_windowed_result.json"
+  },
+  {
+   "probe": "R18-H150-d2_probes_draw2_result.json",
+   "arena": "R18-H150_arm_draw2_windowed_result.json"
+  },
+  {
+   "probe": "R18-H156_probes_draw1_result.json",
+   "arena": "R18-H156_arm_draw1_windowed_result.json"
+  },
+  {
+   "probe": "R19-H159_probes_draw1_result.json",
+   "arena": "R19-H159_arm_draw1_windowed_result.json"
+  },
+  {
+   "probe": "R19-H160-soupB_probes_draw1_result.json",
+   "arena": "R19-H160_soup_soupB_windowed_result.json"
+  }
+ ],
+ "missing_pairs": [],
+ "targeting_map_preregistered": {
+  "bind_col_arm": [
+   "finqa",
+   "tatqa"
+  ],
+  "bind_row_arm": [
+   "finqa",
+   "tatqa"
+  ],
+  "scale_unit_arm": [
+   "tatqa",
+   "finqa"
+  ],
+  "verbatim_mean_arm": [
+   "delucionqa",
+   "hagrid"
+  ],
+  "compare_arm": [
+   "hotpotqa"
+  ],
+  "auroc_a_vs_b_arm": [
+   "mean"
+  ],
+  "tier1_difference": [
+   "finqa",
+   "tatqa"
+  ],
+  "tier1_ratio": [
+   "finqa",
+   "tatqa"
+  ],
+  "tier1_pct_change": [
+   "finqa",
+   "tatqa"
+  ],
+  "tier1_sum": [
+   "finqa",
+   "tatqa"
+  ]
+ },
+ "power": {
+  "n": 9,
+  "spearman_se_approx": 0.3536,
+  "note": "n is small; a null is 'this audit cannot see an effect of the assumed size', not 'the effect is zero'. Point-estimate SIGN is the load-bearing read, because a probe that points the wrong way cannot steer regardless of significance."
+ },
+ "verdict_rule": {
+  "SUPPORTED": "rho_target > 0 and permutation p < 0.05",
+  "DEAD-AS-INSTRUMENT": "rho_target < 0 (points the wrong way)",
+  "INDETERMINATE": "otherwise"
+ },
+ "results": {
+  "scale_unit_arm": {
+   "target": "tatqa+finqa",
+   "rho_target": -0.4333,
+   "p_target": 0.25027,
+   "null": "sampled/200000",
+   "rho_arena_mean": -0.2,
+   "p_arena_mean": 0.61232,
+   "verdict": "DEAD-AS-INSTRUMENT"
+  },
+  "verbatim_mean_arm": {
+   "target": "delucionqa+hagrid",
+   "rho_target": -0.8,
+   "p_target": 0.01369,
+   "null": "sampled/200000",
+   "rho_arena_mean": -0.3667,
+   "p_arena_mean": 0.33548,
+   "verdict": "DEAD-AS-INSTRUMENT"
+  },
+  "auroc_a_vs_b_arm": {
+   "target": "mean",
+   "rho_target": -0.0667,
+   "p_target": 0.87927,
+   "null": "sampled/200000",
+   "rho_arena_mean": -0.0667,
+   "p_arena_mean": 0.87981,
+   "verdict": "DEAD-AS-INSTRUMENT"
+  },
+  "bind_col_arm": {
+   "target": "finqa+tatqa",
+   "rho_target": 0.5,
+   "p_target": 0.17823,
+   "null": "sampled/200000",
+   "rho_arena_mean": 0.4333,
+   "p_arena_mean": 0.25124,
+   "verdict": "INDETERMINATE"
+  },
+  "compare_arm": {
+   "target": "hotpotqa",
+   "rho_target": -0.2333,
+   "p_target": 0.55206,
+   "null": "sampled/200000",
+   "rho_arena_mean": 0.1667,
+   "p_arena_mean": 0.67797,
+   "verdict": "DEAD-AS-INSTRUMENT"
+  },
+  "bind_row_arm": {
+   "target": "finqa+tatqa",
+   "rho_target": -0.251,
+   "p_target": 0.51156,
+   "null": "sampled/200000",
+   "rho_arena_mean": -0.0418,
+   "p_arena_mean": 0.92195,
+   "verdict": "DEAD-AS-INSTRUMENT"
+  },
+  "tier1_difference": {
+   "target": "finqa+tatqa",
+   "rho_target": 0.0167,
+   "p_target": 0.98076,
+   "null": "sampled/200000",
+   "rho_arena_mean": -0.1167,
+   "p_arena_mean": 0.77638,
+   "verdict": "INDETERMINATE"
+  },
+  "tier1_ratio": {
+   "target": "finqa+tatqa",
+   "rho_target": 0.3333,
+   "p_target": 0.38514,
+   "null": "sampled/200000",
+   "rho_arena_mean": 0.1833,
+   "p_arena_mean": 0.64245,
+   "verdict": "INDETERMINATE"
+  },
+  "tier1_pct_change": {
+   "target": "finqa+tatqa",
+   "rho_target": -0.2833,
+   "p_target": 0.4645,
+   "null": "sampled/200000",
+   "rho_arena_mean": -0.1167,
+   "p_arena_mean": 0.77669,
+   "verdict": "DEAD-AS-INSTRUMENT"
+  },
+  "tier1_sum": {
+   "target": "finqa+tatqa",
+   "rho_target": 0.2333,
+   "p_target": 0.55273,
+   "null": "sampled/200000",
+   "rho_arena_mean": -0.5333,
+   "p_arena_mean": 0.14741,
+   "verdict": "INDETERMINATE"
+  }
+ },
+ "full_grid_probe_x_arena": {
+  "scale_unit_arm": {
+   "mean": {
+    "rho": -0.2,
+    "p": 0.61232,
+    "null": "sampled/200000"
+   }
+  },
+  "verbatim_mean_arm": {
+   "mean": {
+    "rho": -0.3667,
+    "p": 0.33548,
+    "null": "sampled/200000"
+   }
+  },
+  "auroc_a_vs_b_arm": {
+   "mean": {
+    "rho": -0.0667,
+    "p": 0.87981,
+    "null": "sampled/200000"
+   }
+  },
+  "bind_col_arm": {
+   "mean": {
+    "rho": 0.4333,
+    "p": 0.25124,
+    "null": "sampled/200000"
+   }
+  },
+  "compare_arm": {
+   "mean": {
+    "rho": 0.1667,
+    "p": 0.67797,
+    "null": "sampled/200000"
+   }
+  },
+  "bind_row_arm": {
+   "mean": {
+    "rho": -0.0418,
+    "p": 0.92195,
+    "null": "sampled/200000"
+   }
+  },
+  "tier1_difference": {
+   "mean": {
+    "rho": -0.1167,
+    "p": 0.77638,
+    "null": "sampled/200000"
+   }
+  },
+  "tier1_ratio": {
+   "mean": {
+    "rho": 0.1833,
+    "p": 0.64245,
+    "null": "sampled/200000"
+   }
+  },
+  "tier1_pct_change": {
+   "mean": {
+    "rho": -0.1167,
+    "p": 0.77669,
+    "null": "sampled/200000"
+   }
+  },
+  "tier1_sum": {
+   "mean": {
+    "rho": -0.5333,
+    "p": 0.14741,
+    "null": "sampled/200000"
+   }
+  }
+ },
+ "table": "R19-H163_instrument_audit.parquet"
+}

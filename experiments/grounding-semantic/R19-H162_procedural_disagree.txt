@@ -1,0 +1,316 @@
+
+==========================================================================================
+### emanual: items where surface overlap ranks better than the model
+
+
+-- SUPPORTED, model ranks too low
+   item 62  model_pct 0.05  lex_pct 0.75
+     RESPONSE: To update the TV's software through a USB device, follow these steps:
+
+1. Download the update file from the Samsung website to your computer.
+2. Save the update package in the USB device's top-level folder.
+3. Connect the USB device to the TV.
+4. The TV will automatically detect and install the update from the USB device. 
+
+It is important to remember not to turn off the TV's power until the update is complete, as the TV will turn off and on automatically during the update process. Additionally, after completing the software update, the video and audio settings will be reset to their default v
+   item 10  model_pct 0.35  lex_pct 0.97
+     RESPONSE: To set up beautiful screens, you can use the Ambient Mode feature on your TV. Simply press the button on your remote control to enter Ambient Mode, where you can view various visual information and notifications. To return to TV mode, press the button.
+   item 31  model_pct 0.15  lex_pct 0.75
+     RESPONSE: To use HDMI UHD Color, you need to access the settings on your TV. Go to General > External Device Manager > HDMI UHD Color. If an external UHD player is connected to the TV, use the HDMI UHD Color function to convert the TV's HDMI connector to a mode optimized for the UHD 50P/60P signals. You can select the HDMI connector you want to use for HDMI UHD Color and then press the Select button to set the HDMI UHD Color function to On. This will enable support for up to UHD 50P/60P 4:4:4 and 4:2:2 input signals. If your external device only supports UHD 24 or 30 Hz frequency or any FHD frequency, t
+   item 41  model_pct 0.08  lex_pct 0.62
+     RESPONSE: If your software update over the Internet has failed, you can try updating via a USB device. Download the update file from the Samsung website and store it on a USB device. Connect the USB device to the TV and update using the instructions provided. Remember to save the update package in the USB device's top-level folder to ensure the TV can locate it.
+   item 56  model_pct 0.04  lex_pct 0.57
+     RESPONSE: To turn on Ambient Mode on your TV screen, you can follow these steps:
+
+1. When the TV is turned off, press the button on the remote control to enter Ambient Mode.
+2. In Ambient Mode, you can view beautiful screens, various visual information, and notifications.
+3. To return to TV mode, press the button on the remote control.
+4. To shut off the TV completely, press the power button on the remote control.
+5. If you press the power button on the remote control when the TV is turned off, the TV will turn on in Ambient Mode.
+
+Please note that if you are using a remote control other than the Samsun
+   item 44  model_pct 0.46  lex_pct 0.97
+     RESPONSE: To change the current time on your TV, you can set it manually by going to Settings > General > System Manager > Time > Clock > Clock Mode Manual. From there, you can directly enter the current time using the directional buttons on the remote control.
+   item 101  model_pct 0.11  lex_pct 0.61
+     RESPONSE: Based on the context provided:
+
+Natural Mode:
+- Reduces eye strain for a comfortable viewing experience.
+
+Movie Mode:
+- Suitable for watching TV or movies in a dark room.
+- This function may not be supported depending on the model.
+
+The context indicates that Natural Mode and Movie Mode are different picture modes that can be selected on the TV to optimize the viewing experience for different environments and content.
+
+Natural Mode is described as reducing eye strain for a comfortable viewing experience, while Movie Mode is suitable for watching TV or movies in a dark room.
+   item 46  model_pct 0.51  lex_pct 0.99
+     RESPONSE: To turn on or off Remote Management, you can access the settings on your TV. From the Settings menu, go to Support, then select Remote Management. In the Remote Management section, you can read and agree to the service agreements and choose to turn it on or off. Alternatively, you can also start this function by pressing and holding the button for 5 or more seconds.
+
+-- UNSUPPORTED, model ranks too high
+   item 15  model_pct 0.73  lex_pct 0.28
+     RESPONSE: To reset the network, follow these steps:
+
+1. Go to Settings.
+2. Select General.
+3. Select Network.
+4. Choose Network Reset.
+5. Select Try Now.
+6. Restore the network settings to the factory default.
+   item 83  model_pct 0.58  lex_pct 0.14
+     RESPONSE: Based on the provided context, here are the steps to fix the issue when some files cannot be played:
+
+1. Read the information in the section "Read Before Playing Photo, Video, or Music Files". This section likely contains important information about the file formats and encoding methods that are supported for playback.
+
+2. Check the section "Playing multimedia content on a PC or mobile device". This provides the general steps to play media content by selecting the device, navigating to the content, and playing the selected item.
+
+3. If the content is stored on a USB device, follow the steps in
+   item 114  model_pct 0.42  lex_pct 0.13
+     RESPONSE: Based on the context provided, there are a few ways to check scheduled viewings:
+
+1. From the Guide screen:
+   - On the Guide screen, select a program that has the scheduled viewing icon.
+   - Press and hold the Select button, and then choose "Schedule Viewing" to view the scheduled details.
+
+2. From the Program Info window:
+   - While watching TV, press the Select button to bring up the Program Info window.
+   - Select a program that has a scheduled broadcast, then choose "Schedule Viewing" to view the scheduled details.
+
+3. From the Live TV Schedule Manager:
+   - Press the Smart Hub button t
+   item 108  model_pct 0.23  lex_pct 0.08
+     RESPONSE: Based on the context provided, here are the steps to turn the TV into Ambient Mode:
+
+1. Press the button on the remote control when the TV is turned off. This will turn on the TV in Ambient Mode.
+
+2. To enter Ambient Mode when the TV is already turned on, press the button on the remote control.
+
+The key points are:
+
+- Pressing the button on the remote control will turn on the TV in Ambient Mode, whether the TV was previously turned off or on.
+- Ambient Mode is a QLED TV-specific feature, so it may not be supported on all TV models.
+- If you use a remote control other than the Samsung TV remote
+   item 127  model_pct 0.57  lex_pct 0.47
+     RESPONSE: Based on the provided context, you can lock apps on your TV by following these steps:
+
+1. Go to Settings > Apps.
+2. Select the app you want to lock.
+3. Select "Lock/Unlock".
+4. Enter the default PIN (which is usually 0000) or the custom PIN you have set.
+5. The selected app will now be locked.
+
+The context mentions that to lock or unlock an app, you need to enter a PIN. The default PIN is 0000, but you can change it by going to Settings > General > System Manager > Change PIN.
+
+So in summary, to lock an app, go to the Apps menu, select the app, choose "Lock/Unlock", and enter the PIN to lock t
+   item 43  model_pct 0.42  lex_pct 0.36
+     RESPONSE: To troubleshoot the issue of TV audio not being played through the receiver:
+1. Make sure the audio cable is connected to the correct audio output connector on the external device (receiver).
+2. Check the Digital Output Audio Format settings on the TV. Ensure it is set to Dolby Digital+ and change it if necessary based on the capabilities of the receiver.
+3. If using an HDMI connection, verify the audio output setting on the TV.
+4. Reboot the connected device (receiver) by disconnecting and then reconnecting its power cable.
+5. Ensure that the receiver supports Dolby Digital Plus for sound tra
+   item 17  model_pct 0.34  lex_pct 0.28
+     RESPONSE: To fix the error of 'some files cannot be played', you can try the following steps:
+
+1. Make sure the file format is supported by the media player or device you are using.
+2. Check the encoding method of the file and ensure it is compatible with the media player.
+3. If the content is not playing smoothly due to network communication problems, try using a USB device instead.
+4. Connect a USB device to the USB port of your device, then browse the list of multimedia content stored on the device and select a content item to play.
+   item 65  model_pct 0.62  lex_pct 0.59
+     RESPONSE: To create a new account in SmartThings, you need to follow these steps:
+
+1. Turn on the TV.
+2. Start the SmartThings app on your mobile device.
+3. Tap "Add Device" on the dashboard of the SmartThings app.
+4. Connectable TVs are searched for.
+5. From the search results, select the model of your TV.
+6. Enter the PIN number displayed on the TV screen.
+7. Once the TV is registered with your Samsung account, you can use the SmartThings app to control the TV.
+
+==========================================================================================
+### techqa: items where surface overlap ranks better than the model
+
+
+-- SUPPORTED, model ranks too low
+   item 41  model_pct 0.06  lex_pct 0.97
+     RESPONSE: Yes, the IBM Netcool Omnibus ServiceNow Gateway now supports Geneva Release. The gateway has been enhanced to accommodate a change in the REST API behavior between ServiceNow versions Eureka/Fiji compared to Geneva.
+   item 83  model_pct 0.10  lex_pct 1.00
+     RESPONSE: WebSphere Application Server Version 7 ships with the WebSphere MQ 7.0 Resource Adapter.
+- WAS 7.0.0.27 - WMQ 7.0.1.9
+
+WebSphere Application Server Version 8 ships with the WebSphere MQ 7.0 Resource Adapter.
+- WAS 8.0.0.5 - WMQ 7.0.1.9
+
+WebSphere Application Server Version 8.5 ships with the WebSphere MQ 7.1 Resource Adapter.
+- WAS 8.5.0.2 - WMQ 7.1.0.2
+   item 82  model_pct 0.09  lex_pct 0.86
+     RESPONSE: The Socket Gateway that should be used with Netcool Omnibus (NOI) depends on the version of Netcool/OMNIbus being used:
+
+- For Netcool/OMNIbus V8.1, the recommended Socket Gateway is nco-g-socket-java-2_0.
+- For Netcool/OMNIbus V7.4.0, the legacy Socket Gateway to be used is nco-g-socket-10_0.
+   item 85  model_pct 0.07  lex_pct 0.83
+     RESPONSE: Based on the information provided in the context, it is not recommended to create the Match Designer database within the XMETA database. The key points are:
+
+1. The Match Designer database should be a separate database, not the XMETA database:
+
+"You should start from an empty Database; using the default XMETA Database is not recommended because it can become corrupt."
+
+2. The Match Designer database has specific requirements in terms of character set, page size, permissions, etc. that are different from the XMETA database requirements.
+
+3. The Match Designer database is only used for developme
+   item 215  model_pct 0.06  lex_pct 0.81
+     RESPONSE: Based on the information provided in the context:
+
+1. The WebSphere MQ JCA Resource Adapter shipped with WebSphere Application Server Version 8.5 is updated to the latest available release, which is 7.1.0.1. This is mentioned in the PROBLEM CONCLUSION section for APAR PM67639.
+
+2. The WebSphere MQ JCA Resource Adapter shipped with WebSphere Application Server Versions 7.0 and 8.0 is updated to WebSphere MQ fix pack 7.0.1.6. This is mentioned in the PROBLEM CONCLUSION section for APAR PM78359.
+
+3. The WebSphere Application Server Version 8.5 ships with the WebSphere MQ 7.1 Resource Adapter. Thi
+   item 38  model_pct 0.18  lex_pct 0.83
+     RESPONSE: Based on the context provided, the reason why the Dataserver service changes from Healthy to Vulnerable after logging into the StoredIQ Application Stack is due to the amount of memory allocated to the Dataserver.
+
+The CAUSE section states:
+
+"Memory allocated was not the supported number"
+
+The ANSWER section further elaborates:
+
+"This could be due to amount of Memory allocated to the dataserver.
+
+1. Login to the Dataserver
+2. Click on Administration > Dashboard tab
+3. Review the Application status and make sure it is green
+4. Click on Controller Link
+5. Review and confirm that all services are
+   item 88  model_pct 0.38  lex_pct 0.97
+     RESPONSE: To install Packaging Utility, you can follow these steps:
+
+1. Download the fix pack from the provided download URL.
+2. Extract the compressed file in an appropriate directory, such as C:\temp.
+3. Add the fix pack's repository location in IBM Installation Manager by browsing to the extracted directory.
+4. Start IBM Installation Manager and go to File > Preferences > Repositories.
+5. Click on Add Repository and enter the file path to the extracted directory.
+6. Close the Preferences page.
+7. If IBM Packaging Utility is already installed, click on Update Packages on the Installation Manager start
+   item 19  model_pct 0.31  lex_pct 0.89
+     RESPONSE: The issue occurred because of an interface change in IBM Pure Application System 2.1.2.0 and later. Even though the client tried to deploy the pattern at MQ version 8.0.0.4, due to this change, the installation and upgrade of IBM MQ at the latest maintenance level contained in the pattern-type failed. The installation appeared to succeed, but IBM MQ 8.0.0.2 was installed instead and the subsequent fixpack update was not applied. This restriction affected IBM MQ Pure Application System pattern-types 1.0.0.2 and earlier, preventing the installation of versions later than 8.0.0.2.
+
+-- UNSUPPORTED, model ranks too high
+   item 200  model_pct 0.80  lex_pct 0.26
+     RESPONSE: The configuration of the J2EE Tomcat DC to run as a Windows Service is not supported with ITCAM J2EE v7.1.1. The documentation provided does not mention any specific steps or procedures for configuring the Tomcat DC to run as a Windows Service. Therefore, this type of configuration may not be possible with this version of ITCAM. It is recommended to consult the official support channels or online forums for further assistance or alternative solutions.
+   item 205  model_pct 0.62  lex_pct 0.11
+     RESPONSE: To find the information regarding the action required for IBM Integration Bus Hypervisor Edition V9.0 and WebSphere Message Broker Hypervisor Edition V8.0 for security vulnerabilities in Red Hat Linux related to the specified CVEIDs (CVE-2018-1000001, CVE-2017-16997, CVE-2017-1000408, CVE-2017-1000409, CVE-2017-17426), you should refer to the IBM Flash Alerts provided in the context above. These alerts provide details on the security vulnerabilities and the recommended actions to take to address them. Consulting these Flash Alerts will give you the necessary information on the vulnerabilities 
+   item 150  model_pct 0.58  lex_pct 0.11
+     RESPONSE: Based on the context provided, it seems like there is an issue with the Java plugin not loading properly in Rhapsody 8.2. Here are a few steps you can try to troubleshoot the issue:
+
+1. **Check Plugin Configuration**:
+   - Ensure that the plugin file (Simple plugin.sbs) is located in the correct directory: `C:\ProgramData\IBM\Rational\Rhapsody\8.2\Samples\ExtensibilitySamples\Simple Plug-in`.
+   - Verify that the plugin file is not corrupted or modified.
+   - Check the plugin configuration settings in Rhapsody to ensure that it is properly configured to load the plugin.
+
+2. **Verify Java Runti
+   item 221  model_pct 0.48  lex_pct 0.01
+     RESPONSE: To resolve the SessionBeanTimeoutException in WebSphere Application Server, you can try the following steps:
+
+1. **Increase the session timeout value**:
+   - Go to the WebSphere Integrated Solutions Console.
+   - Navigate to "Application servers" > "server1" > "Session management" > "Session timeout".
+   - Increase the timeout value to a larger number (e.g., 1800 seconds or 30 minutes).
+   - Save the changes and restart the application server.
+
+2. **Increase the EJB container's default session access timeout**:
+   - Go to the WebSphere Integrated Solutions Console.
+   - Navigate to "Applicatio
+   item 9  model_pct 0.65  lex_pct 0.20
+     RESPONSE: Based on the given context, the unexpected traffic across domains could be happening due to the configuration of cross-certification between the two domains. In the context provided, it mentions setting up cross-certification for user access and replication. 
+
+If there is cross-certification set up between Domain A and Domain B for user access, it is possible that this cross-certification is allowing traffic to flow from Domain A to Domain B, even if the FSH_B is disabled in MPGW_B. 
+
+To investigate further, you may need to review the cross-certification setup between the two domains and ensur
+   item 72  model_pct 0.69  lex_pct 0.24
+     RESPONSE: Based on the information provided, the error `SqlIntegrityConstraintViolationException` is occurring during the deployment of a process application on the IBM Business Process Manager (BPM) Process Server. This error is likely due to a unique constraint violation in the `LSW_SNAPSHOT` table.
+
+The specific issue seems to be related to the generation of unique acronyms for snapshots. The error message indicates that the update statement for the `LSW_SNAPSHOT` table is failing due to a constraint violation, possibly because the generated acronym for the snapshot already exists in the database.
+
+T
+   item 178  model_pct 0.52  lex_pct 0.08
+     RESPONSE: Based on the error message in the log file, it appears that the RFT 8.2 installation is missing or unable to locate the required `org.eclipse.core.runtime.adaptor.EclipseStarter` class. This class is part of the Eclipse runtime, which is the underlying platform used by RFT.
+
+Here are a few troubleshooting steps you can try:
+
+1. **Reinstall RFT 8.2**: Try uninstalling and then reinstalling RFT 8.2 to ensure a clean installation. Make sure to follow the installation instructions carefully.
+
+2. **Check for corrupted or missing files**: The issue could be caused by corrupted or missing files in th
+   item 117  model_pct 0.59  lex_pct 0.16
+     RESPONSE: The error occurs because the APMUI application is trying to save the application using the wrong port. It is attempting to access the SCRCLUSTER_SCR_oslc.html URL with port 8080 instead of the correct port 17310. This discrepancy is causing the "CTGAZ0001E: The application cannot be saved because the application repository is not available" error message to appear. To resolve this issue, you need to ensure that APMUI is configured to access the SCRCLUSTER_SCR_oslc.html URL with the correct port 17310 instead of port 8080.
+
+==========================================================================================
+### delucionqa: items where surface overlap ranks better than the model
+
+
+-- SUPPORTED, model ranks too low
+   item 38  model_pct 0.05  lex_pct 0.80
+     RESPONSE: The default settings for the car include the factory default chime volume setting which is medium. Other default settings may vary depending on the vehicle's options.
+   item 43  model_pct 0.17  lex_pct 0.86
+     RESPONSE: To activate the Uconnect voice recognition system, you can push and hold the VR button on the steering wheel or press and hold the Microphone icon within Android Auto. This will activate the voice recognition system, allowing you to use natural voice commands to control your vehicle's features.
+   item 19  model_pct 0.19  lex_pct 0.83
+     RESPONSE: To unlock all the doors using the key fob, you need to push and release the unlock button on the key fob twice. This action will unlock all the doors of the vehicle.
+   item 12  model_pct 0.26  lex_pct 0.86
+     RESPONSE: If the Brake Warning Light remains on after the bulb check, it indicates a possible brake hydraulic system malfunction or a problem with the Brake Booster detected by the Anti-Lock Brake System (ABS) / Electronic Stability Control (ESC) system.
+   item 37  model_pct 0.32  lex_pct 0.89
+     RESPONSE: If the ABS Warning Light is on, it indicates that the anti-lock portion of the brake system is not functioning properly. The conventional brake system will still operate normally, but it is recommended to have the brake system serviced as soon as possible to restore the benefits of Anti-Lock Brakes. If the ABS Warning Light does not come on when the ignition is placed in the ON/RUN mode, have the light repaired as soon as possible.
+   item 11  model_pct 0.06  lex_pct 0.62
+     RESPONSE: The illuminated entry system will be activated when the Passive Entry system unlocks the vehicle. This happens when a valid Passive Entry key fob is detected and the vehicle is unlocked without having to push the key fob lock or unlock buttons. The Headlight Illumination On Approach will be initiated along with two flashes of the turn signal lights.
+   item 2  model_pct 0.31  lex_pct 0.80
+     RESPONSE: The Automatic SOS will be triggered in the event that your vehicle's airbags deploy.
+   item 58  model_pct 0.35  lex_pct 0.83
+     RESPONSE: You can find the available mobile apps for Android Auto™ by launching the Android Auto™ App, which displays all the compatible apps that are available for use with Android Auto™ every time it is launched. Additionally, you can refer to https://play.google.com/store/apps/ to see the latest list of available apps for Android Auto™.
+
+-- UNSUPPORTED, model ranks too high
+   item 82  model_pct 0.62  lex_pct 0.47
+     RESPONSE: If you remain in the vehicle but open a door, rotating the instrument panel dimmer control to the extreme bottom position will cause all interior lights to turn off. This allows the doors to stay open for extended periods of time without discharging the vehicle's battery. However, it is important to ensure that the hood is fully latched before driving the vehicle to prevent it from opening while in motion and blocking your vision.
+   item 130  model_pct 0.07  lex_pct 0.05
+     RESPONSE: Based on the context provided, the key points about the default settings are:
+
+1. When the "Reset/Restore Default Settings" button is pressed on the touchscreen, the system displays options to reset the Uconnect system back to its default settings.
+
+2. These default settings can clear personal data and reset selected settings from other menus.
+
+3. Depending on the vehicle's options, the feature settings may vary.
+
+4. The factory default volume setting for the Front and Rear chime is set to medium.
+
+5. ParkSense will retain its last known configuration state through ignition cycles.
+
+So in summ
+   item 65  model_pct 0.78  lex_pct 0.77
+     RESPONSE: The TrailCam image can be deactivated by pressing the touchscreen X button, shifting the transmission into PARK, turning the ignition OFF, or activating the windshield washing process.
+   item 77  model_pct 0.63  lex_pct 0.68
+     RESPONSE: To make selections and adjustments with the menus, you should only press one button at a time to enter the desired menu. Once in the desired menu, press and release the preferred setting option until a check mark appears next to the setting, showing that the setting has been selected. Press the X button on the touchscreen to close out of the settings screen once the setting is complete. Use the Up or Down Arrow button on the right side of the screen to toggle up or down through the available settings. Press on the desired setting option to confirm your choice.
+   item 106  model_pct 0.04  lex_pct 0.13
+     RESPONSE: Based on the provided context, here are the steps to jump start a car:
+
+1. Apply the parking brake, shift the transmission to Park (automatic) or Neutral (manual), and turn off the ignition.
+2. Turn off the heater, radio, and all electrical accessories.
+3. If using another vehicle to jump start, park the other vehicle within reach of the jumper cables and apply its parking brake. Ensure the other vehicle's ignition is also turned off.
+4. Locate the positive (+) battery post on your vehicle's main battery. This is usually covered by a protective cap - lift up the cap to access the post.
+5. WARN
+   item 93  model_pct 0.13  lex_pct 0.26
+     RESPONSE: Based on the given context, the main safety features implemented in this car are the occupant restraint systems. The text specifically states that "Some of the most important safety features in your vehicle are the restraint systems." This indicates that the primary safety features discussed are the various restraint systems, such as seatbelts, airbags, and other occupant protection mechanisms.
+
+The context also emphasizes the importance of safe driving practices, such as obeying traffic laws, keeping hands on the steering wheel, and only using the vehicle's features and applications when it i
+   item 175  model_pct 0.14  lex_pct 0.29
+     RESPONSE: Based on the provided context, there are several factors that may cause the driver to lose control of the vehicle:
+
+1. Breach of the vehicle's systems: The context states that "it may be possible that vehicle systems, including safety related systems, could be impaired or a loss of vehicle control could occur that may result in an accident involving serious injury or death." This suggests that a breach or compromise of the vehicle's systems could lead to a loss of vehicle control.
+
+2. Unsafe driving actions: The context warns against "sharp turns, abrupt maneuvers, or other unsafe driving acti
+   item 168  model_pct 0.07  lex_pct 0.27
+     RESPONSE: Based on the context provided, the function of Trailer Sway Control (TSC) is:
+
+1. TSC uses sensors in the vehicle to recognize an excessively swaying trailer and will take the appropriate actions to attempt to stop the sway. When TSC is functioning, it can:
+   - Cause the ESC Activation/Malfunction Indicator Light to flash
+   - Reduce engine power
+   - Apply brakes to individual wheels to attempt to stop the trailer from swaying
+
+2. TSC is a telescoping link that can be installed between the hitch receiver and the trailer tongue. It typically provides adjustable friction associated with the te

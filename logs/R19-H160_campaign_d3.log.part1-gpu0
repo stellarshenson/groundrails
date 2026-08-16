@@ -1,0 +1,83 @@
+=== H160 DRAW 3 2026-08-14 11:00:36 ===
+recipe: R18-H150 flagship VERBATIM - clean 685,670 + misbind 30,000 + unit_swap 5,540 = 721,210 rows, 14 DANN groups
+seed: draw 3 -> 3150, draw 4 -> 4150; adapter frozen at zero; no EMA, no window dropout
+executor: R19-H160_split_exec.py (cotangent window-chunked, pass A 32 / pass B 8)
+checkpoint models/R19-H160-arm-draw3
+draw bar: blind windowed decomposed-min mean >= 0.7079 (the H150 registered draw bar)
+0, NVIDIA RTX PRO 4000 Blackwell, 0 MiB
+1, NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition, 57121 MiB
+2, NVIDIA RTX 5000 Ada Generation, 359 MiB
+shm              64M  4.5M   60M   7% /dev/shm
+
+--- H160 draw3 train + in-domain suite  2026-08-14 11:00:36 ---
+=== R19-H160 SPLIT EXECUTOR draw 3 (seed 3150)  2026-08-14 11:00:40 ===
+H150 flagship recipe VERBATIM (3-source mix, 14 DANN groups, MIL max-over-windows BCE; NO EMA, NO window dropout), window-chunked (pass A 32 no-grad, pass B 8 grad)
+GPU: NVIDIA RTX PRO 4000 Blackwell (CUDA_VISIBLE_DEVICES=0)
+kernel self-check: scatter-amax splits ties equally; dropout ones-capture is bitwise
+lane quant_misbind: 30000 rows  15000 pairs  {'misbound_row': 21000, 'misbound_col': 9000}  (from R17-H146_lane.parquet, ALL rows, untruncated)
+lane quant_scale_unit: 5540 rows  2770 pairs  {'unit_swap': 5540}  (from R18-H150_scaleunit_lane.parquet, ALL rows, untruncated)
+window census cross-check vs R18-H150_window_census.json: multi-window 0.1908 (banked 0.1908), mean windows 1.4821 (banked 1.4821), rows 721210 (banked 721210)
+window census: 1068905 pairs, mean set 1.482, max 40
+Loading weights:   0%|          | 0/134 [00:00<?, ?it/s]Loading weights: 100%|██████████| 134/134 [00:00<00:00, 9105.35it/s]
+[transformers] [1mModernBertModel LOAD REPORT[0m from: jhu-clsp/mmBERT-base
+Key               | Status     |  | 
+------------------+------------+--+-
+head.norm.weight  | UNEXPECTED |  | 
+decoder.bias      | UNEXPECTED |  | 
+head.dense.weight | UNEXPECTED |  | 
+decoder.weight    | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+init fingerprint (trunk+task_head, 306940417 params): 3f1ff2a147e86ede4b965c1f33906f47
+perm fingerprint a867296772f8314a  15036 steps
+  step 0/15036 task 0.6871 domain 2.7594 lam 0.0000 domain-acc 0.041 peak 5.86/7.59 GB  (2s)
+  step 200/15036 task 0.6905 domain 2.5763 lam 0.0013 domain-acc 0.050 peak 7.41/9.22 GB  (393s)
+  step 400/15036 task 0.7256 domain 2.4607 lam 0.0026 domain-acc 0.088 peak 7.41/9.22 GB  (891s)
+  step 600/15036 task 0.5899 domain 2.2010 lam 0.0039 domain-acc 0.296 peak 7.41/9.22 GB  (1427s)
+  step 800/15036 task 0.5780 domain 2.1265 lam 0.0052 domain-acc 0.395 peak 7.41/9.22 GB  (1957s)
+  step 1000/15036 task 0.4123 domain 1.8764 lam 0.0064 domain-acc 0.423 peak 7.41/9.22 GB  (2477s)
+  resume point saved at step 1000 (model + RNG)
+  step 1200/15036 task 0.3880 domain 1.5045 lam 0.0076 domain-acc 0.454 peak 7.41/9.22 GB  (3005s)
+  step 1400/15036 task 0.4459 domain 1.6081 lam 0.0087 domain-acc 0.520 peak 7.41/9.22 GB  (3531s)
+  step 1600/15036 task 0.4826 domain 1.6985 lam 0.0097 domain-acc 0.523 peak 7.41/9.22 GB  (4019s)
+  step 1800/15036 task 0.3316 domain 1.9902 lam 0.0107 domain-acc 0.509 peak 7.41/9.22 GB  (4545s)
+  step 2000/15036 task 0.2509 domain 1.7987 lam 0.0116 domain-acc 0.492 peak 7.41/9.22 GB  (5069s)
+  resume point saved at step 2000 (model + RNG)
+  step 2200/15036 task 0.4309 domain 1.7977 lam 0.0125 domain-acc 0.452 peak 7.41/9.22 GB  (5571s)
+  step 2400/15036 task 0.4160 domain 2.1287 lam 0.0133 domain-acc 0.405 peak 7.41/9.22 GB  (6082s)
+  step 2600/15036 task 0.2705 domain 1.9306 lam 0.0140 domain-acc 0.396 peak 7.41/9.22 GB  (6584s)
+  step 2800/15036 task 0.3362 domain 2.1518 lam 0.0146 domain-acc 0.359 peak 7.41/9.22 GB  (7088s)
+  step 3000/15036 task 0.1853 domain 2.6623 lam 0.0152 domain-acc 0.328 peak 7.41/9.22 GB  (7595s)
+  resume point saved at step 3000 (model + RNG)
+  step 3200/15036 task 0.2862 domain 2.8600 lam 0.0157 domain-acc 0.245 peak 7.41/9.22 GB  (8143s)
+  step 3400/15036 task 0.4359 domain 3.1071 lam 0.0162 domain-acc 0.185 peak 7.41/9.22 GB  (8697s)
+  step 3600/15036 task 0.4351 domain 2.7065 lam 0.0167 domain-acc 0.196 peak 7.41/9.22 GB  (9211s)
+  step 3800/15036 task 0.4319 domain 2.4538 lam 0.0170 domain-acc 0.276 peak 7.41/9.22 GB  (9717s)
+  step 4000/15036 task 0.3012 domain 2.3058 lam 0.0174 domain-acc 0.283 peak 7.41/9.22 GB  (10239s)
+  resume point saved at step 4000 (model + RNG)
+  step 4200/15036 task 0.2961 domain 2.2706 lam 0.0177 domain-acc 0.275 peak 7.41/9.22 GB  (10787s)
+  step 4400/15036 task 0.3323 domain 2.2829 lam 0.0180 domain-acc 0.361 peak 7.41/9.22 GB  (11302s)
+  step 4600/15036 task 0.3130 domain 2.2466 lam 0.0182 domain-acc 0.347 peak 7.41/9.22 GB  (11806s)
+  step 4800/15036 task 0.2173 domain 2.2313 lam 0.0184 domain-acc 0.348 peak 7.41/9.22 GB  (12296s)
+  step 5000/15036 task 0.3008 domain 2.3177 lam 0.0186 domain-acc 0.321 peak 7.41/9.22 GB  (12766s)
+  resume point saved at step 5000 (model + RNG)
+  step 5200/15036 task 0.1877 domain 2.3816 lam 0.0188 domain-acc 0.296 peak 7.41/9.22 GB  (13236s)
+  step 5400/15036 task 0.3493 domain 2.3881 lam 0.0189 domain-acc 0.302 peak 7.41/9.22 GB  (13719s)
+  step 5600/15036 task 0.2125 domain 2.5171 lam 0.0191 domain-acc 0.347 peak 7.41/9.22 GB  (14202s)
+  step 5800/15036 task 0.2752 domain 2.3948 lam 0.0192 domain-acc 0.354 peak 7.41/9.22 GB  (14702s)
+  step 6000/15036 task 0.2289 domain 2.3671 lam 0.0193 domain-acc 0.342 peak 7.41/9.22 GB  (15216s)
+  resume point saved at step 6000 (model + RNG)
+  step 6200/15036 task 0.1679 domain 2.1669 lam 0.0194 domain-acc 0.330 peak 7.41/9.22 GB  (15766s)
+  step 6400/15036 task 0.5042 domain 2.0762 lam 0.0194 domain-acc 0.351 peak 7.41/9.22 GB  (16291s)
+  step 6600/15036 task 0.1543 domain 2.4990 lam 0.0195 domain-acc 0.369 peak 7.41/9.22 GB  (16777s)
+  step 6800/15036 task 0.2692 domain 2.1872 lam 0.0196 domain-acc 0.370 peak 7.41/9.22 GB  (17244s)
+  step 7000/15036 task 0.2310 domain 2.3448 lam 0.0196 domain-acc 0.364 peak 7.41/9.22 GB  (17718s)
+  resume point saved at step 7000 (model + RNG)
+  step 7200/15036 task 0.2305 domain 2.3009 lam 0.0197 domain-acc 0.361 peak 7.41/9.22 GB  (18205s)
+  step 7400/15036 task 0.2183 domain 2.2483 lam 0.0197 domain-acc 0.355 peak 7.41/9.22 GB  (18724s)
+  step 7600/15036 task 0.1400 domain 2.7108 lam 0.0197 domain-acc 0.322 peak 7.41/9.22 GB  (19237s)
+  step 7800/15036 task 0.1757 domain 2.4684 lam 0.0198 domain-acc 0.330 peak 7.41/9.22 GB  (19738s)
+  step 8000/15036 task 0.2776 domain 2.6588 lam 0.0198 domain-acc 0.345 peak 7.41/9.22 GB  (20192s)
+  resume point saved at step 8000 (model + RNG)
+=== FAILED: H160 draw3 train + in-domain suite ===

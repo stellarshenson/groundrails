@@ -1,0 +1,1756 @@
+{
+  "experiment": "R19-H162 hagrid mechanism dissection (executor M2) - ANALYSIS ONLY",
+  "subset": "hagrid",
+  "flagship_2draw_auroc": 0.6424,
+  "seed_noise_sd": 0.0001,
+  "sample": {
+    "items": 250,
+    "positives": 212,
+    "negatives": 38,
+    "sentences": 537,
+    "pairs_h150d1": 1941
+  },
+  "checkpoints_read": [
+    "h150d1",
+    "h150d2",
+    "h159d1"
+  ],
+  "control": {
+    "h150d1": {
+      "reproduced": 0.642254,
+      "banked": 0.6423,
+      "abs_delta": 4.6e-05,
+      "fingerprint_ok": true,
+      "pass": true
+    },
+    "h150d2": {
+      "reproduced": 0.642502,
+      "banked": 0.6425,
+      "abs_delta": 2e-06,
+      "fingerprint_ok": true,
+      "pass": true
+    },
+    "h159d1": {
+      "reproduced": 0.707423,
+      "banked": 0.7074,
+      "abs_delta": 2.3e-05,
+      "fingerprint_ok": true,
+      "pass": true
+    }
+  },
+  "strata_h150d1": {
+    "ndoc_1": {
+      "n": 70,
+      "neg": 13,
+      "auroc": 0.7152,
+      "se": 0.0711
+    },
+    "ndoc_2_3": {
+      "n": 107,
+      "neg": 13,
+      "auroc": 0.689,
+      "se": 0.07
+    },
+    "ndoc_4plus": {
+      "n": 73,
+      "neg": 12,
+      "auroc": 0.5096,
+      "se": 0.0914
+    },
+    "npair_le4": {
+      "n": 156,
+      "neg": 20,
+      "auroc": 0.6195,
+      "se": 0.0628
+    },
+    "npair_5_15": {
+      "n": 61,
+      "neg": 8,
+      "auroc": 0.7995,
+      "se": 0.0695
+    },
+    "npair_16plus": {
+      "n": 33,
+      "neg": 10,
+      "auroc": 0.3783,
+      "se": 0.1103
+    },
+    "nsent_1": {
+      "n": 140,
+      "neg": 15,
+      "auroc": 0.5861,
+      "se": 0.0741
+    },
+    "nsent_2_3": {
+      "n": 70,
+      "neg": 10,
+      "auroc": 0.7033,
+      "se": 0.0796
+    },
+    "nsent_4plus": {
+      "n": 40,
+      "neg": 13,
+      "auroc": 0.4444,
+      "se": 0.0992
+    }
+  },
+  "strata_h150d1_wrappers_dropped": {
+    "ndoc_1": {
+      "n": 70,
+      "neg": 13,
+      "auroc": 0.7692,
+      "se": 0.0633
+    },
+    "ndoc_2_3": {
+      "n": 107,
+      "neg": 13,
+      "auroc": 0.6673,
+      "se": 0.0726
+    },
+    "ndoc_4plus": {
+      "n": 73,
+      "neg": 12,
+      "auroc": 0.5888,
+      "se": 0.0864
+    },
+    "npair_le4": {
+      "n": 156,
+      "neg": 20,
+      "auroc": 0.6886,
+      "se": 0.0567
+    },
+    "npair_5_15": {
+      "n": 61,
+      "neg": 8,
+      "auroc": 0.7948,
+      "se": 0.0706
+    },
+    "npair_16plus": {
+      "n": 33,
+      "neg": 10,
+      "auroc": 0.4435,
+      "se": 0.1117
+    },
+    "nsent_1": {
+      "n": 140,
+      "neg": 15,
+      "auroc": 0.736,
+      "se": 0.0583
+    },
+    "nsent_2_3": {
+      "n": 70,
+      "neg": 10,
+      "auroc": 0.6267,
+      "se": 0.0894
+    },
+    "nsent_4plus": {
+      "n": 40,
+      "neg": 13,
+      "auroc": 0.4872,
+      "se": 0.0989
+    }
+  },
+  "kdoc_curve_h150d1": {
+    "1": {
+      "auroc_all": 0.612,
+      "auroc_pool4plus": 0.6216
+    },
+    "2": {
+      "auroc_all": 0.6606,
+      "auroc_pool4plus": 0.5779
+    },
+    "3": {
+      "auroc_all": 0.6435,
+      "auroc_pool4plus": 0.515
+    },
+    "4": {
+      "auroc_all": 0.6451,
+      "auroc_pool4plus": 0.5232
+    },
+    "6": {
+      "auroc_all": 0.6461,
+      "auroc_pool4plus": 0.5314
+    },
+    "8": {
+      "auroc_all": 0.6423,
+      "auroc_pool4plus": 0.5096
+    }
+  },
+  "pool_inversion_h150d1": {
+    "pool2_3_label1": {
+      "n_sent": 180,
+      "mean_best_logit": 0.79,
+      "mean_doc_margin": 4.313
+    },
+    "pool2_3_label0": {
+      "n_sent": 37,
+      "mean_best_logit": -0.56,
+      "mean_doc_margin": 3.903
+    },
+    "pool4plus_label0": {
+      "n_sent": 64,
+      "mean_best_logit": 0.781,
+      "mean_doc_margin": 3.668
+    },
+    "pool4plus_label1": {
+      "n_sent": 162,
+      "mean_best_logit": 0.471,
+      "mean_doc_margin": 2.972
+    }
+  },
+  "wrapper_h150d1": {
+    "sentence_types": {
+      "is_frame": {
+        "n_sent": 22,
+        "mean_logit": -0.13,
+        "frac_sinking": 0.818
+      },
+      "is_yesno": {
+        "n_sent": 22,
+        "mean_logit": -1.622,
+        "frac_sinking": 0.545
+      },
+      "has_citemark": {
+        "n_sent": 26,
+        "mean_logit": -1.054,
+        "frac_sinking": 0.731
+      },
+      "has_url": {
+        "n_sent": 3,
+        "mean_logit": -2.933,
+        "frac_sinking": 0.0
+      },
+      "is_refline": {
+        "n_sent": 3,
+        "mean_logit": -2.933,
+        "frac_sinking": 0.0
+      },
+      "plain": {
+        "n_sent": 487,
+        "mean_logit": 0.811,
+        "frac_sinking": 0.45
+      }
+    },
+    "diagnostic_drops": {
+      "baseline": {
+        "auroc": 0.6423,
+        "se": 0.045
+      },
+      "drop_all_wrappers": {
+        "auroc": 0.6876,
+        "se": 0.042
+      },
+      "drop_discourse_frames_only": {
+        "auroc": 0.6999,
+        "se": 0.0412
+      },
+      "drop_yesno_only": {
+        "auroc": 0.6147,
+        "se": 0.0466
+      }
+    },
+    "yesno_items": {
+      "n": 22,
+      "neg": 9,
+      "auroc": 0.4274,
+      "se": 0.1274,
+      "auroc_polarity_sentence_only": 0.4359,
+      "se_polarity_only": 0.1277,
+      "rest_auroc": 0.6226,
+      "rest_se": 0.0518
+    }
+  },
+  "misrank_h150d1": {
+    "top12_negatives": [
+      {
+        "item_id": 183,
+        "score": 4.2488,
+        "misrank_share": 0.0704
+      },
+      {
+        "item_id": 153,
+        "score": 3.1332,
+        "misrank_share": 0.0611
+      },
+      {
+        "item_id": 43,
+        "score": 2.904,
+        "misrank_share": 0.06
+      },
+      {
+        "item_id": 188,
+        "score": 2.7486,
+        "misrank_share": 0.0583
+      },
+      {
+        "item_id": 86,
+        "score": 2.6342,
+        "misrank_share": 0.0566
+      },
+      {
+        "item_id": 24,
+        "score": 2.2577,
+        "misrank_share": 0.0538
+      },
+      {
+        "item_id": 224,
+        "score": 2.18,
+        "misrank_share": 0.0534
+      },
+      {
+        "item_id": 196,
+        "score": 2.0728,
+        "misrank_share": 0.052
+      },
+      {
+        "item_id": 243,
+        "score": 1.7654,
+        "misrank_share": 0.0496
+      },
+      {
+        "item_id": 85,
+        "score": 1.8345,
+        "misrank_share": 0.0496
+      },
+      {
+        "item_id": 49,
+        "score": 1.4071,
+        "misrank_share": 0.0455
+      },
+      {
+        "item_id": 58,
+        "score": 1.145,
+        "misrank_share": 0.0441
+      }
+    ],
+    "top12_cumulative_share": 0.6544,
+    "frame_only_items": [
+      49,
+      86,
+      188,
+      196
+    ],
+    "frame_only_misrank_share": 0.2124,
+    "artifact_negative_items": [
+      23,
+      49,
+      86,
+      148,
+      188,
+      196,
+      224
+    ],
+    "artifact_misrank_share": 0.2734,
+    "auroc_excluding_artifact_items": 0.6814
+  },
+  "overlap_h150d1": {
+    "spearman_logit_vs_containment": {
+      "0": {
+        "n": 124,
+        "rho": 0.599,
+        "p": 2.0663692244172874e-13
+      },
+      "1": {
+        "n": 413,
+        "rho": 0.475,
+        "p": 1.104290652573868e-24
+      }
+    },
+    "sinking_sentence_by_group": {
+      "pos": {
+        "n": 212,
+        "tok_containment": 0.723,
+        "num_containment": 0.83,
+        "max_common_ngram": 6.28,
+        "mean_logit": 0.059
+      },
+      "other_neg": {
+        "n": 26,
+        "tok_containment": 0.503,
+        "num_containment": 0.392,
+        "max_common_ngram": 4.15,
+        "mean_logit": -3.109
+      },
+      "top12_neg": {
+        "n": 12,
+        "tok_containment": 0.596,
+        "num_containment": 1.0,
+        "max_common_ngram": 6.58,
+        "mean_logit": 2.366
+      }
+    }
+  },
+  "vacuous_excluded_h150d1": {
+    "n_items": 246,
+    "auroc": 0.6851,
+    "strata": {
+      "ndoc_1": {
+        "n": 66,
+        "neg": 9,
+        "auroc": 0.8577,
+        "se": 0.0527
+      },
+      "ndoc_2_3": {
+        "n": 107,
+        "neg": 13,
+        "auroc": 0.689,
+        "se": 0.07
+      },
+      "ndoc_4plus": {
+        "n": 73,
+        "neg": 12,
+        "auroc": 0.5096,
+        "se": 0.0914
+      },
+      "npair_le4": {
+        "n": 152,
+        "neg": 16,
+        "auroc": 0.6857,
+        "se": 0.0625
+      },
+      "npair_5_15": {
+        "n": 61,
+        "neg": 8,
+        "auroc": 0.7995,
+        "se": 0.0695
+      },
+      "npair_16plus": {
+        "n": 33,
+        "neg": 10,
+        "auroc": 0.3783,
+        "se": 0.1103
+      },
+      "nsent_1": {
+        "n": 136,
+        "neg": 11,
+        "auroc": 0.6633,
+        "se": 0.0767
+      },
+      "nsent_2_3": {
+        "n": 70,
+        "neg": 10,
+        "auroc": 0.7033,
+        "se": 0.0796
+      },
+      "nsent_4plus": {
+        "n": 40,
+        "neg": 13,
+        "auroc": 0.4444,
+        "se": 0.0992
+      }
+    },
+    "sinking_sentence_by_group": {
+      "other_neg": {
+        "n": 24,
+        "tok_containment": 0.516,
+        "num_containment": 0.392,
+        "max_common_ngram": 4.21,
+        "mean_logit": -3.456
+      },
+      "pos": {
+        "n": 212,
+        "tok_containment": 0.723,
+        "num_containment": 0.83,
+        "max_common_ngram": 6.28,
+        "mean_logit": 0.059
+      },
+      "top10_neg_contentful": {
+        "n": 10,
+        "tok_containment": 0.783,
+        "num_containment": 1.0,
+        "max_common_ngram": 8.0,
+        "mean_logit": 2.164
+      }
+    },
+    "top10_contentful_negatives": [
+      183,
+      153,
+      43,
+      24,
+      224,
+      85,
+      243,
+      81,
+      58,
+      226
+    ]
+  },
+  "strata_h150d2": {
+    "ndoc_1": {
+      "n": 70,
+      "neg": 13,
+      "auroc": 0.6748,
+      "se": 0.0761
+    },
+    "ndoc_2_3": {
+      "n": 107,
+      "neg": 13,
+      "auroc": 0.6277,
+      "se": 0.0768
+    },
+    "ndoc_4plus": {
+      "n": 73,
+      "neg": 12,
+      "auroc": 0.6052,
+      "se": 0.085
+    },
+    "npair_le4": {
+      "n": 156,
+      "neg": 20,
+      "auroc": 0.5654,
+      "se": 0.0664
+    },
+    "npair_5_15": {
+      "n": 61,
+      "neg": 8,
+      "auroc": 0.8184,
+      "se": 0.0652
+    },
+    "npair_16plus": {
+      "n": 33,
+      "neg": 10,
+      "auroc": 0.5435,
+      "se": 0.1093
+    },
+    "nsent_1": {
+      "n": 140,
+      "neg": 15,
+      "auroc": 0.5344,
+      "se": 0.0775
+    },
+    "nsent_2_3": {
+      "n": 70,
+      "neg": 10,
+      "auroc": 0.6633,
+      "se": 0.0851
+    },
+    "nsent_4plus": {
+      "n": 40,
+      "neg": 13,
+      "auroc": 0.6353,
+      "se": 0.0912
+    }
+  },
+  "strata_h150d2_wrappers_dropped": {
+    "ndoc_1": {
+      "n": 70,
+      "neg": 13,
+      "auroc": 0.749,
+      "se": 0.0664
+    },
+    "ndoc_2_3": {
+      "n": 107,
+      "neg": 13,
+      "auroc": 0.5929,
+      "se": 0.08
+    },
+    "ndoc_4plus": {
+      "n": 73,
+      "neg": 12,
+      "auroc": 0.6612,
+      "se": 0.0793
+    },
+    "npair_le4": {
+      "n": 156,
+      "neg": 20,
+      "auroc": 0.625,
+      "se": 0.0624
+    },
+    "npair_5_15": {
+      "n": 61,
+      "neg": 8,
+      "auroc": 0.8019,
+      "se": 0.069
+    },
+    "npair_16plus": {
+      "n": 33,
+      "neg": 10,
+      "auroc": 0.5913,
+      "se": 0.1062
+    },
+    "nsent_1": {
+      "n": 140,
+      "neg": 15,
+      "auroc": 0.6853,
+      "se": 0.0647
+    },
+    "nsent_2_3": {
+      "n": 70,
+      "neg": 10,
+      "auroc": 0.5783,
+      "se": 0.0941
+    },
+    "nsent_4plus": {
+      "n": 40,
+      "neg": 13,
+      "auroc": 0.6581,
+      "se": 0.0891
+    }
+  },
+  "kdoc_curve_h150d2": {
+    "1": {
+      "auroc_all": 0.575,
+      "auroc_pool4plus": 0.5833
+    },
+    "2": {
+      "auroc_all": 0.6449,
+      "auroc_pool4plus": 0.6134
+    },
+    "3": {
+      "auroc_all": 0.6285,
+      "auroc_pool4plus": 0.5369
+    },
+    "4": {
+      "auroc_all": 0.6342,
+      "auroc_pool4plus": 0.5697
+    },
+    "6": {
+      "auroc_all": 0.6435,
+      "auroc_pool4plus": 0.6079
+    },
+    "8": {
+      "auroc_all": 0.6425,
+      "auroc_pool4plus": 0.6052
+    }
+  },
+  "pool_inversion_h150d2": {
+    "pool2_3_label0": {
+      "n_sent": 37,
+      "mean_best_logit": -0.466,
+      "mean_doc_margin": 3.972
+    },
+    "pool2_3_label1": {
+      "n_sent": 180,
+      "mean_best_logit": 0.665,
+      "mean_doc_margin": 4.337
+    },
+    "pool4plus_label1": {
+      "n_sent": 162,
+      "mean_best_logit": 0.519,
+      "mean_doc_margin": 3.141
+    },
+    "pool4plus_label0": {
+      "n_sent": 64,
+      "mean_best_logit": -0.129,
+      "mean_doc_margin": 3.287
+    }
+  },
+  "wrapper_h150d2": {
+    "sentence_types": {
+      "is_frame": {
+        "n_sent": 22,
+        "mean_logit": -0.673,
+        "frac_sinking": 0.818
+      },
+      "is_yesno": {
+        "n_sent": 22,
+        "mean_logit": -1.438,
+        "frac_sinking": 0.545
+      },
+      "has_citemark": {
+        "n_sent": 26,
+        "mean_logit": -1.866,
+        "frac_sinking": 0.731
+      },
+      "has_url": {
+        "n_sent": 3,
+        "mean_logit": -3.855,
+        "frac_sinking": 0.0
+      },
+      "is_refline": {
+        "n_sent": 3,
+        "mean_logit": -3.855,
+        "frac_sinking": 0.0
+      },
+      "plain": {
+        "n_sent": 487,
+        "mean_logit": 0.603,
+        "frac_sinking": 0.448
+      }
+    },
+    "diagnostic_drops": {
+      "baseline": {
+        "auroc": 0.6425,
+        "se": 0.045
+      },
+      "drop_all_wrappers": {
+        "auroc": 0.6786,
+        "se": 0.0427
+      },
+      "drop_discourse_frames_only": {
+        "auroc": 0.6995,
+        "se": 0.0412
+      },
+      "drop_yesno_only": {
+        "auroc": 0.6077,
+        "se": 0.0469
+      }
+    },
+    "yesno_items": {
+      "n": 22,
+      "neg": 9,
+      "auroc": 0.6838,
+      "se": 0.1148,
+      "auroc_polarity_sentence_only": 0.5641,
+      "se_polarity_only": 0.1258,
+      "rest_auroc": 0.6119,
+      "rest_se": 0.0525
+    }
+  },
+  "misrank_h150d2": {
+    "top12_negatives": [
+      {
+        "item_id": 43,
+        "score": 4.0849,
+        "misrank_share": 0.0701
+      },
+      {
+        "item_id": 183,
+        "score": 4.0641,
+        "misrank_share": 0.0701
+      },
+      {
+        "item_id": 24,
+        "score": 3.2798,
+        "misrank_share": 0.0646
+      },
+      {
+        "item_id": 153,
+        "score": 2.6493,
+        "misrank_share": 0.059
+      },
+      {
+        "item_id": 243,
+        "score": 2.582,
+        "misrank_share": 0.058
+      },
+      {
+        "item_id": 85,
+        "score": 2.3961,
+        "misrank_share": 0.0566
+      },
+      {
+        "item_id": 188,
+        "score": 2.3118,
+        "misrank_share": 0.0566
+      },
+      {
+        "item_id": 196,
+        "score": 1.7719,
+        "misrank_share": 0.0521
+      },
+      {
+        "item_id": 86,
+        "score": 1.6963,
+        "misrank_share": 0.0514
+      },
+      {
+        "item_id": 81,
+        "score": 1.5367,
+        "misrank_share": 0.0497
+      },
+      {
+        "item_id": 172,
+        "score": 1.4418,
+        "misrank_share": 0.0493
+      },
+      {
+        "item_id": 49,
+        "score": 1.3095,
+        "misrank_share": 0.0476
+      }
+    ],
+    "top12_cumulative_share": 0.6851,
+    "frame_only_items": [
+      49,
+      86,
+      188,
+      196
+    ],
+    "frame_only_misrank_share": 0.2076,
+    "artifact_negative_items": [
+      23,
+      49,
+      86,
+      148,
+      188,
+      196,
+      224
+    ],
+    "artifact_misrank_share": 0.241,
+    "auroc_excluding_artifact_items": 0.6674
+  },
+  "overlap_h150d2": {
+    "spearman_logit_vs_containment": {
+      "0": {
+        "n": 124,
+        "rho": 0.618,
+        "p": 1.9684113332899238e-14
+      },
+      "1": {
+        "n": 413,
+        "rho": 0.518,
+        "p": 1.1038243091648495e-29
+      }
+    },
+    "sinking_sentence_by_group": {
+      "other_neg": {
+        "n": 26,
+        "tok_containment": 0.492,
+        "num_containment": 0.392,
+        "max_common_ngram": 3.65,
+        "mean_logit": -3.613
+      },
+      "top12_neg": {
+        "n": 12,
+        "tok_containment": 0.6,
+        "num_containment": 0.8,
+        "max_common_ngram": 6.08,
+        "mean_logit": 2.427
+      },
+      "pos": {
+        "n": 212,
+        "tok_containment": 0.728,
+        "num_containment": 0.831,
+        "max_common_ngram": 6.19,
+        "mean_logit": -0.293
+      }
+    }
+  },
+  "vacuous_excluded_h150d2": {
+    "n_items": 246,
+    "auroc": 0.6834,
+    "strata": {
+      "ndoc_1": {
+        "n": 66,
+        "neg": 9,
+        "auroc": 0.8129,
+        "se": 0.0631
+      },
+      "ndoc_2_3": {
+        "n": 107,
+        "neg": 13,
+        "auroc": 0.6277,
+        "se": 0.0768
+      },
+      "ndoc_4plus": {
+        "n": 73,
+        "neg": 12,
+        "auroc": 0.6052,
+        "se": 0.085
+      },
+      "npair_le4": {
+        "n": 152,
+        "neg": 16,
+        "auroc": 0.6149,
+        "se": 0.0694
+      },
+      "npair_5_15": {
+        "n": 61,
+        "neg": 8,
+        "auroc": 0.8184,
+        "se": 0.0652
+      },
+      "npair_16plus": {
+        "n": 33,
+        "neg": 10,
+        "auroc": 0.5435,
+        "se": 0.1093
+      },
+      "nsent_1": {
+        "n": 136,
+        "neg": 11,
+        "auroc": 0.5855,
+        "se": 0.0851
+      },
+      "nsent_2_3": {
+        "n": 70,
+        "neg": 10,
+        "auroc": 0.6633,
+        "se": 0.0851
+      },
+      "nsent_4plus": {
+        "n": 40,
+        "neg": 13,
+        "auroc": 0.6353,
+        "se": 0.0912
+      }
+    },
+    "sinking_sentence_by_group": {
+      "pos": {
+        "n": 212,
+        "tok_containment": 0.728,
+        "num_containment": 0.831,
+        "max_common_ngram": 6.19,
+        "mean_logit": -0.293
+      },
+      "other_neg": {
+        "n": 24,
+        "tok_containment": 0.479,
+        "num_containment": 0.324,
+        "max_common_ngram": 3.5,
+        "mean_logit": -3.96
+      },
+      "top10_neg_contentful": {
+        "n": 10,
+        "tok_containment": 0.847,
+        "num_containment": 0.833,
+        "max_common_ngram": 7.8,
+        "mean_logit": 2.314
+      }
+    },
+    "top10_contentful_negatives": [
+      43,
+      183,
+      24,
+      153,
+      243,
+      85,
+      81,
+      172,
+      129,
+      226
+    ]
+  },
+  "strata_h159d1_wrappers_dropped": {
+    "ndoc_1": {
+      "n": 70,
+      "neg": 13,
+      "auroc": 0.7463,
+      "se": 0.0668
+    },
+    "ndoc_2_3": {
+      "n": 107,
+      "neg": 13,
+      "auroc": 0.6354,
+      "se": 0.0761
+    },
+    "ndoc_4plus": {
+      "n": 73,
+      "neg": 12,
+      "auroc": 0.7486,
+      "se": 0.0676
+    },
+    "npair_le4": {
+      "n": 156,
+      "neg": 20,
+      "auroc": 0.6801,
+      "se": 0.0575
+    },
+    "npair_5_15": {
+      "n": 61,
+      "neg": 8,
+      "auroc": 0.7854,
+      "se": 0.0726
+    },
+    "npair_16plus": {
+      "n": 33,
+      "neg": 10,
+      "auroc": 0.6826,
+      "se": 0.0968
+    },
+    "nsent_1": {
+      "n": 140,
+      "neg": 15,
+      "auroc": 0.7392,
+      "se": 0.0579
+    },
+    "nsent_2_3": {
+      "n": 70,
+      "neg": 10,
+      "auroc": 0.6167,
+      "se": 0.0905
+    },
+    "nsent_4plus": {
+      "n": 40,
+      "neg": 13,
+      "auroc": 0.6695,
+      "se": 0.0879
+    }
+  },
+  "kdoc_curve_h159d1": {
+    "1": {
+      "auroc_all": 0.606,
+      "auroc_pool4plus": 0.6557
+    },
+    "2": {
+      "auroc_all": 0.6744,
+      "auroc_pool4plus": 0.6202
+    },
+    "3": {
+      "auroc_all": 0.682,
+      "auroc_pool4plus": 0.5997
+    },
+    "4": {
+      "auroc_all": 0.6945,
+      "auroc_pool4plus": 0.653
+    },
+    "6": {
+      "auroc_all": 0.7059,
+      "auroc_pool4plus": 0.6995
+    },
+    "8": {
+      "auroc_all": 0.7074,
+      "auroc_pool4plus": 0.709
+    }
+  },
+  "pool_inversion_h159d1": {
+    "pool2_3_label0": {
+      "n_sent": 37,
+      "mean_best_logit": 0.146,
+      "mean_doc_margin": 3.525
+    },
+    "pool2_3_label1": {
+      "n_sent": 180,
+      "mean_best_logit": 1.083,
+      "mean_doc_margin": 4.086
+    },
+    "pool4plus_label1": {
+      "n_sent": 162,
+      "mean_best_logit": 1.267,
+      "mean_doc_margin": 2.768
+    },
+    "pool4plus_label0": {
+      "n_sent": 64,
+      "mean_best_logit": 0.629,
+      "mean_doc_margin": 2.935
+    }
+  },
+  "wrapper_h159d1": {
+    "sentence_types": {
+      "is_frame": {
+        "n_sent": 22,
+        "mean_logit": -0.392,
+        "frac_sinking": 0.818
+      },
+      "is_yesno": {
+        "n_sent": 22,
+        "mean_logit": 0.22,
+        "frac_sinking": 0.409
+      },
+      "has_citemark": {
+        "n_sent": 26,
+        "mean_logit": 0.406,
+        "frac_sinking": 0.731
+      },
+      "has_url": {
+        "n_sent": 3,
+        "mean_logit": -1.773,
+        "frac_sinking": 0.0
+      },
+      "is_refline": {
+        "n_sent": 3,
+        "mean_logit": -1.773,
+        "frac_sinking": 0.0
+      },
+      "plain": {
+        "n_sent": 487,
+        "mean_logit": 1.107,
+        "frac_sinking": 0.456
+      }
+    },
+    "diagnostic_drops": {
+      "baseline": {
+        "auroc": 0.7074,
+        "se": 0.0406
+      },
+      "drop_all_wrappers": {
+        "auroc": 0.708,
+        "se": 0.0405
+      },
+      "drop_discourse_frames_only": {
+        "auroc": 0.744,
+        "se": 0.0376
+      },
+      "drop_yesno_only": {
+        "auroc": 0.6552,
+        "se": 0.0442
+      }
+    },
+    "yesno_items": {
+      "n": 22,
+      "neg": 9,
+      "auroc": 0.7607,
+      "se": 0.1027,
+      "auroc_polarity_sentence_only": 0.6667,
+      "se_polarity_only": 0.1169,
+      "rest_auroc": 0.6789,
+      "rest_se": 0.0478
+    }
+  },
+  "misrank_h159d1": {
+    "top12_negatives": [
+      {
+        "item_id": 183,
+        "score": 3.7161,
+        "misrank_share": 0.0878
+      },
+      {
+        "item_id": 24,
+        "score": 2.3912,
+        "misrank_share": 0.0751
+      },
+      {
+        "item_id": 43,
+        "score": 2.4131,
+        "misrank_share": 0.0751
+      },
+      {
+        "item_id": 153,
+        "score": 2.3099,
+        "misrank_share": 0.0738
+      },
+      {
+        "item_id": 85,
+        "score": 2.213,
+        "misrank_share": 0.0717
+      },
+      {
+        "item_id": 243,
+        "score": 1.5345,
+        "misrank_share": 0.0598
+      },
+      {
+        "item_id": 188,
+        "score": 1.1136,
+        "misrank_share": 0.0518
+      },
+      {
+        "item_id": 226,
+        "score": 1.0401,
+        "misrank_share": 0.0509
+      },
+      {
+        "item_id": 81,
+        "score": 0.948,
+        "misrank_share": 0.0496
+      },
+      {
+        "item_id": 58,
+        "score": 0.6968,
+        "misrank_share": 0.0454
+      },
+      {
+        "item_id": 49,
+        "score": 0.57,
+        "misrank_share": 0.0437
+      },
+      {
+        "item_id": 196,
+        "score": 0.2272,
+        "misrank_share": 0.0399
+      }
+    ],
+    "top12_cumulative_share": 0.7246,
+    "frame_only_items": [
+      49,
+      86,
+      188,
+      196
+    ],
+    "frame_only_misrank_share": 0.1727,
+    "artifact_negative_items": [
+      23,
+      49,
+      86,
+      148,
+      188,
+      196,
+      224
+    ],
+    "artifact_misrank_share": 0.1981,
+    "auroc_excluding_artifact_items": 0.7124
+  },
+  "overlap_h159d1": {
+    "spearman_logit_vs_containment": {
+      "0": {
+        "n": 124,
+        "rho": 0.615,
+        "p": 2.875106890130293e-14
+      },
+      "1": {
+        "n": 413,
+        "rho": 0.489,
+        "p": 3.2391217966365114e-26
+      }
+    },
+    "sinking_sentence_by_group": {
+      "pos": {
+        "n": 212,
+        "tok_containment": 0.74,
+        "num_containment": 0.848,
+        "max_common_ngram": 6.44,
+        "mean_logit": 0.507
+      },
+      "other_neg": {
+        "n": 26,
+        "tok_containment": 0.504,
+        "num_containment": 0.325,
+        "max_common_ngram": 4.04,
+        "mean_logit": -2.478
+      },
+      "top12_neg": {
+        "n": 12,
+        "tok_containment": 0.632,
+        "num_containment": 1.0,
+        "max_common_ngram": 6.08,
+        "mean_logit": 1.598
+      }
+    }
+  },
+  "vacuous_excluded_h159d1": {
+    "n_items": 246,
+    "auroc": 0.7295,
+    "strata": {
+      "ndoc_1": {
+        "n": 66,
+        "neg": 9,
+        "auroc": 0.8187,
+        "se": 0.0618
+      },
+      "ndoc_2_3": {
+        "n": 107,
+        "neg": 13,
+        "auroc": 0.6743,
+        "se": 0.0718
+      },
+      "ndoc_4plus": {
+        "n": 73,
+        "neg": 12,
+        "auroc": 0.709,
+        "se": 0.0733
+      },
+      "npair_le4": {
+        "n": 152,
+        "neg": 16,
+        "auroc": 0.6994,
+        "se": 0.0609
+      },
+      "npair_5_15": {
+        "n": 61,
+        "neg": 8,
+        "auroc": 0.8019,
+        "se": 0.069
+      },
+      "npair_16plus": {
+        "n": 33,
+        "neg": 10,
+        "auroc": 0.6739,
+        "se": 0.0979
+      },
+      "nsent_1": {
+        "n": 136,
+        "neg": 11,
+        "auroc": 0.6618,
+        "se": 0.0769
+      },
+      "nsent_2_3": {
+        "n": 70,
+        "neg": 10,
+        "auroc": 0.7567,
+        "se": 0.071
+      },
+      "nsent_4plus": {
+        "n": 40,
+        "neg": 13,
+        "auroc": 0.6553,
+        "se": 0.0894
+      }
+    },
+    "sinking_sentence_by_group": {
+      "pos": {
+        "n": 212,
+        "tok_containment": 0.74,
+        "num_containment": 0.848,
+        "max_common_ngram": 6.44,
+        "mean_logit": 0.507
+      },
+      "top10_neg_contentful": {
+        "n": 10,
+        "tok_containment": 0.818,
+        "num_containment": 0.8,
+        "max_common_ngram": 7.4,
+        "mean_logit": 1.722
+      },
+      "other_neg": {
+        "n": 24,
+        "tok_containment": 0.521,
+        "num_containment": 0.361,
+        "max_common_ngram": 4.08,
+        "mean_logit": -2.689
+      }
+    },
+    "top10_contentful_negatives": [
+      183,
+      43,
+      24,
+      153,
+      85,
+      243,
+      226,
+      81,
+      58,
+      241
+    ]
+  },
+  "enriched_contrast": {
+    "n_pairs_joined": 1941,
+    "mean_logit_shift_by_label": {
+      "0": {
+        "n": 463,
+        "mean_delta": 0.3,
+        "median_delta": 0.188
+      },
+      "1": {
+        "n": 1478,
+        "mean_delta": 0.53,
+        "median_delta": 0.303
+      }
+    },
+    "item_auroc": {
+      "h150d1": 0.6423,
+      "h159d1": 0.7074
+    },
+    "strata_h159d1": {
+      "ndoc_1": {
+        "n": 70,
+        "neg": 13,
+        "auroc": 0.7476,
+        "se": 0.0666
+      },
+      "ndoc_2_3": {
+        "n": 107,
+        "neg": 13,
+        "auroc": 0.6743,
+        "se": 0.0718
+      },
+      "ndoc_4plus": {
+        "n": 73,
+        "neg": 12,
+        "auroc": 0.709,
+        "se": 0.0733
+      },
+      "npair_le4": {
+        "n": 156,
+        "neg": 20,
+        "auroc": 0.6864,
+        "se": 0.0569
+      },
+      "npair_5_15": {
+        "n": 61,
+        "neg": 8,
+        "auroc": 0.8019,
+        "se": 0.069
+      },
+      "npair_16plus": {
+        "n": 33,
+        "neg": 10,
+        "auroc": 0.6739,
+        "se": 0.0979
+      },
+      "nsent_1": {
+        "n": 140,
+        "neg": 15,
+        "auroc": 0.6629,
+        "se": 0.0672
+      },
+      "nsent_2_3": {
+        "n": 70,
+        "neg": 10,
+        "auroc": 0.7567,
+        "se": 0.071
+      },
+      "nsent_4plus": {
+        "n": 40,
+        "neg": 13,
+        "auroc": 0.6553,
+        "se": 0.0894
+      }
+    },
+    "strata_h150d1": {
+      "ndoc_1": {
+        "n": 70,
+        "neg": 13,
+        "auroc": 0.7152,
+        "se": 0.0711
+      },
+      "ndoc_2_3": {
+        "n": 107,
+        "neg": 13,
+        "auroc": 0.689,
+        "se": 0.07
+      },
+      "ndoc_4plus": {
+        "n": 73,
+        "neg": 12,
+        "auroc": 0.5096,
+        "se": 0.0914
+      },
+      "npair_le4": {
+        "n": 156,
+        "neg": 20,
+        "auroc": 0.6195,
+        "se": 0.0628
+      },
+      "npair_5_15": {
+        "n": 61,
+        "neg": 8,
+        "auroc": 0.7995,
+        "se": 0.0695
+      },
+      "npair_16plus": {
+        "n": 33,
+        "neg": 10,
+        "auroc": 0.3783,
+        "se": 0.1103
+      },
+      "nsent_1": {
+        "n": 140,
+        "neg": 15,
+        "auroc": 0.5861,
+        "se": 0.0741
+      },
+      "nsent_2_3": {
+        "n": 70,
+        "neg": 10,
+        "auroc": 0.7033,
+        "se": 0.0796
+      },
+      "nsent_4plus": {
+        "n": 40,
+        "neg": 13,
+        "auroc": 0.4444,
+        "se": 0.0992
+      }
+    },
+    "frame_only_item_scores": {
+      "49": {
+        "h150d1": 1.407,
+        "h159d1": 0.57
+      },
+      "86": {
+        "h150d1": 2.634,
+        "h159d1": 0.161
+      },
+      "188": {
+        "h150d1": 2.749,
+        "h159d1": 1.114
+      },
+      "196": {
+        "h150d1": 2.073,
+        "h159d1": 0.227
+      }
+    },
+    "sentence_logit_shift": {
+      "plain_label1": {
+        "n": 383,
+        "mean_delta": 0.36
+      },
+      "wrapper_label0": {
+        "n": 20,
+        "mean_delta": 0.54
+      },
+      "plain_label0": {
+        "n": 104,
+        "mean_delta": 0.059
+      },
+      "wrapper_label1": {
+        "n": 30,
+        "mean_delta": 0.952
+      }
+    },
+    "stratum_delta": {
+      "ndoc_1": 0.0324,
+      "ndoc_2_3": -0.0147,
+      "ndoc_4plus": 0.1994,
+      "npair_le4": 0.0669,
+      "npair_5_15": 0.0024,
+      "npair_16plus": 0.2956,
+      "nsent_1": 0.0768,
+      "nsent_2_3": 0.0534,
+      "nsent_4plus": 0.2109
+    },
+    "shift_by_containment": {
+      "cont_ge80_label1": {
+        "n": 339,
+        "mean_delta": 0.202
+      },
+      "cont_lt50_label1": {
+        "n": 759,
+        "mean_delta": 0.603
+      },
+      "cont_lt50_label0": {
+        "n": 296,
+        "mean_delta": 0.422
+      },
+      "cont_ge80_label0": {
+        "n": 83,
+        "mean_delta": -0.398
+      },
+      "cont_50_80_label0": {
+        "n": 84,
+        "mean_delta": 0.558
+      },
+      "cont_50_80_label1": {
+        "n": 380,
+        "mean_delta": 0.678
+      }
+    },
+    "shift_by_near_copy": {
+      "not_near_copy_label0": {
+        "n": 411,
+        "mean_delta": 0.404
+      },
+      "near_copy_label1": {
+        "n": 214,
+        "mean_delta": 0.114
+      },
+      "near_copy_label0": {
+        "n": 52,
+        "mean_delta": -0.521
+      },
+      "not_near_copy_label1": {
+        "n": 1264,
+        "mean_delta": 0.601
+      }
+    },
+    "shift_by_pool_and_near_copy": {
+      "pool4plus_not_near_copy_label0": {
+        "n": 321,
+        "mean_delta": 0.283
+      },
+      "pool1_3_not_near_copy_label1": {
+        "n": 399,
+        "mean_delta": 0.384
+      },
+      "pool4plus_near_copy_label0": {
+        "n": 28,
+        "mean_delta": -1.193
+      },
+      "pool1_3_near_copy_label0": {
+        "n": 24,
+        "mean_delta": 0.262
+      },
+      "pool4plus_near_copy_label1": {
+        "n": 110,
+        "mean_delta": 0.232
+      },
+      "pool1_3_not_near_copy_label0": {
+        "n": 90,
+        "mean_delta": 0.833
+      },
+      "pool4plus_not_near_copy_label1": {
+        "n": 865,
+        "mean_delta": 0.7
+      },
+      "pool1_3_near_copy_label1": {
+        "n": 104,
+        "mean_delta": -0.011
+      }
+    },
+    "shift_by_pool": {
+      "pool4plus_label0": {
+        "n": 349,
+        "mean_delta": 0.165
+      },
+      "pool4plus_label1": {
+        "n": 975,
+        "mean_delta": 0.647
+      },
+      "pool1_3_label0": {
+        "n": 114,
+        "mean_delta": 0.713
+      },
+      "pool1_3_label1": {
+        "n": 503,
+        "mean_delta": 0.303
+      }
+    },
+    "shift_by_claim_length": {
+      "s_ge250_label1": {
+        "n": 71,
+        "mean_delta": -0.655
+      },
+      "s_ge250_label0": {
+        "n": 15,
+        "mean_delta": -0.045
+      },
+      "s_120_250_label0": {
+        "n": 180,
+        "mean_delta": 0.341
+      },
+      "s_120_250_label1": {
+        "n": 640,
+        "mean_delta": 0.563
+      },
+      "s_lt120_label0": {
+        "n": 268,
+        "mean_delta": 0.291
+      },
+      "s_lt120_label1": {
+        "n": 767,
+        "mean_delta": 0.612
+      }
+    },
+    "shift_by_window_length": {
+      "w_ge1000_label1": {
+        "n": 347,
+        "mean_delta": 0.114
+      },
+      "w_500_1000_label1": {
+        "n": 736,
+        "mean_delta": 0.674
+      },
+      "w_lt500_label1": {
+        "n": 395,
+        "mean_delta": 0.628
+      },
+      "w_ge1000_label0": {
+        "n": 107,
+        "mean_delta": 0.032
+      },
+      "w_lt500_label0": {
+        "n": 149,
+        "mean_delta": 0.632
+      },
+      "w_500_1000_label0": {
+        "n": 207,
+        "mean_delta": 0.199
+      }
+    },
+    "shift_spearman": {
+      "tok_containment_label0": {
+        "n": 463,
+        "rho": -0.06,
+        "p": 0.19868467349507238
+      },
+      "num_containment_label0": {
+        "n": 107,
+        "rho": 0.193,
+        "p": 0.04686362619077735
+      },
+      "tok_containment_label1": {
+        "n": 1478,
+        "rho": -0.117,
+        "p": 6.610205425965456e-06
+      },
+      "num_containment_label1": {
+        "n": 653,
+        "rho": -0.17,
+        "p": 1.328932948582498e-05
+      }
+    },
+    "h159d1_wrapper_drop": {
+      "baseline": 0.7074,
+      "wrappers_dropped": 0.6942,
+      "gain": -0.0132
+    }
+  },
+  "mechanisms": [
+    {
+      "name": "vacuous_claim_reject",
+      "definition": "score a response that carries no verifiable proposition - a bare provenance frame, a stray '(Context )' marker, a bibliography line - as unsupported rather than as trivially supported",
+      "evidence_it_is_a_bottleneck": "the four responses that are the string 'Based on the given context ,' and nothing else are all labelled unsupported, all score POSITIVE (+1.41, +2.63, +2.75, +2.07 on draw 1) at token containment 0.000, and carry 21.2% / 20.8% of hagrid's total misrank mass across the two flagship draws. Ranking them at the bottom lifts hagrid 0.6423 to 0.7182 and 0.6425 to 0.7167 (+0.0760 / +0.0742, draw spread 0.0018) - a ceiling, not an expected lane gain. The enriched mix did NOT fix it: the four still score positive (0.161 to 1.114, down from 1.407 to 2.749) and still carry 17.3% of the misrank mass",
+      "probe_design": "vacuous_reject: claims drawn from a fixed inventory of provenance frames, citation lines, bare URLs and empty markers against arbitrary passages, label 0, against matched bare contentful positives over the same passages; within-pair rank accuracy, chance 0.5. A short-but-contentful label-1 control is required so a model that learned 'short implies unsupported' scores at chance on it",
+      "lane_candidate": "rule-based, zero new data and zero new licence - label-0 pairs whose claim side is the same fixed hand-written inventory of contentless strings paired with evidence sampled from the existing mix, plus a short-but-contentful label-1 control at matched length",
+      "contamination": "CLEAR - hand-written claim side, already-banked evidence side",
+      "already_covered_by": null
+    },
+    {
+      "name": "source_select",
+      "definition": "bind a claim to the one retrieved passage that supports it and withhold credit when the best-matching passage is only topically adjacent",
+      "evidence_it_is_a_bottleneck": "with the four vacuous items excluded, AUROC by evidence-pool depth is 0.8577 / 0.8129 at 1 passage (n=66, 9 negatives), 0.6890 / 0.6277 at 2-3 (n=107, 13 negatives) and 0.5096 / 0.6052 at 4-8 (n=73, 12 negatives) over the two flagship draws - a 1-versus-4+ gap of 0.348 and 0.208 against a per-stratum SE of ~0.09. The enriched-mix checkpoint is a live existence proof: it lifts the same 4-8 cell to 0.7090 (+0.1516 over the flagship two-draw mean) and leaves the 1-passage cell flat at 0.8187, and its k-truncation curve RISES with added passages (0.6557 at k=1 to 0.7090 at k=8) where the flagship's falls (0.6216 to 0.5096 on draw 1)",
+      "probe_design": "attr_pool: one claim with a known single supporting passage; the positive presents the gold passage plus k BM25 topical distractors filtered so none entails the claim, the negative presents k+1 distractors with the gold removed. Sweep k in {0,1,3,7}, chance 0.5 at every k; the registered read is the AUROC-versus-k slope, null zero",
+      "lane_candidate": "rule-based BM25-distractor generator on a document-disjoint split using the probe's own construction; MiniCheck (MIT, 14,356 rows over 6,155 documents, median chunk 922 chars) is the right source because its passages are already hagrid-sized, VitaminC (CC-BY-SA-3.0) supplies volume, PubHealth (MIT) is unsuitable as-is at a 3,731-char median",
+      "contamination": "CLEAR - MiniCheck and VitaminC hold GREEN R14-H136 8-gram Jaccard verdicts against the ten walled arena corpora; hagrid is never a source",
+      "already_covered_by": "NO - AttributionBench is the closest attribution supervision banked and packs its references into ONE evidence chunk per row (median 296 chars), so it never presents a choice among competing passages"
+    },
+    {
+      "name": "overclaim_near_copy_reject",
+      "definition": "refuse credit to a claim that restates its passage almost verbatim yet asserts something the passage does not license",
+      "evidence_it_is_a_bottleneck": "excluding the four vacuous items, the ten worst-ranked unsupported items' sinking sentences carry token containment 0.783 / 0.847 against 0.723 / 0.728 for supported items, max common n-gram 8.0 / 7.8 against 6.28 / 6.19, numeral containment 1.000 / 0.833 against 0.830 / 0.831, and score +2.164 / +2.314 against +0.059 / -0.293. Correctly-rejected negatives sit at token containment 0.516 / 0.479 and n-gram 4.21 / 3.50 - rejection tracks surface mismatch, not unsupportedness. The enriched-mix contrast confirms it causally: deep-pool near-copy UNSUPPORTED pairs fall 1.193 logits (n=28) while deep-pool near-copy supported pairs rise 0.232 (n=110) and ordinary deep-pool supported pairs rise 0.700",
+      "probe_design": "nearcopy_overclaim: positives are near-verbatim restatements of a passage sentence, negatives are the SAME restatement with one licence-breaking edit that leaves surface overlap intact (scope widening, referent replacement, quantifier strengthening, antecedent deletion). Stratify by max common n-gram so the near-copy stratum (>= 8) reads separately; within-pair accuracy, chance 0.5",
+      "lane_candidate": "rule-based scope / quantifier / referent corruption over already-banked prose passages on the R17-H146 minimal-pair discipline; VitaminC (CC-BY-SA-3.0) already supplies the generic near-miss construction",
+      "contamination": "CLEAR - corruptor runs over already-banked, already-gated evidence",
+      "already_covered_by": "PARTIALLY - VitaminC is 34.7% of the flagship's pairs and is built exactly this way, so a fourth near-miss lane needs an argument that the existing one does not saturate; FAVA (CC-BY-4.0, banked) targets the same skill and is the competing credit for the H159 hagrid gain"
+    }
+  ],
+  "not_evidenced": {
+    "answer_frame_strip_general": "dropping the 22 discourse-frame sentences from the MIN appears to buy +0.0576 / +0.0570, but the gain is entirely the four contentless items: dropping the frame sentence from the other 18 frame-carrying responses moves hagrid -0.0164 / -0.0149, at the 95th and 97.5th percentile of a matched null that drops one RANDOM sentence from the same 18 items (null mean -0.019, sd 0.002-0.003, 200 draws)",
+    "yesno_polarity_deficit": "the 22 polarity-opening items hold 9 of 38 negatives and read AUROC 0.4274 on draw 1 but 0.6838 on draw 2; unmeasurable at 9 negatives, kept as a probe arm",
+    "single_passage_relation_binding": "in the 1-passage stratum the over-credited negatives have LOW token containment (0.222 / 0.291) - they are the contentless items again; excluding them the stratum reads 0.8577 / 0.8129 with almost no residual",
+    "inline_citation_markers": "26 sentences carry '[N]' markers, sink their item 73.1% of the time and score -1.054 / -1.866; no item-level price isolated and no matched control run - unmeasured, not absent"
+  },
+  "build_first": {
+    "mechanism": "vacuous_claim_reject",
+    "why": "not the largest but the only one buildable and probeable with no new data, no licence question and no contamination surface, and the only one the enriched mix left untouched. source_select and overclaim_near_copy_reject are already partially installed by banked supply, so their next step is a probe read on the three banked checkpoints, not a training arm",
+    "ranking": [
+      "source_select - largest measured prize (+0.1516 on the deep-pool stratum, demonstrated on a real checkpoint) but the highest build cost",
+      "overclaim_near_copy_reject - the substrate of source_select's gain; two banked corpora already target it, and it is what cost H159 its table subsets",
+      "vacuous_claim_reject - smallest prize (at most ~+0.008 of arena mean), cheapest build, unfixed by the enriched mix"
+    ]
+  },
+  "isolation": {
+    "question": "the R19-H159 verdict credits AttributionBench with hagrid's +0.0650; the same arm's H1 lane credits FAVA's overlap-prior suppression",
+    "signature_read": "the gain is carried by suppression of high-overlap unsupported windows inside deep evidence pools (-1.193 logits on 28 deep-pool near-copy unsupported pairs) - the exact prediction registered for FAVA, and also consistent with AttributionBench's high-overlap relation-error negatives",
+    "register_discriminator": "INCONCLUSIVE - the largest supported-minus-unsupported separation sits at 500-1,000-char windows (+0.475), hagrid's own passage size, not AttributionBench's 296-char median nor FAVA's 2,972",
+    "cheapest_separating_measurement": "score the three ALREADY-BANKED checkpoints on the three probes above; one scoring pass, ~0.2 GPU-h, zero training. A win on attr_pool is AttributionBench's attribution skill, a win on nearcopy_overclaim is FAVA's overlap-prior suppression, a win on vacuous_reject alone is neither",
+    "two_arm_expectation": "AttributionBench alone is +2.3% rows / +1.3% pairs on the flagship, a 0.9875 uniform de-weighting against H159's 0.8248, so the table collapse should not reproduce and the mean should land within noise of 0.71549; on hagrid expect less than +0.0650, plausibly +0.02 to +0.05. It answers 'is AttributionBench sufficient', not 'which skill moved'"
+  },
+  "frame_drop_control": {
+    "frame_items": 22,
+    "of_which_frame_only": 4,
+    "h150d1": {
+      "base": 0.6423,
+      "drop_all_frames": 0.6999,
+      "leg_a_frame_only_4": 0.7182,
+      "leg_b_other_18": 0.6259,
+      "leg_b_matched_null_mean": -0.019,
+      "leg_b_matched_null_sd": 0.0017,
+      "leg_b_observed": -0.0164,
+      "leg_b_percentile": 0.95
+    },
+    "h150d2": {
+      "base": 0.6425,
+      "drop_all_frames": 0.6995,
+      "leg_a_frame_only_4": 0.7167,
+      "leg_b_other_18": 0.6276,
+      "leg_b_matched_null_mean": -0.0192,
+      "leg_b_matched_null_sd": 0.0029,
+      "leg_b_observed": -0.0149,
+      "leg_b_percentile": 0.975
+    },
+    "null_draws": 200,
+    "seed": 1162
+  },
+  "training_mix_wrapper_census": {
+    "clean_public_mix": {
+      "rows": 685670,
+      "polarity_opener": 408,
+      "polarity_frac": 0.0006,
+      "discourse_frame": 0,
+      "discourse_frame_frac": 0.0
+    },
+    "attributionbench_lane": {
+      "rows": 16444,
+      "polarity_opener": 85,
+      "polarity_frac": 0.0052,
+      "discourse_frame": 2,
+      "discourse_frame_frac": 0.0001
+    },
+    "fava_lane": {
+      "rows": 30073,
+      "polarity_opener": 2,
+      "polarity_frac": 0.0001,
+      "discourse_frame": 0,
+      "discourse_frame_frac": 0.0
+    },
+    "hagrid_gate_sample": {
+      "sentences": 537,
+      "polarity_opener": 22,
+      "polarity_frac": 0.041,
+      "discourse_frame": 22,
+      "discourse_frame_frac": 0.041
+    }
+  }
+}

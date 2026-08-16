@@ -245,3 +245,8 @@ experiments/grounding-semantic/R13-H129_targets_parts/
 experiments/grounding-lexical/*.parquet
 tmp/
 experiments/grounding-semantic/_equiv_state_*.pt
+
+# Frozen [CLS] embedding dumps from analysis lanes - large, binary and
+# regenerable by re-running the lane; the numbers derived from them are
+# committed in the corresponding *_result.json.
+experiments/**/*_cls_*.npy

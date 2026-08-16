@@ -1,0 +1,158 @@
+{
+  "arm": "R19-H162",
+  "subset": "pubmedqa",
+  "status": "ANALYSIS ONLY - nothing here trains, tunes or selects on arena statistics",
+  "read": {
+    "protocol": "PRIMARY windowed decomposed-min (1500/750), max over windows then min over sentences",
+    "source": "banked R19-H161 per-pair dump, experiments/grounding-semantic/R19-H161_pairs_h150d1.parquet",
+    "fidelity_control": {
+      "h150d1_read": 0.5893,
+      "h150d1_banked": 0.5893,
+      "h150d1_abs_delta": 1e-05,
+      "h150d2_read": 0.6298,
+      "h150d2_banked": 0.6298,
+      "h150d2_abs_delta": 4e-05,
+      "note": "h150d2 control taken from logs/R19-H161_dump.log; its parquet had not landed when this analysis ran"
+    },
+    "fingerprint": {"n_items": 250, "n_sentences": 1314, "n_pairs": 6570}
+  },
+  "flagship_auroc": 0.6096,
+  "headroom": "faithful-oracle ceiling 0.7789 under the shipped read (R12_label_ceiling_result.json); flagship 2-draw 0.6096 (d1 0.5893, d2 0.6298); gap 0.169, the largest per-subset headroom in the arena. The whole 0.208 ceiling loss is cross-document conjunctive support: the same oracle reads 0.987 under a lenient cross-window read and 0.7789 only when support must fit ONE window, and since no pubmedqa document exceeds 1500 chars, window equals document",
+
+  "headline_diagnosis": {
+    "true_sentence_auroc_model": 0.67,
+    "true_sentence_auroc_lexical_containment": 0.666,
+    "model_margin_over_word_counting": 0.004,
+    "model_margin_rank": "second-worst in the arena after hagrid (-0.0977); tatqa +0.1237, hotpotqa +0.1204, covidqa +0.0872, delucionqa +0.0497, emanual +0.0469, expertqa +0.0186, finqa +0.0091, techqa +0.0090",
+    "aggregation_dilution": 0.0807,
+    "dilution_rank": "largest in the arena; six subsets GAIN from aggregation (tatqa -0.1134, finqa -0.1147, hagrid -0.1013), the two that lose lose little (covidqa +0.0260, techqa +0.0097)",
+    "why_min_is_worst_here": "5.256 sentences per item but only 12.68% unsupported, so a negative item carries ~0.67 bad sentences among ~5.3. Argmin localisation 0.526 against a 0.350 within-negative base rate (lift 1.51x). On positive items the minimum reads -3.933 on average, BELOW the mean unsupported-sentence score of -3.159",
+    "trivial_baseline": "ranking items by fewer response sentences alone reads 0.6347 vs the model's 0.5893 - the only subset where a trivial heuristic beats the verifier. Diagnostic only; selecting on it would be selection on the benchmark",
+    "error_split_h150d1": {
+      "threshold": "in-sample macro-F1-optimal (R17-H147 stated choice, nothing tuned on it)",
+      "n_errors": 88,
+      "false_positives": 44,
+      "fp_rate_of_negatives": 0.5714,
+      "fp_binomial_se": 0.056,
+      "false_negatives": 44,
+      "fn_rate_of_positives": 0.2543,
+      "fn_binomial_se": 0.033
+    }
+  },
+
+  "corpus_shape": {
+    "n_items": 250, "n_positive": 173, "n_negative": 77, "base_rate": 0.692,
+    "sentences_per_item_mean": 5.256,
+    "windows_per_sentence": 5.0,
+    "window_dispersion": 0.0,
+    "doc_chars_mean": 372.5,
+    "doc_chars_max": 1354,
+    "frac_docs_over_window": 0.0,
+    "geometry_note": "the SHALLOWEST geometry in the arena (techqa 22.49 windows/sentence, expertqa 10.71). Window boundary is not a live loss source and count-aware aggregation is a per-subset constant, as R16-H141 measured",
+    "frac_evidence_docs_with_aim_statement": 0.337,
+    "frac_evidence_docs_with_result_language": 0.130,
+    "frac_sentences_hedged": 0.327,
+    "frac_sentences_inference_marked": 0.291,
+    "frac_sentences_with_numeral": 0.279
+  },
+
+  "mechanisms": [
+    {
+      "name": "assert_vs_infer",
+      "definition": "separate a proposition the evidence STATES from one the evidence merely makes PLAUSIBLE",
+      "evidence_it_is_a_bottleneck": "50.3% of the 165 annotated unsupported sentences carry this signature in RAGBench's own explanation text (n=83 multilabel, 61 as primary class, share 0.370, SE 0.038) - the largest family. Model AUROC against supported sentences 0.6861 vs bag-of-words containment 0.7074 (both computed on the 61 primary-class members), i.e. 0.0213 BELOW word counting. On the 29.1% of sentences carrying an explicit inference marker the model reads 0.6028 vs lexical 0.6157, its worst slice, and its 291 supported / 87 unsupported members are not separated at all (mean scores -2.938 vs -3.431)",
+      "probe_design": "rationale-deletion minimal pairs over SciFact SUPPORT rows, which ship expert rationale sentence keys. For each claim: (a) the intact abstract, (b) the same abstract with ONLY the rationale sentence removed and every other sentence kept. (a) is supported, (b) is topically identical but no longer states the claim. AUROC(a vs b), balanced, chance 0.5. ~508 SUPPORT rows available; abstract-level held out and disjoint from any lane build",
+      "lane_candidate": "the same deletion operator run as a generator over already-banked, already-gated corpora carrying rationale or span annotations: SciFact (rationale sentence keys, CC BY 4.0 claims + ODC-By abstracts per upstream AI2), FAVA (30,073 rows, CC-BY-4.0, typed spans including its own 'unverifiable' and 'relation' types), MiniCheck C2D/D2C (14,395 rows, MIT, multi-sentence assembly by construction). Deterministic, no generation pass, no new acquisition",
+      "contamination": "CLEAR - all three ran the R14-H136 8-gram Jaccard instrument against the ten walled arena corpora and passed: SciFact max_fraction 0.0 (R13-scifact_gates_result.json), MiniCheck 0.0 (R19_minicheck_gate.json), FAVA 0.000116 (R19_fava_gate.json). None is PubMedQA-derived",
+      "already_covered_by": "partially - SciFact, FAVA and MiniCheck are banked as SUPPLY ONLY; no lane teaches deletion-of-the-stating-sentence, and no banked lane builds negatives by REMOVING evidence rather than corrupting the claim",
+      "licence_caveat": "SciFact carries a recorded discrepancy: upstream AI2 states CC BY 4.0 + ODC-By, the HuggingFace mirror tags cc-by-nc-2.0. The author's 2026-08-09 ruling treats upstream as authoritative; a non-commercial reading would bar a shipped model trained on it. MiniCheck (MIT) and FAVA (CC-BY-4.0) can supply the lane alone",
+      "rank": 1
+    },
+    {
+      "name": "paraphrase_support",
+      "definition": "recognise that a claim is supported when it RESTATES the evidence in different words, rather than requiring shared tokens",
+      "evidence_it_is_a_bottleneck": "carries the false-negative half of the error budget - 44 of 88 errors on h150d1, 0.254 of the 173 positives, SE 0.033. On positive items (where every sentence is annotated supported by construction) the sinking sentence has mean token containment 0.344 against 0.536 for its non-sinking siblings, and scores -3.933 - below the mean unsupported sentence at -3.159. Because the item score IS that minimum, these false lows set the score on 173 of 250 items. Exemplars: 'ranging from 19.0% to 38.3% of patients' (containment 0.07, score -4.96); 'En-bloc resection resulted in higher survival rates, indicating that a more comprehensive surgical approach is recommended' (0.06, -4.88)",
+      "probe_design": "supported (claim, evidence) pairs stratified by token containment into deciles. Statistic 1: the model's mean score profile across deciles - a model with the skill is flat, the flagship's slope is the measurement. Statistic 2: AUROC of supported-low-overlap against unsupported-high-overlap, chance 0.5",
+      "lane_candidate": "FActScore (549 labelled biographies, order-10k human atomic-fact S/NS judgments, MIT; atomic facts are abstractive restatements of a full Wikipedia article by construction) and AttributionBench (16,524 rows, Apache-2.0, after the ExpertQA/HAGRID carve-out; generative-search answers are heavily paraphrased). Select supported rows in the low-containment tail as a POSITIVE-side lane - the mirror of every existing near-miss lane",
+      "contamination": "CLEAR - FActScore gate PASS (R19_factscore_gate.json), AttributionBench gate PASS (R19_attributionbench_gate.json) with ExpertQA and HAGRID rows dropped by construction and the gate re-deriving zero walled rows",
+      "already_covered_by": "no - every banked near-miss lane is negative-side and HIGH-overlap by its own card's description (VitaminC 'differs from its positive by one number, entity or qualifier and nothing else'; LettuceDetect 'localized replacement edits'; quant_misbind 'zero pairs differ in anything but the numeral'). Nothing in the mix teaches that LOW overlap can still be support",
+      "honest_limit": "the least crisply atomic of the five - 'support survives paraphrase' is close to 'be a better entailment model', and the probe measures a score profile rather than a discrete skill",
+      "rank": 2
+    },
+    {
+      "name": "aim_vs_finding",
+      "definition": "bind a proposition to its evidential status: a study's stated OBJECTIVE or HYPOTHESIS is not its RESULT",
+      "evidence_it_is_a_bottleneck": "15.8% of the 165 unsupported sentences (n=26 on both the multilabel and primary-class counts, share 0.158, SE 0.028); model AUROC 0.6463 vs lexical containment 0.6641, again BELOW word counting. Structurally corroborated by the corpus census: 33.7% of the 1,250 evidence documents carry an explicit aim or objective statement while only 13.0% carry any result language, so the most common thing the evidence offers is precisely the thing a claim must not be credited against. Annotator exemplars: 'The hypothesis is mentioned in Document 0 but no supporting evidence or results are provided in any of the documents'; 'suggesting anticipation of results without results presented'",
+      "probe_design": "minimal pairs sharing every content word and differing only in evidential status. Evidence (a) = a trial's stated primary outcome measure ('To assess whether X affects Y'); evidence (b) = the same trial's posted result for that measure; claim = the result ('X did not significantly affect Y'). (b) supports it, (a) does not. AUROC(b vs a), balanced, chance 0.5. Claim-to-evidence lexical overlap is matched across the pair by construction, so a containment baseline reads chance and the probe isolates the skill",
+      "lane_candidate": "ClinicalTrials.gov registrations, rule-based generator. Completed interventional trials with posted results carry both the pre-stated primary outcome measure and the posted result for it as separate structured fields - the minimal pair for free at order 10^4-10^5 trials. Licence: US National Library of Medicine, works of the US Government, public domain; the CTTI AACT redistribution is freely available. Licence must be re-verified at pull time per the directory's standing convention",
+      "contamination": "CLEAR by construction - PubMedQA is built from PubMed abstracts; ClinicalTrials.gov registrations are a separate corpus. The R14-H136 8-gram gate runs regardless and is the binding check",
+      "already_covered_by": "no - no banked corpus separates a study's aim from its result. SciFact's NEI class (485 rows) is the nearest analogue but is not aim-versus-result by construction",
+      "build_cost_note": "highest of the three leaders - new acquisition, a dataset card, a fetch-script entry and a gate run before any lane build",
+      "rank": 3
+    },
+    {
+      "name": "relation_attested",
+      "definition": "bind a relation to the sentence that ASSERTS it, not to the co-presence of its two arguments in the evidence",
+      "evidence_it_is_a_bottleneck": "the largest model-versus-lexical deficit of any family - model 0.6338 against lexical containment 0.7144, -0.0806, computed on the 12 primary-class members - but only 9.1% of unsupported sentences (n=15 multilabel, 12 primary), and at that count the deficit itself carries a wide interval. Annotator exemplars: 'Documents 2 and 3 do discuss patient characteristics and glycemic control improvement but do not link these to patient readiness to change'; 'describes influences of sociohistorical values on medical education but does not specifically connect to pharmacy practices'",
+      "probe_design": "triples over any corpus with sentence-level rationales: evidence contains sentence A (about entity X) and sentence B (about entity Y) but no sentence linking them; claim (a) restates A, claim (b) restates B, claim (c) asserts the X-Y relation. AUROC(a,b vs c), chance 0.5",
+      "lane_candidate": "MiniCheck C2D/D2C (MIT, 14,395 rows, built so support must be assembled from several sentences) and VitaminC (~489k contrastive Wikipedia revisions, CC-BY-SA-3.0). The relation-conflation negative is a deterministic recombination over multi-sentence evidence; no generation pass needed",
+      "contamination": "CLEAR - MiniCheck gate PASS at max_fraction 0.0; VitaminC is banked and Wikipedia-derived",
+      "already_covered_by": "partially, with a recorded warning - MiniCheck is banked as supply for multi-sentence assembly but no lane builds relation-conflation negatives. WARNING: the R11 precedent is that adding Wikipedia-register supervision drove pubmedqa from 0.5665 to 0.4783, BELOW chance, and the VitaminC negative-class fix recovered it only to 0.5466. Wikipedia-register mass is measured harmful to this subset",
+      "structural_cap": "the read cannot see cross-document relations at all (max over five single-window abstracts), and the ceiling arithmetic puts the whole 0.208 ceiling loss there. A lane can teach WITHIN-document relation attestation; it cannot recover the cross-document half. 15.6% of pubmedqa's 935 annotated supported sentences draw on more than one document, and 42.8% of positive items carry at least one such sentence (vs 26.0% of negative items)",
+      "rank": 4
+    },
+    {
+      "name": "scope_bind",
+      "definition": "bind a finding to the subgroup, condition and comparator it was measured on",
+      "evidence_it_is_a_bottleneck": "UNDER-EVIDENCED, labelled as such. 10.3% multilabel (n=17, 10 primary); model 0.6832 against lexical 0.6860, computed on the 10 primary-class members, a margin of -0.0028 indistinguishable from zero at this count. The exemplars are real and clean ('the documents provide weight data but do not conclusively show that oral-only is associated with better weight gain... In fact, the tube-only method showed better outcomes'), but n=17 does not support a build decision",
+      "probe_design": "subgroup-swap minimal pairs: evidence states a finding for subgroup S; claim (a) states it for S, claim (b) states it for a sibling subgroup named in the same evidence, claim (c) states it universally. Chance 0.5",
+      "lane_candidate": "the quant_misbind generator family extended from table cells to subgroup labels in prose; the machinery exists (R17-H146_lane.parquet, 30,000 rows at claim-only probe 0.5053)",
+      "contamination": "CLEAR - rule-generated over already-admitted documents",
+      "already_covered_by": "the misbind family installs the row/column analogue at bind_col 0.9603 / bind_row 0.9920; whether that transfers to prose subgroups is unmeasured",
+      "rank": 5,
+      "recommendation": "NOT RECOMMENDED at this evidence base"
+    }
+  ],
+
+  "control_finding_not_a_lever": {
+    "name": "contradiction",
+    "note": "the ONE family where the model beats word counting - 0.6833 vs lexical 0.5370, +0.1463, on 10 primary-class members - and it is only 6.1% of the failures. Read plainly: the only semantics installed for this register is negation and polarity, which is what VitaminC and the near-miss lanes teach. Recorded as the control proving the instrument can see semantics when the corpus teaches it, not as a lever"
+  },
+
+  "closed_directions_reconfirmed": [
+    "sentence exclusion / discourse-marker abstention - R12 precursor P-B measured the oracle bound at pubmedqa +0.0065. Independently re-confirmed here: on positive items the sinking sentence is LESS likely to be meta-commentary than the non-sinking ones (0.215 vs 0.321), and meta sentences are the model's BEST slice (0.7179 vs lexical 0.5911)",
+    "aggregation redesign - R12 measured hard_min 0.7355 against a best alternative 0.7230; the aggregator line is shut. The +0.0807 dilution is reported as a constraint every lane must satisfy, not as a lever",
+    "count-aware aggregation - R16-H141 killed it pre-registration; re-confirmed here, pubmedqa carries exactly 5.00 windows per sentence with ZERO dispersion, so any count-aware correction is a per-subset constant",
+    "response length as a signal - reads 0.6347 against the model's 0.5893 but is selection on the benchmark; diagnostic only"
+  ],
+
+  "build_first": "assert_vs_infer - the only candidate that is simultaneously (i) the largest failure family at 50.3% of annotated unsupported sentences, (ii) a place where the model measurably UNDERPERFORMS a bag-of-words baseline (0.6861 vs 0.7074), and (iii) buildable from corpora already on disk with passing contamination gates, by a deterministic sentence-deletion operator with no acquisition, no generation pass and no GPU before the arm. Its negative-construction operator is also new in kind to this campaign - every banked lane corrupts the CLAIM, this one removes the EVIDENCE - so it tests a direction the training mix has never carried",
+
+  "expected_arena_movement": "pubmedqa +0.03 to +0.07, i.e. arena mean +0.003 to +0.007, with wide uncertainty and a real chance of zero. Arithmetic: pubmedqa is exactly 10% of the arena mean, so +0.05 on the subset is +0.005 on the headline. Why not larger: the sentence verifier has only 0.0807 of dilution headroom before the FIXED min aggregation, and min is closed, so sentence-level gains reach the item score attenuated. Why it might be zero or negative: corr(mean, pubmedqa) = -0.859 over 8 recorded reads (R13); the R16-H140 learned readout bought pubmedqa +0.0711 and cost hotpotqa -0.052 and tatqa -0.048 for a net mean of +0.0037; the R11 lane drove pubmedqa below chance outright. Replication bar: pooled within-pair seed sd on pubmedqa is 0.0216 (R16 banked control distribution) and the three-draw spread quoted for this wave is ~0.037, so any claimed move under ~0.05 needs two draws. Benchmark: the largest legal pubmedqa move the campaign has banked is the twin protocol's +0.066 (train-serve alignment, 0.6725), still 0.106 below the 0.7789 ceiling",
+
+  "artifacts": [
+    "/home/lab/workspace/private/ai-assistants/groundrails/experiments/grounding-semantic/R19-H162_pubmedqa_mechanisms.md",
+    "/home/lab/workspace/private/ai-assistants/groundrails/experiments/grounding-semantic/R19-H162_pubmedqa_mechanisms.json",
+    "/home/lab/workspace/private/ai-assistants/groundrails/experiments/grounding-semantic/R19-H162_pubmedqa_explore.py",
+    "/home/lab/workspace/private/ai-assistants/groundrails/experiments/grounding-semantic/R19-H162_pubmedqa_explore.json",
+    "/home/lab/workspace/private/ai-assistants/groundrails/experiments/grounding-semantic/R19-H162_pubmedqa_sents.parquet",
+    "/home/lab/workspace/private/ai-assistants/groundrails/experiments/grounding-semantic/R19-H162_pubmedqa_analyze.py",
+    "/home/lab/workspace/private/ai-assistants/groundrails/experiments/grounding-semantic/R19-H162_pubmedqa_analysis.json",
+    "/home/lab/workspace/private/ai-assistants/groundrails/experiments/grounding-semantic/R19-H162_pubmedqa_sent_h150d1.parquet",
+    "/home/lab/workspace/private/ai-assistants/groundrails/experiments/grounding-semantic/R19-H162_pubmedqa_sentlabel.py",
+    "/home/lab/workspace/private/ai-assistants/groundrails/experiments/grounding-semantic/R19-H162_pubmedqa_sentlabel.json",
+    "/home/lab/workspace/private/ai-assistants/groundrails/experiments/grounding-semantic/R19-H162_pubmedqa_sentlabel.parquet"
+  ],
+
+  "caveats": [
+    "77 negatives in 250 - the false-positive rate 0.5714 carries binomial SE 0.056; every FP-side count is a coarse reading",
+    "Family counts in the tail are small and are NOT ranked as if they were not: relation_not_attested n=15, scope_overextension n=17, contradiction n=10, entity_substitution n=5, false_absence n=2. Only the two leading families (n=83, n=26) support their readings",
+    "The explanation rule layer was not hand-adjudicated end to end - 24.8% of the 165 explanations fall to 'unclassified' under primary-class assignment. Thirty-five were read manually and the recurring shapes are relation_not_attested and entity_substitution, so BOTH families are UNDER-counted above. The regexes were not re-tuned to chase them; the direction of the bias is recorded rather than corrected. The unclassified bucket itself reads model 0.6582 vs lexical 0.6076",
+    "SINGLE DRAW for every sentence-level number - the taxonomy, the per-class discrimination, the +0.0040 model-over-lexical margin and the +0.0807 dilution are read on h150d1 only, because the h150d2 and h159d1 dumps had not landed when this analysis ran. pubmedqa's seed sd is 0.0216, so these are one-draw readings on a noisy subset and the h150d2 item AUROC (0.6298) differs from d1 (0.5893) by 0.0405",
+    "Alignment is near-total but not total - 1,301 of 1,314 sentences aligned to a RAGBench annotated sentence at similarity >= 0.6 (rate 0.9901, mean similarity 0.9842); 13 sentences are excluded and their labels are unknown",
+    "Part of the false-negative residual is annotator threshold, not model deficit - several sentences that sink positive items are the same SHAPE as the unsupported inference class ('This suggests that with proper maintenance and calibration, aneroid sphygmomanometers can be accurate') and differ only in how far the annotator let the inference run. No measurement here separates label noise from model error",
+    "The length baseline (0.6347) is reported to show the verifier adds nothing at item level; it is NOT a proposal, and selecting on it would be selection on the benchmark",
+    "Recorded correction to prior campaign prose - the R16-H142-T mechanism note describes pubmedqa as '~26 windows/item, the deepest documents in the arena'. The measurement here says the opposite: exactly 5.00 windows per sentence with zero dispersion and the SHORTEST documents in the arena (mean 372.5 chars, 0.0% over the 1,500-char window). The '~26' is the (sentence, window) pair count, which R16-H141 had already corrected. The twin's gain stands as measured; only that sentence's stated evidence is wrong",
+    "ClinicalTrials.gov is the one lane candidate not already on disk - its licence (US Government public domain via NLM; CTTI AACT redistribution) is asserted from the standing public terms and MUST be re-verified at pull time per this directory's own convention before any build"
+  ]
+}

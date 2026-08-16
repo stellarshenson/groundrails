@@ -1,0 +1,148 @@
+{
+  "n_items": 250,
+  "n_pos": 173,
+  "n_neg": 77,
+  "per_draw": {
+    "h150d1": {
+      "auroc": 0.5893,
+      "banked": 0.5893,
+      "threshold": -4.3628,
+      "n_errors": 88,
+      "false_positives": 44,
+      "fp_rate_of_neg": 0.5714,
+      "false_negatives": 44,
+      "fn_rate_of_pos": 0.2543,
+      "sentence_level_label_auroc": 0.5043,
+      "min_length_penalty": {
+        "pearson_r_nsent_vs_itemscore": -0.2209,
+        "auroc_of_negative_sentence_count_alone": 0.6347
+      },
+      "sinking_sentences": {
+        "misread_items": {
+          "is_meta": 0.1364,
+          "is_absence": 0.0114,
+          "asserts_finding": 0.3409,
+          "has_hedge": 0.4432,
+          "has_quantifier": 0.0682,
+          "has_causal": 0.0909,
+          "sig_aim_vs_finding": 0.125,
+          "n": 88,
+          "mean_tok_containment": 0.3259,
+          "mean_sent_score": -4.2255
+        },
+        "correct_items": {
+          "is_meta": 0.2284,
+          "is_absence": 0.0247,
+          "asserts_finding": 0.3951,
+          "has_hedge": 0.4259,
+          "has_quantifier": 0.1173,
+          "has_causal": 0.0741,
+          "sig_aim_vs_finding": 0.1296,
+          "n": 162,
+          "mean_tok_containment": 0.3345,
+          "mean_sent_score": -3.8613
+        },
+        "all": {
+          "is_meta": 0.196,
+          "is_absence": 0.02,
+          "asserts_finding": 0.376,
+          "has_hedge": 0.432,
+          "has_quantifier": 0.1,
+          "has_causal": 0.08,
+          "sig_aim_vs_finding": 0.128,
+          "n": 250,
+          "mean_tok_containment": 0.3315,
+          "mean_sent_score": -3.9895
+        },
+        "non_sinking_all": {
+          "is_meta": 0.328,
+          "is_absence": 0.0085,
+          "asserts_finding": 0.2961,
+          "has_hedge": 0.3026,
+          "has_quantifier": 0.1043,
+          "has_causal": 0.0414,
+          "sig_aim_vs_finding": 0.0846,
+          "n": 1064,
+          "mean_tok_containment": 0.5152,
+          "mean_sent_score": -1.6766
+        }
+      },
+      "tag_contrast": {
+        "is_meta": {
+          "n": 398,
+          "share": 0.3029,
+          "mean_sent_score_flagged": -1.999,
+          "mean_sent_score_other": -2.1677,
+          "delta": 0.1688,
+          "mean_tok_containment_flagged": 0.3521,
+          "share_in_neg_items": 0.3643,
+          "share_in_pos_items": 0.6357,
+          "sink_rate": 0.1231
+        },
+        "is_absence": {
+          "n": 14,
+          "note": "n<15, not read"
+        },
+        "asserts_finding": {
+          "n": 409,
+          "share": 0.3113,
+          "mean_sent_score_flagged": -2.5602,
+          "mean_sent_score_other": -1.9161,
+          "delta": -0.6441,
+          "mean_tok_containment_flagged": 0.473,
+          "share_in_neg_items": 0.3252,
+          "share_in_pos_items": 0.6748,
+          "sink_rate": 0.2298
+        },
+        "has_hedge": {
+          "n": 430,
+          "share": 0.3272,
+          "mean_sent_score_flagged": -2.9167,
+          "mean_sent_score_other": -1.7274,
+          "delta": -1.1893,
+          "mean_tok_containment_flagged": 0.3487,
+          "share_in_neg_items": 0.4093,
+          "share_in_pos_items": 0.5907,
+          "sink_rate": 0.2512
+        },
+        "has_quantifier": {
+          "n": 136,
+          "share": 0.1035,
+          "mean_sent_score_flagged": -2.1275,
+          "mean_sent_score_other": -2.1154,
+          "delta": -0.0122,
+          "mean_tok_containment_flagged": 0.5148,
+          "share_in_neg_items": 0.4044,
+          "share_in_pos_items": 0.5956,
+          "sink_rate": 0.1838
+        },
+        "has_causal": {
+          "n": 64,
+          "share": 0.0487,
+          "mean_sent_score_flagged": -2.7672,
+          "mean_sent_score_other": -2.0833,
+          "delta": -0.6838,
+          "mean_tok_containment_flagged": 0.4917,
+          "share_in_neg_items": 0.2812,
+          "share_in_pos_items": 0.7188,
+          "sink_rate": 0.3125
+        },
+        "sig_aim_vs_finding": {
+          "n": 122,
+          "share": 0.0928,
+          "mean_sent_score_flagged": -2.6477,
+          "mean_sent_score_other": -2.0623,
+          "delta": -0.5854,
+          "mean_tok_containment_flagged": 0.4423,
+          "share_in_neg_items": 0.4508,
+          "share_in_pos_items": 0.5492,
+          "sink_rate": 0.2623
+        }
+      },
+      "aim_vs_finding_item_coverage": {
+        "share_of_negative_items_with_signal": 0.3896,
+        "share_of_positive_items_with_signal": 0.237
+      }
+    }
+  }
+}

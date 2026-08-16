@@ -1,0 +1,100 @@
+{
+  "arm": "R19-H171 incumbent under its own convention",
+  "model": "KRLabsOrg/lettucedect-v2-mmbert-base",
+  "why": "the recorded diligence item closed on a self-reproduction of this project's own harness; two adversarial reviewers found that circular",
+  "vendor_convention": {
+    "source": "lettucedetect 0.2.3 preprocess_ragbench.py + detectors/transformer.py",
+    "prompt": "PROMPT_QA verbatim, question + all passages as 'passage i: ...'",
+    "passes": "ONE per item over the whole pool",
+    "max_length": 4096,
+    "score": "1 - max P(hallucinated) over answer tokens"
+  },
+  "harness_convention": {
+    "source": "R8-H77_unseen_arena.score_lettuce",
+    "prompt": "no question, no template; each document alone",
+    "passes": "one per document, each truncated to chunk_max_chars=1500",
+    "aggregation": "max over documents"
+  },
+  "per_subset": {
+    "covidqa": {
+      "n": 245,
+      "native_auc": 0.7432,
+      "harness_auc": 0.7355,
+      "delta": 0.00772,
+      "items_at_max_length": 0
+    },
+    "delucionqa": {
+      "n": 184,
+      "native_auc": 0.7018,
+      "harness_auc": 0.7929,
+      "delta": -0.09111,
+      "items_at_max_length": 0
+    },
+    "emanual": {
+      "n": 132,
+      "native_auc": 0.7694,
+      "harness_auc": 0.5999,
+      "delta": 0.16947,
+      "items_at_max_length": 0
+    },
+    "expertqa": {
+      "n": 203,
+      "native_auc": 0.8098,
+      "harness_auc": 0.6503,
+      "delta": 0.15954,
+      "items_at_max_length": 30
+    },
+    "finqa": {
+      "n": 250,
+      "native_auc": 0.6137,
+      "harness_auc": 0.717,
+      "delta": -0.1033,
+      "items_at_max_length": 0
+    },
+    "hagrid": {
+      "n": 250,
+      "native_auc": 0.7542,
+      "harness_auc": 0.5992,
+      "delta": 0.15502,
+      "items_at_max_length": 0
+    },
+    "hotpotqa": {
+      "n": 250,
+      "native_auc": 0.6161,
+      "harness_auc": 0.5976,
+      "delta": 0.01853,
+      "items_at_max_length": 0
+    },
+    "pubmedqa": {
+      "n": 250,
+      "native_auc": 0.607,
+      "harness_auc": 0.5162,
+      "delta": 0.09077,
+      "items_at_max_length": 0
+    },
+    "tatqa": {
+      "n": 250,
+      "native_auc": 0.5275,
+      "harness_auc": 0.6156,
+      "delta": -0.08806,
+      "items_at_max_length": 0
+    },
+    "techqa": {
+      "n": 250,
+      "native_auc": 0.6536,
+      "harness_auc": 0.6363,
+      "delta": 0.01729,
+      "items_at_max_length": 193
+    }
+  },
+  "native_mean": 0.67963,
+  "harness_mean": 0.64605,
+  "incumbent_best_mean": 0.67963,
+  "which_is_best": "native",
+  "flagship_mean": 0.71549,
+  "published_margin_vs_harness": 0.06944,
+  "honest_margin_vs_best": 0.03586,
+  "margin_shrinkage": 0.03358,
+  "rule": "fixed before the run: the published margin is recomputed against the incumbent's BEST convention. Taking its worse number because that flatters us is the failure this arm exists to remove.",
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+}

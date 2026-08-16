@@ -1,0 +1,140 @@
+{
+  "arm": "R19-H160",
+  "draw": 3,
+  "seed": 3150,
+  "path": "monolithic",
+  "card": "NVIDIA RTX 5000 Ada Generation",
+  "card_total_gb": 31.99,
+  "geometry": {
+    "sets_per_batch": 48,
+    "pairs_per_batch": 96
+  },
+  "peak_alloc_gb": 33.21,
+  "peak_reserved_gb": 56.88,
+  "bar_reserved_gb": 27.19,
+  "monolithic_fits": false,
+  "median_secs_per_step": 16.05,
+  "records": [
+    {
+      "step": 0,
+      "kind": "head",
+      "n_sets": 48,
+      "n_pairs": 74,
+      "task_loss": 0.6871732473373413,
+      "peak_alloc_gb": 24.269123077392578,
+      "peak_reserved_gb": 27.576171875,
+      "secs": 1.99
+    },
+    {
+      "step": 1,
+      "kind": "head",
+      "n_sets": 48,
+      "n_pairs": 69,
+      "task_loss": 0.7004839777946472,
+      "peak_alloc_gb": 24.902222633361816,
+      "peak_reserved_gb": 28.185546875,
+      "secs": 0.91
+    },
+    {
+      "step": 2,
+      "kind": "head",
+      "n_sets": 48,
+      "n_pairs": 78,
+      "task_loss": 0.7099609375,
+      "peak_alloc_gb": 27.691006660461426,
+      "peak_reserved_gb": 35.68359375,
+      "secs": 14.59
+    },
+    {
+      "step": 3,
+      "kind": "head",
+      "n_sets": 48,
+      "n_pairs": 86,
+      "task_loss": 0.7082034349441528,
+      "peak_alloc_gb": 30.143720626831055,
+      "peak_reserved_gb": 42.31640625,
+      "secs": 14.89
+    },
+    {
+      "step": 4,
+      "kind": "head",
+      "n_sets": 47,
+      "n_pairs": 93,
+      "task_loss": 0.6807052493095398,
+      "peak_alloc_gb": 32.305514335632324,
+      "peak_reserved_gb": 49.494140625,
+      "secs": 17.21
+    },
+    {
+      "step": 5,
+      "kind": "head",
+      "n_sets": 48,
+      "n_pairs": 58,
+      "task_loss": 0.6900167465209961,
+      "peak_alloc_gb": 21.526761054992676,
+      "peak_reserved_gb": 49.494140625,
+      "secs": 1.54
+    },
+    {
+      "step": 6,
+      "kind": "head",
+      "n_sets": 48,
+      "n_pairs": 79,
+      "task_loss": 0.7023868560791016,
+      "peak_alloc_gb": 27.969650745391846,
+      "peak_reserved_gb": 49.494140625,
+      "secs": 13.58
+    },
+    {
+      "step": 7,
+      "kind": "head",
+      "n_sets": 48,
+      "n_pairs": 81,
+      "task_loss": 0.6922780871391296,
+      "peak_alloc_gb": 28.598512172698975,
+      "peak_reserved_gb": 49.494140625,
+      "secs": 18.5
+    },
+    {
+      "step": 170,
+      "kind": "deep",
+      "n_sets": 48,
+      "n_pairs": 96,
+      "task_loss": 0.6971781253814697,
+      "peak_alloc_gb": 33.21124887466431,
+      "peak_reserved_gb": 56.87890625,
+      "secs": 21.14
+    },
+    {
+      "step": 278,
+      "kind": "deep",
+      "n_sets": 45,
+      "n_pairs": 96,
+      "task_loss": 0.7051687240600586,
+      "peak_alloc_gb": 33.210898876190186,
+      "peak_reserved_gb": 56.87890625,
+      "secs": 21.77
+    },
+    {
+      "step": 349,
+      "kind": "deep",
+      "n_sets": 47,
+      "n_pairs": 96,
+      "task_loss": 0.6989970803260803,
+      "peak_alloc_gb": 33.210898876190186,
+      "peak_reserved_gb": 56.87890625,
+      "secs": 21.87
+    },
+    {
+      "step": 420,
+      "kind": "deep",
+      "n_sets": 41,
+      "n_pairs": 96,
+      "task_loss": 0.6964163780212402,
+      "peak_alloc_gb": 33.210898876190186,
+      "peak_reserved_gb": 56.87890625,
+      "secs": 19.95
+    }
+  ],
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+}

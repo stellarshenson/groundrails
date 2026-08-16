@@ -61,15 +61,14 @@ Run:  CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=<gpu> \
 
 import os
 
-# GPU1 carries R19-H159 exclusively: a prior arm's reads sharing that card slowed
-# H159 from 0.915 to 4.84 s/step. The banked trainer defaults CUDA_VISIBLE_DEVICES
-# to "1" at import, so the placement is asserted BEFORE it is imported, and an
-# unset variable is a hard abort rather than a silent default onto H159's card.
+# GPU1 carried R19-H159 exclusively while that arm trained; the reservation was
+# LIFTED 2026-08-14 16:38 when H159 was killed at draw 1 and released the card.
+# The banked trainer defaults CUDA_VISIBLE_DEVICES to "1" at import, so the
+# placement is still asserted BEFORE it is imported and an unset variable stays a
+# hard abort rather than a silent default onto whatever card holds index 1.
 if "CUDA_VISIBLE_DEVICES" not in os.environ:
     raise SystemExit("GPU PLACEMENT ABORT: CUDA_VISIBLE_DEVICES is unset - set it "
-                     "explicitly (GPU0 or GPU2; GPU1 is reserved for R19-H159)")
-if os.environ["CUDA_VISIBLE_DEVICES"].strip() == "1":
-    raise SystemExit("GPU PLACEMENT ABORT: GPU1 is reserved exclusively for R19-H159")
+                     "explicitly (0, 1 or 2)")
 os.environ.setdefault("CUDA_DEVICE_ORDER", "PCI_BUS_ID")
 
 import argparse
@@ -227,8 +226,8 @@ def vram_probe(draw, n_steps=PROBE_STEPS, n_deep=PROBE_DEEP):
         enc, si = arm.encode_batch(tok, claims, wsets, batch)
         yy = torch.as_tensor(y[batch], device="cuda")
         gg = torch.as_tensor(groups[batch], device="cuda")
-        t_loss, d_loss, _ = train_step(arm, model, opt, sched, enc, si,
-                                       len(batch), yy, gg, lam)
+        t_loss, _d_loss, _ = train_step(arm, model, opt, sched, enc, si,
+                                        len(batch), yy, gg, lam)
         rec = {"step": step, "kind": kind, "n_sets": len(batch),
                "n_pairs": int(si.numel()),
                "task_loss": float(t_loss.detach()),

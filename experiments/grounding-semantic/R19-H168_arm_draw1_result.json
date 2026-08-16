@@ -1,0 +1,204 @@
+{
+  "gold": {
+    "auc": 0.5428,
+    "f1": 0.5198,
+    "n": 717
+  },
+  "gold_full": {
+    "auc": 0.507,
+    "f1": 0.5279,
+    "n": 2752
+  },
+  "ragtruth_en": {
+    "auc": 0.6194,
+    "f1": 0.6297,
+    "n": 600
+  },
+  "ragtruth_nonen": {
+    "auc": 0.7712,
+    "per_lang": {
+      "de": 0.7656,
+      "fr": 0.7735,
+      "es": 0.7681,
+      "it": 0.7713,
+      "pl": 0.7652,
+      "hu": 0.768,
+      "cn": 0.7868
+    }
+  },
+  "run": "twin",
+  "adapter_active": false,
+  "experiment": "R19-H168 EuroBERT-210m trunk swap draw 1 - the R18-H150 flagship recipe applied to EuroBERT/EuroBERT-210m",
+  "seed": 1150,
+  "params_M": 212.8,
+  "adapter_params": 790529,
+  "adapter_hidden": 512,
+  "lr": 1e-05,
+  "lr_adapter": null,
+  "lambda_max": 0.02,
+  "mix": "incumbent clean public-only mix (R10-H108.public_train), no lane",
+  "evidence": "UNTRUNCATED, windowed 1500/750 (A1)",
+  "objective": "MIL max-over-window BCE per row + per-pair domain CE",
+  "precision": "bf16 autocast on the trunk encode, fp32 heads/adapter/loss, fp32 for both reads (read protocol byte-identical to the banked windowed read); identical in both runs of the pair",
+  "mix_rows": 721210,
+  "dann_groups": 14,
+  "group_counts": {
+    "halueval": 40000,
+    "psiloqa": 61712,
+    "quant_misbind": 30000,
+    "quant_scale_unit": 5540,
+    "ragtruth_cn": 15090,
+    "ragtruth_de": 15090,
+    "ragtruth_en": 15090,
+    "ragtruth_es": 15090,
+    "ragtruth_fr": 15090,
+    "ragtruth_hu": 15090,
+    "ragtruth_it": 15090,
+    "ragtruth_pl": 15090,
+    "tabfact": 92585,
+    "vitaminc": 370653
+  },
+  "window_census": {
+    "mean_windows_per_row": 1.4821,
+    "median_windows_per_row": 1,
+    "p90_windows_per_row": 3,
+    "max_windows_per_row": 40,
+    "rows_with_multi_window_set": 137622,
+    "multi_window_share": 0.1908,
+    "total_pairs": 1068905,
+    "histogram_clipped_at_10": {
+      "1": 583588,
+      "2": 51038,
+      "3": 42105,
+      "4": 17501,
+      "5": 9482,
+      "6": 5569,
+      "7": 3828,
+      "8": 2675,
+      "9": 1818,
+      "10": 3606
+    },
+    "per_group": {
+      "halueval": {
+        "rows": 40000,
+        "mean_windows": 2.839,
+        "max_windows": 15
+      },
+      "psiloqa": {
+        "rows": 61712,
+        "mean_windows": 1.07,
+        "max_windows": 25
+      },
+      "quant_misbind": {
+        "rows": 30000,
+        "mean_windows": 1.0,
+        "max_windows": 1
+      },
+      "quant_scale_unit": {
+        "rows": 5540,
+        "mean_windows": 1.0,
+        "max_windows": 1
+      },
+      "ragtruth_cn": {
+        "rows": 15090,
+        "mean_windows": 1.58,
+        "max_windows": 11
+      },
+      "ragtruth_de": {
+        "rows": 15090,
+        "mean_windows": 3.312,
+        "max_windows": 16
+      },
+      "ragtruth_en": {
+        "rows": 15090,
+        "mean_windows": 2.687,
+        "max_windows": 14
+      },
+      "ragtruth_es": {
+        "rows": 15090,
+        "mean_windows": 3.316,
+        "max_windows": 17
+      },
+      "ragtruth_fr": {
+        "rows": 15090,
+        "mean_windows": 3.44,
+        "max_windows": 16
+      },
+      "ragtruth_hu": {
+        "rows": 15090,
+        "mean_windows": 3.004,
+        "max_windows": 40
+      },
+      "ragtruth_it": {
+        "rows": 15090,
+        "mean_windows": 3.332,
+        "max_windows": 16
+      },
+      "ragtruth_pl": {
+        "rows": 15090,
+        "mean_windows": 3.078,
+        "max_windows": 15
+      },
+      "tabfact": {
+        "rows": 92585,
+        "mean_windows": 1.346,
+        "max_windows": 12
+      },
+      "vitaminc": {
+        "rows": 370653,
+        "mean_windows": 1.0,
+        "max_windows": 5
+      }
+    }
+  },
+  "n_steps": 15036,
+  "sets_per_batch": 48,
+  "pairs_per_batch": 96,
+  "init_fingerprint": "8a4f4e4064dace04f92787728bab694d",
+  "init_fingerprint_scope": "trunk+task_head",
+  "perm_fingerprint": "7d13f9ac86a79574",
+  "bars": {
+    "pubmedqa_primary_min": 0.6495,
+    "pubmedqa_kill_below": 0.6279,
+    "hotpotqa_min": 0.638,
+    "tatqa_min": 0.674,
+    "arena_mean_min": 0.70311,
+    "gold_full_min": 0.8414,
+    "ragtruth_nonen_min": 0.82
+  },
+  "seed_sd": {
+    "pubmedqa": 0.0216,
+    "hotpotqa": 0.0144,
+    "tatqa": 0.029
+  },
+  "control": {
+    "pubmedqa": 0.6063,
+    "hotpotqa": 0.6668,
+    "tatqa": 0.732,
+    "arena_mean": 0.70311
+  },
+  "train_seconds": 11686.7,
+  "checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/R19-H168-eurobert-draw1",
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates.",
+  "arm": "h168_eurobert_draw1",
+  "trunk": "EuroBERT/EuroBERT-210m",
+  "trunk_swapped_from": "jhu-clsp/mmBERT-base",
+  "single_variable": "the encoder only - mix, seed, schedule, objective, DANN groups, window presentation and MAX_LEN are the flagship's, taken from R18-H150_arm_run.rebind",
+  "deviations": [
+    "trust_remote_code=True injected (EuroBERT ships pinned modelling code)",
+    "R19-H168_eurobert_compat RoPE shim - transformers 5.14.1 removed the 'default' ROPE_INIT_FUNCTIONS key EuroBERT's 4.40-era code requires"
+  ],
+  "tokenizer_confound": "EuroBERT spends 11.4% more tokens on identical text (hu +20.1%, pl +20.0%, it +16.8%, de +16.4%, en -2.6%); at MAX_LEN 512 it therefore sees less evidence on the non-EN hold subsets. NOT corrected - see R19-H168_trunk_gate_b.json",
+  "comparator": {
+    "flagship_2draw_mean": 0.71549,
+    "flagship_draw1_windowed": 0.71436,
+    "bars": {
+      "primary_2draw": 0.72049,
+      "pilot_kill_draw1": 0.71049,
+      "gold_full": 0.84,
+      "non_en": 0.82,
+      "anti_gaming": 0.7438
+    }
+  },
+  "bars_note": "the `bars`/`control` blocks are the banked G1 twin's; H168's registered bars are adjudicated by the coordinator"
+}

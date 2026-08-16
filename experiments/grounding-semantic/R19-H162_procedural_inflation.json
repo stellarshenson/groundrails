@@ -1,0 +1,282 @@
+{
+  "read": "PRIMARY windowed decomposed-min (1500/750, MAX over windows, MIN over sentences)",
+  "source": "banked R19-H161 per-pair logit dump; no GPU, no re-scoring",
+  "dumps_used": [
+    "h150d1"
+  ],
+  "subsets": {
+    "emanual": {
+      "n_items": 132,
+      "n_positive": 118,
+      "n_negative": 14,
+      "n_sentences": 748,
+      "n_windows_total": 530,
+      "mean_docs_per_item": 3.0,
+      "mean_doc_chars": 968.4090909090909,
+      "inflation": {
+        "h150d1": {
+          "sent_max_by_window_count": [
+            {
+              "bin": "6-10",
+              "label": 1,
+              "n": 92,
+              "mean_sent_logit": 1.9384,
+              "mean_argmax_tok_containment": 0.7811
+            },
+            {
+              "bin": "<=5",
+              "label": 0,
+              "n": 106,
+              "mean_sent_logit": 0.7514,
+              "mean_argmax_tok_containment": 0.7039
+            },
+            {
+              "bin": "<=5",
+              "label": 1,
+              "n": 550,
+              "mean_sent_logit": 1.5205,
+              "mean_argmax_tok_containment": 0.771
+            }
+          ],
+          "spearman_windowcount_vs_sentmax": 0.1496,
+          "auroc": 0.69734,
+          "auroc_se": 0.06545,
+          "auroc_of_window_count_alone": 0.63257,
+          "spearman_item_windowcount_vs_score": 0.2491,
+          "spearman_item_windowcount_vs_score_label0": 0.5398,
+          "spearman_item_windowcount_vs_score_label1": 0.2002,
+          "random_window_cap": {
+            "K=3": {
+              "mean_auroc": 0.64298,
+              "sd": 0.01856,
+              "delta_vs_full": -0.05436
+            },
+            "K=5": {
+              "mean_auroc": 0.67793,
+              "sd": 0.00583,
+              "delta_vs_full": -0.01941
+            },
+            "K=10": {
+              "mean_auroc": 0.69734,
+              "sd": 0.0,
+              "delta_vs_full": -0.0
+            },
+            "K=20": {
+              "mean_auroc": 0.69734,
+              "sd": 0.0,
+              "delta_vs_full": -0.0
+            },
+            "K=40": {
+              "mean_auroc": 0.69734,
+              "sd": 0.0,
+              "delta_vs_full": -0.0
+            }
+          }
+        }
+      }
+    },
+    "techqa": {
+      "n_items": 250,
+      "n_positive": 141,
+      "n_negative": 109,
+      "n_sentences": 1737,
+      "n_windows_total": 5624,
+      "mean_docs_per_item": 5.0,
+      "mean_doc_chars": 3730.6432,
+      "inflation": {
+        "h150d1": {
+          "sent_max_by_window_count": [
+            {
+              "bin": "11-20",
+              "label": 0,
+              "n": 356,
+              "mean_sent_logit": 0.4518,
+              "mean_argmax_tok_containment": 0.5047
+            },
+            {
+              "bin": "11-20",
+              "label": 1,
+              "n": 317,
+              "mean_sent_logit": 1.4728,
+              "mean_argmax_tok_containment": 0.6456
+            },
+            {
+              "bin": "21-40",
+              "label": 0,
+              "n": 456,
+              "mean_sent_logit": 0.258,
+              "mean_argmax_tok_containment": 0.5057
+            },
+            {
+              "bin": "21-40",
+              "label": 1,
+              "n": 413,
+              "mean_sent_logit": 1.4394,
+              "mean_argmax_tok_containment": 0.6931
+            },
+            {
+              "bin": "6-10",
+              "label": 0,
+              "n": 34,
+              "mean_sent_logit": 0.2941,
+              "mean_argmax_tok_containment": 0.5955
+            },
+            {
+              "bin": "6-10",
+              "label": 1,
+              "n": 73,
+              "mean_sent_logit": 1.3742,
+              "mean_argmax_tok_containment": 0.6376
+            },
+            {
+              "bin": "<=5",
+              "label": 0,
+              "n": 16,
+              "mean_sent_logit": 0.491,
+              "mean_argmax_tok_containment": 0.5273
+            },
+            {
+              "bin": "<=5",
+              "label": 1,
+              "n": 2,
+              "mean_sent_logit": 0.8642,
+              "mean_argmax_tok_containment": 0.5417
+            },
+            {
+              "bin": ">40",
+              "label": 0,
+              "n": 43,
+              "mean_sent_logit": -0.3472,
+              "mean_argmax_tok_containment": 0.4701
+            },
+            {
+              "bin": ">40",
+              "label": 1,
+              "n": 27,
+              "mean_sent_logit": 1.2148,
+              "mean_argmax_tok_containment": 0.7462
+            }
+          ],
+          "spearman_windowcount_vs_sentmax": -0.0449,
+          "auroc": 0.73609,
+          "auroc_se": 0.031,
+          "auroc_of_window_count_alone": 0.4391,
+          "spearman_item_windowcount_vs_score": 0.0285,
+          "spearman_item_windowcount_vs_score_label0": 0.1347,
+          "spearman_item_windowcount_vs_score_label1": 0.0218,
+          "random_window_cap": {
+            "K=3": {
+              "mean_auroc": 0.57991,
+              "sd": 0.02101,
+              "delta_vs_full": -0.15618
+            },
+            "K=5": {
+              "mean_auroc": 0.6066,
+              "sd": 0.02336,
+              "delta_vs_full": -0.12949
+            },
+            "K=10": {
+              "mean_auroc": 0.66554,
+              "sd": 0.01773,
+              "delta_vs_full": -0.07055
+            },
+            "K=20": {
+              "mean_auroc": 0.72353,
+              "sd": 0.00845,
+              "delta_vs_full": -0.01256
+            },
+            "K=40": {
+              "mean_auroc": 0.73538,
+              "sd": 0.00086,
+              "delta_vs_full": -0.00071
+            }
+          }
+        }
+      }
+    },
+    "delucionqa": {
+      "n_items": 184,
+      "n_positive": 172,
+      "n_negative": 12,
+      "n_sentences": 929,
+      "n_windows_total": 984,
+      "mean_docs_per_item": 3.0,
+      "mean_doc_chars": 1496.0072463768115,
+      "inflation": {
+        "h150d1": {
+          "sent_max_by_window_count": [
+            {
+              "bin": "11-20",
+              "label": 1,
+              "n": 34,
+              "mean_sent_logit": 2.1179,
+              "mean_argmax_tok_containment": 0.8297
+            },
+            {
+              "bin": "6-10",
+              "label": 0,
+              "n": 18,
+              "mean_sent_logit": 1.7036,
+              "mean_argmax_tok_containment": 0.8134
+            },
+            {
+              "bin": "6-10",
+              "label": 1,
+              "n": 364,
+              "mean_sent_logit": 2.4674,
+              "mean_argmax_tok_containment": 0.8315
+            },
+            {
+              "bin": "<=5",
+              "label": 0,
+              "n": 32,
+              "mean_sent_logit": -0.1977,
+              "mean_argmax_tok_containment": 0.7123
+            },
+            {
+              "bin": "<=5",
+              "label": 1,
+              "n": 481,
+              "mean_sent_logit": 1.846,
+              "mean_argmax_tok_containment": 0.7971
+            }
+          ],
+          "spearman_windowcount_vs_sentmax": 0.1539,
+          "auroc": 0.80087,
+          "auroc_se": 0.05147,
+          "auroc_of_window_count_alone": 0.67684,
+          "spearman_item_windowcount_vs_score": 0.0977,
+          "spearman_item_windowcount_vs_score_label0": 0.3128,
+          "spearman_item_windowcount_vs_score_label1": 0.026,
+          "random_window_cap": {
+            "K=3": {
+              "mean_auroc": 0.71839,
+              "sd": 0.02729,
+              "delta_vs_full": -0.08248
+            },
+            "K=5": {
+              "mean_auroc": 0.78538,
+              "sd": 0.01398,
+              "delta_vs_full": -0.01549
+            },
+            "K=10": {
+              "mean_auroc": 0.80063,
+              "sd": 0.00047,
+              "delta_vs_full": -0.00024
+            },
+            "K=20": {
+              "mean_auroc": 0.80087,
+              "sd": 0.0,
+              "delta_vs_full": 0.0
+            },
+            "K=40": {
+              "mean_auroc": 0.80087,
+              "sd": 0.0,
+              "delta_vs_full": 0.0
+            }
+          }
+        }
+      }
+    }
+  }
+}

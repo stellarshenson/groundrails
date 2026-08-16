@@ -1,0 +1,111 @@
+{
+ "n_rows": 721210,
+ "n_labelled": 400653,
+ "labelled_share": 0.5555,
+ "by_class": {
+  "contradicted": 146958,
+  "supported": 200714,
+  "absent": 52981,
+  "masked": 320557
+ },
+ "by_group": {
+  "halueval": {
+   "rows": 40000,
+   "contradicted": 0,
+   "supported": 0,
+   "absent": 0,
+   "masked": 40000
+  },
+  "psiloqa": {
+   "rows": 61712,
+   "contradicted": 0,
+   "supported": 0,
+   "absent": 0,
+   "masked": 61712
+  },
+  "quant_misbind": {
+   "rows": 30000,
+   "contradicted": 15000,
+   "supported": 15000,
+   "absent": 0,
+   "masked": 0
+  },
+  "quant_scale_unit": {
+   "rows": 5540,
+   "contradicted": 0,
+   "supported": 0,
+   "absent": 0,
+   "masked": 5540
+  },
+  "ragtruth_cn": {
+   "rows": 15090,
+   "contradicted": 0,
+   "supported": 0,
+   "absent": 0,
+   "masked": 15090
+  },
+  "ragtruth_de": {
+   "rows": 15090,
+   "contradicted": 0,
+   "supported": 0,
+   "absent": 0,
+   "masked": 15090
+  },
+  "ragtruth_en": {
+   "rows": 15090,
+   "contradicted": 0,
+   "supported": 0,
+   "absent": 0,
+   "masked": 15090
+  },
+  "ragtruth_es": {
+   "rows": 15090,
+   "contradicted": 0,
+   "supported": 0,
+   "absent": 0,
+   "masked": 15090
+  },
+  "ragtruth_fr": {
+   "rows": 15090,
+   "contradicted": 0,
+   "supported": 0,
+   "absent": 0,
+   "masked": 15090
+  },
+  "ragtruth_hu": {
+   "rows": 15090,
+   "contradicted": 0,
+   "supported": 0,
+   "absent": 0,
+   "masked": 15090
+  },
+  "ragtruth_it": {
+   "rows": 15090,
+   "contradicted": 0,
+   "supported": 0,
+   "absent": 0,
+   "masked": 15090
+  },
+  "ragtruth_pl": {
+   "rows": 15090,
+   "contradicted": 0,
+   "supported": 0,
+   "absent": 0,
+   "masked": 15090
+  },
+  "tabfact": {
+   "rows": 92585,
+   "contradicted": 0,
+   "supported": 0,
+   "absent": 0,
+   "masked": 92585
+  },
+  "vitaminc": {
+   "rows": 370653,
+   "contradicted": 131958,
+   "supported": 185714,
+   "absent": 52981,
+   "masked": 0
+  }
+ }
+}

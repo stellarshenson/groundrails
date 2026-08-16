@@ -1,0 +1,150 @@
+{
+  "read": "R16-H142 G1 (A1) twin, windowed decomposed-min read",
+  "run": "twin",
+  "checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/R18-H150-arm-draw1",
+  "per_subset": {
+    "covidqa": {
+      "n": 245,
+      "n_sent": 385,
+      "n_pairs": 1032,
+      "auc": 0.7538,
+      "f1": 0.6555,
+      "lettuce_auc": 0.7355,
+      "banked_control_windowed": 0.7878
+    },
+    "delucionqa": {
+      "n": 184,
+      "n_sent": 929,
+      "n_pairs": 5390,
+      "auc": 0.6778,
+      "f1": 0.4743,
+      "lettuce_auc": 0.7929,
+      "banked_control_windowed": 0.8167
+    },
+    "emanual": {
+      "n": 132,
+      "n_sent": 748,
+      "n_pairs": 2617,
+      "auc": 0.7669,
+      "f1": 0.5389,
+      "lettuce_auc": 0.5999,
+      "banked_control_windowed": 0.6977
+    },
+    "expertqa": {
+      "n": 203,
+      "n_sent": 1303,
+      "n_pairs": 14687,
+      "auc": 0.799,
+      "f1": 0.7553,
+      "lettuce_auc": 0.6503,
+      "banked_control_windowed": 0.7728
+    },
+    "finqa": {
+      "n": 250,
+      "n_sent": 563,
+      "n_pairs": 2607,
+      "auc": 0.5183,
+      "f1": 0.5158,
+      "lettuce_auc": 0.717,
+      "banked_control_windowed": 0.6333
+    },
+    "hagrid": {
+      "n": 250,
+      "n_sent": 537,
+      "n_pairs": 1584,
+      "auc": 0.6619,
+      "f1": 0.6537,
+      "lettuce_auc": 0.5992,
+      "banked_control_windowed": 0.634
+    },
+    "hotpotqa": {
+      "n": 250,
+      "n_sent": 293,
+      "n_pairs": 619,
+      "auc": 0.7705,
+      "f1": 0.5915,
+      "lettuce_auc": 0.5976,
+      "banked_control_windowed": 0.6668
+    },
+    "pubmedqa": {
+      "n": 250,
+      "n_sent": 1314,
+      "n_pairs": 2681,
+      "auc": 0.6082,
+      "f1": 0.5501,
+      "lettuce_auc": 0.5162,
+      "banked_control_windowed": 0.6063
+    },
+    "tatqa": {
+      "n": 250,
+      "n_sent": 468,
+      "n_pairs": 886,
+      "auc": 0.7119,
+      "f1": 0.5158,
+      "lettuce_auc": 0.6156,
+      "banked_control_windowed": 0.732
+    },
+    "techqa": {
+      "n": 250,
+      "n_sent": 1737,
+      "n_pairs": 42282,
+      "auc": 0.759,
+      "f1": 0.7504,
+      "lettuce_auc": 0.6363,
+      "banked_control_windowed": 0.684
+    }
+  },
+  "mean": 0.70273,
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates.",
+  "banked_control_windowed_mean": 0.70311,
+  "mean_delta_vs_banked_control": -0.00038,
+  "h165_concat": {
+    "draw": 1,
+    "presentation": {
+      "pool_concatenated": true,
+      "separator": "'\\n\\n'",
+      "WIN": 1500,
+      "STRIDE": 750,
+      "MAX_LEN": 512
+    },
+    "banked_per_chunk_mean": 0.71436,
+    "banked_per_chunk_per_subset": {
+      "covidqa": 0.7685,
+      "delucionqa": 0.8009,
+      "emanual": 0.6973,
+      "expertqa": 0.7969,
+      "finqa": 0.6515,
+      "hagrid": 0.6423,
+      "hotpotqa": 0.6766,
+      "pubmedqa": 0.5893,
+      "tatqa": 0.7842,
+      "techqa": 0.7361
+    },
+    "comparator_source": "R18-H150_arm_draw1_windowed_result.json",
+    "mean_gain": -0.01163,
+    "per_subset_delta_vs_banked": {
+      "covidqa": -0.0147,
+      "delucionqa": -0.1231,
+      "emanual": 0.0696,
+      "expertqa": 0.0021,
+      "finqa": -0.1332,
+      "hagrid": 0.0196,
+      "hotpotqa": 0.0939,
+      "pubmedqa": 0.0189,
+      "tatqa": -0.0723,
+      "techqa": 0.0229
+    },
+    "worst_subset": {
+      "subset": "finqa",
+      "delta": -0.1332
+    },
+    "bars": {
+      "mean_gain": 0.005,
+      "max_subset_drop": 0.01
+    },
+    "mean_leg": false,
+    "subset_leg": false,
+    "draw_passes": false,
+    "note": "gold_full selected this presentation; this is the ONE blind read that selection licenses. Supersession needs BOTH draws to pass. No re-read on a variant - that would be tuning on the arena."
+  }
+}

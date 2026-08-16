@@ -1,0 +1,299 @@
+{
+  "emanual": {
+    "auroc_model": 0.69734,
+    "auroc_lexical_tok_containment": 0.77633,
+    "auroc_lexical_num_containment": 0.50847,
+    "n_items": 132,
+    "n_negative": 14,
+    "identifier_binding": {
+      "share_of_sentences_carrying_an_identifier": 0.0,
+      "mean_id_containment_in_own_argmax_window": null,
+      "by_label": []
+    },
+    "sentence_classes": {
+      "is_preamble": {
+        "n_sentences": 79,
+        "share_of_sentences": 0.1056,
+        "mean_model_max": -0.4502,
+        "mean_model_max_others": 1.6888,
+        "share_that_are_the_item_sink": 0.2785,
+        "sink_share_others": 0.1644
+      },
+      "is_recap": {
+        "n_sentences": 24,
+        "share_of_sentences": 0.0321,
+        "mean_model_max": -1.1316,
+        "mean_model_max_others": 1.5489,
+        "share_that_are_the_item_sink": 0.5833,
+        "sink_share_others": 0.163
+      },
+      "is_menu_path": {
+        "n_sentences": 31,
+        "share_of_sentences": 0.0414,
+        "mean_model_max": 0.1703,
+        "mean_model_max_others": 1.5188,
+        "share_that_are_the_item_sink": 0.2258,
+        "sink_share_others": 0.1743
+      },
+      "is_pointer": {
+        "n_sentences": 15,
+        "share_of_sentences": 0.0201,
+        "mean_model_max": 0.4248,
+        "mean_model_max_others": 1.4842,
+        "share_that_are_the_item_sink": 0.4,
+        "sink_share_others": 0.1719
+      }
+    },
+    "item_classes": {
+      "has_pointer": {
+        "False": {
+          "n": 117,
+          "base_rate_supported": 0.8889,
+          "mean_item_score": -0.6517,
+          "auroc_within": 0.6849
+        },
+        "True": {
+          "n": 15,
+          "base_rate_supported": 0.9333,
+          "mean_item_score": -1.1506,
+          "auroc_within": 1.0
+        }
+      },
+      "has_menu_path": {
+        "False": {
+          "n": 113,
+          "base_rate_supported": 0.9115,
+          "mean_item_score": -0.5831,
+          "auroc_within": 0.7107
+        },
+        "True": {
+          "n": 19,
+          "base_rate_supported": 0.7895,
+          "mean_item_score": -1.4536,
+          "auroc_within": 0.5833
+        }
+      },
+      "has_recap": {
+        "True": {
+          "n": 24,
+          "base_rate_supported": 0.8333,
+          "mean_item_score": -1.78,
+          "auroc_within": 0.55
+        },
+        "False": {
+          "n": 108,
+          "base_rate_supported": 0.9074,
+          "mean_item_score": -0.4702,
+          "auroc_within": 0.7153
+        }
+      }
+    },
+    "argmax_off_lexical_doc_share": 0.2259,
+    "mean_n_win_sent": 3.99
+  },
+  "techqa": {
+    "auroc_model": 0.73609,
+    "auroc_lexical_tok_containment": 0.74621,
+    "auroc_lexical_num_containment": 0.53618,
+    "n_items": 250,
+    "n_negative": 109,
+    "identifier_binding": {
+      "share_of_sentences_carrying_an_identifier": 0.1957,
+      "mean_id_containment_in_own_argmax_window": 0.5976,
+      "by_label": [
+        {
+          "label": 0,
+          "n": 140,
+          "mean_id_containment": 0.4578,
+          "mean_model_max": 0.3187
+        },
+        {
+          "label": 1,
+          "n": 200,
+          "mean_id_containment": 0.6954,
+          "mean_model_max": 1.3317
+        }
+      ],
+      "spearman_idcont_vs_model": 0.5122,
+      "spearman_tokcont_vs_model": 0.577,
+      "bound_vs_unbound": {
+        "n_bound": 180,
+        "n_unbound": 116,
+        "mean_model_max_bound": 1.7521,
+        "mean_model_max_unbound": -0.1236
+      }
+    },
+    "sentence_classes": {
+      "is_preamble": {
+        "n_sentences": 202,
+        "share_of_sentences": 0.1163,
+        "mean_model_max": 0.193,
+        "mean_model_max_others": 0.9372,
+        "share_that_are_the_item_sink": 0.2079,
+        "sink_share_others": 0.1355
+      },
+      "is_recap": {
+        "n_sentences": 46,
+        "share_of_sentences": 0.0265,
+        "mean_model_max": 0.0565,
+        "mean_model_max_others": 0.8723,
+        "share_that_are_the_item_sink": 0.2391,
+        "sink_share_others": 0.1413
+      },
+      "is_menu_path": {
+        "n_sentences": 4,
+        "share_of_sentences": 0.0023,
+        "mean_model_max": 2.8196,
+        "mean_model_max_others": 0.8461,
+        "share_that_are_the_item_sink": 0.0,
+        "sink_share_others": 0.1443
+      },
+      "is_pointer": {
+        "n_sentences": 65,
+        "share_of_sentences": 0.0374,
+        "mean_model_max": 1.0303,
+        "mean_model_max_others": 0.8437,
+        "share_that_are_the_item_sink": 0.3846,
+        "sink_share_others": 0.1346
+      }
+    },
+    "item_classes": {
+      "has_pointer": {
+        "True": {
+          "n": 51,
+          "base_rate_supported": 0.6078,
+          "mean_item_score": 0.0197,
+          "auroc_within": 0.6855
+        },
+        "False": {
+          "n": 199,
+          "base_rate_supported": 0.5528,
+          "mean_item_score": -0.6346,
+          "auroc_within": 0.7431
+        }
+      },
+      "has_menu_path": {
+        "False": {
+          "n": 246,
+          "base_rate_supported": 0.565,
+          "mean_item_score": -0.4961,
+          "auroc_within": 0.743
+        },
+        "True": {
+          "n": 4,
+          "base_rate_supported": 0.5,
+          "mean_item_score": -0.8064,
+          "auroc_within": 0.25
+        }
+      },
+      "has_recap": {
+        "True": {
+          "n": 45,
+          "base_rate_supported": 0.5556,
+          "mean_item_score": -0.8079,
+          "auroc_within": 0.734
+        },
+        "False": {
+          "n": 205,
+          "base_rate_supported": 0.5659,
+          "mean_item_score": -0.4338,
+          "auroc_within": 0.7367
+        }
+      }
+    },
+    "argmax_off_lexical_doc_share": 0.4744,
+    "mean_n_win_sent": 22.49
+  },
+  "delucionqa": {
+    "auroc_model": 0.80087,
+    "auroc_lexical_tok_containment": 0.58891,
+    "auroc_lexical_num_containment": 0.51163,
+    "n_items": 184,
+    "n_negative": 12,
+    "identifier_binding": {
+      "share_of_sentences_carrying_an_identifier": 0.0075,
+      "mean_id_containment_in_own_argmax_window": 1.0,
+      "by_label": [
+        {
+          "label": 1,
+          "n": 7,
+          "mean_id_containment": 1.0,
+          "mean_model_max": 3.8592
+        }
+      ]
+    },
+    "sentence_classes": {
+      "is_preamble": {
+        "n_sentences": 111,
+        "share_of_sentences": 0.1195,
+        "mean_model_max": -0.0786,
+        "mean_model_max_others": 2.3119,
+        "share_that_are_the_item_sink": 0.3604,
+        "sink_share_others": 0.176
+      },
+      "is_recap": {
+        "n_sentences": 27,
+        "share_of_sentences": 0.0291,
+        "mean_model_max": -0.5853,
+        "mean_model_max_others": 2.1044,
+        "share_that_are_the_item_sink": 0.3704,
+        "sink_share_others": 0.1929
+      },
+      "is_menu_path": {
+        "n_sentences": 0,
+        "share_of_sentences": 0.0,
+        "mean_model_max": null,
+        "mean_model_max_others": 2.0263,
+        "share_that_are_the_item_sink": null,
+        "sink_share_others": 0.1981
+      },
+      "is_pointer": {
+        "n_sentences": 5,
+        "share_of_sentences": 0.0054,
+        "mean_model_max": 1.1689,
+        "mean_model_max_others": 2.0309,
+        "share_that_are_the_item_sink": 0.6,
+        "sink_share_others": 0.1959
+      }
+    },
+    "item_classes": {
+      "has_pointer": {
+        "True": {
+          "n": 3,
+          "base_rate_supported": 1.0,
+          "mean_item_score": -0.1509
+        },
+        "False": {
+          "n": 181,
+          "base_rate_supported": 0.9337,
+          "mean_item_score": -0.2173,
+          "auroc_within": 0.8003
+        }
+      },
+      "has_menu_path": {
+        "False": {
+          "n": 184,
+          "base_rate_supported": 0.9348,
+          "mean_item_score": -0.2162,
+          "auroc_within": 0.8009
+        }
+      },
+      "has_recap": {
+        "False": {
+          "n": 157,
+          "base_rate_supported": 0.9363,
+          "mean_item_score": 0.0479,
+          "auroc_within": 0.7939
+        },
+        "True": {
+          "n": 27,
+          "base_rate_supported": 0.9259,
+          "mean_item_score": -1.7523,
+          "auroc_within": 0.88
+        }
+      }
+    },
+    "argmax_off_lexical_doc_share": 0.3897,
+    "mean_n_win_sent": 5.48
+  }
+}

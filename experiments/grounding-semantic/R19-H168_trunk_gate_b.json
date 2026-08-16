@@ -1,0 +1,229 @@
+{
+ "arm": "R19-H168 EuroBERT-210m trunk swap",
+ "gate": "B - frozen-trunk probe",
+ "surface": "PUBLIC TRAINING MIX - not the arena, not gold_full",
+ "n_rows": 6000,
+ "positive_rate": 0.5,
+ "max_len": 512,
+ "seed": 1168,
+ "bars": {
+  "dead_euro_below": 0.55,
+  "dead_mm_above": 0.6,
+  "degraded_gap": 0.1
+ },
+ "trunks": {
+  "mmBERT-base": {
+   "repo": "jhu-clsp/mmBERT-base",
+   "shim": false,
+   "probe": {
+    "fold_auc": [
+     0.70446,
+     0.69212,
+     0.69042,
+     0.6761,
+     0.68369
+    ],
+    "mean": 0.68936,
+    "sd": 0.00943
+   },
+   "seconds": 59.6,
+   "dim": 768,
+   "token_census": {
+    "halueval": {
+     "n_rows": 400,
+     "mean_tokens": 259.2,
+     "p95_tokens": 467.0,
+     "frac_over_maxlen": 0.01,
+     "chars_per_token": 3.629
+    },
+    "psiloqa": {
+     "n_rows": 400,
+     "mean_tokens": 222.1,
+     "p95_tokens": 618.3,
+     "frac_over_maxlen": 0.0925,
+     "chars_per_token": 1.914
+    },
+    "ragtruth_cn": {
+     "n_rows": 400,
+     "mean_tokens": 719.0,
+     "p95_tokens": 1187.4,
+     "frac_over_maxlen": 0.8125,
+     "chars_per_token": 1.43
+    },
+    "ragtruth_de": {
+     "n_rows": 400,
+     "mean_tokens": 598.7,
+     "p95_tokens": 810.1,
+     "frac_over_maxlen": 0.715,
+     "chars_per_token": 2.466
+    },
+    "ragtruth_en": {
+     "n_rows": 400,
+     "mean_tokens": 540.3,
+     "p95_tokens": 767.0,
+     "frac_over_maxlen": 0.54,
+     "chars_per_token": 2.589
+    },
+    "ragtruth_es": {
+     "n_rows": 400,
+     "mean_tokens": 576.4,
+     "p95_tokens": 790.0,
+     "frac_over_maxlen": 0.635,
+     "chars_per_token": 2.566
+    },
+    "ragtruth_fr": {
+     "n_rows": 400,
+     "mean_tokens": 629.1,
+     "p95_tokens": 839.1,
+     "frac_over_maxlen": 0.7625,
+     "chars_per_token": 2.368
+    },
+    "ragtruth_hu": {
+     "n_rows": 400,
+     "mean_tokens": 768.2,
+     "p95_tokens": 1008.0,
+     "frac_over_maxlen": 0.96,
+     "chars_per_token": 1.893
+    },
+    "ragtruth_it": {
+     "n_rows": 400,
+     "mean_tokens": 623.1,
+     "p95_tokens": 840.0,
+     "frac_over_maxlen": 0.765,
+     "chars_per_token": 2.371
+    },
+    "ragtruth_pl": {
+     "n_rows": 400,
+     "mean_tokens": 709.9,
+     "p95_tokens": 957.1,
+     "frac_over_maxlen": 0.9,
+     "chars_per_token": 2.059
+    },
+    "tabfact": {
+     "n_rows": 400,
+     "mean_tokens": 433.4,
+     "p95_tokens": 776.1,
+     "frac_over_maxlen": 0.3125,
+     "chars_per_token": 2.193
+    },
+    "vitaminc": {
+     "n_rows": 400,
+     "mean_tokens": 58.1,
+     "p95_tokens": 107.0,
+     "frac_over_maxlen": 0.0,
+     "chars_per_token": 2.712
+    }
+   }
+  },
+  "EuroBERT-210m": {
+   "repo": "EuroBERT/EuroBERT-210m",
+   "shim": true,
+   "probe": {
+    "fold_auc": [
+     0.58613,
+     0.60738,
+     0.58841,
+     0.62466,
+     0.57401
+    ],
+    "mean": 0.59612,
+    "sd": 0.01783
+   },
+   "seconds": 45.6,
+   "dim": 768,
+   "token_census": {
+    "halueval": {
+     "n_rows": 400,
+     "mean_tokens": 254.8,
+     "p95_tokens": 460.0,
+     "frac_over_maxlen": 0.0075,
+     "chars_per_token": 3.691
+    },
+    "psiloqa": {
+     "n_rows": 400,
+     "mean_tokens": 243.3,
+     "p95_tokens": 704.4,
+     "frac_over_maxlen": 0.1275,
+     "chars_per_token": 1.747
+    },
+    "ragtruth_cn": {
+     "n_rows": 400,
+     "mean_tokens": 805.1,
+     "p95_tokens": 1409.8,
+     "frac_over_maxlen": 0.8725,
+     "chars_per_token": 1.277
+    },
+    "ragtruth_de": {
+     "n_rows": 400,
+     "mean_tokens": 697.0,
+     "p95_tokens": 921.1,
+     "frac_over_maxlen": 0.9375,
+     "chars_per_token": 2.118
+    },
+    "ragtruth_en": {
+     "n_rows": 400,
+     "mean_tokens": 526.2,
+     "p95_tokens": 739.2,
+     "frac_over_maxlen": 0.535,
+     "chars_per_token": 2.658
+    },
+    "ragtruth_es": {
+     "n_rows": 400,
+     "mean_tokens": 662.1,
+     "p95_tokens": 891.1,
+     "frac_over_maxlen": 0.865,
+     "chars_per_token": 2.234
+    },
+    "ragtruth_fr": {
+     "n_rows": 400,
+     "mean_tokens": 703.0,
+     "p95_tokens": 917.1,
+     "frac_over_maxlen": 0.9375,
+     "chars_per_token": 2.119
+    },
+    "ragtruth_hu": {
+     "n_rows": 400,
+     "mean_tokens": 922.8,
+     "p95_tokens": 1198.0,
+     "frac_over_maxlen": 0.985,
+     "chars_per_token": 1.576
+    },
+    "ragtruth_it": {
+     "n_rows": 400,
+     "mean_tokens": 727.9,
+     "p95_tokens": 966.1,
+     "frac_over_maxlen": 0.9575,
+     "chars_per_token": 2.03
+    },
+    "ragtruth_pl": {
+     "n_rows": 400,
+     "mean_tokens": 851.6,
+     "p95_tokens": 1119.1,
+     "frac_over_maxlen": 0.9675,
+     "chars_per_token": 1.716
+    },
+    "tabfact": {
+     "n_rows": 400,
+     "mean_tokens": 388.8,
+     "p95_tokens": 649.3,
+     "frac_over_maxlen": 0.23,
+     "chars_per_token": 2.445
+    },
+    "vitaminc": {
+     "n_rows": 400,
+     "mean_tokens": 55.4,
+     "p95_tokens": 97.0,
+     "frac_over_maxlen": 0.0,
+     "chars_per_token": 2.845
+    }
+   }
+  }
+ },
+ "verdict": {
+  "verdict": "PROCEED",
+  "mmbert": 0.68936,
+  "eurobert": 0.59612,
+  "gap": 0.09324,
+  "rule": "DEAD if euro<0.55 while mm>0.60; DEGRADED if gap>0.10; else PROCEED"
+ }
+}

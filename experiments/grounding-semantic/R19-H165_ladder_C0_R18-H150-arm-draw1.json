@@ -1,0 +1,30 @@
+{
+ "arm": "R19-H165 context-length ladder",
+ "surface": "gold_full in-domain held-out - SELECTION SURFACE, never the arena",
+ "status": "NOT ADJUDICATED HERE - the coordinator holds the verdict",
+ "cell": "C0",
+ "checkpoint": "R18-H150-arm-draw1",
+ "presentation": {
+  "pool_concatenated": true,
+  "WIN": 1500,
+  "STRIDE": 750,
+  "MAX_LEN": 512,
+  "encode_batch": 64,
+  "separator": "'\\n\\n'"
+ },
+ "gold_full": {
+  "auc": 0.9014,
+  "f1": 0.7855,
+  "n": 2752,
+  "positive_rate": 0.7144
+ },
+ "cost": {
+  "n_pairs": 214615,
+  "windows_per_item": 77.985,
+  "mean_window_chars": 1499.9,
+  "seconds": 4195.5,
+  "pairs_per_second": 51.2,
+  "peak_alloc_gb": 4.98
+ },
+ "positive_control": null
+}

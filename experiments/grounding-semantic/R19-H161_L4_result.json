@@ -1,0 +1,3139 @@
+{
+  "lane": "L4",
+  "hypothesis": "H4 long-window prose register interference",
+  "dumps": {
+    "h150d1": "/home/lab/workspace/private/ai-assistants/groundrails/experiments/grounding-semantic/R19-H161_pairs_h150d1.parquet",
+    "h150d2": "/home/lab/workspace/private/ai-assistants/groundrails/experiments/grounding-semantic/R19-H161_pairs_h150d2.parquet",
+    "h159d1": "/home/lab/workspace/private/ai-assistants/groundrails/experiments/grounding-semantic/R19-H161_pairs_h159d1.parquet"
+  },
+  "strata": [
+    "1",
+    "2-3",
+    "4-7",
+    "8+"
+  ],
+  "support_floor": {
+    "min_items": 20,
+    "min_per_class": 5
+  },
+  "positive_control": {
+    "max_abs_delta": 4.5779543197621564e-05,
+    "tol": 0.001,
+    "by_checkpoint": {
+      "h150d1": {
+        "per_subset": {
+          "covidqa": {
+            "banked": 0.7685,
+            "rebuilt": 0.76848,
+            "delta": -1.6e-05,
+            "n": 245
+          },
+          "delucionqa": {
+            "banked": 0.8009,
+            "rebuilt": 0.80087,
+            "delta": -2.8e-05,
+            "n": 184
+          },
+          "emanual": {
+            "banked": 0.6973,
+            "rebuilt": 0.69734,
+            "delta": 3.7e-05,
+            "n": 132
+          },
+          "expertqa": {
+            "banked": 0.7969,
+            "rebuilt": 0.79688,
+            "delta": -1.9e-05,
+            "n": 203
+          },
+          "finqa": {
+            "banked": 0.6515,
+            "rebuilt": 0.65152,
+            "delta": 2.2e-05,
+            "n": 250
+          },
+          "hagrid": {
+            "banked": 0.6423,
+            "rebuilt": 0.64225,
+            "delta": -4.6e-05,
+            "n": 250
+          },
+          "hotpotqa": {
+            "banked": 0.6766,
+            "rebuilt": 0.6766,
+            "delta": -3e-06,
+            "n": 250
+          },
+          "pubmedqa": {
+            "banked": 0.5893,
+            "rebuilt": 0.5893,
+            "delta": -5e-06,
+            "n": 250
+          },
+          "tatqa": {
+            "banked": 0.7842,
+            "rebuilt": 0.7842,
+            "delta": 1e-06,
+            "n": 250
+          },
+          "techqa": {
+            "banked": 0.7361,
+            "rebuilt": 0.73609,
+            "delta": -8e-06,
+            "n": 250
+          }
+        },
+        "rebuilt_mean": 0.71435,
+        "banked_mean": 0.71436,
+        "mean_delta": -1e-05
+      },
+      "h150d2": {
+        "per_subset": {
+          "covidqa": {
+            "banked": 0.7458,
+            "rebuilt": 0.74583,
+            "delta": 3e-05,
+            "n": 245
+          },
+          "delucionqa": {
+            "banked": 0.7888,
+            "rebuilt": 0.78876,
+            "delta": -4e-05,
+            "n": 184
+          },
+          "emanual": {
+            "banked": 0.6586,
+            "rebuilt": 0.6586,
+            "delta": -4e-06,
+            "n": 132
+          },
+          "expertqa": {
+            "banked": 0.7822,
+            "rebuilt": 0.78216,
+            "delta": -3.6e-05,
+            "n": 203
+          },
+          "finqa": {
+            "banked": 0.7135,
+            "rebuilt": 0.71348,
+            "delta": -2.2e-05,
+            "n": 250
+          },
+          "hagrid": {
+            "banked": 0.6425,
+            "rebuilt": 0.6425,
+            "delta": 2e-06,
+            "n": 250
+          },
+          "hotpotqa": {
+            "banked": 0.6647,
+            "rebuilt": 0.66473,
+            "delta": 3.1e-05,
+            "n": 250
+          },
+          "pubmedqa": {
+            "banked": 0.6298,
+            "rebuilt": 0.62976,
+            "delta": -4.2e-05,
+            "n": 250
+          },
+          "tatqa": {
+            "banked": 0.8093,
+            "rebuilt": 0.80932,
+            "delta": 2.2e-05,
+            "n": 250
+          },
+          "techqa": {
+            "banked": 0.7309,
+            "rebuilt": 0.73089,
+            "delta": -1.3e-05,
+            "n": 250
+          }
+        },
+        "rebuilt_mean": 0.7166,
+        "banked_mean": 0.71661,
+        "mean_delta": -1e-05
+      },
+      "h159d1": {
+        "per_subset": {
+          "covidqa": {
+            "banked": 0.768,
+            "rebuilt": 0.76799,
+            "delta": -1.4e-05,
+            "n": 245
+          },
+          "delucionqa": {
+            "banked": 0.6923,
+            "rebuilt": 0.69234,
+            "delta": 4.5e-05,
+            "n": 184
+          },
+          "emanual": {
+            "banked": 0.7052,
+            "rebuilt": 0.70521,
+            "delta": 6e-06,
+            "n": 132
+          },
+          "expertqa": {
+            "banked": 0.8052,
+            "rebuilt": 0.80517,
+            "delta": -3.4e-05,
+            "n": 203
+          },
+          "finqa": {
+            "banked": 0.5396,
+            "rebuilt": 0.53957,
+            "delta": -3.5e-05,
+            "n": 250
+          },
+          "hagrid": {
+            "banked": 0.7074,
+            "rebuilt": 0.70742,
+            "delta": 2.3e-05,
+            "n": 250
+          },
+          "hotpotqa": {
+            "banked": 0.6791,
+            "rebuilt": 0.67912,
+            "delta": 2.1e-05,
+            "n": 250
+          },
+          "pubmedqa": {
+            "banked": 0.6206,
+            "rebuilt": 0.6206,
+            "delta": -1e-06,
+            "n": 250
+          },
+          "tatqa": {
+            "banked": 0.664,
+            "rebuilt": 0.66404,
+            "delta": 4.4e-05,
+            "n": 250
+          },
+          "techqa": {
+            "banked": 0.7127,
+            "rebuilt": 0.71267,
+            "delta": -3.2e-05,
+            "n": 250
+          }
+        },
+        "rebuilt_mean": 0.68941,
+        "banked_mean": 0.68941,
+        "mean_delta": 0.0
+      }
+    },
+    "verdict": "PASS"
+  },
+  "argmax_ties": {
+    "h150d1": 0,
+    "h150d2": 0,
+    "h159d1": 0
+  },
+  "joined_sentences": 8277,
+  "argmax_drift": {
+    "covidqa": {
+      "subset": "covidqa",
+      "n_sent_multi": 385,
+      "flag_vs_flag": 0.15584,
+      "enriched_vs_flag_d1": 0.17922,
+      "enriched_vs_flag_d2": 0.16364,
+      "mean_n_win": 4.0,
+      "excess_vs_d1": 0.02338,
+      "excess_vs_d2": 0.00779
+    },
+    "delucionqa": {
+      "subset": "delucionqa",
+      "n_sent_multi": 929,
+      "flag_vs_flag": 0.36383,
+      "enriched_vs_flag_d1": 0.46179,
+      "enriched_vs_flag_d2": 0.3929,
+      "mean_n_win": 5.48224,
+      "excess_vs_d1": 0.09795,
+      "excess_vs_d2": 0.02906
+    },
+    "emanual": {
+      "subset": "emanual",
+      "n_sent_multi": 748,
+      "flag_vs_flag": 0.25401,
+      "enriched_vs_flag_d1": 0.32086,
+      "enriched_vs_flag_d2": 0.27139,
+      "mean_n_win": 3.98797,
+      "excess_vs_d1": 0.06684,
+      "excess_vs_d2": 0.01738
+    },
+    "expertqa": {
+      "subset": "expertqa",
+      "n_sent_multi": 1173,
+      "flag_vs_flag": 0.33674,
+      "enriched_vs_flag_d1": 0.36573,
+      "enriched_vs_flag_d2": 0.36317,
+      "mean_n_win": 11.7809,
+      "excess_vs_d1": 0.02899,
+      "excess_vs_d2": 0.02643
+    },
+    "finqa": {
+      "subset": "finqa",
+      "n_sent_multi": 563,
+      "flag_vs_flag": 0.36767,
+      "enriched_vs_flag_d1": 0.38366,
+      "enriched_vs_flag_d2": 0.373,
+      "mean_n_win": 5.18295,
+      "excess_vs_d1": 0.01599,
+      "excess_vs_d2": 0.00533
+    },
+    "hagrid": {
+      "subset": "hagrid",
+      "n_sent_multi": 449,
+      "flag_vs_flag": 0.15813,
+      "enriched_vs_flag_d1": 0.15813,
+      "enriched_vs_flag_d2": 0.16481,
+      "mean_n_win": 4.12695,
+      "excess_vs_d1": 0.0,
+      "excess_vs_d2": 0.00668
+    },
+    "hotpotqa": {
+      "subset": "hotpotqa",
+      "n_sent_multi": 293,
+      "flag_vs_flag": 0.27645,
+      "enriched_vs_flag_d1": 0.25597,
+      "enriched_vs_flag_d2": 0.31399,
+      "mean_n_win": 4.01706,
+      "excess_vs_d1": -0.02048,
+      "excess_vs_d2": 0.03754
+    },
+    "pubmedqa": {
+      "subset": "pubmedqa",
+      "n_sent_multi": 1314,
+      "flag_vs_flag": 0.30061,
+      "enriched_vs_flag_d1": 0.30974,
+      "enriched_vs_flag_d2": 0.28615,
+      "mean_n_win": 5.0,
+      "excess_vs_d1": 0.00913,
+      "excess_vs_d2": -0.01446
+    },
+    "tatqa": {
+      "subset": "tatqa",
+      "n_sent_multi": 468,
+      "flag_vs_flag": 0.08761,
+      "enriched_vs_flag_d1": 0.19231,
+      "enriched_vs_flag_d2": 0.15171,
+      "mean_n_win": 4.14957,
+      "excess_vs_d1": 0.1047,
+      "excess_vs_d2": 0.0641
+    },
+    "techqa": {
+      "subset": "techqa",
+      "n_sent_multi": 1737,
+      "flag_vs_flag": 0.51583,
+      "enriched_vs_flag_d1": 0.53022,
+      "enriched_vs_flag_d2": 0.52562,
+      "mean_n_win": 22.4859,
+      "excess_vs_d1": 0.01439,
+      "excess_vs_d2": 0.00979
+    }
+  },
+  "argmax_drift_summary": {
+    "collapsed_subsets": [
+      "finqa",
+      "tatqa",
+      "delucionqa"
+    ],
+    "mean_excess_collapsed": 0.07288,
+    "mean_excess_other": 0.01746,
+    "n_subsets_excess_positive": 8,
+    "collapsed_all_positive": true,
+    "collapsed_rank_of_excess": [
+      {
+        "subset": "tatqa",
+        "rank": 1
+      },
+      {
+        "subset": "delucionqa",
+        "rank": 2
+      },
+      {
+        "subset": "finqa",
+        "rank": 6
+      }
+    ]
+  },
+  "drift_consequence": {
+    "covidqa": {
+      "moved_label1": {
+        "n": 54,
+        "mean_toward_gold": 0.76122,
+        "median_toward_gold": 0.82273,
+        "frac_toward_gold": 0.75926
+      },
+      "moved_label0": {
+        "n": 15,
+        "mean_toward_gold": -0.98279,
+        "median_toward_gold": -0.78456,
+        "frac_toward_gold": 0.13333
+      },
+      "stable_label1": {
+        "n": 271,
+        "mean_toward_gold": 0.3404,
+        "median_toward_gold": 0.43817,
+        "frac_toward_gold": 0.62362
+      },
+      "stable_label0": {
+        "n": 45,
+        "mean_toward_gold": -0.75256,
+        "median_toward_gold": -0.90082,
+        "frac_toward_gold": 0.31111
+      }
+    },
+    "delucionqa": {
+      "moved_label1": {
+        "n": 404,
+        "mean_toward_gold": -0.12277,
+        "median_toward_gold": 0.04575,
+        "frac_toward_gold": 0.51238
+      },
+      "moved_label0": {
+        "n": 25,
+        "mean_toward_gold": -1.49317,
+        "median_toward_gold": -1.01715,
+        "frac_toward_gold": 0.16
+      },
+      "stable_label1": {
+        "n": 475,
+        "mean_toward_gold": -0.05454,
+        "median_toward_gold": 0.00086,
+        "frac_toward_gold": 0.50105
+      },
+      "stable_label0": {
+        "n": 25,
+        "mean_toward_gold": -0.61314,
+        "median_toward_gold": -0.41758,
+        "frac_toward_gold": 0.36
+      }
+    },
+    "emanual": {
+      "moved_label1": {
+        "n": 219,
+        "mean_toward_gold": -0.46856,
+        "median_toward_gold": -0.34956,
+        "frac_toward_gold": 0.379
+      },
+      "moved_label0": {
+        "n": 21,
+        "mean_toward_gold": -0.49274,
+        "median_toward_gold": 0.12953,
+        "frac_toward_gold": 0.52381
+      },
+      "stable_label1": {
+        "n": 423,
+        "mean_toward_gold": -0.29715,
+        "median_toward_gold": -0.22903,
+        "frac_toward_gold": 0.43499
+      },
+      "stable_label0": {
+        "n": 85,
+        "mean_toward_gold": -0.49039,
+        "median_toward_gold": -0.55875,
+        "frac_toward_gold": 0.42353
+      }
+    },
+    "expertqa": {
+      "moved_label1": {
+        "n": 141,
+        "mean_toward_gold": -0.46467,
+        "median_toward_gold": -0.34696,
+        "frac_toward_gold": 0.34043
+      },
+      "moved_label0": {
+        "n": 288,
+        "mean_toward_gold": 0.5099,
+        "median_toward_gold": 0.46487,
+        "frac_toward_gold": 0.61111
+      },
+      "stable_label1": {
+        "n": 380,
+        "mean_toward_gold": -0.6091,
+        "median_toward_gold": -0.51113,
+        "frac_toward_gold": 0.29737
+      },
+      "stable_label0": {
+        "n": 364,
+        "mean_toward_gold": 0.57796,
+        "median_toward_gold": 0.58776,
+        "frac_toward_gold": 0.71978
+      }
+    },
+    "finqa": {
+      "moved_label1": {
+        "n": 202,
+        "mean_toward_gold": 0.05324,
+        "median_toward_gold": 0.07402,
+        "frac_toward_gold": 0.5099
+      },
+      "moved_label0": {
+        "n": 14,
+        "mean_toward_gold": 0.62122,
+        "median_toward_gold": 0.58589,
+        "frac_toward_gold": 0.85714
+      },
+      "stable_label1": {
+        "n": 311,
+        "mean_toward_gold": 0.71513,
+        "median_toward_gold": 0.82985,
+        "frac_toward_gold": 0.79421
+      },
+      "stable_label0": {
+        "n": 36,
+        "mean_toward_gold": -0.5973,
+        "median_toward_gold": -0.75815,
+        "frac_toward_gold": 0.27778
+      }
+    },
+    "hagrid": {
+      "moved_label1": {
+        "n": 45,
+        "mean_toward_gold": 1.11369,
+        "median_toward_gold": 0.58285,
+        "frac_toward_gold": 0.68889
+      },
+      "moved_label0": {
+        "n": 26,
+        "mean_toward_gold": -0.32796,
+        "median_toward_gold": -1.11201,
+        "frac_toward_gold": 0.34615
+      },
+      "stable_label1": {
+        "n": 300,
+        "mean_toward_gold": 0.42865,
+        "median_toward_gold": 0.24691,
+        "frac_toward_gold": 0.54667
+      },
+      "stable_label0": {
+        "n": 78,
+        "mean_toward_gold": -0.11209,
+        "median_toward_gold": 0.08345,
+        "frac_toward_gold": 0.5
+      }
+    },
+    "hotpotqa": {
+      "moved_label1": {
+        "n": 67,
+        "mean_toward_gold": 0.48976,
+        "median_toward_gold": 0.39004,
+        "frac_toward_gold": 0.76119
+      },
+      "moved_label0": {
+        "n": 8,
+        "mean_toward_gold": -0.7351,
+        "median_toward_gold": -0.58244,
+        "frac_toward_gold": 0.25
+      },
+      "stable_label1": {
+        "n": 203,
+        "mean_toward_gold": 0.75938,
+        "median_toward_gold": 0.7273,
+        "frac_toward_gold": 0.69951
+      },
+      "stable_label0": {
+        "n": 15,
+        "mean_toward_gold": -0.28184,
+        "median_toward_gold": -0.35092,
+        "frac_toward_gold": 0.4
+      }
+    },
+    "pubmedqa": {
+      "moved_label1": {
+        "n": 251,
+        "mean_toward_gold": 3.35821,
+        "median_toward_gold": 3.65117,
+        "frac_toward_gold": 0.99203
+      },
+      "moved_label0": {
+        "n": 156,
+        "mean_toward_gold": -3.09603,
+        "median_toward_gold": -3.43873,
+        "frac_toward_gold": 0.02564
+      },
+      "stable_label1": {
+        "n": 587,
+        "mean_toward_gold": 3.09067,
+        "median_toward_gold": 3.4423,
+        "frac_toward_gold": 0.94549
+      },
+      "stable_label0": {
+        "n": 320,
+        "mean_toward_gold": -3.12335,
+        "median_toward_gold": -3.39813,
+        "frac_toward_gold": 0.04063
+      }
+    },
+    "tatqa": {
+      "moved_label1": {
+        "n": 71,
+        "mean_toward_gold": 1.07071,
+        "median_toward_gold": 0.78088,
+        "frac_toward_gold": 0.74648
+      },
+      "moved_label0": {
+        "n": 19,
+        "mean_toward_gold": -1.51505,
+        "median_toward_gold": -1.45481,
+        "frac_toward_gold": 0.10526
+      },
+      "stable_label1": {
+        "n": 355,
+        "mean_toward_gold": 0.94941,
+        "median_toward_gold": 0.83225,
+        "frac_toward_gold": 0.77746
+      },
+      "stable_label0": {
+        "n": 23,
+        "mean_toward_gold": -1.181,
+        "median_toward_gold": -1.40078,
+        "frac_toward_gold": 0.08696
+      }
+    },
+    "techqa": {
+      "moved_label1": {
+        "n": 352,
+        "mean_toward_gold": -0.31324,
+        "median_toward_gold": -0.27626,
+        "frac_toward_gold": 0.34659
+      },
+      "moved_label0": {
+        "n": 569,
+        "mean_toward_gold": 0.2175,
+        "median_toward_gold": 0.21876,
+        "frac_toward_gold": 0.62742
+      },
+      "stable_label1": {
+        "n": 480,
+        "mean_toward_gold": -0.12234,
+        "median_toward_gold": -0.11234,
+        "frac_toward_gold": 0.4625
+      },
+      "stable_label0": {
+        "n": 336,
+        "mean_toward_gold": 0.16576,
+        "median_toward_gold": 0.07377,
+        "frac_toward_gold": 0.54464
+      }
+    }
+  },
+  "drift_consequence_pooled": {
+    "moved_label1": {
+      "n": 1806,
+      "mean_toward_gold": 0.40184,
+      "frac_toward_gold": 0.54707
+    },
+    "moved_label0": {
+      "n": 1141,
+      "mean_toward_gold": -0.27106,
+      "frac_toward_gold": 0.50745
+    },
+    "stable_label1": {
+      "n": 3785,
+      "mean_toward_gold": 0.60948,
+      "frac_toward_gold": 0.6103
+    },
+    "stable_label0": {
+      "n": 1327,
+      "mean_toward_gold": -0.6676,
+      "frac_toward_gold": 0.43255
+    }
+  },
+  "items_with_varying_sentence_window_counts": {
+    "h150d1": 0,
+    "h150d2": 0,
+    "h159d1": 0
+  },
+  "auroc_by_window_stratum": {
+    "sinking_sentence": {
+      "by_checkpoint": {
+        "h150d1": {
+          "per_subset": {
+            "covidqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "4-7": {
+                "auc": 0.76848,
+                "n": 245,
+                "n_pos": 206,
+                "n_neg": 39
+              },
+              "8+": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              }
+            },
+            "delucionqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": 0.81548,
+                "n": 50,
+                "n_pos": 42,
+                "n_neg": 8
+              },
+              "4-7": {
+                "auc": null,
+                "n": 102,
+                "n_pos": 99,
+                "n_neg": 3
+              },
+              "8+": {
+                "auc": null,
+                "n": 32,
+                "n_pos": 31,
+                "n_neg": 1
+              }
+            },
+            "emanual": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": 0.70692,
+                "n": 78,
+                "n_pos": 67,
+                "n_neg": 11
+              },
+              "4-7": {
+                "auc": null,
+                "n": 42,
+                "n_pos": 39,
+                "n_neg": 3
+              },
+              "8+": {
+                "auc": null,
+                "n": 12,
+                "n_pos": 12,
+                "n_neg": 0
+              }
+            },
+            "expertqa": {
+              "1": {
+                "auc": null,
+                "n": 18,
+                "n_pos": 5,
+                "n_neg": 13
+              },
+              "2-3": {
+                "auc": 0.72487,
+                "n": 62,
+                "n_pos": 35,
+                "n_neg": 27
+              },
+              "4-7": {
+                "auc": 0.7398,
+                "n": 56,
+                "n_pos": 28,
+                "n_neg": 28
+              },
+              "8+": {
+                "auc": 0.83426,
+                "n": 67,
+                "n_pos": 27,
+                "n_neg": 40
+              }
+            },
+            "finqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 43,
+                "n_pos": 41,
+                "n_neg": 2
+              },
+              "4-7": {
+                "auc": 0.6689,
+                "n": 184,
+                "n_pos": 167,
+                "n_neg": 17
+              },
+              "8+": {
+                "auc": null,
+                "n": 23,
+                "n_pos": 22,
+                "n_neg": 1
+              }
+            },
+            "hagrid": {
+              "1": {
+                "auc": 0.66446,
+                "n": 66,
+                "n_pos": 55,
+                "n_neg": 11
+              },
+              "2-3": {
+                "auc": 0.72903,
+                "n": 108,
+                "n_pos": 93,
+                "n_neg": 15
+              },
+              "4-7": {
+                "auc": 0.56346,
+                "n": 62,
+                "n_pos": 52,
+                "n_neg": 10
+              },
+              "8+": {
+                "auc": null,
+                "n": 14,
+                "n_pos": 12,
+                "n_neg": 2
+              }
+            },
+            "hotpotqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 1,
+                "n_pos": 1,
+                "n_neg": 0
+              },
+              "4-7": {
+                "auc": 0.67647,
+                "n": 249,
+                "n_pos": 232,
+                "n_neg": 17
+              },
+              "8+": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              }
+            },
+            "pubmedqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "4-7": {
+                "auc": 0.5893,
+                "n": 250,
+                "n_pos": 173,
+                "n_neg": 77
+              },
+              "8+": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              }
+            },
+            "tatqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": 0.7655,
+                "n": 113,
+                "n_pos": 106,
+                "n_neg": 7
+              },
+              "4-7": {
+                "auc": 0.82005,
+                "n": 111,
+                "n_pos": 104,
+                "n_neg": 7
+              },
+              "8+": {
+                "auc": null,
+                "n": 26,
+                "n_pos": 26,
+                "n_neg": 0
+              }
+            },
+            "techqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "4-7": {
+                "auc": null,
+                "n": 8,
+                "n_pos": 5,
+                "n_neg": 3
+              },
+              "8+": {
+                "auc": 0.73203,
+                "n": 242,
+                "n_pos": 136,
+                "n_neg": 106
+              }
+            }
+          },
+          "pooled_all_subsets": {
+            "1": {
+              "auc": 0.81319,
+              "n": 84,
+              "n_pos": 60,
+              "n_neg": 24
+            },
+            "2-3": {
+              "auc": 0.73518,
+              "n": 455,
+              "n_pos": 385,
+              "n_neg": 70
+            },
+            "4-7": {
+              "auc": 0.67984,
+              "n": 1309,
+              "n_pos": 1105,
+              "n_neg": 204
+            },
+            "8+": {
+              "auc": 0.71476,
+              "n": 416,
+              "n_pos": 266,
+              "n_neg": 150
+            }
+          }
+        },
+        "h150d2": {
+          "per_subset": {
+            "covidqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "4-7": {
+                "auc": 0.74583,
+                "n": 245,
+                "n_pos": 206,
+                "n_neg": 39
+              },
+              "8+": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              }
+            },
+            "delucionqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": 0.75893,
+                "n": 50,
+                "n_pos": 42,
+                "n_neg": 8
+              },
+              "4-7": {
+                "auc": null,
+                "n": 102,
+                "n_pos": 99,
+                "n_neg": 3
+              },
+              "8+": {
+                "auc": null,
+                "n": 32,
+                "n_pos": 31,
+                "n_neg": 1
+              }
+            },
+            "emanual": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": 0.67164,
+                "n": 78,
+                "n_pos": 67,
+                "n_neg": 11
+              },
+              "4-7": {
+                "auc": null,
+                "n": 42,
+                "n_pos": 39,
+                "n_neg": 3
+              },
+              "8+": {
+                "auc": null,
+                "n": 12,
+                "n_pos": 12,
+                "n_neg": 0
+              }
+            },
+            "expertqa": {
+              "1": {
+                "auc": null,
+                "n": 18,
+                "n_pos": 5,
+                "n_neg": 13
+              },
+              "2-3": {
+                "auc": 0.69418,
+                "n": 62,
+                "n_pos": 35,
+                "n_neg": 27
+              },
+              "4-7": {
+                "auc": 0.75893,
+                "n": 56,
+                "n_pos": 28,
+                "n_neg": 28
+              },
+              "8+": {
+                "auc": 0.78519,
+                "n": 67,
+                "n_pos": 27,
+                "n_neg": 40
+              }
+            },
+            "finqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 43,
+                "n_pos": 41,
+                "n_neg": 2
+              },
+              "4-7": {
+                "auc": 0.70835,
+                "n": 184,
+                "n_pos": 167,
+                "n_neg": 17
+              },
+              "8+": {
+                "auc": null,
+                "n": 23,
+                "n_pos": 22,
+                "n_neg": 1
+              }
+            },
+            "hagrid": {
+              "1": {
+                "auc": 0.6281,
+                "n": 66,
+                "n_pos": 55,
+                "n_neg": 11
+              },
+              "2-3": {
+                "auc": 0.66738,
+                "n": 108,
+                "n_pos": 93,
+                "n_neg": 15
+              },
+              "4-7": {
+                "auc": 0.63846,
+                "n": 62,
+                "n_pos": 52,
+                "n_neg": 10
+              },
+              "8+": {
+                "auc": null,
+                "n": 14,
+                "n_pos": 12,
+                "n_neg": 2
+              }
+            },
+            "hotpotqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 1,
+                "n_pos": 1,
+                "n_neg": 0
+              },
+              "4-7": {
+                "auc": 0.66379,
+                "n": 249,
+                "n_pos": 232,
+                "n_neg": 17
+              },
+              "8+": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              }
+            },
+            "pubmedqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "4-7": {
+                "auc": 0.62976,
+                "n": 250,
+                "n_pos": 173,
+                "n_neg": 77
+              },
+              "8+": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              }
+            },
+            "tatqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": 0.7655,
+                "n": 113,
+                "n_pos": 106,
+                "n_neg": 7
+              },
+              "4-7": {
+                "auc": 0.85714,
+                "n": 111,
+                "n_pos": 104,
+                "n_neg": 7
+              },
+              "8+": {
+                "auc": null,
+                "n": 26,
+                "n_pos": 26,
+                "n_neg": 0
+              }
+            },
+            "techqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "4-7": {
+                "auc": null,
+                "n": 8,
+                "n_pos": 5,
+                "n_neg": 3
+              },
+              "8+": {
+                "auc": 0.73307,
+                "n": 242,
+                "n_pos": 136,
+                "n_neg": 106
+              }
+            }
+          },
+          "pooled_all_subsets": {
+            "1": {
+              "auc": 0.78264,
+              "n": 84,
+              "n_pos": 60,
+              "n_neg": 24
+            },
+            "2-3": {
+              "auc": 0.69929,
+              "n": 455,
+              "n_pos": 385,
+              "n_neg": 70
+            },
+            "4-7": {
+              "auc": 0.67424,
+              "n": 1309,
+              "n_pos": 1105,
+              "n_neg": 204
+            },
+            "8+": {
+              "auc": 0.70519,
+              "n": 416,
+              "n_pos": 266,
+              "n_neg": 150
+            }
+          }
+        },
+        "h159d1": {
+          "per_subset": {
+            "covidqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "4-7": {
+                "auc": 0.76799,
+                "n": 245,
+                "n_pos": 206,
+                "n_neg": 39
+              },
+              "8+": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              }
+            },
+            "delucionqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": 0.69345,
+                "n": 50,
+                "n_pos": 42,
+                "n_neg": 8
+              },
+              "4-7": {
+                "auc": null,
+                "n": 102,
+                "n_pos": 99,
+                "n_neg": 3
+              },
+              "8+": {
+                "auc": null,
+                "n": 32,
+                "n_pos": 31,
+                "n_neg": 1
+              }
+            },
+            "emanual": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": 0.69471,
+                "n": 78,
+                "n_pos": 67,
+                "n_neg": 11
+              },
+              "4-7": {
+                "auc": null,
+                "n": 42,
+                "n_pos": 39,
+                "n_neg": 3
+              },
+              "8+": {
+                "auc": null,
+                "n": 12,
+                "n_pos": 12,
+                "n_neg": 0
+              }
+            },
+            "expertqa": {
+              "1": {
+                "auc": null,
+                "n": 18,
+                "n_pos": 5,
+                "n_neg": 13
+              },
+              "2-3": {
+                "auc": 0.73757,
+                "n": 62,
+                "n_pos": 35,
+                "n_neg": 27
+              },
+              "4-7": {
+                "auc": 0.81505,
+                "n": 56,
+                "n_pos": 28,
+                "n_neg": 28
+              },
+              "8+": {
+                "auc": 0.79444,
+                "n": 67,
+                "n_pos": 27,
+                "n_neg": 40
+              }
+            },
+            "finqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 43,
+                "n_pos": 41,
+                "n_neg": 2
+              },
+              "4-7": {
+                "auc": 0.57626,
+                "n": 184,
+                "n_pos": 167,
+                "n_neg": 17
+              },
+              "8+": {
+                "auc": null,
+                "n": 23,
+                "n_pos": 22,
+                "n_neg": 1
+              }
+            },
+            "hagrid": {
+              "1": {
+                "auc": 0.71405,
+                "n": 66,
+                "n_pos": 55,
+                "n_neg": 11
+              },
+              "2-3": {
+                "auc": 0.70824,
+                "n": 108,
+                "n_pos": 93,
+                "n_neg": 15
+              },
+              "4-7": {
+                "auc": 0.76923,
+                "n": 62,
+                "n_pos": 52,
+                "n_neg": 10
+              },
+              "8+": {
+                "auc": null,
+                "n": 14,
+                "n_pos": 12,
+                "n_neg": 2
+              }
+            },
+            "hotpotqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 1,
+                "n_pos": 1,
+                "n_neg": 0
+              },
+              "4-7": {
+                "auc": 0.67926,
+                "n": 249,
+                "n_pos": 232,
+                "n_neg": 17
+              },
+              "8+": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              }
+            },
+            "pubmedqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "4-7": {
+                "auc": 0.6206,
+                "n": 250,
+                "n_pos": 173,
+                "n_neg": 77
+              },
+              "8+": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              }
+            },
+            "tatqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": 0.6496,
+                "n": 113,
+                "n_pos": 106,
+                "n_neg": 7
+              },
+              "4-7": {
+                "auc": 0.68956,
+                "n": 111,
+                "n_pos": 104,
+                "n_neg": 7
+              },
+              "8+": {
+                "auc": null,
+                "n": 26,
+                "n_pos": 26,
+                "n_neg": 0
+              }
+            },
+            "techqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "4-7": {
+                "auc": null,
+                "n": 8,
+                "n_pos": 5,
+                "n_neg": 3
+              },
+              "8+": {
+                "auc": 0.71525,
+                "n": 242,
+                "n_pos": 136,
+                "n_neg": 106
+              }
+            }
+          },
+          "pooled_all_subsets": {
+            "1": {
+              "auc": 0.85069,
+              "n": 84,
+              "n_pos": 60,
+              "n_neg": 24
+            },
+            "2-3": {
+              "auc": 0.761,
+              "n": 455,
+              "n_pos": 385,
+              "n_neg": 70
+            },
+            "4-7": {
+              "auc": 0.66209,
+              "n": 1309,
+              "n_pos": 1105,
+              "n_neg": 204
+            },
+            "8+": {
+              "auc": 0.76436,
+              "n": 416,
+              "n_pos": 266,
+              "n_neg": 150
+            }
+          }
+        }
+      },
+      "delta_per_subset": {
+        "covidqa": {
+          "1": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 0
+          },
+          "2-3": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 0
+          },
+          "4-7": {
+            "enriched_minus_d1": -0.00049,
+            "d2_minus_d1": -0.02265,
+            "n": 245
+          },
+          "8+": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 0
+          }
+        },
+        "delucionqa": {
+          "1": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 0
+          },
+          "2-3": {
+            "enriched_minus_d1": -0.12203,
+            "d2_minus_d1": -0.05655,
+            "n": 50
+          },
+          "4-7": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 102
+          },
+          "8+": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 32
+          }
+        },
+        "emanual": {
+          "1": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 0
+          },
+          "2-3": {
+            "enriched_minus_d1": -0.01221,
+            "d2_minus_d1": -0.03528,
+            "n": 78
+          },
+          "4-7": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 42
+          },
+          "8+": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 12
+          }
+        },
+        "expertqa": {
+          "1": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 18
+          },
+          "2-3": {
+            "enriched_minus_d1": 0.0127,
+            "d2_minus_d1": -0.03069,
+            "n": 62
+          },
+          "4-7": {
+            "enriched_minus_d1": 0.07525,
+            "d2_minus_d1": 0.01913,
+            "n": 56
+          },
+          "8+": {
+            "enriched_minus_d1": -0.03982,
+            "d2_minus_d1": -0.04907,
+            "n": 67
+          }
+        },
+        "finqa": {
+          "1": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 0
+          },
+          "2-3": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 43
+          },
+          "4-7": {
+            "enriched_minus_d1": -0.09264,
+            "d2_minus_d1": 0.03945,
+            "n": 184
+          },
+          "8+": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 23
+          }
+        },
+        "hagrid": {
+          "1": {
+            "enriched_minus_d1": 0.04959,
+            "d2_minus_d1": -0.03636,
+            "n": 66
+          },
+          "2-3": {
+            "enriched_minus_d1": -0.02079,
+            "d2_minus_d1": -0.06165,
+            "n": 108
+          },
+          "4-7": {
+            "enriched_minus_d1": 0.20577,
+            "d2_minus_d1": 0.075,
+            "n": 62
+          },
+          "8+": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 14
+          }
+        },
+        "hotpotqa": {
+          "1": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 0
+          },
+          "2-3": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 1
+          },
+          "4-7": {
+            "enriched_minus_d1": 0.00279,
+            "d2_minus_d1": -0.01268,
+            "n": 249
+          },
+          "8+": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 0
+          }
+        },
+        "pubmedqa": {
+          "1": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 0
+          },
+          "2-3": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 0
+          },
+          "4-7": {
+            "enriched_minus_d1": 0.0313,
+            "d2_minus_d1": 0.04046,
+            "n": 250
+          },
+          "8+": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 0
+          }
+        },
+        "tatqa": {
+          "1": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 0
+          },
+          "2-3": {
+            "enriched_minus_d1": -0.1159,
+            "d2_minus_d1": 0.0,
+            "n": 113
+          },
+          "4-7": {
+            "enriched_minus_d1": -0.13049,
+            "d2_minus_d1": 0.03709,
+            "n": 111
+          },
+          "8+": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 26
+          }
+        },
+        "techqa": {
+          "1": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 0
+          },
+          "2-3": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 0
+          },
+          "4-7": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 8
+          },
+          "8+": {
+            "enriched_minus_d1": -0.01678,
+            "d2_minus_d1": 0.00104,
+            "n": 242
+          }
+        }
+      },
+      "mean_delta_over_subsets": {
+        "1": {
+          "mean_enriched_minus_d1": 0.04959,
+          "n_subsets": 1,
+          "mean_abs_d2_minus_d1_noise": 0.03636
+        },
+        "2-3": {
+          "mean_enriched_minus_d1": -0.05165,
+          "n_subsets": 5,
+          "mean_abs_d2_minus_d1_noise": 0.03683
+        },
+        "4-7": {
+          "mean_enriched_minus_d1": 0.01307,
+          "n_subsets": 7,
+          "mean_abs_d2_minus_d1_noise": 0.03521
+        },
+        "8+": {
+          "mean_enriched_minus_d1": -0.0283,
+          "n_subsets": 2,
+          "mean_abs_d2_minus_d1_noise": 0.02506
+        }
+      }
+    },
+    "item_total": {
+      "by_checkpoint": {
+        "h150d1": {
+          "per_subset": {
+            "covidqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "4-7": {
+                "auc": 0.79936,
+                "n": 150,
+                "n_pos": 125,
+                "n_neg": 25
+              },
+              "8+": {
+                "auc": 0.71781,
+                "n": 95,
+                "n_pos": 81,
+                "n_neg": 14
+              }
+            },
+            "delucionqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 13,
+                "n_pos": 12,
+                "n_neg": 1
+              },
+              "4-7": {
+                "auc": null,
+                "n": 24,
+                "n_pos": 21,
+                "n_neg": 3
+              },
+              "8+": {
+                "auc": 0.67986,
+                "n": 147,
+                "n_pos": 139,
+                "n_neg": 8
+              }
+            },
+            "emanual": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 8,
+                "n_pos": 8,
+                "n_neg": 0
+              },
+              "4-7": {
+                "auc": null,
+                "n": 18,
+                "n_pos": 18,
+                "n_neg": 0
+              },
+              "8+": {
+                "auc": 0.66693,
+                "n": 106,
+                "n_pos": 92,
+                "n_neg": 14
+              }
+            },
+            "expertqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 6,
+                "n_pos": 3,
+                "n_neg": 3
+              },
+              "4-7": {
+                "auc": null,
+                "n": 13,
+                "n_pos": 6,
+                "n_neg": 7
+              },
+              "8+": {
+                "auc": 0.78536,
+                "n": 184,
+                "n_pos": 86,
+                "n_neg": 98
+              }
+            },
+            "finqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 11,
+                "n_pos": 10,
+                "n_neg": 1
+              },
+              "4-7": {
+                "auc": null,
+                "n": 82,
+                "n_pos": 78,
+                "n_neg": 4
+              },
+              "8+": {
+                "auc": 0.58498,
+                "n": 157,
+                "n_pos": 142,
+                "n_neg": 15
+              }
+            },
+            "hagrid": {
+              "1": {
+                "auc": 0.53704,
+                "n": 51,
+                "n_pos": 45,
+                "n_neg": 6
+              },
+              "2-3": {
+                "auc": 0.66667,
+                "n": 70,
+                "n_pos": 60,
+                "n_neg": 10
+              },
+              "4-7": {
+                "auc": 0.72987,
+                "n": 62,
+                "n_pos": 55,
+                "n_neg": 7
+              },
+              "8+": {
+                "auc": 0.54744,
+                "n": 67,
+                "n_pos": 52,
+                "n_neg": 15
+              }
+            },
+            "hotpotqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 1,
+                "n_pos": 1,
+                "n_neg": 0
+              },
+              "4-7": {
+                "auc": 0.71037,
+                "n": 210,
+                "n_pos": 199,
+                "n_neg": 11
+              },
+              "8+": {
+                "auc": 0.5404,
+                "n": 39,
+                "n_pos": 33,
+                "n_neg": 6
+              }
+            },
+            "pubmedqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "4-7": {
+                "auc": null,
+                "n": 5,
+                "n_pos": 5,
+                "n_neg": 0
+              },
+              "8+": {
+                "auc": 0.59215,
+                "n": 245,
+                "n_pos": 168,
+                "n_neg": 77
+              }
+            },
+            "tatqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 61,
+                "n_pos": 57,
+                "n_neg": 4
+              },
+              "4-7": {
+                "auc": null,
+                "n": 94,
+                "n_pos": 92,
+                "n_neg": 2
+              },
+              "8+": {
+                "auc": 0.80316,
+                "n": 95,
+                "n_pos": 87,
+                "n_neg": 8
+              }
+            },
+            "techqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "4-7": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "8+": {
+                "auc": 0.73609,
+                "n": 250,
+                "n_pos": 141,
+                "n_neg": 109
+              }
+            }
+          },
+          "pooled_all_subsets": {
+            "1": {
+              "auc": 0.53704,
+              "n": 51,
+              "n_pos": 45,
+              "n_neg": 6
+            },
+            "2-3": {
+              "auc": 0.74765,
+              "n": 170,
+              "n_pos": 151,
+              "n_neg": 19
+            },
+            "4-7": {
+              "auc": 0.67961,
+              "n": 658,
+              "n_pos": 599,
+              "n_neg": 59
+            },
+            "8+": {
+              "auc": 0.64197,
+              "n": 1385,
+              "n_pos": 1021,
+              "n_neg": 364
+            }
+          }
+        },
+        "h150d2": {
+          "per_subset": {
+            "covidqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "4-7": {
+                "auc": 0.77728,
+                "n": 150,
+                "n_pos": 125,
+                "n_neg": 25
+              },
+              "8+": {
+                "auc": 0.67196,
+                "n": 95,
+                "n_pos": 81,
+                "n_neg": 14
+              }
+            },
+            "delucionqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 13,
+                "n_pos": 12,
+                "n_neg": 1
+              },
+              "4-7": {
+                "auc": null,
+                "n": 24,
+                "n_pos": 21,
+                "n_neg": 3
+              },
+              "8+": {
+                "auc": 0.75809,
+                "n": 147,
+                "n_pos": 139,
+                "n_neg": 8
+              }
+            },
+            "emanual": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 8,
+                "n_pos": 8,
+                "n_neg": 0
+              },
+              "4-7": {
+                "auc": null,
+                "n": 18,
+                "n_pos": 18,
+                "n_neg": 0
+              },
+              "8+": {
+                "auc": 0.61801,
+                "n": 106,
+                "n_pos": 92,
+                "n_neg": 14
+              }
+            },
+            "expertqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 6,
+                "n_pos": 3,
+                "n_neg": 3
+              },
+              "4-7": {
+                "auc": null,
+                "n": 13,
+                "n_pos": 6,
+                "n_neg": 7
+              },
+              "8+": {
+                "auc": 0.76649,
+                "n": 184,
+                "n_pos": 86,
+                "n_neg": 98
+              }
+            },
+            "finqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 11,
+                "n_pos": 10,
+                "n_neg": 1
+              },
+              "4-7": {
+                "auc": null,
+                "n": 82,
+                "n_pos": 78,
+                "n_neg": 4
+              },
+              "8+": {
+                "auc": 0.68404,
+                "n": 157,
+                "n_pos": 142,
+                "n_neg": 15
+              }
+            },
+            "hagrid": {
+              "1": {
+                "auc": 0.5037,
+                "n": 51,
+                "n_pos": 45,
+                "n_neg": 6
+              },
+              "2-3": {
+                "auc": 0.61333,
+                "n": 70,
+                "n_pos": 60,
+                "n_neg": 10
+              },
+              "4-7": {
+                "auc": 0.7039,
+                "n": 62,
+                "n_pos": 55,
+                "n_neg": 7
+              },
+              "8+": {
+                "auc": 0.63718,
+                "n": 67,
+                "n_pos": 52,
+                "n_neg": 15
+              }
+            },
+            "hotpotqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 1,
+                "n_pos": 1,
+                "n_neg": 0
+              },
+              "4-7": {
+                "auc": 0.63956,
+                "n": 210,
+                "n_pos": 199,
+                "n_neg": 11
+              },
+              "8+": {
+                "auc": 0.67172,
+                "n": 39,
+                "n_pos": 33,
+                "n_neg": 6
+              }
+            },
+            "pubmedqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "4-7": {
+                "auc": null,
+                "n": 5,
+                "n_pos": 5,
+                "n_neg": 0
+              },
+              "8+": {
+                "auc": 0.62554,
+                "n": 245,
+                "n_pos": 168,
+                "n_neg": 77
+              }
+            },
+            "tatqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 61,
+                "n_pos": 57,
+                "n_neg": 4
+              },
+              "4-7": {
+                "auc": null,
+                "n": 94,
+                "n_pos": 92,
+                "n_neg": 2
+              },
+              "8+": {
+                "auc": 0.80316,
+                "n": 95,
+                "n_pos": 87,
+                "n_neg": 8
+              }
+            },
+            "techqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "4-7": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "8+": {
+                "auc": 0.73089,
+                "n": 250,
+                "n_pos": 141,
+                "n_neg": 109
+              }
+            }
+          },
+          "pooled_all_subsets": {
+            "1": {
+              "auc": 0.5037,
+              "n": 51,
+              "n_pos": 45,
+              "n_neg": 6
+            },
+            "2-3": {
+              "auc": 0.70965,
+              "n": 170,
+              "n_pos": 151,
+              "n_neg": 19
+            },
+            "4-7": {
+              "auc": 0.64418,
+              "n": 658,
+              "n_pos": 599,
+              "n_neg": 59
+            },
+            "8+": {
+              "auc": 0.64861,
+              "n": 1385,
+              "n_pos": 1021,
+              "n_neg": 364
+            }
+          }
+        },
+        "h159d1": {
+          "per_subset": {
+            "covidqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "4-7": {
+                "auc": 0.79904,
+                "n": 150,
+                "n_pos": 125,
+                "n_neg": 25
+              },
+              "8+": {
+                "auc": 0.70194,
+                "n": 95,
+                "n_pos": 81,
+                "n_neg": 14
+              }
+            },
+            "delucionqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 13,
+                "n_pos": 12,
+                "n_neg": 1
+              },
+              "4-7": {
+                "auc": null,
+                "n": 24,
+                "n_pos": 21,
+                "n_neg": 3
+              },
+              "8+": {
+                "auc": 0.55665,
+                "n": 147,
+                "n_pos": 139,
+                "n_neg": 8
+              }
+            },
+            "emanual": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 8,
+                "n_pos": 8,
+                "n_neg": 0
+              },
+              "4-7": {
+                "auc": null,
+                "n": 18,
+                "n_pos": 18,
+                "n_neg": 0
+              },
+              "8+": {
+                "auc": 0.63742,
+                "n": 106,
+                "n_pos": 92,
+                "n_neg": 14
+              }
+            },
+            "expertqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 6,
+                "n_pos": 3,
+                "n_neg": 3
+              },
+              "4-7": {
+                "auc": null,
+                "n": 13,
+                "n_pos": 6,
+                "n_neg": 7
+              },
+              "8+": {
+                "auc": 0.79046,
+                "n": 184,
+                "n_pos": 86,
+                "n_neg": 98
+              }
+            },
+            "finqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 11,
+                "n_pos": 10,
+                "n_neg": 1
+              },
+              "4-7": {
+                "auc": null,
+                "n": 82,
+                "n_pos": 78,
+                "n_neg": 4
+              },
+              "8+": {
+                "auc": 0.48685,
+                "n": 157,
+                "n_pos": 142,
+                "n_neg": 15
+              }
+            },
+            "hagrid": {
+              "1": {
+                "auc": 0.66296,
+                "n": 51,
+                "n_pos": 45,
+                "n_neg": 6
+              },
+              "2-3": {
+                "auc": 0.65,
+                "n": 70,
+                "n_pos": 60,
+                "n_neg": 10
+              },
+              "4-7": {
+                "auc": 0.7974,
+                "n": 62,
+                "n_pos": 55,
+                "n_neg": 7
+              },
+              "8+": {
+                "auc": 0.69231,
+                "n": 67,
+                "n_pos": 52,
+                "n_neg": 15
+              }
+            },
+            "hotpotqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 1,
+                "n_pos": 1,
+                "n_neg": 0
+              },
+              "4-7": {
+                "auc": 0.67108,
+                "n": 210,
+                "n_pos": 199,
+                "n_neg": 11
+              },
+              "8+": {
+                "auc": 0.67172,
+                "n": 39,
+                "n_pos": 33,
+                "n_neg": 6
+              }
+            },
+            "pubmedqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "4-7": {
+                "auc": null,
+                "n": 5,
+                "n_pos": 5,
+                "n_neg": 0
+              },
+              "8+": {
+                "auc": 0.62237,
+                "n": 245,
+                "n_pos": 168,
+                "n_neg": 77
+              }
+            },
+            "tatqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 61,
+                "n_pos": 57,
+                "n_neg": 4
+              },
+              "4-7": {
+                "auc": null,
+                "n": 94,
+                "n_pos": 92,
+                "n_neg": 2
+              },
+              "8+": {
+                "auc": 0.62931,
+                "n": 95,
+                "n_pos": 87,
+                "n_neg": 8
+              }
+            },
+            "techqa": {
+              "1": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "2-3": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "4-7": {
+                "auc": null,
+                "n": 0,
+                "n_pos": 0,
+                "n_neg": 0
+              },
+              "8+": {
+                "auc": 0.71267,
+                "n": 250,
+                "n_pos": 141,
+                "n_neg": 109
+              }
+            }
+          },
+          "pooled_all_subsets": {
+            "1": {
+              "auc": 0.66296,
+              "n": 51,
+              "n_pos": 45,
+              "n_neg": 6
+            },
+            "2-3": {
+              "auc": 0.74556,
+              "n": 170,
+              "n_pos": 151,
+              "n_neg": 19
+            },
+            "4-7": {
+              "auc": 0.68286,
+              "n": 658,
+              "n_pos": 599,
+              "n_neg": 59
+            },
+            "8+": {
+              "auc": 0.72341,
+              "n": 1385,
+              "n_pos": 1021,
+              "n_neg": 364
+            }
+          }
+        }
+      },
+      "delta_per_subset": {
+        "covidqa": {
+          "1": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 0
+          },
+          "2-3": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 0
+          },
+          "4-7": {
+            "enriched_minus_d1": -0.00032,
+            "d2_minus_d1": -0.02208,
+            "n": 150
+          },
+          "8+": {
+            "enriched_minus_d1": -0.01587,
+            "d2_minus_d1": -0.04585,
+            "n": 95
+          }
+        },
+        "delucionqa": {
+          "1": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 0
+          },
+          "2-3": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 13
+          },
+          "4-7": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 24
+          },
+          "8+": {
+            "enriched_minus_d1": -0.12321,
+            "d2_minus_d1": 0.07823,
+            "n": 147
+          }
+        },
+        "emanual": {
+          "1": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 0
+          },
+          "2-3": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 8
+          },
+          "4-7": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 18
+          },
+          "8+": {
+            "enriched_minus_d1": -0.02951,
+            "d2_minus_d1": -0.04892,
+            "n": 106
+          }
+        },
+        "expertqa": {
+          "1": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 0
+          },
+          "2-3": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 6
+          },
+          "4-7": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 13
+          },
+          "8+": {
+            "enriched_minus_d1": 0.0051,
+            "d2_minus_d1": -0.01887,
+            "n": 184
+          }
+        },
+        "finqa": {
+          "1": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 0
+          },
+          "2-3": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 11
+          },
+          "4-7": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 82
+          },
+          "8+": {
+            "enriched_minus_d1": -0.09813,
+            "d2_minus_d1": 0.09906,
+            "n": 157
+          }
+        },
+        "hagrid": {
+          "1": {
+            "enriched_minus_d1": 0.12592,
+            "d2_minus_d1": -0.03334,
+            "n": 51
+          },
+          "2-3": {
+            "enriched_minus_d1": -0.01667,
+            "d2_minus_d1": -0.05334,
+            "n": 70
+          },
+          "4-7": {
+            "enriched_minus_d1": 0.06753,
+            "d2_minus_d1": -0.02597,
+            "n": 62
+          },
+          "8+": {
+            "enriched_minus_d1": 0.14487,
+            "d2_minus_d1": 0.08974,
+            "n": 67
+          }
+        },
+        "hotpotqa": {
+          "1": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 0
+          },
+          "2-3": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 1
+          },
+          "4-7": {
+            "enriched_minus_d1": -0.03929,
+            "d2_minus_d1": -0.07081,
+            "n": 210
+          },
+          "8+": {
+            "enriched_minus_d1": 0.13132,
+            "d2_minus_d1": 0.13132,
+            "n": 39
+          }
+        },
+        "pubmedqa": {
+          "1": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 0
+          },
+          "2-3": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 0
+          },
+          "4-7": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 5
+          },
+          "8+": {
+            "enriched_minus_d1": 0.03022,
+            "d2_minus_d1": 0.03339,
+            "n": 245
+          }
+        },
+        "tatqa": {
+          "1": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 0
+          },
+          "2-3": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 61
+          },
+          "4-7": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 94
+          },
+          "8+": {
+            "enriched_minus_d1": -0.17385,
+            "d2_minus_d1": 0.0,
+            "n": 95
+          }
+        },
+        "techqa": {
+          "1": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 0
+          },
+          "2-3": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 0
+          },
+          "4-7": {
+            "enriched_minus_d1": null,
+            "d2_minus_d1": null,
+            "n": 0
+          },
+          "8+": {
+            "enriched_minus_d1": -0.02342,
+            "d2_minus_d1": -0.0052,
+            "n": 250
+          }
+        }
+      },
+      "mean_delta_over_subsets": {
+        "1": {
+          "mean_enriched_minus_d1": 0.12592,
+          "n_subsets": 1,
+          "mean_abs_d2_minus_d1_noise": 0.03334
+        },
+        "2-3": {
+          "mean_enriched_minus_d1": -0.01667,
+          "n_subsets": 1,
+          "mean_abs_d2_minus_d1_noise": 0.05334
+        },
+        "4-7": {
+          "mean_enriched_minus_d1": 0.00931,
+          "n_subsets": 3,
+          "mean_abs_d2_minus_d1_noise": 0.03962
+        },
+        "8+": {
+          "mean_enriched_minus_d1": -0.01525,
+          "n_subsets": 10,
+          "mean_abs_d2_minus_d1_noise": 0.05506
+        }
+      }
+    }
+  },
+  "positional_shift": {
+    "covidqa": {
+      "subset": "covidqa",
+      "n": 385,
+      "mean_rel_h150d1": 0.36883,
+      "mean_rel_h150d2": 0.36623,
+      "mean_rel_h159d1": 0.37489,
+      "shift_enriched_vs_d1": 0.00606,
+      "shift_noise_d2_vs_d1": -0.0026
+    },
+    "delucionqa": {
+      "subset": "delucionqa",
+      "n": 929,
+      "mean_rel_h150d1": 0.42135,
+      "mean_rel_h150d2": 0.38798,
+      "mean_rel_h159d1": 0.34624,
+      "shift_enriched_vs_d1": -0.07511,
+      "shift_noise_d2_vs_d1": -0.03337
+    },
+    "emanual": {
+      "subset": "emanual",
+      "n": 748,
+      "mean_rel_h150d1": 0.37667,
+      "mean_rel_h150d2": 0.35237,
+      "mean_rel_h159d1": 0.38539,
+      "shift_enriched_vs_d1": 0.00872,
+      "shift_noise_d2_vs_d1": -0.0243
+    },
+    "expertqa": {
+      "subset": "expertqa",
+      "n": 1173,
+      "mean_rel_h150d1": 0.49567,
+      "mean_rel_h150d2": 0.48719,
+      "mean_rel_h159d1": 0.48735,
+      "shift_enriched_vs_d1": -0.00832,
+      "shift_noise_d2_vs_d1": -0.00848
+    },
+    "finqa": {
+      "subset": "finqa",
+      "n": 563,
+      "mean_rel_h150d1": 0.49298,
+      "mean_rel_h150d2": 0.4795,
+      "mean_rel_h159d1": 0.52572,
+      "shift_enriched_vs_d1": 0.03275,
+      "shift_noise_d2_vs_d1": -0.01348
+    },
+    "hagrid": {
+      "subset": "hagrid",
+      "n": 449,
+      "mean_rel_h150d1": 0.43462,
+      "mean_rel_h150d2": 0.45019,
+      "mean_rel_h159d1": 0.42479,
+      "shift_enriched_vs_d1": -0.00983,
+      "shift_noise_d2_vs_d1": 0.01557
+    },
+    "hotpotqa": {
+      "subset": "hotpotqa",
+      "n": 293,
+      "mean_rel_h150d1": 0.52958,
+      "mean_rel_h150d2": 0.49431,
+      "mean_rel_h159d1": 0.51109,
+      "shift_enriched_vs_d1": -0.01849,
+      "shift_noise_d2_vs_d1": -0.03527
+    },
+    "pubmedqa": {
+      "subset": "pubmedqa",
+      "n": 1314,
+      "mean_rel_h150d1": 0.375,
+      "mean_rel_h150d2": 0.37329,
+      "mean_rel_h159d1": 0.30651,
+      "shift_enriched_vs_d1": -0.06849,
+      "shift_noise_d2_vs_d1": -0.00171
+    },
+    "tatqa": {
+      "subset": "tatqa",
+      "n": 468,
+      "mean_rel_h150d1": 0.22216,
+      "mean_rel_h150d2": 0.21708,
+      "mean_rel_h159d1": 0.2569,
+      "shift_enriched_vs_d1": 0.03474,
+      "shift_noise_d2_vs_d1": -0.00507
+    },
+    "techqa": {
+      "subset": "techqa",
+      "n": 1737,
+      "mean_rel_h150d1": 0.48171,
+      "mean_rel_h150d2": 0.48397,
+      "mean_rel_h159d1": 0.47097,
+      "shift_enriched_vs_d1": -0.01074,
+      "shift_noise_d2_vs_d1": 0.00226
+    }
+  },
+  "positional_shift_pooled": {
+    "mean_rel_h150d1": 0.42907,
+    "mean_rel_h150d2": 0.42017,
+    "mean_rel_h159d1": 0.40991,
+    "shift_enriched_vs_d1": -0.01917,
+    "shift_noise_d2_vs_d1": -0.0089
+  },
+  "thin_cells": [
+    "item_total/h150d1/covidqa/stratum 1 (n=0, pos=0, neg=0)",
+    "item_total/h150d1/covidqa/stratum 2-3 (n=0, pos=0, neg=0)",
+    "item_total/h150d1/delucionqa/stratum 1 (n=0, pos=0, neg=0)",
+    "item_total/h150d1/delucionqa/stratum 2-3 (n=13, pos=12, neg=1)",
+    "item_total/h150d1/delucionqa/stratum 4-7 (n=24, pos=21, neg=3)",
+    "item_total/h150d1/emanual/stratum 1 (n=0, pos=0, neg=0)",
+    "item_total/h150d1/emanual/stratum 2-3 (n=8, pos=8, neg=0)",
+    "item_total/h150d1/emanual/stratum 4-7 (n=18, pos=18, neg=0)",
+    "item_total/h150d1/expertqa/stratum 1 (n=0, pos=0, neg=0)",
+    "item_total/h150d1/expertqa/stratum 2-3 (n=6, pos=3, neg=3)",
+    "item_total/h150d1/expertqa/stratum 4-7 (n=13, pos=6, neg=7)",
+    "item_total/h150d1/finqa/stratum 1 (n=0, pos=0, neg=0)",
+    "item_total/h150d1/finqa/stratum 2-3 (n=11, pos=10, neg=1)",
+    "item_total/h150d1/finqa/stratum 4-7 (n=82, pos=78, neg=4)",
+    "item_total/h150d1/hotpotqa/stratum 1 (n=0, pos=0, neg=0)",
+    "item_total/h150d1/hotpotqa/stratum 2-3 (n=1, pos=1, neg=0)",
+    "item_total/h150d1/pubmedqa/stratum 1 (n=0, pos=0, neg=0)",
+    "item_total/h150d1/pubmedqa/stratum 2-3 (n=0, pos=0, neg=0)",
+    "item_total/h150d1/pubmedqa/stratum 4-7 (n=5, pos=5, neg=0)",
+    "item_total/h150d1/tatqa/stratum 1 (n=0, pos=0, neg=0)",
+    "item_total/h150d1/tatqa/stratum 2-3 (n=61, pos=57, neg=4)",
+    "item_total/h150d1/tatqa/stratum 4-7 (n=94, pos=92, neg=2)",
+    "item_total/h150d1/techqa/stratum 1 (n=0, pos=0, neg=0)",
+    "item_total/h150d1/techqa/stratum 2-3 (n=0, pos=0, neg=0)",
+    "item_total/h150d1/techqa/stratum 4-7 (n=0, pos=0, neg=0)",
+    "item_total/h150d2/covidqa/stratum 1 (n=0, pos=0, neg=0)",
+    "item_total/h150d2/covidqa/stratum 2-3 (n=0, pos=0, neg=0)",
+    "item_total/h150d2/delucionqa/stratum 1 (n=0, pos=0, neg=0)",
+    "item_total/h150d2/delucionqa/stratum 2-3 (n=13, pos=12, neg=1)",
+    "item_total/h150d2/delucionqa/stratum 4-7 (n=24, pos=21, neg=3)",
+    "item_total/h150d2/emanual/stratum 1 (n=0, pos=0, neg=0)",
+    "item_total/h150d2/emanual/stratum 2-3 (n=8, pos=8, neg=0)",
+    "item_total/h150d2/emanual/stratum 4-7 (n=18, pos=18, neg=0)",
+    "item_total/h150d2/expertqa/stratum 1 (n=0, pos=0, neg=0)",
+    "item_total/h150d2/expertqa/stratum 2-3 (n=6, pos=3, neg=3)",
+    "item_total/h150d2/expertqa/stratum 4-7 (n=13, pos=6, neg=7)",
+    "item_total/h150d2/finqa/stratum 1 (n=0, pos=0, neg=0)",
+    "item_total/h150d2/finqa/stratum 2-3 (n=11, pos=10, neg=1)",
+    "item_total/h150d2/finqa/stratum 4-7 (n=82, pos=78, neg=4)",
+    "item_total/h150d2/hotpotqa/stratum 1 (n=0, pos=0, neg=0)",
+    "item_total/h150d2/hotpotqa/stratum 2-3 (n=1, pos=1, neg=0)",
+    "item_total/h150d2/pubmedqa/stratum 1 (n=0, pos=0, neg=0)",
+    "item_total/h150d2/pubmedqa/stratum 2-3 (n=0, pos=0, neg=0)",
+    "item_total/h150d2/pubmedqa/stratum 4-7 (n=5, pos=5, neg=0)",
+    "item_total/h150d2/tatqa/stratum 1 (n=0, pos=0, neg=0)",
+    "item_total/h150d2/tatqa/stratum 2-3 (n=61, pos=57, neg=4)",
+    "item_total/h150d2/tatqa/stratum 4-7 (n=94, pos=92, neg=2)",
+    "item_total/h150d2/techqa/stratum 1 (n=0, pos=0, neg=0)",
+    "item_total/h150d2/techqa/stratum 2-3 (n=0, pos=0, neg=0)",
+    "item_total/h150d2/techqa/stratum 4-7 (n=0, pos=0, neg=0)",
+    "item_total/h159d1/covidqa/stratum 1 (n=0, pos=0, neg=0)",
+    "item_total/h159d1/covidqa/stratum 2-3 (n=0, pos=0, neg=0)",
+    "item_total/h159d1/delucionqa/stratum 1 (n=0, pos=0, neg=0)",
+    "item_total/h159d1/delucionqa/stratum 2-3 (n=13, pos=12, neg=1)",
+    "item_total/h159d1/delucionqa/stratum 4-7 (n=24, pos=21, neg=3)",
+    "item_total/h159d1/emanual/stratum 1 (n=0, pos=0, neg=0)",
+    "item_total/h159d1/emanual/stratum 2-3 (n=8, pos=8, neg=0)",
+    "item_total/h159d1/emanual/stratum 4-7 (n=18, pos=18, neg=0)",
+    "item_total/h159d1/expertqa/stratum 1 (n=0, pos=0, neg=0)",
+    "item_total/h159d1/expertqa/stratum 2-3 (n=6, pos=3, neg=3)",
+    "item_total/h159d1/expertqa/stratum 4-7 (n=13, pos=6, neg=7)",
+    "item_total/h159d1/finqa/stratum 1 (n=0, pos=0, neg=0)",
+    "item_total/h159d1/finqa/stratum 2-3 (n=11, pos=10, neg=1)",
+    "item_total/h159d1/finqa/stratum 4-7 (n=82, pos=78, neg=4)",
+    "item_total/h159d1/hotpotqa/stratum 1 (n=0, pos=0, neg=0)",
+    "item_total/h159d1/hotpotqa/stratum 2-3 (n=1, pos=1, neg=0)",
+    "item_total/h159d1/pubmedqa/stratum 1 (n=0, pos=0, neg=0)",
+    "item_total/h159d1/pubmedqa/stratum 2-3 (n=0, pos=0, neg=0)",
+    "item_total/h159d1/pubmedqa/stratum 4-7 (n=5, pos=5, neg=0)",
+    "item_total/h159d1/tatqa/stratum 1 (n=0, pos=0, neg=0)",
+    "item_total/h159d1/tatqa/stratum 2-3 (n=61, pos=57, neg=4)",
+    "item_total/h159d1/tatqa/stratum 4-7 (n=94, pos=92, neg=2)",
+    "item_total/h159d1/techqa/stratum 1 (n=0, pos=0, neg=0)",
+    "item_total/h159d1/techqa/stratum 2-3 (n=0, pos=0, neg=0)",
+    "item_total/h159d1/techqa/stratum 4-7 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h150d1/covidqa/stratum 1 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h150d1/covidqa/stratum 2-3 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h150d1/covidqa/stratum 8+ (n=0, pos=0, neg=0)",
+    "sinking_sentence/h150d1/delucionqa/stratum 1 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h150d1/delucionqa/stratum 4-7 (n=102, pos=99, neg=3)",
+    "sinking_sentence/h150d1/delucionqa/stratum 8+ (n=32, pos=31, neg=1)",
+    "sinking_sentence/h150d1/emanual/stratum 1 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h150d1/emanual/stratum 4-7 (n=42, pos=39, neg=3)",
+    "sinking_sentence/h150d1/emanual/stratum 8+ (n=12, pos=12, neg=0)",
+    "sinking_sentence/h150d1/expertqa/stratum 1 (n=18, pos=5, neg=13)",
+    "sinking_sentence/h150d1/finqa/stratum 1 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h150d1/finqa/stratum 2-3 (n=43, pos=41, neg=2)",
+    "sinking_sentence/h150d1/finqa/stratum 8+ (n=23, pos=22, neg=1)",
+    "sinking_sentence/h150d1/hagrid/stratum 8+ (n=14, pos=12, neg=2)",
+    "sinking_sentence/h150d1/hotpotqa/stratum 1 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h150d1/hotpotqa/stratum 2-3 (n=1, pos=1, neg=0)",
+    "sinking_sentence/h150d1/hotpotqa/stratum 8+ (n=0, pos=0, neg=0)",
+    "sinking_sentence/h150d1/pubmedqa/stratum 1 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h150d1/pubmedqa/stratum 2-3 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h150d1/pubmedqa/stratum 8+ (n=0, pos=0, neg=0)",
+    "sinking_sentence/h150d1/tatqa/stratum 1 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h150d1/tatqa/stratum 8+ (n=26, pos=26, neg=0)",
+    "sinking_sentence/h150d1/techqa/stratum 1 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h150d1/techqa/stratum 2-3 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h150d1/techqa/stratum 4-7 (n=8, pos=5, neg=3)",
+    "sinking_sentence/h150d2/covidqa/stratum 1 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h150d2/covidqa/stratum 2-3 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h150d2/covidqa/stratum 8+ (n=0, pos=0, neg=0)",
+    "sinking_sentence/h150d2/delucionqa/stratum 1 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h150d2/delucionqa/stratum 4-7 (n=102, pos=99, neg=3)",
+    "sinking_sentence/h150d2/delucionqa/stratum 8+ (n=32, pos=31, neg=1)",
+    "sinking_sentence/h150d2/emanual/stratum 1 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h150d2/emanual/stratum 4-7 (n=42, pos=39, neg=3)",
+    "sinking_sentence/h150d2/emanual/stratum 8+ (n=12, pos=12, neg=0)",
+    "sinking_sentence/h150d2/expertqa/stratum 1 (n=18, pos=5, neg=13)",
+    "sinking_sentence/h150d2/finqa/stratum 1 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h150d2/finqa/stratum 2-3 (n=43, pos=41, neg=2)",
+    "sinking_sentence/h150d2/finqa/stratum 8+ (n=23, pos=22, neg=1)",
+    "sinking_sentence/h150d2/hagrid/stratum 8+ (n=14, pos=12, neg=2)",
+    "sinking_sentence/h150d2/hotpotqa/stratum 1 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h150d2/hotpotqa/stratum 2-3 (n=1, pos=1, neg=0)",
+    "sinking_sentence/h150d2/hotpotqa/stratum 8+ (n=0, pos=0, neg=0)",
+    "sinking_sentence/h150d2/pubmedqa/stratum 1 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h150d2/pubmedqa/stratum 2-3 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h150d2/pubmedqa/stratum 8+ (n=0, pos=0, neg=0)",
+    "sinking_sentence/h150d2/tatqa/stratum 1 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h150d2/tatqa/stratum 8+ (n=26, pos=26, neg=0)",
+    "sinking_sentence/h150d2/techqa/stratum 1 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h150d2/techqa/stratum 2-3 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h150d2/techqa/stratum 4-7 (n=8, pos=5, neg=3)",
+    "sinking_sentence/h159d1/covidqa/stratum 1 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h159d1/covidqa/stratum 2-3 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h159d1/covidqa/stratum 8+ (n=0, pos=0, neg=0)",
+    "sinking_sentence/h159d1/delucionqa/stratum 1 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h159d1/delucionqa/stratum 4-7 (n=102, pos=99, neg=3)",
+    "sinking_sentence/h159d1/delucionqa/stratum 8+ (n=32, pos=31, neg=1)",
+    "sinking_sentence/h159d1/emanual/stratum 1 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h159d1/emanual/stratum 4-7 (n=42, pos=39, neg=3)",
+    "sinking_sentence/h159d1/emanual/stratum 8+ (n=12, pos=12, neg=0)",
+    "sinking_sentence/h159d1/expertqa/stratum 1 (n=18, pos=5, neg=13)",
+    "sinking_sentence/h159d1/finqa/stratum 1 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h159d1/finqa/stratum 2-3 (n=43, pos=41, neg=2)",
+    "sinking_sentence/h159d1/finqa/stratum 8+ (n=23, pos=22, neg=1)",
+    "sinking_sentence/h159d1/hagrid/stratum 8+ (n=14, pos=12, neg=2)",
+    "sinking_sentence/h159d1/hotpotqa/stratum 1 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h159d1/hotpotqa/stratum 2-3 (n=1, pos=1, neg=0)",
+    "sinking_sentence/h159d1/hotpotqa/stratum 8+ (n=0, pos=0, neg=0)",
+    "sinking_sentence/h159d1/pubmedqa/stratum 1 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h159d1/pubmedqa/stratum 2-3 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h159d1/pubmedqa/stratum 8+ (n=0, pos=0, neg=0)",
+    "sinking_sentence/h159d1/tatqa/stratum 1 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h159d1/tatqa/stratum 8+ (n=26, pos=26, neg=0)",
+    "sinking_sentence/h159d1/techqa/stratum 1 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h159d1/techqa/stratum 2-3 (n=0, pos=0, neg=0)",
+    "sinking_sentence/h159d1/techqa/stratum 4-7 (n=8, pos=5, neg=3)"
+  ],
+  "thin_cell_count": 150
+}

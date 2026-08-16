@@ -63,11 +63,12 @@ ARM=R19-H160
 MODE="${1:-draw}"
 
 if [ "$MODE" != "--census" ]; then
-  export CUDA_VISIBLE_DEVICES="${GPU:?set GPU (0 or 2; GPU1 is reserved for R19-H159)}"
-  if [ "$CUDA_VISIBLE_DEVICES" = "1" ]; then
-    echo "GPU PLACEMENT ABORT: GPU1 is reserved exclusively for R19-H159"
-    exit 1
-  fi
+  # GPU1's reservation LIFTED 2026-08-14 16:38: R19-H159 was KILLED at draw 1
+  # (blind 0.68941 vs the 0.71049 kill bar) and released the card. GPU1 is now a
+  # legal placement for this arm. The unset check stays - the banked trainer
+  # defaults CUDA_VISIBLE_DEVICES to "1" at import, so an unset variable must
+  # never resolve silently.
+  export CUDA_VISIBLE_DEVICES="${GPU:?set GPU explicitly (0, 1 or 2)}"
 fi
 
 stage() {

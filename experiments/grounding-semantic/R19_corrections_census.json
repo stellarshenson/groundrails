@@ -1,0 +1,507 @@
+{
+ "what": "artifact backing the R19 corrections wave",
+ "why": "the first corrections block asserted counts in prose with no script; a confirming review found one wrong. Banked so the corrections meet the same standard as the arms they correct.",
+ "A_nonen_en_census": {
+  "n_checkpoints": 47,
+  "n_nonen_above_en": 42,
+  "n_reversals": 5,
+  "largest_reversal": {
+   "file": "R8-H81_result.json",
+   "en": 0.8345,
+   "nonen": 0.8157,
+   "delta": -0.0188
+  },
+  "largest_positive": {
+   "file": "R19-H168_arm_draw1_result.json",
+   "en": 0.6194,
+   "nonen": 0.7712,
+   "delta": 0.1518
+  },
+  "reversals": [
+   {
+    "file": "R8-H81_result.json",
+    "en": 0.8345,
+    "nonen": 0.8157,
+    "delta": -0.0188
+   },
+   {
+    "file": "R13-H127_draw1_result.json",
+    "en": 0.841,
+    "nonen": 0.835,
+    "delta": -0.006
+   },
+   {
+    "file": "R8-H62_result.json",
+    "en": 0.8434,
+    "nonen": 0.8407,
+    "delta": -0.0027
+   },
+   {
+    "file": "R9-H105_draw2_result.json",
+    "en": 0.8361,
+    "nonen": 0.8337,
+    "delta": -0.0024
+   },
+   {
+    "file": "R12-H122_draw1_result.json",
+    "en": 0.8323,
+    "nonen": 0.8317,
+    "delta": -0.0006
+   }
+  ],
+  "reading": "nonEN above EN is the DOMINANT direction, not universal - reversals exist and the largest is larger in magnitude than several of the positive deltas",
+  "rows": [
+   {
+    "file": "R8-H81_result.json",
+    "en": 0.8345,
+    "nonen": 0.8157,
+    "delta": -0.0188
+   },
+   {
+    "file": "R13-H127_draw1_result.json",
+    "en": 0.841,
+    "nonen": 0.835,
+    "delta": -0.006
+   },
+   {
+    "file": "R8-H62_result.json",
+    "en": 0.8434,
+    "nonen": 0.8407,
+    "delta": -0.0027
+   },
+   {
+    "file": "R9-H105_draw2_result.json",
+    "en": 0.8361,
+    "nonen": 0.8337,
+    "delta": -0.0024
+   },
+   {
+    "file": "R12-H122_draw1_result.json",
+    "en": 0.8323,
+    "nonen": 0.8317,
+    "delta": -0.0006
+   },
+   {
+    "file": "R9-H105_result.json",
+    "en": 0.8382,
+    "nonen": 0.8402,
+    "delta": 0.002
+   },
+   {
+    "file": "DR_lane_draw1_margin_result.json",
+    "en": 0.8436,
+    "nonen": 0.8474,
+    "delta": 0.0038
+   },
+   {
+    "file": "R10-H107_lane_draw1_result.json",
+    "en": 0.8406,
+    "nonen": 0.8445,
+    "delta": 0.0039
+   },
+   {
+    "file": "R8-H79_result.json",
+    "en": 0.8372,
+    "nonen": 0.8411,
+    "delta": 0.0039
+   },
+   {
+    "file": "R8-H78_result.json",
+    "en": 0.8373,
+    "nonen": 0.8415,
+    "delta": 0.0042
+   },
+   {
+    "file": "R8-H100_draw3_result.json",
+    "en": 0.8375,
+    "nonen": 0.8436,
+    "delta": 0.0061
+   },
+   {
+    "file": "R10-H107_lane_draw2_result.json",
+    "en": 0.8297,
+    "nonen": 0.8368,
+    "delta": 0.0071
+   },
+   {
+    "file": "R13-H128_draw1_result.json",
+    "en": 0.8257,
+    "nonen": 0.8335,
+    "delta": 0.0078
+   },
+   {
+    "file": "R17-H145_arm_draw1_result.json",
+    "en": 0.8358,
+    "nonen": 0.8448,
+    "delta": 0.009
+   },
+   {
+    "file": "R13-H129_draw1_result.json",
+    "en": 0.8329,
+    "nonen": 0.8421,
+    "delta": 0.0092
+   },
+   {
+    "file": "R14-H133_arm_draw1_result.json",
+    "en": 0.831,
+    "nonen": 0.8402,
+    "delta": 0.0092
+   },
+   {
+    "file": "R8-H84_result.json",
+    "en": 0.8233,
+    "nonen": 0.8325,
+    "delta": 0.0092
+   },
+   {
+    "file": "R17-H146_arm_draw1_result.json",
+    "en": 0.8212,
+    "nonen": 0.8305,
+    "delta": 0.0093
+   },
+   {
+    "file": "R8-H100_result.json",
+    "en": 0.8304,
+    "nonen": 0.8398,
+    "delta": 0.0094
+   },
+   {
+    "file": "R19-H160_soup_soupB_goldfull_result.json",
+    "en": 0.8344,
+    "nonen": 0.8445,
+    "delta": 0.0101
+   },
+   {
+    "file": "DR_lane_draw1_control_result.json",
+    "en": 0.8329,
+    "nonen": 0.8447,
+    "delta": 0.0118
+   },
+   {
+    "file": "R16-H142_T_draw2_result.json",
+    "en": 0.8315,
+    "nonen": 0.8454,
+    "delta": 0.0139
+   },
+   {
+    "file": "DR_lane_draw2_control_result.json",
+    "en": 0.8332,
+    "nonen": 0.848,
+    "delta": 0.0148
+   },
+   {
+    "file": "R18-H150_arm_draw2_result.json",
+    "en": 0.8291,
+    "nonen": 0.8441,
+    "delta": 0.015
+   },
+   {
+    "file": "R10-H108_lane_draw2_result.json",
+    "en": 0.814,
+    "nonen": 0.8291,
+    "delta": 0.0151
+   },
+   {
+    "file": "R18-H156_arm_draw1_result.json",
+    "en": 0.8264,
+    "nonen": 0.842,
+    "delta": 0.0156
+   },
+   {
+    "file": "R8-H90_result.json",
+    "en": 0.8201,
+    "nonen": 0.837,
+    "delta": 0.0169
+   },
+   {
+    "file": "R10-H108_lane_draw1_result.json",
+    "en": 0.8246,
+    "nonen": 0.8421,
+    "delta": 0.0175
+   },
+   {
+    "file": "DR_lane_draw2_margin_result.json",
+    "en": 0.8314,
+    "nonen": 0.85,
+    "delta": 0.0186
+   },
+   {
+    "file": "R8-H73_result.json",
+    "en": 0.817,
+    "nonen": 0.8357,
+    "delta": 0.0187
+   },
+   {
+    "file": "R19-H160_arm_draw3_result.json",
+    "en": 0.8245,
+    "nonen": 0.8444,
+    "delta": 0.0199
+   },
+   {
+    "file": "R8-H83_result.json",
+    "en": 0.8097,
+    "nonen": 0.8303,
+    "delta": 0.0206
+   },
+   {
+    "file": "R14-H133_arm_draw2_result.json",
+    "en": 0.8136,
+    "nonen": 0.8345,
+    "delta": 0.0209
+   },
+   {
+    "file": "R14-H135_arm_draw1_result.json",
+    "en": 0.8084,
+    "nonen": 0.833,
+    "delta": 0.0246
+   },
+   {
+    "file": "R8-H91_result.json",
+    "en": 0.8178,
+    "nonen": 0.843,
+    "delta": 0.0252
+   },
+   {
+    "file": "R8-H96_result.json",
+    "en": 0.7818,
+    "nonen": 0.807,
+    "delta": 0.0252
+   },
+   {
+    "file": "R16-H142_G1_twin_result.json",
+    "en": 0.816,
+    "nonen": 0.8415,
+    "delta": 0.0255
+   },
+   {
+    "file": "R18-H152_arm_draw1_result.json",
+    "en": 0.8166,
+    "nonen": 0.8423,
+    "delta": 0.0257
+   },
+   {
+    "file": "R8-H99_result.json",
+    "en": 0.8167,
+    "nonen": 0.8424,
+    "delta": 0.0257
+   },
+   {
+    "file": "R19-H159_arm_draw1_result.json",
+    "en": 0.8078,
+    "nonen": 0.8396,
+    "delta": 0.0318
+   },
+   {
+    "file": "R16-H142_G1_arm_result.json",
+    "en": 0.8024,
+    "nonen": 0.8421,
+    "delta": 0.0397
+   },
+   {
+    "file": "R18-H150_arm_draw1_result.json",
+    "en": 0.7967,
+    "nonen": 0.8443,
+    "delta": 0.0476
+   },
+   {
+    "file": "R19-H160_arm_draw4_result.json",
+    "en": 0.7987,
+    "nonen": 0.8463,
+    "delta": 0.0476
+   },
+   {
+    "file": "R18-H152_arm_draw2_result.json",
+    "en": 0.7902,
+    "nonen": 0.838,
+    "delta": 0.0478
+   },
+   {
+    "file": "R18-H155_twin_draw2_result.json",
+    "en": 0.7936,
+    "nonen": 0.8416,
+    "delta": 0.048
+   },
+   {
+    "file": "R18-H155_twin_draw1_result.json",
+    "en": 0.7886,
+    "nonen": 0.8455,
+    "delta": 0.0569
+   },
+   {
+    "file": "R19-H168_arm_draw1_result.json",
+    "en": 0.6194,
+    "nonen": 0.7712,
+    "delta": 0.1518
+   }
+  ]
+ },
+ "B_per_subset_vs_incumbent": {
+  "harness_auc": {
+   "wins": 8,
+   "losses": 1,
+   "ties": 1,
+   "tie_band": 0.005,
+   "losing_subsets": [
+    "finqa"
+   ],
+   "per_subset": {
+    "covidqa": {
+     "ours_2draw_mean": 0.7571,
+     "incumbent": 0.7355,
+     "delta": 0.0216,
+     "verdict": "win"
+    },
+    "delucionqa": {
+     "ours_2draw_mean": 0.7948,
+     "incumbent": 0.7929,
+     "delta": 0.0019,
+     "verdict": "tie"
+    },
+    "emanual": {
+     "ours_2draw_mean": 0.678,
+     "incumbent": 0.5999,
+     "delta": 0.0781,
+     "verdict": "win"
+    },
+    "expertqa": {
+     "ours_2draw_mean": 0.7895,
+     "incumbent": 0.6503,
+     "delta": 0.1392,
+     "verdict": "win"
+    },
+    "finqa": {
+     "ours_2draw_mean": 0.6825,
+     "incumbent": 0.717,
+     "delta": -0.0345,
+     "verdict": "loss"
+    },
+    "hagrid": {
+     "ours_2draw_mean": 0.6424,
+     "incumbent": 0.5992,
+     "delta": 0.0432,
+     "verdict": "win"
+    },
+    "hotpotqa": {
+     "ours_2draw_mean": 0.6706,
+     "incumbent": 0.5976,
+     "delta": 0.073,
+     "verdict": "win"
+    },
+    "pubmedqa": {
+     "ours_2draw_mean": 0.6096,
+     "incumbent": 0.5162,
+     "delta": 0.0934,
+     "verdict": "win"
+    },
+    "tatqa": {
+     "ours_2draw_mean": 0.7968,
+     "incumbent": 0.6156,
+     "delta": 0.1812,
+     "verdict": "win"
+    },
+    "techqa": {
+     "ours_2draw_mean": 0.7335,
+     "incumbent": 0.6363,
+     "delta": 0.0972,
+     "verdict": "win"
+    }
+   }
+  },
+  "native_auc": {
+   "wins": 6,
+   "losses": 3,
+   "ties": 1,
+   "tie_band": 0.005,
+   "losing_subsets": [
+    "emanual",
+    "expertqa",
+    "hagrid"
+   ],
+   "per_subset": {
+    "covidqa": {
+     "ours_2draw_mean": 0.7571,
+     "incumbent": 0.7432,
+     "delta": 0.014,
+     "verdict": "win"
+    },
+    "delucionqa": {
+     "ours_2draw_mean": 0.7948,
+     "incumbent": 0.7018,
+     "delta": 0.093,
+     "verdict": "win"
+    },
+    "emanual": {
+     "ours_2draw_mean": 0.678,
+     "incumbent": 0.7694,
+     "delta": -0.0914,
+     "verdict": "loss"
+    },
+    "expertqa": {
+     "ours_2draw_mean": 0.7895,
+     "incumbent": 0.8098,
+     "delta": -0.0202,
+     "verdict": "loss"
+    },
+    "finqa": {
+     "ours_2draw_mean": 0.6825,
+     "incumbent": 0.6137,
+     "delta": 0.0688,
+     "verdict": "win"
+    },
+    "hagrid": {
+     "ours_2draw_mean": 0.6424,
+     "incumbent": 0.7542,
+     "delta": -0.1118,
+     "verdict": "loss"
+    },
+    "hotpotqa": {
+     "ours_2draw_mean": 0.6706,
+     "incumbent": 0.6161,
+     "delta": 0.0545,
+     "verdict": "win"
+    },
+    "pubmedqa": {
+     "ours_2draw_mean": 0.6096,
+     "incumbent": 0.607,
+     "delta": 0.0026,
+     "verdict": "tie"
+    },
+    "tatqa": {
+     "ours_2draw_mean": 0.7968,
+     "incumbent": 0.5275,
+     "delta": 0.2693,
+     "verdict": "win"
+    },
+    "techqa": {
+     "ours_2draw_mean": 0.7335,
+     "incumbent": 0.6536,
+     "delta": 0.0799,
+     "verdict": "win"
+    }
+   }
+  }
+ },
+ "C_h165_null_spreads": {
+  "paired_same_checkpoint_same_presentation": {
+   "value": 1e-05,
+   "note": "the null that MATCHES the bar's own pairing - the bar compares one checkpoint under two presentations, so its null is that checkpoint re-read under one presentation. Deterministic."
+  },
+  "across_seed_same_recipe": {
+   "per_subset": {
+    "covidqa": -0.0227,
+    "delucionqa": -0.0121,
+    "emanual": -0.0387,
+    "expertqa": -0.0147,
+    "finqa": 0.062,
+    "hagrid": 0.0002,
+    "hotpotqa": -0.0119,
+    "pubmedqa": 0.0405,
+    "tatqa": 0.0251,
+    "techqa": -0.0052
+   },
+   "n_exceeding_0.01": 5,
+   "note": "a DIFFERENT null - two seeds of the same recipe. Informative about how much a subset moves between draws, but NOT the null of a paired within-checkpoint bar."
+  },
+  "reading": "The first correction pass used the across-seed spread to claim the subset leg 'fails on doing nothing'. That substitutes an unpaired null for a paired bar and is withdrawn. What survives: the mean leg and the subset leg are not independent evidence, and a 0.01 leg is tight relative to how much these subsets move between draws."
+ }
+}

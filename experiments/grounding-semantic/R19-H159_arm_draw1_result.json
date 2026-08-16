@@ -1,0 +1,265 @@
+{
+  "gold": {
+    "auc": 0.8747,
+    "f1": 0.7711,
+    "n": 717
+  },
+  "gold_full": {
+    "auc": 0.8806,
+    "f1": 0.7671,
+    "n": 2752
+  },
+  "ragtruth_en": {
+    "auc": 0.8078,
+    "f1": 0.7245,
+    "n": 600
+  },
+  "ragtruth_nonen": {
+    "auc": 0.8396,
+    "per_lang": {
+      "de": 0.8471,
+      "fr": 0.8263,
+      "es": 0.8358,
+      "it": 0.8329,
+      "pl": 0.8403,
+      "hu": 0.825,
+      "cn": 0.8695
+    }
+  },
+  "run": "twin",
+  "adapter_active": false,
+  "experiment": "R19-H159 enriched-mix arm draw 1 (amendment A1) - flagship recipe verbatim, five R19 supply lanes admitted as new DANN groups",
+  "seed": 1159,
+  "params_M": 307.9,
+  "adapter_params": 790529,
+  "adapter_hidden": 512,
+  "lr": 1e-05,
+  "lr_adapter": null,
+  "lambda_max": 0.02,
+  "mix": "flagship 721,210 (clean public mix + misbind 30,000 + unit_swap 5,540) + FAVA 30,073 + AttributionBench 16,426 + MiniCheck 14,356 + PubHealth 12,251 + FinDVer 2,400 = 796,716 rows, 19 DANN groups",
+  "evidence": "UNTRUNCATED, windowed 1500/750 (A1)",
+  "objective": "MIL max-over-window BCE per row + per-pair domain CE",
+  "precision": "bf16 autocast on the trunk encode, fp32 heads/adapter/loss, fp32 for both reads (read protocol byte-identical to the banked windowed read); identical in both runs of the pair",
+  "mix_rows": 796716,
+  "dann_groups": 19,
+  "group_counts": {
+    "attributionbench": 16426,
+    "fava": 30073,
+    "findver": 2400,
+    "halueval": 40000,
+    "minicheck": 14356,
+    "psiloqa": 61712,
+    "pubhealth": 12251,
+    "quant_misbind": 30000,
+    "quant_scale_unit": 5540,
+    "ragtruth_cn": 15090,
+    "ragtruth_de": 15090,
+    "ragtruth_en": 15090,
+    "ragtruth_es": 15090,
+    "ragtruth_fr": 15090,
+    "ragtruth_hu": 15090,
+    "ragtruth_it": 15090,
+    "ragtruth_pl": 15090,
+    "tabfact": 92585,
+    "vitaminc": 370653
+  },
+  "window_census": {
+    "mean_windows_per_row": 1.6264,
+    "median_windows_per_row": 1,
+    "p90_windows_per_row": 3,
+    "max_windows_per_row": 95,
+    "rows_with_multi_window_set": 186327,
+    "multi_window_share": 0.2339,
+    "total_pairs": 1295811,
+    "histogram_clipped_at_10": {
+      "1": 610389,
+      "2": 56029,
+      "3": 64118,
+      "4": 31304,
+      "5": 11502,
+      "6": 6962,
+      "7": 4957,
+      "8": 3463,
+      "9": 2377,
+      "10": 5615
+    },
+    "per_group": {
+      "attributionbench": {
+        "rows": 16426,
+        "mean_windows": 1.999,
+        "max_windows": 95
+      },
+      "fava": {
+        "rows": 30073,
+        "mean_windows": 3.415,
+        "max_windows": 6
+      },
+      "findver": {
+        "rows": 2400,
+        "mean_windows": 3.987,
+        "max_windows": 44
+      },
+      "halueval": {
+        "rows": 40000,
+        "mean_windows": 2.839,
+        "max_windows": 15
+      },
+      "minicheck": {
+        "rows": 14356,
+        "mean_windows": 1.115,
+        "max_windows": 3
+      },
+      "psiloqa": {
+        "rows": 61712,
+        "mean_windows": 1.07,
+        "max_windows": 25
+      },
+      "pubhealth": {
+        "rows": 12251,
+        "mean_windows": 5.372,
+        "max_windows": 55
+      },
+      "quant_misbind": {
+        "rows": 30000,
+        "mean_windows": 1.0,
+        "max_windows": 1
+      },
+      "quant_scale_unit": {
+        "rows": 5540,
+        "mean_windows": 1.0,
+        "max_windows": 1
+      },
+      "ragtruth_cn": {
+        "rows": 15090,
+        "mean_windows": 1.58,
+        "max_windows": 11
+      },
+      "ragtruth_de": {
+        "rows": 15090,
+        "mean_windows": 3.312,
+        "max_windows": 16
+      },
+      "ragtruth_en": {
+        "rows": 15090,
+        "mean_windows": 2.687,
+        "max_windows": 14
+      },
+      "ragtruth_es": {
+        "rows": 15090,
+        "mean_windows": 3.316,
+        "max_windows": 17
+      },
+      "ragtruth_fr": {
+        "rows": 15090,
+        "mean_windows": 3.44,
+        "max_windows": 16
+      },
+      "ragtruth_hu": {
+        "rows": 15090,
+        "mean_windows": 3.004,
+        "max_windows": 40
+      },
+      "ragtruth_it": {
+        "rows": 15090,
+        "mean_windows": 3.332,
+        "max_windows": 16
+      },
+      "ragtruth_pl": {
+        "rows": 15090,
+        "mean_windows": 3.078,
+        "max_windows": 15
+      },
+      "tabfact": {
+        "rows": 92585,
+        "mean_windows": 1.346,
+        "max_windows": 12
+      },
+      "vitaminc": {
+        "rows": 370653,
+        "mean_windows": 1.0,
+        "max_windows": 5
+      }
+    }
+  },
+  "n_steps": 16718,
+  "sets_per_batch": 48,
+  "pairs_per_batch": 96,
+  "init_fingerprint": "1b17db2de8a322b48807802513f24e3a",
+  "init_fingerprint_scope": "trunk+task_head",
+  "perm_fingerprint": "39e7dd9d4a12753f",
+  "bars": {
+    "pubmedqa_primary_min": 0.6495,
+    "pubmedqa_kill_below": 0.6279,
+    "hotpotqa_min": 0.638,
+    "tatqa_min": 0.674,
+    "arena_mean_min": 0.70311,
+    "gold_full_min": 0.8414,
+    "ragtruth_nonen_min": 0.82
+  },
+  "seed_sd": {
+    "pubmedqa": 0.0216,
+    "hotpotqa": 0.0144,
+    "tatqa": 0.029
+  },
+  "control": {
+    "pubmedqa": 0.6063,
+    "hotpotqa": 0.6668,
+    "tatqa": 0.732,
+    "arena_mean": 0.70311
+  },
+  "train_seconds": 23173.8,
+  "checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/R19-H159-arm-draw1",
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates.",
+  "arm": "h159_enriched_mix_draw1",
+  "amendment_A1": "FActScore WITHDRAWN (whole-biography evidence unit needs a lane build, not a presentation tweak); the five remaining lanes admit UNTRUNCATED per the twin protocol (the 1,500-char lane cap was priced and rejected); the AttributionBench rows over the 96-pair batch cap are dropped and recorded in `over_cap_drop`",
+  "over_cap_drop": {
+    "attributionbench": {
+      "rows_in_parquet": 16444,
+      "rows_dropped": 18,
+      "rows_kept": 16426,
+      "cap": 96,
+      "dropped_pairs": 3338,
+      "dropped_window_counts": [
+        533,
+        512,
+        377,
+        198,
+        185,
+        136,
+        132,
+        129,
+        129,
+        116,
+        116,
+        113,
+        113,
+        112,
+        112,
+        110,
+        108,
+        107
+      ],
+      "rule": "len(windows(chunk)) > PAIRS_PER_BATCH, the banked trainer's own BATCH-CAP guard threshold"
+    }
+  },
+  "clean_rows": 685670,
+  "lane_rows": {
+    "quant_misbind": 30000,
+    "quant_scale_unit": 5540,
+    "fava": 30073,
+    "attributionbench": 16426,
+    "minicheck": 14356,
+    "pubhealth": 12251,
+    "findver": 2400
+  },
+  "lane_groups": [
+    "quant_misbind",
+    "quant_scale_unit",
+    "fava",
+    "attributionbench",
+    "minicheck",
+    "pubhealth",
+    "findver"
+  ],
+  "bars_note": "the `bars`/`control` blocks are the banked G1 twin's; H159's registered bars are adjudicated by the coordinator"
+}

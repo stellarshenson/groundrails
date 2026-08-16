@@ -1,0 +1,398 @@
+{
+  "subset": "hotpotqa",
+  "arm": "R19-H162 hotpotqa mechanism dissection (executor M3) - ANALYSIS ONLY",
+  "flagship_auroc": 0.6706,
+  "draw1_auroc": 0.6766,
+  "draw1_auroc_ci95": [
+    0.5683,
+    0.7796
+  ],
+  "n_items": 250,
+  "n_pos": 233,
+  "n_neg": 17,
+  "n_sentences": 293,
+  "multi_hop_share_measured": "71.33% of claim sentences (209 of 293) need two or more documents to cover their lexical anchors; 28.67% (84) are single-document. Documents needed: {'1': 84, '2': 174, '3': 34, '4': 1}. Only 31 of 209 multi-document sentences (14.8%) have one document carrying >= 80% of the anchors, so the residual cannot be re-read as mostly single-hop restatements. Independent-method agreement with the R16-H140 anchor-span census: 0.9829",
+  "measurements": {
+    "hop_census": {
+      "multi_doc": 209,
+      "single_doc": 84
+    },
+    "hop_census_pct": {
+      "multi_doc": 71.33,
+      "single_doc": 28.67
+    },
+    "docs_needed_hist": {
+      "1": 84,
+      "2": 174,
+      "3": 34,
+      "4": 1
+    },
+    "saturation_by_hop": {
+      "single_doc": {
+        "n_sent": 84,
+        "n_pos_sent": 78,
+        "n_neg_sent": 6,
+        "smax_pos_mean": -0.3077,
+        "smax_neg_mean": -2.5234,
+        "smax_gap": 2.2157,
+        "smax_pos_sd": 2.3685,
+        "sent_auroc": 0.7286
+      },
+      "multi_doc": {
+        "n_sent": 209,
+        "n_pos_sent": 192,
+        "n_neg_sent": 17,
+        "smax_pos_mean": -3.6646,
+        "smax_neg_mean": -3.664,
+        "smax_gap": -0.0006,
+        "smax_pos_sd": 1.6568,
+        "sent_auroc": 0.6017
+      }
+    },
+    "items_any_multi_doc": {
+      "n": 195,
+      "n_neg": 13,
+      "auroc": 0.6691
+    },
+    "items_all_single_doc": {
+      "n": 55,
+      "n_neg": 4,
+      "auroc": 0.8922
+    },
+    "smax_correlations": {
+      "cont_top1": 0.5596,
+      "cont_union2": 0.2909,
+      "cont_gain2": -0.4243,
+      "argmax_tok_cont": 0.6082
+    },
+    "argmax_provenance": {
+      "share_argmax_on_highest_containment_doc_all": 0.6587,
+      "share_argmax_on_highest_containment_doc_multi_doc": 0.5742,
+      "n_docs_mean": 3.993,
+      "n_win_mean": 4.017,
+      "win_margin_mean": 2.1842,
+      "win_margin_pos_mean": 2.2341,
+      "win_margin_neg_mean": 1.598
+    },
+    "pooling_counterfactual": {
+      "max": 0.6766,
+      "mean": 0.6743,
+      "lse_t0.5": 0.6847,
+      "softmax_t0.5": 0.6779,
+      "lse_t1.0": 0.6882,
+      "softmax_t1.0": 0.6832,
+      "lse_t2.0": 0.6933,
+      "softmax_t2.0": 0.6875,
+      "lse_t4.0": 0.6736,
+      "softmax_t4.0": 0.6981,
+      "top2mean": 0.6902
+    },
+    "pooling_contrast_all_subsets": {
+      "covidqa": {
+        "max": 0.7685,
+        "mean": 0.7399,
+        "softmax_t1.0": 0.7715,
+        "mean_minus_max": -0.0286,
+        "n_neg": 39
+      },
+      "delucionqa": {
+        "max": 0.8009,
+        "mean": 0.7757,
+        "softmax_t1.0": 0.7926,
+        "mean_minus_max": -0.0252,
+        "n_neg": 12
+      },
+      "emanual": {
+        "max": 0.6973,
+        "mean": 0.641,
+        "softmax_t1.0": 0.6998,
+        "mean_minus_max": -0.0563,
+        "n_neg": 14
+      },
+      "expertqa": {
+        "max": 0.7969,
+        "mean": 0.6978,
+        "softmax_t1.0": 0.7803,
+        "mean_minus_max": -0.0991,
+        "n_neg": 108
+      },
+      "finqa": {
+        "max": 0.6515,
+        "mean": 0.7104,
+        "softmax_t1.0": 0.6674,
+        "mean_minus_max": 0.0589,
+        "n_neg": 20
+      },
+      "hagrid": {
+        "max": 0.6423,
+        "mean": 0.6461,
+        "softmax_t1.0": 0.6365,
+        "mean_minus_max": 0.0038,
+        "n_neg": 38
+      },
+      "hotpotqa": {
+        "max": 0.6766,
+        "mean": 0.6743,
+        "softmax_t1.0": 0.6832,
+        "mean_minus_max": -0.0023,
+        "n_neg": 17
+      },
+      "pubmedqa": {
+        "max": 0.5893,
+        "mean": 0.5936,
+        "softmax_t1.0": 0.6015,
+        "mean_minus_max": 0.0043,
+        "n_neg": 77
+      },
+      "tatqa": {
+        "max": 0.7842,
+        "mean": 0.6934,
+        "softmax_t1.0": 0.7803,
+        "mean_minus_max": -0.0908,
+        "n_neg": 14
+      },
+      "techqa": {
+        "max": 0.7361,
+        "mean": 0.5958,
+        "softmax_t1.0": 0.7157,
+        "mean_minus_max": -0.1403,
+        "n_neg": 109
+      }
+    },
+    "h140_cache_crosscheck": {
+      "n_sent_cache": 293,
+      "h140_cross_share": 0.7167,
+      "h162_multi_doc_share": 0.7133,
+      "agreement": 0.9829,
+      "note": "H140 flagged cross-WINDOW at anchor level; H162 flags cross-DOCUMENT by greedy set cover. Independent methods, same population."
+    },
+    "family_census": {
+      "bridge_entity": 104,
+      "single_hop": 84,
+      "conjoin_attrs": 56,
+      "multi_doc_other": 44,
+      "conjoin_attrs_same_doc": 5
+    },
+    "family_census_pct": {
+      "bridge_entity": 35.49,
+      "single_hop": 28.67,
+      "conjoin_attrs": 19.11,
+      "multi_doc_other": 15.02,
+      "conjoin_attrs_same_doc": 1.71
+    },
+    "per_family": {
+      "bridge_entity": {
+        "n_sent": 104,
+        "n_pos": 94,
+        "n_neg": 10,
+        "smax_pos_mean": -3.6795,
+        "smax_neg_mean": -3.1095,
+        "smax_gap": -0.57,
+        "mean_char_len": 110.0,
+        "mean_n_anchors": 10.24,
+        "share_argmax_on_best_doc": 0.5962,
+        "smax_gap_ci95": [
+          -2.567,
+          1.171
+        ],
+        "sent_auroc": 0.5574
+      },
+      "single_hop": {
+        "n_sent": 84,
+        "n_pos": 78,
+        "n_neg": 6,
+        "smax_pos_mean": -0.3077,
+        "smax_neg_mean": -2.5234,
+        "smax_gap": 2.2157,
+        "mean_char_len": 84.1,
+        "mean_n_anchors": 7.73,
+        "share_argmax_on_best_doc": 0.869,
+        "smax_gap_ci95": [
+          -0.118,
+          3.819
+        ],
+        "sent_auroc": 0.7286
+      },
+      "conjoin_attrs": {
+        "n_sent": 56,
+        "n_pos": 52,
+        "n_neg": 4,
+        "smax_pos_mean": -4.2592,
+        "smax_neg_mean": -4.6378,
+        "smax_gap": 0.3786,
+        "mean_char_len": 103.4,
+        "mean_n_anchors": 8.62,
+        "share_argmax_on_best_doc": 0.4821,
+        "smax_gap_ci95": [
+          0.127,
+          0.64
+        ],
+        "sent_auroc": 0.6635
+      },
+      "multi_doc_other": {
+        "n_sent": 44,
+        "n_pos": 42,
+        "n_neg": 2,
+        "smax_pos_mean": -2.9356,
+        "smax_neg_mean": -3.9853,
+        "smax_gap": 1.0497,
+        "mean_char_len": 111.6,
+        "mean_n_anchors": 10.07,
+        "share_argmax_on_best_doc": 0.6136
+      },
+      "conjoin_attrs_same_doc": {
+        "n_sent": 5,
+        "n_pos": 4,
+        "n_neg": 1,
+        "smax_pos_mean": -3.2412,
+        "smax_neg_mean": -4.6712,
+        "smax_gap": 1.43,
+        "mean_char_len": 104.6,
+        "mean_n_anchors": 9.2,
+        "share_argmax_on_best_doc": 0.8
+      }
+    },
+    "conjunction_detail": {
+      "n_with_marker": 84,
+      "share_with_marker": 0.2867,
+      "n_marker_and_clauses_in_different_docs": 88,
+      "share_of_multi_doc_that_is_conjunction": 0.2679,
+      "clause_min_containment_mean": 0.7214
+    },
+    "bridge_detail": {
+      "n": 104,
+      "mean_elided_tokens": 2.13,
+      "share_of_multi_doc": 0.4976
+    },
+    "length_control": {
+      "single_doc": {
+        "char_len_pos": 84.5,
+        "char_len_neg": 79.2,
+        "n_anchors_pos": 7.82,
+        "n_anchors_neg": 6.5
+      },
+      "multi_doc": {
+        "char_len_pos": 110.4,
+        "char_len_neg": 86.7,
+        "n_anchors_pos": 9.91,
+        "n_anchors_neg": 7.88
+      }
+    },
+    "smax_by_anchor_bin": [
+      {
+        "anchors": "0-6",
+        "n": 54,
+        "single_doc": -0.191,
+        "n_single_doc": 28,
+        "multi_doc": -2.762,
+        "n_multi_doc": 26
+      },
+      {
+        "anchors": "6-9",
+        "n": 76,
+        "single_doc": -1.235,
+        "n_single_doc": 22,
+        "multi_doc": -3.679,
+        "n_multi_doc": 54
+      },
+      {
+        "anchors": "9-12",
+        "n": 88,
+        "single_doc": -0.607,
+        "n_single_doc": 21,
+        "multi_doc": -3.685,
+        "n_multi_doc": 67
+      },
+      {
+        "anchors": "12-100",
+        "n": 75,
+        "single_doc": 0.472,
+        "n_single_doc": 13,
+        "multi_doc": -4.008,
+        "n_multi_doc": 62
+      }
+    ],
+    "partial_corr_smax_vs_docs_needed_given_n_anchors": -0.5138,
+    "adjusted_label_coefficient": {
+      "multi_doc": 0.2509,
+      "single_doc": 1.7662,
+      "model": "smax ~ label + char_len + n_anchors, OLS within hop class",
+      "length_matched_band_70_115_gap": -0.1697,
+      "multi_doc_pos_below_single_doc_neg_mean": "158 of 192 (82.3%)"
+    },
+    "flagship_adapter_state": {
+      "path": "models/R18-H150-arm-draw1/adapter.pt",
+      "adapter_active": false,
+      "adapter_out_weight": "all zero",
+      "adapter_out_bias": "all zero",
+      "consequence": "pair_logits reduces to task_head(cls); the cross-window ctx channel exists in the serving shape but is inert in the banked flagship"
+    }
+  },
+  "mechanisms": [
+    {
+      "name": "bridge_entity",
+      "definition": "bind the claim's two named endpoints through an intermediate entity that the claim omits and that appears in both covering documents",
+      "evidence_it_is_a_bottleneck": "104 of 293 claim sentences (35.49%), the largest family; max-window logit positive mean -3.680 vs negative mean -3.110, gap -0.570 with the sign INVERTED, bootstrap 95% CI [-2.567, +1.171]; sentence AUROC 0.5574 against single_hop 0.7286 and a 0.500 floor; carries 10 of the 23 negative sentences; the argmax window lands on the highest-containment document 59.6% of the time against single_hop 86.9%",
+      "probe_design": "1,000 held-out synthetic two-relation-join items. Document A states R1(E) = M, document B states R2(M) = v, plus two distractor documents. Positive claim elides M ('the R1 of E has R2 v'). Negative takes v from a distractor entity M' present in a third document, so every surface token of the claim still appears somewhere in the bag and only the chain is broken. Entity-disjoint from any training lane. CHANCE 0.500 AUROC; the flagship's standing on the natural analogue is 0.5574",
+      "lane_candidate": "Rule-based generator over already-banked TabFact tables (CC-BY-4.0, ~16k Wikipedia tables): pick two tables sharing a key column, emit each row as its own document, template the claim with the join key elided. The generator rule is the graduated quant_misbind precedent applied to a JOIN instead of a cell. Every composed positive is presented as a MULTI-DOCUMENT bag under the 1500/750 windowed MIL objective",
+      "contamination": "CLEAR - TabFact is banked and licence-verified (CC-BY-4.0) and is not a RAGBench source corpus nor a derivative of one; the generator never reads HotpotQA. HotpotQA-derivation checks on the obvious multi-hop alternatives: HoVer is BLOCKED and already recorded in this project's survey as 'HotpotQA-derived - walled'; FactCG/CG2C multi-hop training data is not released; 2WikiMultihopQA and MuSiQue are NOT HotpotQA-derived (independent construction from Wikipedia/Wikidata and from single-hop SQuAD/NQ/T-REx respectively) but share the Wikipedia-intro document population with walled HotpotQA, so either would need the R14-H136 8-gram Jaccard gate at 0.02 before use and their licences verified at source. The generator route avoids the question entirely",
+      "already_covered_by": null,
+      "already_covered_note": "No banked corpus contains claims whose support requires two SEPARATE evidence documents. MiniCheck (MIT, 14,395 pairs) is the nearest, multi-fact and multi-sentence by construction, but its support is assembled within ONE document"
+    },
+    {
+      "name": "conjoin_attrs",
+      "definition": "verify a claim that asserts one attribute about each of two entities, where each entity's attribute lives in a different document, so support requires both conjuncts",
+      "evidence_it_is_a_bottleneck": "56 of 293 claim sentences (19.11%); max-window logit positive mean -4.259 vs negative mean -4.638, gap +0.379 with bootstrap 95% CI [0.127, 0.640] against single_hop's +2.216, a 6-fold collapse; sentence AUROC 0.6635; the argmax window lands on the highest-containment document 48.2% of the time, the WORST of any family and barely double the 25% chance over four documents; mean minimum clause containment 0.7214 shows each conjunct is well covered, just by different documents",
+      "probe_design": "1,000 held-out synthetic two-entity conjunction items, each entity's attribute in its own document plus two distractors. Positives assert both conjuncts truly. Negatives flip exactly ONE conjunct and leave the other true, so a coverage meter cannot separate them. A comparative sub-leg ('X has more A than Y') reuses the relational-compare construction across documents. CHANCE 0.500 AUROC",
+      "lane_candidate": "Same generator, different template: two rows from different banked tables emitted as separate documents, conjunction and comparative claim templates over them, negatives by single-conjunct value swap. TabFact (CC-BY-4.0) and the banked FEVEROUS slice already used by the H108 quant lane family supply the rows",
+      "contamination": "CLEAR - rule-generated from banked, licence-clean tables with no HotpotQA lineage at any remove; identical reasoning to bridge_entity",
+      "already_covered_by": "relational compare probe leg (PARTIAL)",
+      "already_covered_note": "PARTIALLY. The comparative leg is the relational-compare skill the probe bank already reads at 0.51, at chance, never installed; this mechanism is that same missing skill compounded with a cross-document evidence split. The conjunction leg is covered by nothing banked"
+    },
+    {
+      "name": "partial_support_credit",
+      "definition": "score a window that supplies only its share of a claim as evidence FOR that claim when the remainder is present elsewhere in the window bag, and against it when the remainder is absent or contradicted",
+      "evidence_it_is_a_bottleneck": "The cross-cutting mechanism behind both families. On the 209 multi-document sentences the positive-negative gap in the max-window logit is -0.0006 raw (positive mean -3.6646, negative mean -3.6640) and the length-and-anchor-adjusted label coefficient is +0.251 against single-document's +1.766, a 7-fold collapse; a length-matched 70-115 char band reads a gap of -0.170; 158 of 192 multi-document positives (82.3%) score below the MEAN of single-document NEGATIVES; the max logit correlates +0.5596 with best-single-document anchor containment and -0.4243 with the coverage a second document adds, so the scorer measures coverage rather than support",
+      "probe_design": "A paired contrast rather than a new item type: for each held-out composed item, score the full composed claim AND its two decomposed halves against the same window bag. A model with the skill scores the composed positive near its halves; a coverage meter scores it near the floor. Reported as the composed-minus-decomposed score deficit in logits. CHANCE VALUE 0.0 logits; flagship expectation strongly negative",
+      "lane_candidate": "Not a separate lane. It is the PRESENTATION CONSTRAINT the two generators above must satisfy: every composed positive presented as a multi-document bag under the 1500/750 windowed MIL max objective, so no single window fully supports and the max objective is forced to reward the best partial window",
+      "contamination": "CLEAR - generator-only, no corpus involved",
+      "already_covered_by": null,
+      "already_covered_note": "Null, and the supply census explains why: the R16-H142 executor census found 100% of the incumbent's 685,670 training rows had a size-1 window ensemble under 1,500-char truncation; the post-amendment-A1 mix reads mean 1.507 windows per row with 20.1% multi-window, and vitaminc at 54% of the mix trains at exactly 1.00"
+    }
+  ],
+  "readout_kill_explanation": "The R16-H140 learned readout did not fail to compose - it re-ranked registers, and hotpotqa is the subset with the least to gain and the most variance to absorb. Three legs. (1) The aggregation axis has the LEAST purchase on hotpotqa of any subset: recomputing the arena under mean pooling over the same banked per-window logits moves hotpotqa -0.0023, the smallest magnitude of the ten (techqa -0.1403, expertqa -0.0991, tatqa -0.0908, finqa +0.0589), and every fixed soft pooling reads 0.6743 to 0.6981 against max 0.6766, all inside the subset's own 0.211-wide CI. (2) Nothing can be composed out of signal-free inputs: on exactly the multi-document sentences the readout was built to serve, the per-window logits carry a label gap of -0.0006, so any reweighting of them moves rank by noise alone. (3) The clean single-variable test of cross-window conditioning was a NULL on hotpotqa: R16-H142 G1 was an init-fingerprint-paired ablation (identical init 9d679fcb, matched permutation) whose only difference was activating a zero-init adapter conditioned on the mean-pooled window-set context; its arena mean fell -0.0323 and pubmedqa -0.1113, but hotpotqa moved +0.0028. The channel that could compose was switched on under the strictest control the campaign has run and the motivating subset was indifferent. The H140 readout was trained on a public slice (RAGTruth plus manufactured lanes, mean window-set size 2.64) whose support is single-window; its learned mapping shifted score distributions between registers, banking pubmedqa +0.0711 and emanual +0.0400 while pushing hotpotqa -0.0518 and tatqa -0.048. The H141 capacity-matched control named the same shape - window-count out-of-distribution extrapolation - for the scalar family, and R18-H156's trained-through logit aggregator agrees, reading hotpotqa -0.0466 with a serving-read swap that was neutral at -0.00008.",
+  "bottleneck_class": "MISSING_SKILL, with an architectural amplifier that is already closed. FOR missing skill: 71.33% of claim sentences need two or more documents (209 of 293, agreeing 98.29% sentence-by-sentence with the independent R16-H140 anchor-span census at 71.67%), and on exactly those the model's discrimination collapses to nothing (sentence AUROC 0.6017 vs 0.7286 single-document; adjusted label coefficient +0.251 vs +1.766); the score tracks lexical coverage (+0.5596 with best-single-document containment, -0.4243 with the gain from a second document, partial correlation with documents-needed -0.5138 after controlling for anchor count), which is a learned function, not a structural limit. AGAINST architectural: a cross-window channel already EXISTS in the shipped serving shape - pair_logits(cls, ctx) = task_head(cls) + adapter([LN(cls); LN(ctx)]) with ctx the mean-pooled CLS over the whole window set - and in the banked flagship it is inert by training, not absent by design (models/R18-H150-arm-draw1/adapter.pt carries adapter_active = False with adapter.2.weight and adapter.2.bias exactly zero). Activating it (H142 G1) moved hotpotqa +0.0028; a learned readout over embeddings (H140) moved it -0.0518; a learned aggregator over logits (H156) moved it -0.0466. Three shots, no gain. The MIL max objective already defines the correct target for a composed positive - some window must score high - so the skill is learnable inside the shipping architecture. What is absent is supply: no lane in the mix contains a positive whose support requires more than one evidence document.",
+  "build_first": "bridge_entity, using a generator that yields conjoin_attrs from the same machinery. It is the largest family (35.49% of claim sentences) and the only one whose score gap has the wrong sign (-0.570, sentence AUROC 0.5574 against a 0.500 floor), and it carries 10 of the 23 scarce negative sentences. One builder serves two mechanisms: a two-table join over banked TabFact rows produces bridge items by eliding the join key and conjunction items by emitting two independent rows, so the marginal cost of the second mechanism is a template. It needs no new architecture - the lane trains inside the shipping serving shape under the existing MIL max objective, and the three architectural routes are closed by H140, H142 G1 and H156. MANDATORY PAIRED CONSTRUCTION: a lane that teaches 'credit a partially-covering window' WITHOUT composed negatives will install over-crediting, which is the dominant finqa failure the R18-H157 autopsy named; every composed positive must ship with a composed negative whose missing conjunct or broken bridge is absent from the bag.",
+  "expected_arena_movement": "hotpotqa +0.02 to +0.06 if the skill installs, which is +0.002 to +0.006 on the ten-subset arena mean against the 0.71549 flagship. The upper end assumes multi-document sentences reach the single-document family's 0.7286 discrimination. CONFIDENCE LOW and the downside is real: three prior arms aimed at this subset read -0.052, +0.003 and -0.047; the subset's own bootstrap 95% CI is 0.211 wide on 17 negatives, so hotpotqa alone cannot adjudicate a lane; and a lane that installs partial-support credit without matched negatives is more likely to cost finqa and tatqa than to buy hotpotqa. Any build must be a paired-draw arm with the tabular subsets as pre-registered guardrails and an off-arena probe as the primary read.",
+  "ruled_out": [
+    "Window geometry - 0 of 3,556 hotpotqa evidence sentences cut by every window; 0 sentences in the 1,500-6,000 char anchor-span band; dispersion is purely cross-document (H140 G0 census)",
+    "Aggregation form - hotpotqa is the least aggregation-sensitive subset of the ten at -0.0023 under mean pooling; every fixed soft pooling sits inside the subset's CI",
+    "Learned cross-window conditioning - the H142 G1 init-paired ablation moved hotpotqa +0.0028",
+    "Sentence length as the explanation - the coverage penalty survives partial correlation on anchor count at -0.5138; the label collapse survives length-and-anchor adjustment at a 7-fold reduction",
+    "The single-hop restatement hypothesis - only 14.8% of multi-document sentences have one document carrying >= 80% of their anchors"
+  ],
+  "artifacts": [
+    "experiments/grounding-semantic/R19-H162_hotpotqa_mechanisms.md",
+    "experiments/grounding-semantic/R19-H162_hotpotqa_mechanisms.json",
+    "experiments/grounding-semantic/R19-H162_hotpotqa_probe.py",
+    "experiments/grounding-semantic/R19-H162_hotpotqa_probe.json",
+    "experiments/grounding-semantic/R19-H162_hotpotqa_families.py",
+    "experiments/grounding-semantic/R19-H162_hotpotqa_families.json",
+    "experiments/grounding-semantic/R19-H162_hotpotqa_consolidate.py",
+    "experiments/grounding-semantic/R19-H162_hotpotqa_sentences.parquet",
+    "experiments/grounding-semantic/R19-H162_hotpotqa_families.parquet",
+    "experiments/grounding-semantic/R19-H162_hotpotqa_eyeball.md",
+    "experiments/grounding-semantic/R19-H162_hotpotqa_families_eyeball.md",
+    "logs/R19-H162_hotpotqa_probe.log",
+    "logs/R19-H162_hotpotqa_families.log"
+  ],
+  "caveats": [
+    "17 negatives in 250 items (base rate 0.932). The draw-1 bootstrap 95% CI is [0.5683, 0.7796], width 0.211, so every ABSOLUTE hotpotqa number in the campaign (0.6706 flagship, 0.7039 record, 0.6514 early) sits inside the others' intervals; only paired same-item comparisons carry usable resolution. Per-family negative counts are 10/6/4/2/1 and every per-family negative statistic is correspondingly coarse - the bridge_entity gap CI [-2.567, +1.171] spans zero.",
+    "The hop census uses lexical anchor co-occurrence, a PROXY that errs both ways. It overcounts when one window entails a claim without carrying every surface form, and undercounts paraphrased support. It bounds where cross-document information could live, not how much is needed. Mitigation: two independent constructions (H140 anchor-span, H162 document-level greedy set cover) agree 98.29% sentence-by-sentence.",
+    "Negatives are systematically shorter than positives within the multi-document class (86.7 vs 110.4 chars), so the raw zero label gap is length-flattered. After adjusting for length and anchor count the collapse is 7-fold rather than total (+0.251 vs +1.766), and a length-matched band still reads -0.170. The direction of the finding is robust; its magnitude in raw logits is not.",
+    "The claim-family classifier is rule-based (conjunction and comparative markers, clause-level document assignment, elided-token intersection) and was validated by reading exemplars, not by exhaustive manual adjudication of all 293 sentences. multi_doc_other (15.02%) is the unclassified remainder and carries no named mechanism.",
+    "Arena labels are GPT-4o annotations, not human, which caps what the absolute numbers are worth; this is the standing R8-H77 caveat and it bites hardest on the 17 negatives.",
+    "Model scores are draw 1 only (models/R18-H150-arm-draw1) because the R19-H161 dump for h150d2 and h159d1 was still running at analysis time. The draw-1 read is control-verified bit-exact against its banked value; a second draw would harden the family-level numbers but the multi-document collapse is a 209-sentence effect, not a seed effect.",
+    "Licences for 2WikiMultihopQA and MuSiQue were NOT verified at source in this arm (no external access was in scope). They are named as alternatives with their derivation reasoning; the recommended route is the rule-based generator, which needs neither."
+  ]
+}

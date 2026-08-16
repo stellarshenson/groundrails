@@ -1,0 +1,160 @@
+{
+  "subset": "hotpotqa",
+  "n_sentences": 293,
+  "family_census": {
+    "bridge_entity": 104,
+    "single_hop": 84,
+    "conjoin_attrs": 56,
+    "multi_doc_other": 44,
+    "conjoin_attrs_same_doc": 5
+  },
+  "family_census_pct": {
+    "bridge_entity": 35.49,
+    "single_hop": 28.67,
+    "conjoin_attrs": 19.11,
+    "multi_doc_other": 15.02,
+    "conjoin_attrs_same_doc": 1.71
+  },
+  "per_family": {
+    "bridge_entity": {
+      "n_sent": 104,
+      "n_pos": 94,
+      "n_neg": 10,
+      "smax_pos_mean": -3.6795,
+      "smax_neg_mean": -3.1095,
+      "smax_gap": -0.57,
+      "mean_char_len": 110.0,
+      "mean_n_anchors": 10.24,
+      "share_argmax_on_best_doc": 0.5962,
+      "smax_gap_ci95": [
+        -2.567,
+        1.171
+      ],
+      "sent_auroc": 0.5574
+    },
+    "single_hop": {
+      "n_sent": 84,
+      "n_pos": 78,
+      "n_neg": 6,
+      "smax_pos_mean": -0.3077,
+      "smax_neg_mean": -2.5234,
+      "smax_gap": 2.2157,
+      "mean_char_len": 84.1,
+      "mean_n_anchors": 7.73,
+      "share_argmax_on_best_doc": 0.869,
+      "smax_gap_ci95": [
+        -0.118,
+        3.819
+      ],
+      "sent_auroc": 0.7286
+    },
+    "conjoin_attrs": {
+      "n_sent": 56,
+      "n_pos": 52,
+      "n_neg": 4,
+      "smax_pos_mean": -4.2592,
+      "smax_neg_mean": -4.6378,
+      "smax_gap": 0.3786,
+      "mean_char_len": 103.4,
+      "mean_n_anchors": 8.62,
+      "share_argmax_on_best_doc": 0.4821,
+      "smax_gap_ci95": [
+        0.127,
+        0.64
+      ],
+      "sent_auroc": 0.6635
+    },
+    "multi_doc_other": {
+      "n_sent": 44,
+      "n_pos": 42,
+      "n_neg": 2,
+      "smax_pos_mean": -2.9356,
+      "smax_neg_mean": -3.9853,
+      "smax_gap": 1.0497,
+      "mean_char_len": 111.6,
+      "mean_n_anchors": 10.07,
+      "share_argmax_on_best_doc": 0.6136
+    },
+    "conjoin_attrs_same_doc": {
+      "n_sent": 5,
+      "n_pos": 4,
+      "n_neg": 1,
+      "smax_pos_mean": -3.2412,
+      "smax_neg_mean": -4.6712,
+      "smax_gap": 1.43,
+      "mean_char_len": 104.6,
+      "mean_n_anchors": 9.2,
+      "share_argmax_on_best_doc": 0.8
+    }
+  },
+  "conjunction_detail": {
+    "n_with_marker": 84,
+    "share_with_marker": 0.2867,
+    "n_marker_and_clauses_in_different_docs": 88,
+    "share_of_multi_doc_that_is_conjunction": 0.2679,
+    "clause_min_containment_mean": 0.7214
+  },
+  "bridge_detail": {
+    "n": 104,
+    "mean_elided_tokens": 2.13,
+    "share_of_multi_doc": 0.4976
+  },
+  "length_control": {
+    "single_doc": {
+      "char_len_pos": 84.5,
+      "char_len_neg": 79.2,
+      "n_anchors_pos": 7.82,
+      "n_anchors_neg": 6.5
+    },
+    "multi_doc": {
+      "char_len_pos": 110.4,
+      "char_len_neg": 86.7,
+      "n_anchors_pos": 9.91,
+      "n_anchors_neg": 7.88
+    }
+  },
+  "smax_by_anchor_bin": [
+    {
+      "anchors": "0-6",
+      "n": 54,
+      "single_doc": -0.191,
+      "n_single_doc": 28,
+      "multi_doc": -2.762,
+      "n_multi_doc": 26
+    },
+    {
+      "anchors": "6-9",
+      "n": 76,
+      "single_doc": -1.235,
+      "n_single_doc": 22,
+      "multi_doc": -3.679,
+      "n_multi_doc": 54
+    },
+    {
+      "anchors": "9-12",
+      "n": 88,
+      "single_doc": -0.607,
+      "n_single_doc": 21,
+      "multi_doc": -3.685,
+      "n_multi_doc": 67
+    },
+    {
+      "anchors": "12-100",
+      "n": 75,
+      "single_doc": 0.472,
+      "n_single_doc": 13,
+      "multi_doc": -4.008,
+      "n_multi_doc": 62
+    }
+  ],
+  "partial_corr_smax_vs_docs_needed_given_n_anchors": -0.5138,
+  "raw_corr_smax_vs_docs_needed": -0.5417,
+  "raw_corr_smax_vs_n_anchors": -0.2175,
+  "h140_cache_crosscheck": {
+    "n_sent_cache": 293,
+    "h140_cross_share": 0.7167,
+    "h162_multi_doc_share": 0.7133,
+    "agreement": 0.9829,
+    "note": "H140 flagged cross-WINDOW at anchor level; H162 flags cross-DOCUMENT by greedy set cover. Independent methods, same population."
+  }
+}

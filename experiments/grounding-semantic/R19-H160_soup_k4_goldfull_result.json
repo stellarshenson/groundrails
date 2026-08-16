@@ -1,0 +1,8 @@
+{
+  "checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/R19-H160-soup-k4",
+  "gold_full": {
+    "auc": 0.8603,
+    "f1": 0.7591,
+    "n": 2752
+  }
+}
