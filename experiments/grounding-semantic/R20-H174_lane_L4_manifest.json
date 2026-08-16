@@ -1,0 +1,148 @@
+{
+  "experiment": "R20-H174 lane L4 - bind_path_segment rider (path_bind)",
+  "registration": "docs/experiments/semantic-grounding-experiments.md, block 'R20-H174 HAGRID/EMANUAL PORTFOLIO ARM'",
+  "tag": "path_bind",
+  "dann_group": "path_bind",
+  "mix_loader": "drop-in for R18-H150_arm_run.make_build_mix - columns claim / chunk / label / pair_id / neg_family; chunk is read UNTRUNCATED and windowed 1500/750 by the loader",
+  "seed": 4174,
+  "rows": 10000,
+  "pairs": 5000,
+  "documents": 5000,
+  "label_balance": {
+    "label_1": 5000,
+    "label_0": 5000,
+    "positive_share": 0.5
+  },
+  "families": {
+    "path_transpose": 6000,
+    "path_wrong_segment": 4000
+  },
+  "depths": {
+    "3": 3336,
+    "5": 3376,
+    "4": 3288
+  },
+  "sources": {
+    "generator": {
+      "dataset": "rule generator, no source corpus",
+      "archive": null,
+      "licence": "n/a - generated text, this repository",
+      "wall": "CLEAR by construction; the census runs anyway"
+    }
+  },
+  "generator": {
+    "n_pairs_target": 5000,
+    "transpose_share": 0.6,
+    "depths": [
+      3,
+      4,
+      5
+    ],
+    "procedures_per_page": [
+      3,
+      4,
+      5
+    ],
+    "arrow": " \u2192 ",
+    "n_segments": 112,
+    "n_templates": 6,
+    "n_values": 20,
+    "level_assignment": "random from one shared segment pool - no fixed hierarchy, so a claim-only probe cannot learn the tree"
+  },
+  "char_stats": {
+    "claim": {
+      "n": 10000,
+      "mean": 85.5,
+      "median": 85,
+      "p10": 63,
+      "p90": 108,
+      "min": 40,
+      "max": 159
+    },
+    "chunk": {
+      "n": 10000,
+      "mean": 1007.2,
+      "median": 1005,
+      "p10": 768,
+      "p90": 1251,
+      "min": 672,
+      "max": 1370
+    }
+  },
+  "diversity": {
+    "distinct_claims": 10000,
+    "distinct_chunks": 5000,
+    "distinct_true_paths": 5000
+  },
+  "window_census": {
+    "windowing": "1500/750, final window flush to the end (byte-identical to R8-H101 / R16-H142)",
+    "rows": 10000,
+    "mean_windows": 1.0,
+    "median_windows": 1,
+    "max_windows": 1,
+    "multi_window_rows": 0,
+    "multi_window_share": 0.0
+  },
+  "verify": {
+    "pair_integrity": {
+      "pairs": 5000,
+      "malformed": 0,
+      "bar": "0 malformed",
+      "pass": true,
+      "examples": []
+    },
+    "path_attestation_audit": {
+      "rows": 10000,
+      "errors": 0,
+      "bar": "0 errors",
+      "pass": true,
+      "examples": []
+    },
+    "transpose_multiset_identity": {
+      "pairs": 3000,
+      "violations": 0,
+      "bar": "0 violations - no bag-of-tokens feature may separate the legs",
+      "pass": true
+    },
+    "negative_segment_presence": {
+      "negatives": 5000,
+      "rows_with_unattested_segment": 0,
+      "bar": "0 rows",
+      "pass": true
+    },
+    "surface_parity": {
+      "auroc": {
+        "claim_char_length": 0.4999,
+        "claim_token_count": 0.4998,
+        "chunk_char_length": 0.5,
+        "claim_chunk_containment": 0.4975
+      },
+      "report_only": [],
+      "bar": "each barred channel in [0.45, 0.55]",
+      "worst_deviation": 0.0025,
+      "pass": true
+    },
+    "claim_only_tfidf_auroc": {
+      "value": 0.5167,
+      "bar": "< 0.55",
+      "pass": true,
+      "scoring": "5-fold item-disjoint, out of fold, liblinear tol 1e-7"
+    },
+    "within_pair_claim_only_accuracy": {
+      "per_family": {
+        "path_transpose": {
+          "acc": 0.5065,
+          "pairs": 3000
+        },
+        "path_wrong_segment": {
+          "acc": 0.5395,
+          "pairs": 2000
+        }
+      },
+      "worst": 0.5395,
+      "bar": "< 0.60",
+      "pass": true
+    },
+    "all_bars_pass": true
+  }
+}

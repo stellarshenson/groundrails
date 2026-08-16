@@ -1,0 +1,119 @@
+{
+  "gate": "R20 gate 2 (H-C) - share of H157 FP rank-loss mass traceable to operand/role/sign/period misbinding",
+  "recipe_summary": "classify every H157 false-positive record by its own `unsupported_explanation` into misbind_{operand,role,sign,period} vs wrong_computation vs question_relativity vs other; mass = per-item rank loss averaged over the two draws",
+  "n_fp_items": 17,
+  "fp_record_rank_loss_mass": 0.4955,
+  "negative_side_rank_loss_mass": 0.5,
+  "mass_by_class": {
+    "misbind_operand": 0.0113,
+    "misbind_period": 0.0722,
+    "misbind_role": 0.1061,
+    "misbind_sign": 0.0823,
+    "other_absence": 0.0519,
+    "other_speculation": 0.032,
+    "question_relativity": 0.0196,
+    "scale_unit": 0.0073,
+    "wrong_computation": 0.1128
+  },
+  "per_item": {
+    "31": {
+      "class": "misbind_sign",
+      "reason": "trend stated as a decrease; equity increased",
+      "rank_loss": 0.0152
+    },
+    "36": {
+      "class": "misbind_period",
+      "reason": "correct arithmetic applied to the wrong year (2012 vs 2011)",
+      "rank_loss": 0.0289
+    },
+    "41": {
+      "class": "wrong_computation",
+      "reason": "the cited figures are absent from the documents",
+      "rank_loss": 0.0248
+    },
+    "43": {
+      "class": "scale_unit",
+      "reason": "'in thousands' notation misread - scale, not role/sign/period",
+      "rank_loss": 0.0073
+    },
+    "67": {
+      "class": "question_relativity",
+      "reason": "the figure is correct; the question asked for a portion",
+      "rank_loss": 0.0196
+    },
+    "71": {
+      "class": "misbind_role",
+      "reason": "per-share $78.29 claimed as the total",
+      "rank_loss": 0.0685
+    },
+    "85": {
+      "class": "other_absence",
+      "reason": "asserts data absent that the documents carry",
+      "rank_loss": 0.0519
+    },
+    "114": {
+      "class": "misbind_role",
+      "reason": "the $74.9M repurchase amount used as the decrease in notes",
+      "rank_loss": 0.0376
+    },
+    "116": {
+      "class": "other_speculation",
+      "reason": "an extrapolated prediction, unsupported by construction",
+      "rank_loss": 0.032
+    },
+    "157": {
+      "class": "misbind_operand",
+      "reason": "the sum is formed from the wrong operands",
+      "rank_loss": 0.0113
+    },
+    "168": {
+      "class": "misbind_sign",
+      "reason": "a computed decrease reframed as an increase",
+      "rank_loss": 0.0246
+    },
+    "189": {
+      "class": "misbind_sign",
+      "reason": "signage - '-$305M' stated as '$305M'",
+      "rank_loss": 0.0207
+    },
+    "198": {
+      "class": "wrong_computation",
+      "reason": "decrease magnitude $85M vs the documents' $168M",
+      "rank_loss": 0.009
+    },
+    "200": {
+      "class": "wrong_computation",
+      "reason": "$5.2bn vs the documents' $5bn, plus an invalid combination",
+      "rank_loss": 0.0704
+    },
+    "215": {
+      "class": "misbind_sign",
+      "reason": "assumes an improvement the documents contradict",
+      "rank_loss": 0.0218
+    },
+    "229": {
+      "class": "misbind_period",
+      "reason": "values bound to 2009; the documents carry only earlier years",
+      "rank_loss": 0.0433
+    },
+    "242": {
+      "class": "wrong_computation",
+      "reason": "57,800 sq ft vs the documents' 57,100",
+      "rank_loss": 0.0086
+    }
+  },
+  "misbind_mass": 0.2718,
+  "misbind_share_of_fp_record_mass": 0.5486,
+  "misbind_share_of_all_negative_mass": 0.5436,
+  "threshold": "PASS if >= 0.30 of FP rank-loss mass is operand/role/sign/period misbinding (primary denominator = the classified FP records' mass; the all-negatives denominator is carried as the strict reading)",
+  "mass_verdict": "PASS",
+  "mass_verdict_strict_denominator": "PASS",
+  "edgar_census": {
+    "value_role_period_sentences": 92571,
+    "n_sentences_scanned": 309686,
+    "threshold": "PASS if >= 20,000 sentences carry value + role word + period",
+    "verdict": "PASS"
+  },
+  "verdict": "PASS",
+  "timestamp": "2026-08-16 20:10:47"
+}

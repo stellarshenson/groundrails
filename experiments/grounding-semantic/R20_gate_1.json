@@ -1,0 +1,69 @@
+{
+  "gate": "R20 gate 1 (H-B) - depth-1 compare/sign/direction share of derivation rank-loss mass + compare-pair constructibility census",
+  "recipe_summary": "reclassify every derivation_arithmetic H157 error item into depth-1 compare/sign/direction (the error is resolvable by ORDERING/SIGN/DIRECTION of two values both present in evidence) vs multi-op arithmetic; mass = the autopsy's own per-item rank loss averaged over the two draws",
+  "n_derivation_items": 29,
+  "derivation_rank_loss_mass": 0.2797,
+  "banked_reference_mass": 0.2797,
+  "compare_decidable_items": {
+    "31": "direction - equity is stated to have decreased; it increased by $2,751M",
+    "100": "pure ordering claim - '$291M environmental > $180M asbestos', 0 absent numerals",
+    "168": "direction word - frames a computed decrease (-2.8%) as an increase",
+    "189": "sign - '-$305 million' claimed as '$305 million'",
+    "215": "direction - documents state the operating ratio INCREASED in 2011"
+  },
+  "compare_decidable_mass": 0.0873,
+  "compare_decidable_share": 0.312,
+  "absolute_of_finqa_rank_loss": 0.0873,
+  "unassigned_items": [],
+  "rule_crosscheck": {
+    "agreement_with_hand_audit": "26/29",
+    "rule_based_share": 0.4424
+  },
+  "l2_corroboration": {
+    "delucionqa": {
+      "n_derivation_records": 5,
+      "carrying_compare_or_direction_token": 1,
+      "share": 0.2
+    },
+    "finqa": {
+      "n_derivation_records": 64,
+      "carrying_compare_or_direction_token": 32,
+      "share": 0.5
+    },
+    "tatqa": {
+      "n_derivation_records": 41,
+      "carrying_compare_or_direction_token": 19,
+      "share": 0.4634
+    }
+  },
+  "threshold": "PASS if compare-decidable share >= 0.20 of derivation-class rank-loss mass (>= 0.056 absolute of finqa rank loss)",
+  "mass_verdict": "PASS",
+  "constructibility_census": {
+    "edgar_admitted": {
+      "n_chunks": 34014,
+      "n_sentences": 309686,
+      "compare_buildable_sentences": 65368,
+      "value_role_period_sentences": 92571
+    },
+    "tabfact": {
+      "all_splits": {
+        "uncapped_pairs": 1360700,
+        "cap2_per_table_column": 26958,
+        "cap2_per_table": 12765,
+        "n_tables": 16573
+      },
+      "held_out_only": {
+        "uncapped_pairs": 280059,
+        "cap2_per_table_column": 5182,
+        "cap2_per_table": 2614,
+        "n_tables": 3391
+      }
+    },
+    "combined_compare_pairs_conservative": 78133,
+    "combination": "EDGAR sentences carrying >= 2 numerals and a compare/direction token (one relation-flip pair each) + TabFact pairs capped at 2 per table (the banked build_compare convention)",
+    "threshold": "PASS if >= 25,000 buildable compare pairs",
+    "verdict": "PASS"
+  },
+  "verdict": "PASS",
+  "timestamp": "2026-08-16 20:10:47"
+}

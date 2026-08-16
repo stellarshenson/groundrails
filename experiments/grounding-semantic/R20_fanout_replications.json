@@ -1,0 +1,183 @@
+{
+  "artifact": "R20 fanout design-pass replications (gate 8 - banking only)",
+  "recipe_summary": "join R19-H162_pubmedqa_sentlabel on (item_id, sent_idx) to R19-H161_pairs_{h150d1,h150d2,h159d1} restricted to pubmedqa; sentence score = max over windows of the logit, lexical baseline = max over windows of tok_containment; per-family AUROC uses all supported sentences as positives and that family's unsupported sentences as negatives",
+  "per_checkpoint": {
+    "h150d1": {
+      "n_sentences": 1301,
+      "overall_model_auroc": 0.67,
+      "overall_lexical_auroc": 0.6881,
+      "per_family_model_minus_lexical": {
+        "inference_not_stated": {
+          "n_neg": 61,
+          "model": 0.6861,
+          "lexical": 0.7645,
+          "delta": -0.0784
+        },
+        "aim_vs_finding": {
+          "n_neg": 26,
+          "model": 0.6463,
+          "lexical": 0.6377,
+          "delta": 0.0086
+        },
+        "relation_not_attested": {
+          "n_neg": 12,
+          "model": 0.6338,
+          "lexical": 0.7274,
+          "delta": -0.0936
+        },
+        "scope_overextension": {
+          "n_neg": 10,
+          "model": 0.6832,
+          "lexical": 0.7183,
+          "delta": -0.0351
+        },
+        "contradiction": {
+          "n_neg": 10,
+          "model": 0.6833,
+          "lexical": 0.5882,
+          "delta": 0.0951
+        }
+      },
+      "corr_score_containment_supported_pearson": 0.4058,
+      "corr_score_containment_supported_spearman": 0.4119,
+      "mean_supported_item_min_sentence_score": -3.8123
+    },
+    "h150d2": {
+      "n_sentences": 1301,
+      "overall_model_auroc": 0.7047,
+      "overall_lexical_auroc": 0.6881,
+      "per_family_model_minus_lexical": {
+        "inference_not_stated": {
+          "n_neg": 61,
+          "model": 0.7329,
+          "lexical": 0.7645,
+          "delta": -0.0316
+        },
+        "aim_vs_finding": {
+          "n_neg": 26,
+          "model": 0.6682,
+          "lexical": 0.6377,
+          "delta": 0.0304
+        },
+        "relation_not_attested": {
+          "n_neg": 12,
+          "model": 0.7022,
+          "lexical": 0.7274,
+          "delta": -0.0252
+        },
+        "scope_overextension": {
+          "n_neg": 10,
+          "model": 0.7652,
+          "lexical": 0.7183,
+          "delta": 0.047
+        },
+        "contradiction": {
+          "n_neg": 10,
+          "model": 0.6343,
+          "lexical": 0.5882,
+          "delta": 0.0461
+        }
+      },
+      "corr_score_containment_supported_pearson": 0.467,
+      "corr_score_containment_supported_spearman": 0.461,
+      "mean_supported_item_min_sentence_score": -3.7389
+    },
+    "h159d1": {
+      "n_sentences": 1301,
+      "overall_model_auroc": 0.6549,
+      "overall_lexical_auroc": 0.6881,
+      "per_family_model_minus_lexical": {
+        "inference_not_stated": {
+          "n_neg": 61,
+          "model": 0.6631,
+          "lexical": 0.7645,
+          "delta": -0.1014
+        },
+        "aim_vs_finding": {
+          "n_neg": 26,
+          "model": 0.6618,
+          "lexical": 0.6377,
+          "delta": 0.024
+        },
+        "relation_not_attested": {
+          "n_neg": 12,
+          "model": 0.6896,
+          "lexical": 0.7274,
+          "delta": -0.0379
+        },
+        "scope_overextension": {
+          "n_neg": 10,
+          "model": 0.7739,
+          "lexical": 0.7183,
+          "delta": 0.0556
+        },
+        "contradiction": {
+          "n_neg": 10,
+          "model": 0.6409,
+          "lexical": 0.5882,
+          "delta": 0.0527
+        }
+      },
+      "corr_score_containment_supported_pearson": 0.6247,
+      "corr_score_containment_supported_spearman": 0.6412,
+      "mean_supported_item_min_sentence_score": -0.042
+    }
+  },
+  "replications": {
+    "inference_not_stated_deficit": {
+      "measured": [
+        -0.0784,
+        -0.0316,
+        -0.1014
+      ],
+      "expected": [
+        -0.0784,
+        -0.0316,
+        -0.1014
+      ],
+      "sign_stability": "3/3 negative",
+      "replicates": true
+    },
+    "aim_vs_finding_non_replication": {
+      "measured": [
+        0.0086,
+        0.0304,
+        0.024
+      ],
+      "expected": [
+        0.0086,
+        0.0304,
+        0.024
+      ],
+      "note": "the memo's 'below word counting' reading does NOT survive the max-window containment baseline - all three deltas are positive",
+      "replicates_as_deficit": false
+    },
+    "score_containment_coupling": {
+      "measured": [
+        0.4058,
+        0.467,
+        0.6247
+      ],
+      "expected": [
+        0.406,
+        0.467,
+        0.625
+      ],
+      "replicates": true
+    },
+    "h159_pubmedqa_vs_k4_flagship_subset_mean": {
+      "h159d1_pubmedqa": 0.6206,
+      "k4_flagship_draws": [
+        0.5893,
+        0.6298,
+        0.6164,
+        0.6636
+      ],
+      "k4_mean": 0.6248,
+      "delta": -0.0042,
+      "expected_delta": -0.004,
+      "verdict": "NULL - the PubHealth transfer signal is not positive"
+    }
+  },
+  "timestamp": "2026-08-16 20:18:38"
+}

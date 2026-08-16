@@ -1,0 +1,152 @@
+{
+  "experiment": "R20-H176 FinDVer instrument read (measurement only, zero training)",
+  "registration": "docs/experiments/semantic-grounding-experiments.md, block 'R20-H176 FINDVER INSTRUMENT READ' (2026-08-16)",
+  "lane": "experiments/grounding-semantic/R19_findver_lane.parquet",
+  "protocol": "untruncated evidence windowed 1500/750, claim scored vs every window, MAX over windows; claim-level rows so no min-over-sentences stage; frozen trunk + task head (R15_gate_common.load_ckpt/.score)",
+  "n_rows": 2400,
+  "n_pairs": 9569,
+  "mean_windows_per_row": 3.9871,
+  "per_draw": {
+    "h150d1": {
+      "checkpoint": "R18-H150-arm-draw1",
+      "ie": {
+        "auroc": 0.6561,
+        "thr": 0.326991,
+        "macro_f1": 0.6179,
+        "fp": 141,
+        "fn": 183,
+        "n_pos": 425,
+        "n_neg": 425,
+        "fp_rate": 0.3318,
+        "fn_rate": 0.4306,
+        "fp_share_of_errors": 0.4352,
+        "halfsplit_macro_f1": 0.6159
+      },
+      "numeric": {
+        "auroc": 0.495,
+        "thr": 0.350198,
+        "macro_f1": 0.498,
+        "fp": 246,
+        "fn": 178,
+        "n_pos": 425,
+        "n_neg": 425,
+        "fp_rate": 0.5788,
+        "fn_rate": 0.4188,
+        "fp_share_of_errors": 0.5802,
+        "halfsplit_macro_f1": 0.4821
+      },
+      "knowledge": {
+        "auroc": 0.5715,
+        "thr": 0.129575,
+        "macro_f1": 0.5596,
+        "fp": 164,
+        "fn": 144,
+        "n_pos": 351,
+        "n_neg": 349,
+        "fp_rate": 0.4699,
+        "fn_rate": 0.4103,
+        "fp_share_of_errors": 0.5325,
+        "halfsplit_macro_f1": 0.5593
+      },
+      "overall": {
+        "auroc": 0.5707,
+        "thr": 0.306271,
+        "macro_f1": 0.5585,
+        "fp": 468,
+        "fn": 589,
+        "n_pos": 1201,
+        "n_neg": 1199,
+        "fp_rate": 0.3903,
+        "fn_rate": 0.4904,
+        "fp_share_of_errors": 0.4428,
+        "halfsplit_macro_f1": 0.5788
+      }
+    },
+    "h150d2": {
+      "checkpoint": "R18-H150-arm-draw2",
+      "ie": {
+        "auroc": 0.6658,
+        "thr": 0.260235,
+        "macro_f1": 0.6306,
+        "fp": 157,
+        "fn": 157,
+        "n_pos": 425,
+        "n_neg": 425,
+        "fp_rate": 0.3694,
+        "fn_rate": 0.3694,
+        "fp_share_of_errors": 0.5,
+        "halfsplit_macro_f1": 0.6447
+      },
+      "numeric": {
+        "auroc": 0.4967,
+        "thr": 0.256338,
+        "macro_f1": 0.5116,
+        "fp": 144,
+        "fn": 263,
+        "n_pos": 425,
+        "n_neg": 425,
+        "fp_rate": 0.3388,
+        "fn_rate": 0.6188,
+        "fp_share_of_errors": 0.3538,
+        "halfsplit_macro_f1": 0.455
+      },
+      "knowledge": {
+        "auroc": 0.5961,
+        "thr": 0.158516,
+        "macro_f1": 0.5802,
+        "fp": 110,
+        "fn": 181,
+        "n_pos": 351,
+        "n_neg": 349,
+        "fp_rate": 0.3152,
+        "fn_rate": 0.5157,
+        "fp_share_of_errors": 0.378,
+        "halfsplit_macro_f1": 0.5714
+      },
+      "overall": {
+        "auroc": 0.5839,
+        "thr": 0.257738,
+        "macro_f1": 0.5622,
+        "fp": 360,
+        "fn": 673,
+        "n_pos": 1201,
+        "n_neg": 1199,
+        "fp_rate": 0.3003,
+        "fn_rate": 0.5604,
+        "fp_share_of_errors": 0.3485,
+        "halfsplit_macro_f1": 0.5633
+      }
+    }
+  },
+  "two_draw_mean": {
+    "ie": {
+      "auroc": 0.6609,
+      "fp": 298,
+      "fn": 340,
+      "fp_share_of_errors": 0.4676
+    },
+    "numeric": {
+      "auroc": 0.4959,
+      "fp": 390,
+      "fn": 441,
+      "fp_share_of_errors": 0.467
+    },
+    "knowledge": {
+      "auroc": 0.5838,
+      "fp": 274,
+      "fn": 325,
+      "fp_share_of_errors": 0.4552
+    },
+    "overall": {
+      "auroc": 0.5773,
+      "fp": 828,
+      "fn": 1262,
+      "fp_share_of_errors": 0.3957
+    }
+  },
+  "numeric_vs_nonnumeric_mean": -0.1264,
+  "branch": "CONFIRMED",
+  "branch_note": "numeric < 0.65 and numeric < (ie+knowledge)/2 - 0.05 -> deficit derivation-specific off-arena; FinDVer-numeric banks as the standing non-arena mechanism instrument",
+  "operating_point": "macro-F1-optimal threshold on the 91-quantile grid fitted on the scored set itself (so the FP/FN split covers every row); the R7-H59 half-split macro-F1 is carried as halfsplit_macro_f1 for continuity",
+  "timestamp": "2026-08-16 20:07:20"
+}

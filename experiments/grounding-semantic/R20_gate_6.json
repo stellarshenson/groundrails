@@ -1,0 +1,35 @@
+{
+  "gate": "R20 gate 6 (PM-1) - deletion-contrast supply census",
+  "recipe_summary": "banked MiniCheck C2D/D2C + FAVA lanes, label-1 rows only, SciFact excluded; a triple counts when the evidence splits into >= 3 sentences (R8-H92 splitter) and one sentence is a LOCALIZABLE rationale - content-token containment of the claim >= 0.5 and >= 0.1 above the runner-up sentence",
+  "per_corpus": {
+    "minicheck": {
+      "rows_label1": 6638,
+      "multi_sentence_evidence": 6615,
+      "localizable_triples": 1995,
+      "median_top_minus_second_containment": 0.125
+    },
+    "fava": {
+      "rows_label1": 637,
+      "multi_sentence_evidence": 637,
+      "localizable_triples": 46,
+      "median_top_minus_second_containment": 0.0408
+    }
+  },
+  "total_triples": 2041,
+  "sensitivity_grid_containment_over_margin": {
+    "0.4/0.05": 2917,
+    "0.4/0.1": 2731,
+    "0.4/0.15": 2327,
+    "0.5/0.05": 2118,
+    "0.5/0.1": 2041,
+    "0.5/0.15": 1869,
+    "0.6/0.05": 1120,
+    "0.6/0.1": 1102,
+    "0.6/0.15": 1057
+  },
+  "supply_ceiling_ignoring_localizability": 7252,
+  "ceiling_note": "every label-1 row with multi-sentence evidence, localizability waived entirely - if this number is below the bar the gate cannot be reached by loosening the rationale test, only by new supply",
+  "threshold": "PASS if >= 8000 triples without SciFact",
+  "verdict": "FAIL",
+  "timestamp": "2026-08-16 20:18:38"
+}

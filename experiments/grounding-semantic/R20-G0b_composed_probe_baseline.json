@@ -1,0 +1,50 @@
+{
+  "gate": "R20 gate 5 (hotpotqa G0b) - composed-probe baseline leg",
+  "recipe_summary": "TabFact two-table-join generator over HELD-OUT tables only (250 bridge + 250 conjunction pairs = 1,000 probe items on the primary leg); each item is a 2-document bag windowed 1,500/750, claim scored against every window, max over windows; banked flagship draw 1 read frozen",
+  "checkpoint": "R18-H150-arm-draw1",
+  "n_rows": 1500,
+  "n_pairs": 500,
+  "n_probe_items_primary": 1000,
+  "contamination": "TabFact held-out tables only (table_id-disjoint from every train split); HotpotQA train and HoVer never read",
+  "auroc": {
+    "negative_present": {
+      "pooled": {
+        "auroc": 0.6477,
+        "n_pos": 500,
+        "n_neg": 500
+      },
+      "bridge": {
+        "auroc": 0.6011,
+        "n_pos": 250,
+        "n_neg": 250
+      },
+      "conjunction": {
+        "auroc": 0.6881,
+        "n_pos": 250,
+        "n_neg": 250
+      }
+    },
+    "negative_absent": {
+      "pooled": {
+        "auroc": 0.5558,
+        "n_pos": 500,
+        "n_neg": 500
+      },
+      "bridge": {
+        "auroc": 0.5683,
+        "n_pos": 250,
+        "n_neg": 250
+      },
+      "conjunction": {
+        "auroc": 0.5459,
+        "n_pos": 250,
+        "n_neg": 250
+      }
+    }
+  },
+  "primary_leg": "negative_present (every surface element of the negative is in the bag; only the composition is wrong)",
+  "primary_auroc": 0.6477,
+  "threshold": "KILL the composed-supply arm if the baseline leg reads >= 0.7",
+  "verdict": "PASS",
+  "timestamp": "2026-08-16 20:14:07"
+}

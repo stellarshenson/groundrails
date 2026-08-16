@@ -1,0 +1,171 @@
+{
+  "experiment": "R20-H174 lane L2 - source_select / attribution pool (attr_pool)",
+  "registration": "docs/experiments/semantic-grounding-experiments.md, block 'R20-H174 HAGRID/EMANUAL PORTFOLIO ARM'",
+  "tag": "attr_pool",
+  "dann_group": "attr_pool",
+  "mix_loader": "drop-in for R18-H150_arm_run.make_build_mix - columns claim / chunk / label / pair_id / neg_family; chunk is read UNTRUNCATED and windowed 1500/750 by the loader, which is what turns a pool into a multi-window bag",
+  "seed": 2174,
+  "rows": 21408,
+  "pairs": 10704,
+  "label_balance": {
+    "label_1": 10704,
+    "label_0": 10704,
+    "positive_share": 0.5
+  },
+  "families": {
+    "unsupported_claim": 6898,
+    "truth_removed": 14510
+  },
+  "source_rows": {
+    "vitaminc": 11998,
+    "minicheck": 9410
+  },
+  "family_by_source": {
+    "minicheck:unsupported_claim": 2898,
+    "minicheck:truth_removed": 6512,
+    "vitaminc:unsupported_claim": 4000,
+    "vitaminc:truth_removed": 7998
+  },
+  "sources": {
+    "minicheck": {
+      "dataset": "lytang/C2D-and-D2C-MiniCheck",
+      "archive": "data/external/datasets/dataset-minicheck.zip",
+      "licence": "MIT",
+      "wall": "R19_minicheck_gate.json - GREEN on the R14-H136 8-gram / Jaccard 0.3 wall against all ten walled arena corpora"
+    },
+    "vitaminc": {
+      "dataset": "tals/vitaminc",
+      "archive": "data/external/datasets/dataset-vitaminc.zip",
+      "licence": "CC-BY-SA-3.0",
+      "wall": "banked clean-mix corpus (DANN group `vitaminc`), gated on admission; the lane census re-runs the wall on the new text"
+    }
+  },
+  "isolation": "FAVA / PubHealth / FinDVer / AttributionBench are NOT read - the registration isolates this lane from the four H159 lanes diagnosed as the table-collapse collateral",
+  "pool": {
+    "distractor_min": 3,
+    "distractor_max": 7,
+    "bm25_topk": 40,
+    "containment_guard": 0.75,
+    "passage_max_chars": 1400,
+    "separator": "'\\n\\n'",
+    "mean_depth": 5.971,
+    "depth_distribution": {
+      "7": 4220,
+      "8": 4116,
+      "4": 4352,
+      "5": 4370,
+      "6": 4350
+    }
+  },
+  "document_disjointness": {
+    "truth_cap": 2,
+    "distractor_cap": 12,
+    "documents_as_truth": 7346,
+    "documents_as_pool_member": 18809,
+    "documents_in_both_roles": 5694,
+    "note": "a document may appear as truth in one pair and as a distractor in another - never inside the pair whose truth it is, which is enforced by the retriever's exclude set and re-checked by pool_composition_audit",
+    "max_truth_uses": 2,
+    "max_distractor_uses": 12
+  },
+  "build_skips": {
+    "minicheck_b_skipped": 218,
+    "minicheck_a_skipped": 16,
+    "vitaminc_b_skipped": 2352,
+    "vitaminc_a_skipped": 60
+  },
+  "char_stats": {
+    "claim": {
+      "n": 21408,
+      "mean": 65.3,
+      "median": 58,
+      "p10": 34,
+      "p90": 105,
+      "min": 15,
+      "max": 434
+    },
+    "chunk": {
+      "n": 21408,
+      "mean": 4860.0,
+      "median": 4765,
+      "p10": 3059,
+      "p90": 6831,
+      "min": 799,
+      "max": 9926
+    }
+  },
+  "diversity": {
+    "distinct_claims": 9245,
+    "distinct_chunks": 17959,
+    "distinct_truth_documents": 7344
+  },
+  "window_census": {
+    "windowing": "1500/750, final window flush to the end (byte-identical to R8-H101 / R16-H142)",
+    "rows": 21408,
+    "mean_windows": 5.9813,
+    "median_windows": 6,
+    "max_windows": 13,
+    "multi_window_rows": 21359,
+    "multi_window_share": 0.9977
+  },
+  "verify": {
+    "pair_integrity": {
+      "pairs": 10704,
+      "malformed": 0,
+      "bar": "0 malformed",
+      "pass": true,
+      "examples": []
+    },
+    "pool_composition_audit": {
+      "pairs": 10704,
+      "errors": 0,
+      "bar": "0 errors",
+      "pass": true,
+      "examples": []
+    },
+    "pool_non_support": {
+      "negative_rows": 10704,
+      "max_claim_containment_in_any_pool_member": 0.7436,
+      "rows_over_guard": {},
+      "guard": 0.75,
+      "bar": "0 label-0 rows carry a pool member reaching the guard - no passage in a negative's pool may look like support",
+      "pass": true
+    },
+    "surface_parity": {
+      "auroc": {
+        "claim_char_length": 0.4765,
+        "claim_token_count": 0.4773,
+        "chunk_char_length": 0.5112,
+        "claim_chunk_containment": 0.703
+      },
+      "report_only": [
+        "claim_chunk_containment"
+      ],
+      "bar": "each barred channel in [0.45, 0.55]",
+      "worst_deviation": 0.0235,
+      "pass": true
+    },
+    "claim_only_tfidf_auroc": {
+      "value": 0.5271,
+      "bar": "< 0.55",
+      "pass": true,
+      "scoring": "5-fold document-disjoint, out of fold, liblinear tol 1e-7"
+    },
+    "within_pair_claim_only_accuracy": {
+      "per_family": {
+        "truth_removed": {
+          "acc": 0.5,
+          "pairs": 7255
+        },
+        "unsupported_claim": {
+          "acc": 0.558,
+          "pairs": 3449
+        }
+      },
+      "worst": 0.558,
+      "bar": "< 0.60",
+      "pass": true,
+      "note": "truth_removed is 0.5 by construction - the claim is identical on both legs; the informative cell is unsupported_claim"
+    },
+    "all_bars_pass": true
+  }
+}

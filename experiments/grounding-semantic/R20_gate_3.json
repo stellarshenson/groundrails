@@ -1,0 +1,37 @@
+{
+  "gate": "R20 gate 3 (H-D) - mmBERT tokenizer fragmentation of error numerals",
+  "recipe_summary": "tokenise the H157 sinking sentences' numerals with the flagship checkpoint's own mmBERT tokenizer and compare tokens per numeral against digit-length-matched numerals drawn from the sinking sentences of items neither draw erred on",
+  "tokenizer": "/home/lab/workspace/private/ai-assistants/groundrails/models/R18-H150-arm-draw1",
+  "results": {
+    "sinking_sentence_numerals": {
+      "n_error_numerals": 227,
+      "n_matched_control": 227,
+      "unmatched_error_numerals": 0,
+      "mean_tokens_per_numeral_error": 5.0925,
+      "mean_tokens_per_numeral_control": 5.0176,
+      "control_sd": 1.376,
+      "excess_in_control_sd": 0.0544,
+      "verdict": "FAIL"
+    },
+    "load_bearing_numerals": {
+      "n_error_numerals": 235,
+      "n_matched_control": 235,
+      "unmatched_error_numerals": 0,
+      "mean_tokens_per_numeral_error": 5.5574,
+      "mean_tokens_per_numeral_control": 5.1277,
+      "control_sd": 1.7833,
+      "excess_in_control_sd": 0.241,
+      "verdict": "FAIL"
+    },
+    "unmatched_raw_contrast": {
+      "mean_error": 5.0925,
+      "mean_control": 5.1221,
+      "control_sd": 1.5036,
+      "n_control": 2605
+    }
+  },
+  "threshold": "PASS if error numerals are more fragmented by >= 1 control sd",
+  "verdict": "FAIL",
+  "verdict_basis": "load_bearing_numerals (the absent claim values plus the derivation operands); the whole-sentence numeral reading is carried alongside",
+  "timestamp": "2026-08-16 20:10:47"
+}

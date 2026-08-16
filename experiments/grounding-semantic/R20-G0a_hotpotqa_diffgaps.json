@@ -1,0 +1,111 @@
+{
+  "gate": "R20 gate 4 - hotpotqa G0a difference-of-label-gaps (single_doc - multi_doc)",
+  "recipe_summary": "join R19-H162_hotpotqa_families on (item_id, sent_idx) to the per-window dumps R19-H161_pairs_h150d{1,2} and R18-H151_scores_{1142,2142}; per-checkpoint z-scored sentence-max (max over windows); label gap = mean(z|1) - mean(z|0) within hop_class; statistic = gap(single_doc) - gap(multi_doc) averaged over the 4 checkpoints; 10000 bootstrap resamples over the 293 sentences, percentile CI95",
+  "n_sentences": 293,
+  "n_negatives": 23,
+  "per_checkpoint": {
+    "h150d1": {
+      "n_sent": 293,
+      "gap_single_doc": 0.9097,
+      "gap_multi_doc": -0.0003,
+      "diff_of_gaps": 0.91
+    },
+    "h150d2": {
+      "n_sent": 293,
+      "gap_single_doc": 0.865,
+      "gap_multi_doc": 0.0284,
+      "diff_of_gaps": 0.8366
+    },
+    "1142": {
+      "n_sent": 293,
+      "gap_single_doc": 1.0934,
+      "gap_multi_doc": 0.0105,
+      "diff_of_gaps": 1.0829
+    },
+    "2142": {
+      "n_sent": 293,
+      "gap_single_doc": 0.7387,
+      "gap_multi_doc": 0.0193,
+      "diff_of_gaps": 0.7194
+    }
+  },
+  "pooled_diff_of_gaps": 0.8872,
+  "ci95": [
+    -0.0407,
+    1.7025
+  ],
+  "sign_stability": "4/4 positive",
+  "bootstrap_draws_used": 9974,
+  "sensitivity": {
+    "plain_over_sentences": {
+      "0": {
+        "ci95": [
+          -0.0062,
+          1.7139
+        ],
+        "p_le_zero": 0.0257
+      },
+      "1": {
+        "ci95": [
+          -0.023,
+          1.7194
+        ],
+        "p_le_zero": 0.0273
+      },
+      "2": {
+        "ci95": [
+          -0.0599,
+          1.7114
+        ],
+        "p_le_zero": 0.0307
+      },
+      "20260816": {
+        "ci95": [
+          -0.0407,
+          1.7025
+        ],
+        "p_le_zero": 0.0293
+      },
+      "42": {
+        "ci95": [
+          -0.0373,
+          1.716
+        ],
+        "p_le_zero": 0.0302
+      }
+    },
+    "stratified_by_hopclass_label": {
+      "0": {
+        "ci95": [
+          0.0754,
+          1.6704
+        ],
+        "p_le_zero": 0.0166
+      },
+      "20260816": {
+        "ci95": [
+          0.0405,
+          1.6569
+        ],
+        "p_le_zero": 0.0197
+      }
+    }
+  },
+  "threshold": "PASS if the bootstrap CI95 excludes zero",
+  "verdict": "FAIL",
+  "verdict_note": "the point estimate reproduces the design pass (+0.8872 vs +0.886) and the sign is 4/4, but the CI95 does NOT exclude zero under the registered plain resample-over-sentences bootstrap: at 10,000 draws all five seeds give a NEGATIVE lower bound (-0.006 to -0.060, p(stat<=0) 0.026-0.031). The failure is narrow and estimator-dependent - at 5,000 draws two of five seeds flipped the bound positive, and a bootstrap stratified by hop_class x label puts it at +0.04..+0.08. The design pass's [+0.043, +1.657] sits inside that spread, i.e. it was not reproducible at the registered recipe's own resolution. Binding limit: the single_doc negative cell holds 6 sentences",
+  "design_pass_reference": {
+    "point": 0.886,
+    "ci95": [
+      0.043,
+      1.657
+    ],
+    "per_checkpoint": [
+      0.908,
+      0.835,
+      1.081,
+      0.718
+    ]
+  },
+  "timestamp": "2026-08-16 20:06:36"
+}

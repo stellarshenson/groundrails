@@ -1,0 +1,127 @@
+{
+ "what": "variance protocol repair - estimator bias + pair census",
+ "defect_1_estimator": {
+  "biased_pool_reproduced": 0.01189,
+  "bias_factor": 1.2533,
+  "unbiased_same_census": 0.00949,
+  "rule": "sigma^2 = sum(gap^2)/(2n); E[gap^2] = 2 sigma^2"
+ },
+ "defect_2_census": {
+  "added": {
+   "R16-H142-twin": {
+    "draws": [
+     0.72498,
+     0.70073
+    ],
+    "gap": 0.02425,
+    "why": "same recipe, seeds 1142/2142; never excluded on the record"
+   }
+  },
+  "removed_to_order_component": {
+   "R18-H155": {
+    "draws": [
+     0.72439,
+     0.72788
+    ],
+    "gap": 0.00349,
+    "why": "shared init fingerprint - the gap estimates the ORDER component only"
+   }
+  }
+ },
+ "repaired": {
+  "pooled_per_draw_sd": 0.0109,
+  "n_pairs": 10,
+  "df": 10,
+  "gaps": {
+   "R18-H150": 0.00225,
+   "R10-H108": 0.00245,
+   "R9-H105": 0.0032,
+   "DR-lane-control": 0.00887,
+   "R18-H152": 0.00907,
+   "R10-H107": 0.01139,
+   "R19-H160": 0.01495,
+   "R14-H133": 0.019,
+   "DR-lane-margin": 0.02987,
+   "R16-H142-twin": 0.02425
+  },
+  "order_component_sd": 0.00247,
+  "order_variance_share": 0.0512,
+  "h155_verdict_cross_check": "H155 recorded order ~14% of SPREAD; this pool reads the variance share"
+ },
+ "floors_2xSE_at_k": {
+  "k=1": 0.0218,
+  "k=2": 0.01542,
+  "k=3": 0.01259,
+  "k=4": 0.0109,
+  "k=6": 0.0089
+ },
+ "flagship": {
+  "k4_mean": 0.71583,
+  "k4_empirical_sd": 0.00618,
+  "k6_SE": 0.00445,
+  "consistency": "empirical k=4 sd vs pooled - chi2 3 df"
+ },
+ "re_adjudication_vs_flagship_k4": {
+  "R19-H159": {
+   "k": 1,
+   "mean": 0.68941,
+   "z_vs_flagship_k4": -2.17,
+   "resolved_below": true
+  },
+  "R18-H156": {
+   "k": 1,
+   "mean": 0.69053,
+   "z_vs_flagship_k4": -2.08,
+   "resolved_below": true
+  },
+  "R12-H122": {
+   "k": 1,
+   "mean": 0.69147,
+   "z_vs_flagship_k4": -2.0,
+   "resolved_below": false
+  },
+  "R11-H118-soup": {
+   "k": 1,
+   "mean": 0.69218,
+   "z_vs_flagship_k4": -1.94,
+   "resolved_below": false
+  },
+  "R16-H142-G1-arm": {
+   "k": 1,
+   "mean": 0.69268,
+   "z_vs_flagship_k4": -1.9,
+   "resolved_below": false
+  },
+  "R17-H145": {
+   "k": 1,
+   "mean": 0.6959,
+   "z_vs_flagship_k4": -1.64,
+   "resolved_below": false
+  },
+  "R13-H129": {
+   "k": 1,
+   "mean": 0.69709,
+   "z_vs_flagship_k4": -1.54,
+   "resolved_below": false
+  },
+  "R17-H146": {
+   "k": 1,
+   "mean": 0.69847,
+   "z_vs_flagship_k4": -1.42,
+   "resolved_below": false
+  },
+  "R9-H105": {
+   "k": 2,
+   "mean": 0.70311,
+   "z_vs_flagship_k4": -1.35,
+   "resolved_below": false
+  },
+  "R10-H108": {
+   "k": 2,
+   "mean": 0.70495,
+   "z_vs_flagship_k4": -1.15,
+   "resolved_below": false
+  }
+ },
+ "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+}

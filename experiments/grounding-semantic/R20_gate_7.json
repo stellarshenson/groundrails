@@ -1,0 +1,38 @@
+{
+  "gate": "R20 gate 7 (PM-2) - low-containment supported supply census",
+  "recipe_summary": "banked FActScore + AttributionBench (ExpertQA/HAGRID carved out) + the banked R10-H111 / DR judge-certified paraphrase label-1 bands; a row counts when its content-token containment of the claim in the FULL evidence chunk is <= 0.3",
+  "containment_definition": "content-token containment against the whole chunk - the strict reading; a max-over-1500/750-window containment is <= this value and would admit MORE rows",
+  "per_corpus": {
+    "factscore": {
+      "rows_label1": 9332,
+      "low_containment_rows": 82,
+      "median_containment": 1.0
+    },
+    "attributionbench": {
+      "rows_label1": 10656,
+      "low_containment_rows": 864,
+      "median_containment": 0.7778,
+      "carve_out": "ExpertQA/HAGRID carved out per the dataset card: 10656 -> 10656 label-1 rows"
+    },
+    "r10_h111_paraphrase_band": {
+      "rows_label1": 2982,
+      "low_containment_rows": 374,
+      "median_containment": 0.7647
+    },
+    "dr_paraphrase_band": {
+      "rows_label1": 2573,
+      "low_containment_rows": 191,
+      "median_containment": 0.875
+    }
+  },
+  "total_rows": 1511,
+  "sensitivity_by_containment_bar": {
+    "0.3": 1511,
+    "0.4": 2615,
+    "0.5": 4308,
+    "0.6": 5755
+  },
+  "threshold": "PASS if >= 8000 supported rows at containment <= 0.3",
+  "verdict": "FAIL",
+  "timestamp": "2026-08-16 20:18:38"
+}

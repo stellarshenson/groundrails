@@ -1,0 +1,168 @@
+{
+  "experiment": "R20-H174 lane L1 - vacuous_claim_reject (frame_reject)",
+  "registration": "docs/experiments/semantic-grounding-experiments.md, block 'R20-H174 HAGRID/EMANUAL PORTFOLIO ARM'",
+  "tag": "frame_reject",
+  "dann_group": "frame_reject",
+  "mix_loader": "drop-in for R18-H150_arm_run.make_build_mix - columns claim / chunk / label / pair_id / neg_family; chunk is read UNTRUNCATED and windowed 1500/750 by the loader",
+  "seed": 1174,
+  "rows": 8000,
+  "pairs": 4000,
+  "documents": 3513,
+  "label_balance": {
+    "label_1": 4000,
+    "label_0": 4000,
+    "positive_share": 0.5
+  },
+  "families": {
+    "vacuous_frame": 5148,
+    "vacuous_marker": 2852
+  },
+  "pos_families": {
+    "frame_plus_content": 5148,
+    "bare_content": 2852
+  },
+  "framed_pairs": 2574,
+  "sources": {
+    "minicheck": {
+      "dataset": "lytang/C2D-and-D2C-MiniCheck",
+      "archive": "data/external/datasets/dataset-minicheck.zip",
+      "licence": "MIT",
+      "wall": "R19_minicheck_gate.json - GREEN on the R14-H136 8-gram / Jaccard 0.3 wall against all ten walled arena corpora"
+    },
+    "vitaminc": {
+      "dataset": "tals/vitaminc",
+      "archive": "data/external/datasets/dataset-vitaminc.zip",
+      "licence": "CC-BY-SA-3.0",
+      "wall": "banked clean-mix corpus (DANN group `vitaminc`), gated on admission; the lane census re-runs the wall on the new text"
+    }
+  },
+  "source_rows": {
+    "vitaminc": 3200,
+    "minicheck": 4800
+  },
+  "generator": {
+    "n_pairs_target": 4000,
+    "minicheck_share": 0.6,
+    "frame_share": 0.65,
+    "doc_cap": 2,
+    "len_tol": 12,
+    "min_pos_chars": 25,
+    "max_pos_chars": 460,
+    "inventory_sizes": {
+      "frame_heads": 28,
+      "frame_continuations": 10,
+      "frame_discourse": 9,
+      "markers": 19,
+      "reflines": 7,
+      "noframe_discourse": 10,
+      "tails": 7
+    },
+    "length_match_error": {
+      "mean": 6.707,
+      "max": 53
+    }
+  },
+  "char_stats": {
+    "claim_label1": {
+      "n": 4000,
+      "mean": 90.4,
+      "median": 83,
+      "p10": 46,
+      "p90": 139,
+      "min": 25,
+      "max": 373
+    },
+    "claim_label0": {
+      "n": 4000,
+      "mean": 90.5,
+      "median": 83,
+      "p10": 46,
+      "p90": 140,
+      "min": 15,
+      "max": 349
+    },
+    "chunk": {
+      "n": 8000,
+      "mean": 952.1,
+      "median": 935,
+      "p10": 636,
+      "p90": 1290,
+      "min": 205,
+      "max": 2336
+    }
+  },
+  "diversity": {
+    "distinct_claims": 7576,
+    "distinct_chunks": 3519,
+    "distinct_frame_heads": 29
+  },
+  "window_census": {
+    "windowing": "1500/750, final window flush to the end (byte-identical to R8-H101 / R16-H142)",
+    "rows": 8000,
+    "mean_windows": 1.0337,
+    "median_windows": 1,
+    "max_windows": 3,
+    "multi_window_rows": 266,
+    "multi_window_share": 0.0333
+  },
+  "verify": {
+    "pair_integrity": {
+      "pairs": 4000,
+      "malformed": 0,
+      "bar": "0 malformed",
+      "pass": true,
+      "examples": []
+    },
+    "frame_presence_neutrality": {
+      "detector": "R19-H162 RE_FRAME (banked), applied to the claim",
+      "label1_frame_rate": 0.204,
+      "label0_frame_rate": 0.204,
+      "rate_difference": 0.0,
+      "frame_presence_auroc": 0.5,
+      "bar": "rate difference <= 0.005 and AUROC in [0.45, 0.55]",
+      "pass": true
+    },
+    "negative_contentless_audit": {
+      "negatives": 4000,
+      "inventory_vocabulary": 106,
+      "rows_with_out_of_inventory_token": 0,
+      "bar": "0 rows - the negative leg is closed-vocabulary by construction",
+      "pass": true,
+      "examples": []
+    },
+    "surface_parity": {
+      "auroc": {
+        "claim_char_length": 0.4996,
+        "claim_token_count": 0.5206,
+        "chunk_char_length": 0.5,
+        "claim_chunk_containment": 0.9775
+      },
+      "report_only": [
+        "claim_chunk_containment"
+      ],
+      "bar": "each barred channel in [0.45, 0.55]",
+      "worst_deviation": 0.0206,
+      "pass": true
+    },
+    "claim_only_tfidf_auroc_report_only": {
+      "value": 1.0,
+      "within_pair": {
+        "vacuous_marker": {
+          "acc": 1.0,
+          "pairs": 1426
+        },
+        "vacuous_frame": {
+          "acc": 1.0,
+          "pairs": 2574
+        }
+      },
+      "note": "no bar - the lane's content is a claim-side rule; the binding bar is frame_presence_neutrality"
+    },
+    "containment_report_only": {
+      "label1_mean": 0.6969,
+      "label0_mean": 0.2003,
+      "note": "label-1 figure is the GENUINE claim against its chunk; label-0 residue is inventory function words, not content"
+    },
+    "all_bars_pass": true
+  }
+}

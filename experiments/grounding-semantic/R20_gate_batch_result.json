@@ -1,0 +1,435 @@
+{
+  "experiment": "R20 LICENSED FREE KILL-GATE BATCH - combined result",
+  "registration": "docs/experiments/semantic-grounding-experiments.md, block 'LICENSED FREE KILL-GATE BATCH' (2026-08-16); per-gate recipes in docs/experiments/briefs/R20-fanout-{derivation,hotpotqa-composition,pubmedqa-absence}-*.md",
+  "discipline": "measurement only - nothing trained, nothing registered, no verdict written to the canonical log",
+  "gates": [
+    {
+      "gate": 1,
+      "name": "H-B derivation compare/direction lane",
+      "artifact": "R20_gate_1.json",
+      "recipe_summary": "reclassify every derivation_arithmetic H157 error item into depth-1 compare/sign/direction (the error is resolvable by ORDERING/SIGN/DIRECTION of two values both present in evidence) vs multi-op arithmetic; mass = the autopsy's own per-item rank loss averaged over the two draws",
+      "threshold": "PASS if compare-decidable share >= 0.20 of derivation-class rank-loss mass (>= 0.056 absolute of finqa rank loss)",
+      "numbers": {
+        "compare_decidable_share": 0.312,
+        "compare_decidable_mass": 0.0873,
+        "derivation_rank_loss_mass": 0.2797,
+        "constructibility_census": {
+          "edgar_admitted": {
+            "n_chunks": 34014,
+            "n_sentences": 309686,
+            "compare_buildable_sentences": 65368,
+            "value_role_period_sentences": 92571
+          },
+          "tabfact": {
+            "all_splits": {
+              "uncapped_pairs": 1360700,
+              "cap2_per_table_column": 26958,
+              "cap2_per_table": 12765,
+              "n_tables": 16573
+            },
+            "held_out_only": {
+              "uncapped_pairs": 280059,
+              "cap2_per_table_column": 5182,
+              "cap2_per_table": 2614,
+              "n_tables": 3391
+            }
+          },
+          "combined_compare_pairs_conservative": 78133,
+          "combination": "EDGAR sentences carrying >= 2 numerals and a compare/direction token (one relation-flip pair each) + TabFact pairs capped at 2 per table (the banked build_compare convention)",
+          "threshold": "PASS if >= 25,000 buildable compare pairs",
+          "verdict": "PASS"
+        },
+        "rule_crosscheck": {
+          "agreement_with_hand_audit": "26/29",
+          "rule_based_share": 0.4424
+        },
+        "l2_corroboration": {
+          "delucionqa": {
+            "n_derivation_records": 5,
+            "carrying_compare_or_direction_token": 1,
+            "share": 0.2
+          },
+          "finqa": {
+            "n_derivation_records": 64,
+            "carrying_compare_or_direction_token": 32,
+            "share": 0.5
+          },
+          "tatqa": {
+            "n_derivation_records": 41,
+            "carrying_compare_or_direction_token": 19,
+            "share": 0.4634
+          }
+        }
+      },
+      "verdict": "PASS"
+    },
+    {
+      "gate": 2,
+      "name": "H-C operand/role/sign/period misbind lane",
+      "artifact": "R20_gate_2.json",
+      "recipe_summary": "classify every H157 false-positive record by its own `unsupported_explanation` into misbind_{operand,role,sign,period} vs wrong_computation vs question_relativity vs other; mass = per-item rank loss averaged over the two draws",
+      "threshold": "PASS if >= 0.30 of FP rank-loss mass is operand/role/sign/period misbinding (primary denominator = the classified FP records' mass; the all-negatives denominator is carried as the strict reading)",
+      "numbers": {
+        "misbind_share_of_fp_record_mass": 0.5486,
+        "misbind_share_of_all_negative_mass": 0.5436,
+        "mass_by_class": {
+          "misbind_operand": 0.0113,
+          "misbind_period": 0.0722,
+          "misbind_role": 0.1061,
+          "misbind_sign": 0.0823,
+          "other_absence": 0.0519,
+          "other_speculation": 0.032,
+          "question_relativity": 0.0196,
+          "scale_unit": 0.0073,
+          "wrong_computation": 0.1128
+        },
+        "edgar_census": {
+          "value_role_period_sentences": 92571,
+          "n_sentences_scanned": 309686,
+          "threshold": "PASS if >= 20,000 sentences carry value + role word + period",
+          "verdict": "PASS"
+        }
+      },
+      "verdict": "PASS"
+    },
+    {
+      "gate": 3,
+      "name": "H-D trained-through numeric canonicalization",
+      "artifact": "R20_gate_3.json",
+      "recipe_summary": "tokenise the H157 sinking sentences' numerals with the flagship checkpoint's own mmBERT tokenizer and compare tokens per numeral against digit-length-matched numerals drawn from the sinking sentences of items neither draw erred on",
+      "threshold": "PASS if error numerals are more fragmented by >= 1 control sd",
+      "numbers": {
+        "results": {
+          "sinking_sentence_numerals": {
+            "n_error_numerals": 227,
+            "n_matched_control": 227,
+            "unmatched_error_numerals": 0,
+            "mean_tokens_per_numeral_error": 5.0925,
+            "mean_tokens_per_numeral_control": 5.0176,
+            "control_sd": 1.376,
+            "excess_in_control_sd": 0.0544,
+            "verdict": "FAIL"
+          },
+          "load_bearing_numerals": {
+            "n_error_numerals": 235,
+            "n_matched_control": 235,
+            "unmatched_error_numerals": 0,
+            "mean_tokens_per_numeral_error": 5.5574,
+            "mean_tokens_per_numeral_control": 5.1277,
+            "control_sd": 1.7833,
+            "excess_in_control_sd": 0.241,
+            "verdict": "FAIL"
+          },
+          "unmatched_raw_contrast": {
+            "mean_error": 5.0925,
+            "mean_control": 5.1221,
+            "control_sd": 1.5036,
+            "n_control": 2605
+          }
+        },
+        "verdict_basis": "load_bearing_numerals (the absent claim values plus the derivation operands); the whole-sentence numeral reading is carried alongside"
+      },
+      "verdict": "FAIL"
+    },
+    {
+      "gate": 4,
+      "name": "hotpotqa G0a composed-claim revival statistic",
+      "artifact": "R20-G0a_hotpotqa_diffgaps.json",
+      "recipe_summary": "join R19-H162_hotpotqa_families on (item_id, sent_idx) to the per-window dumps R19-H161_pairs_h150d{1,2} and R18-H151_scores_{1142,2142}; per-checkpoint z-scored sentence-max (max over windows); label gap = mean(z|1) - mean(z|0) within hop_class; statistic = gap(single_doc) - gap(multi_doc) averaged over the 4 checkpoints; 10000 bootstrap resamples over the 293 sentences, percentile CI95",
+      "threshold": "PASS if the bootstrap CI95 excludes zero",
+      "numbers": {
+        "pooled_diff_of_gaps": 0.8872,
+        "ci95": [
+          -0.0407,
+          1.7025
+        ],
+        "sign_stability": "4/4 positive",
+        "per_checkpoint": {
+          "h150d1": {
+            "n_sent": 293,
+            "gap_single_doc": 0.9097,
+            "gap_multi_doc": -0.0003,
+            "diff_of_gaps": 0.91
+          },
+          "h150d2": {
+            "n_sent": 293,
+            "gap_single_doc": 0.865,
+            "gap_multi_doc": 0.0284,
+            "diff_of_gaps": 0.8366
+          },
+          "1142": {
+            "n_sent": 293,
+            "gap_single_doc": 1.0934,
+            "gap_multi_doc": 0.0105,
+            "diff_of_gaps": 1.0829
+          },
+          "2142": {
+            "n_sent": 293,
+            "gap_single_doc": 0.7387,
+            "gap_multi_doc": 0.0193,
+            "diff_of_gaps": 0.7194
+          }
+        },
+        "sensitivity": {
+          "plain_over_sentences": {
+            "0": {
+              "ci95": [
+                -0.0062,
+                1.7139
+              ],
+              "p_le_zero": 0.0257
+            },
+            "1": {
+              "ci95": [
+                -0.023,
+                1.7194
+              ],
+              "p_le_zero": 0.0273
+            },
+            "2": {
+              "ci95": [
+                -0.0599,
+                1.7114
+              ],
+              "p_le_zero": 0.0307
+            },
+            "20260816": {
+              "ci95": [
+                -0.0407,
+                1.7025
+              ],
+              "p_le_zero": 0.0293
+            },
+            "42": {
+              "ci95": [
+                -0.0373,
+                1.716
+              ],
+              "p_le_zero": 0.0302
+            }
+          },
+          "stratified_by_hopclass_label": {
+            "0": {
+              "ci95": [
+                0.0754,
+                1.6704
+              ],
+              "p_le_zero": 0.0166
+            },
+            "20260816": {
+              "ci95": [
+                0.0405,
+                1.6569
+              ],
+              "p_le_zero": 0.0197
+            }
+          }
+        },
+        "verdict_note": "the point estimate reproduces the design pass (+0.8872 vs +0.886) and the sign is 4/4, but the CI95 does NOT exclude zero under the registered plain resample-over-sentences bootstrap: at 10,000 draws all five seeds give a NEGATIVE lower bound (-0.006 to -0.060, p(stat<=0) 0.026-0.031). The failure is narrow and estimator-dependent - at 5,000 draws two of five seeds flipped the bound positive, and a bootstrap stratified by hop_class x label puts it at +0.04..+0.08. The design pass's [+0.043, +1.657] sits inside that spread, i.e. it was not reproducible at the registered recipe's own resolution. Binding limit: the single_doc negative cell holds 6 sentences"
+      },
+      "verdict": "FAIL"
+    },
+    {
+      "gate": 5,
+      "name": "hotpotqa G0b composed-probe baseline",
+      "artifact": "R20-G0b_composed_probe_baseline.json",
+      "recipe_summary": "TabFact two-table-join generator over HELD-OUT tables only (250 bridge + 250 conjunction pairs = 1,000 probe items on the primary leg); each item is a 2-document bag windowed 1,500/750, claim scored against every window, max over windows; banked flagship draw 1 read frozen",
+      "threshold": "KILL the composed-supply arm if the baseline leg reads >= 0.7",
+      "numbers": {
+        "primary_auroc": 0.6477,
+        "auroc": {
+          "negative_present": {
+            "pooled": {
+              "auroc": 0.6477,
+              "n_pos": 500,
+              "n_neg": 500
+            },
+            "bridge": {
+              "auroc": 0.6011,
+              "n_pos": 250,
+              "n_neg": 250
+            },
+            "conjunction": {
+              "auroc": 0.6881,
+              "n_pos": 250,
+              "n_neg": 250
+            }
+          },
+          "negative_absent": {
+            "pooled": {
+              "auroc": 0.5558,
+              "n_pos": 500,
+              "n_neg": 500
+            },
+            "bridge": {
+              "auroc": 0.5683,
+              "n_pos": 250,
+              "n_neg": 250
+            },
+            "conjunction": {
+              "auroc": 0.5459,
+              "n_pos": 250,
+              "n_neg": 250
+            }
+          }
+        },
+        "n_pairs": 500,
+        "primary_leg": "negative_present (every surface element of the negative is in the bag; only the composition is wrong)",
+        "contamination": "TabFact held-out tables only (table_id-disjoint from every train split); HotpotQA train and HoVer never read"
+      },
+      "verdict": "PASS"
+    },
+    {
+      "gate": 6,
+      "name": "pubmedqa PM-1 deletion-contrast supply",
+      "artifact": "R20_gate_6.json",
+      "recipe_summary": "banked MiniCheck C2D/D2C + FAVA lanes, label-1 rows only, SciFact excluded; a triple counts when the evidence splits into >= 3 sentences (R8-H92 splitter) and one sentence is a LOCALIZABLE rationale - content-token containment of the claim >= 0.5 and >= 0.1 above the runner-up sentence",
+      "threshold": "PASS if >= 8000 triples without SciFact",
+      "numbers": {
+        "total_triples": 2041,
+        "per_corpus": {
+          "minicheck": {
+            "rows_label1": 6638,
+            "multi_sentence_evidence": 6615,
+            "localizable_triples": 1995,
+            "median_top_minus_second_containment": 0.125
+          },
+          "fava": {
+            "rows_label1": 637,
+            "multi_sentence_evidence": 637,
+            "localizable_triples": 46,
+            "median_top_minus_second_containment": 0.0408
+          }
+        },
+        "supply_ceiling_ignoring_localizability": 7252,
+        "sensitivity_grid_containment_over_margin": {
+          "0.4/0.05": 2917,
+          "0.4/0.1": 2731,
+          "0.4/0.15": 2327,
+          "0.5/0.05": 2118,
+          "0.5/0.1": 2041,
+          "0.5/0.15": 1869,
+          "0.6/0.05": 1120,
+          "0.6/0.1": 1102,
+          "0.6/0.15": 1057
+        }
+      },
+      "verdict": "FAIL"
+    },
+    {
+      "gate": 7,
+      "name": "pubmedqa PM-2 low-containment supported supply",
+      "artifact": "R20_gate_7.json",
+      "recipe_summary": "banked FActScore + AttributionBench (ExpertQA/HAGRID carved out) + the banked R10-H111 / DR judge-certified paraphrase label-1 bands; a row counts when its content-token containment of the claim in the FULL evidence chunk is <= 0.3",
+      "threshold": "PASS if >= 8000 supported rows at containment <= 0.3",
+      "numbers": {
+        "total_rows": 1511,
+        "per_corpus": {
+          "factscore": {
+            "rows_label1": 9332,
+            "low_containment_rows": 82,
+            "median_containment": 1.0
+          },
+          "attributionbench": {
+            "rows_label1": 10656,
+            "low_containment_rows": 864,
+            "median_containment": 0.7778,
+            "carve_out": "ExpertQA/HAGRID carved out per the dataset card: 10656 -> 10656 label-1 rows"
+          },
+          "r10_h111_paraphrase_band": {
+            "rows_label1": 2982,
+            "low_containment_rows": 374,
+            "median_containment": 0.7647
+          },
+          "dr_paraphrase_band": {
+            "rows_label1": 2573,
+            "low_containment_rows": 191,
+            "median_containment": 0.875
+          }
+        },
+        "sensitivity_by_containment_bar": {
+          "0.3": 1511,
+          "0.4": 2615,
+          "0.5": 4308,
+          "0.6": 5755
+        }
+      },
+      "verdict": "FAIL"
+    },
+    {
+      "gate": 8,
+      "name": "banking of the fanout design-pass replications",
+      "artifact": "R20_fanout_replications.json",
+      "recipe_summary": "join R19-H162_pubmedqa_sentlabel on (item_id, sent_idx) to R19-H161_pairs_{h150d1,h150d2,h159d1} restricted to pubmedqa; sentence score = max over windows of the logit, lexical baseline = max over windows of tok_containment; per-family AUROC uses all supported sentences as positives and that family's unsupported sentences as negatives",
+      "threshold": "banking only - no bar; every design-pass number is reproduced or recorded as non-reproducing",
+      "numbers": {
+        "inference_not_stated_deficit": {
+          "measured": [
+            -0.0784,
+            -0.0316,
+            -0.1014
+          ],
+          "expected": [
+            -0.0784,
+            -0.0316,
+            -0.1014
+          ],
+          "sign_stability": "3/3 negative",
+          "replicates": true
+        },
+        "aim_vs_finding_non_replication": {
+          "measured": [
+            0.0086,
+            0.0304,
+            0.024
+          ],
+          "expected": [
+            0.0086,
+            0.0304,
+            0.024
+          ],
+          "note": "the memo's 'below word counting' reading does NOT survive the max-window containment baseline - all three deltas are positive",
+          "replicates_as_deficit": false
+        },
+        "score_containment_coupling": {
+          "measured": [
+            0.4058,
+            0.467,
+            0.6247
+          ],
+          "expected": [
+            0.406,
+            0.467,
+            0.625
+          ],
+          "replicates": true
+        },
+        "h159_pubmedqa_vs_k4_flagship_subset_mean": {
+          "h159d1_pubmedqa": 0.6206,
+          "k4_flagship_draws": [
+            0.5893,
+            0.6298,
+            0.6164,
+            0.6636
+          ],
+          "k4_mean": 0.6248,
+          "delta": -0.0042,
+          "expected_delta": -0.004,
+          "verdict": "NULL - the PubHealth transfer signal is not positive"
+        }
+      },
+      "verdict": "BANKED"
+    }
+  ],
+  "summary": {
+    "1": "PASS",
+    "2": "PASS",
+    "3": "FAIL",
+    "4": "FAIL",
+    "5": "PASS",
+    "6": "FAIL",
+    "7": "FAIL",
+    "8": "BANKED"
+  },
+  "timestamp": "2026-08-16 20:19:02"
+}
