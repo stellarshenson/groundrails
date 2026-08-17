@@ -1,0 +1,129 @@
+{
+  "clause": "C2 + C3 (document-level identity read on the conformed member)",
+  "member_documents": 4716,
+  "member_namespaces": [
+    "tabfact"
+  ],
+  "surfaces": {
+    "R17-H143_evalset": {
+      "identifier": "source doc_id resolved through the R14-H133 v2 lane join",
+      "documents": 536,
+      "by_namespace": {
+        "feverous": 184,
+        "tabfact": 352
+      },
+      "shared_with_member": 0,
+      "note": "the FEVEROUS side of this surface is unstably keyed; the member no longer carries any FEVEROUS document, so the read has no uninterpretable side"
+    },
+    "R20-H177_eval_B": {
+      "identifier": "doc_id column",
+      "documents": 458,
+      "by_namespace": {
+        "tabfact": 325,
+        "edgar": 133
+      },
+      "shared_with_member": 0,
+      "surface_rows_affected": 0,
+      "surface_pairs_affected": 0,
+      "surface_pairs_total": 1000
+    },
+    "R20-H177_eval_C": {
+      "identifier": "doc_id column",
+      "documents": 213,
+      "by_namespace": {
+        "edgar": 213
+      },
+      "shared_with_member": 0,
+      "surface_rows_affected": 0,
+      "surface_pairs_affected": 0,
+      "surface_pairs_total": 968
+    },
+    "R20-H175b_qlane_eval": {
+      "identifier": "doc_id column",
+      "documents": 487,
+      "by_namespace": {
+        "(no namespace prefix)": 487
+      },
+      "shared_with_member": 0,
+      "surface_rows_affected": 0,
+      "surface_pairs_affected": 0,
+      "surface_pairs_total": 1001
+    },
+    "R20-H175b_qlane_eval_repaired": {
+      "identifier": "doc_id column",
+      "documents": 407,
+      "by_namespace": {
+        "(no namespace prefix)": 407
+      },
+      "shared_with_member": 0,
+      "surface_rows_affected": 0,
+      "surface_pairs_affected": 0,
+      "surface_pairs_total": 839
+    },
+    "R20-H175b_qlane_eval_clean": {
+      "identifier": "doc_id column",
+      "documents": 22,
+      "by_namespace": {
+        "(no namespace prefix)": 21,
+        "Hitman": 1
+      },
+      "shared_with_member": 0,
+      "surface_rows_affected": 0,
+      "surface_pairs_affected": 0,
+      "surface_pairs_total": 44
+    },
+    "R20-H175b_qlane_eval_clean_prefix": {
+      "identifier": "doc_id column",
+      "documents": 8,
+      "by_namespace": {
+        "(no namespace prefix)": 8
+      },
+      "shared_with_member": 0,
+      "surface_rows_affected": 0,
+      "surface_pairs_affected": 0,
+      "surface_pairs_total": 16
+    },
+    "R17-H146_antigaming_set": {
+      "identifier": "table_id column (bare TabFact table id)",
+      "documents": 1168,
+      "shared_with_member": 0,
+      "surface_items_affected": 0,
+      "surface_items_total": 1601,
+      "bind_row_items_total": 601
+    },
+    "R18-H150_antigaming_set": {
+      "identifier": "table_id column (bare TabFact table id)",
+      "documents": 1177,
+      "shared_with_member": 0,
+      "surface_items_affected": 0,
+      "surface_items_total": 1600,
+      "bind_row_items_total": 600
+    },
+    "R19-H159_antigaming_set": {
+      "identifier": "table_id column (bare TabFact table id)",
+      "documents": 1174,
+      "shared_with_member": 0,
+      "surface_items_affected": 0,
+      "surface_items_total": 1601,
+      "bind_row_items_total": 601
+    },
+    "arena_ragbench_10_subsets": {
+      "identifier": "RAGBench document ids - a different corpus entirely",
+      "shared_with_member": 0,
+      "note": "namespace-disjoint by construction; the string read is in C2"
+    },
+    "gold_full": {
+      "identifier": "gold teacher-pair chunks - a different corpus entirely",
+      "shared_with_member": 0,
+      "note": "namespace-disjoint by construction; the string read is in C2"
+    },
+    "vitaminc_holdout_superset": {
+      "identifier": "VitaminC unique_id / case_id - a different corpus entirely",
+      "shared_with_member": 0,
+      "note": "namespace-disjoint by construction; the string read is in C2"
+    }
+  },
+  "all_measurable_surfaces_zero": true,
+  "surfaces_without_a_document_identifier": [],
+  "seconds": 0.3
+}

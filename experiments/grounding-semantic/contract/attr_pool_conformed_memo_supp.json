@@ -1,0 +1,41 @@
+{
+  "C6_document_keyed_supplement": {
+    "why": "a document-keyed feature is a MEMORISATION channel only if the mix attaches a label signal to the document. This measures the signal rather than the sighting",
+    "distinct_pool_passages": 5026,
+    "pool_passages_found_in_the_mix": 1677,
+    "share_found": 0.3337,
+    "mix_mean_label_distribution_over_those_passages": {
+      "0.5": 1677
+    },
+    "mix_members_they_come_from": [
+      "frame_reject"
+    ],
+    "probes_on_the_mix_mean_label": {
+      "max_mix_mean_label_over_pool": {
+        "auroc_row_level": 0.5,
+        "within_pair": {
+          "truth_removed": {
+            "acc": 0.5,
+            "pairs": 2221
+          }
+        }
+      },
+      "mean_mix_mean_label_over_pool": {
+        "auroc_row_level": 0.5,
+        "within_pair": {
+          "truth_removed": {
+            "acc": 0.5,
+            "pairs": 2221
+          }
+        }
+      }
+    },
+    "documents_in_the_mix_by_role": {
+      "truth_documents": 2221,
+      "truth_documents_share_in_mix": 0.5142,
+      "swap_documents": 1699,
+      "swap_documents_share_in_mix": 0.3149
+    },
+    "chance": 0.5
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "clause": "C7 + C8",
+  "c7": {
+    "declared_unit": "BOTH - rows AND pairs, declared in the conformed build manifest and re-measured here from the parquet",
+    "declared_rows": 18652,
+    "declared_pairs": 9326,
+    "declared_families": {
+      "misbound_row": 12516,
+      "misbound_col": 6136
+    },
+    "measured_rows": 18652,
+    "measured_pairs": 9326,
+    "measured_families": {
+      "misbound_row": 12516,
+      "misbound_col": 6136
+    },
+    "rows_match": true,
+    "pairs_match": true,
+    "families_match": true,
+    "arm_wrapper_registration_state": {
+      "R18-H150_arm_run.LANES": "registers R17-H146_lane.parquet at 30,000 rows / 15,000 pairs - the ORIGINAL artifact",
+      "R20-H174_arm_run.LANES": "same registration",
+      "consequence_measured": "the conformed artifact is not registered in either wrapper; substituting it without updating the registered rows / pairs / family counts would trip the wrappers' LANE ABORT guard before a card is touched"
+    }
+  },
+  "c8": {
+    "artifact": "experiments/grounding-semantic/R17-H146_lane_conformed.parquet",
+    "blake2b_64": "0db47576654ed059",
+    "derivation": "removal-only from R17-H146_lane.parquet (quant_misbind_conformed_build.py); no row rewritten",
+    "sources": {
+      "tabfact": {
+        "source_url": "https://github.com/wenhuchen/Table-Fact-Checking/archive/refs/heads/master.zip (the spec's `github` field in scripts/fetch_grounding_datasets.py)",
+        "archive": "data/external/datasets/dataset-tabfact.zip (gitignored; rebuildable by the tracked fetcher from the tracked URL)",
+        "sidecar": "data/external/datasets/dataset-tabfact.md (tracked)",
+        "licence": "CC-BY-4.0",
+        "licence_evidence": "recorded in the tracked sidecar and in the tracked fetcher's spec table",
+        "retrieval_date_measured": {
+          "archive_member_timestamps": [
+            [
+              2026,
+              7,
+              31,
+              18,
+              9,
+              40
+            ],
+            [
+              2026,
+              7,
+              31,
+              18,
+              10,
+              2
+            ]
+          ],
+          "archive_mtime": "2026-07-31T18:10:02",
+          "method": "read from the archive itself - the sidecar does not record it, so it is MEASURED here rather than asserted"
+        },
+        "selection_predicate": "the *__train.parquet member of the archive ONLY, deduplicated on table_text; tables with >= 4 body rows of uniform width and >= 2 columns; a label column and at least one numeric column must exist (R17-H144_pairs.tabfact_tables)",
+        "tracked_provenance_files": [
+          "data/external/datasets/dataset-tabfact.md",
+          "scripts/fetch_grounding_datasets.py"
+        ]
+      }
+    },
+    "sources_removed_by_the_conforming_pipeline": {
+      "feverous": "10,110 rows / 2,539 documents removed - no licence, no retrieval date, no sidecar, source file untracked and gitignored, feverous_available() admitted=False"
+    },
+    "sidecar_licence_text_head": [
+      "The only permissively-licensed corpus whose claims require reading numbers out of structured tables - registered for R8-H87 after the blind-arena residual concentrated in the tabular subsets (finqa -0.1373, tatqa -0.0169) and the R8-H85 probe ruled out context truncation as the cause.",
+      "",
+      "- **HuggingFace** - `wenhu/tab_fact (script-only; fetched from GitHub instead)`",
+      "- **Licence** - CC-BY-4.0"
+    ],
+    "internal_structure": {
+      "rows": 18652,
+      "pairs": 9326,
+      "rows_per_pair": 2.0,
+      "pairs_with_exactly_two_rows": 9326,
+      "distinct_claims": 18435,
+      "distinct_evidence_chunks": 8123,
+      "distinct_documents": 4716,
+      "distinct_columns": 1419,
+      "distinct_row_keys": 6964,
+      "distinct_claim_chunk_pairs": 18652,
+      "max_rows_per_chunk": 6,
+      "mean_rows_per_chunk": 2.296196,
+      "max_pairs_per_document": 2,
+      "mean_pairs_per_document": 1.977523,
+      "templates": {
+        "5": 3212,
+        "3": 3072,
+        "2": 3102,
+        "4": 3150,
+        "0": 2980,
+        "1": 3136
+      },
+      "serial_forms": {
+        "markdown": 1764,
+        "row_prose": 5570,
+        "narrative": 5684,
+        "keyvalue": 1826,
+        "json_records": 872,
+        "pipe": 2936
+      },
+      "rows_by_source": {
+        "tabfact": 18652
+      },
+      "duplicate_claim_strings": 217,
+      "label_balance": {
+        "1": 9326,
+        "0": 9326
+      }
+    },
+    "public_repository_check": {
+      "sources_present": [
+        "tabfact"
+      ],
+      "all_sources_public": true,
+      "client_or_company_name_in_member_text": null
+    }
+  },
+  "seconds": 0.2
+}

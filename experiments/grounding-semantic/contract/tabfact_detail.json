@@ -1,0 +1,870 @@
+{
+  "member": "tabfact",
+  "D1_stem_collision_content_vs_member": {
+    "question": "train/validation/test share 0 table_id STRINGS. Are the stem-colliding tables the same document?",
+    "validation": {
+      "stem_colliding_tables": 91,
+      "byte_identical": 2,
+      "normalised_identical": 2,
+      "token_jaccard": {
+        "mean": 0.9115,
+        "median": 0.937,
+        "max": 1.0,
+        "share_ge_0.9": 0.8022,
+        "share_ge_0.5": 0.989
+      },
+      "examples": [
+        {
+          "id": "2-1473672-2.html.csv",
+          "exact": true,
+          "normalised_equal": true,
+          "token_jaccard": 1.0
+        },
+        {
+          "id": "1-1213511-4.html.csv",
+          "exact": true,
+          "normalised_equal": true,
+          "token_jaccard": 1.0
+        },
+        {
+          "id": "1-11622496-1.html.csv",
+          "exact": false,
+          "normalised_equal": false,
+          "token_jaccard": 0.9879
+        },
+        {
+          "id": "2-17058226-5.html.csv",
+          "exact": false,
+          "normalised_equal": false,
+          "token_jaccard": 0.9841
+        },
+        {
+          "id": "1-14831932-12.html.csv",
+          "exact": false,
+          "normalised_equal": false,
+          "token_jaccard": 0.9838
+        }
+      ]
+    },
+    "test": {
+      "stem_colliding_tables": 73,
+      "byte_identical": 1,
+      "normalised_identical": 1,
+      "token_jaccard": {
+        "mean": 0.9131,
+        "median": 0.9425,
+        "max": 1.0,
+        "share_ge_0.9": 0.7534,
+        "share_ge_0.5": 1.0
+      },
+      "examples": [
+        {
+          "id": "2-1213511-7.html.csv",
+          "exact": true,
+          "normalised_equal": true,
+          "token_jaccard": 1.0
+        },
+        {
+          "id": "1-17869717-1.html.csv",
+          "exact": false,
+          "normalised_equal": false,
+          "token_jaccard": 0.9902
+        },
+        {
+          "id": "2-18847736-2.html.csv",
+          "exact": false,
+          "normalised_equal": false,
+          "token_jaccard": 0.9891
+        },
+        {
+          "id": "2-14603057-2.html.csv",
+          "exact": false,
+          "normalised_equal": false,
+          "token_jaccard": 0.9835
+        },
+        {
+          "id": "1-10953197-7.html.csv",
+          "exact": false,
+          "normalised_equal": false,
+          "token_jaccard": 0.9825
+        }
+      ]
+    }
+  },
+  "D2_antigaming_probe_sets": {
+    "construction": "R14-H133_antigaming - TabFact test+validation with every table_id present in TabFact train removed (an EXACT id rule)",
+    "per_file": {
+      "R14-H133_antigaming_set.parquet": {
+        "distinct_table_id": 1171,
+        "resolved_in_tabfact_heldout_splits": 1171,
+        "exact_table_id_in_member": 0,
+        "stem_colliding_tables": 55,
+        "byte_identical": 0,
+        "normalised_identical": 0,
+        "token_jaccard": {
+          "mean": 0.9151,
+          "median": 0.9412,
+          "max": 0.9817,
+          "share_ge_0.9": 0.7273,
+          "share_ge_0.5": 1.0
+        },
+        "examples": [
+          {
+            "id": "2-13259019-2.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9817
+          },
+          {
+            "id": "2-16788123-5.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9783
+          },
+          {
+            "id": "2-17288845-7.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9779
+          },
+          {
+            "id": "1-18373863-2.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9778
+          },
+          {
+            "id": "2-15467476-3.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.977
+          }
+        ]
+      },
+      "R16-H142-T-d2_antigaming_set.parquet": {
+        "distinct_table_id": 1186,
+        "resolved_in_tabfact_heldout_splits": 1186,
+        "exact_table_id_in_member": 0,
+        "stem_colliding_tables": 50,
+        "byte_identical": 0,
+        "normalised_identical": 0,
+        "token_jaccard": {
+          "mean": 0.9146,
+          "median": 0.9373,
+          "max": 0.9838,
+          "share_ge_0.9": 0.72,
+          "share_ge_0.5": 1.0
+        },
+        "examples": [
+          {
+            "id": "1-14831932-12.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9838
+          },
+          {
+            "id": "2-13259019-2.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9817
+          },
+          {
+            "id": "2-16788123-5.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9783
+          },
+          {
+            "id": "2-17288845-7.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9779
+          },
+          {
+            "id": "1-18946749-2.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9758
+          }
+        ]
+      },
+      "R16-H142-T_antigaming_set.parquet": {
+        "distinct_table_id": 1177,
+        "resolved_in_tabfact_heldout_splits": 1177,
+        "exact_table_id_in_member": 0,
+        "stem_colliding_tables": 51,
+        "byte_identical": 0,
+        "normalised_identical": 0,
+        "token_jaccard": {
+          "mean": 0.9124,
+          "median": 0.9375,
+          "max": 0.9817,
+          "share_ge_0.9": 0.7255,
+          "share_ge_0.5": 1.0
+        },
+        "examples": [
+          {
+            "id": "2-13259019-2.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9817
+          },
+          {
+            "id": "2-16788123-5.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9783
+          },
+          {
+            "id": "2-17288845-7.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9779
+          },
+          {
+            "id": "1-18946749-2.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9758
+          },
+          {
+            "id": "2-16278349-1.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9755
+          }
+        ]
+      },
+      "R17-H145_antigaming_set.parquet": {
+        "distinct_table_id": 1184,
+        "resolved_in_tabfact_heldout_splits": 1184,
+        "exact_table_id_in_member": 0,
+        "stem_colliding_tables": 62,
+        "byte_identical": 0,
+        "normalised_identical": 0,
+        "token_jaccard": {
+          "mean": 0.9074,
+          "median": 0.9373,
+          "max": 0.9838,
+          "share_ge_0.9": 0.7097,
+          "share_ge_0.5": 1.0
+        },
+        "examples": [
+          {
+            "id": "1-14831932-12.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9838
+          },
+          {
+            "id": "2-13259019-2.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9817
+          },
+          {
+            "id": "2-16788123-5.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9783
+          },
+          {
+            "id": "2-17288845-7.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9779
+          },
+          {
+            "id": "2-15467476-3.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.977
+          }
+        ]
+      },
+      "R17-H146_antigaming_set.parquet": {
+        "distinct_table_id": 1168,
+        "resolved_in_tabfact_heldout_splits": 1168,
+        "exact_table_id_in_member": 0,
+        "stem_colliding_tables": 57,
+        "byte_identical": 0,
+        "normalised_identical": 0,
+        "token_jaccard": {
+          "mean": 0.9101,
+          "median": 0.9375,
+          "max": 0.9838,
+          "share_ge_0.9": 0.7018,
+          "share_ge_0.5": 1.0
+        },
+        "examples": [
+          {
+            "id": "1-14831932-12.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9838
+          },
+          {
+            "id": "2-13259019-2.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9817
+          },
+          {
+            "id": "2-16788123-5.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9783
+          },
+          {
+            "id": "2-17288845-7.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9779
+          },
+          {
+            "id": "1-18373863-2.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9778
+          }
+        ]
+      },
+      "R18-H150-d2_antigaming_set.parquet": {
+        "distinct_table_id": 1170,
+        "resolved_in_tabfact_heldout_splits": 1170,
+        "exact_table_id_in_member": 0,
+        "stem_colliding_tables": 52,
+        "byte_identical": 0,
+        "normalised_identical": 0,
+        "token_jaccard": {
+          "mean": 0.9175,
+          "median": 0.9387,
+          "max": 0.9838,
+          "share_ge_0.9": 0.75,
+          "share_ge_0.5": 1.0
+        },
+        "examples": [
+          {
+            "id": "1-14831932-12.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9838
+          },
+          {
+            "id": "2-13259019-2.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9817
+          },
+          {
+            "id": "2-16788123-5.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9783
+          },
+          {
+            "id": "2-17288845-7.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9779
+          },
+          {
+            "id": "2-15467476-3.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.977
+          }
+        ]
+      },
+      "R18-H150_antigaming_set.parquet": {
+        "distinct_table_id": 1177,
+        "resolved_in_tabfact_heldout_splits": 1177,
+        "exact_table_id_in_member": 0,
+        "stem_colliding_tables": 59,
+        "byte_identical": 0,
+        "normalised_identical": 0,
+        "token_jaccard": {
+          "mean": 0.9136,
+          "median": 0.9375,
+          "max": 0.9817,
+          "share_ge_0.9": 0.6949,
+          "share_ge_0.5": 1.0
+        },
+        "examples": [
+          {
+            "id": "2-13259019-2.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9817
+          },
+          {
+            "id": "2-16788123-5.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9783
+          },
+          {
+            "id": "2-17288845-7.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9779
+          },
+          {
+            "id": "1-18373863-2.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9778
+          },
+          {
+            "id": "1-18946749-2.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9758
+          }
+        ]
+      },
+      "R18-H152-d1_antigaming_set.parquet": {
+        "distinct_table_id": 1174,
+        "resolved_in_tabfact_heldout_splits": 1174,
+        "exact_table_id_in_member": 0,
+        "stem_colliding_tables": 55,
+        "byte_identical": 0,
+        "normalised_identical": 0,
+        "token_jaccard": {
+          "mean": 0.9108,
+          "median": 0.94,
+          "max": 0.9817,
+          "share_ge_0.9": 0.7273,
+          "share_ge_0.5": 1.0
+        },
+        "examples": [
+          {
+            "id": "2-13259019-2.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9817
+          },
+          {
+            "id": "2-16788123-5.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9783
+          },
+          {
+            "id": "2-17288845-7.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9779
+          },
+          {
+            "id": "2-15467476-3.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.977
+          },
+          {
+            "id": "1-18946749-2.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9758
+          }
+        ]
+      },
+      "R18-H152-d2_antigaming_set.parquet": {
+        "distinct_table_id": 1178,
+        "resolved_in_tabfact_heldout_splits": 1178,
+        "exact_table_id_in_member": 0,
+        "stem_colliding_tables": 60,
+        "byte_identical": 0,
+        "normalised_identical": 0,
+        "token_jaccard": {
+          "mean": 0.9084,
+          "median": 0.9375,
+          "max": 0.9838,
+          "share_ge_0.9": 0.7167,
+          "share_ge_0.5": 1.0
+        },
+        "examples": [
+          {
+            "id": "1-14831932-12.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9838
+          },
+          {
+            "id": "2-13259019-2.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9817
+          },
+          {
+            "id": "2-16788123-5.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9783
+          },
+          {
+            "id": "2-17288845-7.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9779
+          },
+          {
+            "id": "1-18946749-2.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9758
+          }
+        ]
+      },
+      "R18-H155-d1_antigaming_set.parquet": {
+        "distinct_table_id": 1185,
+        "resolved_in_tabfact_heldout_splits": 1185,
+        "exact_table_id_in_member": 0,
+        "stem_colliding_tables": 56,
+        "byte_identical": 0,
+        "normalised_identical": 0,
+        "token_jaccard": {
+          "mean": 0.9113,
+          "median": 0.9373,
+          "max": 0.9838,
+          "share_ge_0.9": 0.7143,
+          "share_ge_0.5": 1.0
+        },
+        "examples": [
+          {
+            "id": "1-14831932-12.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9838
+          },
+          {
+            "id": "2-13259019-2.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9817
+          },
+          {
+            "id": "2-16788123-5.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9783
+          },
+          {
+            "id": "2-17288845-7.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9779
+          },
+          {
+            "id": "2-15467476-3.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.977
+          }
+        ]
+      },
+      "R18-H155-d2_antigaming_set.parquet": {
+        "distinct_table_id": 1191,
+        "resolved_in_tabfact_heldout_splits": 1191,
+        "exact_table_id_in_member": 0,
+        "stem_colliding_tables": 52,
+        "byte_identical": 0,
+        "normalised_identical": 0,
+        "token_jaccard": {
+          "mean": 0.9145,
+          "median": 0.9375,
+          "max": 0.9817,
+          "share_ge_0.9": 0.7308,
+          "share_ge_0.5": 1.0
+        },
+        "examples": [
+          {
+            "id": "2-13259019-2.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9817
+          },
+          {
+            "id": "2-16788123-5.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9783
+          },
+          {
+            "id": "2-17288845-7.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9779
+          },
+          {
+            "id": "1-18946749-2.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9758
+          },
+          {
+            "id": "2-10647639-1.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9717
+          }
+        ]
+      },
+      "R18-H156_antigaming_set.parquet": {
+        "distinct_table_id": 1173,
+        "resolved_in_tabfact_heldout_splits": 1173,
+        "exact_table_id_in_member": 0,
+        "stem_colliding_tables": 52,
+        "byte_identical": 0,
+        "normalised_identical": 0,
+        "token_jaccard": {
+          "mean": 0.909,
+          "median": 0.9375,
+          "max": 0.9817,
+          "share_ge_0.9": 0.7115,
+          "share_ge_0.5": 1.0
+        },
+        "examples": [
+          {
+            "id": "2-13259019-2.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9817
+          },
+          {
+            "id": "2-16788123-5.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9783
+          },
+          {
+            "id": "2-17288845-7.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9779
+          },
+          {
+            "id": "1-18946749-2.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9758
+          },
+          {
+            "id": "2-11621873-1.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9724
+          }
+        ]
+      },
+      "R19-H159_antigaming_set.parquet": {
+        "distinct_table_id": 1174,
+        "resolved_in_tabfact_heldout_splits": 1174,
+        "exact_table_id_in_member": 0,
+        "stem_colliding_tables": 61,
+        "byte_identical": 0,
+        "normalised_identical": 0,
+        "token_jaccard": {
+          "mean": 0.9079,
+          "median": 0.9277,
+          "max": 0.9879,
+          "share_ge_0.9": 0.6885,
+          "share_ge_0.5": 1.0
+        },
+        "examples": [
+          {
+            "id": "1-11622496-1.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9879
+          },
+          {
+            "id": "2-13259019-2.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9817
+          },
+          {
+            "id": "2-16788123-5.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9783
+          },
+          {
+            "id": "2-17288845-7.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9779
+          },
+          {
+            "id": "1-18946749-2.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9758
+          }
+        ]
+      },
+      "R19-H160-soupB_antigaming_set.parquet": {
+        "distinct_table_id": 1185,
+        "resolved_in_tabfact_heldout_splits": 1185,
+        "exact_table_id_in_member": 0,
+        "stem_colliding_tables": 54,
+        "byte_identical": 0,
+        "normalised_identical": 0,
+        "token_jaccard": {
+          "mean": 0.9101,
+          "median": 0.9358,
+          "max": 0.9817,
+          "share_ge_0.9": 0.7037,
+          "share_ge_0.5": 1.0
+        },
+        "examples": [
+          {
+            "id": "2-13259019-2.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9817
+          },
+          {
+            "id": "2-16788123-5.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9783
+          },
+          {
+            "id": "2-17288845-7.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9779
+          },
+          {
+            "id": "1-18373863-2.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9778
+          },
+          {
+            "id": "1-18946749-2.html.csv",
+            "exact": false,
+            "normalised_equal": false,
+            "token_jaccard": 0.9758
+          }
+        ]
+      }
+    }
+  },
+  "D3_C6_quota_control": {
+    "observed_loo_auroc": 0.2416,
+    "within_table_label_permutation_auroc": [
+      0.2416,
+      0.2416,
+      0.2416,
+      0.2416,
+      0.2416
+    ],
+    "permutation_mean": 0.2416,
+    "reading": "a within-table permutation preserves each table's label QUOTA and destroys every association between a statement and its label. If the permuted AUROC reproduces the observed one, the leave-one-out feature carries the quota alone - the hypergeometric anti-correlation of sampling without replacement - and no statement-level association"
+  },
+  "D4_claims_carrying_both_labels": {
+    "claims": 51,
+    "on_the_SAME_table": 45,
+    "on_different_tables": 6,
+    "rows_involved": 102,
+    "reading": "a claim on different tables carrying different labels is correct behaviour; on the SAME table it is an annotation contradiction the head cannot satisfy",
+    "examples": [
+      {
+        "claim": "the is no 2nd leg score of 0 - 0 unlike on the 1st leg",
+        "tables": [
+          "2-12443357-2.html.csv"
+        ]
+      },
+      {
+        "claim": "both jerry barber and fred hawkins were - 1 point to pay in the 1956 masters tournament",
+        "tables": [
+          "2-13081672-1.html.csv"
+        ]
+      },
+      {
+        "claim": "the last three games , on december 19 and 26 and january 2 , were all victories",
+        "tables": [
+          "2-16025466-2.html.csv"
+        ]
+      },
+      {
+        "claim": "there were three games held at the yankee stadium",
+        "tables": [
+          "2-1332371-1.html.csv"
+        ]
+      },
+      {
+        "claim": "games featuring the cfl all - stars versus individual teams resulted in the cfl team winning four times and losing two times",
+        "tables": [
+          "2-16090565-1.html.csv"
+        ]
+      }
+    ]
+  },
+  "D5_eval_B_leak_attributed": {
+    "eval_rows": 2000,
+    "eval_pairs": 1000,
+    "distinct_passages": 736,
+    "passage_channel": {
+      "passages_normalised_identical_to_member_evidence": 15,
+      "share_of_distinct_passages": 0.0204,
+      "rows": 60,
+      "pairs": 30,
+      "by_source_and_serial_form": [
+        {
+          "source": "tabfact",
+          "serial_form": "pipe",
+          "rows": 60
+        }
+      ],
+      "by_neg_family": {
+        "cmp_extreme": 16,
+        "cmp_order": 44
+      }
+    },
+    "document_channel": {
+      "rows": 1300,
+      "pairs": 650,
+      "documents": 325,
+      "share_of_eval_rows": 0.65,
+      "by_source_and_serial_form": [
+        {
+          "source": "tabfact",
+          "serial_form": "pipe",
+          "rows": 240
+        },
+        {
+          "source": "tabfact",
+          "serial_form": "row_prose",
+          "rows": 388
+        },
+        {
+          "source": "tabfact",
+          "serial_form": "markdown",
+          "rows": 136
+        },
+        {
+          "source": "tabfact",
+          "serial_form": "narrative",
+          "rows": 352
+        },
+        {
+          "source": "tabfact",
+          "serial_form": "json_records",
+          "rows": 76
+        },
+        {
+          "source": "tabfact",
+          "serial_form": "keyvalue",
+          "rows": 108
+        }
+      ],
+      "note": "every TabFact document eval_B draws is a document the member carries; the passage channel only catches the ONE serialisation form the member also uses"
+    }
+  },
+  "elapsed_s": 2.4
+}

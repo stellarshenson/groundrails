@@ -1,0 +1,2671 @@
+{
+  "member": "path_bind",
+  "artifact": "experiments/grounding-semantic/R20-H174_lane_L4.parquet",
+  "role": "training member (constructed lane L4), DANN group `path_bind`, 10,000 rows in the R20-H174 portfolio mix; LIVE - R20-H174 draws 2/3/4 train on it",
+  "contract": "docs/experiments/dataset-contract.md (C1-C8)",
+  "verified_utc": "2026-08-17T06:53:02Z",
+  "cpu_only": true,
+  "conforming": true,
+  "failed_clauses": [],
+  "headline": "path_bind clears every clause, but it clears C1 on the low half of the bar, not on leg separation: its two legs' claim-to-evidence containment distributions are indistinguishable (negatives 0.391 vs positives 0.389 at >= 0.90 containment, gap 0.002, containment AUROC 0.497535, 0.816 of pairs byte-equal on the measure). The bar does not reject because the negative attestation rate is 0.391, far under its 0.90 trigger - not because negatives are less attested than positives. All label separation lives in token ORDER, which the unordered containment instrument C1 mandates cannot see: the asserted path is attested as a contiguous bare run on 100% of positives and 0% of negatives.",
+  "caveats": [
+    "C1's mandated instrument is a set-of-content-tokens containment. For this member it is blind by construction - path_transpose preserves the token multiset exactly and path_wrong_segment draws its substitute from the same page. The order-sensitive readings that do separate the legs are reported separately and join no bar.",
+    "C4's live positive control fires 300/300 on genuine near-duplicates of the member's own pages down to a 50% fragment, but does NOT fire on sibling pages from a second generator seed (max Jaccard 0.2488 against a 0.30 threshold). Same-generator sibling text is below the instrument's sensitivity; that is a measured limit of the gate on this text distribution, reported, not a clause result.",
+    "C3 is NOT-APPLICABLE: the member has no split of any kind, so no split semantics exist to verify. The axis it would cut on is measured rather than asserted."
+  ],
+  "clauses": {
+    "C1": {
+      "verdict": "PASS",
+      "head_declared": "grounding scalar (the shipped ground() support head) - the lane is loaded by R18-H150_arm_run.make_build_mix into the single BCE task head, DANN group `path_bind`",
+      "label_predicate": "label 1 = the ORDERED navigation path the claim renders arrowed (A -> B -> C) is the path the page states as a bare token run for that setting and value; label 0 = that ordered path is corrupted (two adjacent segments transposed, or one segment replaced by a sibling the same page attests on a different path) and does not occur on the page. The predicate is support, but support carried ENTIRELY by token ORDER: the negative's token multiset is by construction identical (path_transpose) or drawn wholly from the page (path_wrong_segment).",
+      "instrument": "R20-H174_lane_common.containment - fraction of the claim's distinct content tokens present in the chunk (the campaign lexical-baseline feature, same instrument that produced the H175b 0.9129 / 66.4% figures)",
+      "positive_leg": {
+        "n": 5000,
+        "mean": 0.856757,
+        "median": 0.857143,
+        "p10": 0.727273,
+        "p25": 0.785714,
+        "p75": 0.923077,
+        "p90": 1.0,
+        "min": 0.6,
+        "max": 1.0,
+        "share_eq_1.0": 0.1742,
+        "share_ge_0.90": 0.389,
+        "share_ge_0.75": 0.8492
+      },
+      "negative_leg": {
+        "n": 5000,
+        "mean": 0.857556,
+        "median": 0.857143,
+        "p10": 0.727273,
+        "p25": 0.785714,
+        "p75": 0.923077,
+        "p90": 1.0,
+        "min": 0.6,
+        "max": 1.0,
+        "share_eq_1.0": 0.1742,
+        "share_ge_0.90": 0.391,
+        "share_ge_0.75": 0.8528
+      },
+      "n_positive": 5000,
+      "n_negative": 5000,
+      "delta_share_ge_0.90_neg_minus_pos": 0.002,
+      "delta_share_eq_1.0_neg_minus_pos": 0.0,
+      "delta_mean_neg_minus_pos": 0.000799,
+      "bar": "REJECTED for the grounding head if negatives are >= 90% attested at a rate within 0.10 of positives",
+      "bar_evaluation": {
+        "reading_A_containment_ge_0.90": {
+          "negative_rate": 0.391,
+          "positive_rate": 0.389,
+          "abs_gap": 0.002,
+          "negative_rate_ge_0.90": false,
+          "gap_within_0.10": true,
+          "rejects": false
+        },
+        "reading_B_containment_eq_1.0": {
+          "negative_rate": 0.1742,
+          "positive_rate": 0.1742,
+          "abs_gap": 0.0,
+          "negative_rate_ge_0.90": false,
+          "gap_within_0.10": true,
+          "rejects": false
+        }
+      },
+      "paired_within_pair_reading": {
+        "pairs": 5000,
+        "share_identical_containment_within_pair": 0.816,
+        "mean_abs_within_pair_difference": 0.003151,
+        "share_pairs_positive_strictly_higher": 0.072,
+        "share_pairs_negative_strictly_higher": 0.112,
+        "containment_auroc_label_vs_containment": 0.497535
+      },
+      "clause_body_diagnostic": {
+        "text": "C1 body - 'Negatives attested at rates comparable to positives means the member is not teaching grounding'",
+        "measured_gap_share_ge_0.90": 0.002,
+        "measured_gap_mean_containment": 0.000799,
+        "comparable": true,
+        "note": "the body's diagnostic and the numbered bar are separate readings; both are reported. The bar additionally requires the negative rate itself to reach 0.90 before it rejects."
+      },
+      "per_family": {
+        "path_transpose": {
+          "positive": {
+            "n": 3000,
+            "mean": 0.855834,
+            "median": 0.857143,
+            "p10": 0.727273,
+            "p25": 0.785714,
+            "p75": 0.916667,
+            "p90": 1.0,
+            "min": 0.6,
+            "max": 1.0,
+            "share_eq_1.0": 0.174333,
+            "share_ge_0.90": 0.384667,
+            "share_ge_0.75": 0.847667
+          },
+          "negative": {
+            "n": 3000,
+            "mean": 0.855834,
+            "median": 0.857143,
+            "p10": 0.727273,
+            "p25": 0.785714,
+            "p75": 0.916667,
+            "p90": 1.0,
+            "min": 0.6,
+            "max": 1.0,
+            "share_eq_1.0": 0.174333,
+            "share_ge_0.90": 0.384667,
+            "share_ge_0.75": 0.847667
+          },
+          "delta_share_ge_0.90": 0.0,
+          "delta_share_eq_1.0": 0.0
+        },
+        "path_wrong_segment": {
+          "positive": {
+            "n": 2000,
+            "mean": 0.858141,
+            "median": 0.866667,
+            "p10": 0.727273,
+            "p25": 0.785714,
+            "p75": 0.923077,
+            "p90": 1.0,
+            "min": 0.6,
+            "max": 1.0,
+            "share_eq_1.0": 0.174,
+            "share_ge_0.90": 0.3955,
+            "share_ge_0.75": 0.8515
+          },
+          "negative": {
+            "n": 2000,
+            "mean": 0.860139,
+            "median": 0.866667,
+            "p10": 0.727273,
+            "p25": 0.785714,
+            "p75": 0.923077,
+            "p90": 1.0,
+            "min": 0.6,
+            "max": 1.0,
+            "share_eq_1.0": 0.174,
+            "share_ge_0.90": 0.4005,
+            "share_ge_0.75": 0.8605
+          },
+          "delta_share_ge_0.90": -0.005,
+          "delta_share_eq_1.0": 0.0
+        }
+      },
+      "reference_point_R20_H175b": {
+        "negatives_fully_attested": 0.664,
+        "negatives_ge_0.90": 0.723,
+        "both_legs_containment": 0.9129,
+        "note": "the lane the clause was written against, canonical log lines 4634-4651"
+      },
+      "executor_added_reported_separately": {
+        "note": "ORDER-SENSITIVE readings of the same two legs. Reported separately per C5's separation rule; these join NO registered bar and do not modify the C1 verdict above.",
+        "asserted_path_attested_as_contiguous_bare_run": {
+          "positive_rate": 1.0,
+          "negative_rate": 0.0,
+          "gap": 1.0
+        },
+        "claim_token_bigram_containment": {
+          "positive": {
+            "n": 5000,
+            "mean": 0.576596,
+            "median": 0.5625,
+            "p10": 0.4,
+            "p25": 0.461538,
+            "p75": 0.6875,
+            "p90": 0.777778,
+            "min": 0.25,
+            "max": 0.846154,
+            "share_eq_1.0": 0.0,
+            "share_ge_0.90": 0.0,
+            "share_ge_0.75": 0.1914
+          },
+          "negative": {
+            "n": 5000,
+            "mean": 0.392483,
+            "median": 0.384615,
+            "p10": 0.2,
+            "p25": 0.285714,
+            "p75": 0.5,
+            "p90": 0.6,
+            "min": 0.0,
+            "max": 0.8125,
+            "share_eq_1.0": 0.0,
+            "share_ge_0.90": 0.0,
+            "share_ge_0.75": 0.0046
+          },
+          "delta_mean_pos_minus_neg": 0.184113
+        }
+      }
+    },
+    "C2": {
+      "verdict": "PASS",
+      "bar": "all three string forms read zero, both directions, against every evaluation surface",
+      "string_forms": [
+        "raw",
+        "truncated_1500",
+        "ws_collapsed_casefold"
+      ],
+      "truncation_cap_chars": 1500,
+      "member_units": {
+        "claims": 10000,
+        "distinct_evidence_chunks": 5000
+      },
+      "surfaces_tested": [
+        "arena_documents",
+        "arena_documents:covidqa",
+        "arena_documents:delucionqa",
+        "arena_documents:emanual",
+        "arena_documents:expertqa",
+        "arena_documents:finqa",
+        "arena_documents:hagrid",
+        "arena_documents:hotpotqa",
+        "arena_documents:pubmedqa",
+        "arena_documents:tatqa",
+        "arena_documents:techqa",
+        "arena_responses",
+        "eval:R11-H117_heldout_pairs",
+        "eval:R14-H133_antigaming_set",
+        "eval:R15_L1_bindprobe_pairs",
+        "eval:R16-H142-T-d2_antigaming_set",
+        "eval:R16-H142-T_antigaming_set",
+        "eval:R17-H143_evalset",
+        "eval:R17-H145_antigaming_set",
+        "eval:R17-H146_antigaming_set",
+        "eval:R18-H150-d2_antigaming_set",
+        "eval:R18-H150_antigaming_set",
+        "eval:R18-H150_unitswap_probe",
+        "eval:R18-H152-d1_antigaming_set",
+        "eval:R18-H152-d2_antigaming_set",
+        "eval:R18-H155-d1_antigaming_set",
+        "eval:R18-H155-d2_antigaming_set",
+        "eval:R18-H156_antigaming_set",
+        "eval:R19-H159_antigaming_set",
+        "eval:R19-H160-soupB_antigaming_set",
+        "eval:R20-G0b_composed_probes",
+        "eval:R20-H175b_qlane_eval",
+        "eval:R20-H175b_qlane_eval_clean",
+        "eval:R20-H177_eval_B",
+        "eval:R20-H177_eval_C",
+        "eval:vitaminc_test",
+        "eval:vitaminc_validation",
+        "gold_full"
+      ],
+      "n_surfaces": 38,
+      "total_shared_strings_all_forms_all_surfaces": 0,
+      "per_surface": {
+        "arena_documents": {
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "evidence": 8645,
+            "claims": 0
+          }
+        },
+        "arena_responses": {
+          "member_claims_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "evidence": 0,
+            "claims": 2264
+          }
+        },
+        "arena_documents:covidqa": {
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "evidence": 980,
+            "claims": 0
+          }
+        },
+        "arena_documents:delucionqa": {
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "evidence": 552,
+            "claims": 0
+          }
+        },
+        "arena_documents:emanual": {
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "evidence": 396,
+            "claims": 0
+          }
+        },
+        "arena_documents:expertqa": {
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "evidence": 759,
+            "claims": 0
+          }
+        },
+        "arena_documents:finqa": {
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "evidence": 725,
+            "claims": 0
+          }
+        },
+        "arena_documents:hagrid": {
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "evidence": 703,
+            "claims": 0
+          }
+        },
+        "arena_documents:hotpotqa": {
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "evidence": 998,
+            "claims": 0
+          }
+        },
+        "arena_documents:pubmedqa": {
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "evidence": 1250,
+            "claims": 0
+          }
+        },
+        "arena_documents:tatqa": {
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "evidence": 1032,
+            "claims": 0
+          }
+        },
+        "arena_documents:techqa": {
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "evidence": 1250,
+            "claims": 0
+          }
+        },
+        "gold_full": {
+          "member_claims_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "claims": 123579,
+            "evidence": 123579
+          }
+        },
+        "eval:R17-H143_evalset": {
+          "member_claims_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "claims": 1050,
+            "evidence": 1050
+          }
+        },
+        "eval:R11-H117_heldout_pairs": {
+          "member_claims_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "claims": 2000,
+            "evidence": 2000
+          }
+        },
+        "eval:R20-H177_eval_B": {
+          "member_claims_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "claims": 2000,
+            "evidence": 2000
+          }
+        },
+        "eval:R20-H177_eval_C": {
+          "member_claims_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "claims": 1936,
+            "evidence": 1936
+          }
+        },
+        "eval:R20-H175b_qlane_eval_clean": {
+          "member_claims_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "claims": 88,
+            "evidence": 88
+          }
+        },
+        "eval:R20-H175b_qlane_eval": {
+          "member_claims_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "claims": 2002,
+            "evidence": 2002
+          }
+        },
+        "eval:R18-H150_unitswap_probe": {
+          "member_claims_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "claims": 280,
+            "evidence": 560
+          }
+        },
+        "eval:R20-G0b_composed_probes": {
+          "member_claims_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "claims": 1500,
+            "evidence": 0
+          }
+        },
+        "eval:R15_L1_bindprobe_pairs": {
+          "member_claims_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "claims": 4800,
+            "evidence": 0
+          }
+        },
+        "eval:R14-H133_antigaming_set": {
+          "member_claims_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "claims": 3202,
+            "evidence": 0
+          }
+        },
+        "eval:R16-H142-T-d2_antigaming_set": {
+          "member_claims_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "claims": 3200,
+            "evidence": 0
+          }
+        },
+        "eval:R16-H142-T_antigaming_set": {
+          "member_claims_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "claims": 3200,
+            "evidence": 0
+          }
+        },
+        "eval:R17-H145_antigaming_set": {
+          "member_claims_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "claims": 3200,
+            "evidence": 0
+          }
+        },
+        "eval:R17-H146_antigaming_set": {
+          "member_claims_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "claims": 3202,
+            "evidence": 0
+          }
+        },
+        "eval:R18-H150-d2_antigaming_set": {
+          "member_claims_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "claims": 3200,
+            "evidence": 0
+          }
+        },
+        "eval:R18-H150_antigaming_set": {
+          "member_claims_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "claims": 3200,
+            "evidence": 0
+          }
+        },
+        "eval:R18-H152-d1_antigaming_set": {
+          "member_claims_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "claims": 3200,
+            "evidence": 0
+          }
+        },
+        "eval:R18-H152-d2_antigaming_set": {
+          "member_claims_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "claims": 3202,
+            "evidence": 0
+          }
+        },
+        "eval:R18-H155-d1_antigaming_set": {
+          "member_claims_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "claims": 3200,
+            "evidence": 0
+          }
+        },
+        "eval:R18-H155-d2_antigaming_set": {
+          "member_claims_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "claims": 3200,
+            "evidence": 0
+          }
+        },
+        "eval:R18-H156_antigaming_set": {
+          "member_claims_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "claims": 3200,
+            "evidence": 0
+          }
+        },
+        "eval:R19-H159_antigaming_set": {
+          "member_claims_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "claims": 3202,
+            "evidence": 0
+          }
+        },
+        "eval:R19-H160-soupB_antigaming_set": {
+          "member_claims_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "claims": 3200,
+            "evidence": 0
+          }
+        },
+        "eval:vitaminc_validation": {
+          "member_claims_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "claims": 63054,
+            "evidence": 63054
+          }
+        },
+        "eval:vitaminc_test": {
+          "member_claims_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "member_evidence_vs_surface_evidence": {
+            "raw": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "truncated_1500": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            },
+            "ws_collapsed_casefold": {
+              "shared_distinct_strings": 0,
+              "member_units_matched": 0,
+              "surface_units_matched": 0
+            }
+          },
+          "surface_units": {
+            "claims": 55197,
+            "evidence": 55197
+          }
+        }
+      }
+    },
+    "C3": {
+      "verdict": "NOT-APPLICABLE",
+      "why_not_applicable": "the member is a pure rule generator with no source corpus and no official or internal split: all 10,000 rows are training, no row is held out, and there is therefore no split whose disjointness could be assumed or tested. The clause's failure mode - an 'official' split assumed clean - cannot arise. The axis the member would cut on is measured below instead of asserted.",
+      "measured_axis": {
+        "axis": "doc_id = one generated manual page",
+        "documents": 5000,
+        "pairs": 5000,
+        "pairs_per_document_max": 1,
+        "pairs_per_document_mean": 1.0,
+        "documents_sharing_an_identical_chunk_string": 0,
+        "distinct_chunks": 5000
+      },
+      "scope_rule_a_dataset_may_not_be_both": {
+        "member_rows_also_present_in_an_evaluation_surface": 0,
+        "bar": "0",
+        "pass": true
+      }
+    },
+    "C4": {
+      "verdict": "PASS",
+      "instrument": "provenance_gate.py R14-H136 form - 8-gram, Jaccard >= 0.3, bidirectional, KILL > 2%, all ten walled arena corpora",
+      "evidence_gate": {
+        "verdict": "PASS",
+        "max_fraction": 0.0,
+        "candidate_units": {
+          "label": "path_bind_evidence",
+          "n_units": 5000,
+          "n_units_scorable": 5000
+        },
+        "candidate_vs_arena": {
+          "n_units": 5000,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "per_arena_subset": {
+            "covidqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "delucionqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "emanual": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "expertqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "finqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hagrid": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hotpotqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "pubmedqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "tatqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "techqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            }
+          },
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "arena_vs_candidate": {
+          "n_units": 8645,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "per_arena_subset": {
+            "path_bind_evidence": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            }
+          },
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        }
+      },
+      "claim_gate": {
+        "verdict": "PASS",
+        "max_fraction": 0.0,
+        "candidate_units": {
+          "label": "path_bind_claims",
+          "n_units": 10000,
+          "n_units_scorable": 9572
+        },
+        "candidate_vs_arena": {
+          "n_units": 10000,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "per_arena_subset": {
+            "covidqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "delucionqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "emanual": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "expertqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "finqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hagrid": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hotpotqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "pubmedqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "tatqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "techqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            }
+          },
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "arena_vs_candidate": {
+          "n_units": 8645,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "per_arena_subset": {
+            "path_bind_claims": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            }
+          },
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        }
+      },
+      "spike_control": {
+        "evidence": {
+          "injected": 10,
+          "detected_total": 10,
+          "baseline_hits": 0,
+          "passes": true,
+          "candidate_units": 2000
+        },
+        "claims": {
+          "injected": 10,
+          "detected_total": 10,
+          "baseline_hits": 0,
+          "passes": true,
+          "candidate_units": 2000
+        },
+        "bar": "10/10 detected, 0 baseline hits"
+      },
+      "live_positive_control": {
+        "construction": "the member's own 300 evidence pages transformed the way text is transformed when it re-enters a corpus, run against the member's own indexed evidence; a graded ladder so the gate's sensitivity is measured, not asserted",
+        "designated_control": "rewrapped_minus_one_procedure_block",
+        "designated_control_rationale": "a re-wrapped page missing one of its 3-5 procedure blocks is genuinely near-duplicate by construction - it reproduces most of a real member unit under exactly the whitespace transformation C2's provenance names as the invisible leak route",
+        "fraction": 1.0,
+        "bar": "the designated control must FIRE on >= 0.99 of its units",
+        "fires": true,
+        "sensitivity_ladder": {
+          "verbatim_member_page": {
+            "units": 300,
+            "units_with_hit": 300,
+            "fraction": 1.0,
+            "best_jaccard": {
+              "max": 1.0,
+              "p99": 1.0,
+              "mean": 1.0
+            },
+            "fires": true
+          },
+          "rewrapped_member_page": {
+            "units": 300,
+            "units_with_hit": 300,
+            "fraction": 1.0,
+            "best_jaccard": {
+              "max": 1.0,
+              "p99": 1.0,
+              "mean": 1.0
+            },
+            "fires": true
+          },
+          "rewrapped_minus_one_procedure_block": {
+            "units": 300,
+            "units_with_hit": 300,
+            "fraction": 1.0,
+            "best_jaccard": {
+              "max": 0.8836,
+              "p99": 0.8708,
+              "mean": 0.7714
+            },
+            "fires": true
+          },
+          "rewrapped_minus_two_procedure_blocks": {
+            "units": 300,
+            "units_with_hit": 300,
+            "fraction": 1.0,
+            "best_jaccard": {
+              "max": 0.7207,
+              "p99": 0.7135,
+              "mean": 0.53
+            },
+            "fires": true
+          },
+          "first_half_of_member_page": {
+            "units": 300,
+            "units_with_hit": 300,
+            "fraction": 1.0,
+            "best_jaccard": {
+              "max": 0.604,
+              "p99": 0.5653,
+              "mean": 0.4955
+            },
+            "fires": true
+          },
+          "procedure_blocks_reordered": {
+            "units": 300,
+            "units_with_hit": 300,
+            "fraction": 1.0,
+            "best_jaccard": {
+              "max": 0.9304,
+              "p99": 0.877,
+              "mean": 0.7638
+            },
+            "fires": true
+          },
+          "sibling_page_second_generator_seed": {
+            "units": 300,
+            "units_with_hit": 0,
+            "fraction": 0.0,
+            "best_jaccard": {
+              "max": 0.2488,
+              "p99": 0.2412,
+              "mean": 0.1982
+            },
+            "fires": false
+          }
+        },
+        "sibling_pages_against_arena": {
+          "fraction": 0.0,
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        }
+      },
+      "coverage": {
+        "evidence_units": 5000,
+        "evidence_units_scorable": 5000,
+        "evidence_units_too_short_for_8gram": 0,
+        "evidence_short_units_exact_matching_arena": 0,
+        "claim_units": 10000,
+        "claim_units_scorable": 9572,
+        "claim_units_too_short_for_8gram": 428,
+        "claim_short_units_exact_matching_arena": 0,
+        "bar": "short units counted and covered by exact matching, 0 hits"
+      }
+    },
+    "C5": {
+      "verdict": "PASS",
+      "registered_conjunction": {
+        "claim_only_converged_probe": {
+          "value": 0.515765,
+          "bar": "< 0.55",
+          "pass": true
+        },
+        "within_pair_claim_only": {
+          "per_family": {
+            "path_wrong_segment": {
+              "acc": 0.548,
+              "pairs": 2000
+            },
+            "path_transpose": {
+              "acc": 0.5035,
+              "pairs": 3000
+            }
+          },
+          "worst": 0.548,
+          "bar": "< 0.60",
+          "pass": true
+        },
+        "evidence_only_probe": {
+          "value": 0.5,
+          "per_family_within_pair": {
+            "path_transpose": {
+              "acc": 0.5,
+              "pairs": 3000
+            },
+            "path_wrong_segment": {
+              "acc": 0.5,
+              "pairs": 2000
+            }
+          },
+          "bar": "at chance - the construction gives both legs the SAME chunk, so an evidence-only score is identical within every pair",
+          "pass": true
+        },
+        "question_only_probe": {
+          "value": null,
+          "bar": "n/a",
+          "pass": null,
+          "not_applicable": "the member carries no question channel - its columns are claim / chunk / label / pair_id / neg_family and the loader presents (claim, chunk) only. No proxy substituted."
+        },
+        "surface_parity": {
+          "auroc": {
+            "claim_char_length": 0.4999,
+            "claim_token_count": 0.4998,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.4975
+          },
+          "bar": "each channel in [0.45, 0.55]",
+          "worst_deviation": 0.0025,
+          "pass": true
+        },
+        "family_balance": {
+          "families": {
+            "path_wrong_segment": 4000,
+            "path_transpose": 6000
+          },
+          "bar": "registered 6,000 / 4,000",
+          "pass": true
+        }
+      },
+      "balance_detail": {
+        "depth_by_label": {
+          "3": {
+            "label_0": 1668,
+            "label_1": 1668
+          },
+          "4": {
+            "label_0": 1644,
+            "label_1": 1644
+          },
+          "5": {
+            "label_0": 1688,
+            "label_1": 1688
+          }
+        },
+        "template_id_by_label": {
+          "0": {
+            "label_0": 793,
+            "label_1": 793
+          },
+          "1": {
+            "label_0": 853,
+            "label_1": 853
+          },
+          "2": {
+            "label_0": 820,
+            "label_1": 820
+          },
+          "3": {
+            "label_0": 845,
+            "label_1": 845
+          },
+          "4": {
+            "label_0": 845,
+            "label_1": 845
+          },
+          "5": {
+            "label_0": 844,
+            "label_1": 844
+          }
+        },
+        "negative_swap_index": {
+          "0": 1599,
+          "1": 1614,
+          "2": 1123,
+          "3": 531,
+          "4": 133
+        },
+        "label_balance": {
+          "label_1": 5000,
+          "label_0": 5000
+        }
+      },
+      "executor_added_reported_separately": {
+        "note": "extra surface channels measured by this verification; they join no registered bar (C5 separation rule)",
+        "auroc": {
+          "claim_arrow_count": 0.5,
+          "claim_path_depth": 0.5,
+          "first_segment_char_offset_in_chunk": 0.486514
+        }
+      }
+    },
+    "C6": {
+      "verdict": "PASS",
+      "literal_instrument": {
+        "key": "doc_id (one generated manual page)",
+        "pairs_whose_key_is_shared_with_any_other_pair": 0,
+        "coverage": 0.0,
+        "value": null,
+        "reading": "UNDEFINED - every doc_id belongs to exactly one pair, so the mix associates nothing with a pair's key beyond that pair's own two rows, and both rows carry the same chunk. The C6 feature as written has no support here."
+      },
+      "executor_added_reported_separately": {
+        "note": "three association features keyed on lane-wide training statistics, leave-own-pair-out. They join no registered bar; they exist because the literal instrument is undefined for this member.",
+        "ordered_adjacent_segment_pair_association_auroc": 0.509912,
+        "segment_level_position_association_auroc": 0.497794,
+        "segment_presence_association_auroc": 0.5187,
+        "bar_applied": "chance +/- 0.05",
+        "worst_deviation": 0.0187
+      }
+    },
+    "C7": {
+      "verdict": "PASS",
+      "declared_unit": "rows",
+      "registration": "canonical log line 3872 - 'L4 bind_path_segment rider (~5-15k rows, pure generator)'; stage-0 table line 3899 records 10,000 rows / 5,000 pairs",
+      "rows": 10000,
+      "pairs": 5000,
+      "band_rows": [
+        5000,
+        15000
+      ],
+      "margin_rows_above_floor": 5000,
+      "margin_rows_below_ceiling": 5000,
+      "loader_guard": "R18-H150_arm_run.make_build_mix aborts unless the parquet reads exactly 10,000 rows / 5,000 pairs / {path_transpose: 6000, path_wrong_segment: 4000}",
+      "both_units_reported": true
+    },
+    "C8": {
+      "verdict": "PASS",
+      "source": "rule generator written in experiments/grounding-semantic/R20-H174_lane_L4.py - no source corpus, no crawl, no external text",
+      "licence": "n/a - text generated by this repository (MIT)",
+      "retrieval_date": "n/a - nothing retrieved; built 2026-08-16 (parquet mtime), seed 4174",
+      "selection_predicate": {
+        "generator_parameters": {
+          "seed": 4174,
+          "n_pairs_target": 5000,
+          "transpose_share": 0.6,
+          "depths": [
+            3,
+            4,
+            5
+          ],
+          "procedures_per_page": [
+            3,
+            4,
+            5
+          ],
+          "segment_pool": 112,
+          "templates": 6,
+          "values": 20
+        },
+        "rejection_rules": [
+          "the true path must occur in the page as a contiguous bare token run, else the draw is discarded",
+          "the corrupted path must NOT occur in the page",
+          "the corrupted path must differ from the true path and carry no repeated segment",
+          "path_wrong_segment substitutes only a segment the SAME page attests on a different path",
+          "family quota 60/40 enforced during generation",
+          "R20-H174_lane_common.dedupe on (claim, chunk, label), pairs surviving only if both legs survive"
+        ]
+      },
+      "internal_structure": {
+        "rows": 10000,
+        "pairs": 5000,
+        "documents": 5000,
+        "distinct_claims": 10000,
+        "distinct_chunks": 5000,
+        "distinct_true_paths": 5000,
+        "distinct_wrong_paths": 5000,
+        "duplicate_claim_rows": 0,
+        "distinct_chunks_over_pairs": 5000,
+        "template_id_counts": {
+          "0": 1586,
+          "1": 1706,
+          "2": 1640,
+          "3": 1690,
+          "4": 1690,
+          "5": 1688
+        },
+        "segment_reuse_over_positive_paths": {
+          "distinct_segments_used": 112,
+          "max_uses_of_one_segment": 214,
+          "min_uses_of_one_segment": 148,
+          "mean_uses": 178.75
+        },
+        "claim_chars": {
+          "n": 10000,
+          "mean": 85.5,
+          "median": 85,
+          "p10": 63,
+          "p90": 108,
+          "min": 40,
+          "max": 159
+        },
+        "chunk_chars": {
+          "n": 10000,
+          "mean": 1007.2,
+          "median": 1005,
+          "p10": 768,
+          "p90": 1251,
+          "min": 672,
+          "max": 1370
+        },
+        "window_census": {
+          "windowing": "1500/750, final window flush to the end (byte-identical to R8-H101 / R16-H142)",
+          "rows": 10000,
+          "mean_windows": 1.0,
+          "median_windows": 1,
+          "max_windows": 1,
+          "multi_window_rows": 0,
+          "multi_window_share": 0.0
+        }
+      },
+      "public_repository_check": {
+        "pattern": "known device / vendor / client brand tokens",
+        "rows_matching": 0,
+        "bar": "0",
+        "pass": true
+      }
+    }
+  },
+  "seconds": 115.0
+}

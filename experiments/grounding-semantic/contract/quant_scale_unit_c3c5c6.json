@@ -1,0 +1,729 @@
+{
+  "member": "quant_scale_unit",
+  "artifact": "/home/lab/workspace/private/ai-assistants/groundrails/experiments/grounding-semantic/R18-H150_scaleunit_lane.parquet",
+  "c3": {
+    "tabfact": {
+      "train": {
+        "rows": 92585,
+        "distinct_table_id": 13182,
+        "distinct_table_text": 13143
+      },
+      "validation": {
+        "rows": 12851,
+        "distinct_table_id": 1696,
+        "distinct_table_text": 1696,
+        "table_ids_shared_with_train": 0,
+        "table_texts_shared_with_train": 8,
+        "share_of_split_tables_also_in_train": 0.0
+      },
+      "test": {
+        "rows": 12839,
+        "distinct_table_id": 1695,
+        "distinct_table_text": 1695,
+        "table_ids_shared_with_train": 0,
+        "table_texts_shared_with_train": 5,
+        "share_of_split_tables_also_in_train": 0.0
+      },
+      "measured_split_axis": "per TABLE"
+    },
+    "lane_tabfact_documents": {
+      "distinct_doc_ids": 319,
+      "in_tabfact_validation_table_ids": 0,
+      "in_tabfact_test_table_ids": 0,
+      "note": "the lane's selection predicate is the TRAIN split only; a non-zero count here means TabFact's official split does not separate tables and the same table carries statements on both sides of its own split boundary"
+    },
+    "feverous": {
+      "path": "/home/lab/workspace/private/ai-assistants/groundrails/tmp/R14_H133_feverous.parquet",
+      "exists": true,
+      "rows": 49903,
+      "columns": [
+        "id",
+        "claim",
+        "label",
+        "evidence",
+        "challenge"
+      ],
+      "has_split_column": false,
+      "campaign_ruling": "R20-H177 coordinator disposition 2: FEVEROUS non-admission ACCEPTED - the on-disk file is an R14-H133 working artifact without its own provenance verdict",
+      "doc_id_stability": "R17-H144 recorded the v2 lane's `feverous:{i}` ids as order-unstable across rebuilds; this lane inherits the same id scheme"
+    },
+    "lane_cut_against_sibling_surfaces": {
+      "R17-H143_evalset": {
+        "rows": 1050,
+        "their_documents": null,
+        "shared_doc_ids": "no doc_id column",
+        "shared_chunks_raw": 0,
+        "shared_chunks_ws_collapsed": 0
+      },
+      "R18-H150_unitswap_probe": {
+        "rows": 280,
+        "their_documents": 42,
+        "shared_doc_ids": 0,
+        "shared_chunks_raw": 0,
+        "shared_chunks_ws_collapsed": 0,
+        "split_values": {
+          "probe": 280
+        }
+      },
+      "R20-H177_eval_B": {
+        "rows": 2000,
+        "their_documents": 458,
+        "shared_doc_ids": 13,
+        "shared_chunks_raw": 0,
+        "shared_chunks_ws_collapsed": 0
+      },
+      "R20-H177_eval_C": {
+        "rows": 1936,
+        "their_documents": 213,
+        "shared_doc_ids": 0,
+        "shared_chunks_raw": 0,
+        "shared_chunks_ws_collapsed": 0
+      },
+      "R17-H148_probe": {
+        "rows": 1956,
+        "their_documents": 100,
+        "shared_doc_ids": 0,
+        "shared_chunks_raw": 0,
+        "shared_chunks_ws_collapsed": 0
+      }
+    },
+    "lane_declared_split_axis": "DOCUMENT, enforced on CONTENT fingerprints rather than ids (R17-H144 method) - the id scheme is not stable for FEVEROUS"
+  },
+  "c5": {
+    "registered": {
+      "claim_only_converged_probe": {
+        "value": 0.475909,
+        "bar": "< 0.55",
+        "pass": true,
+        "margin_to_bar": 0.074091,
+        "scoring": "TF-IDF 1-2gram min_df 2 sublinear, liblinear tol 1e-7, 5-fold document-disjoint, out-of-fold",
+        "fold_pair_loads": [
+          1108,
+          1108,
+          1108,
+          1108,
+          1108
+        ],
+        "banked_verify_value": 0.4296
+      },
+      "within_pair_claim_only": {
+        "pooled": 0.471841,
+        "worst_family": 0.781513,
+        "bar": "< 0.60",
+        "pass": false,
+        "margin_to_bar": -0.181513,
+        "per_swap_family": {
+          "khz<->mhz": {
+            "acc": 0.289474,
+            "pairs": 152
+          },
+          "km<->mm": {
+            "acc": 0.494949,
+            "pairs": 198
+          },
+          "km<->m": {
+            "acc": 0.506394,
+            "pairs": 782
+          },
+          "km2<->sqmi": {
+            "acc": 0.448944,
+            "pairs": 568
+          },
+          "kg<->lb": {
+            "acc": 0.486111,
+            "pairs": 144
+          },
+          "cm<->m": {
+            "acc": 0.781513,
+            "pairs": 238
+          },
+          "ghz<->mhz": {
+            "acc": 0.545455,
+            "pairs": 132
+          },
+          "kb<->mb": {
+            "acc": 0.45283,
+            "pairs": 106
+          },
+          "gb<->mb": {
+            "acc": 0.297297,
+            "pairs": 148
+          },
+          "ha<->km2": {
+            "acc": 0.246575,
+            "pairs": 146
+          },
+          "kmh<->mph": {
+            "acc": 0.371795,
+            "pairs": 156
+          }
+        },
+        "banked_verify_worst": 0.5
+      },
+      "surface_parity": {
+        "auroc": {
+          "claim_char_length": 0.49896,
+          "claim_token_count": 0.500165,
+          "claim_numeral_count": 0.5,
+          "claim_chunk_token_containment": 0.499673,
+          "claim_word_count": 0.499775
+        },
+        "abs_deviation": {
+          "claim_char_length": 0.00104,
+          "claim_token_count": 0.000165,
+          "claim_numeral_count": 0.0,
+          "claim_chunk_token_containment": 0.000327,
+          "claim_word_count": 0.000225
+        },
+        "bar": "each in [0.45, 0.55]",
+        "worst_channel": "claim_char_length",
+        "worst_deviation": 0.00104,
+        "pass": true
+      },
+      "single_channel_probes": {
+        "evidence_only_probe": {
+          "computable": true,
+          "value": 0.5,
+          "mechanism": "every distinct chunk carries exactly as many label-1 as label-0 rows, so any evidence-only feature is exactly at chance",
+          "distinct_chunks": 2509,
+          "all_chunks_label_balanced": true
+        },
+        "question_only_probe": {
+          "computable": false,
+          "reason": "the lane carries no question field; the construction has no question channel"
+        }
+      },
+      "balance": {
+        "per_field": {
+          "direction": {
+            "lb->kg": {
+              "rows": 144,
+              "positives": 72,
+              "positive_share": 0.5
+            },
+            "mhz->khz": {
+              "rows": 152,
+              "positives": 76,
+              "positive_share": 0.5
+            },
+            "km2->sqmi": {
+              "rows": 568,
+              "positives": 284,
+              "positive_share": 0.5
+            },
+            "khz->mhz": {
+              "rows": 152,
+              "positives": 76,
+              "positive_share": 0.5
+            },
+            "mph->kmh": {
+              "rows": 156,
+              "positives": 78,
+              "positive_share": 0.5
+            },
+            "mm->km": {
+              "rows": 198,
+              "positives": 99,
+              "positive_share": 0.5
+            },
+            "km->mm": {
+              "rows": 198,
+              "positives": 99,
+              "positive_share": 0.5
+            },
+            "cm->m": {
+              "rows": 238,
+              "positives": 119,
+              "positive_share": 0.5
+            },
+            "mb->kb": {
+              "rows": 106,
+              "positives": 53,
+              "positive_share": 0.5
+            },
+            "mb->gb": {
+              "rows": 148,
+              "positives": 74,
+              "positive_share": 0.5
+            },
+            "sqmi->km2": {
+              "rows": 568,
+              "positives": 284,
+              "positive_share": 0.5
+            },
+            "ghz->mhz": {
+              "rows": 132,
+              "positives": 66,
+              "positive_share": 0.5
+            },
+            "km->m": {
+              "rows": 782,
+              "positives": 391,
+              "positive_share": 0.5
+            },
+            "m->cm": {
+              "rows": 238,
+              "positives": 119,
+              "positive_share": 0.5
+            },
+            "kb->mb": {
+              "rows": 106,
+              "positives": 53,
+              "positive_share": 0.5
+            },
+            "kmh->mph": {
+              "rows": 156,
+              "positives": 78,
+              "positive_share": 0.5
+            },
+            "gb->mb": {
+              "rows": 148,
+              "positives": 74,
+              "positive_share": 0.5
+            },
+            "ha->km2": {
+              "rows": 146,
+              "positives": 73,
+              "positive_share": 0.5
+            },
+            "kg->lb": {
+              "rows": 144,
+              "positives": 72,
+              "positive_share": 0.5
+            },
+            "mhz->ghz": {
+              "rows": 132,
+              "positives": 66,
+              "positive_share": 0.5
+            },
+            "km2->ha": {
+              "rows": 146,
+              "positives": 73,
+              "positive_share": 0.5
+            },
+            "m->km": {
+              "rows": 782,
+              "positives": 391,
+              "positive_share": 0.5
+            }
+          },
+          "swap_family": {
+            "kmh<->mph": {
+              "rows": 312,
+              "positives": 156,
+              "positive_share": 0.5
+            },
+            "ghz<->mhz": {
+              "rows": 264,
+              "positives": 132,
+              "positive_share": 0.5
+            },
+            "ha<->km2": {
+              "rows": 292,
+              "positives": 146,
+              "positive_share": 0.5
+            },
+            "cm<->m": {
+              "rows": 476,
+              "positives": 238,
+              "positive_share": 0.5
+            },
+            "gb<->mb": {
+              "rows": 296,
+              "positives": 148,
+              "positive_share": 0.5
+            },
+            "kg<->lb": {
+              "rows": 288,
+              "positives": 144,
+              "positive_share": 0.5
+            },
+            "kb<->mb": {
+              "rows": 212,
+              "positives": 106,
+              "positive_share": 0.5
+            },
+            "khz<->mhz": {
+              "rows": 304,
+              "positives": 152,
+              "positive_share": 0.5
+            },
+            "km2<->sqmi": {
+              "rows": 1136,
+              "positives": 568,
+              "positive_share": 0.5
+            },
+            "km<->m": {
+              "rows": 1564,
+              "positives": 782,
+              "positive_share": 0.5
+            },
+            "km<->mm": {
+              "rows": 396,
+              "positives": 198,
+              "positive_share": 0.5
+            }
+          },
+          "dimension": {
+            "mass": {
+              "rows": 288,
+              "positives": 144,
+              "positive_share": 0.5
+            },
+            "area": {
+              "rows": 1428,
+              "positives": 714,
+              "positive_share": 0.5
+            },
+            "frequency": {
+              "rows": 568,
+              "positives": 284,
+              "positive_share": 0.5
+            },
+            "storage": {
+              "rows": 508,
+              "positives": 254,
+              "positive_share": 0.5
+            },
+            "length": {
+              "rows": 2436,
+              "positives": 1218,
+              "positive_share": 0.5
+            },
+            "speed": {
+              "rows": 312,
+              "positives": 156,
+              "positive_share": 0.5
+            }
+          },
+          "unit_carrier": {
+            "cell": {
+              "rows": 2054,
+              "positives": 1027,
+              "positive_share": 0.5
+            },
+            "header": {
+              "rows": 3486,
+              "positives": 1743,
+              "positive_share": 0.5
+            }
+          },
+          "serial_form": {
+            "markdown": {
+              "rows": 544,
+              "positives": 272,
+              "positive_share": 0.5
+            },
+            "row_prose": {
+              "rows": 1544,
+              "positives": 772,
+              "positive_share": 0.5
+            },
+            "json_records": {
+              "rows": 500,
+              "positives": 250,
+              "positive_share": 0.5
+            },
+            "pipe": {
+              "rows": 400,
+              "positives": 200,
+              "positive_share": 0.5
+            },
+            "keyvalue": {
+              "rows": 1180,
+              "positives": 590,
+              "positive_share": 0.5
+            },
+            "narrative": {
+              "rows": 1372,
+              "positives": 686,
+              "positive_share": 0.5
+            }
+          },
+          "template_id": {
+            "3": {
+              "rows": 924,
+              "positives": 462,
+              "positive_share": 0.5
+            },
+            "2": {
+              "rows": 924,
+              "positives": 462,
+              "positive_share": 0.5
+            },
+            "1": {
+              "rows": 924,
+              "positives": 462,
+              "positive_share": 0.5
+            },
+            "0": {
+              "rows": 924,
+              "positives": 462,
+              "positive_share": 0.5
+            },
+            "5": {
+              "rows": 922,
+              "positives": 461,
+              "positive_share": 0.5
+            },
+            "4": {
+              "rows": 922,
+              "positives": 461,
+              "positive_share": 0.5
+            }
+          },
+          "source": {
+            "feverous": {
+              "rows": 1040,
+              "positives": 520,
+              "positive_share": 0.5
+            },
+            "tabfact": {
+              "rows": 4500,
+              "positives": 2250,
+              "positive_share": 0.5
+            }
+          },
+          "neg_family": {
+            "unit_swap": {
+              "rows": 5540,
+              "positives": 2770,
+              "positive_share": 0.5
+            }
+          }
+        },
+        "worst_positive_share_deviation": 0.0,
+        "bar": "0.50 exactly by construction",
+        "pass": true
+      },
+      "attestation_symmetry_unit_word_marginal": {
+        "per_word": {
+          "cm": {
+            "as_positive": 119,
+            "as_negative": 119,
+            "skew": 0.0
+          },
+          "gb": {
+            "as_positive": 74,
+            "as_negative": 74,
+            "skew": 0.0
+          },
+          "ghz": {
+            "as_positive": 66,
+            "as_negative": 66,
+            "skew": 0.0
+          },
+          "ha": {
+            "as_positive": 73,
+            "as_negative": 73,
+            "skew": 0.0
+          },
+          "kb": {
+            "as_positive": 53,
+            "as_negative": 53,
+            "skew": 0.0
+          },
+          "kg": {
+            "as_positive": 72,
+            "as_negative": 72,
+            "skew": 0.0
+          },
+          "khz": {
+            "as_positive": 76,
+            "as_negative": 76,
+            "skew": 0.0
+          },
+          "km": {
+            "as_positive": 490,
+            "as_negative": 490,
+            "skew": 0.0
+          },
+          "km2": {
+            "as_positive": 357,
+            "as_negative": 357,
+            "skew": 0.0
+          },
+          "kmh": {
+            "as_positive": 78,
+            "as_negative": 78,
+            "skew": 0.0
+          },
+          "lb": {
+            "as_positive": 72,
+            "as_negative": 72,
+            "skew": 0.0
+          },
+          "m": {
+            "as_positive": 510,
+            "as_negative": 510,
+            "skew": 0.0
+          },
+          "mb": {
+            "as_positive": 127,
+            "as_negative": 127,
+            "skew": 0.0
+          },
+          "mhz": {
+            "as_positive": 142,
+            "as_negative": 142,
+            "skew": 0.0
+          },
+          "mm": {
+            "as_positive": 99,
+            "as_negative": 99,
+            "skew": 0.0
+          },
+          "mph": {
+            "as_positive": 78,
+            "as_negative": 78,
+            "skew": 0.0
+          },
+          "sqmi": {
+            "as_positive": 284,
+            "as_negative": 284,
+            "skew": 0.0
+          }
+        },
+        "worst_skew": 0.0,
+        "bar": "0.0 (a unit word must not be a label prior)",
+        "pass": true
+      }
+    },
+    "executor_added": {
+      "evidence_only_tfidf_probe_measured": {
+        "value": 0.5,
+        "note": "executor-added; forced to 0.5 by the shared-chunk construction, run as a live confirmation rather than a bar"
+      },
+      "claim_plus_evidence_lexical_probe": {
+        "value": 0.432448,
+        "note": "executor-added; a lexical joint probe. It is NOT a leak bar - a lexical model that can solve the lane would indicate an adjacent-string channel the H148 rule is meant to close"
+      }
+    }
+  },
+  "c6": {
+    "within_pair_field_identity": {
+      "pairs": 2770,
+      "pairs_with_identical_value": {
+        "pair_id": 2770,
+        "claim": 0,
+        "cited_unit": 0,
+        "chunk": 2770,
+        "doc_id": 2770,
+        "source": 2770,
+        "column": 2770,
+        "column_index": 2770,
+        "row_key": 2770,
+        "row_index": 2770,
+        "cited_value": 2770,
+        "correct_unit": 2770,
+        "wrong_unit": 2770,
+        "dimension": 2770,
+        "neg_family": 2770,
+        "swap_family": 2770,
+        "direction": 2770,
+        "unit_carrier": 2770,
+        "distractor_in_chunk": 2770,
+        "surface_parity": 2770,
+        "serial_form": 2770,
+        "template_id": 2770,
+        "tag": 2770
+      },
+      "fields_identical_on_every_pair": [
+        "chunk",
+        "cited_value",
+        "column",
+        "column_index",
+        "correct_unit",
+        "dimension",
+        "direction",
+        "distractor_in_chunk",
+        "doc_id",
+        "neg_family",
+        "pair_id",
+        "row_index",
+        "row_key",
+        "serial_form",
+        "source",
+        "surface_parity",
+        "swap_family",
+        "tag",
+        "template_id",
+        "unit_carrier",
+        "wrong_unit"
+      ],
+      "fields_that_differ": [
+        "cited_unit",
+        "claim"
+      ],
+      "consequence": "any feature keyed on a field identical inside the pair is identical on both legs and cannot separate them"
+    },
+    "mix_rows_excluding_member": 715670,
+    "mix_association_feature": {
+      "key": "whitespace-collapsed case-folded chunk (the field both legs share)",
+      "feature": "max token containment between the member claim and any claim the rest of the mix associates with that key",
+      "coverage_rows": 44,
+      "coverage_share": 0.007942,
+      "auroc": 0.487603
+    },
+    "executor_added_unit_word_prior": {
+      "feature": "P(label=1 | claimed unit word) estimated on the lane itself",
+      "auroc": 0.5,
+      "note": "executor-added; reported separately, joins no registered bar"
+    }
+  },
+  "c7": {
+    "declared_unit": "rows AND pairs, both stated at registration, build and in the arm's LANES tuple",
+    "registered_rows": 20000,
+    "registered_pairs": 10000,
+    "delivered_rows": 5540,
+    "delivered_pairs": 2770,
+    "rows_share_of_registration": 0.277,
+    "pairs_share_of_registration": 0.277,
+    "rows_per_pair": 2.0,
+    "arm_lane_tuple": {
+      "rows": 5540,
+      "pairs": 2770,
+      "neg_families": {
+        "unit_swap": 5540
+      }
+    },
+    "consistent_across_registration_build_and_report": true
+  },
+  "c8": {
+    "sources": {
+      "tabfact": {
+        "rows": 4500,
+        "share": 0.812274,
+        "archive": "data/external/datasets/dataset-tabfact.zip",
+        "sidecar": "data/external/datasets/dataset-tabfact.md",
+        "licence": "CC-BY-4.0 (per the tracked sidecar)",
+        "selection_predicate": "the __train.parquet split only, deduped on table_text, admitted through the R17-H144 content-fingerprint eval exclusion"
+      },
+      "feverous": {
+        "rows": 1040,
+        "share": 0.187726,
+        "archive": "NONE - tmp/R14_H133_feverous.parquet, an R14-H133 working artifact",
+        "sidecar": null,
+        "licence": "NOT RECORDED in any tracked artifact",
+        "retrieval_date": "NOT RECORDED",
+        "selection_predicate": "deduped on `evidence`, doc ids `feverous:{i}` from an order-unstable dedup"
+      }
+    },
+    "duplication": {
+      "duplicate_claim_chunk_label_rows": 0,
+      "distinct_claims": 5456,
+      "distinct_chunks": 2509,
+      "distinct_documents": 410,
+      "max_claim_repeat": 2,
+      "claims_appearing_more_than_once": 84,
+      "max_chunk_repeat": 18,
+      "mean_pairs_per_document": 6.756098,
+      "max_pairs_per_document": 32,
+      "mean_rows_per_chunk": 2.208051
+    },
+    "public_repository_check": {
+      "client_or_company_name_in_artifact": false,
+      "basis": "the member's fields carry Wikipedia table content, unit vocabulary and template ids only; no client or company identifier is written into any artifact this task produced"
+    }
+  }
+}

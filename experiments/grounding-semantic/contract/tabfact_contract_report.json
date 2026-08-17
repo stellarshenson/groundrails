@@ -1,0 +1,493 @@
+{
+  "member": "tabfact",
+  "role": "training member - source corpus",
+  "contract": "docs/experiments/dataset-contract.md",
+  "verified_on": "the member as ASSEMBLED, rebuilt through the banked loader (R10-H108_lane.public_train under R16-H142_G1_arm.untruncated_evidence, rows tagged `tabfact`), which is what R18-H150_arm_run and the R20-H174 wrapper train on",
+  "load": {
+    "member": "tabfact",
+    "loader": "R10-H108_lane.public_train() under R16-H142_G1_arm.untruncated_evidence(), rows tagged `tabfact`",
+    "archive": "dataset-tabfact.zip :: wenhuchen__Table-Fact-Checking__tabfact__train.parquet",
+    "selection_predicate": "train split only; filter statement.str.len_chars() > 10",
+    "chunk_construction": "f'{table_caption}\\n{table_text}'.replace('\\r\\n','\\n').replace('#',' | ')[:chunk_max_chars]",
+    "chunk_max_chars": 1500,
+    "clean_mix_rows": 685670,
+    "member_rows": 92585,
+    "archive_train_rows": 92585,
+    "rows_dropped_by_filter": 0,
+    "member_share_of_clean_mix": 0.135029,
+    "elapsed_s": 7.7
+  },
+  "conforming": false,
+  "failed_clauses": [
+    "C2",
+    "C3",
+    "C8"
+  ],
+  "clauses": {
+    "C1": {
+      "title": "Label commensurability",
+      "verdict": "PASS",
+      "head_declared": "the grounding scalar (`task_head` of the DANN student) - the same head every other mix member trains",
+      "label_predicate": "TabFact ships a human ENTAILED / REFUTED annotation of the STATEMENT against ITS OWN table (ICLR 2020). The label is a support predicate: 1 = the table entails the statement, 0 = the table refutes it. It is not relevance, not answerability, not question-claim match. Positives and negatives share the same table by construction, so the contrast is carried entirely by the statement's content",
+      "measured": {
+        "instrument": "R20-H175b_qlane.containment(claim, chunk) - share of the claim's content tokens present in the evidence",
+        "presentation": "untruncated evidence - the R18-H150 / R20-H174 flagship presentation (windowed 1,500/750 downstream)",
+        "negative_leg_mean_containment": 0.498,
+        "positive_leg_mean_containment": 0.5177,
+        "abs_delta_mean": 0.0197,
+        "negative_leg_fully_attested_share": 0.0011,
+        "positive_leg_fully_attested_share": 0.0014,
+        "secondary_presentation_truncated_1500": {
+          "negative_leg_mean_containment": 0.4839,
+          "positive_leg_mean_containment": 0.5036,
+          "abs_delta_mean": 0.0198
+        }
+      },
+      "bar": "REJECTED if the negative leg is >= 90% attested AND within 0.10 of the positive leg - a CONJUNCTION",
+      "margin": {
+        "negative_leg_distance_below_the_0.90_attestation_bar": 0.402,
+        "second_condition_met": true,
+        "first_condition_met": false,
+        "rejected": false
+      },
+      "reading": "the two legs are lexically almost equally close to the evidence (delta 0.0197), which is the intended signature of a counterfactual near-miss corpus - but NEITHER leg is attested. At 0.498 mean containment the negative leg sits 0.402 below the 0.90 bar, and only 0.0011 of negatives are fully attested against the 0.664 the poisoned R20-H175b lane read. The label turns on reading values out of the table, not on token presence, so the member teaches support and not relevance",
+      "reference": {
+        "containment_both_legs": 0.9129,
+        "negative_leg_fully_attested_share": 0.664,
+        "why_it_failed": "passage and claim held FIXED, label flipped on question relevance - both legs identical in grounding"
+      }
+    },
+    "C2": {
+      "title": "Disjointness from every evaluation surface",
+      "verdict": "FAIL",
+      "method": "three string forms (raw / truncated to 1,500 / whitespace-collapsed case-folded) crossed six ways, run in both directions, on EVIDENCE and CLAIM units; plus the document-id channel wherever the surface exposes a TabFact table id",
+      "surfaces_reading_zero_in_all_forms_both_directions": [
+        "arena_ragbench_10_subsets (evidence AND claims, vs arena documents and arena responses)",
+        "gold_full",
+        "R20-H177_eval_C",
+        "R20-H175b_qlane_eval",
+        "R20-H175b_qlane_eval_repaired",
+        "R20-H175b_qlane_eval_clean",
+        "R19_findver_lane",
+        "vitaminc_holdout_SUPERSET (VitaminC test+validation, 118251 rows)"
+      ],
+      "failures": {
+        "R20-H177_eval_B": {
+          "passage_channel_normalised_only": {
+            "passages_hit": 15,
+            "distinct_passages": 736,
+            "share": 0.0204,
+            "raw_form": 0,
+            "truncated_form": 0,
+            "eval_rows": 60,
+            "eval_pairs": 30,
+            "serialisation_forms_hit": [
+              {
+                "source": "tabfact",
+                "serial_form": "pipe",
+                "rows": 60
+              }
+            ],
+            "neg_families": {
+              "cmp_extreme": 16,
+              "cmp_order": 44
+            }
+          },
+          "document_channel": {
+            "eval_tabfact_documents": 325,
+            "documents_in_the_member": 325,
+            "share": 1.0,
+            "eval_rows": 1300,
+            "eval_pairs": 650,
+            "share_of_all_eval_B_rows": 0.65,
+            "why_the_string_forms_miss_it": "eval_B re-serialises each table into six forms (pipe, row_prose, markdown, narrative, json_records, keyvalue). Only `pipe` matches the member's serialisation, so string matching sees 15 passages while the document overlap is total"
+          },
+          "claim_channel": "0 in all six forms, both directions - eval_B's claims are template-generated, not TabFact statements"
+        },
+        "R17-H143_evalset": {
+          "passages_hit": 10,
+          "distinct_passages": 547,
+          "share": 0.0183,
+          "raw_form": 0,
+          "truncated_form": 0,
+          "claim_channel": "0 in all six forms, both directions"
+        },
+        "antigaming_probe_sets": {
+          "files": 14,
+          "exact_table_id_in_member": 0,
+          "stem_colliding_tables_per_file": {
+            "R14-H133_antigaming_set.parquet": 55,
+            "R16-H142-T-d2_antigaming_set.parquet": 50,
+            "R16-H142-T_antigaming_set.parquet": 51,
+            "R17-H145_antigaming_set.parquet": 62,
+            "R17-H146_antigaming_set.parquet": 57,
+            "R18-H150-d2_antigaming_set.parquet": 52,
+            "R18-H150_antigaming_set.parquet": 59,
+            "R18-H152-d1_antigaming_set.parquet": 55,
+            "R18-H152-d2_antigaming_set.parquet": 60,
+            "R18-H155-d1_antigaming_set.parquet": 56,
+            "R18-H155-d2_antigaming_set.parquet": 52,
+            "R18-H156_antigaming_set.parquet": 52,
+            "R19-H159_antigaming_set.parquet": 61,
+            "R19-H160-soupB_antigaming_set.parquet": 54
+          },
+          "mean_token_jaccard_of_those_collisions_per_file": {
+            "R14-H133_antigaming_set.parquet": 0.9151,
+            "R16-H142-T-d2_antigaming_set.parquet": 0.9146,
+            "R16-H142-T_antigaming_set.parquet": 0.9124,
+            "R17-H145_antigaming_set.parquet": 0.9074,
+            "R17-H146_antigaming_set.parquet": 0.9101,
+            "R18-H150-d2_antigaming_set.parquet": 0.9175,
+            "R18-H150_antigaming_set.parquet": 0.9136,
+            "R18-H152-d1_antigaming_set.parquet": 0.9108,
+            "R18-H152-d2_antigaming_set.parquet": 0.9084,
+            "R18-H155-d1_antigaming_set.parquet": 0.9113,
+            "R18-H155-d2_antigaming_set.parquet": 0.9145,
+            "R18-H156_antigaming_set.parquet": 0.909,
+            "R19-H159_antigaming_set.parquet": 0.9079,
+            "R19-H160-soupB_antigaming_set.parquet": 0.9101
+          },
+          "reading": "the R14-H133 construction removes every table_id present in TabFact train - an EXACT id rule. 50 to 62 tables per set survive it while being near-duplicates of member tables at mean token Jaccard ~0.91 (median ~0.94, 69-75% at >= 0.9). None are byte-identical"
+        }
+      },
+      "binding_constraint": "R20-H177_eval_B shares 100% of its TabFact documents with the member; and 15 of its passages plus 10 of R17-H143_evalset's are identical to member evidence under whitespace normalisation. The clause requires all forms to read zero on every surface",
+      "fixable": "PIPELINE"
+    },
+    "C3": {
+      "title": "Split semantics verified, never assumed",
+      "verdict": "FAIL",
+      "split_axis_measured": "the archive cuts on the table_id STRING, not on the underlying document. Validation and test share 0 and 0 table_id VALUES with train. But TabFact serialises one Wikipedia table under both a `1-` and a `2-` csv id, and after stripping that prefix 91 of 1696 validation ids (0.0538) and 73 of 1695 test ids (0.0431) collide with a train id. Part of that collision is genuine document re-use: 2 validation and 1 test serialised tables are BYTE-IDENTICAL to a train table, rising to 18 and 14 under the 1,500-char cut the R10-H108 recipe applies; 8 validation rows and 7 test rows carry a statement string that also occurs in train. Statements are grouped under their table, so the cut is per document ID and per claim within it - but NOT per document",
+      "member_uses": "train split ONLY - `next(x for x in namelist if x.endswith('__train.parquet'))` in R10-H108_lane.public_train",
+      "measured": {
+        "table_id_string_shared_train_vs_validation": 0,
+        "table_id_string_shared_train_vs_test": 0,
+        "stem_collisions_validation": {
+          "tables": 91,
+          "of": 1696,
+          "share": 0.053783,
+          "content": {
+            "stem_colliding_tables": 91,
+            "byte_identical": 2,
+            "normalised_identical": 2,
+            "token_jaccard": {
+              "mean": 0.9115,
+              "median": 0.937,
+              "max": 1.0,
+              "share_ge_0.9": 0.8022,
+              "share_ge_0.5": 0.989
+            }
+          }
+        },
+        "stem_collisions_test": {
+          "tables": 73,
+          "of": 1695,
+          "share": 0.043119,
+          "content": {
+            "stem_colliding_tables": 73,
+            "byte_identical": 1,
+            "normalised_identical": 1,
+            "token_jaccard": {
+              "mean": 0.9131,
+              "median": 0.9425,
+              "max": 1.0,
+              "share_ge_0.9": 0.7534,
+              "share_ge_0.5": 1.0
+            }
+          }
+        },
+        "statement_strings_shared": {
+          "validation_rows": 8,
+          "test_rows": 7
+        },
+        "independent_confirmation_from_C4_live_control": {
+          "held_out_tables_firing_against_the_member": 166,
+          "of": 3391,
+          "fraction": 0.048953,
+          "max_jaccard": 1.0
+        }
+      },
+      "binding_constraint": "TabFact's official split is disjoint on the table_id STRING and not on the document. 91 validation and 73 test tables collide with a train table after the `1-`/`2-` csv-id prefix is stripped, and those collisions are near-duplicates at mean token Jaccard 0.91 / 0.91, with 2 and 1 byte-identical. Same species as the VitaminC finding the clause was written for",
+      "consequence": "TabFact validation and test are not scored directly by any banked arm, but every anti-gaming probe set is built from them under an exact-id rule, so the failure propagates there - see C2's antigaming block",
+      "fixable": "PIPELINE - the member can be cut on the stem instead of the id string; the archive's own split cannot be changed, so the underlying non-disjointness is a corpus property"
+    },
+    "C4": {
+      "title": "Contamination census with a live positive control",
+      "verdict": "PASS",
+      "instrument": "provenance_gate.py, R14-H136 form: 8-gram, Jaccard >= 0.3, bidirectional, WARN 0.005, KILL 0.02",
+      "measured": {
+        "evidence_units": {
+          "units": 13173,
+          "candidate_vs_arena_fraction": 0.0,
+          "arena_vs_candidate_fraction": 0.0,
+          "max_jaccard_observed": 0.013
+        },
+        "claim_units": {
+          "units": 92304,
+          "candidate_vs_arena_fraction": 0.0,
+          "arena_vs_candidate_fraction": 0.0,
+          "max_jaccard_observed": 0.0308
+        },
+        "coverage": {
+          "evidence_serialised_tables": {
+            "n_units": 13173,
+            "n_units_too_short_for_8gram": 0,
+            "share_too_short": 0.0,
+            "exact_match_residual": {
+              "units": 0,
+              "exact_raw_hits": 0,
+              "exact_normalised_hits": 0
+            }
+          },
+          "claims_statements": {
+            "n_units": 92304,
+            "n_units_too_short_for_8gram": 5943,
+            "share_too_short": 0.064385,
+            "exact_match_residual": {
+              "units": 5943,
+              "exact_raw_hits": 0,
+              "exact_normalised_hits": 0
+            }
+          }
+        },
+        "synthetic_spike_control": {
+          "injected": 10,
+          "detected_total": 10,
+          "baseline_hits": 0,
+          "passes": true,
+          "candidate_units": 13173
+        },
+        "live_positive_control": {
+          "design": "the gold_full audit pattern - TabFact's OWN test+validation serialised tables offered to the IDENTICAL gate with the `tabfact` member as the reference side. Near-duplicates exist by construction (one table, two csv ids), so a gate that cannot fire on this register shows up here",
+          "candidate_units": 3391,
+          "fires": true,
+          "units_with_hit": 166,
+          "fraction": 0.048953,
+          "best_jaccard": {
+            "max": 1.0,
+            "p99": 0.9373,
+            "mean": 0.0636
+          },
+          "reverse_direction": {
+            "units_with_hit": 184,
+            "fraction": 0.013968,
+            "best_jaccard": {
+              "max": 1.0,
+              "p99": 0.8527,
+              "mean": 0.027
+            }
+          },
+          "hit_examples": [
+            {
+              "candidate_unit": 57,
+              "bucket": "tabfact_member",
+              "unit": 199,
+              "jaccard": 0.8983
+            },
+            {
+              "candidate_unit": 198,
+              "bucket": "tabfact_member",
+              "unit": 708,
+              "jaccard": 0.9296
+            },
+            {
+              "candidate_unit": 207,
+              "bucket": "tabfact_member",
+              "unit": 733,
+              "jaccard": 0.9442
+            },
+            {
+              "candidate_unit": 215,
+              "bucket": "tabfact_member",
+              "unit": 755,
+              "jaccard": 0.9333
+            },
+            {
+              "candidate_unit": 316,
+              "bucket": "tabfact_member",
+              "unit": 1141,
+              "jaccard": 1.0
+            }
+          ]
+        }
+      },
+      "bar": "KILL at >= 0.02 of the candidate corpus in either direction",
+      "margin": {
+        "max_fraction_any_unit_type": 0.0,
+        "distance_below_the_kill_bar": 0.02
+      },
+      "reading": "0.0 in both directions on both unit types, at a maximum observed Jaccard of 0.0308 against a 0.3 threshold. The gate is proven able to fire twice: the synthetic spike at 10/10 with 0 baseline hits, and the LIVE control - TabFact's own held-out splits - at 166 of 3391 (0.048953) with max Jaccard 1.0"
+    },
+    "C5": {
+      "title": "Leak suite for constructed members",
+      "verdict": "NOT-APPLICABLE",
+      "why": "C5 is scoped by its own text to 'every constructed lane and every paired-contrast eval'. `tabfact` is a SOURCE corpus: its negatives are counterfactual statements written by TabFact's human annotators in 2020, not produced by a groundrails construction, and the archive ships no pair id, so there is no within-pair, direction, element or family channel to probe and no surface-parity computation defined. The registered conjunction has no computable term here - this is stated rather than proxied",
+      "executor_added_measurement_reported_separately": {
+        "status": "EXECUTOR-ADDED - reported separately from every registered bar; no clause verdict uses it",
+        "probe": "claim-only TF-IDF(1-2gram) + logistic regression, tables disjoint between fit and held-out",
+        "fit_rows": 74185,
+        "heldout_rows": 18400,
+        "heldout_auroc": 0.6031,
+        "reading": "a claim-only read materially above 0.5 means the statement carries label evidence without the table"
+      }
+    },
+    "C6": {
+      "title": "No memorisation channel",
+      "verdict": "PASS",
+      "prescribed_instrument": "C6 is written for an eval scored against a training mix. `tabfact` is a TRAINING member, so its rows share the EVIDENCE field (one table carries several statements) and the table is the key. The clause's PRESCRIBED instrument - overlap between the eval claim and whatever the training mix associates with that pair's key - is computable against exactly one surface, R20-H177_eval_B's TabFact half, and is reported below as (c). (a) and (b) are EXECUTOR-ADDED internal features, reported separately and carrying no clause verdict",
+      "measured": {
+        "surface": "R20-H177_eval_B, TabFact half - the only surface sharing a key with the member",
+        "coverage": 1.0,
+        "rows_covered": 1300,
+        "claim_overlap_auroc": 0.503,
+        "nearest_member_claim_label_auroc": 0.5,
+        "mean_max_jaccard": 0.1699
+      },
+      "bar": "on a clean instrument the value is undefined or at chance; the contaminated R20-H175b eval read 0.6230 at 98% coverage",
+      "margin": {
+        "deviation_from_chance": 0.003,
+        "reference_poisoned_value": 0.623
+      },
+      "reading": "the channel is fully OPEN - 100% of eval_B's TabFact rows have a member claim over the same table - and carries no separating signal, because the member's claims are free-form TabFact statements while eval_B's are template-generated relation flips (mean max-Jaccard 0.1699)",
+      "executor_added_reported_separately": {
+        "leave_one_out_table_label_auroc": 0.2416,
+        "nearest_sibling_label_auroc": 0.2465,
+        "control": {
+          "observed_loo_auroc": 0.2416,
+          "within_table_label_permutation_auroc": [
+            0.2416,
+            0.2416,
+            0.2416,
+            0.2416,
+            0.2416
+          ],
+          "permutation_mean": 0.2416,
+          "reading": "a within-table permutation preserves each table's label QUOTA and destroys every association between a statement and its label. If the permuted AUROC reproduces the observed one, the leave-one-out feature carries the quota alone - the hypergeometric anti-correlation of sampling without replacement - and no statement-level association"
+        },
+        "reading": "both read below chance and both are fully explained by the per-table label QUOTA: permuting labels within each table reproduces the observed 0.2416 in 5 of 5 permutations, so the feature is the hypergeometric anti-correlation of sampling without replacement and carries zero statement-level association. It is also unreachable by a cross-encoder, which scores one (claim, evidence) pair at a time"
+      }
+    },
+    "C7": {
+      "title": "Declared units and volume",
+      "verdict": "PASS",
+      "unit_declared": "ROWS. One archive row = one (statement, serialised table) pair, so for this member rows and (claim, evidence) pairs are the same count. There is no positive/negative twin key in the archive - TabFact does not ship a pair id",
+      "measured": {
+        "rows": 92585,
+        "claim_evidence_pairs": 92585,
+        "distinct_pairs": 92341,
+        "duplicate_rows": 244,
+        "documents_tables": 13182,
+        "positives": 50994,
+        "negatives": 41591,
+        "positive_share": 0.5508,
+        "share_of_the_685670_row_clean_mix": 0.135029
+      },
+      "margin": {
+        "registered_rows": 92585,
+        "measured_rows": 92585,
+        "delta": 0
+      },
+      "reading": "both counts reported and identical by construction; the registered figure is reproduced exactly, with 0 rows dropped by the loader's own `statement length > 10` filter"
+    },
+    "C8": {
+      "title": "Provenance, licence and internal structure",
+      "verdict": "FAIL",
+      "supplied": {
+        "source": "wenhuchen/Table-Fact-Checking (GitHub); the HF dataset `wenhu/tab_fact` is script-only, so the archive was fetched from the GitHub release. Archive member `wenhuchen__Table-Fact-Checking__tabfact__train.parquet`",
+        "licence": "CC-BY-4.0 (tracked sidecar data/external/datasets/dataset-tabfact.md)",
+        "selection_predicate": "train split only; filter statement.str.len_chars() > 10",
+        "chunk_construction": "f'{table_caption}\\n{table_text}'.replace('\\r\\n','\\n').replace('#',' | ')[:chunk_max_chars]",
+        "internal_structure": {
+          "rows": 92585,
+          "distinct_claims": 92304,
+          "rows_on_a_repeated_claim": 555,
+          "claims_carrying_BOTH_labels": 51,
+          "distinct_evidence_untruncated": 13173,
+          "distinct_evidence_truncated_1500": 13109,
+          "distinct_table_id": 13182,
+          "distinct_table_id_stem": 12753,
+          "rows_per_table": {
+            "mean": 7.024,
+            "median": 7,
+            "min": 1,
+            "max": 27
+          },
+          "per_table_positive_share": {
+            "mean": 0.5743,
+            "tables_all_positive": 1857,
+            "tables_all_negative": 322,
+            "tables_mixed": 11003
+          },
+          "evidence_length_chars_untruncated": {
+            "mean": 1113.6,
+            "max": 9330,
+            "rows_over_1500": 20469,
+            "share_over_1500": 0.2211
+          }
+        },
+        "public_repository": "no client or company name appears in this artifact or in any file this verification wrote"
+      },
+      "defects": {
+        "retrieval_date_ABSENT": {
+          "required_by": "C8 - 'Source, licence, retrieval date, and the exact selection predicate'",
+          "state": "no retrieval date is recorded in the tracked sidecar data/external/datasets/dataset-tabfact.md, in scripts/fetch_grounding_datasets.py, or in any manifest",
+          "proxies_measured_and_FLAGGED_as_proxies": {
+            "archive_mtime": "2026-07-31 18:10:02",
+            "sidecar_first_commit_date": "2026-08-05"
+          }
+        },
+        "declared_volume_wrong_on_all_three_splits": {
+          "sidecar_declares": "92,283 train / 12,792 val / 12,779 test",
+          "archive_measured": "92,585 train / 12,851 validation / 12,839 test",
+          "delta": "train -302, validation -59, test -60"
+        },
+        "contradictory_supervision_within_the_member": {
+          "claims": 51,
+          "on_the_SAME_table": 45,
+          "on_different_tables": 6,
+          "rows_involved": 102,
+          "reading": "a claim on different tables carrying different labels is correct behaviour; on the SAME table it is an annotation contradiction the head cannot satisfy"
+        }
+      },
+      "binding_constraint": "the retrieval date the clause requires is not recorded anywhere in the repository, and the tracked provenance sidecar's declared volume disagrees with the archive on all three splits",
+      "fixable": "PIPELINE - correct the sidecar and record the retrieval date; neither touches the corpus"
+    }
+  },
+  "consequence_for_dependants": {
+    "member_weight": "92585 rows, 0.1350 of the 685,670-row clean public mix; present in the R18-H150 flagship mix and in the live R20-H174 draws",
+    "primary_reads_UNAFFECTED": "the blind arena (10 RAGBench subsets) and gold_full read zero in every string form in both directions, and the arena census is 0.0 against a proven-firing gate. No headline number in the campaign is called into question by these failures",
+    "R20-H177_eval_B": "1300 of 2000 rows (0.65) - its entire TabFact half, 650 pairs over 325 documents - sit on documents the member trains on. Its held-out gate is not a clean held-out read on that half. The memorisation feature over that open channel reads at chance (0.503), so the contamination is present but not shown to be exploited",
+    "R17-H143_evalset": "10 of 547 passages identical to member evidence under whitespace normalisation",
+    "antigaming_probe_sets": "14 banked sets, including the R18-H150 flagship pair, each carry 50-62 tables that are near-duplicates of member tables at mean token Jaccard ~0.91 - roughly 4.3-5.3% of each set's ~1,180 tables"
+  },
+  "artifacts": {
+    "report": "experiments/grounding-semantic/contract/tabfact_contract_report.json",
+    "member_slice": "experiments/grounding-semantic/contract/tabfact_member.parquet",
+    "measurements": [
+      "experiments/grounding-semantic/contract/tabfact_load.json",
+      "experiments/grounding-semantic/contract/tabfact_clauses.json",
+      "experiments/grounding-semantic/contract/tabfact_c2.json",
+      "experiments/grounding-semantic/contract/tabfact_c4.json",
+      "experiments/grounding-semantic/contract/tabfact_detail.json"
+    ],
+    "scripts": [
+      "experiments/grounding-semantic/contract/tabfact_load.py",
+      "experiments/grounding-semantic/contract/tabfact_clauses.py",
+      "experiments/grounding-semantic/contract/tabfact_c2.py",
+      "experiments/grounding-semantic/contract/tabfact_c4.py",
+      "experiments/grounding-semantic/contract/tabfact_detail.py",
+      "experiments/grounding-semantic/contract/tabfact_report_build.py"
+    ],
+    "logs": [
+      "logs/contract-tabfact-load.log",
+      "logs/contract-tabfact-clauses.log",
+      "logs/contract-tabfact-c2.log",
+      "logs/contract-tabfact-c4.log",
+      "logs/contract-tabfact-detail.log"
+    ]
+  },
+  "incidental_finding_outside_this_member": {
+    "what": "`R20-H177_evalB_contamination_assessment.py` loads the arm module and R10-H108_lane as two SEPARATE module instances, then calls `H108.public_train()` inside `arm.untruncated_evidence()`. The context manager patches `arm.M59`, which is the ARM's own H108's M59, so the separately-loaded loader stays truncated",
+    "measured": "running that exact structure produced a maximum TabFact chunk length of 1,500 chars with 20,471 rows at the cap; the corrected binding (arm.H108.public_train, as R18-H150_arm_run.make_build_mix does) produced a maximum of 9,330 chars with 20,469 of 92,585 rows over 1,500",
+    "consequence": "that banked assessment's mix block is described as untruncated but its `raw` and `truncated` chunk sets are identical for any member whose evidence exceeds 1,500 chars. Reported, not adjudicated. This verification used the corrected binding throughout"
+  }
+}

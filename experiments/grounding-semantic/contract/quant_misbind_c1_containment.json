@@ -1,0 +1,230 @@
+{
+  "clause": "C1",
+  "head_declared": "the grounding scalar (`task_head`), trained by pointwise / MIL max-over-windows BCE on the 0/1 label",
+  "label_predicate": "label 1 = the evidence states the asserted binding (row_key, column) -> value; label 0 = the evidence states a DIFFERENT value for that binding, and the asserted value is a real cell of a different row (misbound_row) or a different column of the same row (misbound_col). The predicate is support of the asserted proposition, which is the head's own predicate",
+  "label_origin": "construction (R17-H146_lane.py), not a dataset-supplied label",
+  "instrument": "containment(claim, evidence) = |distinct content tokens of the claim present in the evidence| / |distinct content tokens of the claim|, tokenizer [^\\W\\d_]+|\\d+ lowercased - the module used for the 0.9129 reading on the withdrawn R20-H175b contrast lane",
+  "evidence_form": "untruncated chunk (the lane is loaded UNTRUNCATED under the H150/H174 windowed protocol); the 1,500-char truncated form is reported beside it",
+  "legs": {
+    "positive": {
+      "untruncated": {
+        "n": 15000,
+        "mean": 0.688639,
+        "std": 0.165059,
+        "min": 0.25,
+        "p10": 0.5,
+        "p25": 0.571429,
+        "median": 0.692308,
+        "p75": 0.777778,
+        "p90": 1.0,
+        "max": 1.0,
+        "share_ge_0.90": 0.119533,
+        "share_ge_0.95": 0.1086,
+        "share_fully_attested_eq_1.0": 0.1086,
+        "histogram_deciles": [
+          0,
+          0,
+          5,
+          280,
+          1185,
+          3300,
+          3855,
+          2865,
+          1717,
+          1793
+        ]
+      },
+      "truncated_1500": {
+        "n": 15000,
+        "mean": 0.688639,
+        "std": 0.165059,
+        "min": 0.25,
+        "p10": 0.5,
+        "p25": 0.571429,
+        "median": 0.692308,
+        "p75": 0.777778,
+        "p90": 1.0,
+        "max": 1.0,
+        "share_ge_0.90": 0.119533,
+        "share_ge_0.95": 0.1086,
+        "share_fully_attested_eq_1.0": 0.1086,
+        "histogram_deciles": [
+          0,
+          0,
+          5,
+          280,
+          1185,
+          3300,
+          3855,
+          2865,
+          1717,
+          1793
+        ]
+      }
+    },
+    "negative": {
+      "untruncated": {
+        "n": 15000,
+        "mean": 0.688766,
+        "std": 0.164881,
+        "min": 0.25,
+        "p10": 0.5,
+        "p25": 0.571429,
+        "median": 0.692308,
+        "p75": 0.777778,
+        "p90": 1.0,
+        "max": 1.0,
+        "share_ge_0.90": 0.119467,
+        "share_ge_0.95": 0.1086,
+        "share_fully_attested_eq_1.0": 0.1086,
+        "histogram_deciles": [
+          0,
+          0,
+          3,
+          281,
+          1176,
+          3290,
+          3864,
+          2880,
+          1714,
+          1792
+        ]
+      },
+      "truncated_1500": {
+        "n": 15000,
+        "mean": 0.688766,
+        "std": 0.164881,
+        "min": 0.25,
+        "p10": 0.5,
+        "p25": 0.571429,
+        "median": 0.692308,
+        "p75": 0.777778,
+        "p90": 1.0,
+        "max": 1.0,
+        "share_ge_0.90": 0.119467,
+        "share_ge_0.95": 0.1086,
+        "share_fully_attested_eq_1.0": 0.1086,
+        "histogram_deciles": [
+          0,
+          0,
+          3,
+          281,
+          1176,
+          3290,
+          3864,
+          2880,
+          1714,
+          1792
+        ]
+      }
+    }
+  },
+  "bar_readings": {
+    "note": "C1's bar - 'negatives >= 90% attested at a rate within 0.10 of its positives is REJECTED' - is evaluated under all three readings the clause text admits. The rejection region requires BOTH conjuncts.",
+    "reading_A_mean_containment": {
+      "definition": "mean containment on the negative leg >= 0.90 AND |neg - pos| <= 0.10",
+      "negative": 0.688766,
+      "positive": 0.688639,
+      "delta": 0.000127,
+      "conjunct_1_negatives_ge_0.90": false,
+      "conjunct_2_within_0.10_of_positives": true,
+      "rejects": false,
+      "margin_below_0.90": 0.211234,
+      "reference_R20-H175b": 0.9129
+    },
+    "reading_B_share_attested_ge_0.90": {
+      "definition": "share of negatives with containment >= 0.90 must reach 0.90 AND be within 0.10 of the positive share",
+      "negative": 0.119467,
+      "positive": 0.119533,
+      "delta": 6.6e-05,
+      "conjunct_1_negatives_ge_0.90": false,
+      "conjunct_2_within_0.10_of_positives": true,
+      "rejects": false,
+      "margin_below_0.90": 0.780533,
+      "reference_R20-H175b": 0.723
+    },
+    "reading_C_share_fully_attested": {
+      "definition": "share of negatives at containment exactly 1.0",
+      "negative": 0.1086,
+      "positive": 0.1086,
+      "delta": 0.0,
+      "conjunct_1_negatives_ge_0.90": false,
+      "rejects": false,
+      "margin_below_0.90": 0.7914,
+      "reference_R20-H175b": 0.664
+    }
+  },
+  "leg_separability_on_containment": {
+    "auroc_containment_vs_label": 0.499809,
+    "within_pair_identical_containment_share": 0.943933,
+    "within_pair_mean_abs_difference": 0.001947,
+    "reading": "containment cannot separate the legs of this lane and is not expected to - the negative asserts a value the evidence prints, bound elsewhere. The discriminating measurement is the binding-level audit below."
+  },
+  "asserted_numeral_presence": {
+    "positive_leg_cited_value_verbatim_in_evidence": 1.0,
+    "negative_leg_cited_value_verbatim_in_evidence": 1.0,
+    "correct_value_verbatim_in_evidence_all_rows": 1.0,
+    "reading": "1.0 on both legs by construction - the negative's numeral is a real cell of the same table, so a numeral-presence test is also blind"
+  },
+  "per_family": {
+    "misbound_col": {
+      "rows": 9000,
+      "negative_mean": 0.690508,
+      "positive_mean": 0.690589,
+      "negative_share_ge_0.90": 0.113111,
+      "negative_share_fully_attested": 0.102444
+    },
+    "misbound_row": {
+      "rows": 21000,
+      "negative_mean": 0.688019,
+      "positive_mean": 0.687804,
+      "negative_share_ge_0.90": 0.12219,
+      "negative_share_fully_attested": 0.111238
+    }
+  },
+  "per_serial_form": {
+    "json_records": {
+      "rows": 1384,
+      "negative_mean": 0.578857,
+      "positive_mean": 0.578791,
+      "negative_share_ge_0.90": 0.007225,
+      "negative_share_fully_attested": 0.004335
+    },
+    "keyvalue": {
+      "rows": 2946,
+      "negative_mean": 0.584557,
+      "positive_mean": 0.584086,
+      "negative_share_ge_0.90": 0.01222,
+      "negative_share_fully_attested": 0.004752
+    },
+    "markdown": {
+      "rows": 2924,
+      "negative_mean": 0.579291,
+      "positive_mean": 0.579285,
+      "negative_share_ge_0.90": 0.01026,
+      "negative_share_fully_attested": 0.004104
+    },
+    "narrative": {
+      "rows": 8938,
+      "negative_mean": 0.721241,
+      "positive_mean": 0.721176,
+      "negative_share_ge_0.90": 0.180801,
+      "negative_share_fully_attested": 0.174759
+    },
+    "pipe": {
+      "rows": 4730,
+      "negative_mean": 0.57844,
+      "positive_mean": 0.578035,
+      "negative_share_ge_0.90": 0.013953,
+      "negative_share_fully_attested": 0.008034
+    },
+    "row_prose": {
+      "rows": 9078,
+      "negative_mean": 0.800111,
+      "positive_mean": 0.800133,
+      "negative_share_ge_0.90": 0.201146,
+      "negative_share_fully_attested": 0.179114
+    }
+  },
+  "seconds": 3.3
+}

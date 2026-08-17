@@ -1,0 +1,36 @@
+{
+  "clause": "C3",
+  "member_type": "constructed lane - it has no split of its own; the axis that matters is which split of each SOURCE it reads and whether that split is document-disjoint from anything used for evaluation",
+  "sources_read": {
+    "tabfact": "dataset-tabfact.zip, the file matching *__train.parquet ONLY (R17-H144_pairs.tabfact_tables), deduplicated on table_text",
+    "feverous": "tmp/R14_H133_feverous.parquet - an R14-H133 WORKING FILE, mirrored from a community HF export of FEVEROUS; it carries no split column and no licence sidecar in data/external/datasets"
+  },
+  "lane_rows_by_source": {
+    "tabfact": 19890,
+    "feverous": 10110
+  },
+  "lane_documents_by_namespace": {
+    "feverous": 10110,
+    "tabfact": 19890
+  },
+  "tabfact_archive_splits": {
+    "test": 12839,
+    "train": 92585,
+    "validation": 12851
+  },
+  "tabfact_split_axis_measured": {
+    "train_vs_test_shared_table_ids": 0,
+    "test_table_ids": 1695,
+    "train_vs_validation_shared_table_ids": 0,
+    "validation_table_ids": 1696,
+    "train_table_ids": 13182
+  },
+  "lane_tabfact_tables_appearing_in_a_non_train_split": {
+    "test": 0,
+    "validation": 0
+  },
+  "axis_finding": "TabFact's official split axis is measured above from the archive rather than read from the card. The lane reads the train split only; whether that split shares table_ids with val/test is the number that decides whether a TabFact-derived evaluation surface could be document-shared with this lane",
+  "feverous_split_axis": "NOT MEASURABLE from the artifact on disk - the working parquet has no split column; the lane's feverous doc_ids are positional indices into a de-duplicated load order, so they are reproducible only by re-running the loader against that same file",
+  "eval_exclusion_enforced_at_build": "content-based exclusion against R17-H143_evalset (R17-H144 method): 3,516 candidate tables carried eval content and 3,556 tables were dropped before construction - re-measured in C2 against the built lane",
+  "seconds": 0.3
+}

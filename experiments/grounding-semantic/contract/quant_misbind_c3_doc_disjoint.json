@@ -1,0 +1,25 @@
+{
+  "clause": "C3 (document-level disjointness supplement)",
+  "eval_surface": "R17-H143_evalset.parquet - the held-out mechanism eval this lane's source pool was content-excluded against; 35% of its source rows are FEVEROUS",
+  "why_id_matching_is_insufficient": "R17-H144_pairs.evalset_documents records that the FEVEROUS ids are positional over a non-order-stable unique(); 0 of 95 sampled ids resolved to their own table. The lane's 10,110 FEVEROUS rows therefore carry an identifier that is stable only within the build process that wrote it",
+  "lane_documents_by_namespace_distinct": {
+    "feverous": 2539,
+    "tabfact": 4975
+  },
+  "lane_shipped_tables_resolved": 7514,
+  "content_gate_rerun_on_shipped_tables": {
+    "instrument": "R17-H144_pairs.excluded_tables - three distinctive long strings readable in an eval chunk AND >= 60% canonical-numeral overlap, both signals required",
+    "eval_fingerprints": 547,
+    "shipped_tables_matching_an_eval_document": 480,
+    "by_source": {
+      "tabfact": 415,
+      "feverous": 65
+    },
+    "bar": "0 - a shipped table matching an eval document would mean the lane trains on the eval's own table under a different serialization"
+  },
+  "id_level_read_reported_with_caveat": {
+    "lane_doc_ids_in_the_eval_document_set": 0,
+    "caveat": "meaningful for the tabfact namespace only; the feverous half of this number is uninterpretable for the reason above"
+  },
+  "seconds": 8.7
+}

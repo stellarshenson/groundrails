@@ -1,0 +1,494 @@
+{
+  "member": "vitaminc_conformed",
+  "built_from": "vitaminc (tals/vitaminc __train.parquet via R10-H108_lane.public_train under R16-H142_G1_arm.untruncated_evidence)",
+  "contract": "docs/experiments/dataset-contract.md",
+  "generated": "2026-08-17T09:30:27",
+  "compute": "CPU only, CUDA_VISIBLE_DEVICES empty",
+  "input_rows": 370653,
+  "output_rows": 370393,
+  "dropped_rows": 260,
+  "dropped_share": 0.00070146,
+  "member_chunk_equals_raw_archive_evidence": true,
+  "filters": {
+    "F1_c2_evaluation_surface_collision": {
+      "rule": "drop any member row whose claim OR evidence, under any of the three contract string forms, equals any claim OR evidence unit of any registered evaluation surface; plus any row whose (claim, evidence) pair equals a surface pair",
+      "scope_note": "strictly wider than the clause's registered claim-vs-claim / evidence-vs-evidence / pair channel - the cross channel is included so that member text which is verbatim arena DOCUMENT text is removed too",
+      "rows_dropped": 24,
+      "archive_rows": [
+        7977,
+        7979,
+        9615,
+        31828,
+        31830,
+        31839,
+        31841,
+        37739,
+        37741,
+        53469,
+        54419,
+        54421,
+        54432,
+        54434,
+        96578,
+        96580,
+        108359,
+        108361,
+        109153,
+        109154,
+        192929,
+        192931,
+        194254,
+        194255
+      ],
+      "per_surface": {
+        "arena_sample_10_subsets": {
+          "raw": {
+            "registered_channel_claim_vs_surface_claim_rows": 0,
+            "registered_channel_evidence_vs_surface_evidence_rows": 0,
+            "cross_channel_claim_vs_surface_evidence_rows": 1,
+            "cross_channel_evidence_vs_surface_claim_rows": 0,
+            "member_rows_dropped_by_this_surface_form": 1,
+            "surface_units_claims": 2260,
+            "surface_units_evidence": 6784,
+            "surface_units_total": 9043
+          },
+          "truncated_1500": {
+            "registered_channel_claim_vs_surface_claim_rows": 0,
+            "registered_channel_evidence_vs_surface_evidence_rows": 0,
+            "cross_channel_claim_vs_surface_evidence_rows": 1,
+            "cross_channel_evidence_vs_surface_claim_rows": 0,
+            "member_rows_dropped_by_this_surface_form": 1,
+            "surface_units_claims": 2260,
+            "surface_units_evidence": 6778,
+            "surface_units_total": 9037
+          },
+          "ws_collapsed_casefold": {
+            "registered_channel_claim_vs_surface_claim_rows": 0,
+            "registered_channel_evidence_vs_surface_evidence_rows": 0,
+            "cross_channel_claim_vs_surface_evidence_rows": 1,
+            "cross_channel_evidence_vs_surface_claim_rows": 0,
+            "member_rows_dropped_by_this_surface_form": 1,
+            "surface_units_claims": 2260,
+            "surface_units_evidence": 6783,
+            "surface_units_total": 9042
+          }
+        },
+        "arena_full_test_splits": {
+          "raw": {
+            "registered_channel_claim_vs_surface_claim_rows": 0,
+            "registered_channel_evidence_vs_surface_evidence_rows": 0,
+            "cross_channel_claim_vs_surface_evidence_rows": 1,
+            "cross_channel_evidence_vs_surface_claim_rows": 0,
+            "member_rows_dropped_by_this_surface_form": 1,
+            "surface_units_claims": 10847,
+            "surface_units_evidence": 14641,
+            "surface_units_total": 25482
+          },
+          "truncated_1500": {
+            "registered_channel_claim_vs_surface_claim_rows": 0,
+            "registered_channel_evidence_vs_surface_evidence_rows": 0,
+            "cross_channel_claim_vs_surface_evidence_rows": 1,
+            "cross_channel_evidence_vs_surface_claim_rows": 0,
+            "member_rows_dropped_by_this_surface_form": 1,
+            "surface_units_claims": 10847,
+            "surface_units_evidence": 14635,
+            "surface_units_total": 25476
+          },
+          "ws_collapsed_casefold": {
+            "registered_channel_claim_vs_surface_claim_rows": 0,
+            "registered_channel_evidence_vs_surface_evidence_rows": 0,
+            "cross_channel_claim_vs_surface_evidence_rows": 1,
+            "cross_channel_evidence_vs_surface_claim_rows": 0,
+            "member_rows_dropped_by_this_surface_form": 1,
+            "surface_units_claims": 10846,
+            "surface_units_evidence": 14640,
+            "surface_units_total": 25480
+          }
+        },
+        "R19-H166-A1_vitaminc_holdout": {
+          "raw": {
+            "registered_channel_claim_vs_surface_claim_rows": 0,
+            "registered_channel_evidence_vs_surface_evidence_rows": 0,
+            "cross_channel_claim_vs_surface_evidence_rows": 0,
+            "cross_channel_evidence_vs_surface_claim_rows": 11,
+            "member_rows_dropped_by_this_surface_form": 11,
+            "surface_units_claims": 37470,
+            "surface_units_evidence": 30707,
+            "surface_units_total": 68151
+          },
+          "truncated_1500": {
+            "registered_channel_claim_vs_surface_claim_rows": 0,
+            "registered_channel_evidence_vs_surface_evidence_rows": 0,
+            "cross_channel_claim_vs_surface_evidence_rows": 0,
+            "cross_channel_evidence_vs_surface_claim_rows": 11,
+            "member_rows_dropped_by_this_surface_form": 11,
+            "surface_units_claims": 37470,
+            "surface_units_evidence": 30707,
+            "surface_units_total": 68151
+          },
+          "ws_collapsed_casefold": {
+            "registered_channel_claim_vs_surface_claim_rows": 4,
+            "registered_channel_evidence_vs_surface_evidence_rows": 8,
+            "cross_channel_claim_vs_surface_evidence_rows": 0,
+            "cross_channel_evidence_vs_surface_claim_rows": 11,
+            "member_rows_dropped_by_this_surface_form": 23,
+            "surface_units_claims": 37464,
+            "surface_units_evidence": 30694,
+            "surface_units_total": 68131
+          }
+        }
+      },
+      "pair_channel": {
+        "arena_sample_10_subsets": {
+          "computable": false
+        },
+        "arena_full_test_splits": {
+          "computable": false
+        },
+        "gold_full": {
+          "computable": false
+        },
+        "R17-H143_evalset.parquet": {
+          "computable": true,
+          "member_rows_hit_per_form": {
+            "raw": 0,
+            "truncated_1500": 0,
+            "ws_collapsed_casefold": 0
+          }
+        },
+        "R20-H177_eval_B.parquet": {
+          "computable": true,
+          "member_rows_hit_per_form": {
+            "raw": 0,
+            "truncated_1500": 0,
+            "ws_collapsed_casefold": 0
+          }
+        },
+        "R20-H177_eval_C.parquet": {
+          "computable": true,
+          "member_rows_hit_per_form": {
+            "raw": 0,
+            "truncated_1500": 0,
+            "ws_collapsed_casefold": 0
+          }
+        },
+        "R20-H175b_qlane_eval.parquet": {
+          "computable": true,
+          "member_rows_hit_per_form": {
+            "raw": 0,
+            "truncated_1500": 0,
+            "ws_collapsed_casefold": 0
+          }
+        },
+        "R20-H175b_qlane_eval_clean.parquet": {
+          "computable": true,
+          "member_rows_hit_per_form": {
+            "raw": 0,
+            "truncated_1500": 0,
+            "ws_collapsed_casefold": 0
+          }
+        },
+        "R20-H175b_qlane_eval_clean_prefix.parquet": {
+          "computable": true,
+          "member_rows_hit_per_form": {
+            "raw": 0,
+            "truncated_1500": 0,
+            "ws_collapsed_casefold": 0
+          }
+        },
+        "R11-H117_heldout_pairs.parquet": {
+          "computable": true,
+          "member_rows_hit_per_form": {
+            "raw": 0,
+            "truncated_1500": 0,
+            "ws_collapsed_casefold": 0
+          }
+        },
+        "R17-H148_probe.parquet": {
+          "computable": true,
+          "member_rows_hit_per_form": {
+            "raw": 0,
+            "truncated_1500": 0,
+            "ws_collapsed_casefold": 0
+          }
+        },
+        "R17-H149_probe.parquet": {
+          "computable": true,
+          "member_rows_hit_per_form": {
+            "raw": 0,
+            "truncated_1500": 0,
+            "ws_collapsed_casefold": 0
+          }
+        },
+        "R18-H150_unitswap_probe.parquet": {
+          "computable": true,
+          "member_rows_hit_per_form": {
+            "raw": 0,
+            "truncated_1500": 0,
+            "ws_collapsed_casefold": 0
+          }
+        },
+        "R20-G0b_composed_probes.parquet": {
+          "computable": false
+        },
+        "R15_L1_bindprobe_pairs.parquet": {
+          "computable": false
+        },
+        "R15_P1_typeprobe_quads.parquet": {
+          "computable": false
+        },
+        "R19_findver_lane.parquet": {
+          "computable": true,
+          "member_rows_hit_per_form": {
+            "raw": 0,
+            "truncated_1500": 0,
+            "ws_collapsed_casefold": 0
+          }
+        },
+        "R19-H166-A1_vitaminc_holdout": {
+          "computable": true,
+          "member_rows_hit_per_form": {
+            "raw": 0,
+            "truncated_1500": 0,
+            "ws_collapsed_casefold": 0
+          }
+        }
+      }
+    },
+    "F2_c1_structural_label_conflict": {
+      "rule": "drop every row of any RAW (claim, evidence) pair that appears in the member under BOTH binary labels - amendment C-A1's decisive structural test, counted member-wide as its live control counts it",
+      "raw_pairs_conflicting": 115,
+      "rows_dropped": 236,
+      "share_of_member_rows": 0.00063671,
+      "folded_form_diagnostic": {
+        "status": "DIAGNOSTIC ONLY, not a drop criterion",
+        "why": "a pair identical only after whitespace-collapse and case-fold is still separable by a function of the raw strings, so it is not the structural condition",
+        "pairs": 118,
+        "rows": 242
+      },
+      "why_this_filter_exists": "the banked verification measured the structural condition only WITHIN case_id contrastive groups, where it reads 0 of 111,323. Measured member-wide - the way amendment C-A1's live positive control counts it (0 pairs on every clean lane, 8,986 of 8,986 on the withdrawn poisoned lane) - it reads 115 pairs on the unconformed member"
+    }
+  },
+  "filter_overlap_rows": 0,
+  "f1_dropped_examples": [
+    {
+      "archive_row": 7977,
+      "claim": "The movie Abraham Lincoln : Vampire Hunter had mixed reviews .",
+      "evidence": "The film received mixed to negative reviews .",
+      "label": 0.0,
+      "filter": "F1"
+    },
+    {
+      "archive_row": 7979,
+      "claim": "The movie Abraham Lincoln : Vampire Hunter had mixed to negative reviews .",
+      "evidence": "The film received mixed to negative reviews .",
+      "label": 1.0,
+      "filter": "F1"
+    },
+    {
+      "archive_row": 9615,
+      "claim": ".",
+      "evidence": "born 17 April 1987 ) is a footballer who plays for Italian club Juventus on loan from German club Bayern Munich , and for the Morocco national team , as a centre back .",
+      "label": 0.0,
+      "filter": "F1"
+    },
+    {
+      "archive_row": 31828,
+      "claim": "Based on less than 20 critics , the film scored above 47.5/100 .",
+      "evidence": "`` On Metacritic , the film has a weighted average score of 47 out of 100 , based on 21 critics , indicating `` '' mixed or average reviews '' '' .  ''",
+      "label": 0.0,
+      "filter": "F1"
+    },
+    {
+      "archive_row": 31830,
+      "claim": "Based on more than 20 critics , the film scored below 47.5/100 .",
+      "evidence": "`` On Metacritic , the film has a weighted average score of 47 out of 100 , based on 21 critics , indicating `` '' mixed or average reviews '' '' .  ''",
+      "label": 1.0,
+      "filter": "F1"
+    },
+    {
+      "archive_row": 31839,
+      "claim": "Based on less than 22 critics , the film scored below 47.5/100 .",
+      "evidence": "`` On Metacritic , the film has a weighted average score of 47 out of 100 , based on 21 critics , indicating `` '' mixed or average reviews '' '' .  ''",
+      "label": 1.0,
+      "filter": "F1"
+    },
+    {
+      "archive_row": 31841,
+      "claim": "Based on more than 22 critics , the film scored above 47.5/100 .",
+      "evidence": "`` On Metacritic , the film has a weighted average score of 47 out of 100 , based on 21 critics , indicating `` '' mixed or average reviews '' '' .  ''",
+      "label": 0.0,
+      "filter": "F1"
+    },
+    {
+      "archive_row": 37739,
+      "claim": "The movie Think Like a Man had mixed to negative reviews .",
+      "evidence": "The film received mixed to negative reviews .",
+      "label": 1.0,
+      "filter": "F1"
+    },
+    {
+      "archive_row": 37741,
+      "claim": "The movie Think Like a Man had mixed reviews .",
+      "evidence": "The film received mixed to negative reviews .",
+      "label": 0.0,
+      "filter": "F1"
+    },
+    {
+      "archive_row": 53469,
+      "claim": "Madea 's Witness Protection received mixed reviews .",
+      "evidence": "The film received mixed to negative reviews .",
+      "label": 1.0,
+      "filter": "F1"
+    },
+    {
+      "archive_row": 54419,
+      "claim": "Bad Santa 2 scored more than 56 % on Metacritic .",
+      "evidence": "On Metacritic , the film has a score of 72 out of 100 , based on 28 critics , indicating `` Generally Favorable Reviews '' .",
+      "label": 1.0,
+      "filter": "F1"
+    },
+    {
+      "archive_row": 54421,
+      "claim": "Bad Santa 2 scored less than 56 % on Metacritic .",
+      "evidence": "On Metacritic , the film has a score of 72 out of 100 , based on 28 critics , indicating `` Generally Favorable Reviews '' .",
+      "label": 0.0,
+      "filter": "F1"
+    },
+    {
+      "archive_row": 54432,
+      "claim": "Bad Santa 2 scored under 50/100 on Metacritic .",
+      "evidence": "On Metacritic , the film has a score of 72 out of 100 , based on 28 critics , indicating `` Generally Favorable Reviews '' .",
+      "label": 0.0,
+      "filter": "F1"
+    },
+    {
+      "archive_row": 54434,
+      "claim": "Bad Santa 2 scored over 50/100 on Metacritic .",
+      "evidence": "On Metacritic , the film has a score of 72 out of 100 , based on 28 critics , indicating `` Generally Favorable Reviews '' .",
+      "label": 1.0,
+      "filter": "F1"
+    },
+    {
+      "archive_row": 96578,
+      "claim": "Reviews of the film Passenger 57 were mixed to negative .",
+      "evidence": "The film received mixed to negative reviews .",
+      "label": 1.0,
+      "filter": "F1"
+    },
+    {
+      "archive_row": 96580,
+      "claim": "Reviews of the film Passenger 57 were mixed .",
+      "evidence": "The film received mixed to negative reviews .",
+      "label": 0.0,
+      "filter": "F1"
+    },
+    {
+      "archive_row": 108359,
+      "claim": "The Lovely Bones received bleak reviews .",
+      "evidence": "The film received mixed to negative reviews .",
+      "label": 0.0,
+      "filter": "F1"
+    },
+    {
+      "archive_row": 108361,
+      "claim": "The Lovely Bones received either bleak of diverse reviews .",
+      "evidence": "The film received mixed to negative reviews .",
+      "label": 1.0,
+      "filter": "F1"
+    },
+    {
+      "archive_row": 109153,
+      "claim": "The Pretty Reckless is a Country band .",
+      "evidence": "The Pretty Reckless is an American Country band from New York City .",
+      "label": 1.0,
+      "filter": "F1"
+    },
+    {
+      "archive_row": 109154,
+      "claim": "The Pretty Reckless is a Country band .",
+      "evidence": "The Pretty Reckless is an American rock band from New York City .",
+      "label": 0.0,
+      "filter": "F1"
+    },
+    {
+      "archive_row": 192929,
+      "claim": "Fans gave the film X-Men Origins : Wolverine mixed to negative reviews .",
+      "evidence": "The film received mixed to negative reviews .",
+      "label": 1.0,
+      "filter": "F1"
+    },
+    {
+      "archive_row": 192931,
+      "claim": "Critics gave the film X-Men Origins : Wolverine mixed to negative reviews .",
+      "evidence": "The film received mixed to negative reviews .",
+      "label": 0.0,
+      "filter": "F1"
+    },
+    {
+      "archive_row": 194254,
+      "claim": "Xi Jinping is the General Secretary of the Chinese Communist Party .",
+      "evidence": "Chinese President Xi Jinping warned about a 'grave situation ' facing China .",
+      "label": 0.0,
+      "filter": "F1"
+    },
+    {
+      "archive_row": 194255,
+      "claim": "Xi Jinping is the General Secretary of the Chinese Communist Party .",
+      "evidence": "Chinese Communist Party General Secretary Xi Jinping warned about a 'grave situation ' facing China .",
+      "label": 1.0,
+      "filter": "F1"
+    }
+  ],
+  "evaluation_surfaces_used_as_reference": [
+    "arena_sample_10_subsets",
+    "arena_full_test_splits",
+    "gold_full",
+    "R17-H143_evalset.parquet",
+    "R20-H177_eval_B.parquet",
+    "R20-H177_eval_C.parquet",
+    "R20-H175b_qlane_eval.parquet",
+    "R20-H175b_qlane_eval_clean.parquet",
+    "R20-H175b_qlane_eval_clean_prefix.parquet",
+    "R11-H117_heldout_pairs.parquet",
+    "R17-H148_probe.parquet",
+    "R17-H149_probe.parquet",
+    "R18-H150_unitswap_probe.parquet",
+    "R20-G0b_composed_probes.parquet",
+    "R15_L1_bindprobe_pairs.parquet",
+    "R15_P1_typeprobe_quads.parquet",
+    "R19_findver_lane.parquet",
+    "R19-H166-A1_vitaminc_holdout"
+  ],
+  "h166a1_holdout": {
+    "status": "REBUILT from the UNCONFORMED mix through the banked builder R20_baseline_legs.vitaminc_holdout - the surface the queued arm reads. It is NOT modified by this pipeline",
+    "rows": 38126,
+    "construction_report": {
+      "candidate_pool_rows": 118251,
+      "after_key_filter": 76324,
+      "after_mix_text_filter": 76324,
+      "raw_key_collisions_vs_train": {
+        "unique_id": 0,
+        "case_id": 0,
+        "page": 1214,
+        "claim": 110,
+        "evidence": 221,
+        "wiki_revision_id": 41488
+      },
+      "verify_zero_overlap": {
+        "shared_unique_id_with_vitaminc_train": 0,
+        "shared_case_id_with_vitaminc_train": 0,
+        "shared_page_with_vitaminc_train": 0,
+        "shared_claim_with_vitaminc_train": 0,
+        "shared_evidence_with_vitaminc_train": 0,
+        "shared_wiki_revision_id_with_vitaminc_train": 0,
+        "shared_claim_with_flagship_mix": 0,
+        "shared_evidence_with_flagship_mix": 0,
+        "shared_pair_with_flagship_mix": 0
+      }
+    }
+  },
+  "what_was_NOT_done": "no label changed, no leg re-weighted, no clause threshold moved, no instrument re-tuned, no evaluation surface rewritten or re-filtered. The pipeline only removes member rows",
+  "artifact": "experiments/grounding-semantic/contract/vitaminc_conformed.parquet",
+  "seconds": 55.1
+}

@@ -1,0 +1,12 @@
+{
+  "full_holdout_rows": 38126,
+  "colliding_rows_in_built_holdout": 1,
+  "detail": [
+    {
+      "split": "test",
+      "label": "REFUTES",
+      "page": "Taylor Momsen",
+      "unique_id": "5ede072fc9e77c00084d2dd4_2"
+    }
+  ]
+}

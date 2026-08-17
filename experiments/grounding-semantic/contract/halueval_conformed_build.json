@@ -1,0 +1,54 @@
+{
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates.",
+  "member": "halueval_conformed",
+  "built_from": "the `halueval` DANN group of the assembled training mix, loaded through R16-H142_G1_arm.H108.public_train() under untruncated_evidence(), pair structure recovered by an archive replay PROVED aligned row-for-row",
+  "conforming_pipeline": {
+    "F1_pair_level_selection": {
+      "strategy": "peel_shape_margin",
+      "what": "same, but the margin comes from the CONTENT-MASKED shape probe, so the peel does not select on topical content",
+      "unit": "PAIRS - both legs of a kept pair are kept, so the evidence field stays byte-identical across the legs and the C1 / C6 pair tests remain computable",
+      "pairs_kept": 240,
+      "rows_kept": 480,
+      "retention_rows": 0.012,
+      "retention_pairs": 0.012
+    }
+  },
+  "measured_on_the_variant": {
+    "rows": 480,
+    "pairs": 240,
+    "retention_rows": 0.012,
+    "claim_only_probe_auroc": 0.5395,
+    "within_pair_claim_only_accuracy": 0.5708,
+    "surface_parity_C_A1": {
+      "auroc": {
+        "claim_char_length": 0.4723,
+        "claim_token_count": 0.481,
+        "chunk_char_length": 0.5,
+        "claim_chunk_containment": 0.9141
+      },
+      "report_only": [
+        "claim_chunk_containment"
+      ],
+      "worst_barred_deviation": 0.0277,
+      "pass": true
+    },
+    "half_composition": {
+      "qa": 440,
+      "summarization": 40
+    },
+    "clears_claim_only_bar_0.55": true,
+    "clears_within_pair_bar_0.60": true,
+    "per_half_auroc": {
+      "qa": 0.5441
+    }
+  },
+  "columns": [
+    "pair_id",
+    "half",
+    "label",
+    "claim",
+    "chunk",
+    "chunk_trunc_1500"
+  ],
+  "artifact": "experiments/grounding-semantic/contract/halueval_conformed.parquet"
+}

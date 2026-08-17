@@ -1,0 +1,793 @@
+{
+ "artifact": "contract/mix_integrity.json",
+ "companion": "contract/MIX_INTEGRITY.md",
+ "question": "is the dataset pristine and fit for the task?",
+ "method": "synthesis only - nothing was re-measured; every figure is transcribed from a banked artifact named in sources",
+ "compute": "CPU only, CUDA_VISIBLE_DEVICES empty, HF_HUB_OFFLINE=1. GPUs 0/1/2 carry live R20-H174 training draws and were not touched",
+ "generated": "2026-08-17",
+ "note": "Numbers recorded, not adjudicated - the coordinator adjudicates.",
+ "answer": {
+  "headline": "The evaluation surfaces that carry the campaign's headline are clean on every string channel; the training mix is not conforming.",
+  "evaluation": "blind arena reads 0 shared strings against the 760,618-row mix on responses and response sentences in all six form pairings both directions; gold_full reads 0 on every channel, form and direction. The residual arena finding is 17 of 6,784 distinct documents (0.2506%) verbatim inside training chunks, all from halueval, all landing in hotpotqa, touching 16 of 2,264 responses (0.7067%); the 8-gram census reads 0.00649 against a 0.02 KILL and a 0.005 WARN.",
+  "training": "nine of eleven members non-conforming under the amended contract, 644,988 of 760,618 rows (84.80%). No loaded member reproduces the withdrawn R20-H175b poisoning signature: C1 structural fires on 165 pairs / 336 rows (0.0442%) against a positive control firing at 8,986 pairs / 17,972 rows exactly as registered.",
+  "shortcut": "253,305 flagship rows (35.12%) sit in members whose label is recoverable from the claim string alone above 0.60 - halueval 0.9519, ragtruth_en 0.7965, ragtruth_translated 0.7771-0.7916, tabfact 0.6031; frame_reject 1.0000 adds 8,000 portfolio rows.",
+  "headline_number_under_test": {
+   "blind_arena_mean_k6": 0.71218,
+   "se": 0.00324,
+   "margin_over_incumbent": 0.03255,
+   "incumbent": 0.67963,
+   "read_on": "the R18-H150 flagship recipe over the 721,210-row / 14-group mix",
+   "status": "not contaminated on any string channel; a sub-1% verbatim document exposure exists and its effect on the number is UNMEASURED"
+  }
+ },
+ "mixes": {
+  "flagship": {
+   "rows": 721210,
+   "dann_groups": 14,
+   "lanes": "R18-H150_arm_run.LANES",
+   "carries": "the 0.71218 headline"
+  },
+  "portfolio": {
+   "rows": 760618,
+   "dann_groups": 17,
+   "lanes": "R20-H174_arm_run.LANES",
+   "carries": "draw 1 banked 0.71806; draws 2/3/4 in flight"
+  },
+  "relation": "the 721,210 flagship mix is a strict tag-subset of the 760,618 portfolio mix, so a zero measured on the superset is a zero on the flagship"
+ },
+ "evaluation_integrity": {
+  "blind_arena": {
+   "surface": "10 RAGBench subsets, 2,264 responses, 6,784 distinct documents, frozen R8-H77 gate",
+   "C2_exact_responses_in_mix": {
+    "value": 0,
+    "of": 2264,
+    "bar": 0,
+    "clears": true
+   },
+   "C2_exact_response_sentences_in_mix": {
+    "value": 0,
+    "of": 10506,
+    "bar": 0,
+    "clears": true
+   },
+   "C2_exact_documents_in_mix": {
+    "value": 1,
+    "of": 8645,
+    "bar": 0,
+    "clears": false,
+    "characterisation": "a one-character punctuation-only string in three finqa document slots matching a vitaminc claim - degenerate"
+   },
+   "C2_document_id_channel": {
+    "raw_key_families": 3,
+    "stem_key_families": 5,
+    "characterisation": "every colliding family is bare-numeric on both sides (row_id x ragtruth_en.id, x psiloqa.wiki_title, x vitaminc.FEVER_id, x vitaminc.page, x quant_misbind.row_key) - identifier-space collisions, not shared documents"
+   },
+   "C4_8gram_census": {
+    "value": 0.00648585,
+    "hits": 44,
+    "scorable": 6721,
+    "too_short": 63,
+    "kill_bar": 0.02,
+    "warn_bar": 0.005,
+    "verdict": "WARN",
+    "max_jaccard": 0.7903
+   },
+   "C4_reverse_mix_units_hit": 55,
+   "verbatim_documents_inside_training_chunks": {
+    "value": 17,
+    "of_distinct": 6784,
+    "fraction": 0.002506,
+    "all_from_mix_group": "halueval",
+    "all_in_arena_subset": "hotpotqa"
+   },
+   "responses_retrieving_a_verbatim_document": {
+    "value": 16,
+    "of": 2264,
+    "fraction": 0.007067
+   },
+   "containment_ladder": {
+    "ge_0.10": {
+     "documents": 143,
+     "responses": 117
+    },
+    "ge_0.25": {
+     "documents": 85,
+     "responses": 74
+    },
+    "ge_0.50": {
+     "documents": 35,
+     "responses": 32
+    },
+    "eq_1.00": {
+     "documents": 17,
+     "responses": 16
+    }
+   },
+   "per_subset_exposure": {
+    "hotpotqa": {
+     "documents_hit": 42,
+     "documents": 995,
+     "responses_verbatim": 16,
+     "responses": 250,
+     "responses_at_containment_ge_0.10": 102
+    },
+    "hagrid": {
+     "documents_hit": 2,
+     "documents": 654,
+     "responses_verbatim": 0,
+     "responses_at_containment_ge_0.10": 15
+    },
+    "other_eight_subsets": "0 at every threshold"
+   },
+   "load_bearing_read": "NOT MEASURED - needs per-row arena scores for the banked checkpoints, a GPU read; R21-H179 is launched and queued behind three live draws",
+   "why_containment_was_added": "the live re-chunk control reads Jaccard 0.2796-0.8841 on passages that are 0.9891-1.0000 contained, so the 44-document Jaccard count is a lower bound"
+  },
+  "gold_full": {
+   "surface": "2,752 claims / 123,579 loaded rows / 619 documents, label base rate 0.7144, in-domain hold bar >= 0.84",
+   "C2_worst_colliding_gold_units": {
+    "value": 0,
+    "bar": 0,
+    "clears": true
+   },
+   "C2_worst_colliding_mix_rows": {
+    "value": 0,
+    "bar": 0,
+    "clears": true
+   },
+   "C4_claims_max_fraction": {
+    "value": 0.0,
+    "bar": 0.02,
+    "clears": true
+   },
+   "C4_evidence_max_fraction": {
+    "value": 0.0,
+    "bar": 0.02,
+    "clears": true
+   },
+   "document_channel_max_mix_chunk_containment": 0.018349,
+   "document_channel_max_gold_document_coverage": 0.000246,
+   "C6_mix_supplied_key_coverage": {
+    "value": 0.0,
+    "status": "NOT-APPLICABLE under C-A2, no proxy substituted"
+   },
+   "reproduction_of_banked_audit": {
+    "headline_numbers_reproducing": 29,
+    "checked": 30,
+    "the_one_mismatch": "the banked claims-channel spike control is order-dependent: it injects each group's lexicographically smallest claim and halueval's normalises to zero tokens, carrying no 8-gram. Rebuilt with n-gram-bearing units the gate detects 10 of 10. Control defect, not gate defect"
+   },
+   "statistical_caveat": {
+    "label_icc_across_documents": 0.7821,
+    "design_effect": 3.695,
+    "effective_sample_size": 744.8,
+    "nominal_n": 2752,
+    "ci95_halfwidth_at_p_0.84_nominal": 0.0137,
+    "ci95_halfwidth_at_p_0.84_effective": 0.0263,
+    "document_keyed_leave_one_out_accuracy": 0.907,
+    "majority_baseline": 0.7144,
+    "limitation": "computed on the LABEL; no per-claim model correctness vector is banked, so it bounds inflation on a model read only to the extent errors follow the label"
+   },
+   "internal_duplication": {
+    "loaded_rows": 123579,
+    "distinct_owner_chunk_pairs": 68434,
+    "repeated_rows": 55145,
+    "fraction_repeated": 0.4462
+   }
+  },
+  "mechanism_evals": {
+   "count_verified": 16,
+   "plus_separately_verified": [
+    "R20-H177_eval_B (rebuilt)",
+    "R17-H143_evalset",
+    "blind arena",
+    "gold_full"
+   ],
+   "universal": "every one of the sixteen reads 0 against the blind arena and 0 against gold_full in all six string forms, both directions",
+   "clean_on_every_channel": [
+    "findver",
+    "eval_C",
+    "h148_itemindex_probe",
+    "h149_roleswap_probe",
+    "h175b_eval_clean (C2 clean; C1 structural fires 44 of 44 by construction)",
+    "h175b_eval_clean_prefix (C2 clean; C1 structural fires 16 of 16 by construction)",
+    "R20-H177_eval_B_rebuilt"
+   ],
+   "carrying_a_live_or_standing_gate": {
+    "antigaming_nearmiss_bindrow": {
+     "reads": "the anti-gaming hold, near-miss >= 0.7438, a recorded DIAGNOSTIC since the 2026-08-16 author ruling suspended the band; bind_row >= 0.95 rides the same file",
+     "documents_in_mix_stem": "59 of 1173 (5.03%), 166 of 3200 rows",
+     "claims_in_mix": "15 of 3186, all quant_misbind",
+     "C5_claim_only": 0.6217,
+     "C5_within_pair": 0.6206,
+     "instrument_identity": "near-miss half byte-identical (Jaccard 1.0) across all 14 banked arm files; bind_row half a different 600-pair set on every arm (Jaccard 0.0017-0.0127)"
+    },
+    "h166a1_vitaminc_holdout": {
+     "reads": "R19-H166-A1 PRIMARY, held-out VitaminC REFUTES-vs-NEI AUROC >= 0.85, baseline leg 0.3935, arm still queued",
+     "C1_structural_pairs": 6,
+     "rows_in_mix": "3 of 38126 (0.008%), visible only under whitespace normalisation",
+     "document_channel": "0 of 5553"
+    },
+    "findver": {
+     "reads": "R20-H176 CONFIRMED verdict",
+     "found": "nothing on any channel"
+    },
+    "eval_C": {
+     "reads": "R20-H177 Lane C PRIMARY >= 0.80, baseline leg 0.9085, lane disposition open",
+     "found": "nothing on any channel"
+    },
+    "R20-H177_eval_B_rebuilt": {
+     "reads": "R20-H177 Lane B PRIMARY >= 0.80",
+     "measured": "2,000 rows / 1,000 pairs / 465 documents / 727 passages; 0 on every channel against the mix, lane B, the arena and gold_full",
+     "power": "Hanley-McNeil 2 SE = 0.0198 at AUROC 0.80",
+     "original_eval_B": "325 of 325 TabFact document stems in the member, 1,300 of 2,000 rows (65%)"
+    }
+   },
+   "contaminated_but_no_live_arm_reads_it": {
+    "R17-H143_evalset": {
+     "documents": "352 of 352 TabFact documents inside the mix",
+     "C4_census": {
+      "value": 0.06947,
+      "kill_bar": 0.02,
+      "clears": false
+     },
+     "load_bearing_delta_string_exclusion": 0.00241,
+     "load_bearing_delta_ngram_exclusion": 0.007379,
+     "banked_auroc_reproduced_before_exclusion": true
+    },
+    "h117_heldout_pairs": "306 of 1933 evidence passages (620 of 4000 rows, 15.5%) and 286 of 4000 claims inside the mix, all from tabfact",
+    "h150_unitswap_probe": "27 of 42 documents (196 of 280 rows, 70%) inside the mix on the raw document key, against its registration as document-disjoint",
+    "r15_bindprobe": "41 of 804 document stems, 28 of 3852 claims, 3 evidence tables byte-identical to a mix passage; claim-only 0.5508",
+    "r15_typeprobe": "54 of 1136 document stems, 21 of 16507 claims; C1 structural fires on 6 pairs"
+   },
+   "in_domain_ragtruth_holds": {
+    "EN_hold_surface": "RAGTruth __test split: 0 shared context strings train-vs-test, 2 of 450 test contexts at 8-gram Jaccard >= 0.3 (0.44%)",
+    "nonEN_hold_surface": "7 translated __test splits: 0 shared prompt strings in every language, 1-4 shared answer strings per language (0.037-0.149% of test answers)"
+   }
+  }
+ },
+ "training_integrity": {
+  "per_member": {
+   "vitaminc": {
+    "rows": 370653,
+    "share_of_flagship_721210": 0.513932,
+    "share_of_portfolio_760618": 0.487305,
+    "state": "conformable, rebuild on disk passes",
+    "amended_failed_clauses": [
+     "C2"
+    ],
+    "binding_number": "2 units against the H166-A1 holdout under whitespace normalisation; conforming rebuild 370,393 rows, cost 260 (0.0701%)",
+    "claim_only_auroc": 0.4998,
+    "claim_only_bar": 0.55
+   },
+   "ragtruth_translated": {
+    "rows": 105630,
+    "share_of_flagship_721210": 0.146462,
+    "share_of_portfolio_760618": 0.138874,
+    "state": "CONFORMING pending the C5 applicability ruling",
+    "amended_failed_clauses": [],
+    "binding_number": "no failing clause; claim-only 0.7771-0.7916 across 7 languages if C5 is ruled to bind",
+    "claim_only_auroc": 0.7916,
+    "claim_only_bar": 0.55
+   },
+   "tabfact": {
+    "rows": 92585,
+    "share_of_flagship_721210": 0.128375,
+    "share_of_portfolio_760618": 0.121723,
+    "state": "conformable, rebuild on disk passes all eight",
+    "amended_failed_clauses": [
+     "C2",
+     "C3",
+     "C8"
+    ],
+    "binding_number": "conforming rebuild 86,206 rows, cost 6,379 (6.89%); the rebuild also removes all 45 structural C1 hits",
+    "claim_only_auroc": 0.6031,
+    "claim_only_bar": 0.55
+   },
+   "psiloqa": {
+    "rows": 61712,
+    "share_of_flagship_721210": 0.085567,
+    "share_of_portfolio_760618": 0.081134,
+    "state": "conformable, rebuild closes C2 but is incomplete",
+    "amended_failed_clauses": [
+     "C2"
+    ],
+    "binding_number": "485 + 406 passages shared with the withdrawn R20-H175b evals; rebuild 50,474 rows, of which 9,859 buy a bar C-A2 struck; rebuild still carries 5 structural C1 pairs",
+    "claim_only_auroc": null,
+    "claim_only_bar": 0.55
+   },
+   "halueval": {
+    "rows": 40000,
+    "share_of_flagship_721210": 0.055462,
+    "share_of_portfolio_760618": 0.052589,
+    "state": "NOT CONFORMABLE at usable size",
+    "amended_failed_clauses": [
+     "C5"
+    ],
+    "binding_number": "claim-only 0.9519; best subset clearing C5's pooled conjunction is 480 rows (1.2%)",
+    "claim_only_auroc": 0.9519,
+    "claim_only_bar": 0.55
+   },
+   "quant_misbind": {
+    "rows": 30000,
+    "share_of_flagship_721210": 0.041597,
+    "share_of_portfolio_760618": 0.039442,
+    "state": "conformable, rebuild on disk passes all eight",
+    "amended_failed_clauses": [
+     "C2",
+     "C3",
+     "C8"
+    ],
+    "binding_number": "conforming rebuild 18,652 rows, cost 11,348 (37.83%), the FEVEROUS third dropped whole",
+    "claim_only_auroc": 0.504871,
+    "claim_only_bar": 0.55
+   },
+   "ragtruth_en": {
+    "rows": 15090,
+    "share_of_flagship_721210": 0.020923,
+    "share_of_portfolio_760618": 0.019839,
+    "state": "one recorded date from conforming",
+    "amended_failed_clauses": [
+     "C8"
+    ],
+    "binding_number": "no recorded retrieval date; C1 and C6 both withdrew under the amendments",
+    "claim_only_auroc": 0.7965,
+    "claim_only_bar": 0.55
+   },
+   "quant_scale_unit": {
+    "rows": 5540,
+    "share_of_flagship_721210": 0.007682,
+    "share_of_portfolio_760618": 0.007284,
+    "state": "conformable, rebuild not built",
+    "amended_failed_clauses": [
+     "C3",
+     "C8"
+    ],
+    "binding_number": "1,040 rows (18.77%) from an unlicensed, undated, split-less FEVEROUS snapshot",
+    "claim_only_auroc": 0.4257,
+    "claim_only_bar": 0.55
+   },
+   "attr_pool": {
+    "rows": 21408,
+    "share_of_flagship_721210": null,
+    "share_of_portfolio_760618": 0.028146,
+    "state": "rebuild passes all eight under C-A1, at 79.25% cost",
+    "amended_failed_clauses": [
+     "C2",
+     "C6",
+     "C8"
+    ],
+    "binding_number": "conforming rebuild delivers 4,442 rows against a registered 20,000-30,000 band",
+    "claim_only_auroc": 0.5281,
+    "claim_only_bar": 0.55
+   },
+   "path_bind": {
+    "rows": 10000,
+    "share_of_flagship_721210": null,
+    "share_of_portfolio_760618": 0.013147,
+    "state": "CONFORMING",
+    "amended_failed_clauses": [],
+    "binding_number": "C1 rests on one instrument the report itself files as executor-added",
+    "claim_only_auroc": 0.515765,
+    "claim_only_bar": 0.55
+   },
+   "frame_reject": {
+    "rows": 8000,
+    "share_of_flagship_721210": null,
+    "share_of_portfolio_760618": 0.010518,
+    "state": "NOT CONFORMABLE - the defect is the construction",
+    "amended_failed_clauses": [
+     "C5"
+    ],
+    "binding_number": "claim-only 1.0000, within-pair 1.0000, evidence-only exactly 0.5000",
+    "claim_only_auroc": 1.0,
+    "claim_only_bar": 0.55
+   }
+  },
+  "clause_rollup_amended_over_760618": {
+   "C1": {
+    "members": [],
+    "rows": 0,
+    "share": 0.0
+   },
+   "C2": {
+    "members": [
+     "attr_pool",
+     "psiloqa",
+     "quant_misbind",
+     "tabfact",
+     "vitaminc"
+    ],
+    "rows": 576358,
+    "share": 0.75775
+   },
+   "C3": {
+    "members": [
+     "quant_misbind",
+     "quant_scale_unit",
+     "tabfact"
+    ],
+    "rows": 128125,
+    "share": 0.168449
+   },
+   "C4": {
+    "members": [],
+    "rows": 0,
+    "share": 0.0
+   },
+   "C5": {
+    "members": [
+     "frame_reject",
+     "halueval"
+    ],
+    "rows": 48000,
+    "share": 0.063107,
+    "applicability_contested": [
+     "psiloqa",
+     "ragtruth_en",
+     "ragtruth_translated",
+     "tabfact",
+     "vitaminc"
+    ],
+    "contested_rows_if_the_ruling_captures_ragtruth_family_and_tabfact": 213305,
+    "contested_share": 0.28044
+   },
+   "C6": {
+    "members": [
+     "attr_pool"
+    ],
+    "rows": 21408,
+    "share": 0.028146
+   },
+   "C7": {
+    "members": [],
+    "rows": 0,
+    "share": 0.0
+   },
+   "C8": {
+    "members": [
+     "attr_pool",
+     "quant_misbind",
+     "quant_scale_unit",
+     "ragtruth_en",
+     "tabfact"
+    ],
+    "rows": 164623,
+    "share": 0.216433
+   }
+  },
+  "conforming_as_loaded": {
+   "members": [
+    "path_bind",
+    "ragtruth_translated"
+   ],
+   "rows": 115630,
+   "share_of_portfolio": 0.152
+  },
+  "non_conforming_as_loaded": {
+   "rows": 644988,
+   "share_of_portfolio": 0.848
+  },
+  "C1_structural_poisoning_test": {
+   "whole_mix": {
+    "pairs": 165,
+    "rows": 336,
+    "share": 0.000442
+   },
+   "per_member": {
+    "vitaminc": {
+     "pairs": 115,
+     "rows": 236
+    },
+    "tabfact": {
+     "pairs": 45,
+     "rows": 90
+    },
+    "psiloqa": {
+     "pairs": 5,
+     "rows": 10
+    },
+    "all_five_constructed_lanes": {
+     "pairs": 0,
+     "rows": 0
+    }
+   },
+   "under_1500_char_truncated_presentation": {
+    "pairs": 441,
+    "rows": 920,
+    "which_presentation_the_flagship_serves": "untruncated evidence windowed 1500/750, so the RAW reading is operative"
+   },
+   "positive_control": "the withdrawn poisoned R20-H175b_qlane.parquet fires at 8,986 pairs / 17,972 rows, exactly as registered"
+  },
+  "shortcut_learnable_members": {
+   "bar": 0.55,
+   "above_0.60": {
+    "members": [
+     "frame_reject 1.0000",
+     "halueval 0.9519",
+     "ragtruth_en 0.7965",
+     "ragtruth_translated 0.7771-0.7916",
+     "tabfact 0.6031"
+    ],
+    "flagship_rows": 253305,
+    "flagship_share": 0.351222,
+    "portfolio_rows": 261305,
+    "portfolio_share": 0.343534
+   },
+   "not_measured": {
+    "psiloqa": "the only member of eleven with no claim-only reading on record; 61,712 rows / 8.56% of the flagship mix unpriced"
+   },
+   "halueval_channel_redundancy": {
+    "content_masked": 0.8972,
+    "function_words_deleted": 0.9016,
+    "inside_claim_length_deciles": 0.922,
+    "length_alone": 0.8255,
+    "punctuation_and_case_alone": 0.7596,
+    "hedging_and_function_word_rate": 0.7527,
+    "retention_frontier": {
+     "0.90": 0.9412,
+     "0.75": 0.9192,
+     "0.50": 0.8469,
+     "0.25": 0.669,
+     "0.10": 0.5562
+    },
+    "only_conforming_subset": {
+     "rows": 480,
+     "of": 40000,
+     "fraction": 0.012,
+     "claim_only": 0.5395,
+     "caveat": "clears C5's POOLED conjunction; breaches the per-half surface-parity leg on its 40-row summarization half"
+    }
+   }
+  },
+  "conformed_rebuilds_on_disk_loaded_by_nothing": [
+   "R17-H146_lane_conformed.parquet",
+   "R20-H174_lane_L2_conformed.parquet",
+   "psiloqa_conformed.parquet",
+   "vitaminc_conformed.parquet",
+   "tabfact_member_conformed.parquet"
+  ],
+  "what_is_loaded": "R17-H146_lane.parquet, R18-H150_scaleunit_lane.parquet, R20-H174_lane_L1/L2/L4.parquet - the PARENT parquets",
+  "no_C2_failure_touches_the_arena_or_gold_full": "all five C2-failing members read exactly 0 against both, in all three string forms and both directions"
+ },
+ "what_remains_broken": [
+  {
+   "id": "B1",
+   "item": "halueval claim-only 0.9519 over 40,000 rows",
+   "consequence": "5.55% of every flagship draw and 5.26% of every portfolio draw does not require the model to read the evidence. C1 holds throughout (negative-leg attestation 0.1032 against the positive leg's 0.6592 at the 0.90 containment threshold), so the support head is not poisoned",
+   "fix": "RETIREMENT, or a regeneration of the positive leg with the model that wrote the negative leg - outside this pass's CPU-only offline scope"
+  },
+  {
+   "id": "B2",
+   "item": "frame_reject claim-only 1.0000 over 8,000 rows",
+   "consequence": "1.05% of every portfolio draw updates the support head on a decision the evidence does not enter. Not in the flagship mix",
+   "fix": "RETIREMENT - the shortcut is the construction"
+  },
+  {
+   "id": "B3",
+   "item": "arena exposure: 17 verbatim documents, 16 responses, C4 0.00649 WARN",
+   "consequence": "the headline 0.71218 and the +0.03255 margin rest on a surface with sub-1% verbatim document exposure concentrated in one of ten subsets; effect on the number UNMEASURED",
+   "fix": "MEASUREMENT then a decision - R21-H179 per-item arena scoring, queued behind three live draws"
+  },
+  {
+   "id": "B4",
+   "item": "anti-gaming bind_row half differs on every arm",
+   "consequence": "cross-arm comparison of the bind_row >= 0.95 sub-read is not like-for-like; the headline near-miss half is byte-identical and comparable; the band is a recorded diagnostic since 2026-08-16",
+   "fix": "PIPELINE - pass maintain_order=True to the Polars unique in R14-H133_antigaming.build_bindrow and rebuild"
+  },
+  {
+   "id": "B5",
+   "item": "R19-H166-A1 holdout: 6 both-label pairs, 3 of 38,126 rows in the mix",
+   "consequence": "the arm's primary gate (>= 0.85, baseline leg 0.3935) is read on an instrument with 0.008% overlap and 6 structurally impossible items; arm still queued",
+   "fix": "REBUILD of the holdout with the filter applied on the whitespace-collapsed case-folded form; drops 5 of 38,126 rows"
+  },
+  {
+   "id": "B6",
+   "item": "old R20-H177_eval_B carried 65% document contamination",
+   "consequence": "banked baseline-leg reads on the OLD eval (two-draw mean 0.5064) are not comparable to reads on the rebuilt file and need re-reading",
+   "fix": "DONE - R20-H177_eval_B_rebuilt.parquet is on disk and verified clean; the re-read is outstanding"
+  },
+  {
+   "id": "B7",
+   "item": "R17-H143_evalset: 352 of 352 TabFact documents in the mix, C4 0.06947 above a 0.02 kill",
+   "consequence": "banked reads move by at most 0.00241 (string) / 0.007379 (n-gram); no live arm reads it",
+   "fix": "RETIREMENT or REBUILD - nothing live depends on it"
+  },
+  {
+   "id": "B8",
+   "item": "C2 against mechanism evals, 576,358 rows",
+   "consequence": "any ranking of draws leaning on R17-H143_evalset or the old eval_B is read on surfaces the mix touches at document level; the arena and gold_full are untouched",
+   "fix": "PIPELINE - conforming rebuilds exist for vitaminc / tabfact / quant_misbind / psiloqa and are loaded by nothing"
+  },
+  {
+   "id": "B9",
+   "item": "C8 provenance, 164,623 rows",
+   "consequence": "five members carry no recorded retrieval date, no licence on part of their supply, or a hand-written sidecar volume string 302 rows off the archive",
+   "fix": "PIPELINE for four; quant_scale_unit's 1,040 FEVEROUS rows need the cut quant_misbind's rebuild already executed"
+  },
+  {
+   "id": "B10",
+   "item": "C1 structural, 336 rows across vitaminc / tabfact / psiloqa",
+   "consequence": "0.0442% of the mix carries a label no function of (claim, evidence) can produce; 920 rows under the truncated presentation the flagship does not serve",
+   "fix": "PIPELINE - already removed by vitaminc's and tabfact's rebuilds, not by psiloqa's"
+  },
+  {
+   "id": "B11",
+   "item": "attr_pool conforming rebuild delivers 4,442 rows",
+   "consequence": "79.25% cut against a registered 20,000-30,000 band; loaded by no run",
+   "fix": "REBUILD at a different design point, or accept the size"
+  },
+  {
+   "id": "B12",
+   "item": "psiloqa rebuild spends 9,859 rows on a struck bar",
+   "consequence": "16.0% of the member was cut to move a C1 delta across the band C-A2 struck; only the 1,379-row C2 cut is binding; a re-cut returns 50,474 -> 60,333 rows but must add the structural filter the conformed variant lacks",
+   "fix": "PIPELINE"
+  },
+  {
+   "id": "B13",
+   "item": "gold_full effective n 744.8 against a nominal 2,752",
+   "consequence": "the >= 0.84 in-domain hold carries a 95% CI half-width of 0.0263, not 0.0137; the surface is clean, it is smaller than its row count implies",
+   "fix": "NONE AVAILABLE - a corpus property (label ICC 0.7821 across 619 documents)"
+  },
+  {
+   "id": "B14",
+   "item": "ragtruth_en / ragtruth_translated C8 contradiction",
+   "consequence": "identical archive-timestamp evidence yields a C8 FAIL on one member and a PASS on seven others",
+   "fix": "RULING, then a one-line provenance record"
+  }
+ ],
+ "what_this_pass_could_not_establish": {
+  "not_measured_at_all": [
+   "whether the arena contamination moves the arena number - the 16 verbatim-exposed responses and the 117 at containment >= 0.10 have never been dropped and the mean re-read; needs per-row GPU scores, R21-H179 queued behind three live draws",
+   "psiloqa's claim-only channel - the only member of eleven with no reading on record, so 61,712 rows (8.56% of the flagship mix) cannot be priced on the shortcut question either way",
+   "halueval's regeneration repair - rewriting the positive leg with the model that wrote the negative leg needs LLM generation, outside this campaign's CPU-only offline scope",
+   "re-reads of banked verdicts taken on contaminated instruments - the exclusion delta was computed only for R17-H143_evalset"
+  ],
+  "instruments_are_lexical_only": [
+   "every disjointness and contamination instrument here is lexical: exact string equality on six form pairings, 8-gram Jaccard, 8-gram containment, verbatim substring search, TF-IDF probes",
+   "NO embedding, paraphrase or cross-lingual near-duplicate search was run anywhere - a paraphrased or translated copy of an arena document inside the mix is invisible to every gate reported",
+   "this is a live risk for the seven translated RAGTruth members (105,630 rows, 14.65% of the flagship mix), whose relationship to any English surface is by construction a translation",
+   "the Jaccard instrument is demonstrably blind to re-wrapping (live control fires 9 of 10 on Jaccard, 10 of 10 on containment); containment covers that gap for the arena, the per-member C4 censuses ran on Jaccard alone"
+  ],
+  "surfaces_and_channels_not_covered": [
+   "FEVEROUS document ids are index-form (feverous:{i}) from an order-unstable dedup, so a zero on that id channel is not evidence of document disjointness",
+   "R17-H143_evalset_assessment.build_mix loads two module instances, so its untruncated_evidence() patch hit a different config object and its C2 evidence channel was measured against mix text cut at 1,500 chars - collisions past that cut were out of reach. The arena and gold_full passes do not use that helper",
+   "the C2 surface list is closed, not exhaustive - members were verified against the 8-18 registered surfaces each report enumerates; a surface built after those runs is unverified by construction",
+   "R20-H177_eval_B's claim-string channel against lane B was never measured before this session; the rebuild found 12 rows / 6 pairs and added a build-time claim wall, and the ORIGINAL eval_B still reads 2 rows / 1 pair there"
+  ],
+  "claims_resting_on_a_single_instrument": [
+   "path_bind - the uniform bag-of-tokens instrument reads the negative leg ABOVE the positive at >= 0.90 (0.3910 vs 0.3890) and EXACTLY EQUAL fully attested (0.1742), the signature C-A2 names; C1 is carried by a contiguous-run probe the report files as executor-added, and path_bind is one of only two conforming members",
+   "quant_misbind - fully attested exactly equal at 0.1086, carried by a binding-level re-derivation",
+   "quant_scale_unit - the blind instrument reads 0.0 on both legs, carried by a unit-resolved instrument",
+   "gold_full's design-effect correction is computed on the LABEL; no per-claim model correctness vector is banked",
+   "the eleven per-member passes ran only exact-match and Jaccard against the arena; containment and verbatim substring search were added by the arena-side pass alone"
+  ],
+  "reproducibility_defects_found_in_banked_code": [
+   "R17-H144_pairs.excluded_tables breaks numeral-ranking ties over a frozenset, making it Python-hash-seed dependent",
+   "R14-H133_antigaming.build_bindrow selects a different 600-pair set per run - Polars unique without maintain_order=True",
+   "the banked gold_full claims-channel spike control is dict-iteration-order dependent and detects 9 or 10 of 10"
+  ]
+ },
+ "live_positive_controls": [
+  {
+   "gate": "C1 structural (the poisoning signature)",
+   "fed": "the withdrawn R20-H175b_qlane.parquet, poisoned by construction",
+   "result": "8,986 pairs / 17,972 rows, exactly as registered",
+   "fires": true
+  },
+  {
+   "gate": "arena C4 8-gram",
+   "fed": "10 real mix chunks injected arena-side",
+   "result": "10 of 10 at Jaccard 1.0",
+   "fires": true
+  },
+  {
+   "gate": "arena C4 8-gram",
+   "fed": "10 mix chunks re-wrapped at a different offset",
+   "result": "9 of 10 on Jaccard, 10 of 10 on containment",
+   "fires": "partial - Jaccard misses re-wraps"
+  },
+  {
+   "gate": "arena C4 8-gram",
+   "fed": "VitaminC official test+validation evidence against the VitaminC train the mix carries",
+   "result": "620 of 53,804 detected, max Jaccard 1.0",
+   "fires": true
+  },
+  {
+   "gate": "arena C4 8-gram (negative)",
+   "fed": "arena documents with tokens randomly permuted",
+   "result": "0 of 10",
+   "fires": "correctly silent"
+  },
+  {
+   "gate": "verbatim substring",
+   "fed": "a real mix chunk's own interior 400-char slice / the same slice with one character changed",
+   "result": "found / not found",
+   "fires": true
+  },
+  {
+   "gate": "document channel, stem-keyed",
+   "fed": "the original R20-H177_eval_B",
+   "result": "325 of 325 TabFact stems, 1,300 of 2,000 rows",
+   "fires": true
+  },
+  {
+   "gate": "string channel, six-form",
+   "fed": "R20-H175b_qlane_eval.parquet, banked at 485 of 487",
+   "result": "485 of 487 including its 449-raw / 485-truncated split",
+   "fires": true
+  },
+  {
+   "gate": "string channel, normalisation form",
+   "fed": "251 mix passages re-wrapped with newline plus indent",
+   "result": "raw 1 of 251, normalised 251 of 251",
+   "fires": true
+  },
+  {
+   "gate": "document channel, stem key",
+   "fed": "300 member table ids with the 1-/2- prefix flipped",
+   "result": "raw 0, stem 300",
+   "fires": true
+  },
+  {
+   "gate": "C5 claim-only probe",
+   "fed": "a 1,500-pair toy differing only in register / label-shuffled halueval / within-pair-shuffled halueval",
+   "result": "1.0000 / 0.5017 / 0.4951",
+   "fires": true
+  },
+  {
+   "gate": "gold_full C6",
+   "fed": "a poisoned key-label association",
+   "result": "AUROC 0.9981",
+   "fires": true
+  },
+  {
+   "gate": "gold_full document channel",
+   "fed": "the true parent document of a mix chunk",
+   "result": "containment 0.973616",
+   "fires": true
+  },
+  {
+   "gate": "gold_full C4 claims spike",
+   "fed": "each group's lexicographically smallest claim",
+   "result": "9 of 10 as shipped, 10 of 10 with n-gram-bearing units",
+   "fires": "control defect, not gate defect"
+  },
+  {
+   "gate": "halueval C4",
+   "fed": "10 arena documents thinned to two of every three sentences",
+   "result": "10 of 10 over a baseline of 2",
+   "fires": true
+  }
+ ],
+ "sources": [
+  "contract/PHASE1_SYNTHESIS.json",
+  "contract/phase1_readjudication.json",
+  "contract/arena_surface_report.json",
+  "contract/gold_full_surface_report.json",
+  "contract/mechanism_evals_report.json",
+  "contract/mechanism_evals_summary.md",
+  "contract/mechanism_evals_spotchecks.json",
+  "contract/halueval_conformed_report.json",
+  "contract/halueval_conform_diag.json",
+  "contract/halueval_conform_frontier.json",
+  "contract/attr_pool_contract_report.json",
+  "contract/frame_reject_contract_report.json",
+  "contract/halueval_contract_report.json",
+  "contract/path_bind_contract_report.json",
+  "contract/psiloqa_contract_report.json",
+  "contract/quant_misbind_contract_report.json",
+  "contract/quant_scale_unit_contract_report.json",
+  "contract/ragtruth_en_contract_report.json",
+  "contract/ragtruth_translated_contract_report.json",
+  "contract/tabfact_contract_report.json",
+  "contract/vitaminc_contract_report.json",
+  "contract/attr_pool_conformed_report.json",
+  "contract/psiloqa_conformed_report.json",
+  "contract/quant_misbind_conformed_report.json",
+  "contract/tabfact_conformed_report.json",
+  "contract/vitaminc_conformed_report.json",
+  "experiments/grounding-semantic/R20-H177_eval_B_rebuilt_report.json",
+  "experiments/grounding-semantic/R17-H143_evalset_report.json",
+  "docs/experiments/semantic-grounding-sota.md",
+  "docs/experiments/semantic-grounding-experiments.md"
+ ]
+}

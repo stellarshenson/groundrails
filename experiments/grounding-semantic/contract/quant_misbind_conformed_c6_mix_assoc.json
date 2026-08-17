@@ -1,0 +1,48 @@
+{
+  "clause": "C6 (mix-association supplement - the eval-facing test of C-A2)",
+  "mix_rows_total": 749270,
+  "mix_groups": 17,
+  "member_rows": 18652,
+  "pair_key": "the evidence chunk - both legs of a pair carry it byte-identically",
+  "key_sharing_with_other_mix_members": {
+    "tabfact": {
+      "rows": 92585,
+      "shared_evidence_raw": 0,
+      "shared_evidence_truncated_1500": 0,
+      "shared_evidence_normalised": 216,
+      "shared_claims_normalised": 0
+    },
+    "quant_scale_unit": {
+      "rows": 5540,
+      "shared_evidence_raw": 3,
+      "shared_evidence_truncated_1500": 3,
+      "shared_evidence_normalised": 3,
+      "shared_claims_normalised": 0
+    }
+  },
+  "groups_sharing_nothing": [
+    "attr_pool",
+    "frame_reject",
+    "halueval",
+    "path_bind",
+    "psiloqa",
+    "ragtruth_cn",
+    "ragtruth_de",
+    "ragtruth_en",
+    "ragtruth_es",
+    "ragtruth_fr",
+    "ragtruth_hu",
+    "ragtruth_it",
+    "ragtruth_pl",
+    "vitaminc"
+  ],
+  "keys_shared_with_any_other_member": 218,
+  "mix_keyed_label_association": {
+    "definition": "mean label the REST of the mix attaches to this row's evidence key (whitespace-normalised)",
+    "coverage_rows": 840,
+    "coverage_share": 0.045035,
+    "auroc_vs_label": 0.5
+  },
+  "within_pair_note": "any feature keyed on the pair key takes the SAME value on both legs, so its within-pair separation is exactly 0.5",
+  "seconds": 42.4
+}

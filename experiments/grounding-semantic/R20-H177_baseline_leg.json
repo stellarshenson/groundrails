@@ -1,0 +1,106 @@
+{
+  "experiment": "R20-H177 BASELINE LEG - flagship read on both held-out mechanism evals (measurement only, zero training)",
+  "registration": "docs/experiments/semantic-grounding-experiments.md, blocks 'R20-H177 NUMERIC-VERIFICATION PORTFOLIO ARM' and 'R20-H177 STAGE 0 COMPLETE' (2026-08-16)",
+  "registered_prediction": "near-chance",
+  "arm_primary_after_training": ">= 0.80 per lane eval",
+  "protocol": "untruncated evidence windowed 1500/750, claim scored vs every window, MAX over windows; claim-level rows so no min-over-sentences stage; frozen trunk + task head (R15_gate_common.load_ckpt/.score)",
+  "results": {
+    "eval_B": {
+      "n_rows": 2000,
+      "n_pos": 1000,
+      "n_neg": 1000,
+      "per_draw": {
+        "h150d1": {
+          "checkpoint": "R18-H150-arm-draw1",
+          "auroc": 0.509,
+          "by_neg_family": {
+            "cmp_amount": {
+              "n_rows": 668,
+              "auroc": 0.5044
+            },
+            "cmp_extreme": {
+              "n_rows": 400,
+              "auroc": 0.4811
+            },
+            "cmp_order": {
+              "n_rows": 900,
+              "auroc": 0.5214
+            },
+            "cmp_trend": {
+              "n_rows": 32,
+              "auroc": 0.8047
+            }
+          }
+        },
+        "h150d2": {
+          "checkpoint": "R18-H150-arm-draw2",
+          "auroc": 0.5038,
+          "by_neg_family": {
+            "cmp_amount": {
+              "n_rows": 668,
+              "auroc": 0.4982
+            },
+            "cmp_extreme": {
+              "n_rows": 400,
+              "auroc": 0.4746
+            },
+            "cmp_order": {
+              "n_rows": 900,
+              "auroc": 0.5038
+            },
+            "cmp_trend": {
+              "n_rows": 32,
+              "auroc": 0.7812
+            }
+          }
+        }
+      },
+      "two_draw_mean_auroc": 0.5064
+    },
+    "eval_C": {
+      "n_rows": 1936,
+      "n_pos": 968,
+      "n_neg": 968,
+      "per_draw": {
+        "h150d1": {
+          "checkpoint": "R18-H150-arm-draw1",
+          "auroc": 0.9059,
+          "by_neg_family": {
+            "period_swap": {
+              "n_rows": 604,
+              "auroc": 0.9665
+            },
+            "role_swap": {
+              "n_rows": 668,
+              "auroc": 0.9691
+            },
+            "sign_swap": {
+              "n_rows": 664,
+              "auroc": 0.7293
+            }
+          }
+        },
+        "h150d2": {
+          "checkpoint": "R18-H150-arm-draw2",
+          "auroc": 0.9112,
+          "by_neg_family": {
+            "period_swap": {
+              "n_rows": 604,
+              "auroc": 0.9474
+            },
+            "role_swap": {
+              "n_rows": 668,
+              "auroc": 0.979
+            },
+            "sign_swap": {
+              "n_rows": 664,
+              "auroc": 0.7579
+            }
+          }
+        }
+      },
+      "two_draw_mean_auroc": 0.9085
+    }
+  },
+  "timestamp": "2026-08-17 05:41:12"
+}

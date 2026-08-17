@@ -1,0 +1,627 @@
+{
+  "member": "tabfact_conformed",
+  "role": "training member - source corpus, conformed",
+  "contract": "docs/experiments/dataset-contract.md",
+  "verified_on": "the CONFORMED member: the banked member rebuilt through R10-H108_lane.public_train() under R16-H142_G1_arm.untruncated_evidence() (reached through the arm, so the context manager patches the loader's own M59), asserted row-for-row against the archive, then cut on the document. No chunk text is rewritten - the conformed member is a strict ROW SUBSET of the banked member",
+  "conforming": true,
+  "failed_clauses": [],
+  "what_changed_from_the_failing_member": {
+    "principle": "the cut is on the DOCUMENT, never on the clause. Nothing was relaxed, no threshold moved, no surface excused",
+    "cuts": {
+      "X1_tabfact_heldout_splits": {
+        "clause": "C3 (and C2 via the anti-gaming sets)",
+        "rule": "drop every member table whose table_id STEM occurs in TabFact validation or test",
+        "stems_in_the_surface": 3377,
+        "stems_hit_in_member": 164
+      },
+      "X2_R20-H177_eval_B_tabfact_half": {
+        "clause": "C2",
+        "rule": "drop every member table whose STEM is a doc_id eval_B draws on",
+        "surface_tabfact_doc_ids": 325,
+        "stems_in_the_surface": 325,
+        "stems_hit_in_member": 325
+      },
+      "X3_R17-H143_evalset_tabfact_half": {
+        "clause": "C2",
+        "rule": "same document rule; the evalset's doc_ids are recovered by joining its 547 distinct passages to R17-H143_evalset_source",
+        "evalset_distinct_passages_resolved": 547,
+        "surface_tabfact_doc_ids": 352,
+        "stems_in_the_surface": 350,
+        "stems_hit_in_member": 350
+      },
+      "X4_antigaming_probe_sets": {
+        "clause": "C2",
+        "rule": "drop every member table whose STEM occurs in any of the 14 banked anti-gaming sets",
+        "files": 14,
+        "stems_in_the_union": 1738,
+        "stems_hit_in_member": 84,
+        "stems_already_covered_by_X1": true,
+        "per_file_distinct_stems": {
+          "R14-H133_antigaming_set.parquet": 1171,
+          "R16-H142-T-d2_antigaming_set.parquet": 1182,
+          "R16-H142-T_antigaming_set.parquet": 1174,
+          "R17-H145_antigaming_set.parquet": 1182,
+          "R17-H146_antigaming_set.parquet": 1168,
+          "R18-H150-d2_antigaming_set.parquet": 1168,
+          "R18-H150_antigaming_set.parquet": 1173,
+          "R18-H152-d1_antigaming_set.parquet": 1171,
+          "R18-H152-d2_antigaming_set.parquet": 1178,
+          "R18-H155-d1_antigaming_set.parquet": 1182,
+          "R18-H155-d2_antigaming_set.parquet": 1188,
+          "R18-H156_antigaming_set.parquet": 1170,
+          "R19-H159_antigaming_set.parquet": 1172,
+          "R19-H160-soupB_antigaming_set.parquet": 1183
+        }
+      },
+      "S_string_residual": {
+        "clause": "C2",
+        "rule": "drop any surviving member table whose evidence equals an eval passage in any of the three forms (raw / truncated 1500 / whitespace-collapsed case-folded), either direction",
+        "eval_passages_compared": 4455,
+        "member_stems_hit": 0
+      },
+      "N_content_residual": {
+        "clause": "C2 / C3",
+        "rule": "drop any surviving member table at 8-gram Jaccard >= 0.3 against any TabFact table an evaluation surface draws on (banked R14-H136 gate primitives, unchanged)",
+        "eval_side_tables": 4264,
+        "rounds": [
+          {
+            "round": 1,
+            "member_tables_scored": 12306,
+            "documents_at_jaccard_ge_0.3": 43,
+            "max_jaccard": 0.9852,
+            "p99_jaccard": 0.124,
+            "mean_jaccard": 0.0189
+          },
+          {
+            "round": 2,
+            "member_tables_scored": 12257,
+            "documents_at_jaccard_ge_0.3": 0,
+            "max_jaccard": 0.29,
+            "p99_jaccard": 0.1017,
+            "mean_jaccard": 0.0163
+          }
+        ]
+      },
+      "D_contradictory_supervision": {
+        "clause": "C8",
+        "rule": "drop every row of a (claim, document) group carrying BOTH labels - the document key is the STEM, so the `1-`/`2-` twin of one table counts as one document",
+        "claim_document_groups_dropped": 44,
+        "rows_dropped": 88
+      }
+    },
+    "volume_cost": {
+      "rows": "92585 -> 86206 (6379 dropped, 6.89%)",
+      "documents": "12753 -> 11882 (871 dropped, 6.83%)",
+      "tables_table_ids": "13182 -> 12257",
+      "clean_mix": "685670 -> 679291 rows; member share 0.135029 -> 0.126906"
+    }
+  },
+  "clauses": {
+    "C1": {
+      "title": "Label commensurability",
+      "verdict": "PASS",
+      "head_declared": "the grounding scalar (`task_head` of the DANN student) - the same head every other mix member trains",
+      "label_predicate": "TabFact ships a human ENTAILED / REFUTED annotation of the STATEMENT against ITS OWN table (ICLR 2020). The label is a support predicate: 1 = the table entails the statement, 0 = the table refutes it. It is not relevance, not answerability, not question-claim match. The conforming cut removed whole documents and contradictory rows; it changed no label and rewrote no chunk",
+      "measured": {
+        "instrument": "R20-H175b_qlane.containment(claim, chunk)",
+        "presentation": "untruncated evidence - the R18-H150 / R20-H174 flagship presentation",
+        "negative_leg_mean_containment": 0.4986,
+        "positive_leg_mean_containment": 0.5186,
+        "abs_delta_mean": 0.0199,
+        "negative_leg_fully_attested_share": 0.0011,
+        "positive_leg_fully_attested_share": 0.0013,
+        "secondary_presentation_truncated_1500": {
+          "negative_leg_mean_containment": 0.4844,
+          "positive_leg_mean_containment": 0.5044,
+          "abs_delta_mean": 0.0199
+        }
+      },
+      "bar": "REJECTED if the negative leg is >= 90% attested AND within 0.10 of the positive leg - a CONJUNCTION",
+      "margin": {
+        "negative_leg_distance_below_the_0.90_attestation_bar": 0.4014,
+        "first_condition_met": false,
+        "second_condition_met": true,
+        "rejected": false
+      },
+      "reading": "unchanged in kind from the banked member and unchanged by the cut, which removed documents and touched no label: the two legs sit almost equally close to the evidence (delta 0.0199) and NEITHER is attested. At 0.4986 mean containment the negative leg is 0.4014 below the 0.90 bar and 0.0011 of it is fully attested, against the 0.664 the poisoned R20-H175b lane read. The label turns on reading values out of the table"
+    },
+    "C2": {
+      "title": "Disjointness from every evaluation surface",
+      "verdict": "PASS",
+      "method": "three string forms (raw / truncated 1500 / whitespace-collapsed case-folded) crossed six ways, both directions, on EVIDENCE and CLAIM units; plus the document-id channel on every surface that exposes or can resolve a TabFact table id; plus a content read",
+      "measured": {
+        "string_forms": "ZERO on every form, both directions, on EVIDENCE and CLAIM units, on every surface. nonzero_readings is the empty list",
+        "surfaces_read": {
+          "arena_ragbench_10_subsets": "6784 document chunks and 2260 responses vs 12248 member evidence / 85996 member claims",
+          "gold_full": "123579 chunks, 2752 claims",
+          "R20-H177_eval_B": "2,000 rows; document channel 0 of 325 TabFact doc ids now in the member (was 325 of 325)",
+          "R17-H143_evalset": "1,050 rows; document channel 0 of 350 TabFact documents now in the member (was 350 of 350 - a channel the first pass could not read, recovered here by joining the evalset's 547 passages to R17-H143_evalset_source)",
+          "R20-H177_eval_C": "1,936 rows, no TabFact documents",
+          "R20-H175b_qlane_eval / _repaired / _clean / _clean_prefix": "2,002 / 1,678 / 88 / 32 rows, no TabFact documents",
+          "R19_findver_lane": "2,400 rows, no TabFact documents",
+          "vitaminc_holdout_SUPERSET": "118251 rows - a strict superset of the eval",
+          "antigaming_probe_sets": "14 files; STEM table-id overlap with the member is 0 in every one (was 50-62 each), and the claim channel is 0 in all six forms both directions in every one"
+        },
+        "antigaming_stem_overlap_per_file": {
+          "R14-H133_antigaming_set.parquet": 0,
+          "R16-H142-T-d2_antigaming_set.parquet": 0,
+          "R16-H142-T_antigaming_set.parquet": 0,
+          "R17-H145_antigaming_set.parquet": 0,
+          "R17-H146_antigaming_set.parquet": 0,
+          "R18-H150-d2_antigaming_set.parquet": 0,
+          "R18-H150_antigaming_set.parquet": 0,
+          "R18-H152-d1_antigaming_set.parquet": 0,
+          "R18-H152-d2_antigaming_set.parquet": 0,
+          "R18-H155-d1_antigaming_set.parquet": 0,
+          "R18-H155-d2_antigaming_set.parquet": 0,
+          "R18-H156_antigaming_set.parquet": 0,
+          "R19-H159_antigaming_set.parquet": 0,
+          "R19-H160-soupB_antigaming_set.parquet": 0
+        },
+        "content_read": {
+          "instrument": "banked provenance_gate primitives, 8-gram, best Jaccard per member table against any single eval-side TabFact table",
+          "eval_side_tables": 4264,
+          "member_tables_scored": 12257,
+          "tables_at_jaccard_ge_0.3": 0,
+          "max": 0.29,
+          "p99": 0.1017,
+          "mean": 0.0163
+        }
+      },
+      "bar": "a member passes only when all forms read zero, on every surface",
+      "margin": {
+        "all_string_forms_zero": true,
+        "all_document_channels_zero": true,
+        "nonzero_readings": [],
+        "content_headroom": "the highest 8-gram Jaccard between any surviving member table and any TabFact table an evaluation surface draws on is 0.29, below the 0.3 gate threshold; the second-cut round scored 0 tables at or above it"
+      },
+      "surface_scope_this_verdict_rests_on": {
+        "what_was_read": "the arena, gold_full, 8 mechanism evals, 14 anti-gaming probe sets, and the VitaminC holdout's strict superset - the first pass's list plus R20-H175b_qlane_eval_clean_prefix, which it did not list",
+        "how_the_list_was_checked": "the contract's phrase 'each held-out mechanism eval' is not machine-readable anywhere, so all 147 parquets in the round directory under 30 MB were swept against the conformed member on passages, claims and TabFact document ids (tabfact_conformed_scope.json)",
+        "result": "30 files of 147 still share text or a document with the conformed member. Every one is a TRAINING lane, a lane's source pool, a generation or gate sample, or a lane-side probe; none is a banked held-out mechanism eval, and every verified C2 surface reads zero on every channel and therefore does not appear",
+        "largest_residuals_none_of_them_an_eval": {
+          "R10-H108_pairs.parquet": {
+            "rows": 61184,
+            "passages": 9837,
+            "documents": 0,
+            "same_documents_already_in_a_mix_training_lane": 0
+          },
+          "R14-H133_lane.v1-DEFECTIVE.parquet": {
+            "rows": 50000,
+            "passages": 242,
+            "documents": 7110,
+            "same_documents_already_in_a_mix_training_lane": 4767
+          },
+          "R14-H133_lane.parquet": {
+            "rows": 50000,
+            "passages": 198,
+            "documents": 6403,
+            "same_documents_already_in_a_mix_training_lane": 4265
+          },
+          "R14-H133_lane.v2-SUPERSEDED.parquet": {
+            "rows": 50000,
+            "passages": 185,
+            "documents": 5773,
+            "same_documents_already_in_a_mix_training_lane": 3890
+          },
+          "R17-H143_evalset_source.parquet": {
+            "rows": 50000,
+            "passages": 185,
+            "documents": 5773,
+            "same_documents_already_in_a_mix_training_lane": 3890
+          },
+          "R10-H111_stage1_pairs.parquet": {
+            "rows": 96320,
+            "passages": 5359,
+            "documents": 0,
+            "same_documents_already_in_a_mix_training_lane": 0
+          }
+        },
+        "consequence_if_that_ruling_changes": "if the coordinator rules any swept file an evaluation surface, the counts above are the size of the residual and the document cut would have to be extended to it. Reported, not adjudicated"
+      },
+      "reading": "the failure was never mainly a string failure - eval_B re-serialises its tables into six forms and only `pipe` matched, so string matching saw 15 passages where the document overlap was total. The cut is therefore on the document, and both channels are now measured and both read zero"
+    },
+    "C3": {
+      "title": "Split semantics verified, never assumed",
+      "verdict": "PASS",
+      "split_axis_measured": "unchanged corpus fact: the archive cuts on the table_id STRING, not on the underlying document. Validation and test share 0 and 0 table_id VALUES with train, but TabFact serialises one Wikipedia table under both a `1-` and a `2-` csv id, and after stripping that prefix 91 of 1696 validation ids and 73 of 1695 test ids collide with a train id. The archive's official split is therefore NOT document-disjoint",
+      "member_uses": "train split ONLY, then cut on the DOCUMENT (table_id stem) so the member does not rely on the archive's split claim",
+      "measured": {
+        "archive_corpus_property_unchanged": {
+          "validation": {
+            "rows": 12851,
+            "distinct_table_id": 1696,
+            "table_id_shared_with_train": 0,
+            "table_id_STEM_shared_with_train": 91,
+            "table_id_stem_share": 0.053783
+          },
+          "test": {
+            "rows": 12839,
+            "distinct_table_id": 1695,
+            "table_id_shared_with_train": 0,
+            "table_id_STEM_shared_with_train": 73,
+            "table_id_stem_share": 0.043119
+          }
+        },
+        "conformed_member_vs_heldout_splits": {
+          "validation": {
+            "table_id_shared_with_member": 0,
+            "table_id_STEM_shared_with_member": 0,
+            "evidence_raw_in_member_raw": 0,
+            "evidence_truncated_in_member_truncated": 0,
+            "evidence_normalised_in_member_normalised_raw": 0,
+            "evidence_normalised_in_member_normalised_truncated": 0,
+            "statement_rows_carrying_a_member_claim_string": 8
+          },
+          "test": {
+            "table_id_shared_with_member": 0,
+            "table_id_STEM_shared_with_member": 0,
+            "evidence_raw_in_member_raw": 0,
+            "evidence_truncated_in_member_truncated": 0,
+            "evidence_normalised_in_member_normalised_raw": 0,
+            "evidence_normalised_in_member_normalised_truncated": 0,
+            "statement_rows_carrying_a_member_claim_string": 7
+          }
+        },
+        "independent_live_control": {
+          "gate_proven_able_to_fire": "166 of 3391 held-out tables fire against the BANKED member at 8-gram Jaccard >= 0.3, max 1.0",
+          "same_gate_against_the_conformed_member": "0 of 3391, max 0.29"
+        }
+      },
+      "bar": "state the axis the corpus actually cuts on, measured from the archive; an official split is not evidence of disjointness",
+      "margin": {
+        "table_id_shared": 0,
+        "table_id_stem_shared": 0,
+        "evidence_shared_in_any_of_three_forms": 0,
+        "near_duplicate_documents_at_jaccard_0.3": 0
+      },
+      "residual_reported_not_cut": {
+        "what": "8 validation rows and 7 test rows carry a statement string that also occurs in the conformed member, on DIFFERENT documents (unchanged from the banked member)",
+        "why_it_is_not_a_C2_failure": "TabFact validation and test are not evaluation surfaces for any banked arm. The surfaces built from them are the 14 anti-gaming probe sets, and their claim channel is measured directly under C2 at 0 in all six forms in both directions in every file"
+      },
+      "reading": "the archive's official split remains NOT document-disjoint - 91 of 1,696 validation and 73 of 1,695 test ids collide with a train id once the `1-`/`2-` csv prefix is stripped. That is a corpus property and cannot be fixed. What the pipeline fixes is the member's reliance on it: the member is cut on the document, so its disjointness is measured rather than inherited"
+    },
+    "C4": {
+      "title": "Contamination census with a live positive control",
+      "verdict": "PASS",
+      "instrument": "provenance_gate.py, R14-H136 form: 8-gram, Jaccard >= 0.3, bidirectional, WARN 0.005, KILL 0.02",
+      "measured": {
+        "evidence_units": {
+          "units": 12248,
+          "candidate_vs_arena_fraction": 0.0,
+          "arena_vs_candidate_fraction": 0.0,
+          "max_jaccard_observed": 0.013
+        },
+        "claim_units": {
+          "units": 85996,
+          "candidate_vs_arena_fraction": 0.0,
+          "arena_vs_candidate_fraction": 0.0,
+          "max_jaccard_observed": 0.0196
+        },
+        "coverage": {
+          "evidence_serialised_tables": {
+            "n_units": 12248,
+            "n_units_too_short_for_8gram": 0,
+            "share_too_short": 0.0,
+            "exact_match_residual": {
+              "units": 0,
+              "exact_raw_hits": 0,
+              "exact_normalised_hits": 0
+            }
+          },
+          "claims_statements": {
+            "n_units": 85996,
+            "n_units_too_short_for_8gram": 5470,
+            "share_too_short": 0.063608,
+            "exact_match_residual": {
+              "units": 5470,
+              "exact_raw_hits": 0,
+              "exact_normalised_hits": 0
+            }
+          }
+        },
+        "synthetic_spike_control": {
+          "injected": 10,
+          "detected_total": 10,
+          "baseline_hits": 0,
+          "passes": true,
+          "candidate_units": 12248
+        },
+        "live_controls": {
+          "A_register_proof": {
+            "design": "the first pass's control re-run UNCHANGED: TabFact's own held-out splits against the PRE-CONFORMANCE member. It proves the gate fires on pipe-delimited serialised tables - the register an 8-gram instrument could silently fail on. Reference side is the banked member, which this verification does not use for any census",
+            "fires": true,
+            "units_with_hit": 166,
+            "candidate_units": 3391,
+            "fraction": 0.048953,
+            "best_jaccard": {
+              "max": 1.0,
+              "p99": 0.9373,
+              "mean": 0.0636
+            }
+          },
+          "B_conformed_residual": {
+            "fires": false,
+            "units_with_hit": 0,
+            "candidate_units": 3391,
+            "best_jaccard": {
+              "max": 0.29,
+              "p99": 0.1323,
+              "mean": 0.0234
+            }
+          },
+          "C_arena_side": {
+            "design": "real arena documents sliced to their interior 1,500-character window (chars 200-1700, documents longer than 1,800 chars only), fed as candidates against the arena itself. Every unit is a STRICT subset of a real arena document, never a copy of one - near-duplicate by construction on the reference side the census actually reads against",
+            "fires": true,
+            "units_with_hit": 701,
+            "candidate_units": 951,
+            "candidate_units_identical_to_an_arena_chunk": 0,
+            "fraction": 0.737119,
+            "best_jaccard": {
+              "max": 0.9941,
+              "p99": 0.8158,
+              "mean": 0.4399
+            }
+          }
+        }
+      },
+      "bar": "KILL at >= 0.02 of the candidate corpus in either direction",
+      "margin": {
+        "max_fraction_any_unit_type": 0.0,
+        "distance_below_the_kill_bar": 0.02
+      },
+      "reading": "0.0 in both directions on both unit types at a maximum observed Jaccard of 0.0196 against a 0.3 threshold. The conforming cut removed the text the first pass used as its live control, so the control is now reported three ways: the register proof still fires 166/3391 at max Jaccard 1.0 against the banked member, the same candidates read 0/3391 against the conformed member (that pair is the demonstration, with the gate held constant), and on the arena side - the side the census actually reads against - 701 of 951 interior windows of real arena documents fire, none of them a copy of an arena chunk"
+    },
+    "C5": {
+      "title": "Leak suite for constructed members",
+      "verdict": "NOT-APPLICABLE",
+      "why": "C5 is scoped by its own text to 'every constructed lane and every paired-contrast eval'. `tabfact` is a SOURCE corpus: its negatives are counterfactual statements written by TabFact's human annotators in 2020, not produced by a groundrails construction, and the archive ships no pair id - so there is no within-pair, direction, element or family channel to probe and no surface-parity computation defined. The conforming cut removed documents and changed no construction, so it cannot make C5 computable. Stated, not proxied",
+      "measured": "no term of the registered conjunction is computable on this member; a proxy would have to be substituted and is not",
+      "executor_added_measurement_reported_separately": {
+        "status": "EXECUTOR-ADDED - reported separately; no clause verdict uses it",
+        "probe": "claim-only TF-IDF(1-2gram) + logistic regression, tables disjoint between fit and held-out",
+        "fit_rows": 68758,
+        "heldout_rows": 17448,
+        "heldout_auroc": 0.5985,
+        "first_pass_value_on_the_banked_member": 0.6031
+      }
+    },
+    "C6": {
+      "title": "No memorisation channel",
+      "verdict": "PASS",
+      "prescribed_instrument": "for each pair, the overlap between the eval claim and whatever the training mix associates with that pair's key. `tabfact` is a TRAINING member, so the key is the document and the instrument is computable against exactly the surfaces that share one. Both are measured",
+      "measured": {
+        "R20-H177_eval_B_tabfact_half": {
+          "eval_rows": 1300,
+          "rows_with_a_member_claim_over_the_same_document": 0,
+          "coverage": 0.0,
+          "value": "UNDEFINED - the channel is closed: no eval row shares a document with the member, so there is nothing for a feature keyed on the training association to read"
+        },
+        "R17-H143_evalset_tabfact_half": {
+          "eval_rows": 683,
+          "rows_with_a_member_claim_over_the_same_document": 0,
+          "coverage": 0.0,
+          "value": "UNDEFINED - the channel is closed: no eval row shares a document with the member, so there is nothing for a feature keyed on the training association to read"
+        }
+      },
+      "bar": "on a clean instrument the value is undefined or at chance; the contaminated R20-H175b eval read 0.6230 at 98% coverage",
+      "margin": {
+        "coverage_on_both_surfaces": 0.0,
+        "value": "UNDEFINED - the clause's own clean reading",
+        "reference_poisoned_value": 0.623,
+        "banked_member_value_for_comparison": "0.5030 at coverage 1.0 - the channel was fully OPEN on the banked member and carried no separating signal. The conforming cut CLOSES it, so the clean reading no longer rests on the absence of a signal over an open channel"
+      },
+      "executor_added_reported_separately": {
+        "leave_one_out_table_label_auroc": 0.2359,
+        "within_table_label_permutation_auroc": [
+          0.2359,
+          0.2359,
+          0.2359,
+          0.2359,
+          0.2359
+        ],
+        "nearest_sibling_label_auroc": 0.2435,
+        "reading": "both read below chance and both are fully explained by the per-table label QUOTA: permuting labels within each table reproduces the observed value in 5 of 5 permutations, so the feature carries the hypergeometric anti-correlation of sampling without replacement and no statement-level association. It is also unreachable by a cross-encoder, which scores one (claim, evidence) pair at a time"
+      }
+    },
+    "C7": {
+      "title": "Declared units and volume",
+      "verdict": "PASS",
+      "unit_declared": "ROWS. One archive row = one (statement, serialised table) pair, so rows and (claim, evidence) pairs are the same count. TabFact ships no pair id",
+      "measured": {
+        "rows": 86206,
+        "claim_evidence_pairs": 86206,
+        "distinct_pairs": 86024,
+        "duplicate_rows": 182,
+        "documents": 11882,
+        "table_ids": 12257,
+        "positives": 47295,
+        "negatives": 38911,
+        "positive_share": 0.5486,
+        "volume_cost_vs_banked_member": {
+          "banked_rows": 92585,
+          "conformed_rows": 86206,
+          "rows_dropped": 6379,
+          "row_cost_share": 0.068899,
+          "banked_documents": 12753,
+          "conformed_documents": 11882,
+          "documents_dropped": 871
+        },
+        "share_of_the_clean_mix": {
+          "clean_mix_rows_before": 685670,
+          "clean_mix_rows_after": 679291,
+          "member_share_before": 0.135029,
+          "member_share_after": 0.126906
+        }
+      },
+      "bar": "state the unit and use it consistently; report both counts always",
+      "margin": {
+        "rows": 86206,
+        "pairs": 86206,
+        "identical_by_construction": true,
+        "delta_between_the_two_units": 0
+      },
+      "reading": "both counts reported and identical by construction. The conforming cut is stated in the same unit: 6,379 rows (6.89%) and 871 documents (6.83%) removed"
+    },
+    "C8": {
+      "title": "Provenance, licence and internal structure",
+      "verdict": "PASS",
+      "supplied": {
+        "source": "wenhuchen/Table-Fact-Checking, GitHub release (https://github.com/wenhuchen/Table-Fact-Checking/archive/refs/heads/master.zip); every HF mirror of `tab_fact` is script-only and datasets 5.x removed script support. Archive member `wenhuchen__Table-Fact-Checking__tabfact__train.parquet`",
+        "licence": "CC-BY-4.0",
+        "retrieval": {
+          "retrieval_date": "2026-07-31",
+          "how_it_was_established": "not read off a card - derived from the artifacts the fetch run itself produced, and recorded here because C8 requires it and no tracked file carried it. Three independent stamps agree to within 22 seconds",
+          "evidence": {
+            "fetch_run_log": {
+              "path": "logs/fetch-tabfact.log (gitignored by `*.log`, present on disk)",
+              "mtime": "2026-07-31 18:10:02",
+              "records_row_counts": "92585 train / 12851 validation / 12839 test",
+              "counts_match_this_archive": true,
+              "why_it_binds": "the log's counts are this archive's measured counts, which ties that run to this file"
+            },
+            "zip_central_directory_stamps": {
+              "wenhuchen__Table-Fact-Checking__tabfact__test.parquet": "2026-07-31 18:10:02",
+              "wenhuchen__Table-Fact-Checking__tabfact__train.parquet": "2026-07-31 18:10:02",
+              "wenhuchen__Table-Fact-Checking__tabfact__validation.parquet": "2026-07-31 18:10:02",
+              "dataset-tabfact.md": "2026-07-31 18:09:40"
+            },
+            "archive_file_mtime": "2026-07-31 18:10:02",
+            "archive_file_ctime": "2026-07-31 18:10:02",
+            "sidecar_first_commit_date": "2026-08-05"
+          }
+        },
+        "selection_predicate": "train split only; filter statement.str.len_chars() > 10; then the document / string / content / contradiction cuts recorded under `cuts`",
+        "chunk_construction": "f'{table_caption}\\n{table_text}'.replace('\\r\\n','\\n').replace('#',' | ')[:chunk_max_chars]",
+        "declared_volume": {
+          "measured_from_the_archive": {
+            "train": 92585,
+            "validation": 12851,
+            "test": 12839
+          },
+          "tracked_sidecar_declares": {
+            "train": 92283,
+            "validation": 12792,
+            "test": 12779
+          },
+          "sidecar_delta": {
+            "train": -302,
+            "validation": -59,
+            "test": -60
+          },
+          "sidecar_agrees": false,
+          "cause": "the sidecar renders the hand-written `size` string of the tabfact spec in scripts/fetch_grounding_datasets.py, not the counts the fetch produced; the fetch log carries the right ones",
+          "corrected_figures_recorded_here": {
+            "train": 92585,
+            "validation": 12851,
+            "test": 12839
+          }
+        },
+        "internal_structure": {
+          "rows": 86206,
+          "distinct_claims": 85996,
+          "rows_on_a_repeated_claim": 414,
+          "claims_carrying_BOTH_labels_anywhere": 4,
+          "claims_carrying_BOTH_labels_on_the_SAME_document": 0,
+          "distinct_evidence_untruncated": 12248,
+          "distinct_evidence_truncated_1500": 12190,
+          "distinct_table_id": 12257,
+          "distinct_documents_stems": 11882,
+          "rows_per_document": {
+            "mean": 7.255,
+            "max": 31
+          },
+          "rows_per_table": {
+            "mean": 7.033,
+            "median": 7,
+            "min": 1,
+            "max": 27
+          },
+          "per_table_positive_share": {
+            "mean": 0.5714,
+            "tables_all_positive": 1663,
+            "tables_all_negative": 302,
+            "tables_mixed": 10292
+          },
+          "evidence_length_chars_untruncated": {
+            "mean": 1114.5,
+            "max": 9330,
+            "rows_over_1500": 19017,
+            "share_over_1500": 0.2206
+          }
+        },
+        "public_repository": "no client or company name appears in this artifact or in any file this verification wrote"
+      },
+      "bar": "source, licence, retrieval date and the exact selection predicate; within-member duplication reported; no client or company name in any artifact",
+      "margin": {
+        "retrieval_date_now_RECORDED": "2026-07-31",
+        "derivation": "three independent artifact stamps from the fetch run agree to within 22 seconds - the run log (whose three split row counts equal this archive's measured counts), the ZIP central-directory stamps, and the archive file mtime/ctime. Derived and stated as such, not read off a card and not asserted",
+        "declared_volume_corrected_here": {
+          "train": 92585,
+          "validation": 12851,
+          "test": 12839
+        },
+        "contradictory_supervision_same_document": 0,
+        "claims_carrying_both_labels_on_DIFFERENT_documents": 4,
+        "why_that_is_not_a_defect": "a statement entailed by one table and refuted by another is correct supervision; the same statement carrying both labels on the SAME document is not, and there are now none"
+      },
+      "residual_OUTSIDE_the_conformed_member": {
+        "what": "the tracked sidecar data/external/datasets/dataset-tabfact.md still declares 92,283 train / 12,792 validation / 12,779 test against the archive's measured 92,585 / 12,851 / 12,839",
+        "cause": "the sidecar renders the hand-written `size` string of the tabfact spec in scripts/fetch_grounding_datasets.py rather than the counts the fetch produced; logs/fetch-tabfact.log carries the correct ones",
+        "what_this_verification_did": "recorded the corrected figures in this report and in tabfact_conformed_clauses.json. The sidecar and the fetch script were NOT modified: writes were confined to experiments/grounding-semantic/contract/, and re-rendering the sidecar means running the fetch script, which touches every other corpus's sidecar too",
+        "the_remaining_fix": "one string - the `size` field of the `tabfact` entry in scripts/fetch_grounding_datasets.py - then a sidecar re-render. Neither touches the corpus or this member",
+        "adjudication": "reported, not adjudicated"
+      }
+    }
+  },
+  "consequence_for_dependants": {
+    "member_weight": "86206 rows, 0.126906 of the 679291-row clean public mix (was 92585 rows / 0.135029 of 685670)",
+    "what_a_rebuild_costs": "6,379 rows and 871 documents. The mix drops from 685,670 to 679,291 rows, so every banked mix-size assertion and the census cross-checks keyed on 685,670 (R18-H150_arm_run.EXPECTED_CLEAN_ROWS) change if this member is substituted",
+    "what_the_cut_buys": {
+      "R20-H177_eval_B": "its TabFact half - 1,300 of 2,000 rows, 650 pairs over 325 documents - becomes a genuinely held-out read: 0 of 325 documents in the member, against 325 of 325 before",
+      "R17-H143_evalset": "0 of 350 TabFact documents in the member, against 350 of 350 before, and its 10 whitespace-normalised passage collisions are gone",
+      "antigaming_probe_sets": "all 14 banked sets, including the R18-H150 flagship pair, now carry 0 tables that collide with a member document, against 50-62 each before",
+      "TabFact_heldout_splits": "0 of 3,391 tables fire against the member at 8-gram Jaccard >= 0.3, against 166 of 3,391 before"
+    },
+    "unaffected": "the blind arena (10 RAGBench subsets) and gold_full read zero in every string form in both directions on both units before and after, and the arena census reads 0.0 both times. No headline number in the campaign moves because of this cut - what moves is whether three held-out surfaces can be called held-out"
+  },
+  "new_findings_this_pass": {
+    "R17-H143_evalset_document_channel": "the first pass read only this eval's passage strings (10 of 547 identical under whitespace normalisation) because the banked parquet carries no doc_id. Joining its 547 distinct passages to R17-H143_evalset_source.parquet resolves all of them: 356 passages over 350 TabFact documents, and ALL 350 are documents the BANKED member trains on. That is 683 of its 1,050 rows (65.0%) - the same species and the same magnitude as the eval_B finding, on a surface the first pass recorded as a 1.8% string leak. Measured, not adjudicated",
+    "content_near_duplication_without_a_stem_collision": "the document cut on the stem left 43 member documents at 8-gram Jaccard >= 0.3 against a TabFact table an evaluation surface draws on, the worst at 0.9852 - near-duplicate documents that do NOT share a csv-id stem. A stem rule alone would not have been enough; those were cut too, and the second round scored 0"
+  },
+  "artifacts": {
+    "report": "experiments/grounding-semantic/contract/tabfact_conformed_report.json",
+    "conformed_member": "experiments/grounding-semantic/contract/tabfact_member_conformed.parquet",
+    "measurements": [
+      "experiments/grounding-semantic/contract/tabfact_conform_build.json",
+      "experiments/grounding-semantic/contract/tabfact_conformed_c2.json",
+      "experiments/grounding-semantic/contract/tabfact_conformed_c4.json",
+      "experiments/grounding-semantic/contract/tabfact_conformed_clauses.json",
+      "experiments/grounding-semantic/contract/tabfact_conformed_scope.json"
+    ],
+    "scripts": [
+      "experiments/grounding-semantic/contract/tabfact_conform_build.py",
+      "experiments/grounding-semantic/contract/tabfact_conformed_c2.py",
+      "experiments/grounding-semantic/contract/tabfact_conformed_c4.py",
+      "experiments/grounding-semantic/contract/tabfact_conformed_clauses.py",
+      "experiments/grounding-semantic/contract/tabfact_conformed_scope_sweep.py",
+      "experiments/grounding-semantic/contract/tabfact_conformed_report_build.py"
+    ],
+    "logs": [
+      "logs/contract-tabfact-conform-build.log",
+      "logs/contract-tabfact-conformed-c2.log",
+      "logs/contract-tabfact-conformed-c4.log",
+      "logs/contract-tabfact-conformed-clauses.log",
+      "logs/contract-tabfact-conformed-scope.log"
+    ],
+    "the_failing_member_left_intact": [
+      "experiments/grounding-semantic/contract/tabfact_member.parquet",
+      "experiments/grounding-semantic/contract/tabfact_contract_report.json"
+    ]
+  },
+  "incidental_finding_carried_forward": {
+    "what": "`R20-H177_evalB_contamination_assessment.py` loads the arm module and R10-H108_lane as two SEPARATE module instances, so its untruncated_evidence() context manager patches a different M59 than the loader it calls",
+    "measured_by_the_first_pass": "that structure caps TabFact chunks at 1,500 chars (20,471 rows at the cap); the corrected binding reaches 9,330",
+    "status": "unchanged and unadjudicated. This verification used the corrected binding - reached through the arm - throughout, as tabfact_load.py did"
+  }
+}

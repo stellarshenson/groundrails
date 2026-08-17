@@ -1,0 +1,3921 @@
+{
+  "member": "psiloqa_conformed",
+  "built_from": "psiloqa",
+  "contract": "docs/experiments/dataset-contract.md",
+  "generated": "2026-08-17T09:09:33",
+  "compute": "CPU only, CUDA_VISIBLE_DEVICES empty",
+  "conforming_pipeline": {
+    "F1_c2_collision_filter": {
+      "what": "drop every row whose passage or claim collides with any evaluation surface under any string form / pairing clause C2 tests",
+      "pairings_tested": [
+        "member_raw_vs_surface_raw",
+        "member_trunc_vs_surface_trunc",
+        "member_nraw_vs_surface_nraw",
+        "member_raw_vs_surface_trunc",
+        "member_trunc_vs_surface_raw",
+        "member_ntrunc_vs_surface_ntrunc"
+      ],
+      "blocks_tested": [
+        "member_evidence vs surface_evidence",
+        "member_claim vs surface_claim",
+        "member_claim vs surface_evidence"
+      ],
+      "rows_hit_per_surface": {
+        "arena_ragbench_10_subsets": 0,
+        "gold_full": 0,
+        "R17-H143_evalset.parquet": 0,
+        "R20-H177_eval_B.parquet": 0,
+        "R20-H177_eval_C.parquet": 0,
+        "R20-H175b_qlane_eval.parquet": 1379,
+        "R20-H175b_qlane_eval_repaired.parquet": 1155,
+        "R20-H175b_qlane_eval_clean.parquet": 0,
+        "R20-H175b_qlane_eval_clean_prefix.parquet": 0
+      },
+      "rows_dropped": 1379,
+      "rows_dropped_share": 0.022346,
+      "distinct_passages_dropped": 485
+    },
+    "F2_c1_length_filter": {
+      "what": "drop every row whose claim exceeds the chosen Unicode content-token cap - the measured cause of the lost resolution (the 25+ token band reads delta 0.0010, AUROC 0.4094 on the original member)",
+      "axis": "Unicode \\w+ content tokens of the claim, campaign stopwords removed",
+      "cap_selection_rule": "largest cap whose pooled delta clears the 0.1 band by >= 0.01 on BOTH containment instruments",
+      "chosen_cap": 42,
+      "rows_dropped_by_F2_after_F1": 9859
+    },
+    "F2_sweep": {
+      "cap_12": {
+        "cap_content_tokens": 12,
+        "rows": 23662,
+        "rows_retained_share_of_F1": 0.3922,
+        "unicode": {
+          "rows_scored": 23662,
+          "n_pos": 3377,
+          "n_neg": 20285,
+          "rate_ge_0.90_pos": 0.1789,
+          "rate_ge_0.90_neg": 0.0349,
+          "delta": 0.144,
+          "margin_outside_band": 0.044,
+          "clears_band": true
+        },
+        "banked_ascii": {
+          "rows_scored": 20242,
+          "n_pos": 2896,
+          "n_neg": 17346,
+          "rate_ge_0.90_pos": 0.2269,
+          "rate_ge_0.90_neg": 0.057,
+          "delta": 0.1698,
+          "margin_outside_band": 0.0698,
+          "clears_band": true
+        },
+        "clears_both_instruments_with_margin": true
+      },
+      "cap_14": {
+        "cap_content_tokens": 14,
+        "rows": 27468,
+        "rows_retained_share_of_F1": 0.4553,
+        "unicode": {
+          "rows_scored": 27468,
+          "n_pos": 3696,
+          "n_neg": 23772,
+          "rate_ge_0.90_pos": 0.1797,
+          "rate_ge_0.90_neg": 0.037,
+          "delta": 0.1426,
+          "margin_outside_band": 0.0426,
+          "clears_band": true
+        },
+        "banked_ascii": {
+          "rows_scored": 23471,
+          "n_pos": 3158,
+          "n_neg": 20313,
+          "rate_ge_0.90_pos": 0.221,
+          "rate_ge_0.90_neg": 0.0523,
+          "delta": 0.1687,
+          "margin_outside_band": 0.0687,
+          "clears_band": true
+        },
+        "clears_both_instruments_with_margin": true
+      },
+      "cap_16": {
+        "cap_content_tokens": 16,
+        "rows": 30632,
+        "rows_retained_share_of_F1": 0.5077,
+        "unicode": {
+          "rows_scored": 30632,
+          "n_pos": 3960,
+          "n_neg": 26672,
+          "rate_ge_0.90_pos": 0.1788,
+          "rate_ge_0.90_neg": 0.0382,
+          "delta": 0.1406,
+          "margin_outside_band": 0.0406,
+          "clears_band": true
+        },
+        "banked_ascii": {
+          "rows_scored": 26059,
+          "n_pos": 3365,
+          "n_neg": 22694,
+          "rate_ge_0.90_pos": 0.2152,
+          "rate_ge_0.90_neg": 0.0494,
+          "delta": 0.1658,
+          "margin_outside_band": 0.0658,
+          "clears_band": true
+        },
+        "clears_both_instruments_with_margin": true
+      },
+      "cap_18": {
+        "cap_content_tokens": 18,
+        "rows": 33388,
+        "rows_retained_share_of_F1": 0.5534,
+        "unicode": {
+          "rows_scored": 33388,
+          "n_pos": 4201,
+          "n_neg": 29187,
+          "rate_ge_0.90_pos": 0.1759,
+          "rate_ge_0.90_neg": 0.0392,
+          "delta": 0.1367,
+          "margin_outside_band": 0.0367,
+          "clears_band": true
+        },
+        "banked_ascii": {
+          "rows_scored": 28254,
+          "n_pos": 3542,
+          "n_neg": 24712,
+          "rate_ge_0.90_pos": 0.2089,
+          "rate_ge_0.90_neg": 0.0478,
+          "delta": 0.1611,
+          "margin_outside_band": 0.0611,
+          "clears_band": true
+        },
+        "clears_both_instruments_with_margin": true
+      },
+      "cap_20": {
+        "cap_content_tokens": 20,
+        "rows": 35661,
+        "rows_retained_share_of_F1": 0.5911,
+        "unicode": {
+          "rows_scored": 35661,
+          "n_pos": 4397,
+          "n_neg": 31264,
+          "rate_ge_0.90_pos": 0.1731,
+          "rate_ge_0.90_neg": 0.0402,
+          "delta": 0.1328,
+          "margin_outside_band": 0.0328,
+          "clears_band": true
+        },
+        "banked_ascii": {
+          "rows_scored": 30111,
+          "n_pos": 3696,
+          "n_neg": 26415,
+          "rate_ge_0.90_pos": 0.2027,
+          "rate_ge_0.90_neg": 0.0463,
+          "delta": 0.1563,
+          "margin_outside_band": 0.0563,
+          "clears_band": true
+        },
+        "clears_both_instruments_with_margin": true
+      },
+      "cap_22": {
+        "cap_content_tokens": 22,
+        "rows": 37721,
+        "rows_retained_share_of_F1": 0.6252,
+        "unicode": {
+          "rows_scored": 37721,
+          "n_pos": 4554,
+          "n_neg": 33167,
+          "rate_ge_0.90_pos": 0.1708,
+          "rate_ge_0.90_neg": 0.0405,
+          "delta": 0.1303,
+          "margin_outside_band": 0.0303,
+          "clears_band": true
+        },
+        "banked_ascii": {
+          "rows_scored": 31830,
+          "n_pos": 3814,
+          "n_neg": 28016,
+          "rate_ge_0.90_pos": 0.1982,
+          "rate_ge_0.90_neg": 0.0451,
+          "delta": 0.1531,
+          "margin_outside_band": 0.0531,
+          "clears_band": true
+        },
+        "clears_both_instruments_with_margin": true
+      },
+      "cap_24": {
+        "cap_content_tokens": 24,
+        "rows": 39481,
+        "rows_retained_share_of_F1": 0.6544,
+        "unicode": {
+          "rows_scored": 39481,
+          "n_pos": 4694,
+          "n_neg": 34787,
+          "rate_ge_0.90_pos": 0.1677,
+          "rate_ge_0.90_neg": 0.0401,
+          "delta": 0.1276,
+          "margin_outside_band": 0.0276,
+          "clears_band": true
+        },
+        "banked_ascii": {
+          "rows_scored": 33305,
+          "n_pos": 3932,
+          "n_neg": 29373,
+          "rate_ge_0.90_pos": 0.1935,
+          "rate_ge_0.90_neg": 0.0436,
+          "delta": 0.1499,
+          "margin_outside_band": 0.0499,
+          "clears_band": true
+        },
+        "clears_both_instruments_with_margin": true
+      },
+      "cap_26": {
+        "cap_content_tokens": 26,
+        "rows": 41066,
+        "rows_retained_share_of_F1": 0.6807,
+        "unicode": {
+          "rows_scored": 41066,
+          "n_pos": 4803,
+          "n_neg": 36263,
+          "rate_ge_0.90_pos": 0.1639,
+          "rate_ge_0.90_neg": 0.0394,
+          "delta": 0.1245,
+          "margin_outside_band": 0.0245,
+          "clears_band": true
+        },
+        "banked_ascii": {
+          "rows_scored": 34704,
+          "n_pos": 4026,
+          "n_neg": 30678,
+          "rate_ge_0.90_pos": 0.1893,
+          "rate_ge_0.90_neg": 0.0426,
+          "delta": 0.1467,
+          "margin_outside_band": 0.0467,
+          "clears_band": true
+        },
+        "clears_both_instruments_with_margin": true
+      },
+      "cap_28": {
+        "cap_content_tokens": 28,
+        "rows": 42574,
+        "rows_retained_share_of_F1": 0.7057,
+        "unicode": {
+          "rows_scored": 42574,
+          "n_pos": 4903,
+          "n_neg": 37671,
+          "rate_ge_0.90_pos": 0.1609,
+          "rate_ge_0.90_neg": 0.0383,
+          "delta": 0.1227,
+          "margin_outside_band": 0.0227,
+          "clears_band": true
+        },
+        "banked_ascii": {
+          "rows_scored": 36055,
+          "n_pos": 4116,
+          "n_neg": 31939,
+          "rate_ge_0.90_pos": 0.1859,
+          "rate_ge_0.90_neg": 0.0413,
+          "delta": 0.1446,
+          "margin_outside_band": 0.0446,
+          "clears_band": true
+        },
+        "clears_both_instruments_with_margin": true
+      },
+      "cap_30": {
+        "cap_content_tokens": 30,
+        "rows": 43986,
+        "rows_retained_share_of_F1": 0.7291,
+        "unicode": {
+          "rows_scored": 43986,
+          "n_pos": 5027,
+          "n_neg": 38959,
+          "rate_ge_0.90_pos": 0.1572,
+          "rate_ge_0.90_neg": 0.0372,
+          "delta": 0.1199,
+          "margin_outside_band": 0.0199,
+          "clears_band": true
+        },
+        "banked_ascii": {
+          "rows_scored": 37333,
+          "n_pos": 4222,
+          "n_neg": 33111,
+          "rate_ge_0.90_pos": 0.1812,
+          "rate_ge_0.90_neg": 0.0401,
+          "delta": 0.1411,
+          "margin_outside_band": 0.0411,
+          "clears_band": true
+        },
+        "clears_both_instruments_with_margin": true
+      },
+      "cap_32": {
+        "cap_content_tokens": 32,
+        "rows": 45255,
+        "rows_retained_share_of_F1": 0.7501,
+        "unicode": {
+          "rows_scored": 45255,
+          "n_pos": 5124,
+          "n_neg": 40131,
+          "rate_ge_0.90_pos": 0.1542,
+          "rate_ge_0.90_neg": 0.0363,
+          "delta": 0.1178,
+          "margin_outside_band": 0.0178,
+          "clears_band": true
+        },
+        "banked_ascii": {
+          "rows_scored": 38496,
+          "n_pos": 4302,
+          "n_neg": 34194,
+          "rate_ge_0.90_pos": 0.1778,
+          "rate_ge_0.90_neg": 0.0391,
+          "delta": 0.1388,
+          "margin_outside_band": 0.0388,
+          "clears_band": true
+        },
+        "clears_both_instruments_with_margin": true
+      },
+      "cap_34": {
+        "cap_content_tokens": 34,
+        "rows": 46461,
+        "rows_retained_share_of_F1": 0.7701,
+        "unicode": {
+          "rows_scored": 46461,
+          "n_pos": 5223,
+          "n_neg": 41238,
+          "rate_ge_0.90_pos": 0.1513,
+          "rate_ge_0.90_neg": 0.0355,
+          "delta": 0.1158,
+          "margin_outside_band": 0.0158,
+          "clears_band": true
+        },
+        "banked_ascii": {
+          "rows_scored": 39603,
+          "n_pos": 4385,
+          "n_neg": 35218,
+          "rate_ge_0.90_pos": 0.1747,
+          "rate_ge_0.90_neg": 0.0381,
+          "delta": 0.1366,
+          "margin_outside_band": 0.0366,
+          "clears_band": true
+        },
+        "clears_both_instruments_with_margin": true
+      },
+      "cap_36": {
+        "cap_content_tokens": 36,
+        "rows": 47611,
+        "rows_retained_share_of_F1": 0.7891,
+        "unicode": {
+          "rows_scored": 47611,
+          "n_pos": 5319,
+          "n_neg": 42292,
+          "rate_ge_0.90_pos": 0.1487,
+          "rate_ge_0.90_neg": 0.0346,
+          "delta": 0.1141,
+          "margin_outside_band": 0.0141,
+          "clears_band": true
+        },
+        "banked_ascii": {
+          "rows_scored": 40650,
+          "n_pos": 4470,
+          "n_neg": 36180,
+          "rate_ge_0.90_pos": 0.1718,
+          "rate_ge_0.90_neg": 0.0372,
+          "delta": 0.1346,
+          "margin_outside_band": 0.0346,
+          "clears_band": true
+        },
+        "clears_both_instruments_with_margin": true
+      },
+      "cap_38": {
+        "cap_content_tokens": 38,
+        "rows": 48582,
+        "rows_retained_share_of_F1": 0.8052,
+        "unicode": {
+          "rows_scored": 48582,
+          "n_pos": 5391,
+          "n_neg": 43191,
+          "rate_ge_0.90_pos": 0.1469,
+          "rate_ge_0.90_neg": 0.0339,
+          "delta": 0.113,
+          "margin_outside_band": 0.013,
+          "clears_band": true
+        },
+        "banked_ascii": {
+          "rows_scored": 41527,
+          "n_pos": 4531,
+          "n_neg": 36996,
+          "rate_ge_0.90_pos": 0.1695,
+          "rate_ge_0.90_neg": 0.0365,
+          "delta": 0.133,
+          "margin_outside_band": 0.033,
+          "clears_band": true
+        },
+        "clears_both_instruments_with_margin": true
+      },
+      "cap_40": {
+        "cap_content_tokens": 40,
+        "rows": 49552,
+        "rows_retained_share_of_F1": 0.8213,
+        "unicode": {
+          "rows_scored": 49552,
+          "n_pos": 5468,
+          "n_neg": 44084,
+          "rate_ge_0.90_pos": 0.1448,
+          "rate_ge_0.90_neg": 0.0332,
+          "delta": 0.1116,
+          "margin_outside_band": 0.0116,
+          "clears_band": true
+        },
+        "banked_ascii": {
+          "rows_scored": 42427,
+          "n_pos": 4602,
+          "n_neg": 37825,
+          "rate_ge_0.90_pos": 0.1669,
+          "rate_ge_0.90_neg": 0.0358,
+          "delta": 0.1311,
+          "margin_outside_band": 0.0311,
+          "clears_band": true
+        },
+        "clears_both_instruments_with_margin": true
+      },
+      "cap_42": {
+        "cap_content_tokens": 42,
+        "rows": 50474,
+        "rows_retained_share_of_F1": 0.8366,
+        "unicode": {
+          "rows_scored": 50474,
+          "n_pos": 5547,
+          "n_neg": 44927,
+          "rate_ge_0.90_pos": 0.1428,
+          "rate_ge_0.90_neg": 0.0326,
+          "delta": 0.1102,
+          "margin_outside_band": 0.0102,
+          "clears_band": true
+        },
+        "banked_ascii": {
+          "rows_scored": 43281,
+          "n_pos": 4673,
+          "n_neg": 38608,
+          "rate_ge_0.90_pos": 0.1646,
+          "rate_ge_0.90_neg": 0.0351,
+          "delta": 0.1295,
+          "margin_outside_band": 0.0295,
+          "clears_band": true
+        },
+        "clears_both_instruments_with_margin": true
+      },
+      "cap_44": {
+        "cap_content_tokens": 44,
+        "rows": 51313,
+        "rows_retained_share_of_F1": 0.8505,
+        "unicode": {
+          "rows_scored": 51313,
+          "n_pos": 5609,
+          "n_neg": 45704,
+          "rate_ge_0.90_pos": 0.1412,
+          "rate_ge_0.90_neg": 0.032,
+          "delta": 0.1092,
+          "margin_outside_band": 0.0092,
+          "clears_band": true
+        },
+        "banked_ascii": {
+          "rows_scored": 44055,
+          "n_pos": 4727,
+          "n_neg": 39328,
+          "rate_ge_0.90_pos": 0.1629,
+          "rate_ge_0.90_neg": 0.0345,
+          "delta": 0.1284,
+          "margin_outside_band": 0.0284,
+          "clears_band": true
+        },
+        "clears_both_instruments_with_margin": false
+      },
+      "cap_46": {
+        "cap_content_tokens": 46,
+        "rows": 52071,
+        "rows_retained_share_of_F1": 0.8631,
+        "unicode": {
+          "rows_scored": 52071,
+          "n_pos": 5679,
+          "n_neg": 46392,
+          "rate_ge_0.90_pos": 0.1395,
+          "rate_ge_0.90_neg": 0.0316,
+          "delta": 0.1079,
+          "margin_outside_band": 0.0079,
+          "clears_band": true
+        },
+        "banked_ascii": {
+          "rows_scored": 44764,
+          "n_pos": 4788,
+          "n_neg": 39976,
+          "rate_ge_0.90_pos": 0.1608,
+          "rate_ge_0.90_neg": 0.0339,
+          "delta": 0.1269,
+          "margin_outside_band": 0.0269,
+          "clears_band": true
+        },
+        "clears_both_instruments_with_margin": false
+      },
+      "cap_48": {
+        "cap_content_tokens": 48,
+        "rows": 52749,
+        "rows_retained_share_of_F1": 0.8743,
+        "unicode": {
+          "rows_scored": 52749,
+          "n_pos": 5747,
+          "n_neg": 47002,
+          "rate_ge_0.90_pos": 0.1378,
+          "rate_ge_0.90_neg": 0.0311,
+          "delta": 0.1067,
+          "margin_outside_band": 0.0067,
+          "clears_band": true
+        },
+        "banked_ascii": {
+          "rows_scored": 45395,
+          "n_pos": 4848,
+          "n_neg": 40547,
+          "rate_ge_0.90_pos": 0.1588,
+          "rate_ge_0.90_neg": 0.0335,
+          "delta": 0.1253,
+          "margin_outside_band": 0.0253,
+          "clears_band": true
+        },
+        "clears_both_instruments_with_margin": false
+      },
+      "cap_50": {
+        "cap_content_tokens": 50,
+        "rows": 53320,
+        "rows_retained_share_of_F1": 0.8838,
+        "unicode": {
+          "rows_scored": 53320,
+          "n_pos": 5803,
+          "n_neg": 47517,
+          "rate_ge_0.90_pos": 0.1365,
+          "rate_ge_0.90_neg": 0.0308,
+          "delta": 0.1057,
+          "margin_outside_band": 0.0057,
+          "clears_band": true
+        },
+        "banked_ascii": {
+          "rows_scored": 45916,
+          "n_pos": 4900,
+          "n_neg": 41016,
+          "rate_ge_0.90_pos": 0.1571,
+          "rate_ge_0.90_neg": 0.0332,
+          "delta": 0.124,
+          "margin_outside_band": 0.024,
+          "clears_band": true
+        },
+        "clears_both_instruments_with_margin": false
+      },
+      "cap_52": {
+        "cap_content_tokens": 52,
+        "rows": 53853,
+        "rows_retained_share_of_F1": 0.8926,
+        "unicode": {
+          "rows_scored": 53853,
+          "n_pos": 5851,
+          "n_neg": 48002,
+          "rate_ge_0.90_pos": 0.1354,
+          "rate_ge_0.90_neg": 0.0305,
+          "delta": 0.1049,
+          "margin_outside_band": 0.0049,
+          "clears_band": true
+        },
+        "banked_ascii": {
+          "rows_scored": 46407,
+          "n_pos": 4942,
+          "n_neg": 41465,
+          "rate_ge_0.90_pos": 0.1558,
+          "rate_ge_0.90_neg": 0.0328,
+          "delta": 0.123,
+          "margin_outside_band": 0.023,
+          "clears_band": true
+        },
+        "clears_both_instruments_with_margin": false
+      },
+      "cap_54": {
+        "cap_content_tokens": 54,
+        "rows": 54374,
+        "rows_retained_share_of_F1": 0.9012,
+        "unicode": {
+          "rows_scored": 54374,
+          "n_pos": 5903,
+          "n_neg": 48471,
+          "rate_ge_0.90_pos": 0.1342,
+          "rate_ge_0.90_neg": 0.0302,
+          "delta": 0.104,
+          "margin_outside_band": 0.004,
+          "clears_band": true
+        },
+        "banked_ascii": {
+          "rows_scored": 46886,
+          "n_pos": 4989,
+          "n_neg": 41897,
+          "rate_ge_0.90_pos": 0.1545,
+          "rate_ge_0.90_neg": 0.0325,
+          "delta": 0.122,
+          "margin_outside_band": 0.022,
+          "clears_band": true
+        },
+        "clears_both_instruments_with_margin": false
+      },
+      "cap_56": {
+        "cap_content_tokens": 56,
+        "rows": 54830,
+        "rows_retained_share_of_F1": 0.9088,
+        "unicode": {
+          "rows_scored": 54830,
+          "n_pos": 5943,
+          "n_neg": 48887,
+          "rate_ge_0.90_pos": 0.1333,
+          "rate_ge_0.90_neg": 0.0299,
+          "delta": 0.1033,
+          "margin_outside_band": 0.0033,
+          "clears_band": true
+        },
+        "banked_ascii": {
+          "rows_scored": 47308,
+          "n_pos": 5025,
+          "n_neg": 42283,
+          "rate_ge_0.90_pos": 0.1534,
+          "rate_ge_0.90_neg": 0.0323,
+          "delta": 0.1212,
+          "margin_outside_band": 0.0212,
+          "clears_band": true
+        },
+        "clears_both_instruments_with_margin": false
+      },
+      "cap_58": {
+        "cap_content_tokens": 58,
+        "rows": 55227,
+        "rows_retained_share_of_F1": 0.9154,
+        "unicode": {
+          "rows_scored": 55227,
+          "n_pos": 5985,
+          "n_neg": 49242,
+          "rate_ge_0.90_pos": 0.1323,
+          "rate_ge_0.90_neg": 0.0297,
+          "delta": 0.1026,
+          "margin_outside_band": 0.0026,
+          "clears_band": true
+        },
+        "banked_ascii": {
+          "rows_scored": 47678,
+          "n_pos": 5062,
+          "n_neg": 42616,
+          "rate_ge_0.90_pos": 0.1523,
+          "rate_ge_0.90_neg": 0.032,
+          "delta": 0.1203,
+          "margin_outside_band": 0.0203,
+          "clears_band": true
+        },
+        "clears_both_instruments_with_margin": false
+      },
+      "cap_60": {
+        "cap_content_tokens": 60,
+        "rows": 55593,
+        "rows_retained_share_of_F1": 0.9214,
+        "unicode": {
+          "rows_scored": 55593,
+          "n_pos": 6027,
+          "n_neg": 49566,
+          "rate_ge_0.90_pos": 0.1314,
+          "rate_ge_0.90_neg": 0.0295,
+          "delta": 0.1019,
+          "margin_outside_band": 0.0019,
+          "clears_band": true
+        },
+        "banked_ascii": {
+          "rows_scored": 48027,
+          "n_pos": 5101,
+          "n_neg": 42926,
+          "rate_ge_0.90_pos": 0.1511,
+          "rate_ge_0.90_neg": 0.0318,
+          "delta": 0.1194,
+          "margin_outside_band": 0.0194,
+          "clears_band": true
+        },
+        "clears_both_instruments_with_margin": false
+      },
+      "cap_70": {
+        "cap_content_tokens": 70,
+        "rows": 56917,
+        "rows_retained_share_of_F1": 0.9434,
+        "unicode": {
+          "rows_scored": 56917,
+          "n_pos": 6176,
+          "n_neg": 50741,
+          "rate_ge_0.90_pos": 0.1282,
+          "rate_ge_0.90_neg": 0.0289,
+          "delta": 0.0994,
+          "margin_outside_band": -0.0006,
+          "clears_band": false
+        },
+        "banked_ascii": {
+          "rows_scored": 49239,
+          "n_pos": 5235,
+          "n_neg": 44004,
+          "rate_ge_0.90_pos": 0.1475,
+          "rate_ge_0.90_neg": 0.0311,
+          "delta": 0.1164,
+          "margin_outside_band": 0.0164,
+          "clears_band": true
+        },
+        "clears_both_instruments_with_margin": false
+      },
+      "cap_80": {
+        "cap_content_tokens": 80,
+        "rows": 57849,
+        "rows_retained_share_of_F1": 0.9588,
+        "unicode": {
+          "rows_scored": 57849,
+          "n_pos": 6277,
+          "n_neg": 51572,
+          "rate_ge_0.90_pos": 0.1262,
+          "rate_ge_0.90_neg": 0.0284,
+          "delta": 0.0978,
+          "margin_outside_band": -0.0022,
+          "clears_band": false
+        },
+        "banked_ascii": {
+          "rows_scored": 50093,
+          "n_pos": 5319,
+          "n_neg": 44774,
+          "rate_ge_0.90_pos": 0.1453,
+          "rate_ge_0.90_neg": 0.0306,
+          "delta": 0.1147,
+          "margin_outside_band": 0.0147,
+          "clears_band": true
+        },
+        "clears_both_instruments_with_margin": false
+      },
+      "cap_100": {
+        "cap_content_tokens": 100,
+        "rows": 59064,
+        "rows_retained_share_of_F1": 0.979,
+        "unicode": {
+          "rows_scored": 59064,
+          "n_pos": 6405,
+          "n_neg": 52659,
+          "rate_ge_0.90_pos": 0.1237,
+          "rate_ge_0.90_neg": 0.0278,
+          "delta": 0.0959,
+          "margin_outside_band": -0.0041,
+          "clears_band": false
+        },
+        "banked_ascii": {
+          "rows_scored": 51176,
+          "n_pos": 5424,
+          "n_neg": 45752,
+          "rate_ge_0.90_pos": 0.1425,
+          "rate_ge_0.90_neg": 0.03,
+          "delta": 0.1125,
+          "margin_outside_band": 0.0125,
+          "clears_band": true
+        },
+        "clears_both_instruments_with_margin": false
+      },
+      "cap_1000000": {
+        "cap_content_tokens": null,
+        "rows": 60333,
+        "rows_retained_share_of_F1": 1.0,
+        "unicode": {
+          "rows_scored": 60333,
+          "n_pos": 6599,
+          "n_neg": 53734,
+          "rate_ge_0.90_pos": 0.12,
+          "rate_ge_0.90_neg": 0.0272,
+          "delta": 0.0928,
+          "margin_outside_band": -0.0072,
+          "clears_band": false
+        },
+        "banked_ascii": {
+          "rows_scored": 52402,
+          "n_pos": 5605,
+          "n_neg": 46797,
+          "rate_ge_0.90_pos": 0.1379,
+          "rate_ge_0.90_neg": 0.0293,
+          "delta": 0.1086,
+          "margin_outside_band": 0.0086,
+          "clears_band": true
+        },
+        "clears_both_instruments_with_margin": false
+      }
+    },
+    "volume_cost": {
+      "rows_original": 61712,
+      "rows_conformed": 50474,
+      "rows_dropped_total": 11238,
+      "rows_retained_share": 0.8179,
+      "rows_dropped_by_F1_c2": 1379,
+      "rows_dropped_by_F2_c1_after_F1": 9859,
+      "rows_dropped_by_both_filters": 268,
+      "distinct_passages_original": 25583,
+      "distinct_passages_conformed": 23492,
+      "distinct_claims_original": 61468,
+      "distinct_claims_conformed": 50233,
+      "positive_rate_original": 0.1092,
+      "positive_rate_conformed": 0.1099,
+      "clean_mix_rows_with_original_member": 685670,
+      "clean_mix_rows_with_conformed_member": 674432,
+      "member_share_of_mix_original": 0.09,
+      "member_share_of_mix_conformed": 0.0748
+    },
+    "what_was_NOT_done": "no label changed, no leg re-weighted, no clause threshold moved, no instrument re-tuned. The pipeline removes rows and nothing else",
+    "mix_distinct_chunks": {
+      "with_unconformed_member": 344550,
+      "with_conformed_member": 342459
+    }
+  },
+  "C1": {
+    "clause": "C1",
+    "head_declared": "grounding scalar (`task_head`) - the served ground() score",
+    "label_predicate_measured": "label 1 iff the corpus's `labels` span list is EMPTY, i.e. the annotator marked no hallucinated span in the LLM answer given the retrieved Wikipedia passage; label 0 iff at least one span of the answer was marked unsupported. The predicate is span-level SUPPORT of the answer by the passage, not question relevance - the same predicate the grounding head consumes",
+    "label_provenance": "GPT-4o end-to-end span annotation, no human verification (dataset card)",
+    "rows": 50474,
+    "positives": 5547,
+    "negatives": 44927,
+    "positive_rate": 0.1099,
+    "instruments": {
+      "primary": "R20_gates_pubmedqa.containment over R20_gates_pubmedqa.content (ASCII [a-z0-9]+ content tokens, campaign stopwords)",
+      "companion_flagged_separately": "same containment over Unicode \\w+ tokens - the banked tokenizer scores no non-Latin script, so it is reported beside the primary, not instead of it"
+    },
+    "coverage": {
+      "banked_instrument_rows_scorable": 43281,
+      "banked_instrument_coverage": 0.8575,
+      "unicode_instrument_rows_scorable": 50474,
+      "unicode_instrument_coverage": 1.0,
+      "note": "a row is unscorable when the claim has no content token under that tokenizer; unscorable rows are excluded from the distributions below"
+    },
+    "containment_banked_ascii": {
+      "positive_leg": {
+        "n": 4673,
+        "mean": 0.5368,
+        "median": 0.6,
+        "p10": 0.0,
+        "p25": 0.2222,
+        "p75": 0.8333,
+        "p90": 1.0,
+        "frac_ge_0.50": 0.5866,
+        "frac_ge_0.90": 0.1646,
+        "frac_eq_1.00": 0.1376
+      },
+      "negative_leg": {
+        "n": 38608,
+        "mean": 0.4052,
+        "median": 0.4,
+        "p10": 0.0,
+        "p25": 0.2059,
+        "p75": 0.6,
+        "p90": 0.75,
+        "frac_ge_0.50": 0.3965,
+        "frac_ge_0.90": 0.0351,
+        "frac_eq_1.00": 0.0262
+      },
+      "attested_ge_0.90_rate_positive": 0.1646,
+      "attested_ge_0.90_rate_negative": 0.0351,
+      "rate_delta_abs": 0.1295,
+      "fully_attested_rate_positive": 0.1376,
+      "fully_attested_rate_negative": 0.0262,
+      "mean_delta_pos_minus_neg": 0.1316,
+      "bar": "REJECTED for the grounding head if |rate(>=0.90 attested)_neg - rate(>=0.90 attested)_pos| <= 0.10",
+      "rejected": false
+    },
+    "containment_unicode": {
+      "positive_leg": {
+        "n": 5547,
+        "mean": 0.5164,
+        "median": 0.5833,
+        "p10": 0.0,
+        "p25": 0.1929,
+        "p75": 0.8,
+        "p90": 1.0,
+        "frac_ge_0.50": 0.5753,
+        "frac_ge_0.90": 0.1428,
+        "frac_eq_1.00": 0.1067
+      },
+      "negative_leg": {
+        "n": 44927,
+        "mean": 0.4297,
+        "median": 0.4286,
+        "p10": 0.0,
+        "p25": 0.2308,
+        "p75": 0.6364,
+        "p90": 0.8,
+        "frac_ge_0.50": 0.4307,
+        "frac_ge_0.90": 0.0326,
+        "frac_eq_1.00": 0.0114
+      },
+      "attested_ge_0.90_rate_positive": 0.1428,
+      "attested_ge_0.90_rate_negative": 0.0326,
+      "rate_delta_abs": 0.1102,
+      "fully_attested_rate_positive": 0.1067,
+      "fully_attested_rate_negative": 0.0114,
+      "mean_delta_pos_minus_neg": 0.0867,
+      "bar": "REJECTED for the grounding head if |rate(>=0.90 attested)_neg - rate(>=0.90 attested)_pos| <= 0.10",
+      "rejected": false
+    },
+    "executor_added_diagnostics": {
+      "note": "reported separately from the C1 test; these do not join the clause verdict",
+      "per_language_rate_delta": {
+        "ar": {
+          "banked_ascii": {
+            "n_pos": 48,
+            "n_neg": 848,
+            "rate_ge_0.90_pos": 0.125,
+            "rate_ge_0.90_neg": 0.0259,
+            "delta": 0.0991
+          },
+          "unicode": {
+            "n_pos": 117,
+            "n_neg": 1328,
+            "rate_ge_0.90_pos": 0.0,
+            "rate_ge_0.90_neg": 0.0,
+            "delta": 0.0
+          }
+        },
+        "ca": {
+          "banked_ascii": {
+            "n_pos": 701,
+            "n_neg": 4298,
+            "rate_ge_0.90_pos": 0.127,
+            "rate_ge_0.90_neg": 0.0326,
+            "delta": 0.0944
+          },
+          "unicode": {
+            "n_pos": 701,
+            "n_neg": 4298,
+            "rate_ge_0.90_pos": 0.1113,
+            "rate_ge_0.90_neg": 0.03,
+            "delta": 0.0813
+          }
+        },
+        "cs": {
+          "banked_ascii": {
+            "n_pos": 175,
+            "n_neg": 2622,
+            "rate_ge_0.90_pos": 0.0286,
+            "rate_ge_0.90_neg": 0.0015,
+            "delta": 0.027
+          },
+          "unicode": {
+            "n_pos": 175,
+            "n_neg": 2622,
+            "rate_ge_0.90_pos": 0.0286,
+            "rate_ge_0.90_neg": 0.0011,
+            "delta": 0.0274
+          }
+        },
+        "de": {
+          "banked_ascii": {
+            "n_pos": 257,
+            "n_neg": 669,
+            "rate_ge_0.90_pos": 0.0117,
+            "rate_ge_0.90_neg": 0.0015,
+            "delta": 0.0102
+          },
+          "unicode": {
+            "n_pos": 257,
+            "n_neg": 669,
+            "rate_ge_0.90_pos": 0.0117,
+            "rate_ge_0.90_neg": 0.0015,
+            "delta": 0.0102
+          }
+        },
+        "en": {
+          "banked_ascii": {
+            "n_pos": 587,
+            "n_neg": 12149,
+            "rate_ge_0.90_pos": 0.3186,
+            "rate_ge_0.90_neg": 0.0199,
+            "delta": 0.2986
+          },
+          "unicode": {
+            "n_pos": 587,
+            "n_neg": 12149,
+            "rate_ge_0.90_pos": 0.3186,
+            "rate_ge_0.90_neg": 0.0198,
+            "delta": 0.2988
+          }
+        },
+        "es": {
+          "banked_ascii": {
+            "n_pos": 171,
+            "n_neg": 1391,
+            "rate_ge_0.90_pos": 0.193,
+            "rate_ge_0.90_neg": 0.0352,
+            "delta": 0.1578
+          },
+          "unicode": {
+            "n_pos": 171,
+            "n_neg": 1391,
+            "rate_ge_0.90_pos": 0.1988,
+            "rate_ge_0.90_neg": 0.0295,
+            "delta": 0.1694
+          }
+        },
+        "eu": {
+          "banked_ascii": {
+            "n_pos": 411,
+            "n_neg": 1375,
+            "rate_ge_0.90_pos": 0.0024,
+            "rate_ge_0.90_neg": 0.0015,
+            "delta": 0.001
+          },
+          "unicode": {
+            "n_pos": 411,
+            "n_neg": 1375,
+            "rate_ge_0.90_pos": 0.0024,
+            "rate_ge_0.90_neg": 0.0015,
+            "delta": 0.001
+          }
+        },
+        "fa": {
+          "banked_ascii": {
+            "n_pos": 35,
+            "n_neg": 1075,
+            "rate_ge_0.90_pos": 0.0857,
+            "rate_ge_0.90_neg": 0.0326,
+            "delta": 0.0532
+          },
+          "unicode": {
+            "n_pos": 145,
+            "n_neg": 2357,
+            "rate_ge_0.90_pos": 0.2414,
+            "rate_ge_0.90_neg": 0.0233,
+            "delta": 0.218
+          }
+        },
+        "fi": {
+          "banked_ascii": {
+            "n_pos": 676,
+            "n_neg": 4080,
+            "rate_ge_0.90_pos": 0.0888,
+            "rate_ge_0.90_neg": 0.0159,
+            "delta": 0.0728
+          },
+          "unicode": {
+            "n_pos": 676,
+            "n_neg": 4080,
+            "rate_ge_0.90_pos": 0.0828,
+            "rate_ge_0.90_neg": 0.0132,
+            "delta": 0.0696
+          }
+        },
+        "fr": {
+          "banked_ascii": {
+            "n_pos": 61,
+            "n_neg": 794,
+            "rate_ge_0.90_pos": 0.1311,
+            "rate_ge_0.90_neg": 0.0139,
+            "delta": 0.1173
+          },
+          "unicode": {
+            "n_pos": 61,
+            "n_neg": 794,
+            "rate_ge_0.90_pos": 0.0656,
+            "rate_ge_0.90_neg": 0.0101,
+            "delta": 0.0555
+          }
+        },
+        "hi": {
+          "banked_ascii": {
+            "n_pos": 166,
+            "n_neg": 1533,
+            "rate_ge_0.90_pos": 0.253,
+            "rate_ge_0.90_neg": 0.1396,
+            "delta": 0.1134
+          },
+          "unicode": {
+            "n_pos": 586,
+            "n_neg": 4464,
+            "rate_ge_0.90_pos": 0.3225,
+            "rate_ge_0.90_neg": 0.1915,
+            "delta": 0.131
+          }
+        },
+        "it": {
+          "banked_ascii": {
+            "n_pos": 147,
+            "n_neg": 1365,
+            "rate_ge_0.90_pos": 0.1224,
+            "rate_ge_0.90_neg": 0.0103,
+            "delta": 0.1122
+          },
+          "unicode": {
+            "n_pos": 147,
+            "n_neg": 1365,
+            "rate_ge_0.90_pos": 0.1088,
+            "rate_ge_0.90_neg": 0.0147,
+            "delta": 0.0942
+          }
+        },
+        "sv": {
+          "banked_ascii": {
+            "n_pos": 956,
+            "n_neg": 3717,
+            "rate_ge_0.90_pos": 0.2176,
+            "rate_ge_0.90_neg": 0.0272,
+            "delta": 0.1904
+          },
+          "unicode": {
+            "n_pos": 956,
+            "n_neg": 3717,
+            "rate_ge_0.90_pos": 0.1914,
+            "rate_ge_0.90_neg": 0.0148,
+            "delta": 0.1766
+          }
+        },
+        "zh": {
+          "banked_ascii": {
+            "n_pos": 282,
+            "n_neg": 2692,
+            "rate_ge_0.90_pos": 0.3759,
+            "rate_ge_0.90_neg": 0.169,
+            "delta": 0.2069
+          },
+          "unicode": {
+            "n_pos": 557,
+            "n_neg": 4318,
+            "rate_ge_0.90_pos": 0.0018,
+            "rate_ge_0.90_neg": 0.0002,
+            "delta": 0.0016
+          }
+        }
+      },
+      "annotated_hallucinated_span_containment_unicode": {
+        "n": 59088,
+        "mean": 0.2181,
+        "median": 0.0,
+        "p10": 0.0,
+        "p25": 0.0,
+        "p75": 0.375,
+        "p90": 0.6667,
+        "frac_ge_0.50": 0.2118,
+        "frac_ge_0.90": 0.0538,
+        "frac_eq_1.00": 0.0511
+      },
+      "annotated_span_reading": "containment of the marked-hallucinated fragments themselves against the passage; low values corroborate that the corpus label tracks support rather than relevance"
+    },
+    "primary_reading": "unicode_full_coverage",
+    "verdict_basis": "reading A of the clause bar (the reading that rejects R20-H175b's lane), taken on the Unicode instrument - the only one that scores all 14 languages. The banked ASCII instrument is reported beside it and agrees here; on the unconformed member the two straddled the band",
+    "verdict": "PASS",
+    "measured": "rate(containment >= 0.90) negative 0.0326 vs positive 0.1428, delta 0.1102 against a <= 0.10 rejection band, OUTSIDE it by 0.0102 (banked ASCII: neg 0.0351 vs pos 0.1646, delta 0.1295, outside by 0.0295)",
+    "both_instruments_agree": true
+  },
+  "C2": {
+    "clause": "C2",
+    "member_distinct_evidence_units": 23492,
+    "member_distinct_claim_units": 50233,
+    "string_forms": [
+      "raw",
+      "truncated to chunk_max_chars=1500",
+      "whitespace-collapsed case-folded"
+    ],
+    "directions": "both - member-in-surface and surface-in-member counted per form",
+    "per_surface": {
+      "arena_ragbench_10_subsets": {
+        "kind": "blind arena",
+        "surface_evidence_units": 6784,
+        "surface_claim_units": 0,
+        "evidence_vs_evidence": {
+          "raw_vs_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 6784,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "truncated_vs_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 6778,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_vs_normalised": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 6783,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_raw_vs_surface_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 6778,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_truncated_vs_surface_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 6784,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_truncated_vs_normalised_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 6777,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "worst_form_intersection": 0
+        },
+        "claim_vs_claim": null,
+        "member_claim_vs_surface_evidence": {
+          "raw_vs_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 6784,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "truncated_vs_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 6778,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_vs_normalised": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 6783,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_raw_vs_surface_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 6778,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_truncated_vs_surface_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 6784,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_truncated_vs_normalised_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 6777,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "worst_form_intersection": 0
+        },
+        "worst_intersection_any_form_any_pairing": 0,
+        "status": "CLEAN"
+      },
+      "gold_full": {
+        "kind": "in-domain gold test surface",
+        "surface_evidence_units": 10228,
+        "surface_claim_units": 2699,
+        "evidence_vs_evidence": {
+          "raw_vs_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 10228,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "truncated_vs_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 10228,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_vs_normalised": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 10227,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_raw_vs_surface_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 10228,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_truncated_vs_surface_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 10228,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_truncated_vs_normalised_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 10227,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "worst_form_intersection": 0
+        },
+        "claim_vs_claim": {
+          "raw_vs_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 2699,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "truncated_vs_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 2699,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_vs_normalised": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 2699,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_raw_vs_surface_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 2699,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_truncated_vs_surface_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 2699,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_truncated_vs_normalised_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 2699,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "worst_form_intersection": 0
+        },
+        "member_claim_vs_surface_evidence": {
+          "raw_vs_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 10228,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "truncated_vs_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 10228,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_vs_normalised": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 10227,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_raw_vs_surface_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 10228,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_truncated_vs_surface_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 10228,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_truncated_vs_normalised_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 10227,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "worst_form_intersection": 0
+        },
+        "worst_intersection_any_form_any_pairing": 0,
+        "status": "CLEAN"
+      },
+      "R17-H143_evalset.parquet": {
+        "kind": "held-out mechanism eval",
+        "surface_evidence_units": 547,
+        "surface_claim_units": 1048,
+        "evidence_vs_evidence": {
+          "raw_vs_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 547,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "truncated_vs_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 547,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_vs_normalised": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 547,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_raw_vs_surface_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 547,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_truncated_vs_surface_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 547,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_truncated_vs_normalised_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 547,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "worst_form_intersection": 0
+        },
+        "claim_vs_claim": {
+          "raw_vs_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 1048,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "truncated_vs_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 1048,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_vs_normalised": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 1048,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_raw_vs_surface_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 1048,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_truncated_vs_surface_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 1048,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_truncated_vs_normalised_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 1048,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "worst_form_intersection": 0
+        },
+        "member_claim_vs_surface_evidence": {
+          "raw_vs_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 547,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "truncated_vs_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 547,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_vs_normalised": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 547,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_raw_vs_surface_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 547,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_truncated_vs_surface_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 547,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_truncated_vs_normalised_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 547,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "worst_form_intersection": 0
+        },
+        "worst_intersection_any_form_any_pairing": 0,
+        "status": "CLEAN"
+      },
+      "R20-H177_eval_B.parquet": {
+        "kind": "held-out mechanism eval",
+        "surface_evidence_units": 736,
+        "surface_claim_units": 2000,
+        "evidence_vs_evidence": {
+          "raw_vs_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 736,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "truncated_vs_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 736,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_vs_normalised": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 736,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_raw_vs_surface_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 736,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_truncated_vs_surface_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 736,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_truncated_vs_normalised_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 736,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "worst_form_intersection": 0
+        },
+        "claim_vs_claim": {
+          "raw_vs_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 2000,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "truncated_vs_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 2000,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_vs_normalised": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 2000,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_raw_vs_surface_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 2000,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_truncated_vs_surface_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 2000,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_truncated_vs_normalised_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 2000,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "worst_form_intersection": 0
+        },
+        "member_claim_vs_surface_evidence": {
+          "raw_vs_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 736,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "truncated_vs_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 736,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_vs_normalised": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 736,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_raw_vs_surface_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 736,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_truncated_vs_surface_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 736,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_truncated_vs_normalised_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 736,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "worst_form_intersection": 0
+        },
+        "worst_intersection_any_form_any_pairing": 0,
+        "status": "CLEAN"
+      },
+      "R20-H177_eval_C.parquet": {
+        "kind": "held-out mechanism eval",
+        "surface_evidence_units": 380,
+        "surface_claim_units": 1926,
+        "evidence_vs_evidence": {
+          "raw_vs_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 380,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "truncated_vs_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 380,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_vs_normalised": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 380,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_raw_vs_surface_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 380,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_truncated_vs_surface_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 380,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_truncated_vs_normalised_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 380,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "worst_form_intersection": 0
+        },
+        "claim_vs_claim": {
+          "raw_vs_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 1926,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "truncated_vs_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 1926,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_vs_normalised": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 1926,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_raw_vs_surface_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 1926,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_truncated_vs_surface_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 1926,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_truncated_vs_normalised_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 1926,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "worst_form_intersection": 0
+        },
+        "member_claim_vs_surface_evidence": {
+          "raw_vs_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 380,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "truncated_vs_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 380,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_vs_normalised": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 380,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_raw_vs_surface_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 380,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_truncated_vs_surface_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 380,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_truncated_vs_normalised_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 380,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "worst_form_intersection": 0
+        },
+        "worst_intersection_any_form_any_pairing": 0,
+        "status": "CLEAN"
+      },
+      "R20-H175b_qlane_eval.parquet": {
+        "kind": "held-out mechanism eval",
+        "surface_evidence_units": 487,
+        "surface_claim_units": 1001,
+        "evidence_vs_evidence": {
+          "raw_vs_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 487,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "truncated_vs_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 487,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_vs_normalised": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 487,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_raw_vs_surface_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 487,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_truncated_vs_surface_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 487,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_truncated_vs_normalised_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 487,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "worst_form_intersection": 0
+        },
+        "claim_vs_claim": {
+          "raw_vs_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 1001,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "truncated_vs_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 1001,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_vs_normalised": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 1001,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_raw_vs_surface_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 1001,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_truncated_vs_surface_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 1001,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_truncated_vs_normalised_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 1001,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "worst_form_intersection": 0
+        },
+        "member_claim_vs_surface_evidence": {
+          "raw_vs_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 487,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "truncated_vs_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 487,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_vs_normalised": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 487,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_raw_vs_surface_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 487,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_truncated_vs_surface_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 487,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_truncated_vs_normalised_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 487,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "worst_form_intersection": 0
+        },
+        "worst_intersection_any_form_any_pairing": 0,
+        "status": "CLEAN"
+      },
+      "R20-H175b_qlane_eval_repaired.parquet": {
+        "kind": "held-out mechanism eval",
+        "surface_evidence_units": 407,
+        "surface_claim_units": 839,
+        "evidence_vs_evidence": {
+          "raw_vs_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 407,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "truncated_vs_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 407,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_vs_normalised": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 407,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_raw_vs_surface_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 407,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_truncated_vs_surface_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 407,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_truncated_vs_normalised_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 407,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "worst_form_intersection": 0
+        },
+        "claim_vs_claim": {
+          "raw_vs_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 839,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "truncated_vs_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 839,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_vs_normalised": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 839,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_raw_vs_surface_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 839,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_truncated_vs_surface_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 839,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_truncated_vs_normalised_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 839,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "worst_form_intersection": 0
+        },
+        "member_claim_vs_surface_evidence": {
+          "raw_vs_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 407,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "truncated_vs_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 407,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_vs_normalised": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 407,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_raw_vs_surface_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 407,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_truncated_vs_surface_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 407,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_truncated_vs_normalised_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 407,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "worst_form_intersection": 0
+        },
+        "worst_intersection_any_form_any_pairing": 0,
+        "status": "CLEAN"
+      },
+      "R20-H175b_qlane_eval_clean.parquet": {
+        "kind": "held-out mechanism eval",
+        "surface_evidence_units": 22,
+        "surface_claim_units": 44,
+        "evidence_vs_evidence": {
+          "raw_vs_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 22,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "truncated_vs_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 22,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_vs_normalised": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 22,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_raw_vs_surface_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 22,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_truncated_vs_surface_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 22,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_truncated_vs_normalised_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 22,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "worst_form_intersection": 0
+        },
+        "claim_vs_claim": {
+          "raw_vs_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 44,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "truncated_vs_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 44,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_vs_normalised": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 44,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_raw_vs_surface_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 44,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_truncated_vs_surface_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 44,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_truncated_vs_normalised_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 44,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "worst_form_intersection": 0
+        },
+        "member_claim_vs_surface_evidence": {
+          "raw_vs_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 22,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "truncated_vs_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 22,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_vs_normalised": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 22,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_raw_vs_surface_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 22,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_truncated_vs_surface_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 22,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_truncated_vs_normalised_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 22,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "worst_form_intersection": 0
+        },
+        "worst_intersection_any_form_any_pairing": 0,
+        "status": "CLEAN"
+      },
+      "R20-H175b_qlane_eval_clean_prefix.parquet": {
+        "kind": "held-out mechanism eval",
+        "surface_evidence_units": 8,
+        "surface_claim_units": 16,
+        "evidence_vs_evidence": {
+          "raw_vs_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 8,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "truncated_vs_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 8,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_vs_normalised": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 8,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_raw_vs_surface_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 8,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_truncated_vs_surface_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 8,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_truncated_vs_normalised_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 23492,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 8,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "worst_form_intersection": 0
+        },
+        "claim_vs_claim": {
+          "raw_vs_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 16,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "truncated_vs_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 16,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_vs_normalised": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 16,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_raw_vs_surface_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 16,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_truncated_vs_surface_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 16,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_truncated_vs_normalised_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 16,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "worst_form_intersection": 0
+        },
+        "member_claim_vs_surface_evidence": {
+          "raw_vs_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 8,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "truncated_vs_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 8,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_vs_normalised": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 8,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_raw_vs_surface_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 8,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "member_truncated_vs_surface_raw": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50233,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 8,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "normalised_truncated_vs_normalised_truncated": {
+            "intersection_size": 0,
+            "member_side": {
+              "units": 50230,
+              "matching": 0,
+              "fraction": 0.0
+            },
+            "surface_side": {
+              "units": 8,
+              "matching": 0,
+              "fraction": 0.0
+            }
+          },
+          "worst_form_intersection": 0
+        },
+        "worst_intersection_any_form_any_pairing": 0,
+        "status": "CLEAN"
+      }
+    },
+    "surfaces_with_overlap": [],
+    "verdict": "PASS"
+  },
+  "C3": {
+    "clause": "C3",
+    "split_axis_declared_by_card": "official train / validation / test splits",
+    "split_axis_measured": "QUESTION, not document: 94.4% of held-out passages are byte-identical to a train passage while 11.7% of held-out questions recur in train",
+    "rows": {
+      "train": 63792,
+      "validation": 3355,
+      "test": 2897
+    },
+    "distinct_passages": {
+      "train": 25842,
+      "validation": 3192,
+      "test": 2734,
+      "validation_plus_test": 5687
+    },
+    "held_out_passages_identical_to_a_train_passage": {
+      "raw": 5368,
+      "normalised": 5368,
+      "of_units": 5687
+    },
+    "held_out_passages_present_in_the_assembled_mix": {
+      "member_chunks_raw": 4765,
+      "member_chunks_truncated": 4765,
+      "member_chunks_normalised": 4765,
+      "full_mix_raw": 4765,
+      "full_mix_normalised": 4765,
+      "of_units": 5687
+    },
+    "held_out_questions_identical_to_a_train_question": {
+      "raw": 728,
+      "of_units": 6212
+    },
+    "held_out_wiki_urls_also_in_train": {
+      "raw": 5367,
+      "of_units": 5687
+    },
+    "held_out_answers_identical_to_a_train_answer": {
+      "raw": 67,
+      "of_units": 6243
+    },
+    "passage_reuse_rate": 0.943907,
+    "question_reuse_rate": 0.117193,
+    "implication_for_any_eval_built_from_this_corpus": "an eval drawn from the official validation/test split inherits 94.4% of its passages from the training member, so it cannot satisfy C2 by split membership; membership of the assembled mix must be measured passage by passage",
+    "verdict": "PASS"
+  },
+  "C5": {
+    "clause": "C5",
+    "verdict": "NOT-APPLICABLE",
+    "why": "C5 binds every CONSTRUCTED lane and every paired-contrast eval. This member is a source corpus loaded verbatim from the archive and then row-filtered; the conforming pipeline removes rows and creates no construction, no pair structure, no neg_family and no within-pair channel, so the registered probes (claim-only converged, within-pair claim-only, single-channel, surface parity, attestation symmetry) still have no object to compute over. No proxy is substituted.",
+    "checked_after_conforming": "the filters are row removals keyed on claim length and on evaluation-surface collision; neither introduces a constructed contrast"
+  },
+  "C6": {
+    "clause": "C6",
+    "within_member_key_channels": [
+      {
+        "key": "(passage, question)",
+        "distinct_keys": 47903,
+        "keys_with_more_than_one_row": 2571,
+        "rows_under_repeating_keys": 5142,
+        "repeating_keys_label_pure": 2263,
+        "repeating_keys_label_pure_rate": 0.880202,
+        "loo_key_majority_accuracy": 0.8802,
+        "loo_coverage_rows": 5142,
+        "majority_class_baseline": 0.8901,
+        "delta_over_baseline": -0.0099
+      },
+      {
+        "key": "question",
+        "distinct_keys": 47895,
+        "keys_with_more_than_one_row": 2577,
+        "rows_under_repeating_keys": 5156,
+        "repeating_keys_label_pure": 2269,
+        "repeating_keys_label_pure_rate": 0.880481,
+        "loo_key_majority_accuracy": 0.8805,
+        "loo_coverage_rows": 5156,
+        "majority_class_baseline": 0.8901,
+        "delta_over_baseline": -0.0096
+      },
+      {
+        "key": "passage",
+        "distinct_keys": 23492,
+        "keys_with_more_than_one_row": 16924,
+        "rows_under_repeating_keys": 43906,
+        "repeating_keys_label_pure": 12960,
+        "repeating_keys_label_pure_rate": 0.765776,
+        "loo_key_majority_accuracy": 0.8229,
+        "loo_coverage_rows": 43906,
+        "majority_class_baseline": 0.8901,
+        "delta_over_baseline": -0.0672
+      }
+    ],
+    "cross_surface_feature": {
+      "R20-H175b_qlane_eval.parquet": {
+        "rows": 2002,
+        "feature": "max content-token containment of the eval claim in whatever answer the member associates with the pair's key",
+        "keyed_on_passage_and_question": {
+          "coverage_rows": 0,
+          "coverage": 0.0,
+          "value": {
+            "n": 0
+          }
+        },
+        "keyed_on_question_alone": {
+          "coverage_rows": 0,
+          "coverage": 0.0,
+          "value": {
+            "n": 0
+          }
+        }
+      },
+      "R20-H175b_qlane_eval_repaired.parquet": {
+        "rows": 1678,
+        "feature": "max content-token containment of the eval claim in whatever answer the member associates with the pair's key",
+        "keyed_on_passage_and_question": {
+          "coverage_rows": 0,
+          "coverage": 0.0,
+          "value": {
+            "n": 0
+          }
+        },
+        "keyed_on_question_alone": {
+          "coverage_rows": 0,
+          "coverage": 0.0,
+          "value": {
+            "n": 0
+          }
+        }
+      },
+      "R20-H175b_qlane_eval_clean.parquet": {
+        "rows": 88,
+        "feature": "max content-token containment of the eval claim in whatever answer the member associates with the pair's key",
+        "keyed_on_passage_and_question": {
+          "coverage_rows": 0,
+          "coverage": 0.0,
+          "value": {
+            "n": 0
+          }
+        },
+        "keyed_on_question_alone": {
+          "coverage_rows": 0,
+          "coverage": 0.0,
+          "value": {
+            "n": 0
+          }
+        }
+      },
+      "R20-H175b_qlane_eval_clean_prefix.parquet": {
+        "rows": 32,
+        "feature": "max content-token containment of the eval claim in whatever answer the member associates with the pair's key",
+        "keyed_on_passage_and_question": {
+          "coverage_rows": 0,
+          "coverage": 0.0,
+          "value": {
+            "n": 0
+          }
+        },
+        "keyed_on_question_alone": {
+          "coverage_rows": 0,
+          "coverage": 0.0,
+          "value": {
+            "n": 0
+          }
+        }
+      }
+    },
+    "note": "the member is not pair-structured, so the within-member reading is the key-repeat channel; the cross-surface reading reproduces the R20-H175b feature against this member's own associations",
+    "verdict": "PASS",
+    "worst_within_member_delta_over_baseline": -0.0096,
+    "measured": "best leave-one-out key-majority predictor beats the majority-class baseline by -0.0096"
+  },
+  "C7": {
+    "clause": "C7",
+    "declared_unit": "rows - the member is a source corpus with no contrast pairing; each row is one (claim, evidence, label) triple",
+    "rows": 50474,
+    "pairs": 50474,
+    "pairs_definition": "one (claim, evidence) pair per row; the corpus carries no positive/negative contrast pairing, so pairs == rows",
+    "registered_rows": 50474,
+    "registration_basis": "the conformed member is a NEW artifact and is registered at the volume it builds to; the 61,712-row registration belongs to the unconformed member and is carried below as the volume cost, not as this member's target",
+    "row_margin_vs_registration": 0,
+    "unconformed_member_rows": 61712,
+    "volume_cost_rows": 11238,
+    "volume_cost_share": 0.1821,
+    "archive_rows_train_split": 63792,
+    "rows_after_base_selection_predicate": 61712,
+    "rows_after_conforming_filters": 50474,
+    "share_of_mix": 0.0748,
+    "mix_rows_with_conformed_member": 674432,
+    "mix_rows_with_unconformed_member": 685670,
+    "verdict": "PASS",
+    "measured": "50474 rows / 50474 pairs, unit declared ROWS, registration margin 0; volume cost of conforming 11238 rows (18.2%)"
+  },
+  "C8": {
+    "clause": "C8",
+    "source": "HuggingFace s-nlp/PsiloQA",
+    "licence": "CC-BY-4.0 (sidecar data/external/datasets/dataset-psiloqa.md)",
+    "retrieval_date_measured": "2026-07-29T11:18:48",
+    "retrieval_date_recorded_in_sidecar": false,
+    "archive": "dataset-psiloqa.zip",
+    "fetch_script": "scripts/fetch_grounding_datasets.py",
+    "selection_predicate": "dataset-psiloqa.zip -> s-nlp__PsiloQA__train.parquet ONLY; base filter wiki_passage.len_chars > 50 AND llm_answer.len_chars > 10; label = (labels.list.len() == 0); claim = llm_answer; chunk = wiki_passage UNTRUNCATED (then windowed 1500/750 under H150/H174); THEN the two conforming filters: F1 drop every row whose passage or claim collides with any evaluation surface in any string form or pairing clause C2 tests; F2 drop every row whose claim exceeds 42 Unicode content tokens",
+    "splits_present_in_archive": {
+      "test": 2897,
+      "train": 63792,
+      "validation": 3355
+    },
+    "splits_used": [
+      "train"
+    ],
+    "internal_structure": {
+      "rows": 50474,
+      "distinct_claims": 50233,
+      "distinct_evidence_chunks": 23492,
+      "distinct_claim_evidence_label_triples": 50446,
+      "duplicate_rows": 28,
+      "max_rows_sharing_one_evidence_chunk": 7,
+      "median_rows_per_evidence_chunk": 2.0,
+      "max_rows_sharing_one_claim": 20,
+      "distinct_languages": 14,
+      "rows_per_language": {
+        "en": 12736,
+        "hi": 5050,
+        "ca": 4999,
+        "zh": 4875,
+        "fi": 4756,
+        "sv": 4673,
+        "cs": 2797,
+        "fa": 2502,
+        "eu": 1786,
+        "es": 1562,
+        "it": 1512,
+        "ar": 1445,
+        "de": 926,
+        "fr": 855
+      },
+      "distinct_llm_checkpoints": 26,
+      "positive_rate": 0.1099
+    },
+    "structure_delta_vs_unconformed": {
+      "rows": -11238,
+      "distinct_claims": -11235,
+      "distinct_evidence_chunks": -2091,
+      "positive_rate": 0.0007,
+      "languages_lost": []
+    },
+    "public_repo_check": "artifact carries corpus identifiers and repository-relative paths only; no client or company name",
+    "verdict": "PASS",
+    "requirements_met": {
+      "source": true,
+      "licence": true,
+      "retrieval_date": true,
+      "selection_predicate": true,
+      "duplication_reported": true,
+      "no_client_or_company_name": true
+    },
+    "note": "every C8 requirement is stated here and measured from the archive, but the retrieval date is NOT recorded in the tracked sidecar data/external/datasets/dataset-psiloqa.md - it is taken from the archive's filesystem mtime, which is weaker evidence than a recorded fetch date. Carried forward unchanged from the unconformed member's verification; the conforming pipeline does not touch it"
+  },
+  "C4": {
+    "clause": "C4",
+    "instrument": "provenance_gate.py, R14-H136 ruling-2 form: 8-gram, Jaccard >= 0.3, bidirectional, KILL > 2%; thresholds read from R19_supply_gates.py",
+    "arena": {
+      "subsets": 10,
+      "units": 8645
+    },
+    "evidence_coverage": {
+      "units": 23492,
+      "too_short_for_ngram": 33,
+      "scorable": 23459,
+      "short_units_covered_by": "exact string matching under C2/C3"
+    },
+    "claim_coverage": {
+      "units": 50233,
+      "too_short_for_ngram": 9081,
+      "scorable": 41152,
+      "short_units_covered_by": "exact string matching under C2/C3"
+    },
+    "evidence_gate": {
+      "verdict": "PASS",
+      "max_fraction": 0.0,
+      "candidate_vs_arena": {
+        "n_units": 23492,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "covidqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "delucionqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "emanual": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "expertqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "finqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hagrid": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hotpotqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "pubmedqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "tatqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "techqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        },
+        "best_jaccard": {
+          "max": 0.1354,
+          "p99": 0.0,
+          "mean": 0.0001
+        }
+      },
+      "arena_vs_candidate": {
+        "n_units": 8645,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "best_jaccard": {
+          "max": 0.1354,
+          "p99": 0.0024,
+          "mean": 0.0002
+        }
+      },
+      "seconds": 7.1,
+      "spike_control": {
+        "injected": 10,
+        "detected_total": 10,
+        "baseline_hits": 0,
+        "passes": true,
+        "candidate_units": 2000
+      }
+    },
+    "claim_gate": {
+      "verdict": "PASS",
+      "max_fraction": 0.0,
+      "candidate_vs_arena": {
+        "n_units": 50233,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "covidqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "delucionqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "emanual": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "expertqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "finqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hagrid": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hotpotqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "pubmedqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "tatqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "techqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        },
+        "best_jaccard": {
+          "max": 0.102,
+          "p99": 0.0,
+          "mean": 0.0
+        }
+      },
+      "arena_vs_candidate": {
+        "n_units": 8645,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "best_jaccard": {
+          "max": 0.102,
+          "p99": 0.0,
+          "mean": 0.0001
+        }
+      },
+      "seconds": 5.7
+    },
+    "live_positive_control": {
+      "construction": "PsiloQA validation+test passages against the member's own train passages - near-duplicate by construction (C3), so a gate that cannot fire is caught",
+      "n_units": 5687,
+      "fraction_firing": 0.838579,
+      "best_jaccard": {
+        "max": 1.0,
+        "p99": 1.0,
+        "mean": 0.8382
+      },
+      "fires": true
+    },
+    "verdict": "PASS"
+  },
+  "executor_added_diagnostics": {
+    "note": "reported SEPARATELY from every clause test; none of these joins a clause verdict",
+    "C1_margin_in_standard_errors": {
+      "instrument": "Unicode full-coverage containment, the instrument the C1 verdict is taken on",
+      "rate_pos": 0.1428,
+      "rate_neg": 0.0326,
+      "delta": 0.1102,
+      "binomial_se_of_delta": 0.00477,
+      "margin_outside_band": 0.0102,
+      "margin_in_se": 2.14,
+      "reading": "how firmly the conformed member sits outside the rejection band; the unconformed member sat INSIDE it by 0.0069"
+    },
+    "auroc_containment_vs_label": {
+      "unicode_all_conformed_rows": 0.5829,
+      "banked_ascii_scorable_rows": 0.6209
+    },
+    "by_language_unicode": {
+      "ar": {
+        "rows": 1445,
+        "auroc_containment_vs_label": 0.5142
+      },
+      "ca": {
+        "rows": 4999,
+        "auroc_containment_vs_label": 0.6142
+      },
+      "cs": {
+        "rows": 2797,
+        "auroc_containment_vs_label": 0.5976
+      },
+      "de": {
+        "rows": 926,
+        "auroc_containment_vs_label": 0.5575
+      },
+      "en": {
+        "rows": 12736,
+        "auroc_containment_vs_label": 0.8265
+      },
+      "es": {
+        "rows": 1562,
+        "auroc_containment_vs_label": 0.719
+      },
+      "eu": {
+        "rows": 1786,
+        "auroc_containment_vs_label": 0.3124
+      },
+      "fa": {
+        "rows": 2502,
+        "auroc_containment_vs_label": 0.6882
+      },
+      "fi": {
+        "rows": 4756,
+        "auroc_containment_vs_label": 0.489
+      },
+      "fr": {
+        "rows": 855,
+        "auroc_containment_vs_label": 0.5366
+      },
+      "hi": {
+        "rows": 5050,
+        "auroc_containment_vs_label": 0.5533
+      },
+      "it": {
+        "rows": 1512,
+        "auroc_containment_vs_label": 0.611
+      },
+      "sv": {
+        "rows": 4673,
+        "auroc_containment_vs_label": 0.7854
+      },
+      "zh": {
+        "rows": 4875,
+        "auroc_containment_vs_label": 0.4827
+      }
+    },
+    "by_claim_content_token_band_unicode": {
+      "1-2": {
+        "rows": 3373,
+        "rate_ge_0.90_pos": 0.0709,
+        "rate_ge_0.90_neg": 0.0156,
+        "auroc_containment_vs_label": 0.5284
+      },
+      "3-4": {
+        "rows": 2598,
+        "rate_ge_0.90_pos": 0.1562,
+        "rate_ge_0.90_neg": 0.0286,
+        "auroc_containment_vs_label": 0.6506
+      },
+      "5-9": {
+        "rows": 10536,
+        "rate_ge_0.90_pos": 0.2145,
+        "rate_ge_0.90_neg": 0.0211,
+        "auroc_containment_vs_label": 0.6992
+      },
+      "10-24": {
+        "rows": 22974,
+        "rate_ge_0.90_pos": 0.1568,
+        "rate_ge_0.90_neg": 0.0529,
+        "auroc_containment_vs_label": 0.5803
+      },
+      "25+": {
+        "rows": 10993,
+        "rate_ge_0.90_pos": 0.0059,
+        "rate_ge_0.90_neg": 0.0068,
+        "auroc_containment_vs_label": 0.434
+      }
+    },
+    "residual_low_resolution_languages": [
+      "eu",
+      "fi",
+      "zh"
+    ]
+  },
+  "clause_verdicts": {
+    "C1": "PASS",
+    "C2": "PASS",
+    "C3": "PASS",
+    "C4": "PASS",
+    "C5": "NOT-APPLICABLE",
+    "C6": "PASS",
+    "C7": "PASS",
+    "C8": "PASS"
+  },
+  "conforming": true,
+  "failed_clauses": [],
+  "summary": {
+    "headline": "the conformed member is 50,474 rows, 11,238 fewer than the 61,712 it was built from (18.2% of the member), and passes every clause: C1 clears the rejection band by 0.0102 on the full-coverage instrument and by 0.0295 on the banked one - both readings agree where the unconformed member's straddled - and C2 reads zero against all nine evaluation surfaces in every string form and direction",
+    "what_the_pipeline_did": {
+      "F1": "removed 1379 rows (485 distinct passages) that collided with an evaluation surface - all of them with the two withdrawn PsiloQA-derived H175b evals, none with a live surface, which already read zero",
+      "F2": "removed a further 9859 rows whose claim exceeds 42 Unicode content tokens - the band the original measurement showed carries no containment resolution",
+      "not_done": "no label changed, no leg re-weighted, no threshold moved, no instrument re-tuned"
+    },
+    "volume_cost": {
+      "rows": "61,712 -> 50,474 (11,238 dropped, 18.2%)",
+      "share_of_mix": "7.48% of the 674,432-row mix, down from 9.00% of 685,670",
+      "distinct_passages": "25,583 -> 23,492",
+      "languages": "all 14 retained; positive rate 0.1092 -> 0.1099"
+    },
+    "residual_findings_the_pipeline_does_NOT_remove": {
+      "C1_margin_is_thin": "the pooled delta clears the 0.10 band by 0.0102, which is 2.14 binomial standard errors of the delta. The selection rule was fixed before the sweep was read (largest cap clearing by >= 0.01 on both instruments); the whole sweep is in the artifact, and every smaller cap clears by more at more volume cost",
+      "low_resolution_supervision_is_reduced_not_eliminated": "10,993 conformed rows still sit in the 25+ content-token band, where containment reads AUROC 0.434 against the label. Languages at or below chance fall from 7 of 14 to 3 of 14 (eu, fi, zh)",
+      "C3_is_a_corpus_property_and_survives": "the corpus still cuts per question: 94.4% of its held-out passages are byte-identical to a train passage, and 4,765 of 5,687 still sit in the mix through this member (5,311 before). No pipeline over the train split can change that; any eval built from this corpus's official validation/test split remains foreclosed",
+      "C8_retrieval_date": "recorded from the archive mtime, not from the tracked sidecar, exactly as for the unconformed member"
+    }
+  },
+  "seconds": 42.3
+}

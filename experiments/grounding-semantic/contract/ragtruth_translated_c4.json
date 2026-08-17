@@ -1,0 +1,1292 @@
+{
+  "member": "ragtruth_translated",
+  "instrument": "provenance_gate.py (R14-H136 ruling 2: 8-gram, Jaccard >= 0.3, bidirectional, KILL 0.02)",
+  "arena_subsets": {
+    "covidqa": 980,
+    "delucionqa": 552,
+    "emanual": 396,
+    "expertqa": 759,
+    "finqa": 725,
+    "hagrid": 703,
+    "hotpotqa": 998,
+    "pubmedqa": 1250,
+    "tatqa": 1032,
+    "techqa": 1250
+  },
+  "per_language": {
+    "de": {
+      "evidence_coverage": {
+        "units": 11540,
+        "units_scorable_by_8gram": 11540,
+        "units_too_short_for_8gram": 0,
+        "mean_8grams_per_unit": 406.9,
+        "short_unit_cover": "units below the 8-gram floor carry no n-gram evidence and are covered by the exact-string test in the C2 artifact"
+      },
+      "claim_coverage": {
+        "units": 14887,
+        "units_scorable_by_8gram": 14883,
+        "units_too_short_for_8gram": 4,
+        "mean_8grams_per_unit": 128.0,
+        "short_unit_cover": "units below the 8-gram floor carry no n-gram evidence and are covered by the exact-string test in the C2 artifact"
+      },
+      "spike_control": {
+        "injected": 10,
+        "detected_total": 10,
+        "baseline_hits": 0,
+        "passes": true,
+        "candidate_units": 2000
+      },
+      "evidence_prompts": {
+        "verdict": "PASS",
+        "max_fraction": 0.0,
+        "candidate_vs_arena": {
+          "n_units": 11540,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "per_arena_subset": {
+            "covidqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "delucionqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "emanual": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "expertqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "finqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hagrid": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hotpotqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "pubmedqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "tatqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "techqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            }
+          },
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "arena_vs_candidate": {
+          "n_units": 8645,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "hit_examples": []
+      },
+      "claims": {
+        "verdict": "PASS",
+        "max_fraction": 0.0,
+        "candidate_vs_arena": {
+          "n_units": 14887,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "per_arena_subset": {
+            "covidqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "delucionqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "emanual": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "expertqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "finqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hagrid": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hotpotqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "pubmedqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "tatqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "techqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            }
+          },
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "arena_vs_candidate": {
+          "n_units": 8645,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "hit_examples": []
+      },
+      "live_positive_control": {
+        "construction": "300 of this language's own prompts with a contiguous 20% character span deleted, gated against the unperturbed prompts",
+        "detected_fraction": 1.0,
+        "units_with_hit": 300,
+        "n_units": 300,
+        "best_jaccard": {
+          "max": 0.9472,
+          "p99": 0.9076,
+          "mean": 0.763
+        },
+        "fires": true
+      },
+      "split_axis_near_duplicate": {
+        "note": "the language's TEST prompts gated against its own TRAIN prompts - the near-duplicate read exact-string matching cannot give on a machine-translated corpus",
+        "test_units": 2099,
+        "test_units_with_train_hit": 0,
+        "fraction": 0.0,
+        "best_jaccard": {
+          "max": 0.2267,
+          "p99": 0.1604,
+          "mean": 0.0528
+        }
+      },
+      "seconds": 49.5
+    },
+    "fr": {
+      "evidence_coverage": {
+        "units": 13658,
+        "units_scorable_by_8gram": 13658,
+        "units_too_short_for_8gram": 0,
+        "mean_8grams_per_unit": 486.4,
+        "short_unit_cover": "units below the 8-gram floor carry no n-gram evidence and are covered by the exact-string test in the C2 artifact"
+      },
+      "claim_coverage": {
+        "units": 14880,
+        "units_scorable_by_8gram": 14877,
+        "units_too_short_for_8gram": 3,
+        "mean_8grams_per_unit": 153.2,
+        "short_unit_cover": "units below the 8-gram floor carry no n-gram evidence and are covered by the exact-string test in the C2 artifact"
+      },
+      "spike_control": {
+        "injected": 10,
+        "detected_total": 10,
+        "baseline_hits": 0,
+        "passes": true,
+        "candidate_units": 2000
+      },
+      "evidence_prompts": {
+        "verdict": "PASS",
+        "max_fraction": 0.0,
+        "candidate_vs_arena": {
+          "n_units": 13658,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "per_arena_subset": {
+            "covidqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "delucionqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "emanual": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "expertqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "finqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hagrid": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hotpotqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "pubmedqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "tatqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "techqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            }
+          },
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "arena_vs_candidate": {
+          "n_units": 8645,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "hit_examples": []
+      },
+      "claims": {
+        "verdict": "PASS",
+        "max_fraction": 0.0,
+        "candidate_vs_arena": {
+          "n_units": 14880,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "per_arena_subset": {
+            "covidqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "delucionqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "emanual": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "expertqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "finqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hagrid": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hotpotqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "pubmedqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "tatqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "techqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            }
+          },
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "arena_vs_candidate": {
+          "n_units": 8645,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "hit_examples": []
+      },
+      "live_positive_control": {
+        "construction": "300 of this language's own prompts with a contiguous 20% character span deleted, gated against the unperturbed prompts",
+        "detected_fraction": 1.0,
+        "units_with_hit": 300,
+        "n_units": 300,
+        "best_jaccard": {
+          "max": 0.9492,
+          "p99": 0.8905,
+          "mean": 0.7691
+        },
+        "fires": true
+      },
+      "split_axis_near_duplicate": {
+        "note": "the language's TEST prompts gated against its own TRAIN prompts - the near-duplicate read exact-string matching cannot give on a machine-translated corpus",
+        "test_units": 2495,
+        "test_units_with_train_hit": 6,
+        "fraction": 0.002405,
+        "best_jaccard": {
+          "max": 0.3583,
+          "p99": 0.1721,
+          "mean": 0.0643
+        }
+      },
+      "seconds": 63.6
+    },
+    "es": {
+      "evidence_coverage": {
+        "units": 14647,
+        "units_scorable_by_8gram": 14647,
+        "units_too_short_for_8gram": 0,
+        "mean_8grams_per_unit": 445.5,
+        "short_unit_cover": "units below the 8-gram floor carry no n-gram evidence and are covered by the exact-string test in the C2 artifact"
+      },
+      "claim_coverage": {
+        "units": 14879,
+        "units_scorable_by_8gram": 14876,
+        "units_too_short_for_8gram": 3,
+        "mean_8grams_per_unit": 142.4,
+        "short_unit_cover": "units below the 8-gram floor carry no n-gram evidence and are covered by the exact-string test in the C2 artifact"
+      },
+      "spike_control": {
+        "injected": 10,
+        "detected_total": 10,
+        "baseline_hits": 0,
+        "passes": true,
+        "candidate_units": 2000
+      },
+      "evidence_prompts": {
+        "verdict": "PASS",
+        "max_fraction": 0.0,
+        "candidate_vs_arena": {
+          "n_units": 14647,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "per_arena_subset": {
+            "covidqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "delucionqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "emanual": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "expertqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "finqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hagrid": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hotpotqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "pubmedqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "tatqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "techqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            }
+          },
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "arena_vs_candidate": {
+          "n_units": 8645,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "hit_examples": []
+      },
+      "claims": {
+        "verdict": "PASS",
+        "max_fraction": 0.0,
+        "candidate_vs_arena": {
+          "n_units": 14879,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "per_arena_subset": {
+            "covidqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "delucionqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "emanual": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "expertqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "finqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hagrid": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hotpotqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "pubmedqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "tatqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "techqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            }
+          },
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "arena_vs_candidate": {
+          "n_units": 8645,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "hit_examples": []
+      },
+      "live_positive_control": {
+        "construction": "300 of this language's own prompts with a contiguous 20% character span deleted, gated against the unperturbed prompts",
+        "detected_fraction": 1.0,
+        "units_with_hit": 300,
+        "n_units": 300,
+        "best_jaccard": {
+          "max": 0.9202,
+          "p99": 0.894,
+          "mean": 0.7669
+        },
+        "fires": true
+      },
+      "split_axis_near_duplicate": {
+        "note": "the language's TEST prompts gated against its own TRAIN prompts - the near-duplicate read exact-string matching cannot give on a machine-translated corpus",
+        "test_units": 2623,
+        "test_units_with_train_hit": 8,
+        "fraction": 0.00305,
+        "best_jaccard": {
+          "max": 0.3308,
+          "p99": 0.1747,
+          "mean": 0.0693
+        }
+      },
+      "seconds": 64.3
+    },
+    "it": {
+      "evidence_coverage": {
+        "units": 14808,
+        "units_scorable_by_8gram": 14808,
+        "units_too_short_for_8gram": 0,
+        "mean_8grams_per_unit": 436.3,
+        "short_unit_cover": "units below the 8-gram floor carry no n-gram evidence and are covered by the exact-string test in the C2 artifact"
+      },
+      "claim_coverage": {
+        "units": 14879,
+        "units_scorable_by_8gram": 14875,
+        "units_too_short_for_8gram": 4,
+        "mean_8grams_per_unit": 139.4,
+        "short_unit_cover": "units below the 8-gram floor carry no n-gram evidence and are covered by the exact-string test in the C2 artifact"
+      },
+      "spike_control": {
+        "injected": 10,
+        "detected_total": 10,
+        "baseline_hits": 0,
+        "passes": true,
+        "candidate_units": 2000
+      },
+      "evidence_prompts": {
+        "verdict": "PASS",
+        "max_fraction": 0.0,
+        "candidate_vs_arena": {
+          "n_units": 14808,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "per_arena_subset": {
+            "covidqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "delucionqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "emanual": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "expertqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "finqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hagrid": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hotpotqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "pubmedqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "tatqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "techqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            }
+          },
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "arena_vs_candidate": {
+          "n_units": 8645,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "hit_examples": []
+      },
+      "claims": {
+        "verdict": "PASS",
+        "max_fraction": 0.0,
+        "candidate_vs_arena": {
+          "n_units": 14879,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "per_arena_subset": {
+            "covidqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "delucionqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "emanual": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "expertqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "finqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hagrid": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hotpotqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "pubmedqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "tatqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "techqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            }
+          },
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "arena_vs_candidate": {
+          "n_units": 8645,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "hit_examples": []
+      },
+      "live_positive_control": {
+        "construction": "300 of this language's own prompts with a contiguous 20% character span deleted, gated against the unperturbed prompts",
+        "detected_fraction": 1.0,
+        "units_with_hit": 300,
+        "n_units": 300,
+        "best_jaccard": {
+          "max": 0.9273,
+          "p99": 0.8974,
+          "mean": 0.7666
+        },
+        "fires": true
+      },
+      "split_axis_near_duplicate": {
+        "note": "the language's TEST prompts gated against its own TRAIN prompts - the near-duplicate read exact-string matching cannot give on a machine-translated corpus",
+        "test_units": 2649,
+        "test_units_with_train_hit": 4,
+        "fraction": 0.00151,
+        "best_jaccard": {
+          "max": 0.3289,
+          "p99": 0.1571,
+          "mean": 0.0611
+        }
+      },
+      "seconds": 67.5
+    },
+    "pl": {
+      "evidence_coverage": {
+        "units": 14950,
+        "units_scorable_by_8gram": 14950,
+        "units_too_short_for_8gram": 0,
+        "mean_8grams_per_unit": 362.2,
+        "short_unit_cover": "units below the 8-gram floor carry no n-gram evidence and are covered by the exact-string test in the C2 artifact"
+      },
+      "claim_coverage": {
+        "units": 14881,
+        "units_scorable_by_8gram": 14875,
+        "units_too_short_for_8gram": 6,
+        "mean_8grams_per_unit": 113.6,
+        "short_unit_cover": "units below the 8-gram floor carry no n-gram evidence and are covered by the exact-string test in the C2 artifact"
+      },
+      "spike_control": {
+        "injected": 10,
+        "detected_total": 10,
+        "baseline_hits": 0,
+        "passes": true,
+        "candidate_units": 2000
+      },
+      "evidence_prompts": {
+        "verdict": "PASS",
+        "max_fraction": 0.0,
+        "candidate_vs_arena": {
+          "n_units": 14950,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "per_arena_subset": {
+            "covidqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "delucionqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "emanual": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "expertqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "finqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hagrid": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hotpotqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "pubmedqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "tatqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "techqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            }
+          },
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "arena_vs_candidate": {
+          "n_units": 8645,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "hit_examples": []
+      },
+      "claims": {
+        "verdict": "PASS",
+        "max_fraction": 0.0,
+        "candidate_vs_arena": {
+          "n_units": 14881,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "per_arena_subset": {
+            "covidqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "delucionqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "emanual": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "expertqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "finqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hagrid": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hotpotqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "pubmedqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "tatqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "techqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            }
+          },
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "arena_vs_candidate": {
+          "n_units": 8645,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "hit_examples": []
+      },
+      "live_positive_control": {
+        "construction": "300 of this language's own prompts with a contiguous 20% character span deleted, gated against the unperturbed prompts",
+        "detected_fraction": 1.0,
+        "units_with_hit": 300,
+        "n_units": 300,
+        "best_jaccard": {
+          "max": 0.9027,
+          "p99": 0.8795,
+          "mean": 0.7571
+        },
+        "fires": true
+      },
+      "split_axis_near_duplicate": {
+        "note": "the language's TEST prompts gated against its own TRAIN prompts - the near-duplicate read exact-string matching cannot give on a machine-translated corpus",
+        "test_units": 2662,
+        "test_units_with_train_hit": 0,
+        "fraction": 0.0,
+        "best_jaccard": {
+          "max": 0.2402,
+          "p99": 0.1578,
+          "mean": 0.0565
+        }
+      },
+      "seconds": 72.3
+    },
+    "hu": {
+      "evidence_coverage": {
+        "units": 14371,
+        "units_scorable_by_8gram": 14371,
+        "units_too_short_for_8gram": 0,
+        "mean_8grams_per_unit": 354.7,
+        "short_unit_cover": "units below the 8-gram floor carry no n-gram evidence and are covered by the exact-string test in the C2 artifact"
+      },
+      "claim_coverage": {
+        "units": 14881,
+        "units_scorable_by_8gram": 14874,
+        "units_too_short_for_8gram": 7,
+        "mean_8grams_per_unit": 110.5,
+        "short_unit_cover": "units below the 8-gram floor carry no n-gram evidence and are covered by the exact-string test in the C2 artifact"
+      },
+      "spike_control": {
+        "injected": 10,
+        "detected_total": 10,
+        "baseline_hits": 0,
+        "passes": true,
+        "candidate_units": 2000
+      },
+      "evidence_prompts": {
+        "verdict": "PASS",
+        "max_fraction": 0.0,
+        "candidate_vs_arena": {
+          "n_units": 14371,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "per_arena_subset": {
+            "covidqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "delucionqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "emanual": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "expertqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "finqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hagrid": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hotpotqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "pubmedqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "tatqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "techqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            }
+          },
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "arena_vs_candidate": {
+          "n_units": 8645,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "hit_examples": []
+      },
+      "claims": {
+        "verdict": "PASS",
+        "max_fraction": 0.0,
+        "candidate_vs_arena": {
+          "n_units": 14881,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "per_arena_subset": {
+            "covidqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "delucionqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "emanual": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "expertqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "finqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hagrid": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hotpotqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "pubmedqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "tatqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "techqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            }
+          },
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "arena_vs_candidate": {
+          "n_units": 8645,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "hit_examples": []
+      },
+      "live_positive_control": {
+        "construction": "300 of this language's own prompts with a contiguous 20% character span deleted, gated against the unperturbed prompts",
+        "detected_fraction": 1.0,
+        "units_with_hit": 300,
+        "n_units": 300,
+        "best_jaccard": {
+          "max": 0.9516,
+          "p99": 0.9024,
+          "mean": 0.7575
+        },
+        "fires": true
+      },
+      "split_axis_near_duplicate": {
+        "note": "the language's TEST prompts gated against its own TRAIN prompts - the near-duplicate read exact-string matching cannot give on a machine-translated corpus",
+        "test_units": 2577,
+        "test_units_with_train_hit": 0,
+        "fraction": 0.0,
+        "best_jaccard": {
+          "max": 0.1857,
+          "p99": 0.1512,
+          "mean": 0.0537
+        }
+      },
+      "seconds": 53.7
+    },
+    "cn": {
+      "evidence_coverage": {
+        "units": 14155,
+        "units_scorable_by_8gram": 14155,
+        "units_too_short_for_8gram": 0,
+        "mean_8grams_per_unit": 144.3,
+        "short_unit_cover": "units below the 8-gram floor carry no n-gram evidence and are covered by the exact-string test in the C2 artifact"
+      },
+      "claim_coverage": {
+        "units": 14880,
+        "units_scorable_by_8gram": 14306,
+        "units_too_short_for_8gram": 574,
+        "mean_8grams_per_unit": 19.6,
+        "short_unit_cover": "units below the 8-gram floor carry no n-gram evidence and are covered by the exact-string test in the C2 artifact"
+      },
+      "spike_control": {
+        "injected": 10,
+        "detected_total": 10,
+        "baseline_hits": 0,
+        "passes": true,
+        "candidate_units": 2000
+      },
+      "evidence_prompts": {
+        "verdict": "PASS",
+        "max_fraction": 0.0,
+        "candidate_vs_arena": {
+          "n_units": 14155,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "per_arena_subset": {
+            "covidqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "delucionqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "emanual": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "expertqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "finqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hagrid": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hotpotqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "pubmedqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "tatqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "techqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            }
+          },
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "arena_vs_candidate": {
+          "n_units": 8645,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "hit_examples": []
+      },
+      "claims": {
+        "verdict": "PASS",
+        "max_fraction": 0.0,
+        "candidate_vs_arena": {
+          "n_units": 14880,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "per_arena_subset": {
+            "covidqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "delucionqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "emanual": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "expertqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "finqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hagrid": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hotpotqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "pubmedqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "tatqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "techqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            }
+          },
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "arena_vs_candidate": {
+          "n_units": 8645,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "hit_examples": []
+      },
+      "live_positive_control": {
+        "construction": "300 of this language's own prompts with a contiguous 20% character span deleted, gated against the unperturbed prompts",
+        "detected_fraction": 0.986667,
+        "units_with_hit": 296,
+        "n_units": 300,
+        "best_jaccard": {
+          "max": 0.9768,
+          "p99": 0.8392,
+          "mean": 0.6398
+        },
+        "fires": true
+      },
+      "split_axis_near_duplicate": {
+        "note": "the language's TEST prompts gated against its own TRAIN prompts - the near-duplicate read exact-string matching cannot give on a machine-translated corpus",
+        "test_units": 2534,
+        "test_units_with_train_hit": 0,
+        "fraction": 0.0,
+        "best_jaccard": {
+          "max": 0.1986,
+          "p99": 0.1562,
+          "mean": 0.0245
+        }
+      },
+      "seconds": 22.4
+    }
+  },
+  "verdict": {
+    "all_languages_pass": true,
+    "spike_all_pass": true,
+    "live_control_all_fire": true,
+    "worst_max_fraction": 0.0,
+    "kill_threshold": 0.02
+  }
+}

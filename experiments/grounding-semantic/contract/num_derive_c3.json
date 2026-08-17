@@ -1,0 +1,35 @@
+{
+  "clause": "C3",
+  "member_type": "constructed lane - it has no split of its own; the axis that matters is which split of each SOURCE it reads and whether that split is document-disjoint from anything used for evaluation",
+  "sources_read": {
+    "tabfact": "dataset-tabfact.zip, the *__train.parquet member ONLY (R17-H144_pairs.tabfact_tables), deduplicated on table_text"
+  },
+  "feverous_used": false,
+  "why_no_feverous": "quant_misbind is non-conforming on exactly its FEVEROUS half - C3 because the split axis is not measurable for 33.7% of its rows and the identifier it carries for them is unstable across rebuilds, and C8 because that half has no licence, no retrieval date and no tracked source. This member reads the clean half only and inherits none of the defect",
+  "rows_by_source": {
+    "tabfact": 30000
+  },
+  "documents_by_source": {
+    "tabfact": 5749
+  },
+  "axis": "the archive's own table_id",
+  "archive_splits": {
+    "test": 12839,
+    "train": 92585,
+    "validation": 12851
+  },
+  "measured_axis": {
+    "train_table_ids": 13182,
+    "train_vs_test_shared_table_ids": 0,
+    "test_table_ids": 1695,
+    "train_vs_validation_shared_table_ids": 0,
+    "validation_table_ids": 1696
+  },
+  "member_tables_in_a_non_train_split": {
+    "test": 0,
+    "validation": 0
+  },
+  "member_tables": 5749,
+  "identifier_stability": "the member's doc_id is `tabfact:<table_id>` and the table_id is the archive's own key, so document identity survives a rebuild - the defect that makes quant_misbind's FEVEROUS third unmeasurable does not arise here",
+  "seconds": 0.1
+}

@@ -1,0 +1,275 @@
+{
+  "experiment": "R22-H186 numeric constructed-lane supply audit",
+  "question": "Does any of the four numeric constructed lanes build its negatives by corrupting a DERIVED result over correct operands, rather than by substituting or misbinding an operand?",
+  "method": "Two independent routes required to agree: (1) read the negative-construction code in each lane's builder; (2) load the built parquet and diff each negative claim against its paired positive over at least 100 sampled negatives per lane plus a full-lane operand-survival pass.",
+  "lanes": {
+    "quant_misbind": {
+      "builder_script": "experiments/grounding-semantic/R17-H146_lane.py",
+      "artifact": "experiments/grounding-semantic/R17-H146_lane.parquet",
+      "classification": "operand_substitution",
+      "in_training_mix": true,
+      "code_evidence": {
+        "negative_construction": "emit() renders the SAME template twice with only the numeral slot changed: label 1 takes spec['correct_value'], label 0 takes spec['cited_value'] (R17-H146_lane.py:246-262). build_row_misbind sets cited_value to the same column's cell in a DIFFERENT row; build_col_misbind sets it to a DIFFERENT column's cell of the same row. The asserted operand itself is replaced.",
+        "verbatim_docstring_claim": "'No derived values, no arithmetic, no traces. Every asserted numeral is present in the evidence' (R17-H146_lane.py:20-22)",
+        "audit_in_builder": "verify()'s misbind_rederivation_audit re-derives each sampled negative's binding and requires cited_value != correct_value and a different (row, column) binding - i.e. it enforces operand substitution (R17-H146_lane.py:373-408)"
+      },
+      "data_evidence": {
+        "sampled_negatives": 200,
+        "sampled_verdicts": {
+          "operand_changed": 200
+        },
+        "sampled_verdicts_per_family": {
+          "misbound_col": {
+            "operand_changed": 100
+          },
+          "misbound_row": {
+            "operand_changed": 100
+          }
+        },
+        "full_lane_operand_survival_rate": 0.0,
+        "reading": "operand survival 0.0 across all 15,000 pairs - the numeral in the negative claim never equals the numeral in its positive twin. The single asserted operand is the thing that changed."
+      },
+      "claims_contain_derivation": "no",
+      "derivation_finding": "Every claim is a single-value assertion of the form 'The {col} of {key} is {v}.' - one numeral, no second operand, no stated result. The lane is structurally incapable of teaching derivation checking.",
+      "example_pair": {
+        "family": "misbound_row",
+        "pair_id": 0,
+        "positive_claim": "The Match of Osasuna is 15.",
+        "negative_claim": "The Match of Osasuna is 16.",
+        "evidence_excerpt": "Match. Valladolid has a Match of 2, a Result of 2–0. Llagostera has a Match of 10, a Result of 6–1. Leganés has a Match of 13, a Result of 3–0. Osasuna has a Match of 15, a Result of 1–2. Lugo has a Match of 16, a Result of 1–1. Tenerife has a Match of 19, a Result of 1–2."
+      },
+      "code_data_disagreement": null,
+      "rows": 30000,
+      "positives": 15000,
+      "negatives": 15000,
+      "pairs": 15000,
+      "negatives_per_family": {
+        "misbound_row": 10500,
+        "misbound_col": 4500
+      }
+    },
+    "quant_scale_unit": {
+      "builder_script": "experiments/grounding-semantic/R18-H150_scaleunit_lane.py",
+      "artifact": "experiments/grounding-semantic/R18-H150_scaleunit_lane.parquet",
+      "classification": "operand_substitution",
+      "in_training_mix": true,
+      "code_evidence": {
+        "negative_construction": "The emit loop builds pos_claim with p['unit'] and neg_claim with neg_unit over the identical value p['val'] (R18-H150_scaleunit_lane.py:1070-1071, 1086-1089). The swap is legal only inside a physical dimension (DIM), so the corrupted token is a unit of the same kind.",
+        "verbatim_docstring_claim": "'the byte-identical claim with ONE token replaced - a different unit of the SAME dimension. Digits never move' (R18-H150_scaleunit_lane.py:12-14)",
+        "note": "The task's operand_substitution class names 'unit, scale' explicitly. The claim asserts one value carrying a unit; nothing is computed."
+      },
+      "data_evidence": {
+        "sampled_negatives": 200,
+        "sampled_verdicts": {
+          "nonnumeric_token_changed": 200
+        },
+        "full_lane_operand_survival_rate": 1.0,
+        "reading": "operand survival 1.0 - the numeral is byte-identical across every pair; the token-level diff is always the unit phrase alone (e.g. 'kilometres' -> 'millimetres'). The perturbed element is the unit attached to the operand, not a computed result."
+      },
+      "claims_contain_derivation": "no",
+      "derivation_finding": "Every claim is a single-value-plus-unit assertion, 'The {col} of {key} is {val} {unit}.' - one numeral, no second operand, no stated result. Structurally incapable of teaching derivation checking.",
+      "example_pair": {
+        "family": "unit_swap",
+        "pair_id": 0,
+        "positive_claim": "The Frequency of Radyo Pilipino Dagupan is 1296 kilohertz.",
+        "negative_claim": "The Frequency of Radyo Pilipino Dagupan is 1296 megahertz.",
+        "evidence_excerpt": "Branding\n| Branding | Call sign | Frequency | Location |\n| --- | --- | --- | --- |\n| Radyo Pilipino Dagupan | DWPR | 1296 kHz | Dagupan |\n| Radyo Pilipino Legazpi | DWRL | 1080 kHz | Legazpi, Albay |\n| Radyo Pilipino Naga | DWRN | 657 kHz | Naga, Camarines Sur |\n| Radyo Pilipino Bacolod | DYRL | 1035 kHz | Bacolod |\n| Radyo Pilipino Davao | DXOW | 981 kHz | Davao City |\n| Radyo Pilipino General Santos | DXGS | 765 kHz | General Santos |"
+      },
+      "code_data_disagreement": null,
+      "rows": 5540,
+      "positives": 2770,
+      "negatives": 2770,
+      "pairs": 2770,
+      "negatives_per_family": {
+        "unit_swap": 2770
+      }
+    },
+    "num_compare": {
+      "builder_script": "experiments/grounding-semantic/R20-H177_lane_B.py",
+      "artifact": "experiments/grounding-semantic/R20-H177_lane_B.parquet",
+      "classification": "derivation_corruption",
+      "classification_caveat": "The corrupted result is a RELATION (ordering / direction), never an arithmetic quantity. The class definition's first clause fits exactly - every operand stays correct and consistent with the evidence and only the asserted RESULT of an operation over them is corrupted - but the definition's parenthetical enumerates 'difference, sum, product, ratio, percentage', none of which this lane states. Under an arithmetic-only reading this lane is 'neither'. Both readings are given so the adjudicator can pick; the counts against the bar are reported for each.",
+      "in_training_mix": false,
+      "code_evidence": {
+        "negative_construction": "emit() renders the identical template twice with only the relation word substituted: label 1 takes `word`, label 0 takes FLIP[word] (R20-H177_lane_B.py:325-336). Both operands are formatted into both legs from the same spec (va, vb), so no numeral moves.",
+        "verbatim_docstring_claim": "'the negative is decidable by reading and ordering two present values - there is no arithmetic anywhere in the lane' (R20-H177_lane_B.py:29-31); and 'Ordering is the one derivation subtype requiring zero computation' (line 16)",
+        "project_taxonomy_note": "The lane's own registration classes ordering as a DERIVATION subtype: 'Gate 1 put 31.2% of finqa's derivation-class rank-loss mass on errors decidable by ORDERING two values the evidence already prints' (R20-H177_lane_B.py:14-16).",
+        "attestation_gate": "assemble() rejects any candidate where the true relation word and its flip are not EQUALLY readable in the evidence (R20-H177_lane_B.py:419-422), which removes the option of settling the pair by matching the claim's word against the evidence."
+      },
+      "data_evidence": {
+        "sampled_negatives": 200,
+        "sampled_verdicts": {
+          "relation_result_flipped": 200
+        },
+        "sampled_verdicts_per_family": {
+          "cmp_amount": {
+            "relation_result_flipped": 50
+          },
+          "cmp_extreme": {
+            "relation_result_flipped": 50
+          },
+          "cmp_order": {
+            "relation_result_flipped": 50
+          },
+          "cmp_trend": {
+            "relation_result_flipped": 50
+          }
+        },
+        "full_lane_operand_survival_rate": 1.0,
+        "relation_word_stated_in_evidence_rate_per_family": {
+          "cmp_order": {
+            "negatives": 6750,
+            "true_word_stated": 0.0003,
+            "flipped_word_stated": 0.0004
+          },
+          "cmp_extreme": {
+            "negatives": 3000,
+            "true_word_stated": 0.006,
+            "flipped_word_stated": 0.0053
+          },
+          "cmp_amount": {
+            "negatives": 5000,
+            "true_word_stated": 0.0926,
+            "flipped_word_stated": 0.0926
+          },
+          "cmp_trend": {
+            "negatives": 250,
+            "true_word_stated": 1.0,
+            "flipped_word_stated": 1.0
+          }
+        },
+        "reading": "operand survival 1.0 over all 15,000 pairs - both numerals are byte-identical across the twin and both are present in the evidence (presence rate 1.0). The only token that moves is the relation word. In 14,750 of 15,000 negatives (98.3%) the relation is NOT stated anywhere in the evidence, so the label cannot be recovered by any attribution or string-matching check - it can only be settled by ordering the two operands. The 250 cmp_trend negatives are the exception: their direction is stated in the passage verbatim (rate 1.0), so those are also decidable by attribution."
+      },
+      "claims_contain_derivation": "partial",
+      "derivation_finding": "The claim states a result computed from two other stated numbers - an ordering ('X (11) is greater than Y (5)') or a superlative over the serialised rows. It never states an arithmetic result: no difference, sum, product, ratio or percentage appears in any template (R20-H177_lane_B.py:126-154). So the lane teaches checking a COMPARISON over operands, and teaches nothing about checking an arithmetic computation.",
+      "example_pair": {
+        "family": "cmp_order",
+        "pair_id": 0,
+        "positive_claim": "The district of heath shuler (11) is greater than the district of virginia foxx (5).",
+        "negative_claim": "The district of heath shuler (11) is less than the district of virginia foxx (5).",
+        "evidence_excerpt": "united states house of representatives elections in north carolina , 2008. gk butterfield has a district of 1, a 2008 status of re - election, a democratic of gk butterfield, a republican of dean stephens. walter b jones has a district of 3, a 2008 status of re - election, a democratic of craig weber, a republican of walter b jones. david price has a district of 4, a 2008 status of re - election, a democratic of david price, a republican of bj lawson. virginia foxx has a district of 5, a 2008 status of re - election, a democratic of roy carter, a republican of virginia foxx. heath shuler has a district of 11, a 2008 status of re - election, a democratic of heath shuler, a republican of carl "
+      },
+      "example_pair_secondary": {
+        "family": "cmp_trend",
+        "pair_id": 9766,
+        "positive_claim": "According to the filing, the other current assets increased from $330 thousand to $392 thousand.",
+        "negative_claim": "According to the filing, the other current assets decreased from $330 thousand to $392 thousand.",
+        "evidence_excerpt": "related to lease accounting, resulted in a net increase in cash of $61 thousand. Net changes in operating assets and liabilities of $59 thousand that decreased cash was primarily due to the timing of shipments and payments during the period. Accounts receivable increased from $730 thousand at December 31, 2019 to $1,113 thousand at December 31, 2020 due to higher shipments during the fourth quarter of 2020 compared to the fourth quarter of 2019. Many of our customers pay promptly and accounts receivable is generally related to the most recent shipments. Inventories decreased from $927 thousand at December 31, 2019 to $866 thousand at December 31, 2020. Inventory balances fluctuate depending "
+      },
+      "code_data_disagreement": null,
+      "rows": 30000,
+      "positives": 15000,
+      "negatives": 15000,
+      "pairs": 15000,
+      "negatives_per_family": {
+        "cmp_extreme": 3000,
+        "cmp_order": 6750,
+        "cmp_trend": 250,
+        "cmp_amount": 5000
+      }
+    },
+    "num_rolebind": {
+      "builder_script": "experiments/grounding-semantic/R20-H177_lane_C.py",
+      "artifact": "experiments/grounding-semantic/R20-H177_lane_C.parquet",
+      "classification": "operand_substitution",
+      "in_training_mix": false,
+      "code_evidence": {
+        "negative_construction": "Each family builder returns a pos/neg claim pair off one template with one element rebound (R20-H177_lane_C.py:156-234): role_swap reattaches the amount to a different labelled quantity; period_swap rebinds it to a different year the passage names; sign_swap flips the direction word of a change the passage states in words. The amount itself is never altered.",
+        "verbatim_docstring_claim": "'Gate 2 traced 54.9% of finqa's false-positive rank-loss mass to mislabeled operand role, sign or period rather than to wrong computation ... None of those needs arithmetic to detect - each is a BINDING failure over values the passage already prints' (R20-H177_lane_C.py:11-16)",
+        "sign_swap_is_attribution": "change_statements() only admits a change whose direction the passage states in WORDS beside its magnitude - 'flipping the word is decidable from the evidence with no computation' (R20-H177_lane_common.py:312-318). One amount is carried, never two endpoints, so no ordering or arithmetic is available or needed."
+      },
+      "data_evidence": {
+        "sampled_negatives": 198,
+        "sampled_verdicts": {
+          "operand_changed": 66,
+          "nonnumeric_token_changed": 66,
+          "relation_result_flipped": 66
+        },
+        "sampled_verdicts_per_family": {
+          "period_swap": {
+            "operand_changed": 66
+          },
+          "role_swap": {
+            "nonnumeric_token_changed": 66
+          },
+          "sign_swap": {
+            "relation_result_flipped": 66
+          }
+        },
+        "full_lane_operand_survival_rate": 0.796134,
+        "sign_swap_direction_stated_in_evidence_rate": 1.0,
+        "reading": "The sampled diff is a role phrase in role_swap ('income tax expense' -> 'recognized income tax benefit'), a year in period_swap ('2020' -> '2019'), a direction word in sign_swap ('decreased' -> 'increased'). The full-lane numeral-survival rate of 0.796 is entirely the period_swap family, whose corrupted token is a YEAR LABEL that the numeral extractor counts as a number - the monetary amount itself survives in every one of the 11,174 pairs. All 3,896 sign_swap negatives flip a direction the evidence states verbatim (rate 1.0), so that family is settled by contradicting stated text, not by computing anything."
+      },
+      "claims_contain_derivation": "no",
+      "derivation_finding": "Every claim carries exactly one monetary amount and no second operand - the rate of claims with three or more numerals is 0.0 across the lane. No template states a result over other stated numbers (R20-H177_lane_C.py:103-119). Structurally incapable of teaching derivation checking, including the ordering subtype.",
+      "example_pair": {
+        "family": "role_swap",
+        "pair_id": 2,
+        "positive_claim": "income tax expense of $14.0 million is reported in the passage.",
+        "negative_claim": "recognized income tax benefit of $14.0 million is reported in the passage.",
+        "evidence_excerpt": "refinancing risk on certain wellness infrastructure mortgage debt. Such debt was refinanced in June 2019 and the swap was terminated at the end of 2019; partially offset by: •$51.4 million gain from remeasurement of our 50% interest in DCM upon closing of the DBH acquisition (Note 3 to the consolidated financial statements). Income Tax Benefit (Expense) We recognized income tax benefit of $10.0 million in 2020 and income tax expense of $14.0 million in 2019. The income tax benefit is attributed primarily to deferred tax benefit recognized in connection with our DataBank subsidiary and our OED portfolio, partially offset by the following: (i) valuation allowance established against deferred t"
+      },
+      "example_pair_secondary": {
+        "family": "sign_swap",
+        "pair_id": 4,
+        "positive_claim": "Investments decreased by $9.7 billion, according to the filing.",
+        "negative_claim": "Investments increased by $9.7 billion, according to the filing.",
+        "evidence_excerpt": "primarily to a decrease in borrowings of $25.5 billion by Wells Fargo Bank, N.A. We experienced decreased demand for advances across the majority of our other institution types, driven primarily by increased liquidity in the financial markets and higher member deposit levels. Investments decreased $7.0 billion from December 31, 2019 due primarily to a decline in money market investments of $9.7 billion, as liquidity management was impacted by lower advance demand and other economic impacts of COVID-19. Our total liabilities decreased to $82.0 billion at December 31, 2020, from $122.9 billion at December 31, 2019, primarily driven by a decrease in the amount of consolidated obligations needed"
+      },
+      "code_data_disagreement": null,
+      "rows": 22348,
+      "positives": 11174,
+      "negatives": 11174,
+      "pairs": 11174,
+      "negatives_per_family": {
+        "role_swap": 5000,
+        "period_swap": 2278,
+        "sign_swap": 3896
+      }
+    }
+  },
+  "bar": {
+    "definition": "count of lanes classified derivation_corruption or mixed; 0 of 4 -> supply gap recorded as the training-side cause; >= 1 of 4 -> signal exists",
+    "count_derivation_corruption_or_mixed": 1,
+    "lanes_counted": [
+      "num_compare"
+    ],
+    "verdict": "SIGNAL EXISTS",
+    "reading_dependency": {
+      "note": "The count turns on one judgement call, stated here rather than buried: whether a corrupted ORDERING counts as a corrupted derivation result.",
+      "relation_counts_as_derivation": {
+        "count": 1,
+        "lanes": [
+          "num_compare"
+        ],
+        "verdict": "SIGNAL EXISTS"
+      },
+      "arithmetic_results_only": {
+        "count": 0,
+        "lanes": [],
+        "verdict": "SUPPLY GAP RECORDED",
+        "basis": "No lane's claim ever states a difference, sum, product, ratio or percentage computed from other stated numbers. Checked against every claim template in all four builders and against the built data."
+      }
+    },
+    "material_qualification": {
+      "lanes_actually_in_a_trained_mix": [
+        "quant_misbind",
+        "quant_scale_unit"
+      ],
+      "lanes_built_but_never_loaded_into_a_mix": [
+        "num_compare",
+        "num_rolebind"
+      ],
+      "evidence": "No *_arm_run.py mix spec references R20-H177_lane_B.parquet or R20-H177_lane_C.parquet. Every arm from R18-H150 through R20-H175b loads exactly two numeric constructed lanes: R17-H146_lane.parquet as quant_misbind (30,000 rows) and R18-H150_scaleunit_lane.parquet as quant_scale_unit (5,540 rows).",
+      "consequence": "On the mix as actually TRAINED, the count against the bar is 0 of 2 present lanes under either reading - the only lane carrying any derivation-shaped signal, num_compare, has never been in a training mix. The supply gap holds for every trained checkpoint regardless of how the ordering question is adjudicated."
+    }
+  },
+  "code_data_disagreements": "none - both routes agree on all four lanes",
+  "lanes_not_found": "none - all four builders and all four parquet artifacts located on disk",
+  "anomalies": [
+    "The task's premise says the training mix contains four numeric constructed lanes. It contains two. num_compare and num_rolebind are R20-H177 lane artifacts built 2026-08-16 and are not referenced by any arm-run mix spec.",
+    "A fifth numeric-adjacent lane, qrel_contrast (R20-H175b_qlane.parquet, 17,972 rows), IS in the R20-H175b mix, but its negatives flip the QUESTION rather than anything numeric, so it carries no derivation signal either. Reported for completeness; not classified, since the task named exactly four lanes.",
+    "In num_rolebind the full-lane numeral-survival rate reads 0.796 rather than 1.0. This is a measurement artifact of counting a YEAR as a numeral: period_swap's corrupted token is a four-digit year label. The monetary operand survives in 100% of pairs across all three families."
+  ],
+  "written": "2026-08-17T16:31:04+02:00"
+}

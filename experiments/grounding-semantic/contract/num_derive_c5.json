@@ -1,0 +1,222 @@
+{
+  "clause": "C5",
+  "recomputed_from_the_parquet": true,
+  "note": "recomputed here from the artifact; nothing is cited from the build manifest",
+  "registered_conjunction": {
+    "claim_only_converged_probe": {
+      "value": 0.507675,
+      "bar": "< 0.55",
+      "pass": true,
+      "scoring": "5-fold document-disjoint, out of fold, direction-stratified, liblinear tol 1e-7, char_wb 2-5 TF-IDF",
+      "documents": 5749,
+      "rows": 30000,
+      "two_sided_deviation_report_only": 0.007675,
+      "why_two_sided_is_reported": "the registered bar is one-sided, and a rejected corruption design of this lane read 0.1923 - a leak the one-sided bar would have passed"
+    },
+    "within_pair_claim_only": {
+      "per_family": {
+        "difference": {
+          "acc": 0.505524,
+          "pairs": 5250
+        },
+        "percentage": {
+          "acc": 0.531429,
+          "pairs": 5250
+        },
+        "product": {
+          "acc": 0.507556,
+          "pairs": 2250
+        },
+        "sum": {
+          "acc": 0.502667,
+          "pairs": 2250
+        }
+      },
+      "worst": 0.531429,
+      "bar": "< 0.60",
+      "pass": true,
+      "worst_two_sided_deviation_report_only": 0.031429
+    },
+    "single_channel_probes": {
+      "evidence_only": {
+        "within_pair_identical_chunk_share": 1.0,
+        "auroc": 0.5,
+        "reading": "the legs of a pair share the evidence byte-identically, so an evidence-only reader is exactly at chance within pair - measured, not assumed"
+      },
+      "question_only": {
+        "value": null,
+        "reading": "NOT COMPUTABLE - the lane carries no question field; the construction implies no question channel"
+      }
+    },
+    "surface_parity_channels": {
+      "character_length": {
+        "pooled": 0.5,
+        "per_family": {
+          "difference": 0.5,
+          "percentage": 0.5,
+          "product": 0.5,
+          "sum": 0.5
+        },
+        "worst_deviation_from_0.5": 0.0,
+        "in_band_0.45_0.55": true
+      },
+      "sentence_count": {
+        "pooled": 0.5,
+        "per_family": {
+          "difference": 0.5,
+          "percentage": 0.5,
+          "product": 0.5,
+          "sum": 0.5
+        },
+        "worst_deviation_from_0.5": 0.0,
+        "in_band_0.45_0.55": true
+      },
+      "numeric_token_count": {
+        "pooled": 0.5,
+        "per_family": {
+          "difference": 0.5,
+          "percentage": 0.5,
+          "product": 0.5,
+          "sum": 0.5
+        },
+        "worst_deviation_from_0.5": 0.0,
+        "in_band_0.45_0.55": true
+      },
+      "numeric_density_per_100_chars": {
+        "pooled": 0.5,
+        "per_family": {
+          "difference": 0.5,
+          "percentage": 0.5,
+          "product": 0.5,
+          "sum": 0.5
+        },
+        "worst_deviation_from_0.5": 0.0,
+        "in_band_0.45_0.55": true
+      },
+      "derivation_marker_count": {
+        "pooled": 0.5,
+        "per_family": {
+          "difference": 0.5,
+          "percentage": 0.5,
+          "product": 0.5,
+          "sum": 0.5
+        },
+        "worst_deviation_from_0.5": 0.0,
+        "in_band_0.45_0.55": true
+      },
+      "equals_count": {
+        "pooled": 0.5,
+        "per_family": {
+          "difference": 0.5,
+          "percentage": 0.5,
+          "product": 0.5,
+          "sum": 0.5
+        },
+        "worst_deviation_from_0.5": 0.0,
+        "in_band_0.45_0.55": true
+      },
+      "newline_count": {
+        "pooled": 0.5,
+        "per_family": {
+          "difference": 0.5,
+          "percentage": 0.5,
+          "product": 0.5,
+          "sum": 0.5
+        },
+        "worst_deviation_from_0.5": 0.0,
+        "in_band_0.45_0.55": true
+      },
+      "word_count": {
+        "pooled": 0.5,
+        "per_family": {
+          "difference": 0.5,
+          "percentage": 0.5,
+          "product": 0.5,
+          "sum": 0.5
+        },
+        "worst_deviation_from_0.5": 0.0,
+        "in_band_0.45_0.55": true
+      },
+      "digit_char_fraction": {
+        "pooled": 0.5,
+        "per_family": {
+          "difference": 0.5,
+          "percentage": 0.5,
+          "product": 0.5,
+          "sum": 0.5
+        },
+        "worst_deviation_from_0.5": 0.0,
+        "in_band_0.45_0.55": true
+      },
+      "chars_per_sentence": {
+        "pooled": 0.5,
+        "per_family": {
+          "difference": 0.5,
+          "percentage": 0.5,
+          "product": 0.5,
+          "sum": 0.5
+        },
+        "worst_deviation_from_0.5": 0.0,
+        "in_band_0.45_0.55": true
+      }
+    },
+    "surface_parity_worst": {
+      "channel": "chars_per_sentence",
+      "pooled": 0.5,
+      "worst_deviation_from_0.5": 0.0,
+      "bar": "in [0.45, 0.55] on every channel",
+      "pass": true
+    },
+    "digit_surface_parity": {
+      "pairs": 15000,
+      "identical_signature_rate": 1.0,
+      "identical_rendered_length_rate": 1.0,
+      "share_twin_above_true": 0.5,
+      "digit_count_auroc": 0.5,
+      "trailing_zero_auroc": 0.5,
+      "magnitude_decade_auroc": 0.5,
+      "value_magnitude_auroc": 0.5,
+      "bar": "signature identical on every pair, 50/50 above and below, digit-count / trailing-zero / decade AUROC in [0.45, 0.55]",
+      "pass": true
+    },
+    "balance": {
+      "family_rows": {
+        "difference": 10500,
+        "percentage": 10500,
+        "sum": 4500,
+        "product": 4500
+      },
+      "direction_rows": {
+        "difference:down": 5250,
+        "percentage:up": 5250,
+        "product:up": 2250,
+        "percentage:down": 5250,
+        "sum:down": 2250,
+        "sum:up": 2250,
+        "product:down": 2250,
+        "difference:up": 5250
+      },
+      "direction_balance_exact_50_50_per_family": true
+    }
+  },
+  "arithmetic_rederivation": {
+    "method": "every row recomputed from its two stated operands, full population",
+    "positive_rows": 15000,
+    "positives_verified": 15000,
+    "negative_rows": 15000,
+    "negatives_refuted": 15000,
+    "errors": 0,
+    "error_kinds": {},
+    "bar": "0 errors",
+    "pass": true
+  },
+  "all_registered_bars_pass": true,
+  "executor_added_probes_reported_separately": {
+    "note": "NOT part of the registered conjunction; reported so they cannot silently join it (C5 provenance)",
+    "leading_digit_auroc": 0.5,
+    "decimal_presence_auroc": 0.5,
+    "claim_token_count_auroc": 0.5,
+    "containment_auroc": 0.500292
+  },
+  "seconds": 44.0
+}

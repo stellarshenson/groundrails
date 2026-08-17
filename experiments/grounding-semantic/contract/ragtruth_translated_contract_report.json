@@ -1,0 +1,1221 @@
+{
+  "member": "ragtruth_translated",
+  "class": "training member - source corpus",
+  "verified_against": "docs/experiments/dataset-contract.md (DRAFT)",
+  "rebuild_path": "R10-H108_lane.public_train() with the evidence cut lifted (the R18-H150 / R20-H174 untruncated protocol), rows filtered to the seven non-English ragtruth_* DANN groups. The loader is called, never re-implemented",
+  "loader_census": {
+    "loader": "R10-H108_lane.public_train() with the evidence cut lifted",
+    "chunk_max_chars": 1500,
+    "clean_public_rows": 685670,
+    "clean_public_rows_per_group": {
+      "halueval": 40000,
+      "psiloqa": 61712,
+      "ragtruth_cn": 15090,
+      "ragtruth_de": 15090,
+      "ragtruth_en": 15090,
+      "ragtruth_es": 15090,
+      "ragtruth_fr": 15090,
+      "ragtruth_hu": 15090,
+      "ragtruth_it": 15090,
+      "ragtruth_pl": 15090,
+      "tabfact": 92585,
+      "vitaminc": 370653
+    },
+    "member_tags": [
+      "ragtruth_de",
+      "ragtruth_fr",
+      "ragtruth_es",
+      "ragtruth_it",
+      "ragtruth_pl",
+      "ragtruth_hu",
+      "ragtruth_cn"
+    ],
+    "member_rows": 105630,
+    "member_rows_per_lang": {
+      "cn": 15090,
+      "de": 15090,
+      "es": 15090,
+      "fr": 15090,
+      "hu": 15090,
+      "it": 15090,
+      "pl": 15090
+    },
+    "member_label_mean": 0.554672,
+    "parquet": "/home/lab/workspace/private/ai-assistants/groundrails/experiments/grounding-semantic/contract/ragtruth_translated_member.parquet"
+  },
+  "compute": "CPU only; CUDA_VISIBLE_DEVICES forced empty before every import. GPUs 0/1/2 carrying the R20-H174 draws were never queried or touched",
+  "conforming": true,
+  "clauses": {
+    "C1": {
+      "verdict": "PASS",
+      "head_declared": "grounding scalar (task_head) - the shipped ground() support score",
+      "predicate_the_label_encodes": "RAGTruth response-level faithfulness: a response is labelled unsupported iff a human annotator (spans inherited from the English original and re-aligned after machine translation) marked ANY span of it as evident_conflict or baseless_info against the prompt's source material",
+      "label_rule_in_the_loader": "label = 1.0 iff labels.list.len() == 0, i.e. the row carries NO annotated hallucination span; else 0.0",
+      "is_a_support_predicate": true,
+      "bar": "REJECT if the negative leg is attested at >= 0.90 AND within 0.10 of the positive leg (the form its provenance measured: R20-H175b read 0.9129 on BOTH legs, gap 0.0000)",
+      "primary_instrument": "\\w+ re.UNICODE over casefold(), CJK runs split to character BIGRAMS",
+      "measured_primary": {
+        "negative_mean_containment": 0.4506,
+        "positive_mean_containment": 0.6147,
+        "gap_pos_minus_neg": 0.1641,
+        "negatives_attested_ge_0.90_share": 0.0015,
+        "negatives_fully_attested_share": 0.0001,
+        "negative_rows": 47040,
+        "positive_rows": 58590,
+        "reject_conjunction_fires": false
+      },
+      "margins": {
+        "level_leg": "negative mean 0.4506 vs the 0.90 reject level - 0.4494 clear",
+        "gap_leg": "pos-neg gap 0.1641 vs the 0.10 within-band - 0.0641 clear",
+        "note": "BOTH legs of the reject conjunction fail, so the member is not rejected on either alone"
+      },
+      "comparability_instrument_banked": {
+        "instrument": "R20-H174_lane_common.containment verbatim, [a-z0-9]+ over lower(); the instrument behind the campaign's 0.9129 figure",
+        "negative_mean": 0.557,
+        "positive_mean": 0.695,
+        "gap": 0.138,
+        "negatives_fully_attested_share": 0.0687,
+        "reject_conjunction_fires": false
+      },
+      "per_language": {
+        "de": {
+          "primary_negative_mean": 0.4265,
+          "primary_positive_mean": 0.6164,
+          "primary_gap": 0.1899,
+          "primary_negatives_ge_0.90": 0.0003,
+          "primary_reject": false,
+          "banked_negative_mean": 0.4275,
+          "banked_positive_mean": 0.6212,
+          "banked_gap": 0.1937,
+          "banked_unscorable_rows": 0,
+          "banked_reject": false
+        },
+        "fr": {
+          "primary_negative_mean": 0.5378,
+          "primary_positive_mean": 0.7026,
+          "primary_gap": 0.1648,
+          "primary_negatives_ge_0.90": 0.0036,
+          "primary_reject": false,
+          "banked_negative_mean": 0.5569,
+          "banked_positive_mean": 0.7176,
+          "banked_gap": 0.1607,
+          "banked_unscorable_rows": 0,
+          "banked_reject": false
+        },
+        "es": {
+          "primary_negative_mean": 0.5539,
+          "primary_positive_mean": 0.7037,
+          "primary_gap": 0.1498,
+          "primary_negatives_ge_0.90": 0.0025,
+          "primary_reject": false,
+          "banked_negative_mean": 0.5705,
+          "banked_positive_mean": 0.7159,
+          "banked_gap": 0.1454,
+          "banked_unscorable_rows": 0,
+          "banked_reject": false
+        },
+        "it": {
+          "primary_negative_mean": 0.5647,
+          "primary_positive_mean": 0.7048,
+          "primary_gap": 0.1401,
+          "primary_negatives_ge_0.90": 0.0036,
+          "primary_reject": false,
+          "banked_negative_mean": 0.5655,
+          "banked_positive_mean": 0.7044,
+          "banked_gap": 0.1389,
+          "banked_unscorable_rows": 0,
+          "banked_reject": false
+        },
+        "pl": {
+          "primary_negative_mean": 0.4254,
+          "primary_positive_mean": 0.5841,
+          "primary_gap": 0.1587,
+          "primary_negatives_ge_0.90": 0.0,
+          "primary_reject": false,
+          "banked_negative_mean": 0.4805,
+          "banked_positive_mean": 0.6335,
+          "banked_gap": 0.153,
+          "banked_unscorable_rows": 0,
+          "banked_reject": false
+        },
+        "hu": {
+          "primary_negative_mean": 0.3615,
+          "primary_positive_mean": 0.512,
+          "primary_gap": 0.1505,
+          "primary_negatives_ge_0.90": 0.0004,
+          "primary_reject": false,
+          "banked_negative_mean": 0.481,
+          "banked_positive_mean": 0.6328,
+          "banked_gap": 0.1518,
+          "banked_unscorable_rows": 0,
+          "banked_reject": false
+        },
+        "cn": {
+          "primary_negative_mean": 0.2847,
+          "primary_positive_mean": 0.4797,
+          "primary_gap": 0.195,
+          "primary_negatives_ge_0.90": 0.0,
+          "primary_reject": false,
+          "banked_negative_mean": 0.842,
+          "banked_positive_mean": 0.8737,
+          "banked_gap": 0.0317,
+          "banked_unscorable_rows": 2171,
+          "banked_reject": false
+        }
+      },
+      "by_task_type_primary": {
+        "Data2txt": {
+          "positive_mean": 0.3653,
+          "negative_mean": 0.3372,
+          "gap": 0.0281,
+          "negatives_ge_0.90": 0.0,
+          "reject": false
+        },
+        "QA": {
+          "positive_mean": 0.6732,
+          "negative_mean": 0.5443,
+          "gap": 0.1289,
+          "negatives_ge_0.90": 0.0032,
+          "reject": false
+        },
+        "Summary": {
+          "positive_mean": 0.6764,
+          "negative_mean": 0.6332,
+          "gap": 0.0432,
+          "negatives_ge_0.90": 0.0034,
+          "reject": false
+        }
+      },
+      "findings_recorded_not_clause_failures": [
+        {
+          "id": "F1",
+          "finding": "the BANKED [a-z0-9]+ instrument is blind on this member's Chinese slice and reads it close to the reject condition",
+          "measured": "cn banked negative 0.8420 / positive 0.8737, gap 0.0317 - the gap leg of the reject conjunction is SATISFIED and the level leg misses by 0.0580, on 2,171 of 15,090 cn rows the instrument cannot score at all. Under the unicode instrument the same slice reads negative 0.2847 with the LARGEST gap of any language, 0.1950",
+          "consequence": "any future C1 reading of a non-latin member taken with the banked tokenizer alone is not interpretable"
+        },
+        {
+          "id": "F2",
+          "finding": "the Data2txt stratum is nearly uninformative under any containment instrument",
+          "measured": "positive 0.3653 / negative 0.3372, gap 0.0281 - inside the 0.10 band, on 5,298 of 15,090 rows per language (35.1%). The level 0.3372 is far below 0.90 so no rejection follows, but containment carries almost no separation on that stratum (JSON evidence, prose response)",
+          "consequence": "C1's mechanical test has low power on JSON-to-prose supply; it neither passes nor condemns that stratum"
+        },
+        {
+          "id": "F3",
+          "finding": "1.38% of the member is an abstention template labelled SUPPORTED",
+          "measured": "1458 rows over 13 distinct strings ('cannot be answered from the passages' and its translations), label-1 rate 1.0, 0.024885 of the positive leg, {'cn': 209, 'de': 204, 'es': 209, 'fr': 209, 'hu': 209, 'it': 209, 'pl': 209} per language",
+          "consequence": "an abstention asserts nothing, so these positives do not encode support of any content claim. The mix separately carries the R20-H174 L1 `frame_reject` lane (8,000 rows) teaching vacuous frames to label 0. Reported as a measured tension; not adjudicated"
+        },
+        {
+          "id": "F4",
+          "finding": "the annotated defect span of a negative is itself sometimes fully attested",
+          "measured": "concatenated annotated hallucinated spans, primary instrument: mean containment 0.4055, fully attested 0.0328 of 47038 negatives",
+          "consequence": "3.28% of negatives carry a label-0 whose annotated cause is verbatim present in the evidence - the same species as the R20-H175b defect, at 1/20th the rate and without the construction that caused it. EXECUTOR-ADDED probe, does not join the registered conjunction"
+        }
+      ],
+      "artifact": "ragtruth_translated_c1.json"
+    },
+    "C2": {
+      "verdict": "PASS",
+      "forms": "raw, truncated to chunk_max_chars=1500, whitespace-collapsed case-folded; each compared in both member->surface and surface->member denominators",
+      "surfaces_tested": [
+        "R11-H117_heldout_pairs.parquet:chunk",
+        "R11-H117_heldout_pairs.parquet:claim",
+        "R17-H143_evalset.parquet:chunk",
+        "R17-H143_evalset.parquet:claim",
+        "R20-H175b_qlane_eval.parquet:chunk",
+        "R20-H175b_qlane_eval.parquet:claim",
+        "R20-H175b_qlane_eval_clean.parquet:chunk",
+        "R20-H175b_qlane_eval_clean.parquet:claim",
+        "R20-H175b_qlane_eval_clean_prefix.parquet:chunk",
+        "R20-H175b_qlane_eval_clean_prefix.parquet:claim",
+        "R20-H175b_qlane_eval_repaired.parquet:chunk",
+        "R20-H175b_qlane_eval_repaired.parquet:claim",
+        "R20-H177_eval_B.parquet:chunk",
+        "R20-H177_eval_B.parquet:claim",
+        "R20-H177_eval_C.parquet:chunk",
+        "R20-H177_eval_C.parquet:claim",
+        "arena_documents",
+        "gold_full_chunks",
+        "gold_full_claims"
+      ],
+      "surface_count": 19,
+      "measured": {
+        "member_evidence_units": 98129,
+        "member_claim_units": 104167,
+        "hits_in_any_form_across_every_named_surface": 0,
+        "per_surface_evidence": {
+          "arena_documents": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "gold_full_chunks": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "gold_full_claims": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "R17-H143_evalset.parquet:chunk": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "R17-H143_evalset.parquet:claim": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "R20-H177_eval_B.parquet:chunk": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "R20-H177_eval_B.parquet:claim": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "R20-H177_eval_C.parquet:chunk": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "R20-H177_eval_C.parquet:claim": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "R20-H175b_qlane_eval.parquet:chunk": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "R20-H175b_qlane_eval.parquet:claim": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "R20-H175b_qlane_eval_repaired.parquet:chunk": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "R20-H175b_qlane_eval_repaired.parquet:claim": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "R20-H175b_qlane_eval_clean.parquet:chunk": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "R20-H175b_qlane_eval_clean.parquet:claim": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "R20-H175b_qlane_eval_clean_prefix.parquet:chunk": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "R20-H175b_qlane_eval_clean_prefix.parquet:claim": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "R11-H117_heldout_pairs.parquet:chunk": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "R11-H117_heldout_pairs.parquet:claim": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          }
+        },
+        "per_surface_claims": {
+          "arena_documents": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "gold_full_chunks": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "gold_full_claims": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "R17-H143_evalset.parquet:chunk": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "R17-H143_evalset.parquet:claim": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "R20-H177_eval_B.parquet:chunk": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "R20-H177_eval_B.parquet:claim": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "R20-H177_eval_C.parquet:chunk": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "R20-H177_eval_C.parquet:claim": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "R20-H175b_qlane_eval.parquet:chunk": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "R20-H175b_qlane_eval.parquet:claim": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "R20-H175b_qlane_eval_repaired.parquet:chunk": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "R20-H175b_qlane_eval_repaired.parquet:claim": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "R20-H175b_qlane_eval_clean.parquet:chunk": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "R20-H175b_qlane_eval_clean.parquet:claim": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "R20-H175b_qlane_eval_clean_prefix.parquet:chunk": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "R20-H175b_qlane_eval_clean_prefix.parquet:claim": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "R11-H117_heldout_pairs.parquet:chunk": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          },
+          "R11-H117_heldout_pairs.parquet:claim": {
+            "raw_vs_raw": 0,
+            "raw_vs_truncated": 0,
+            "truncated_vs_raw": 0,
+            "truncated_vs_truncated": 0,
+            "normalised_raw": 0,
+            "normalised_truncated": 0
+          }
+        }
+      },
+      "margin": "0 of 98,129 evidence units and 0 of 104,167 claim units, in all six form-combinations, against all 19 named surface columns - the clause's only passing value",
+      "reported_separately_not_a_named_surface": {
+        "surface": "the member's OWN in-domain held-out read (RAGTruth-translated TEST split), which carries the standing non-EN >= 0.82 hold",
+        "evidence_hits": {
+          "raw_vs_raw": 0,
+          "raw_vs_truncated": 0,
+          "truncated_vs_raw": 0,
+          "truncated_vs_truncated": 0,
+          "normalised_raw": 0,
+          "normalised_truncated": 0
+        },
+        "claim_hits": {
+          "raw_vs_raw": 11,
+          "raw_vs_truncated": 11,
+          "truncated_vs_raw": 11,
+          "truncated_vs_truncated": 11,
+          "normalised_raw": 11,
+          "normalised_truncated": 11
+        },
+        "claim_strings_shared": 11,
+        "train_rows_carrying_them": 1222,
+        "test_rows_carrying_them": 155,
+        "test_rows_total": 18873,
+        "test_share": 0.0082,
+        "identity": "all 11 are the abstention template of finding F3; label 1 on both sides"
+      },
+      "instrument_caveat": "exact string membership only. Machine translation is not row-deterministic on this corpus, so exact matching cannot detect a near-duplicate document that entered under a different translation. The n-gram instrument in the C4 artifact covers that direction.",
+      "artifact": "ragtruth_translated_c2378.json"
+    },
+    "C3": {
+      "verdict": "PASS",
+      "measured_axis": "source DOCUMENT (RAGTruth `context`) - measured on the English archive the translated splits are row-aligned to",
+      "how_established": "the 7 translated train splits are ROW-ALIGNED translations of the RAGTruth English train split - task_type sequence identical on all seven, label vectors agreeing at 0.999801-1.000000 (0 to 3 disagreements of 15,090) - so the document field of the English archive is a valid key",
+      "english_archive": {
+        "train_rows": 15090,
+        "test_rows": 2700,
+        "train_distinct_contexts": 2514,
+        "test_distinct_contexts": 450,
+        "context_strings_shared_train_test": 0,
+        "query_strings_shared_train_test": 67,
+        "test_distinct_queries": 222
+      },
+      "row_alignment": {
+        "de": {
+          "train_rows": 15090,
+          "task_type_sequence_matches_english": true,
+          "label_vector_agreement_with_english": 1.0,
+          "label_vector_disagreements": 0
+        },
+        "fr": {
+          "train_rows": 15090,
+          "task_type_sequence_matches_english": true,
+          "label_vector_agreement_with_english": 0.999934,
+          "label_vector_disagreements": 1
+        },
+        "es": {
+          "train_rows": 15090,
+          "task_type_sequence_matches_english": true,
+          "label_vector_agreement_with_english": 0.999934,
+          "label_vector_disagreements": 1
+        },
+        "it": {
+          "train_rows": 15090,
+          "task_type_sequence_matches_english": true,
+          "label_vector_agreement_with_english": 1.0,
+          "label_vector_disagreements": 0
+        },
+        "pl": {
+          "train_rows": 15090,
+          "task_type_sequence_matches_english": true,
+          "label_vector_agreement_with_english": 0.999801,
+          "label_vector_disagreements": 3
+        },
+        "hu": {
+          "train_rows": 15090,
+          "task_type_sequence_matches_english": true,
+          "label_vector_agreement_with_english": 0.999934,
+          "label_vector_disagreements": 1
+        },
+        "cn": {
+          "train_rows": 15090,
+          "task_type_sequence_matches_english": true,
+          "label_vector_agreement_with_english": 0.999934,
+          "label_vector_disagreements": 1
+        }
+      },
+      "exact_string_overlap_translated": {
+        "de": {
+          "train_rows": 15090,
+          "test_rows": 2700,
+          "distinct_train_prompt_strings": 11540,
+          "distinct_test_prompt_strings": 2099,
+          "prompt_strings_shared": 0,
+          "answer_strings_shared": 4,
+          "test_answer_share_in_train": 0.001494
+        },
+        "fr": {
+          "train_rows": 15090,
+          "test_rows": 2700,
+          "distinct_train_prompt_strings": 13658,
+          "distinct_test_prompt_strings": 2495,
+          "prompt_strings_shared": 0,
+          "answer_strings_shared": 1,
+          "test_answer_share_in_train": 0.000374
+        },
+        "es": {
+          "train_rows": 15090,
+          "test_rows": 2700,
+          "distinct_train_prompt_strings": 14647,
+          "distinct_test_prompt_strings": 2623,
+          "prompt_strings_shared": 0,
+          "answer_strings_shared": 1,
+          "test_answer_share_in_train": 0.000374
+        },
+        "it": {
+          "train_rows": 15090,
+          "test_rows": 2700,
+          "distinct_train_prompt_strings": 14808,
+          "distinct_test_prompt_strings": 2649,
+          "prompt_strings_shared": 0,
+          "answer_strings_shared": 1,
+          "test_answer_share_in_train": 0.000374
+        },
+        "pl": {
+          "train_rows": 15090,
+          "test_rows": 2700,
+          "distinct_train_prompt_strings": 14950,
+          "distinct_test_prompt_strings": 2662,
+          "prompt_strings_shared": 0,
+          "answer_strings_shared": 2,
+          "test_answer_share_in_train": 0.000748
+        },
+        "hu": {
+          "train_rows": 15090,
+          "test_rows": 2700,
+          "distinct_train_prompt_strings": 14371,
+          "distinct_test_prompt_strings": 2577,
+          "prompt_strings_shared": 0,
+          "answer_strings_shared": 2,
+          "test_answer_share_in_train": 0.000747
+        },
+        "cn": {
+          "train_rows": 15090,
+          "test_rows": 2700,
+          "distinct_train_prompt_strings": 14155,
+          "distinct_test_prompt_strings": 2534,
+          "prompt_strings_shared": 0,
+          "answer_strings_shared": 1,
+          "test_answer_share_in_train": 0.000374
+        }
+      },
+      "near_duplicate_read": {
+        "de": {
+          "test_prompts": 2099,
+          "hitting_train_at_jaccard_0.3": 0,
+          "fraction": 0.0,
+          "max_jaccard": 0.2267
+        },
+        "fr": {
+          "test_prompts": 2495,
+          "hitting_train_at_jaccard_0.3": 6,
+          "fraction": 0.002405,
+          "max_jaccard": 0.3583
+        },
+        "es": {
+          "test_prompts": 2623,
+          "hitting_train_at_jaccard_0.3": 8,
+          "fraction": 0.00305,
+          "max_jaccard": 0.3308
+        },
+        "it": {
+          "test_prompts": 2649,
+          "hitting_train_at_jaccard_0.3": 4,
+          "fraction": 0.00151,
+          "max_jaccard": 0.3289
+        },
+        "pl": {
+          "test_prompts": 2662,
+          "hitting_train_at_jaccard_0.3": 0,
+          "fraction": 0.0,
+          "max_jaccard": 0.2402
+        },
+        "hu": {
+          "test_prompts": 2577,
+          "hitting_train_at_jaccard_0.3": 0,
+          "fraction": 0.0,
+          "max_jaccard": 0.1857
+        },
+        "cn": {
+          "test_prompts": 2534,
+          "hitting_train_at_jaccard_0.3": 0,
+          "fraction": 0.0,
+          "max_jaccard": 0.1986
+        }
+      },
+      "margin": "document strings shared train/test: 0 of 450 test documents. Near-duplicate: worst language es at 0.00305 of test prompts against the 2% KILL - 1.695 percentage points clear; max single-pair Jaccard 0.3583 (fr)",
+      "recorded": "exact-string prompt identity is NOT a reliable document key on this member: each row's prompt was machine-translated independently, so the same source document yields near-duplicate but non-identical prompt strings. The exact-string zero is therefore weak evidence on its own; the document-level zero comes from the English archive's `context` field via the verified row alignment. A near-duplicate n-gram read is in the C4 artifact.",
+      "artifact": "ragtruth_translated_c2378.json + ragtruth_translated_c4.json"
+    },
+    "C4": {
+      "verdict": "PASS",
+      "instrument": "provenance_gate.py (R14-H136 ruling 2: 8-gram, Jaccard >= 0.3, bidirectional, KILL 0.02)",
+      "arena_subsets": {
+        "covidqa": 980,
+        "delucionqa": 552,
+        "emanual": 396,
+        "expertqa": 759,
+        "finqa": 725,
+        "hagrid": 703,
+        "hotpotqa": 998,
+        "pubmedqa": 1250,
+        "tatqa": 1032,
+        "techqa": 1250
+      },
+      "gate_runs": 14,
+      "measured": {
+        "de": {
+          "evidence_prompts": {
+            "units": 11540,
+            "verdict": "PASS",
+            "max_fraction": 0.0,
+            "best_jaccard_max": 0.0,
+            "units_below_8gram_floor": 0
+          },
+          "claims": {
+            "units": 14887,
+            "verdict": "PASS",
+            "max_fraction": 0.0,
+            "best_jaccard_max": 0.0,
+            "units_below_8gram_floor": 4
+          },
+          "spike_control": {
+            "injected": 10,
+            "detected_total": 10,
+            "baseline_hits": 0,
+            "passes": true,
+            "candidate_units": 2000
+          },
+          "live_positive_control": {
+            "construction": "300 of this language's own prompts with a contiguous 20% character span deleted, gated against the unperturbed prompts",
+            "detected_fraction": 1.0,
+            "units_with_hit": 300,
+            "n_units": 300,
+            "best_jaccard": {
+              "max": 0.9472,
+              "p99": 0.9076,
+              "mean": 0.763
+            },
+            "fires": true
+          }
+        },
+        "fr": {
+          "evidence_prompts": {
+            "units": 13658,
+            "verdict": "PASS",
+            "max_fraction": 0.0,
+            "best_jaccard_max": 0.0,
+            "units_below_8gram_floor": 0
+          },
+          "claims": {
+            "units": 14880,
+            "verdict": "PASS",
+            "max_fraction": 0.0,
+            "best_jaccard_max": 0.0,
+            "units_below_8gram_floor": 3
+          },
+          "spike_control": {
+            "injected": 10,
+            "detected_total": 10,
+            "baseline_hits": 0,
+            "passes": true,
+            "candidate_units": 2000
+          },
+          "live_positive_control": {
+            "construction": "300 of this language's own prompts with a contiguous 20% character span deleted, gated against the unperturbed prompts",
+            "detected_fraction": 1.0,
+            "units_with_hit": 300,
+            "n_units": 300,
+            "best_jaccard": {
+              "max": 0.9492,
+              "p99": 0.8905,
+              "mean": 0.7691
+            },
+            "fires": true
+          }
+        },
+        "es": {
+          "evidence_prompts": {
+            "units": 14647,
+            "verdict": "PASS",
+            "max_fraction": 0.0,
+            "best_jaccard_max": 0.0,
+            "units_below_8gram_floor": 0
+          },
+          "claims": {
+            "units": 14879,
+            "verdict": "PASS",
+            "max_fraction": 0.0,
+            "best_jaccard_max": 0.0,
+            "units_below_8gram_floor": 3
+          },
+          "spike_control": {
+            "injected": 10,
+            "detected_total": 10,
+            "baseline_hits": 0,
+            "passes": true,
+            "candidate_units": 2000
+          },
+          "live_positive_control": {
+            "construction": "300 of this language's own prompts with a contiguous 20% character span deleted, gated against the unperturbed prompts",
+            "detected_fraction": 1.0,
+            "units_with_hit": 300,
+            "n_units": 300,
+            "best_jaccard": {
+              "max": 0.9202,
+              "p99": 0.894,
+              "mean": 0.7669
+            },
+            "fires": true
+          }
+        },
+        "it": {
+          "evidence_prompts": {
+            "units": 14808,
+            "verdict": "PASS",
+            "max_fraction": 0.0,
+            "best_jaccard_max": 0.0,
+            "units_below_8gram_floor": 0
+          },
+          "claims": {
+            "units": 14879,
+            "verdict": "PASS",
+            "max_fraction": 0.0,
+            "best_jaccard_max": 0.0,
+            "units_below_8gram_floor": 4
+          },
+          "spike_control": {
+            "injected": 10,
+            "detected_total": 10,
+            "baseline_hits": 0,
+            "passes": true,
+            "candidate_units": 2000
+          },
+          "live_positive_control": {
+            "construction": "300 of this language's own prompts with a contiguous 20% character span deleted, gated against the unperturbed prompts",
+            "detected_fraction": 1.0,
+            "units_with_hit": 300,
+            "n_units": 300,
+            "best_jaccard": {
+              "max": 0.9273,
+              "p99": 0.8974,
+              "mean": 0.7666
+            },
+            "fires": true
+          }
+        },
+        "pl": {
+          "evidence_prompts": {
+            "units": 14950,
+            "verdict": "PASS",
+            "max_fraction": 0.0,
+            "best_jaccard_max": 0.0,
+            "units_below_8gram_floor": 0
+          },
+          "claims": {
+            "units": 14881,
+            "verdict": "PASS",
+            "max_fraction": 0.0,
+            "best_jaccard_max": 0.0,
+            "units_below_8gram_floor": 6
+          },
+          "spike_control": {
+            "injected": 10,
+            "detected_total": 10,
+            "baseline_hits": 0,
+            "passes": true,
+            "candidate_units": 2000
+          },
+          "live_positive_control": {
+            "construction": "300 of this language's own prompts with a contiguous 20% character span deleted, gated against the unperturbed prompts",
+            "detected_fraction": 1.0,
+            "units_with_hit": 300,
+            "n_units": 300,
+            "best_jaccard": {
+              "max": 0.9027,
+              "p99": 0.8795,
+              "mean": 0.7571
+            },
+            "fires": true
+          }
+        },
+        "hu": {
+          "evidence_prompts": {
+            "units": 14371,
+            "verdict": "PASS",
+            "max_fraction": 0.0,
+            "best_jaccard_max": 0.0,
+            "units_below_8gram_floor": 0
+          },
+          "claims": {
+            "units": 14881,
+            "verdict": "PASS",
+            "max_fraction": 0.0,
+            "best_jaccard_max": 0.0,
+            "units_below_8gram_floor": 7
+          },
+          "spike_control": {
+            "injected": 10,
+            "detected_total": 10,
+            "baseline_hits": 0,
+            "passes": true,
+            "candidate_units": 2000
+          },
+          "live_positive_control": {
+            "construction": "300 of this language's own prompts with a contiguous 20% character span deleted, gated against the unperturbed prompts",
+            "detected_fraction": 1.0,
+            "units_with_hit": 300,
+            "n_units": 300,
+            "best_jaccard": {
+              "max": 0.9516,
+              "p99": 0.9024,
+              "mean": 0.7575
+            },
+            "fires": true
+          }
+        },
+        "cn": {
+          "evidence_prompts": {
+            "units": 14155,
+            "verdict": "PASS",
+            "max_fraction": 0.0,
+            "best_jaccard_max": 0.0,
+            "units_below_8gram_floor": 0
+          },
+          "claims": {
+            "units": 14880,
+            "verdict": "PASS",
+            "max_fraction": 0.0,
+            "best_jaccard_max": 0.0,
+            "units_below_8gram_floor": 574
+          },
+          "spike_control": {
+            "injected": 10,
+            "detected_total": 10,
+            "baseline_hits": 0,
+            "passes": true,
+            "candidate_units": 2000
+          },
+          "live_positive_control": {
+            "construction": "300 of this language's own prompts with a contiguous 20% character span deleted, gated against the unperturbed prompts",
+            "detected_fraction": 0.986667,
+            "units_with_hit": 296,
+            "n_units": 300,
+            "best_jaccard": {
+              "max": 0.9768,
+              "p99": 0.8392,
+              "mean": 0.6398
+            },
+            "fires": true
+          }
+        }
+      },
+      "margin": "max_fraction 0.0 on every one of the 14 runs against the 2% KILL - the full 0.02 clear, and best-Jaccard max 0.0 means no single unit reached even the 0.3 similarity threshold",
+      "coverage": "0 of 98,129 evidence units fall below the 8-gram floor. 601 of 104,167 claim units do, 574 of them Chinese (3.86% of the cn claim set, whose clause-level whitespace tokenization yields fewer than 8 tokens on short answers). All are covered by the exact-string test in C2, which read 0",
+      "controls": {
+        "spike": "10 arena units injected into each language's candidate side: 10/10 detected with 0 baseline hits, all 7 languages",
+        "live_positive": "300 of each language's own prompts with a contiguous 20% character span deleted, gated against the unperturbed prompts: 300/300 detected in de/fr/es/it/pl/hu, 296/300 (0.9867) in cn. The gate provably fires on genuine near-duplicates in this corpus's own register and script"
+      },
+      "artifact": "ragtruth_translated_c4.json"
+    },
+    "C5": {
+      "verdict": "NOT-APPLICABLE",
+      "why": "C5 binds 'every constructed lane and every paired-contrast eval'. This member is a source corpus taken whole from its archive: there is no construction, no pair generator, no negative families, no direction / element / family balance and no within-pair structure, so the converged claim-only pair probe, the within-pair probe, the single-channel-at-chance clause and the attestation-symmetry clause have no object to measure",
+      "not_substituted_by_a_proxy": true,
+      "executor_added_non_gating_probes": {
+        "status": "EXECUTOR-ADDED, NON-GATING - C5 itself is NOT-APPLICABLE to a source corpus with no construction. These probes do not join any registered conjunction.",
+        "folds": "GroupKFold(5) on the source document, so the ~6 responses of one document never straddle a fold",
+        "per_language": {
+          "de": {
+            "rows": 15090,
+            "claim_only_auroc": 0.7771,
+            "evidence_only_auroc": 0.6915,
+            "claim_length_auroc": 0.3507,
+            "evidence_length_auroc": 0.4523
+          },
+          "fr": {
+            "rows": 15090,
+            "claim_only_auroc": 0.7777,
+            "evidence_only_auroc": 0.6891,
+            "claim_length_auroc": 0.3489,
+            "evidence_length_auroc": 0.4494
+          },
+          "es": {
+            "rows": 15090,
+            "claim_only_auroc": 0.7799,
+            "evidence_only_auroc": 0.6919,
+            "claim_length_auroc": 0.3469,
+            "evidence_length_auroc": 0.4383
+          },
+          "it": {
+            "rows": 15090,
+            "claim_only_auroc": 0.7789,
+            "evidence_only_auroc": 0.6914,
+            "claim_length_auroc": 0.3516,
+            "evidence_length_auroc": 0.4347
+          },
+          "pl": {
+            "rows": 15090,
+            "claim_only_auroc": 0.7821,
+            "evidence_only_auroc": 0.6909,
+            "claim_length_auroc": 0.3478,
+            "evidence_length_auroc": 0.4299
+          },
+          "hu": {
+            "rows": 15090,
+            "claim_only_auroc": 0.7797,
+            "evidence_only_auroc": 0.694,
+            "claim_length_auroc": 0.3487,
+            "evidence_length_auroc": 0.4323
+          },
+          "cn": {
+            "rows": 15090,
+            "claim_only_auroc": 0.7916,
+            "evidence_only_auroc": 0.6915,
+            "claim_length_auroc": 0.3401,
+            "evidence_length_auroc": 0.3371
+          }
+        },
+        "summary": {
+          "claim_only_auroc_max": 0.7916,
+          "claim_only_auroc_mean": 0.781,
+          "evidence_only_auroc_max": 0.694,
+          "claim_length_auroc_max_abs_dev_from_0.5": 0.1599,
+          "reference_bars_if_C5_applied": {
+            "claim_only": "< 0.55",
+            "surface_parity": "0.45-0.55"
+          }
+        },
+        "reading": "if C5 had applied, claim-only (mean 0.7810, max 0.7916) would miss the < 0.55 bar and claim-length parity (0.3401-0.3516, deviation 0.1599) would miss the 0.45-0.55 band, both by wide margins. Stated as a measurement of the corpus, not as a verdict: RAGTruth negatives are LLM hallucinations and carry stylistic and length signature; the evidence-only channel (0.6891-0.6940) tracks the task_type prior, whose label-1 rates are Data2txt 0.3063 / QA 0.6893 / Summary 0.6885"
+      },
+      "artifact": "ragtruth_translated_c5_supp.json"
+    },
+    "C6": {
+      "verdict": "PASS",
+      "shared_field": "the source document - ~6 responses per document share one evidence text, so a feature keyed on the document is computable",
+      "eval_side_value": "UNDEFINED",
+      "eval_side_coverage": 0.0,
+      "why_undefined": "no evaluation surface shares a single evidence unit with the member in any of the six forms (C2), so there is nothing the training mix associates with an eval pair's key - the clause's clean reading",
+      "reported_values": {
+        "within_member_document_key_auroc": 0.6509,
+        "within_member_note": "leave-one-out mean label of the row's own document group, scored against the row label, on the German slice (labels are identical across languages by construction). Above 0.5 means the document key alone carries label information INSIDE the training mix",
+        "cross_language_replication_channel": "each (document, response, label) instance appears 8 times in the clean mix (English plus 7 translations). A model can carry a label association across the language copies. This is train-internal redundancy, not eval leakage - the evaluation surfaces above read zero.",
+        "one_non_zero_eval_side_association": "the 11 abstention strings of finding F3 reach the member's own in-domain test read - 155 of 18,873 rows (0.82%), label 1 on both sides. That surface is not one of the contract's named ones"
+      },
+      "margin": "0 coverage on every named surface; the reported within-mix figure 0.6509 is a training-internal redundancy measurement, not an eval leak",
+      "artifact": "ragtruth_translated_c2378.json"
+    },
+    "C7": {
+      "verdict": "PASS",
+      "declared_unit": "rows - the loader emits one (claim, evidence, label) row per RAGTruth response per language; there is no pair construction, so rows and (claim, evidence) pairs are the same object",
+      "rows": 105630,
+      "pairs": 105613,
+      "rows_per_language": {
+        "cn": 15090,
+        "de": 15090,
+        "es": 15090,
+        "fr": 15090,
+        "hu": 15090,
+        "it": 15090,
+        "pl": 15090
+      },
+      "label1_rows": 58590,
+      "label0_rows": 47040,
+      "label1_rate": 0.554672,
+      "registered_figure": "~105,630 rows (7 x 15,090)",
+      "margin": "105,630 rows measured against ~105,630 registered - exact, 0 shortfall. Both counts reported: 105,630 rows / 105,613 distinct (claim, evidence) pairs, a 17-row exact-duplicate residue",
+      "artifact": "ragtruth_translated_c2378.json"
+    },
+    "C8": {
+      "verdict": "PASS",
+      "source": "KRLabsOrg/ragtruth-{de,fr,es,it,pl,hu,cn}-translated on the HuggingFace Hub; machine translations of wandb/RAGTruth-processed",
+      "licence": "MIT (sidecar data/external/datasets/dataset-ragtruth-translated.md)",
+      "retrieval_date": "2026-07-29 (archive mtime; fetched by scripts/fetch_grounding_datasets.py)",
+      "selection_predicate": "for each of the 7 languages, the `__train.parquet` member of dataset-ragtruth-translated.zip; label = (labels list empty); filter prompt.len_chars > 50; evidence = `prompt`, claim = `answer`. The prompt filter drops 0 rows on every language.",
+      "within_member_duplication": {
+        "distinct_claims": 104167,
+        "distinct_evidence_strings": 98129,
+        "distinct_evidence_strings_per_language": {
+          "de": 11540,
+          "fr": 13658,
+          "es": 14647,
+          "it": 14808,
+          "pl": 14950,
+          "hu": 14371,
+          "cn": 14155
+        },
+        "distinct_source_documents_per_language": 2514,
+        "rows_per_document_mean": 6.0024,
+        "rows_per_document_max": 12,
+        "exact_duplicate_rows": 17,
+        "repeat_structure": "15,090 rows per language rest on 2,514 distinct source documents - RAGTruth pairs each document with ~6 model responses. Exact-string dedup of the translated prompt reports 11,540-14,950 distinct evidence strings per language, overstating document diversity by 4.6x to 5.9x because machine translation is not deterministic across rows.",
+        "cross_language_replication": {
+          "instances_replicated": 15090,
+          "copies_in_the_member": 7,
+          "copies_in_the_clean_mix_including_ragtruth_en": 8,
+          "member_rows": 105630,
+          "clean_mix_rows": 685670,
+          "share_of_clean_mix_that_is_this_one_corpus": 0.176061,
+          "note": "the member is 7 parallel translations of ONE 15,090-row corpus, and ragtruth_en is the 8th copy of the same rows. 120,720 of the clean mix's 685,670 rows carry 15,090 distinct (document, response, label) instances resting on 2,514 documents."
+        }
+      },
+      "public_repository_check": {
+        "client_or_company_name_in_artifacts": false,
+        "note": "no client or company name appears in any artifact written by this verification"
+      },
+      "margin": "every required item is stated and measured; the finding recorded under it is that 105,630 rows carry 15,090 distinct instances resting on 2,514 documents, and that with ragtruth_en the clean mix holds 8 copies of those instances - 120,720 of 685,670 rows, 17.61%",
+      "prior_campaign_result_checked_forward": "R13-H127 (parallel-copy rebalance, EN 4.0 / translations 0.5714 at preserved family mass) was REFUTED at draw 1 with blind mean 0.68206 against a 0.70496 refute bar and gold_full 0.8375 below the 0.84 hold; the recorded reading is that the parallel copies are load-bearing regularisation, not redundant mass. Read forward to the end of the canonical log: not superseded",
+      "artifact": "ragtruth_translated_c2378.json"
+    }
+  },
+  "summary": {
+    "PASS": [
+      "C1",
+      "C2",
+      "C3",
+      "C4",
+      "C6",
+      "C7",
+      "C8"
+    ],
+    "FAIL": [],
+    "NOT-APPLICABLE": [
+      "C5"
+    ],
+    "binding_constraint": null,
+    "fixable": "NONE - the member conforms"
+  },
+  "findings_for_the_record": [
+    "F1 - the banked [a-z0-9]+ containment instrument cannot score Chinese; it reads the cn slice at negative 0.8420 / gap 0.0317, one leg of the C1 reject conjunction satisfied and the other 0.0580 away. The unicode instrument reads the same slice at negative 0.2847 / gap 0.1950",
+    "F2 - the Data2txt stratum (35.1% of rows per language) reads a 0.0281 leg gap: containment has little power there",
+    "F3 - 1,458 rows (1.38% of the member, 2.49% of its positive leg) are the 'cannot be answered from the passages' abstention template, every one labelled SUPPORTED, while the mix's `frame_reject` lane teaches vacuous frames to 0",
+    "F4 - 3.28% of negatives have their annotated hallucinated span fully attested in the evidence",
+    "F5 - 105,630 rows carry 15,090 distinct instances over 2,514 documents; with ragtruth_en the clean mix holds 8 copies, 17.61% of its rows",
+    "F6 - exact-string prompt identity is not a document key on a machine-translated corpus (11,540-14,950 distinct strings for 2,514 documents), so any exact-matching disjointness claim about this member needs the n-gram read beside it"
+  ],
+  "artifacts": [
+    "experiments/grounding-semantic/contract/ragtruth_translated_extract.py",
+    "experiments/grounding-semantic/contract/ragtruth_translated_extract.json",
+    "experiments/grounding-semantic/contract/ragtruth_translated_member.parquet",
+    "experiments/grounding-semantic/contract/ragtruth_translated_c1.py",
+    "experiments/grounding-semantic/contract/ragtruth_translated_c1.json",
+    "experiments/grounding-semantic/contract/ragtruth_translated_c2378.py",
+    "experiments/grounding-semantic/contract/ragtruth_translated_c2378.json",
+    "experiments/grounding-semantic/contract/ragtruth_translated_c4.py",
+    "experiments/grounding-semantic/contract/ragtruth_translated_c4.json",
+    "experiments/grounding-semantic/contract/ragtruth_translated_c5_supp.py",
+    "experiments/grounding-semantic/contract/ragtruth_translated_c5_supp.json",
+    "experiments/grounding-semantic/contract/ragtruth_translated_refusal_census.json",
+    "experiments/grounding-semantic/contract/ragtruth_translated_report_build.py",
+    "experiments/grounding-semantic/contract/ragtruth_translated_contract_report.json",
+    "logs/contract-ragtruth-translated-extract.log",
+    "logs/contract-ragtruth-translated-c1.log",
+    "logs/contract-ragtruth-translated-c2378.log",
+    "logs/contract-ragtruth-translated-c4.log",
+    "logs/contract-ragtruth-translated-c5supp.log"
+  ]
+}

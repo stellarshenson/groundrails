@@ -1,0 +1,190 @@
+{
+  "control": "per-item response scores must reproduce the banked per-subset arena AUROC and the banked read fingerprint",
+  "tolerance": 0.0001,
+  "draws": {
+    "d3": {
+      "checkpoint": "R19-H160-arm-draw3",
+      "label": "H160 draw 3 (seed 3150, split-cotangent executor)",
+      "banked_source": "R19-H160_arm_draw3_windowed_result.json",
+      "banked_mean": 0.7087,
+      "recomputed_mean": 0.708697,
+      "tolerance": 0.0001,
+      "worst_abs_delta": 4.496e-05,
+      "per_subset": {
+        "covidqa": {
+          "banked_auc": 0.7458,
+          "recomputed_auc": 0.74583,
+          "abs_delta": 3.022e-05,
+          "fingerprint": {
+            "n": 245,
+            "n_sent": 385,
+            "n_pairs": 1540
+          },
+          "banked_fingerprint": {
+            "n": 245,
+            "n_sent": 385,
+            "n_pairs": 1540
+          },
+          "fingerprint_ok": true,
+          "passes": true
+        },
+        "delucionqa": {
+          "banked_auc": 0.8798,
+          "recomputed_auc": 0.879845,
+          "abs_delta": 4.496e-05,
+          "fingerprint": {
+            "n": 184,
+            "n_sent": 929,
+            "n_pairs": 5093
+          },
+          "banked_fingerprint": {
+            "n": 184,
+            "n_sent": 929,
+            "n_pairs": 5093
+          },
+          "fingerprint_ok": true,
+          "passes": true
+        },
+        "emanual": {
+          "banked_auc": 0.6471,
+          "recomputed_auc": 0.647094,
+          "abs_delta": 5.57e-06,
+          "fingerprint": {
+            "n": 132,
+            "n_sent": 748,
+            "n_pairs": 2983
+          },
+          "banked_fingerprint": {
+            "n": 132,
+            "n_sent": 748,
+            "n_pairs": 2983
+          },
+          "fingerprint_ok": true,
+          "passes": true
+        },
+        "expertqa": {
+          "banked_auc": 0.7831,
+          "recomputed_auc": 0.783138,
+          "abs_delta": 3.84e-05,
+          "fingerprint": {
+            "n": 203,
+            "n_sent": 1303,
+            "n_pairs": 13949
+          },
+          "banked_fingerprint": {
+            "n": 203,
+            "n_sent": 1303,
+            "n_pairs": 13949
+          },
+          "fingerprint_ok": true,
+          "passes": true
+        },
+        "finqa": {
+          "banked_auc": 0.6861,
+          "recomputed_auc": 0.686087,
+          "abs_delta": 1.304e-05,
+          "fingerprint": {
+            "n": 250,
+            "n_sent": 563,
+            "n_pairs": 2918
+          },
+          "banked_fingerprint": {
+            "n": 250,
+            "n_sent": 563,
+            "n_pairs": 2918
+          },
+          "fingerprint_ok": true,
+          "passes": true
+        },
+        "hagrid": {
+          "banked_auc": 0.6058,
+          "recomputed_auc": 0.60576,
+          "abs_delta": 4.032e-05,
+          "fingerprint": {
+            "n": 250,
+            "n_sent": 537,
+            "n_pairs": 1941
+          },
+          "banked_fingerprint": {
+            "n": 250,
+            "n_sent": 537,
+            "n_pairs": 1941
+          },
+          "fingerprint_ok": true,
+          "passes": true
+        },
+        "hotpotqa": {
+          "banked_auc": 0.6751,
+          "recomputed_auc": 0.675082,
+          "abs_delta": 1.795e-05,
+          "fingerprint": {
+            "n": 250,
+            "n_sent": 293,
+            "n_pairs": 1177
+          },
+          "banked_fingerprint": {
+            "n": 250,
+            "n_sent": 293,
+            "n_pairs": 1177
+          },
+          "fingerprint_ok": true,
+          "passes": true
+        },
+        "pubmedqa": {
+          "banked_auc": 0.6164,
+          "recomputed_auc": 0.616395,
+          "abs_delta": 4.83e-06,
+          "fingerprint": {
+            "n": 250,
+            "n_sent": 1314,
+            "n_pairs": 6570
+          },
+          "banked_fingerprint": {
+            "n": 250,
+            "n_sent": 1314,
+            "n_pairs": 6570
+          },
+          "fingerprint_ok": true,
+          "passes": true
+        },
+        "tatqa": {
+          "banked_auc": 0.7243,
+          "recomputed_auc": 0.724274,
+          "abs_delta": 2.639e-05,
+          "fingerprint": {
+            "n": 250,
+            "n_sent": 468,
+            "n_pairs": 1942
+          },
+          "banked_fingerprint": {
+            "n": 250,
+            "n_sent": 468,
+            "n_pairs": 1942
+          },
+          "fingerprint_ok": true,
+          "passes": true
+        },
+        "techqa": {
+          "banked_auc": 0.7235,
+          "recomputed_auc": 0.723469,
+          "abs_delta": 3.068e-05,
+          "fingerprint": {
+            "n": 250,
+            "n_sent": 1737,
+            "n_pairs": 39058
+          },
+          "banked_fingerprint": {
+            "n": 250,
+            "n_sent": 1737,
+            "n_pairs": 39058
+          },
+          "fingerprint_ok": true,
+          "passes": true
+        }
+      },
+      "verdict": "PASS"
+    }
+  },
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates.",
+  "written": "2026-08-17 12:47:36"
+}

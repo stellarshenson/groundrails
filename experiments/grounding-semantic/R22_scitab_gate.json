@@ -1,0 +1,140 @@
+{
+  "corpus": "scitab",
+  "wave": "R22 derivation supply",
+  "instrument": "provenance_gate.py (R14-H136 ruling 2 form: 8-gram, Jaccard >= 0.3, bidirectional, KILL > 2%)",
+  "licence_sidecar": {
+    "pass": true,
+    "path": "/home/lab/workspace/private/ai-assistants/groundrails/data/external/datasets/dataset-scitab.md",
+    "present": true,
+    "records_licence_token": true,
+    "records_r22_registration": true
+  },
+  "derivation_reverification": {
+    "pass": true,
+    "rows": 1224,
+    "label_distribution": {
+      "supports": 457,
+      "not enough info": 356,
+      "refutes": 411
+    },
+    "distinct_tables": 213,
+    "distinct_papers": 80,
+    "rows_with_BOLD_markup": 701,
+    "bold_rate": 0.572712
+  },
+  "provenance_gate": {
+    "pass": true,
+    "spike_control": {
+      "injected": 10,
+      "detected_total": 10,
+      "baseline_hits": 0,
+      "passes": true,
+      "candidate_units": 216
+    },
+    "result": {
+      "instrument": "provenance_gate.py (R13 ruling 4)",
+      "mode": "jaccard",
+      "n": 8,
+      "jaccard_threshold": 0.3,
+      "thresholds": {
+        "warn": 0.005,
+        "kill": 0.02
+      },
+      "candidate": {
+        "label": "r22_scitab",
+        "n_units": 216,
+        "n_units_scorable": 216
+      },
+      "arena": {
+        "subsets": {
+          "covidqa": 980,
+          "delucionqa": 552,
+          "emanual": 396,
+          "expertqa": 759,
+          "finqa": 725,
+          "hagrid": 703,
+          "hotpotqa": 998,
+          "pubmedqa": 1250,
+          "tatqa": 1032,
+          "techqa": 1250
+        },
+        "n_units": 8645,
+        "n_units_scorable": 8555
+      },
+      "candidate_vs_arena": {
+        "n_units": 216,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "covidqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "delucionqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "emanual": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "expertqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "finqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hagrid": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hotpotqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "pubmedqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "tatqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "techqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        },
+        "best_jaccard": {
+          "max": 0.0,
+          "p99": 0.0,
+          "mean": 0.0
+        }
+      },
+      "arena_vs_candidate": {
+        "n_units": 8645,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "r22_scitab": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        },
+        "best_jaccard": {
+          "max": 0.0,
+          "p99": 0.0,
+          "mean": 0.0
+        }
+      },
+      "max_fraction": 0.0,
+      "verdict": "PASS",
+      "hit_examples": [],
+      "gate_unit_coverage": 1.0,
+      "gate_units_deduped_total": 216
+    }
+  },
+  "status": "GREEN"
+}

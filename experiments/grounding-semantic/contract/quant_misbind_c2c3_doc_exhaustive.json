@@ -1,0 +1,28 @@
+{
+  "clause": "C2 + C3 (exhaustive document-level read)",
+  "eval_surface": "R17-H143_evalset.parquet (1,050 rows, 547 content fingerprints)",
+  "decision_rule": ">= 60% of the eval chunk's canonical numerals inside the table's own AND >= 3 of the table's distinctive long strings readable in that chunk - R17-H144_pairs.excluded_tables, applied with NO candidate heuristic",
+  "source_tables": 23423,
+  "lane_shipped_tables": 7514,
+  "exhaustive_shipped_tables_matching_an_eval_document": 942,
+  "exhaustive_shipped_share": 0.125366,
+  "by_source": {
+    "tabfact": 795,
+    "feverous": 147
+  },
+  "lane_rows_from_matching_tables": 3762,
+  "lane_rows_share": 0.1254,
+  "lane_pairs_from_matching_tables": 1881,
+  "eval_fingerprints_matched": 159,
+  "eval_rows_affected": 134,
+  "eval_rows_share": 0.127619,
+  "exhaustive_full_corpus_tables_matching": 5058,
+  "build_heuristic_excluded": 3512,
+  "heuristic_miss": 1546,
+  "heuristic_recall": 0.694346,
+  "string_level_control": {
+    "lane_chunks_equal_to_an_eval_chunk": 0,
+    "reading": "0 means the overlap is NOT visible to any string comparison - the same table is serialized differently on the two sides, which is exactly what C2's string forms cannot see"
+  },
+  "seconds": 70.4
+}

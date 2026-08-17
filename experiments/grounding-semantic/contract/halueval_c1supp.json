@@ -1,0 +1,143 @@
+{
+  "C1_supplement": {
+    "definitions": {
+      "verbatim": "whitespace-collapsed case-folded claim is an exact substring of the whitespace-collapsed case-folded evidence",
+      "fully_attested": "content-token containment == 1.0"
+    },
+    "all": {
+      "positive": {
+        "n": 20000,
+        "verbatim_rate": 0.4779,
+        "verbatim_rows": 9559,
+        "fully_attested_rows": 9768,
+        "fully_attested_and_verbatim_rows": 9364,
+        "claim_content_tokens_mean": 27.22,
+        "claim_content_tokens_median": 16.5,
+        "claims_with_le_2_content_tokens": 6689
+      },
+      "negative": {
+        "n": 20000,
+        "verbatim_rate": 0.0027,
+        "verbatim_rows": 53,
+        "fully_attested_rows": 678,
+        "fully_attested_and_verbatim_rows": 51,
+        "claim_content_tokens_mean": 42.08,
+        "claim_content_tokens_median": 26.0,
+        "claims_with_le_2_content_tokens": 228
+      },
+      "within_pair": {
+        "pairs": 20000,
+        "neg_ge_pos": 0.1734,
+        "neg_gt_pos": 0.1382,
+        "mean_pair_gap_pos_minus_neg": 0.187,
+        "pairs_with_fully_attested_negative": 678
+      }
+    },
+    "qa": {
+      "positive": {
+        "n": 10000,
+        "verbatim_rate": 0.9553,
+        "verbatim_rows": 9553,
+        "fully_attested_rows": 9358,
+        "fully_attested_and_verbatim_rows": 9358,
+        "claim_content_tokens_mean": 2.3,
+        "claim_content_tokens_median": 2.0,
+        "claims_with_le_2_content_tokens": 6689
+      },
+      "negative": {
+        "n": 10000,
+        "verbatim_rate": 0.0053,
+        "verbatim_rows": 53,
+        "fully_attested_rows": 663,
+        "fully_attested_and_verbatim_rows": 51,
+        "claim_content_tokens_mean": 11.26,
+        "claim_content_tokens_median": 10.0,
+        "claims_with_le_2_content_tokens": 228
+      },
+      "within_pair": {
+        "pairs": 10000,
+        "neg_ge_pos": 0.1286,
+        "neg_gt_pos": 0.0614,
+        "mean_pair_gap_pos_minus_neg": 0.2835,
+        "pairs_with_fully_attested_negative": 663
+      }
+    },
+    "summarization": {
+      "positive": {
+        "n": 10000,
+        "verbatim_rate": 0.0006,
+        "verbatim_rows": 6,
+        "fully_attested_rows": 410,
+        "fully_attested_and_verbatim_rows": 6,
+        "claim_content_tokens_mean": 52.13,
+        "claim_content_tokens_median": 49.0,
+        "claims_with_le_2_content_tokens": 0
+      },
+      "negative": {
+        "n": 10000,
+        "verbatim_rate": 0.0,
+        "verbatim_rows": 0,
+        "fully_attested_rows": 15,
+        "fully_attested_and_verbatim_rows": 0,
+        "claim_content_tokens_mean": 72.9,
+        "claim_content_tokens_median": 73.0,
+        "claims_with_le_2_content_tokens": 0
+      },
+      "within_pair": {
+        "pairs": 10000,
+        "neg_ge_pos": 0.2181,
+        "neg_gt_pos": 0.215,
+        "mean_pair_gap_pos_minus_neg": 0.0906,
+        "pairs_with_fully_attested_negative": 15
+      }
+    },
+    "reference_R20_H175b_poisoned_lane": {
+      "containment_both_legs": 0.9129,
+      "negatives_fully_attested": 0.664,
+      "negatives_attested_ge_0.90": 0.723,
+      "source": "docs/experiments/semantic-grounding-experiments.md, R20-H175b WITHDRAWN block"
+    },
+    "fully_attested_negative_examples": [
+      {
+        "half": "qa",
+        "claim": "Annette Bening received her Hollywood star in 1988.",
+        "evidence_head": "The Great Outdoors is a 1988 American comedy film directed by Howard Deutch, and written and produced by John Hughes. It stars Dan Aykroyd, John Candy, Stephani"
+      },
+      {
+        "half": "qa",
+        "claim": "Adam Clayton Powell is about civil rights leader.",
+        "evidence_head": "Adam Clayton Powell is a 1989 American documentary film directed by Richard Kilberg about the civil rights leader.The Saimaa Gesture (Finnish: \"Saimaa-ilmi\u00f6\" ) "
+      },
+      {
+        "half": "qa",
+        "claim": "Cia Berg was inducted into the Rock and Roll Hall of Fame.",
+        "evidence_head": "Cia Berg (born 2 December 1963), now known as Cia Soro, is a Swedish television presenter and singer. She was at one time the lead singer of the Swedish rock ba"
+      },
+      {
+        "half": "qa",
+        "claim": "Neil Gaiman directed Beowulf.",
+        "evidence_head": " He wrote the screenplays for \"Silent Hill\" and \"Beowulf\".Beowulf is a 2007 British-American 3D motion capture epic fantasy film directed by Robert Zemeckis and"
+      },
+      {
+        "half": "qa",
+        "claim": "The Namesake",
+        "evidence_head": "Sooni Taraporevala (born 1957) is an Indian screenwriter, photographer and filmmaker who is best known as the screenwriter of \"Mississippi Masala\", \"The Namesak"
+      },
+      {
+        "half": "qa",
+        "claim": "\"Friends in Low Places\" was performed by Brooks Garth.",
+        "evidence_head": "\"Friends in Low Places\" is a song performed by American country pop artist Garth Brooks. It was released on August 6, 1990 as the lead single from his album \"No"
+      },
+      {
+        "half": "qa",
+        "claim": "S\u00e9bastien Buemi was born in 1988.",
+        "evidence_head": " The 33-lap race was won by e.Dams-Renault driver S\u00e9bastien Buemi, who started from the seventh position.S\u00e9bastien Olivier Buemi (born 31 October 1988) is a Swi"
+      },
+      {
+        "half": "qa",
+        "claim": "Children's National Medical Center is a top-ranked hospital.",
+        "evidence_head": "Children\u2019s National Medical Center (formerly DC Children\u2019s Hospital) is ranked among the top 10 children\u2019s hospitals in the country by \"U.S. News & World Report"
+      }
+    ]
+  }
+}

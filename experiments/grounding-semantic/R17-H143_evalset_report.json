@@ -1,0 +1,1501 @@
+{
+  "experiment": "R17-H143 evalset - full dataset-contract assessment. CPU-only, zero GPU, zero training",
+  "scope": "measurement and reading only - no adjudication, no bar changed",
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates.",
+  "eval": {
+    "parquet": "R17-H143_evalset.parquet",
+    "rows": 1050,
+    "pairs": 550,
+    "real_rows": 1000,
+    "real_pairs": 500,
+    "control_rows": 50,
+    "control_pairs": 50,
+    "distinct_passages": 547,
+    "distinct_passages_real": 497,
+    "distinct_passages_control": 50,
+    "distinct_claims": 1048,
+    "documents": 536,
+    "documents_by_source": {
+      "tabfact": 352,
+      "feverous": 184
+    },
+    "rows_by_source": {
+      "tabfact": 683,
+      "feverous": 367
+    },
+    "rows_by_neg_family": {
+      "N7_numeral": 74,
+      "N_round:wrong_direction": 52,
+      "N2_operator": 144,
+      "control:absent": 25,
+      "N_round:wrong_multiple": 52,
+      "N1_oom:misbind": 260,
+      "N1_near_miss": 104,
+      "r:relational": 150,
+      "control:verbatim": 25,
+      "N1_arbitrary": 164
+    },
+    "rows_by_claim_form": {
+      "control": 50,
+      "shown": 322,
+      "bare": 528,
+      "relational": 150
+    },
+    "doc_id_recovered_via": "join of the evalset's passages to R17-H143_evalset_source.parquet, which carries doc_id"
+  },
+  "C2_disjointness": {
+    "flagship": {
+      "mix_rows": 721210,
+      "mix_distinct_raw_chunks": 355981,
+      "mix_distinct_raw_claims": 521519,
+      "chunk_max_chars": 1500,
+      "evidence_channel": {
+        "raw_in_mix_raw": {
+          "eval_units_in_mix": 0,
+          "mix_units_in_eval": 0
+        },
+        "raw_in_mix_truncated": {
+          "eval_units_in_mix": 0,
+          "mix_units_in_eval": 0
+        },
+        "truncated_in_mix_raw": {
+          "eval_units_in_mix": 0,
+          "mix_units_in_eval": 0
+        },
+        "truncated_in_mix_truncated": {
+          "eval_units_in_mix": 0,
+          "mix_units_in_eval": 0
+        },
+        "normalised_in_mix_normalised_raw": {
+          "eval_units_in_mix": 10,
+          "mix_units_in_eval": 10
+        },
+        "normalised_in_mix_normalised_truncated": {
+          "eval_units_in_mix": 10,
+          "mix_units_in_eval": 10
+        },
+        "normalised_truncated_in_mix_normalised_raw": {
+          "eval_units_in_mix": 10,
+          "mix_units_in_eval": 10
+        },
+        "normalised_truncated_in_mix_normalised_truncated": {
+          "eval_units_in_mix": 10,
+          "mix_units_in_eval": 10
+        }
+      },
+      "evidence_passages_in_the_mix": 10,
+      "evidence_share_of_passages": 0.0183,
+      "claim_channel": {
+        "raw_in_mix_raw": {
+          "eval_units_in_mix": 0,
+          "mix_units_in_eval": 0
+        },
+        "raw_in_mix_truncated": {
+          "eval_units_in_mix": 0,
+          "mix_units_in_eval": 0
+        },
+        "truncated_in_mix_raw": {
+          "eval_units_in_mix": 0,
+          "mix_units_in_eval": 0
+        },
+        "truncated_in_mix_truncated": {
+          "eval_units_in_mix": 0,
+          "mix_units_in_eval": 0
+        },
+        "normalised_in_mix_normalised_raw": {
+          "eval_units_in_mix": 0,
+          "mix_units_in_eval": 0
+        },
+        "normalised_in_mix_normalised_truncated": {
+          "eval_units_in_mix": 0,
+          "mix_units_in_eval": 0
+        },
+        "normalised_truncated_in_mix_normalised_raw": {
+          "eval_units_in_mix": 0,
+          "mix_units_in_eval": 0
+        },
+        "normalised_truncated_in_mix_normalised_truncated": {
+          "eval_units_in_mix": 0,
+          "mix_units_in_eval": 0
+        }
+      },
+      "claims_in_the_mix": 0,
+      "mix_rows_carrying_a_contaminated_passage_by_group": {
+        "tabfact": 65
+      },
+      "live_positive_control": {
+        "byte_identical_mix_chunk": {
+          "raw_in_mix_raw": 1,
+          "raw_in_mix_truncated": 1,
+          "truncated_in_mix_raw": 1,
+          "truncated_in_mix_truncated": 1,
+          "normalised_in_mix_normalised_raw": 1,
+          "normalised_in_mix_normalised_truncated": 1,
+          "normalised_truncated_in_mix_normalised_raw": 1,
+          "normalised_truncated_in_mix_normalised_truncated": 1
+        },
+        "whitespace_rewrapped_mix_chunk": {
+          "raw_in_mix_raw": 0,
+          "raw_in_mix_truncated": 0,
+          "truncated_in_mix_raw": 0,
+          "truncated_in_mix_truncated": 0,
+          "normalised_in_mix_normalised_raw": 1,
+          "normalised_in_mix_normalised_truncated": 1,
+          "normalised_truncated_in_mix_normalised_raw": 0,
+          "normalised_truncated_in_mix_normalised_truncated": 0
+        },
+        "clean_synthetic_passage": {
+          "raw_in_mix_raw": 0,
+          "raw_in_mix_truncated": 0,
+          "truncated_in_mix_raw": 0,
+          "truncated_in_mix_truncated": 0,
+          "normalised_in_mix_normalised_raw": 0,
+          "normalised_in_mix_normalised_truncated": 0,
+          "normalised_truncated_in_mix_normalised_raw": 0,
+          "normalised_truncated_in_mix_normalised_truncated": 0
+        },
+        "reads": "the byte-identical probe must fire in every form; the re-wrapped probe must fire in the normalised forms and NOT in raw/truncated - that is exactly the mode this eval's real leak uses; the synthetic probe must fire nowhere",
+        "fires_as_expected": true
+      }
+    },
+    "portfolio": {
+      "mix_rows": 760618,
+      "mix_distinct_raw_chunks": 382458,
+      "mix_distinct_raw_claims": 540276,
+      "chunk_max_chars": 1500,
+      "evidence_channel": {
+        "raw_in_mix_raw": {
+          "eval_units_in_mix": 0,
+          "mix_units_in_eval": 0
+        },
+        "raw_in_mix_truncated": {
+          "eval_units_in_mix": 0,
+          "mix_units_in_eval": 0
+        },
+        "truncated_in_mix_raw": {
+          "eval_units_in_mix": 0,
+          "mix_units_in_eval": 0
+        },
+        "truncated_in_mix_truncated": {
+          "eval_units_in_mix": 0,
+          "mix_units_in_eval": 0
+        },
+        "normalised_in_mix_normalised_raw": {
+          "eval_units_in_mix": 10,
+          "mix_units_in_eval": 10
+        },
+        "normalised_in_mix_normalised_truncated": {
+          "eval_units_in_mix": 10,
+          "mix_units_in_eval": 10
+        },
+        "normalised_truncated_in_mix_normalised_raw": {
+          "eval_units_in_mix": 10,
+          "mix_units_in_eval": 10
+        },
+        "normalised_truncated_in_mix_normalised_truncated": {
+          "eval_units_in_mix": 10,
+          "mix_units_in_eval": 10
+        }
+      },
+      "evidence_passages_in_the_mix": 10,
+      "evidence_share_of_passages": 0.0183,
+      "claim_channel": {
+        "raw_in_mix_raw": {
+          "eval_units_in_mix": 0,
+          "mix_units_in_eval": 0
+        },
+        "raw_in_mix_truncated": {
+          "eval_units_in_mix": 0,
+          "mix_units_in_eval": 0
+        },
+        "truncated_in_mix_raw": {
+          "eval_units_in_mix": 0,
+          "mix_units_in_eval": 0
+        },
+        "truncated_in_mix_truncated": {
+          "eval_units_in_mix": 0,
+          "mix_units_in_eval": 0
+        },
+        "normalised_in_mix_normalised_raw": {
+          "eval_units_in_mix": 0,
+          "mix_units_in_eval": 0
+        },
+        "normalised_in_mix_normalised_truncated": {
+          "eval_units_in_mix": 0,
+          "mix_units_in_eval": 0
+        },
+        "normalised_truncated_in_mix_normalised_raw": {
+          "eval_units_in_mix": 0,
+          "mix_units_in_eval": 0
+        },
+        "normalised_truncated_in_mix_normalised_truncated": {
+          "eval_units_in_mix": 0,
+          "mix_units_in_eval": 0
+        }
+      },
+      "claims_in_the_mix": 0,
+      "mix_rows_carrying_a_contaminated_passage_by_group": {
+        "tabfact": 65
+      },
+      "live_positive_control": {
+        "byte_identical_mix_chunk": {
+          "raw_in_mix_raw": 1,
+          "raw_in_mix_truncated": 1,
+          "truncated_in_mix_raw": 1,
+          "truncated_in_mix_truncated": 1,
+          "normalised_in_mix_normalised_raw": 1,
+          "normalised_in_mix_normalised_truncated": 1,
+          "normalised_truncated_in_mix_normalised_raw": 1,
+          "normalised_truncated_in_mix_normalised_truncated": 1
+        },
+        "whitespace_rewrapped_mix_chunk": {
+          "raw_in_mix_raw": 0,
+          "raw_in_mix_truncated": 0,
+          "truncated_in_mix_raw": 0,
+          "truncated_in_mix_truncated": 0,
+          "normalised_in_mix_normalised_raw": 1,
+          "normalised_in_mix_normalised_truncated": 1,
+          "normalised_truncated_in_mix_normalised_raw": 0,
+          "normalised_truncated_in_mix_normalised_truncated": 0
+        },
+        "clean_synthetic_passage": {
+          "raw_in_mix_raw": 0,
+          "raw_in_mix_truncated": 0,
+          "truncated_in_mix_raw": 0,
+          "truncated_in_mix_truncated": 0,
+          "normalised_in_mix_normalised_raw": 0,
+          "normalised_in_mix_normalised_truncated": 0,
+          "normalised_truncated_in_mix_normalised_raw": 0,
+          "normalised_truncated_in_mix_normalised_truncated": 0
+        },
+        "reads": "the byte-identical probe must fire in every form; the re-wrapped probe must fire in the normalised forms and NOT in raw/truncated - that is exactly the mode this eval's real leak uses; the synthetic probe must fire nowhere",
+        "fires_as_expected": true
+      }
+    }
+  },
+  "C2_document_channel": {
+    "eval_documents": 536,
+    "eval_document_stems": 534,
+    "quant_misbind": {
+      "lane": "R17-H146_lane.parquet",
+      "lane_documents": 7514,
+      "in_flagship_mix": true,
+      "in_portfolio_mix": true,
+      "raw_doc_id_overlap": 0,
+      "stem_doc_id_overlap": 0
+    },
+    "quant_scale_unit": {
+      "lane": "R18-H150_scaleunit_lane.parquet",
+      "lane_documents": 410,
+      "in_flagship_mix": true,
+      "in_portfolio_mix": true,
+      "raw_doc_id_overlap": 0,
+      "stem_doc_id_overlap": 0
+    },
+    "frame_reject": {
+      "lane": "R20-H174_lane_L1.parquet",
+      "lane_documents": 3513,
+      "in_flagship_mix": false,
+      "in_portfolio_mix": true,
+      "raw_doc_id_overlap": 0,
+      "stem_doc_id_overlap": 0
+    },
+    "attr_pool": {
+      "lane": "R20-H174_lane_L2.parquet",
+      "lane_documents": 7344,
+      "in_flagship_mix": false,
+      "in_portfolio_mix": true,
+      "raw_doc_id_overlap": 0,
+      "stem_doc_id_overlap": 0
+    },
+    "path_bind": {
+      "lane": "R20-H174_lane_L4.parquet",
+      "lane_documents": 5000,
+      "in_flagship_mix": false,
+      "in_portfolio_mix": true,
+      "raw_doc_id_overlap": 0,
+      "stem_doc_id_overlap": 0
+    },
+    "tabfact_member_unconformed": {
+      "artifact": "contract/tabfact_member.parquet (UNCONFORMED)",
+      "is_the_member_in_the_mix": {
+        "chunk_untrunc": {
+          "distinct": 13173,
+          "shared_with_mix_tabfact_group": 10199
+        },
+        "chunk_trunc": {
+          "distinct": 13109,
+          "shared_with_mix_tabfact_group": 13109
+        }
+      },
+      "mix_tabfact_group_distinct_chunks": 13109,
+      "member_table_ids": 13182,
+      "eval_tabfact_documents": 352,
+      "raw_table_id_overlap": 352,
+      "stem_table_id_overlap": 350,
+      "share_of_eval_tabfact_documents": 1.0
+    },
+    "tabfact_member_conformed": {
+      "artifact": "contract/tabfact_member_conformed.parquet (CONFORMED)",
+      "is_the_member_in_the_mix": {
+        "chunk_untrunc": {
+          "distinct": 12248,
+          "shared_with_mix_tabfact_group": 9479
+        },
+        "chunk_trunc": {
+          "distinct": 12190,
+          "shared_with_mix_tabfact_group": 12190
+        }
+      },
+      "mix_tabfact_group_distinct_chunks": 13109,
+      "member_table_ids": 12257,
+      "eval_tabfact_documents": 352,
+      "raw_table_id_overlap": 0,
+      "stem_table_id_overlap": 0,
+      "share_of_eval_tabfact_documents": 0.0
+    },
+    "tabfact_note": "the eval carries no doc_id and the mix carries no doc_id either; the TabFact table id is the only document key that resolves on both sides, recovered eval-side from R17-H143_evalset_source.parquet and mix-side from the banked census parquets. Which census parquet corresponds to the member the mix actually carries is settled by the chunk-overlap reading above, not asserted",
+    "feverous_note": "the eval's FEVEROUS doc_ids are index-form `feverous:{i}` produced by an order-unstable dedup; they are not resolvable keys and a zero reading on them is not evidence of document disjointness - the content channel is the load-bearing one for that half"
+  },
+  "contaminated_rows": {
+    "hit_set_identical_across_both_mixes": true,
+    "passages": 10,
+    "rows": 22,
+    "pairs": 11,
+    "documents": 10,
+    "rows_by_source": {
+      "tabfact": 22
+    },
+    "rows_by_neg_family": {
+      "N1_arbitrary": 6,
+      "N_round:wrong_multiple": 2,
+      "N2_operator": 2,
+      "r:relational": 2,
+      "N1_near_miss": 2,
+      "N7_numeral": 4,
+      "N1_oom:misbind": 4
+    },
+    "rows_by_control": {
+      "false": 22
+    },
+    "labels": {
+      "0": 11,
+      "1": 11
+    },
+    "document_ids": [
+      "tabfact:1-1342013-20.html.csv",
+      "tabfact:1-20107762-1.html.csv",
+      "tabfact:1-2134521-1.html.csv",
+      "tabfact:2-10808933-18.html.csv",
+      "tabfact:2-10887680-3.html.csv",
+      "tabfact:2-11099297-9.html.csv",
+      "tabfact:2-1185126-2.html.csv",
+      "tabfact:2-132482-2.html.csv",
+      "tabfact:2-14013061-2.html.csv",
+      "tabfact:2-1851722-10.html.csv"
+    ]
+  },
+  "load_bearing": {
+    "protocol": "banked per-row score arrays in the eval-parquet score parquets; every banked AUROC is reproduced at its banked precision BEFORE any exclusion is applied, and a mismatch aborts rather than producing a number",
+    "reads": {
+      "stage_A::HuggingFaceTB/SmolLM2-360M-Instruct": {
+        "read": "stage_A",
+        "model": "HuggingFaceTB/SmolLM2-360M-Instruct",
+        "n_real_rows": 1000,
+        "n_control_rows": 50,
+        "pooled_auroc_all_rows": 0.501128,
+        "control_auroc_all_rows": 0.4848,
+        "n_real_rows_contaminated": 22,
+        "n_control_rows_contaminated": 0,
+        "pooled_auroc_clean_rows": 0.50106,
+        "pooled_delta": -6.8e-05,
+        "control_auroc_clean_rows": 0.4848,
+        "control_delta": 0.0,
+        "pooled_auroc_contaminated_rows_only": 0.504132,
+        "pooled_auroc_clean_rows_fallback_recomputed": 0.50106,
+        "banked_pooled_auroc": 0.501128,
+        "banked_pooled_auroc_reproduced": true,
+        "banked_control_auroc": 0.4848,
+        "banked_control_auroc_reproduced": true
+      },
+      "stage_A::PleIAs/Baguettotron": {
+        "read": "stage_A",
+        "model": "PleIAs/Baguettotron",
+        "n_real_rows": 1000,
+        "n_control_rows": 50,
+        "pooled_auroc_all_rows": 0.511696,
+        "control_auroc_all_rows": 0.464,
+        "n_real_rows_contaminated": 22,
+        "n_control_rows_contaminated": 0,
+        "pooled_auroc_clean_rows": 0.511716,
+        "pooled_delta": 2e-05,
+        "control_auroc_clean_rows": 0.464,
+        "control_delta": 0.0,
+        "pooled_auroc_contaminated_rows_only": 0.479339,
+        "pooled_auroc_clean_rows_fallback_recomputed": 0.511716,
+        "banked_pooled_auroc": 0.511696,
+        "banked_pooled_auroc_reproduced": true,
+        "banked_control_auroc": 0.464,
+        "banked_control_auroc_reproduced": true
+      },
+      "stage_A::PleIAs/Monad": {
+        "read": "stage_A",
+        "model": "PleIAs/Monad",
+        "n_real_rows": 1000,
+        "n_control_rows": 50,
+        "pooled_auroc_all_rows": 0.502156,
+        "control_auroc_all_rows": 0.6816,
+        "n_real_rows_contaminated": 22,
+        "n_control_rows_contaminated": 0,
+        "pooled_auroc_clean_rows": 0.500788,
+        "pooled_delta": -0.001368,
+        "control_auroc_clean_rows": 0.6816,
+        "control_delta": 0.0,
+        "pooled_auroc_contaminated_rows_only": 0.586777,
+        "pooled_auroc_clean_rows_fallback_recomputed": 0.500788,
+        "banked_pooled_auroc": 0.502156,
+        "banked_pooled_auroc_reproduced": true,
+        "banked_control_auroc": 0.6816,
+        "banked_control_auroc_reproduced": true
+      },
+      "stage_A::PleIAs/Pleias-RAG-350M": {
+        "read": "stage_A",
+        "model": "PleIAs/Pleias-RAG-350M",
+        "n_real_rows": 1000,
+        "n_control_rows": 50,
+        "pooled_auroc_all_rows": 0.513936,
+        "control_auroc_all_rows": 0.616,
+        "n_real_rows_contaminated": 22,
+        "n_control_rows_contaminated": 0,
+        "pooled_auroc_clean_rows": 0.513694,
+        "pooled_delta": -0.000242,
+        "control_auroc_clean_rows": 0.616,
+        "control_delta": 0.0,
+        "pooled_auroc_contaminated_rows_only": 0.553719,
+        "pooled_auroc_clean_rows_fallback_recomputed": 0.513694,
+        "banked_pooled_auroc": 0.513936,
+        "banked_pooled_auroc_reproduced": true,
+        "banked_control_auroc": 0.616,
+        "banked_control_auroc_reproduced": true
+      },
+      "stage_A::Qwen/Qwen3-0.6B": {
+        "read": "stage_A",
+        "model": "Qwen/Qwen3-0.6B",
+        "n_real_rows": 1000,
+        "n_control_rows": 50,
+        "pooled_auroc_all_rows": 0.851368,
+        "control_auroc_all_rows": 0.9904,
+        "n_real_rows_contaminated": 22,
+        "n_control_rows_contaminated": 0,
+        "pooled_auroc_clean_rows": 0.853459,
+        "pooled_delta": 0.002091,
+        "control_auroc_clean_rows": 0.9904,
+        "control_delta": 0.0,
+        "pooled_auroc_contaminated_rows_only": 0.809917,
+        "pooled_auroc_clean_rows_fallback_recomputed": 0.853459,
+        "banked_pooled_auroc": 0.851368,
+        "banked_pooled_auroc_reproduced": true,
+        "banked_control_auroc": 0.9904,
+        "banked_control_auroc_reproduced": true
+      },
+      "stage_A::Qwen/Qwen3-32B-FP8": {
+        "read": "stage_A",
+        "model": "Qwen/Qwen3-32B-FP8",
+        "n_real_rows": 1000,
+        "n_control_rows": 50,
+        "pooled_auroc_all_rows": 0.970756,
+        "control_auroc_all_rows": 1.0,
+        "n_real_rows_contaminated": 22,
+        "n_control_rows_contaminated": 0,
+        "pooled_auroc_clean_rows": 0.969911,
+        "pooled_delta": -0.000845,
+        "control_auroc_clean_rows": 1.0,
+        "control_delta": 0.0,
+        "pooled_auroc_contaminated_rows_only": 1.0,
+        "pooled_auroc_clean_rows_fallback_recomputed": 0.969911,
+        "banked_pooled_auroc": 0.970756,
+        "banked_pooled_auroc_reproduced": true,
+        "banked_control_auroc": 1.0,
+        "banked_control_auroc_reproduced": true
+      },
+      "stage_A::speakleash/Bielik-11B-v2.3-Instruct": {
+        "read": "stage_A",
+        "model": "speakleash/Bielik-11B-v2.3-Instruct",
+        "n_real_rows": 1000,
+        "n_control_rows": 50,
+        "pooled_auroc_all_rows": 0.629072,
+        "control_auroc_all_rows": 1.0,
+        "n_real_rows_contaminated": 22,
+        "n_control_rows_contaminated": 0,
+        "pooled_auroc_clean_rows": 0.626662,
+        "pooled_delta": -0.00241,
+        "control_auroc_clean_rows": 1.0,
+        "control_delta": 0.0,
+        "pooled_auroc_contaminated_rows_only": 0.743802,
+        "pooled_auroc_clean_rows_fallback_recomputed": 0.626662,
+        "banked_pooled_auroc": 0.629072,
+        "banked_pooled_auroc_reproduced": true,
+        "banked_control_auroc": 1.0,
+        "banked_control_auroc_reproduced": true
+      },
+      "H144_cycle1::epoch2": {
+        "read": "H144_cycle1",
+        "model": "epoch2",
+        "n_real_rows": 1000,
+        "n_control_rows": 50,
+        "pooled_auroc_all_rows": 0.792412,
+        "control_auroc_all_rows": 0.7936,
+        "n_real_rows_contaminated": 22,
+        "n_control_rows_contaminated": 0,
+        "pooled_auroc_clean_rows": 0.793073,
+        "pooled_delta": 0.000661,
+        "control_auroc_clean_rows": 0.7936,
+        "control_delta": 0.0,
+        "pooled_auroc_contaminated_rows_only": 0.768595,
+        "pooled_auroc_clean_rows_fallback_recomputed": 0.793073
+      },
+      "H144_cycle1::epoch3": {
+        "read": "H144_cycle1",
+        "model": "epoch3",
+        "n_real_rows": 1000,
+        "n_control_rows": 50,
+        "pooled_auroc_all_rows": 0.817148,
+        "control_auroc_all_rows": 0.8696,
+        "n_real_rows_contaminated": 22,
+        "n_control_rows_contaminated": 0,
+        "pooled_auroc_clean_rows": 0.818036,
+        "pooled_delta": 0.000888,
+        "control_auroc_clean_rows": 0.8696,
+        "control_delta": 0.0,
+        "pooled_auroc_contaminated_rows_only": 0.760331,
+        "pooled_auroc_clean_rows_fallback_recomputed": 0.818036
+      },
+      "H144_cycle2::epoch1": {
+        "read": "H144_cycle2",
+        "model": "epoch1",
+        "n_real_rows": 1000,
+        "n_control_rows": 50,
+        "pooled_auroc_all_rows": 0.77892,
+        "control_auroc_all_rows": 0.832,
+        "n_real_rows_contaminated": 22,
+        "n_control_rows_contaminated": 0,
+        "pooled_auroc_clean_rows": 0.779597,
+        "pooled_delta": 0.000677,
+        "control_auroc_clean_rows": 0.832,
+        "control_delta": 0.0,
+        "pooled_auroc_contaminated_rows_only": 0.743802,
+        "pooled_auroc_clean_rows_fallback_recomputed": 0.779597
+      },
+      "H144_cycle2::epoch2": {
+        "read": "H144_cycle2",
+        "model": "epoch2",
+        "n_real_rows": 1000,
+        "n_control_rows": 50,
+        "pooled_auroc_all_rows": 0.805074,
+        "control_auroc_all_rows": 0.9872,
+        "n_real_rows_contaminated": 22,
+        "n_control_rows_contaminated": 0,
+        "pooled_auroc_clean_rows": 0.80558,
+        "pooled_delta": 0.000506,
+        "control_auroc_clean_rows": 0.9872,
+        "control_delta": 0.0,
+        "pooled_auroc_contaminated_rows_only": 0.793388,
+        "pooled_auroc_clean_rows_fallback_recomputed": 0.80558
+      },
+      "H144_cycle2::epoch3": {
+        "read": "H144_cycle2",
+        "model": "epoch3",
+        "n_real_rows": 1000,
+        "n_control_rows": 50,
+        "pooled_auroc_all_rows": 0.80957,
+        "control_auroc_all_rows": 0.872,
+        "n_real_rows_contaminated": 22,
+        "n_control_rows_contaminated": 0,
+        "pooled_auroc_clean_rows": 0.809212,
+        "pooled_delta": -0.000358,
+        "control_auroc_clean_rows": 0.872,
+        "control_delta": 0.0,
+        "pooled_auroc_contaminated_rows_only": 0.826446,
+        "pooled_auroc_clean_rows_fallback_recomputed": 0.809212
+      }
+    },
+    "max_abs_pooled_delta": 0.00241,
+    "max_abs_control_delta": 0.0,
+    "control_rows_contaminated": 0,
+    "integrity_positive_control": {
+      "construction": "the SmolLM2-360M-Instruct score vector shuffled and fed to the same reproduce-check",
+      "banked": 0.501128,
+      "shuffled_read": 0.542412,
+      "check_would_abort": true
+    },
+    "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+  },
+  "C6_memorisation": {
+    "definition": "the only field the two legs of a pair share is the PASSAGE, so the key is the normalised passage: for each eval row, the overlap between the eval claim and the best-matching claim the TRAINING MIX carries over the same passage, scored against the eval label (amendment C-A2 scoping: mix-supplied associations)",
+    "by_mix": {
+      "flagship": {
+        "contaminated_rows_only": {
+          "rows": 22,
+          "rows_with_a_mix_claim": 22,
+          "coverage": 1.0,
+          "jaccard": 0.5083,
+          "claim_into_mixclaim_containment": 0.5083,
+          "mixclaim_into_claim_containment": 0.5,
+          "shared_token_count": 0.5,
+          "auroc": 0.5083,
+          "strongest_variant": "jaccard",
+          "nearest_mix_claim_label": 0.5,
+          "within_pair_feature_spread": {
+            "pairs": 11,
+            "pairs_with_zero_spread": 10,
+            "mean_spread": 0.001082,
+            "max_spread": 0.011905
+          }
+        },
+        "whole_eval": {
+          "rows": 1050,
+          "rows_with_a_mix_claim": 22,
+          "coverage": 0.021,
+          "jaccard": 0.5,
+          "claim_into_mixclaim_containment": 0.5,
+          "mixclaim_into_claim_containment": 0.5,
+          "shared_token_count": 0.5,
+          "auroc": 0.5,
+          "strongest_variant": "jaccard",
+          "nearest_mix_claim_label": 0.5,
+          "within_pair_feature_spread": {
+            "pairs": 550,
+            "pairs_with_zero_spread": 549,
+            "mean_spread": 2.2e-05,
+            "max_spread": 0.011905
+          }
+        }
+      },
+      "portfolio": {
+        "contaminated_rows_only": {
+          "rows": 22,
+          "rows_with_a_mix_claim": 22,
+          "coverage": 1.0,
+          "jaccard": 0.5083,
+          "claim_into_mixclaim_containment": 0.5083,
+          "mixclaim_into_claim_containment": 0.5,
+          "shared_token_count": 0.5,
+          "auroc": 0.5083,
+          "strongest_variant": "jaccard",
+          "nearest_mix_claim_label": 0.5,
+          "within_pair_feature_spread": {
+            "pairs": 11,
+            "pairs_with_zero_spread": 10,
+            "mean_spread": 0.001082,
+            "max_spread": 0.011905
+          }
+        },
+        "whole_eval": {
+          "rows": 1050,
+          "rows_with_a_mix_claim": 22,
+          "coverage": 0.021,
+          "jaccard": 0.5,
+          "claim_into_mixclaim_containment": 0.5,
+          "mixclaim_into_claim_containment": 0.5,
+          "shared_token_count": 0.5,
+          "auroc": 0.5,
+          "strongest_variant": "jaccard",
+          "nearest_mix_claim_label": 0.5,
+          "within_pair_feature_spread": {
+            "pairs": 550,
+            "pairs_with_zero_spread": 549,
+            "mean_spread": 2.2e-05,
+            "max_spread": 0.011905
+          }
+        }
+      }
+    },
+    "live_positive_control": {
+      "construction": "the lookup table replaced by one mapping every eval passage to that pair's POSITIVE claim only - a mix that has memorised the answer key",
+      "result": {
+        "rows": 1050,
+        "rows_with_a_mix_claim": 1025,
+        "coverage": 0.9762,
+        "jaccard": 0.9714,
+        "claim_into_mixclaim_containment": 0.9705,
+        "mixclaim_into_claim_containment": 0.9686,
+        "shared_token_count": 0.5902,
+        "auroc": 0.9714,
+        "strongest_variant": "jaccard",
+        "nearest_mix_claim_label": 0.5238,
+        "within_pair_feature_spread": {
+          "pairs": 550,
+          "pairs_with_zero_spread": 80,
+          "mean_spread": 0.137672,
+          "max_spread": 0.4
+        }
+      },
+      "fires": true
+    },
+    "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+  },
+  "C1_label_commensurability": {
+    "head": "the grounding scalar - the label encodes whether the claim's asserted value is supported by the passage",
+    "structural_test_whole_eval": {
+      "negative_legs": 525,
+      "positive_legs": 525,
+      "negative_legs_identical_to_a_positive": 0,
+      "rate": 0.0,
+      "fires": false
+    },
+    "structural_test_real_rows": {
+      "negative_legs": 500,
+      "positive_legs": 500,
+      "negative_legs_identical_to_a_positive": 0,
+      "rate": 0.0,
+      "fires": false
+    },
+    "attestation_whole_eval": {
+      "label_1": {
+        "n": 525,
+        "n_with_a_numeral": 506,
+        "numeral_attestation_mean": 0.4758,
+        "numeral_rate_ge_0.90": 0.1937,
+        "numeral_rate_eq_1.0": 0.17,
+        "wordbag_containment_mean": 0.5884,
+        "wordbag_rate_ge_0.90": 0.0781,
+        "wordbag_rate_eq_1.0": 0.0743
+      },
+      "label_0": {
+        "n": 525,
+        "n_with_a_numeral": 506,
+        "numeral_attestation_mean": 0.4427,
+        "numeral_rate_ge_0.90": 0.1542,
+        "numeral_rate_eq_1.0": 0.1304,
+        "wordbag_containment_mean": 0.5826,
+        "wordbag_rate_ge_0.90": 0.0362,
+        "wordbag_rate_eq_1.0": 0.0286
+      }
+    },
+    "attestation_real_rows": {
+      "label_1": {
+        "n": 500,
+        "n_with_a_numeral": 481,
+        "numeral_attestation_mean": 0.4485,
+        "numeral_rate_ge_0.90": 0.1518,
+        "numeral_rate_eq_1.0": 0.1268,
+        "wordbag_containment_mean": 0.5678,
+        "wordbag_rate_ge_0.90": 0.032,
+        "wordbag_rate_eq_1.0": 0.028
+      },
+      "label_0": {
+        "n": 500,
+        "n_with_a_numeral": 481,
+        "numeral_attestation_mean": 0.4547,
+        "numeral_rate_ge_0.90": 0.1622,
+        "numeral_rate_eq_1.0": 0.1372,
+        "wordbag_containment_mean": 0.5685,
+        "wordbag_rate_ge_0.90": 0.034,
+        "wordbag_rate_eq_1.0": 0.03
+      }
+    },
+    "attestation_control_rows": {
+      "label_1": {
+        "n": 25,
+        "n_with_a_numeral": 25,
+        "numeral_attestation_mean": 1.0,
+        "numeral_rate_ge_0.90": 1.0,
+        "numeral_rate_eq_1.0": 1.0,
+        "wordbag_containment_mean": 1.0,
+        "wordbag_rate_ge_0.90": 1.0,
+        "wordbag_rate_eq_1.0": 1.0
+      },
+      "label_0": {
+        "n": 25,
+        "n_with_a_numeral": 25,
+        "numeral_attestation_mean": 0.2133,
+        "numeral_rate_ge_0.90": 0.0,
+        "numeral_rate_eq_1.0": 0.0,
+        "wordbag_containment_mean": 0.8637,
+        "wordbag_rate_ge_0.90": 0.08,
+        "wordbag_rate_eq_1.0": 0.0
+      }
+    },
+    "attestation_contaminated_rows": {
+      "label_1": {
+        "n": 11,
+        "n_with_a_numeral": 11,
+        "numeral_attestation_mean": 0.4485,
+        "numeral_rate_ge_0.90": 0.0,
+        "numeral_rate_eq_1.0": 0.0,
+        "wordbag_containment_mean": 0.4641,
+        "wordbag_rate_ge_0.90": 0.0,
+        "wordbag_rate_eq_1.0": 0.0
+      },
+      "label_0": {
+        "n": 11,
+        "n_with_a_numeral": 11,
+        "numeral_attestation_mean": 0.4485,
+        "numeral_rate_ge_0.90": 0.0,
+        "numeral_rate_eq_1.0": 0.0,
+        "wordbag_containment_mean": 0.472,
+        "wordbag_rate_ge_0.90": 0.0,
+        "wordbag_rate_eq_1.0": 0.0
+      }
+    },
+    "asserted_value_attestation_real_rows": {
+      "rows_joined": 1000,
+      "rows_without_an_asserted_value": 0,
+      "label_1": {
+        "n": 500,
+        "asserted_value_present_in_evidence_rate": 0.158
+      },
+      "label_0": {
+        "n": 500,
+        "asserted_value_present_in_evidence_rate": 0.168
+      },
+      "negative_strictly_below_positive": false,
+      "gap_negative_minus_positive": 0.01
+    },
+    "instrument_note": "the predicate these negatives corrupt is the ASSERTED VALUE, so the predicate-sensitive instrument is attestation of that value (source column `asserted_value` = `v_pos` on the positive leg, `v_neg` on the negative). The bag-of-words containment reading is reported alongside and is predicate-BLIND here by construction: both legs share the passage and differ in one numeral, so word containment cannot move",
+    "corpus_property": "this is a DERIVATION eval - the positive leg asserts a value COMPUTED from the table, which is therefore usually absent from the evidence by construction. Attestation of the asserted value is consequently low on BOTH legs. The numbers are reported as measured",
+    "live_positive_control_structural": {
+      "construction": "every negative leg's claim replaced by its pair's positive claim, making the (claim, evidence) pairs identical across legs",
+      "result": {
+        "negative_legs": 500,
+        "positive_legs": 525,
+        "negative_legs_identical_to_a_positive": 500,
+        "rate": 1.0,
+        "fires": true
+      },
+      "fires": true
+    },
+    "live_positive_control_instrument": {
+      "construction": "the eval's own 50 CONTROL rows, where the predicate IS attestation by construction - 25 claims lifted verbatim from a chunk sentence (label 1) and 25 with the sentence's number replaced by a value absent from the chunk (label 0)",
+      "reads": "reported under attestation_control_rows; the numeral instrument must separate them",
+      "fires": true
+    },
+    "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+  },
+  "C5_leak_suite": {
+    "scope": "amendment C-A1 - claim-alone and evidence-alone channels only; claim-to-evidence containment is a JOINT feature governed by C1",
+    "claim_only_probe": {
+      "auroc": 0.5091,
+      "folds": 5,
+      "groups": 490,
+      "solver": "liblinear tol=1e-7"
+    },
+    "bar": "< 0.55",
+    "within_pair_claim_only": {
+      "per_family": {
+        "N1_arbitrary": {
+          "pairs": 82,
+          "acc": 0.561
+        },
+        "N1_near_miss": {
+          "pairs": 52,
+          "acc": 0.5481
+        },
+        "N1_oom:misbind": {
+          "pairs": 130,
+          "acc": 0.4923
+        },
+        "N2_operator": {
+          "pairs": 72,
+          "acc": 0.5556
+        },
+        "N7_numeral": {
+          "pairs": 37,
+          "acc": 0.4595
+        },
+        "N_round:wrong_direction": {
+          "pairs": 26,
+          "acc": 0.5385
+        },
+        "N_round:wrong_multiple": {
+          "pairs": 26,
+          "acc": 0.5
+        },
+        "r:relational": {
+          "pairs": 75,
+          "acc": 0.5467
+        }
+      },
+      "worst": 0.561
+    },
+    "within_pair_bar": "< 0.60",
+    "surface_parity": {
+      "claim_char_length": 0.5002,
+      "claim_token_count": 0.5,
+      "claim_digit_count": 0.5033,
+      "claim_numeral_count": 0.5,
+      "claim_leading_digit": 0.4985,
+      "claim_trailing_zeros": 0.4938,
+      "claim_has_decimal": 0.5,
+      "claim_max_numeral_magnitude": 0.5016,
+      "evidence_char_length": 0.5,
+      "evidence_digit_count": 0.5,
+      "_max_deviation_from_0.5": 0.0062,
+      "_channels_outside_0.45_0.55": []
+    },
+    "surface_parity_band": "0.45 - 0.55",
+    "evidence_only_channel": "degenerate by construction - both legs of a pair carry the SAME passage, so any evidence-only feature reads exactly 0.5 and is not evidence of anything",
+    "live_positive_control": {
+      "construction": "a marker token appended to every positive claim - a claim-alone channel that IS the label",
+      "result": {
+        "auroc": 1.0,
+        "folds": 5,
+        "groups": 490,
+        "solver": "liblinear tol=1e-7"
+      },
+      "fires": true
+    },
+    "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+  },
+  "C3_split_semantics": {
+    "axis_stated": "the evalset is a stratified snapshot of the R14-H133 v2 lane (500 pair_ids drawn proportionally across neg_family, both legs of each pair taken, numpy seed 1143) plus 50 constructed controls. It carries no internal train/test split; the split that matters is eval-vs-training-lane",
+    "axis_measured": {
+      "pairs": 550,
+      "documents": 536,
+      "documents_carrying_more_than_one_pair": 13,
+      "max_pairs_per_document": 3,
+      "passages_carrying_more_than_one_pair": 2,
+      "both_legs_of_a_pair_share_the_passage": true
+    },
+    "key_stability": {
+      "feverous_index_form_doc_ids": 184,
+      "tabfact_doc_ids": 352,
+      "finding": "the FEVEROUS half's doc_ids are index-form and order-unstable (the campaign recorded 142 of 536 eval doc_ids as nonexistent on a fresh corpus rebuild). Every downstream lane therefore enforced eval disjointness on CONTENT fingerprints, not ids - the id channel is not a verifiable split key for this eval"
+    },
+    "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+  },
+  "C7_units_and_volume": {
+    "rows": 1050,
+    "pairs": 550,
+    "distinct_claims": 1048,
+    "distinct_passages": 547,
+    "repeat_claims": 2,
+    "passages_used_by_more_than_one_pair": 2,
+    "unit_used_in_registration": "the campaign log reports this eval as '1,000 pairs + 50 controls' in rows; both counts are reported here"
+  },
+  "C8_provenance": {
+    "source_corpora": "TabFact-train and FEVEROUS-train tables, serialised by the R14-H133 v2 lane generator; both are public research corpora already in the campaign's contamination-walled lineage",
+    "selection_predicate": "500 pair_ids sampled proportionally across neg_family with largest-remainder allocation, numpy seed 1143, both legs taken; plus 25 verbatim-sentence positives and 25 numeral-replaced negatives drawn from the same passages",
+    "builder": "R17-H143_evalset.py; source snapshot R17-H143_evalset_source.parquet (50,000 rows) = R14-H133_lane v2-SUPERSEDED",
+    "generator_source_committed": false,
+    "generator_note": "the v2 lane generator was never committed (v1 is; v3 is the trace-conditioned rebuild). The eval is reproducible only from the banked source snapshot, not from the generator",
+    "within_member_duplication": {
+      "rows": 1050,
+      "pairs": 550,
+      "distinct_claims": 1048,
+      "distinct_passages": 547,
+      "repeat_claims": 2,
+      "passages_used_by_more_than_one_pair": 2,
+      "unit_used_in_registration": "the campaign log reports this eval as '1,000 pairs + 50 controls' in rows; both counts are reported here"
+    },
+    "licence": "TabFact CC BY-SA 4.0; FEVEROUS CC BY-SA 3.0 - both public",
+    "public_repo_clean": true,
+    "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+  },
+  "C4_contamination_census": {
+    "instrument": "provenance_gate primitives, 8-gram, Jaccard >= 0.3, bidirectional, per-group attribution (R14-H136 ruling-2 form)",
+    "eval_units": 547,
+    "eval_units_scorable": 547,
+    "eval_units_at_jaccard_ge_thr": 38,
+    "eval_fraction": 0.06947,
+    "kill_threshold": 0.02,
+    "best_jaccard": {
+      "max": 1.0,
+      "p99": 1.0,
+      "mean": 0.0771
+    },
+    "per_group": {
+      "attr_pool": {
+        "mix_units": 17959,
+        "eval_units_at_jaccard_ge_thr": 0,
+        "max_jaccard": 0.0026,
+        "mix_units_at_jaccard_ge_thr": 0
+      },
+      "frame_reject": {
+        "mix_units": 3519,
+        "eval_units_at_jaccard_ge_thr": 0,
+        "max_jaccard": 0.0035,
+        "mix_units_at_jaccard_ge_thr": 0
+      },
+      "halueval": {
+        "mix_units": 19932,
+        "eval_units_at_jaccard_ge_thr": 0,
+        "max_jaccard": 0.0659,
+        "mix_units_at_jaccard_ge_thr": 0
+      },
+      "path_bind": {
+        "mix_units": 5000,
+        "eval_units_at_jaccard_ge_thr": 0,
+        "max_jaccard": 0.0,
+        "mix_units_at_jaccard_ge_thr": 0
+      },
+      "psiloqa": {
+        "mix_units": 25583,
+        "eval_units_at_jaccard_ge_thr": 0,
+        "max_jaccard": 0.006,
+        "mix_units_at_jaccard_ge_thr": 0
+      },
+      "quant_misbind": {
+        "mix_units": 12889,
+        "eval_units_at_jaccard_ge_thr": 0,
+        "max_jaccard": 0.2541,
+        "mix_units_at_jaccard_ge_thr": 0
+      },
+      "quant_scale_unit": {
+        "mix_units": 2509,
+        "eval_units_at_jaccard_ge_thr": 0,
+        "max_jaccard": 0.0688,
+        "mix_units_at_jaccard_ge_thr": 0
+      },
+      "ragtruth_cn": {
+        "mix_units": 14150,
+        "eval_units_at_jaccard_ge_thr": 0,
+        "max_jaccard": 0.0,
+        "mix_units_at_jaccard_ge_thr": 0
+      },
+      "ragtruth_de": {
+        "mix_units": 10861,
+        "eval_units_at_jaccard_ge_thr": 0,
+        "max_jaccard": 0.0,
+        "mix_units_at_jaccard_ge_thr": 0
+      },
+      "ragtruth_en": {
+        "mix_units": 2514,
+        "eval_units_at_jaccard_ge_thr": 0,
+        "max_jaccard": 0.0,
+        "mix_units_at_jaccard_ge_thr": 0
+      },
+      "ragtruth_es": {
+        "mix_units": 13835,
+        "eval_units_at_jaccard_ge_thr": 0,
+        "max_jaccard": 0.0,
+        "mix_units_at_jaccard_ge_thr": 0
+      },
+      "ragtruth_fr": {
+        "mix_units": 12355,
+        "eval_units_at_jaccard_ge_thr": 0,
+        "max_jaccard": 0.0,
+        "mix_units_at_jaccard_ge_thr": 0
+      },
+      "ragtruth_hu": {
+        "mix_units": 14286,
+        "eval_units_at_jaccard_ge_thr": 0,
+        "max_jaccard": 0.0,
+        "mix_units_at_jaccard_ge_thr": 0
+      },
+      "ragtruth_it": {
+        "mix_units": 14397,
+        "eval_units_at_jaccard_ge_thr": 0,
+        "max_jaccard": 0.0,
+        "mix_units_at_jaccard_ge_thr": 0
+      },
+      "ragtruth_pl": {
+        "mix_units": 14846,
+        "eval_units_at_jaccard_ge_thr": 0,
+        "max_jaccard": 0.0,
+        "mix_units_at_jaccard_ge_thr": 0
+      },
+      "tabfact": {
+        "mix_units": 13109,
+        "eval_units_at_jaccard_ge_thr": 38,
+        "max_jaccard": 1.0,
+        "mix_units_at_jaccard_ge_thr": 42
+      },
+      "vitaminc": {
+        "mix_units": 185200,
+        "eval_units_at_jaccard_ge_thr": 0,
+        "max_jaccard": 0.0153,
+        "mix_units_at_jaccard_ge_thr": 0
+      }
+    },
+    "mix_units_at_jaccard_ge_thr_total": 42,
+    "live_positive_control": {
+      "spike_control": {
+        "injected": 10,
+        "detected": 10,
+        "fires": true
+      },
+      "live_near_duplicate_control": {
+        "construction": "eval passages whitespace-collapsed and case-folded, scored against an index of the ORIGINAL passages - the exact transformation the real leak took",
+        "n": 10,
+        "jaccards": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "detected": 10,
+        "fires": true
+      }
+    },
+    "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+  },
+  "load_bearing_under_ngram_exclusion": {
+    "exclusion_set": "union of the string-form hit set and every eval passage reaching 8-gram Jaccard >= 0.3 against any mix chunk",
+    "passages_excluded": 38,
+    "string_form_only": 10,
+    "ngram_only": 28,
+    "rows_excluded": 82,
+    "pairs_excluded": 41,
+    "control_rows_excluded": 0,
+    "documents_excluded": 38,
+    "reads": {
+      "stage_A::HuggingFaceTB/SmolLM2-360M-Instruct": {
+        "read": "stage_A",
+        "model": "HuggingFaceTB/SmolLM2-360M-Instruct",
+        "n_real_rows": 1000,
+        "n_control_rows": 50,
+        "pooled_auroc_all_rows": 0.501128,
+        "control_auroc_all_rows": 0.4848,
+        "n_real_rows_contaminated": 82,
+        "n_control_rows_contaminated": 0,
+        "pooled_auroc_clean_rows": 0.502143,
+        "pooled_delta": 0.001015,
+        "control_auroc_clean_rows": 0.4848,
+        "control_delta": 0.0,
+        "pooled_auroc_contaminated_rows_only": 0.490779,
+        "pooled_auroc_clean_rows_fallback_recomputed": 0.502143,
+        "banked_pooled_auroc": 0.501128,
+        "banked_pooled_auroc_reproduced": true,
+        "banked_control_auroc": 0.4848,
+        "banked_control_auroc_reproduced": true
+      },
+      "stage_A::PleIAs/Baguettotron": {
+        "read": "stage_A",
+        "model": "PleIAs/Baguettotron",
+        "n_real_rows": 1000,
+        "n_control_rows": 50,
+        "pooled_auroc_all_rows": 0.511696,
+        "control_auroc_all_rows": 0.464,
+        "n_real_rows_contaminated": 82,
+        "n_control_rows_contaminated": 0,
+        "pooled_auroc_clean_rows": 0.511636,
+        "pooled_delta": -6e-05,
+        "control_auroc_clean_rows": 0.464,
+        "control_delta": 0.0,
+        "pooled_auroc_contaminated_rows_only": 0.51398,
+        "pooled_auroc_clean_rows_fallback_recomputed": 0.511636,
+        "banked_pooled_auroc": 0.511696,
+        "banked_pooled_auroc_reproduced": true,
+        "banked_control_auroc": 0.464,
+        "banked_control_auroc_reproduced": true
+      },
+      "stage_A::PleIAs/Monad": {
+        "read": "stage_A",
+        "model": "PleIAs/Monad",
+        "n_real_rows": 1000,
+        "n_control_rows": 50,
+        "pooled_auroc_all_rows": 0.502156,
+        "control_auroc_all_rows": 0.6816,
+        "n_real_rows_contaminated": 82,
+        "n_control_rows_contaminated": 0,
+        "pooled_auroc_clean_rows": 0.499974,
+        "pooled_delta": -0.002182,
+        "control_auroc_clean_rows": 0.6816,
+        "control_delta": 0.0,
+        "pooled_auroc_contaminated_rows_only": 0.525877,
+        "pooled_auroc_clean_rows_fallback_recomputed": 0.499974,
+        "banked_pooled_auroc": 0.502156,
+        "banked_pooled_auroc_reproduced": true,
+        "banked_control_auroc": 0.6816,
+        "banked_control_auroc_reproduced": true
+      },
+      "stage_A::PleIAs/Pleias-RAG-350M": {
+        "read": "stage_A",
+        "model": "PleIAs/Pleias-RAG-350M",
+        "n_real_rows": 1000,
+        "n_control_rows": 50,
+        "pooled_auroc_all_rows": 0.513936,
+        "control_auroc_all_rows": 0.616,
+        "n_real_rows_contaminated": 82,
+        "n_control_rows_contaminated": 0,
+        "pooled_auroc_clean_rows": 0.516221,
+        "pooled_delta": 0.002285,
+        "control_auroc_clean_rows": 0.616,
+        "control_delta": 0.0,
+        "pooled_auroc_contaminated_rows_only": 0.506246,
+        "pooled_auroc_clean_rows_fallback_recomputed": 0.516221,
+        "banked_pooled_auroc": 0.513936,
+        "banked_pooled_auroc_reproduced": true,
+        "banked_control_auroc": 0.616,
+        "banked_control_auroc_reproduced": true
+      },
+      "stage_A::Qwen/Qwen3-0.6B": {
+        "read": "stage_A",
+        "model": "Qwen/Qwen3-0.6B",
+        "n_real_rows": 1000,
+        "n_control_rows": 50,
+        "pooled_auroc_all_rows": 0.851368,
+        "control_auroc_all_rows": 0.9904,
+        "n_real_rows_contaminated": 82,
+        "n_control_rows_contaminated": 0,
+        "pooled_auroc_clean_rows": 0.85394,
+        "pooled_delta": 0.002572,
+        "control_auroc_clean_rows": 0.9904,
+        "control_delta": 0.0,
+        "pooled_auroc_contaminated_rows_only": 0.832838,
+        "pooled_auroc_clean_rows_fallback_recomputed": 0.85394,
+        "banked_pooled_auroc": 0.851368,
+        "banked_pooled_auroc_reproduced": true,
+        "banked_control_auroc": 0.9904,
+        "banked_control_auroc_reproduced": true
+      },
+      "stage_A::Qwen/Qwen3-32B-FP8": {
+        "read": "stage_A",
+        "model": "Qwen/Qwen3-32B-FP8",
+        "n_real_rows": 1000,
+        "n_control_rows": 50,
+        "pooled_auroc_all_rows": 0.970756,
+        "control_auroc_all_rows": 1.0,
+        "n_real_rows_contaminated": 82,
+        "n_control_rows_contaminated": 0,
+        "pooled_auroc_clean_rows": 0.972594,
+        "pooled_delta": 0.001838,
+        "control_auroc_clean_rows": 1.0,
+        "control_delta": 0.0,
+        "pooled_auroc_contaminated_rows_only": 0.952409,
+        "pooled_auroc_clean_rows_fallback_recomputed": 0.972594,
+        "banked_pooled_auroc": 0.970756,
+        "banked_pooled_auroc_reproduced": true,
+        "banked_control_auroc": 1.0,
+        "banked_control_auroc_reproduced": true
+      },
+      "stage_A::speakleash/Bielik-11B-v2.3-Instruct": {
+        "read": "stage_A",
+        "model": "speakleash/Bielik-11B-v2.3-Instruct",
+        "n_real_rows": 1000,
+        "n_control_rows": 50,
+        "pooled_auroc_all_rows": 0.629072,
+        "control_auroc_all_rows": 1.0,
+        "n_real_rows_contaminated": 82,
+        "n_control_rows_contaminated": 0,
+        "pooled_auroc_clean_rows": 0.630603,
+        "pooled_delta": 0.001531,
+        "control_auroc_clean_rows": 1.0,
+        "control_delta": 0.0,
+        "pooled_auroc_contaminated_rows_only": 0.61749,
+        "pooled_auroc_clean_rows_fallback_recomputed": 0.630603,
+        "banked_pooled_auroc": 0.629072,
+        "banked_pooled_auroc_reproduced": true,
+        "banked_control_auroc": 1.0,
+        "banked_control_auroc_reproduced": true
+      },
+      "H144_cycle1::epoch2": {
+        "read": "H144_cycle1",
+        "model": "epoch2",
+        "n_real_rows": 1000,
+        "n_control_rows": 50,
+        "pooled_auroc_all_rows": 0.792412,
+        "control_auroc_all_rows": 0.7936,
+        "n_real_rows_contaminated": 82,
+        "n_control_rows_contaminated": 0,
+        "pooled_auroc_clean_rows": 0.789374,
+        "pooled_delta": -0.003038,
+        "control_auroc_clean_rows": 0.7936,
+        "control_delta": 0.0,
+        "pooled_auroc_contaminated_rows_only": 0.827484,
+        "pooled_auroc_clean_rows_fallback_recomputed": 0.789374
+      },
+      "H144_cycle1::epoch3": {
+        "read": "H144_cycle1",
+        "model": "epoch3",
+        "n_real_rows": 1000,
+        "n_control_rows": 50,
+        "pooled_auroc_all_rows": 0.817148,
+        "control_auroc_all_rows": 0.8696,
+        "n_real_rows_contaminated": 82,
+        "n_control_rows_contaminated": 0,
+        "pooled_auroc_clean_rows": 0.815738,
+        "pooled_delta": -0.00141,
+        "control_auroc_clean_rows": 0.8696,
+        "control_delta": 0.0,
+        "pooled_auroc_contaminated_rows_only": 0.832838,
+        "pooled_auroc_clean_rows_fallback_recomputed": 0.815738
+      },
+      "H144_cycle2::epoch1": {
+        "read": "H144_cycle2",
+        "model": "epoch1",
+        "n_real_rows": 1000,
+        "n_control_rows": 50,
+        "pooled_auroc_all_rows": 0.77892,
+        "control_auroc_all_rows": 0.832,
+        "n_real_rows_contaminated": 82,
+        "n_control_rows_contaminated": 0,
+        "pooled_auroc_clean_rows": 0.775433,
+        "pooled_delta": -0.003487,
+        "control_auroc_clean_rows": 0.832,
+        "control_delta": 0.0,
+        "pooled_auroc_contaminated_rows_only": 0.821535,
+        "pooled_auroc_clean_rows_fallback_recomputed": 0.775433
+      },
+      "H144_cycle2::epoch2": {
+        "read": "H144_cycle2",
+        "model": "epoch2",
+        "n_real_rows": 1000,
+        "n_control_rows": 50,
+        "pooled_auroc_all_rows": 0.805074,
+        "control_auroc_all_rows": 0.9872,
+        "n_real_rows_contaminated": 82,
+        "n_control_rows_contaminated": 0,
+        "pooled_auroc_clean_rows": 0.802415,
+        "pooled_delta": -0.002659,
+        "control_auroc_clean_rows": 0.9872,
+        "control_delta": 0.0,
+        "pooled_auroc_contaminated_rows_only": 0.839381,
+        "pooled_auroc_clean_rows_fallback_recomputed": 0.802415
+      },
+      "H144_cycle2::epoch3": {
+        "read": "H144_cycle2",
+        "model": "epoch3",
+        "n_real_rows": 1000,
+        "n_control_rows": 50,
+        "pooled_auroc_all_rows": 0.80957,
+        "control_auroc_all_rows": 0.872,
+        "n_real_rows_contaminated": 82,
+        "n_control_rows_contaminated": 0,
+        "pooled_auroc_clean_rows": 0.802191,
+        "pooled_delta": -0.007379,
+        "control_auroc_clean_rows": 0.872,
+        "control_delta": 0.0,
+        "pooled_auroc_contaminated_rows_only": 0.89649,
+        "pooled_auroc_clean_rows_fallback_recomputed": 0.802191
+      }
+    },
+    "max_abs_pooled_delta": 0.007379,
+    "max_abs_control_delta": 0.0,
+    "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+  },
+  "clause_readings": {
+    "C1": {
+      "test_1_structural": {
+        "measured": 0,
+        "bar": "0 negative legs identical to a positive leg",
+        "clears": true
+      },
+      "test_2_strict_separation": {
+        "measured": "neg 0.168 vs pos 0.158 (asserted-value attestation, real rows)",
+        "bar": "the negative leg's high-attestation rate STRICTLY BELOW the positive leg's",
+        "clears": false
+      },
+      "test_3_absolute_levels": {
+        "measured": {
+          "positive": 0.158,
+          "negative": 0.168
+        },
+        "bar": "reported always",
+        "clears": true
+      }
+    },
+    "C2": {
+      "evidence_string_forms": {
+        "measured": 10,
+        "bar": "0 in every form",
+        "clears": false
+      },
+      "claim_string_forms": {
+        "measured": 0,
+        "bar": "0 in every form",
+        "clears": true
+      },
+      "document_channel": {
+        "measured": "352 of 352 TabFact documents present in the mix's tabfact member",
+        "bar": "0 shared documents",
+        "clears": false
+      }
+    },
+    "C3": {
+      "split_axis_measured": {
+        "measured": "stated and measured; the FEVEROUS half's ids are index-form and unresolvable, so the id channel is not a verifiable key",
+        "bar": "state the axis a corpus actually cuts on, measured not assumed",
+        "clears": true
+      }
+    },
+    "C4": {
+      "ngram_census": {
+        "measured": 0.06947,
+        "bar": "< 0.02 of the candidate units (KILL at or above)",
+        "clears": false
+      }
+    },
+    "C5": {
+      "claim_only_probe": {
+        "measured": 0.5091,
+        "bar": "< 0.55",
+        "clears": true
+      },
+      "within_pair_claim_only": {
+        "measured": 0.561,
+        "bar": "< 0.60",
+        "clears": true
+      },
+      "surface_parity": {
+        "measured": 0.0062,
+        "bar": "every channel inside 0.45 - 0.55",
+        "clears": true
+      }
+    },
+    "C6": {
+      "memorisation_channel": {
+        "measured": 0.5,
+        "coverage": 0.021,
+        "bar": "undefined or at chance on a clean instrument",
+        "clears": true
+      }
+    },
+    "C7": {
+      "units": {
+        "measured": "1050 rows / 550 pairs",
+        "bar": "both counts reported, unit used consistently",
+        "clears": true
+      }
+    },
+    "C8": {
+      "provenance": {
+        "measured": "source, licence, selection predicate and within-member duplication all stated; the v2 generator source is NOT committed",
+        "bar": "source, licence, retrieval date, exact selection predicate, duplication reported",
+        "clears": false
+      }
+    },
+    "positive_controls": {
+      "C2_string_form_detector": true,
+      "C4_spike": true,
+      "C4_live_near_duplicate": true,
+      "C1_structural": true,
+      "C1_instrument_sensitivity": true,
+      "C5_claim_only_probe": true,
+      "C6_memorisation": true,
+      "load_bearing_integrity_check": true
+    },
+    "conforming": "NOT DECIDED HERE - the coordinator adjudicates",
+    "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+  },
+  "consumers_of_this_eval": {
+    "source": "docs/experiments/semantic-grounding-experiments.md, grepped",
+    "gates_that_READ_it": [
+      "R17-H143 Stage A tier gate - pooled AUROC per model + the >= 0.90 positive-control gate; verdict 'in-budget tiny class DEAD at chance, TIER-VIABLE closed on the tiny half'",
+      "R17-H143 teacher read - Qwen3-32B-FP8 0.9708 pooled; verdict DISTILL-LICENSED",
+      "R17-H144 cycle 1 - pooled >= 0.70 AND controls >= 0.90 conjunction; verdict NOT-VIABLE-AT-BAR (0.8171 / 0.8696)",
+      "R17-H144 cycle 2 + amendment A2 blind selector - same conjunction on the selected checkpoint; verdict NOT-VIABLE-AT-BAR (0.7789 / 0.8320)"
+    ],
+    "artifacts_that_EXCLUDE_against_it": [
+      "R17-H144_pairs.py / R17-H144_lookup.py (SFT corpus + valsplit)",
+      "R17-H145_scaleunit.py",
+      "R17-H146_lane.py",
+      "R18-H150_scaleunit_lane.py",
+      "R18-H150_edgar_gate.py",
+      "R18-H150_unitswap_probe.py",
+      "R19_supply_lanes.py",
+      "R20-H177_lane_B.py"
+    ],
+    "live_arms_reading_it": "none - the R17 tiny-reasoner / distillation arc is closed and no current arm or flagship gate scores against this eval",
+    "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+  },
+  "elapsed_s": 133.4,
+  "timestamp": "2026-08-17 09:49:19"
+}

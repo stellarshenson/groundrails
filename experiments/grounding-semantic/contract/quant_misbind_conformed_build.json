@@ -1,0 +1,229 @@
+{
+  "conformed_artifact": "experiments/grounding-semantic/R17-H146_lane_conformed.parquet",
+  "source_artifact": "experiments/grounding-semantic/R17-H146_lane.parquet",
+  "source_blake2b_64": "791663e1f62c9ae6",
+  "conformed_blake2b_64": "0db47576654ed059",
+  "method": "REMOVAL ONLY - no row is rewritten, no construction rule changed, no clause relaxed; every drop is by whole pair",
+  "before": {
+    "rows": 30000,
+    "pairs": 15000,
+    "families": {
+      "misbound_row": 21000,
+      "misbound_col": 9000
+    },
+    "documents": 7514
+  },
+  "removals": {
+    "D1_non_tabfact_source": {
+      "clauses": [
+        "C3",
+        "C8"
+      ],
+      "pairs": 5055,
+      "rows": 10110,
+      "reason": "FEVEROUS third - split axis not measurable from the artifact on disk, ids positionally unstable, no licence, no retrieval date, source file untracked and gitignored"
+    },
+    "D2_evaluation_surface_collision": {
+      "clauses": [
+        "C2"
+      ],
+      "pairs": 78,
+      "rows": 156,
+      "colliding_claim_strings": 43,
+      "colliding_evidence_strings": 19,
+      "pairs_not_already_removed_by_D1": 78
+    },
+    "D4_evaluation_surface_document_identity": {
+      "clauses": [
+        "C2 (stricter than its own instrument)",
+        "C3"
+      ],
+      "pairs": 489,
+      "rows": 978,
+      "pairs_not_already_removed_by_D1_D2": 451,
+      "member_documents_removed": 245,
+      "evaluation_surface_documents_pooled": 3114,
+      "documents_per_surface": {
+        "R17-H143_evalset": 536,
+        "R20-H177_eval_B": 458,
+        "R20-H177_eval_C": 213,
+        "R20-H175b_qlane_eval": 487,
+        "R20-H175b_qlane_eval_repaired": 407,
+        "R20-H175b_qlane_eval_clean": 22,
+        "R20-H175b_qlane_eval_clean_prefix": 8,
+        "R17-H146_antigaming_set": 1168,
+        "R18-H150_antigaming_set": 1177,
+        "R19-H159_antigaming_set": 1174
+      },
+      "reason": "the same table serialized differently is invisible to C2's string forms; document identity is measurable here because the member is TabFact-only and carries the corpus's own stable table_id"
+    },
+    "D5_surfaces_beyond_the_banked_instrument": {
+      "clauses": [
+        "C2"
+      ],
+      "pairs": 124,
+      "rows": 248,
+      "pairs_not_already_removed_by_D1_D2_D4": 69,
+      "colliding_claim_strings": 96,
+      "colliding_evidence_strings": 3,
+      "surface_documents_pooled": 2648,
+      "per_surface": {
+        "R14-H133_antigaming_set": {
+          "claim_strings": 17,
+          "evidence_strings": 0,
+          "surface_documents": 1171
+        },
+        "R16-H142-T_antigaming_set": {
+          "claim_strings": 23,
+          "evidence_strings": 0,
+          "surface_documents": 1177
+        },
+        "R16-H142-T-d2_antigaming_set": {
+          "claim_strings": 18,
+          "evidence_strings": 0,
+          "surface_documents": 1186
+        },
+        "R17-H145_antigaming_set": {
+          "claim_strings": 15,
+          "evidence_strings": 0,
+          "surface_documents": 1184
+        },
+        "R18-H150-d2_antigaming_set": {
+          "claim_strings": 17,
+          "evidence_strings": 0,
+          "surface_documents": 1170
+        },
+        "R18-H152-d1_antigaming_set": {
+          "claim_strings": 16,
+          "evidence_strings": 0,
+          "surface_documents": 1174
+        },
+        "R18-H152-d2_antigaming_set": {
+          "claim_strings": 16,
+          "evidence_strings": 0,
+          "surface_documents": 1178
+        },
+        "R18-H155-d1_antigaming_set": {
+          "claim_strings": 23,
+          "evidence_strings": 0,
+          "surface_documents": 1185
+        },
+        "R18-H155-d2_antigaming_set": {
+          "claim_strings": 19,
+          "evidence_strings": 0,
+          "surface_documents": 1191
+        },
+        "R18-H156_antigaming_set": {
+          "claim_strings": 22,
+          "evidence_strings": 0,
+          "surface_documents": 1173
+        },
+        "R19-H160-soupB_antigaming_set": {
+          "claim_strings": 16,
+          "evidence_strings": 0,
+          "surface_documents": 1185
+        },
+        "R20-H177_eval_B_rebuilt": {
+          "claim_strings": 0,
+          "evidence_strings": 0,
+          "surface_documents": 454
+        },
+        "R17-H143_evalset_source": {
+          "EXCLUDED_FROM_THE_DROP": true,
+          "why": "the pool the H143 eval was sampled from, not a read; the eval itself reads zero"
+        },
+        "R17-H148_probe": {
+          "claim_strings": 0,
+          "evidence_strings": 0,
+          "surface_documents": 100
+        },
+        "R17-H149_probe": {
+          "claim_strings": 0,
+          "evidence_strings": 0,
+          "surface_documents": 240
+        },
+        "R18-H150_unitswap_probe": {
+          "claim_strings": 0,
+          "evidence_strings": 0,
+          "surface_documents": 42
+        },
+        "R11-H117_heldout_pairs": {
+          "claim_strings": 0,
+          "evidence_strings": 3,
+          "surface_documents": 0
+        },
+        "R15_L1_bindprobe_pairs": {
+          "claim_strings": 28,
+          "evidence_strings": 0,
+          "surface_documents": 808
+        },
+        "R15_L1_bindprobe_pairs_R10-H108-lane-draw1": {
+          "claim_strings": 23,
+          "evidence_strings": 0,
+          "surface_documents": 819
+        },
+        "R15_P1_typeprobe_quads": {
+          "claim_strings": 18,
+          "evidence_strings": 0,
+          "surface_documents": 886
+        },
+        "R15_P1_typeprobe_topup_quads": {
+          "claim_strings": 3,
+          "evidence_strings": 0,
+          "surface_documents": 506
+        },
+        "R20-G0b_composed_probes": {
+          "claim_strings": 0,
+          "evidence_strings": 0,
+          "surface_documents": 571
+        }
+      }
+    },
+    "D3_direction_rebalance": {
+      "clauses": [
+        "C5"
+      ],
+      "pairs": 21,
+      "rows": 42,
+      "per_family": {
+        "misbound_col": {
+          "up": 1534,
+          "down": 1538,
+          "surplus_direction": "down",
+          "pairs_dropped": 4
+        },
+        "misbound_row": {
+          "up": 3129,
+          "down": 3146,
+          "surplus_direction": "down",
+          "pairs_dropped": 17
+        }
+      }
+    }
+  },
+  "after": {
+    "rows": 18652,
+    "pairs": 9326,
+    "families": {
+      "misbound_row": 12516,
+      "misbound_col": 6136
+    },
+    "directions": {
+      "misbound_col:down": 3068,
+      "misbound_row:up": 6258,
+      "misbound_row:down": 6258,
+      "misbound_col:up": 3068
+    },
+    "documents": 4716,
+    "sources": {
+      "tabfact": 18652
+    }
+  },
+  "volume_cost": {
+    "rows_dropped": 11348,
+    "rows_dropped_share": 0.378267,
+    "pairs_dropped": 5674,
+    "pairs_dropped_share": 0.378267
+  },
+  "seconds": 17.2
+}

@@ -1,0 +1,98 @@
+{
+  "member": "quant_scale_unit",
+  "instrument": "provenance_gate.py, n=8, jaccard 0.3, bidirectional, KILL 0.02",
+  "lane_distinct_chunks": 2509,
+  "per_surface": {
+    "R17-H143_evalset": {
+      "surface_distinct_chunks": 547,
+      "lane_to_surface_fraction": 0.0,
+      "surface_to_lane_fraction": 0.0,
+      "max_fraction": 0.0,
+      "verdict": "PASS",
+      "lane_best_jaccard": {
+        "max": 0.0688,
+        "p99": 0.0292,
+        "mean": 0.0014
+      }
+    },
+    "R18-H150_unitswap_probe": {
+      "surface_distinct_chunks": 115,
+      "lane_to_surface_fraction": 0.000399,
+      "surface_to_lane_fraction": 0.008696,
+      "max_fraction": 0.008696,
+      "verdict": "WARN",
+      "lane_best_jaccard": {
+        "max": 0.4039,
+        "p99": 0.0081,
+        "mean": 0.0004
+      },
+      "shared_doc_ids": 0
+    },
+    "R20-H177_eval_B": {
+      "surface_distinct_chunks": 736,
+      "lane_to_surface_fraction": 0.001196,
+      "surface_to_lane_fraction": 0.001359,
+      "max_fraction": 0.001359,
+      "verdict": "PASS",
+      "lane_best_jaccard": {
+        "max": 0.3694,
+        "p99": 0.0361,
+        "mean": 0.0027
+      },
+      "shared_doc_ids": 13,
+      "shared_document_stratum": {
+        "lane_chunks": 139,
+        "surface_chunks": 23,
+        "lane_to_surface_fraction": 0.021583,
+        "surface_to_lane_fraction": 0.043478,
+        "max_fraction": 0.043478,
+        "lane_best_jaccard": {
+          "max": 0.3694,
+          "p99": 0.3373,
+          "mean": 0.0301
+        }
+      }
+    },
+    "R20-H177_eval_C": {
+      "surface_distinct_chunks": 380,
+      "lane_to_surface_fraction": 0.0,
+      "surface_to_lane_fraction": 0.0,
+      "max_fraction": 0.0,
+      "verdict": "PASS",
+      "lane_best_jaccard": {
+        "max": 0.0,
+        "p99": 0.0,
+        "mean": 0.0
+      },
+      "shared_doc_ids": 0
+    },
+    "R17-H148_probe": {
+      "surface_distinct_chunks": 390,
+      "lane_to_surface_fraction": 0.0,
+      "surface_to_lane_fraction": 0.0,
+      "max_fraction": 0.0,
+      "verdict": "PASS",
+      "lane_best_jaccard": {
+        "max": 0.0,
+        "p99": 0.0,
+        "mean": 0.0
+      },
+      "shared_doc_ids": 0
+    },
+    "R17-H149_probe": {
+      "surface_distinct_chunks": 342,
+      "lane_to_surface_fraction": 0.0,
+      "surface_to_lane_fraction": 0.0,
+      "max_fraction": 0.0,
+      "verdict": "PASS",
+      "lane_best_jaccard": {
+        "max": 0.0,
+        "p99": 0.0,
+        "mean": 0.0
+      },
+      "shared_doc_ids": 0
+    }
+  },
+  "worst_max_fraction_all_surfaces": 0.008696,
+  "worst_shared_document_stratum_fraction": 0.043478
+}

@@ -1,0 +1,121 @@
+{
+  "supplement": "C3 correction and C6/C8 mix-duplication read",
+  "member": "frame_reject",
+  "rows": 8000,
+  "C3": {
+    "correction": "the first pass used a 1-character shared evidence string (`R`) as a substring probe, which matches every chunk; the 3,519/3,519 figure was that artefact",
+    "vitaminc_split_rows": {
+      "train": 370653,
+      "validation": 63054,
+      "test": 55197
+    },
+    "evidence_strings_shared_train_vs_heldout": 85,
+    "shortest_shared_string_chars": 1,
+    "lane_vitaminc_chunks": 1600,
+    "by_length_floor": {
+      "min_0_chars": {
+        "shared_strings_at_this_floor": 85,
+        "lane_vitaminc_chunks_containing_one": 1600
+      },
+      "min_20_chars": {
+        "shared_strings_at_this_floor": 82,
+        "lane_vitaminc_chunks_containing_one": 10
+      },
+      "min_40_chars": {
+        "shared_strings_at_this_floor": 73,
+        "lane_vitaminc_chunks_containing_one": 10
+      },
+      "min_80_chars": {
+        "shared_strings_at_this_floor": 43,
+        "lane_vitaminc_chunks_containing_one": 6
+      }
+    },
+    "at_the_8_token_instrument_floor": {
+      "shared_strings": 66,
+      "lane_vitaminc_chunks_containing_one": 8
+    },
+    "lane_genuine_claims_also_in_heldout_claim_set": {
+      "count": 1,
+      "lane_rows_carrying_one": 2,
+      "share_of_lane_rows": 0.00025
+    }
+  },
+  "C6_C8": {
+    "mix_rows": 752618,
+    "mix_groups": [
+      "attr_pool",
+      "halueval",
+      "path_bind",
+      "psiloqa",
+      "quant_misbind",
+      "quant_scale_unit",
+      "ragtruth_cn",
+      "ragtruth_de",
+      "ragtruth_en",
+      "ragtruth_es",
+      "ragtruth_fr",
+      "ragtruth_hu",
+      "ragtruth_it",
+      "ragtruth_pl",
+      "tabfact",
+      "vitaminc"
+    ],
+    "distinct_mix_claims": 533870,
+    "genuine_claim": {
+      "distinct": 3287,
+      "distinct_present_in_the_mix": 2909,
+      "share_of_distinct": 0.885,
+      "member_rows_whose_claim_the_mix_also_carries": 7050,
+      "mix_groups_supplying_them": {
+        "vitaminc": 1599,
+        "attr_pool": 1379
+      }
+    },
+    "positive_claim_as_trained": {
+      "distinct": 3888,
+      "distinct_present_in_the_mix": 1170,
+      "share_of_distinct": 0.3009,
+      "member_rows_whose_claim_the_mix_also_carries": 1267,
+      "mix_groups_supplying_them": {
+        "attr_pool": 605,
+        "vitaminc": 585
+      }
+    },
+    "negative_claim_as_trained": {
+      "distinct": 3688,
+      "distinct_present_in_the_mix": 0,
+      "share_of_distinct": 0.0,
+      "member_rows_whose_claim_the_mix_also_carries": 0,
+      "mix_groups_supplying_them": {}
+    },
+    "by_lane_source": {
+      "minicheck": {
+        "distinct_genuine_claims": 1688,
+        "present_in_the_mix": 1310,
+        "share": 0.7761
+      },
+      "vitaminc": {
+        "distinct_genuine_claims": 1599,
+        "present_in_the_mix": 1599,
+        "share": 1.0
+      }
+    },
+    "mix_label_on_shared_genuine_claims": {
+      "both": 2734,
+      "only_0": 111,
+      "only_1": 64
+    },
+    "claim_chunk_pair_collisions": {
+      "label_1": {
+        "member_pairs": 4000,
+        "also_in_the_mix": 0,
+        "with_a_contradictory_mix_label": 0
+      },
+      "label_0": {
+        "member_pairs": 4000,
+        "also_in_the_mix": 0,
+        "with_a_contradictory_mix_label": 0
+      }
+    }
+  }
+}

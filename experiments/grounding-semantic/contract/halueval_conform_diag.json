@@ -1,0 +1,812 @@
+{
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates.",
+  "member": "halueval",
+  "instrument": "R20-H174_lane_common.claim_only_probe - out-of-fold char_wb TF-IDF 2-5 grams, min_df 3, sublinear tf, liblinear C=4 tol 1e-7, folds disjoint on the pair key",
+  "scopes": {
+    "all": {
+      "rows": 40000,
+      "text_channels": {
+        "full_claim": {
+          "auroc": 0.9519,
+          "what": "the claim as the mix feeds it - the registered C5 channel"
+        },
+        "normalised": {
+          "auroc": 0.939,
+          "what": "lowercased, punctuation stripped, whitespace collapsed"
+        },
+        "content_only_style_removed": {
+          "auroc": 0.9016,
+          "what": "function words, hedges, punctuation and case DELETED - what survives is topical content"
+        },
+        "content_only_sorted": {
+          "auroc": 0.9016,
+          "what": "content tokens sorted alphabetically - word order destroyed too"
+        },
+        "shape_only_content_masked": {
+          "auroc": 0.8972,
+          "what": "every content token replaced by `w` (`d` if numeric); function words, hedges, punctuation and token count preserved - pure register"
+        },
+        "funcwords_punct_only": {
+          "auroc": 0.8886,
+          "what": "content tokens DELETED; only function words, hedges and punctuation remain - register with the length of the content erased"
+        }
+      },
+      "numeric_channels": {
+        "length_only": {
+          "auroc": 0.8255,
+          "features": [
+            "char_len",
+            "log_char_len",
+            "tok_count",
+            "log_tok_count",
+            "mean_tok_len"
+          ]
+        },
+        "punctuation_and_case_only": {
+          "auroc": 0.7596,
+          "features": [
+            "upper_ratio",
+            "cap_tok_ratio",
+            "digit_ratio",
+            "space_ratio",
+            "punct_.",
+            "punct_,",
+            "punct_;",
+            "punct_:",
+            "punct_!",
+            "punct_?",
+            "punct_\"",
+            "punct_'",
+            "punct_(",
+            "punct_)",
+            "punct_[",
+            "punct_]",
+            "punct_-",
+            "punct_/",
+            "punct_%",
+            "punct_$",
+            "punct_&"
+          ]
+        },
+        "hedging_and_function_word_rate_only": {
+          "auroc": 0.7527,
+          "features": [
+            "hedge_rate",
+            "hedge_count",
+            "func_rate",
+            "type_token_ratio"
+          ]
+        },
+        "all_numeric_style": {
+          "auroc": 0.8914,
+          "features": [
+            "char_len",
+            "log_char_len",
+            "tok_count",
+            "log_tok_count",
+            "mean_tok_len",
+            "type_token_ratio",
+            "upper_ratio",
+            "cap_tok_ratio",
+            "digit_ratio",
+            "func_rate",
+            "hedge_rate",
+            "hedge_count",
+            "space_ratio",
+            "punct_.",
+            "punct_,",
+            "punct_;",
+            "punct_:",
+            "punct_!",
+            "punct_?",
+            "punct_\"",
+            "punct_'",
+            "punct_(",
+            "punct_)",
+            "punct_[",
+            "punct_]",
+            "punct_-",
+            "punct_/",
+            "punct_%",
+            "punct_$",
+            "punct_&"
+          ]
+        }
+      },
+      "raw_single_feature_auroc": {
+        "claim_char_length": 0.3191,
+        "claim_token_count": 0.3203
+      },
+      "full_probe_after_length_control": {
+        "method": "AUROC computed inside claim-char-length deciles and pooled, weighted by n_pos * n_neg",
+        "length_stratified_auroc": 0.922,
+        "per_bin": [
+          {
+            "bin": 0,
+            "n": 3650,
+            "n_pos": 3566,
+            "n_neg": 84,
+            "auroc": 0.6867,
+            "range": [
+              1.0,
+              10.0
+            ]
+          },
+          {
+            "bin": 1,
+            "n": 4249,
+            "n_pos": 4070,
+            "n_neg": 179,
+            "auroc": 0.6682,
+            "range": [
+              10.0,
+              18.0
+            ]
+          },
+          {
+            "bin": 2,
+            "n": 3964,
+            "n_pos": 2156,
+            "n_neg": 1808,
+            "auroc": 0.9264,
+            "range": [
+              18.0,
+              38.0
+            ]
+          },
+          {
+            "bin": 3,
+            "n": 4123,
+            "n_pos": 161,
+            "n_neg": 3962,
+            "auroc": 0.8804,
+            "range": [
+              38.0,
+              68.0
+            ]
+          },
+          {
+            "bin": 4,
+            "n": 4001,
+            "n_pos": 275,
+            "n_neg": 3726,
+            "auroc": 0.916,
+            "range": [
+              68.0,
+              140.0
+            ]
+          },
+          {
+            "bin": 5,
+            "n": 3976,
+            "n_pos": 2716,
+            "n_neg": 1260,
+            "auroc": 0.9087,
+            "range": [
+              140.0,
+              228.0
+            ]
+          },
+          {
+            "bin": 6,
+            "n": 3993,
+            "n_pos": 2855,
+            "n_neg": 1138,
+            "auroc": 0.9273,
+            "range": [
+              228.0,
+              295.0
+            ]
+          },
+          {
+            "bin": 7,
+            "n": 4041,
+            "n_pos": 2340,
+            "n_neg": 1701,
+            "auroc": 0.9462,
+            "range": [
+              295.0,
+              378.0
+            ]
+          },
+          {
+            "bin": 8,
+            "n": 3982,
+            "n_pos": 1190,
+            "n_neg": 2792,
+            "auroc": 0.9535,
+            "range": [
+              378.0,
+              495.0
+            ]
+          },
+          {
+            "bin": 9,
+            "n": 4021,
+            "n_pos": 671,
+            "n_neg": 3350,
+            "auroc": 0.9655,
+            "range": [
+              495.0,
+              3381.0
+            ]
+          }
+        ]
+      },
+      "length_matched_pairs": {
+        "tol_0.05": {
+          "tolerance_relative_char_length": 0.05,
+          "pairs": 438,
+          "rows": 876,
+          "claim_only_probe_auroc": 0.8336,
+          "claim_char_length_auroc": 0.515
+        },
+        "tol_0.10": {
+          "tolerance_relative_char_length": 0.1,
+          "pairs": 803,
+          "rows": 1606,
+          "claim_only_probe_auroc": 0.88,
+          "claim_char_length_auroc": 0.5291
+        },
+        "tol_0.20": {
+          "tolerance_relative_char_length": 0.2,
+          "pairs": 1370,
+          "rows": 2740,
+          "claim_only_probe_auroc": 0.8942,
+          "claim_char_length_auroc": 0.5522
+        },
+        "tol_0.30": {
+          "tolerance_relative_char_length": 0.3,
+          "pairs": 1795,
+          "rows": 3590,
+          "claim_only_probe_auroc": 0.9024,
+          "claim_char_length_auroc": 0.5754
+        }
+      }
+    },
+    "qa": {
+      "rows": 20000,
+      "text_channels": {
+        "full_claim": {
+          "auroc": 0.9856,
+          "what": "the claim as the mix feeds it - the registered C5 channel"
+        },
+        "normalised": {
+          "auroc": 0.9786,
+          "what": "lowercased, punctuation stripped, whitespace collapsed"
+        },
+        "content_only_style_removed": {
+          "auroc": 0.9653,
+          "what": "function words, hedges, punctuation and case DELETED - what survives is topical content"
+        },
+        "content_only_sorted": {
+          "auroc": 0.9653,
+          "what": "content tokens sorted alphabetically - word order destroyed too"
+        },
+        "shape_only_content_masked": {
+          "auroc": 0.9803,
+          "what": "every content token replaced by `w` (`d` if numeric); function words, hedges, punctuation and token count preserved - pure register"
+        },
+        "funcwords_punct_only": {
+          "auroc": 0.9784,
+          "what": "content tokens DELETED; only function words, hedges and punctuation remain - register with the length of the content erased"
+        }
+      },
+      "numeric_channels": {
+        "length_only": {
+          "auroc": 0.9736,
+          "features": [
+            "char_len",
+            "log_char_len",
+            "tok_count",
+            "log_tok_count",
+            "mean_tok_len"
+          ]
+        },
+        "punctuation_and_case_only": {
+          "auroc": 0.9674,
+          "features": [
+            "upper_ratio",
+            "cap_tok_ratio",
+            "digit_ratio",
+            "space_ratio",
+            "punct_.",
+            "punct_,",
+            "punct_;",
+            "punct_:",
+            "punct_!",
+            "punct_?",
+            "punct_\"",
+            "punct_'",
+            "punct_(",
+            "punct_)",
+            "punct_[",
+            "punct_]",
+            "punct_-",
+            "punct_/",
+            "punct_%",
+            "punct_$",
+            "punct_&"
+          ]
+        },
+        "hedging_and_function_word_rate_only": {
+          "auroc": 0.8845,
+          "features": [
+            "hedge_rate",
+            "hedge_count",
+            "func_rate",
+            "type_token_ratio"
+          ]
+        },
+        "all_numeric_style": {
+          "auroc": 0.9786,
+          "features": [
+            "char_len",
+            "log_char_len",
+            "tok_count",
+            "log_tok_count",
+            "mean_tok_len",
+            "type_token_ratio",
+            "upper_ratio",
+            "cap_tok_ratio",
+            "digit_ratio",
+            "func_rate",
+            "hedge_rate",
+            "hedge_count",
+            "space_ratio",
+            "punct_.",
+            "punct_,",
+            "punct_;",
+            "punct_:",
+            "punct_!",
+            "punct_?",
+            "punct_\"",
+            "punct_'",
+            "punct_(",
+            "punct_)",
+            "punct_[",
+            "punct_]",
+            "punct_-",
+            "punct_/",
+            "punct_%",
+            "punct_$",
+            "punct_&"
+          ]
+        }
+      },
+      "raw_single_feature_auroc": {
+        "claim_char_length": 0.0288,
+        "claim_token_count": 0.0286
+      },
+      "full_probe_after_length_control": {
+        "method": "AUROC computed inside claim-char-length deciles and pooled, weighted by n_pos * n_neg",
+        "length_stratified_auroc": 0.8349,
+        "per_bin": [
+          {
+            "bin": 0,
+            "n": 1684,
+            "n_pos": 1666,
+            "n_neg": 18,
+            "auroc": 0.677,
+            "range": [
+              1.0,
+              5.0
+            ]
+          },
+          {
+            "bin": 1,
+            "n": 1966,
+            "n_pos": 1900,
+            "n_neg": 66,
+            "auroc": 0.6432,
+            "range": [
+              5.0,
+              10.0
+            ]
+          },
+          {
+            "bin": 2,
+            "n": 1661,
+            "n_pos": 1595,
+            "n_neg": 66,
+            "auroc": 0.6416,
+            "range": [
+              10.0,
+              13.0
+            ]
+          },
+          {
+            "bin": 3,
+            "n": 2588,
+            "n_pos": 2475,
+            "n_neg": 113,
+            "auroc": 0.6836,
+            "range": [
+              13.0,
+              18.0
+            ]
+          },
+          {
+            "bin": 4,
+            "n": 2095,
+            "n_pos": 1719,
+            "n_neg": 376,
+            "auroc": 0.8674,
+            "range": [
+              18.0,
+              28.0
+            ]
+          },
+          {
+            "bin": 5,
+            "n": 1869,
+            "n_pos": 437,
+            "n_neg": 1432,
+            "auroc": 0.9305,
+            "range": [
+              28.0,
+              38.0
+            ]
+          },
+          {
+            "bin": 6,
+            "n": 2128,
+            "n_pos": 121,
+            "n_neg": 2007,
+            "auroc": 0.8784,
+            "range": [
+              38.0,
+              51.0
+            ]
+          },
+          {
+            "bin": 7,
+            "n": 1992,
+            "n_pos": 38,
+            "n_neg": 1954,
+            "auroc": 0.8677,
+            "range": [
+              51.0,
+              68.0
+            ]
+          },
+          {
+            "bin": 8,
+            "n": 2011,
+            "n_pos": 22,
+            "n_neg": 1989,
+            "auroc": 0.8842,
+            "range": [
+              68.0,
+              93.0
+            ]
+          },
+          {
+            "bin": 9,
+            "n": 2006,
+            "n_pos": 27,
+            "n_neg": 1979,
+            "auroc": 0.7519,
+            "range": [
+              93.0,
+              529.0
+            ]
+          }
+        ]
+      },
+      "length_matched_pairs": {
+        "tol_0.05": {
+          "tolerance_relative_char_length": 0.05,
+          "pairs": 81,
+          "rows": 162,
+          "claim_only_probe_auroc": null,
+          "skipped": "fewer than 400 rows"
+        },
+        "tol_0.10": {
+          "tolerance_relative_char_length": 0.1,
+          "pairs": 125,
+          "rows": 250,
+          "claim_only_probe_auroc": null,
+          "skipped": "fewer than 400 rows"
+        },
+        "tol_0.20": {
+          "tolerance_relative_char_length": 0.2,
+          "pairs": 196,
+          "rows": 392,
+          "claim_only_probe_auroc": null,
+          "skipped": "fewer than 400 rows"
+        },
+        "tol_0.30": {
+          "tolerance_relative_char_length": 0.3,
+          "pairs": 233,
+          "rows": 466,
+          "claim_only_probe_auroc": 0.6631,
+          "claim_char_length_auroc": 0.5432
+        }
+      }
+    },
+    "summarization": {
+      "rows": 20000,
+      "text_channels": {
+        "full_claim": {
+          "auroc": 0.9756,
+          "what": "the claim as the mix feeds it - the registered C5 channel"
+        },
+        "normalised": {
+          "auroc": 0.9634,
+          "what": "lowercased, punctuation stripped, whitespace collapsed"
+        },
+        "content_only_style_removed": {
+          "auroc": 0.9373,
+          "what": "function words, hedges, punctuation and case DELETED - what survives is topical content"
+        },
+        "content_only_sorted": {
+          "auroc": 0.9373,
+          "what": "content tokens sorted alphabetically - word order destroyed too"
+        },
+        "shape_only_content_masked": {
+          "auroc": 0.9449,
+          "what": "every content token replaced by `w` (`d` if numeric); function words, hedges, punctuation and token count preserved - pure register"
+        },
+        "funcwords_punct_only": {
+          "auroc": 0.9402,
+          "what": "content tokens DELETED; only function words, hedges and punctuation remain - register with the length of the content erased"
+        }
+      },
+      "numeric_channels": {
+        "length_only": {
+          "auroc": 0.8335,
+          "features": [
+            "char_len",
+            "log_char_len",
+            "tok_count",
+            "log_tok_count",
+            "mean_tok_len"
+          ]
+        },
+        "punctuation_and_case_only": {
+          "auroc": 0.9352,
+          "features": [
+            "upper_ratio",
+            "cap_tok_ratio",
+            "digit_ratio",
+            "space_ratio",
+            "punct_.",
+            "punct_,",
+            "punct_;",
+            "punct_:",
+            "punct_!",
+            "punct_?",
+            "punct_\"",
+            "punct_'",
+            "punct_(",
+            "punct_)",
+            "punct_[",
+            "punct_]",
+            "punct_-",
+            "punct_/",
+            "punct_%",
+            "punct_$",
+            "punct_&"
+          ]
+        },
+        "hedging_and_function_word_rate_only": {
+          "auroc": 0.7759,
+          "features": [
+            "hedge_rate",
+            "hedge_count",
+            "func_rate",
+            "type_token_ratio"
+          ]
+        },
+        "all_numeric_style": {
+          "auroc": 0.9483,
+          "features": [
+            "char_len",
+            "log_char_len",
+            "tok_count",
+            "log_tok_count",
+            "mean_tok_len",
+            "type_token_ratio",
+            "upper_ratio",
+            "cap_tok_ratio",
+            "digit_ratio",
+            "func_rate",
+            "hedge_rate",
+            "hedge_count",
+            "space_ratio",
+            "punct_.",
+            "punct_,",
+            "punct_;",
+            "punct_:",
+            "punct_!",
+            "punct_?",
+            "punct_\"",
+            "punct_'",
+            "punct_(",
+            "punct_)",
+            "punct_[",
+            "punct_]",
+            "punct_-",
+            "punct_/",
+            "punct_%",
+            "punct_$",
+            "punct_&"
+          ]
+        }
+      },
+      "raw_single_feature_auroc": {
+        "claim_char_length": 0.252,
+        "claim_token_count": 0.2577
+      },
+      "full_probe_after_length_control": {
+        "method": "AUROC computed inside claim-char-length deciles and pooled, weighted by n_pos * n_neg",
+        "length_stratified_auroc": 0.932,
+        "per_bin": [
+          {
+            "bin": 0,
+            "n": 1962,
+            "n_pos": 1272,
+            "n_neg": 690,
+            "auroc": 0.8457,
+            "range": [
+              51.0,
+              202.0
+            ]
+          },
+          {
+            "bin": 1,
+            "n": 2027,
+            "n_pos": 1673,
+            "n_neg": 354,
+            "auroc": 0.9082,
+            "range": [
+              202.0,
+              228.0
+            ]
+          },
+          {
+            "bin": 2,
+            "n": 2004,
+            "n_pos": 1265,
+            "n_neg": 739,
+            "auroc": 0.9225,
+            "range": [
+              228.0,
+              274.0
+            ]
+          },
+          {
+            "bin": 3,
+            "n": 1970,
+            "n_pos": 1590,
+            "n_neg": 380,
+            "auroc": 0.928,
+            "range": [
+              274.0,
+              295.0
+            ]
+          },
+          {
+            "bin": 4,
+            "n": 2000,
+            "n_pos": 1249,
+            "n_neg": 751,
+            "auroc": 0.9406,
+            "range": [
+              295.0,
+              336.0
+            ]
+          },
+          {
+            "bin": 5,
+            "n": 2036,
+            "n_pos": 1091,
+            "n_neg": 945,
+            "auroc": 0.9512,
+            "range": [
+              336.0,
+              378.0
+            ]
+          },
+          {
+            "bin": 6,
+            "n": 1966,
+            "n_pos": 685,
+            "n_neg": 1281,
+            "auroc": 0.953,
+            "range": [
+              378.0,
+              434.0
+            ]
+          },
+          {
+            "bin": 7,
+            "n": 2015,
+            "n_pos": 505,
+            "n_neg": 1510,
+            "auroc": 0.9542,
+            "range": [
+              434.0,
+              495.0
+            ]
+          },
+          {
+            "bin": 8,
+            "n": 2013,
+            "n_pos": 375,
+            "n_neg": 1638,
+            "auroc": 0.9674,
+            "range": [
+              495.0,
+              578.0
+            ]
+          },
+          {
+            "bin": 9,
+            "n": 2007,
+            "n_pos": 295,
+            "n_neg": 1712,
+            "auroc": 0.9641,
+            "range": [
+              578.0,
+              3381.0
+            ]
+          }
+        ]
+      },
+      "length_matched_pairs": {
+        "tol_0.05": {
+          "tolerance_relative_char_length": 0.05,
+          "pairs": 357,
+          "rows": 714,
+          "claim_only_probe_auroc": 0.8952,
+          "claim_char_length_auroc": 0.5223
+        },
+        "tol_0.10": {
+          "tolerance_relative_char_length": 0.1,
+          "pairs": 678,
+          "rows": 1356,
+          "claim_only_probe_auroc": 0.926,
+          "claim_char_length_auroc": 0.5402
+        },
+        "tol_0.20": {
+          "tolerance_relative_char_length": 0.2,
+          "pairs": 1174,
+          "rows": 2348,
+          "claim_only_probe_auroc": 0.9378,
+          "claim_char_length_auroc": 0.5701
+        },
+        "tol_0.30": {
+          "tolerance_relative_char_length": 0.3,
+          "pairs": 1562,
+          "rows": 3124,
+          "claim_only_probe_auroc": 0.9419,
+          "claim_char_length_auroc": 0.5986
+        }
+      }
+    }
+  },
+  "live_positive_control": {
+    "toy_style_separated": {
+      "construction": "1,500 pairs; both legs carry the SAME content string, the negative leg wrapped in a hedged register (`It is possible that ... , reportedly!!`)",
+      "pairs": 1500,
+      "claim_only_probe_auroc": 1.0,
+      "expected": "near 1.0",
+      "fires": true
+    },
+    "label_shuffled_global": {
+      "construction": "labels permuted uniformly at random over all 40,000 rows",
+      "claim_only_probe_auroc": 0.5017,
+      "expected": "near 0.5",
+      "reads_at_chance": true
+    },
+    "label_shuffled_within_pair": {
+      "construction": "each pair's two labels swapped with probability 0.5 - class balance and pair structure preserved exactly",
+      "claim_only_probe_auroc": 0.4951,
+      "expected": "near 0.5",
+      "reads_at_chance": true
+    },
+    "gate_is_live": true
+  }
+}

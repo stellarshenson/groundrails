@@ -1,0 +1,503 @@
+{
+  "clause": "C2 (exhaustive surface sweep beyond the banked 13)",
+  "member_rows": 18652,
+  "member_documents": 4716,
+  "surfaces_measured": 22,
+  "surfaces": {
+    "R14-H133_antigaming_set": {
+      "note": "anti-gaming paired probe set - claims only, keyed on table_id",
+      "surface_claims": 3187,
+      "surface_evidence_units": 0,
+      "surface_documents": 1171,
+      "shared_documents": 0,
+      "forms": {
+        "raw": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "truncated_1500": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "normalised_ws_casefold": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        }
+      },
+      "clean": true
+    },
+    "R16-H142-T_antigaming_set": {
+      "note": "anti-gaming paired probe set - claims only, keyed on table_id",
+      "surface_claims": 3181,
+      "surface_evidence_units": 0,
+      "surface_documents": 1177,
+      "shared_documents": 0,
+      "forms": {
+        "raw": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "truncated_1500": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "normalised_ws_casefold": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        }
+      },
+      "clean": true
+    },
+    "R16-H142-T-d2_antigaming_set": {
+      "note": "anti-gaming paired probe set - claims only, keyed on table_id",
+      "surface_claims": 3191,
+      "surface_evidence_units": 0,
+      "surface_documents": 1186,
+      "shared_documents": 0,
+      "forms": {
+        "raw": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "truncated_1500": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "normalised_ws_casefold": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        }
+      },
+      "clean": true
+    },
+    "R17-H145_antigaming_set": {
+      "note": "anti-gaming paired probe set - claims only, keyed on table_id",
+      "surface_claims": 3183,
+      "surface_evidence_units": 0,
+      "surface_documents": 1184,
+      "shared_documents": 0,
+      "forms": {
+        "raw": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "truncated_1500": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "normalised_ws_casefold": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        }
+      },
+      "clean": true
+    },
+    "R18-H150-d2_antigaming_set": {
+      "note": "anti-gaming paired probe set - claims only, keyed on table_id",
+      "surface_claims": 3179,
+      "surface_evidence_units": 0,
+      "surface_documents": 1170,
+      "shared_documents": 0,
+      "forms": {
+        "raw": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "truncated_1500": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "normalised_ws_casefold": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        }
+      },
+      "clean": true
+    },
+    "R18-H152-d1_antigaming_set": {
+      "note": "anti-gaming paired probe set - claims only, keyed on table_id",
+      "surface_claims": 3190,
+      "surface_evidence_units": 0,
+      "surface_documents": 1174,
+      "shared_documents": 0,
+      "forms": {
+        "raw": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "truncated_1500": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "normalised_ws_casefold": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        }
+      },
+      "clean": true
+    },
+    "R18-H152-d2_antigaming_set": {
+      "note": "anti-gaming paired probe set - claims only, keyed on table_id",
+      "surface_claims": 3186,
+      "surface_evidence_units": 0,
+      "surface_documents": 1178,
+      "shared_documents": 0,
+      "forms": {
+        "raw": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "truncated_1500": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "normalised_ws_casefold": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        }
+      },
+      "clean": true
+    },
+    "R18-H155-d1_antigaming_set": {
+      "note": "anti-gaming paired probe set - claims only, keyed on table_id",
+      "surface_claims": 3188,
+      "surface_evidence_units": 0,
+      "surface_documents": 1185,
+      "shared_documents": 0,
+      "forms": {
+        "raw": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "truncated_1500": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "normalised_ws_casefold": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        }
+      },
+      "clean": true
+    },
+    "R18-H155-d2_antigaming_set": {
+      "note": "anti-gaming paired probe set - claims only, keyed on table_id",
+      "surface_claims": 3184,
+      "surface_evidence_units": 0,
+      "surface_documents": 1191,
+      "shared_documents": 0,
+      "forms": {
+        "raw": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "truncated_1500": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "normalised_ws_casefold": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        }
+      },
+      "clean": true
+    },
+    "R18-H156_antigaming_set": {
+      "note": "anti-gaming paired probe set - claims only, keyed on table_id",
+      "surface_claims": 3190,
+      "surface_evidence_units": 0,
+      "surface_documents": 1173,
+      "shared_documents": 0,
+      "forms": {
+        "raw": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "truncated_1500": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "normalised_ws_casefold": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        }
+      },
+      "clean": true
+    },
+    "R19-H160-soupB_antigaming_set": {
+      "note": "anti-gaming paired probe set - claims only, keyed on table_id",
+      "surface_claims": 3187,
+      "surface_evidence_units": 0,
+      "surface_documents": 1185,
+      "shared_documents": 0,
+      "forms": {
+        "raw": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "truncated_1500": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "normalised_ws_casefold": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        }
+      },
+      "clean": true
+    },
+    "R20-H177_eval_B_rebuilt": {
+      "note": "held-out surface",
+      "surface_claims": 1998,
+      "surface_evidence_units": 731,
+      "surface_documents": 454,
+      "shared_documents": 0,
+      "forms": {
+        "raw": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "truncated_1500": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "normalised_ws_casefold": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        }
+      },
+      "clean": true
+    },
+    "R17-H143_evalset_source": {
+      "note": "held-out surface",
+      "surface_claims": 49168,
+      "surface_evidence_units": 22141,
+      "surface_documents": 10090,
+      "shared_documents": 3508,
+      "forms": {
+        "raw": {
+          "claims_shared_strings": 36,
+          "evidence_shared_strings": 237
+        },
+        "truncated_1500": {
+          "claims_shared_strings": 36,
+          "evidence_shared_strings": 237
+        },
+        "normalised_ws_casefold": {
+          "claims_shared_strings": 36,
+          "evidence_shared_strings": 237
+        }
+      },
+      "clean": false
+    },
+    "R17-H148_probe": {
+      "note": "held-out surface",
+      "surface_claims": 1813,
+      "surface_evidence_units": 390,
+      "surface_documents": 100,
+      "shared_documents": 0,
+      "forms": {
+        "raw": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "truncated_1500": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "normalised_ws_casefold": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        }
+      },
+      "clean": true
+    },
+    "R17-H149_probe": {
+      "note": "held-out surface",
+      "surface_claims": 714,
+      "surface_evidence_units": 342,
+      "surface_documents": 240,
+      "shared_documents": 0,
+      "forms": {
+        "raw": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "truncated_1500": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "normalised_ws_casefold": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        }
+      },
+      "clean": true
+    },
+    "R18-H150_unitswap_probe": {
+      "note": "held-out surface",
+      "surface_claims": 278,
+      "surface_evidence_units": 115,
+      "surface_documents": 42,
+      "shared_documents": 0,
+      "forms": {
+        "raw": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "truncated_1500": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "normalised_ws_casefold": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        }
+      },
+      "clean": true
+    },
+    "R11-H117_heldout_pairs": {
+      "note": "held-out surface",
+      "surface_claims": 2000,
+      "surface_evidence_units": 1933,
+      "surface_documents": 0,
+      "shared_documents": 0,
+      "forms": {
+        "raw": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "truncated_1500": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "normalised_ws_casefold": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        }
+      },
+      "clean": true
+    },
+    "R15_L1_bindprobe_pairs": {
+      "note": "R15 binding probe pairs - claims only, keyed on table_id",
+      "surface_claims": 3852,
+      "surface_evidence_units": 0,
+      "surface_documents": 808,
+      "shared_documents": 0,
+      "forms": {
+        "raw": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "truncated_1500": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "normalised_ws_casefold": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        }
+      },
+      "clean": true
+    },
+    "R15_L1_bindprobe_pairs_R10-H108-lane-draw1": {
+      "note": "R15 binding probe pairs - claims only, keyed on table_id",
+      "surface_claims": 3867,
+      "surface_evidence_units": 0,
+      "surface_documents": 819,
+      "shared_documents": 0,
+      "forms": {
+        "raw": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "truncated_1500": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "normalised_ws_casefold": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        }
+      },
+      "clean": true
+    },
+    "R15_P1_typeprobe_quads": {
+      "note": "R15 type probe quads - claims only, keyed on table_id",
+      "surface_claims": 13476,
+      "surface_evidence_units": 0,
+      "surface_documents": 886,
+      "shared_documents": 0,
+      "forms": {
+        "raw": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "truncated_1500": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "normalised_ws_casefold": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        }
+      },
+      "clean": true
+    },
+    "R15_P1_typeprobe_topup_quads": {
+      "note": "R15 type probe quads - claims only, keyed on table_id",
+      "surface_claims": 3121,
+      "surface_evidence_units": 0,
+      "surface_documents": 506,
+      "shared_documents": 0,
+      "forms": {
+        "raw": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "truncated_1500": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "normalised_ws_casefold": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        }
+      },
+      "clean": true
+    },
+    "R20-G0b_composed_probes": {
+      "note": "composed-probe set - claims plus the two source table texts",
+      "surface_claims": 1499,
+      "surface_evidence_units": 571,
+      "surface_documents": 571,
+      "shared_documents": 0,
+      "forms": {
+        "raw": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "truncated_1500": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        },
+        "normalised_ws_casefold": {
+          "claims_shared_strings": 0,
+          "evidence_shared_strings": 0
+        }
+      },
+      "clean": true
+    }
+  },
+  "totals_per_form": {
+    "raw": 273,
+    "truncated_1500": 273,
+    "normalised_ws_casefold": 273
+  },
+  "all_forms_zero": false,
+  "all_document_reads_zero": false,
+  "surfaces_not_clean": [
+    "R17-H143_evalset_source"
+  ],
+  "seconds": 2.6
+}

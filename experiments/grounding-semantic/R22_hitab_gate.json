@@ -1,0 +1,207 @@
+{
+  "corpus": "hitab",
+  "wave": "R22 derivation supply",
+  "instrument": "provenance_gate.py (R14-H136 ruling 2 form: 8-gram, Jaccard >= 0.3, bidirectional, KILL > 2%)",
+  "licence_sidecar": {
+    "pass": true,
+    "path": "/home/lab/workspace/private/ai-assistants/groundrails/data/external/datasets/dataset-hitab.md",
+    "present": true,
+    "records_licence_token": true,
+    "records_r22_registration": true
+  },
+  "derivation_reverification": {
+    "pass": true,
+    "rows": 10672,
+    "splits": {
+      "dev": 1671,
+      "test": 1584,
+      "train": 7417
+    },
+    "tables": 7194,
+    "aggregation_distribution": {
+      "none": 7536,
+      "pair-argmax": 694,
+      "div": 498,
+      "argmax": 344,
+      "opposite": 342,
+      "sum": 217,
+      "diff": 216,
+      "pair-argmin": 215,
+      "argmin": 114,
+      "topk-argmax": 66,
+      "max": 64,
+      "greater_than": 57,
+      "sum+div": 44,
+      "min": 36,
+      "less_than": 32,
+      "average": 28,
+      "kth-argmax": 27,
+      "diff+div": 26,
+      "range": 18,
+      "counta": 12,
+      "topk-argmin": 10,
+      "div+sum": 8,
+      "diff+opposite": 7,
+      "kth-argmin": 6,
+      "argmax+argmin": 5,
+      "max+min": 5,
+      "sum+pair-argmax": 4,
+      "sum+pair-argmin": 3,
+      "diff+opposite+div": 2,
+      "sum+diff": 2,
+      "diff+greater_than": 2,
+      "average+argmin": 2,
+      "greater_than+less_than": 1,
+      "average+pair-argmin": 1,
+      "diff+pair-argmax": 1,
+      "argmax+opposite": 1,
+      "opposite+pair-argmax": 1,
+      "argmax+average": 1,
+      "average+greater_than": 1,
+      "counta+less_than": 1,
+      "range+diff": 1,
+      "sum+average": 1,
+      "opposite+kth-argmax": 1,
+      "argmin+min": 1,
+      "argmax+max": 1,
+      "diff+argmax": 1,
+      "average+pair-argmax": 1,
+      "average+argmax": 1,
+      "div+diff": 1,
+      "average+topk-argmax": 1,
+      "div+sum+pair-argmax": 1,
+      "average+div": 1,
+      "argmin+argmax": 1,
+      "diff+topk-argmax": 1,
+      "diff+topk-argmin": 1,
+      "sum+diff+div": 1,
+      "diff+kth-argmax": 1,
+      "sum+argmax": 1,
+      "counta+pair-argmax": 1,
+      "sum+average+diff": 1,
+      "diff+min": 1,
+      "sum+opposite": 1
+    },
+    "derived_rows": 3136,
+    "derived_fraction": 0.293853,
+    "lookup_rows_aggregation_none": 7536,
+    "derived_rows_carrying_answer_formula": 3136,
+    "formula_coverage_on_derived": 1.0,
+    "note": "lookup-dominant - the derived slice is the minority and is the only part answering the R22 supply gap"
+  },
+  "provenance_gate": {
+    "pass": true,
+    "spike_control": {
+      "injected": 10,
+      "detected_total": 10,
+      "baseline_hits": 0,
+      "passes": true,
+      "candidate_units": 2000
+    },
+    "result": {
+      "instrument": "provenance_gate.py (R13 ruling 4)",
+      "mode": "jaccard",
+      "n": 8,
+      "jaccard_threshold": 0.3,
+      "thresholds": {
+        "warn": 0.005,
+        "kill": 0.02
+      },
+      "candidate": {
+        "label": "r22_hitab",
+        "n_units": 5286,
+        "n_units_scorable": 4991
+      },
+      "arena": {
+        "subsets": {
+          "covidqa": 980,
+          "delucionqa": 552,
+          "emanual": 396,
+          "expertqa": 759,
+          "finqa": 725,
+          "hagrid": 703,
+          "hotpotqa": 998,
+          "pubmedqa": 1250,
+          "tatqa": 1032,
+          "techqa": 1250
+        },
+        "n_units": 8645,
+        "n_units_scorable": 8555
+      },
+      "candidate_vs_arena": {
+        "n_units": 5286,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "covidqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "delucionqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "emanual": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "expertqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "finqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hagrid": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hotpotqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "pubmedqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "tatqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "techqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        },
+        "best_jaccard": {
+          "max": 0.025,
+          "p99": 0.0104,
+          "mean": 0.0008
+        }
+      },
+      "arena_vs_candidate": {
+        "n_units": 8645,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "r22_hitab": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        },
+        "best_jaccard": {
+          "max": 0.025,
+          "p99": 0.0,
+          "mean": 0.0
+        }
+      },
+      "max_fraction": 0.0,
+      "verdict": "PASS",
+      "hit_examples": [],
+      "gate_unit_coverage": 1.0,
+      "gate_units_deduped_total": 5286
+    }
+  },
+  "status": "GREEN"
+}

@@ -1,0 +1,312 @@
+{
+  "arm": "R21-H179Q q3 - the contamination-exposure column for the blind-arena failure-mode autopsy",
+  "licence": "MEASUREMENT ONLY - no annotation, no classification, no adjudication; later stages own those",
+  "why": "so the autopsy's error classes cannot be confounded by the contamination q1 measures: every consensus-error item now carries whether it retrieved a contamination-exposed document",
+  "column_added_to": "R21-H179_consensus_errors.parquet",
+  "columns": [
+    "exposed_verbatim",
+    "exposed_containment"
+  ],
+  "exposure_control": {
+    "verbatim_banked": {
+      "covidqa": 0,
+      "delucionqa": 0,
+      "emanual": 0,
+      "expertqa": 0,
+      "finqa": 0,
+      "hagrid": 0,
+      "hotpotqa": 16,
+      "pubmedqa": 0,
+      "tatqa": 0,
+      "techqa": 0
+    },
+    "verbatim_recomputed": {
+      "covidqa": 0,
+      "delucionqa": 0,
+      "finqa": 0,
+      "hotpotqa": 16,
+      "tatqa": 0,
+      "expertqa": 0,
+      "pubmedqa": 0,
+      "techqa": 0,
+      "emanual": 0,
+      "hagrid": 0
+    },
+    "containment_banked": {
+      "covidqa": 0,
+      "delucionqa": 0,
+      "emanual": 0,
+      "expertqa": 0,
+      "finqa": 0,
+      "hagrid": 15,
+      "hotpotqa": 102,
+      "pubmedqa": 0,
+      "tatqa": 0,
+      "techqa": 0
+    },
+    "containment_recomputed": {
+      "emanual": 0,
+      "pubmedqa": 0,
+      "hagrid": 15,
+      "covidqa": 0,
+      "finqa": 0,
+      "techqa": 0,
+      "expertqa": 0,
+      "tatqa": 0,
+      "delucionqa": 0,
+      "hotpotqa": 102
+    },
+    "verbatim_ok": true,
+    "containment_ok": true
+  },
+  "verbatim": {
+    "per_subset": {
+      "covidqa": {
+        "n": 245,
+        "n_exposed": 0,
+        "exposed_share_of_subset": 0.0,
+        "consensus_errors_threshold": 23,
+        "consensus_errors_threshold_exposed": 0,
+        "consensus_errors_rank": 21,
+        "consensus_errors_rank_exposed": 0,
+        "top40_exposed": 0,
+        "deficit_mass_share_carried_by_exposed": 0.0
+      },
+      "delucionqa": {
+        "n": 184,
+        "n_exposed": 0,
+        "exposed_share_of_subset": 0.0,
+        "consensus_errors_threshold": 4,
+        "consensus_errors_threshold_exposed": 0,
+        "consensus_errors_rank": 5,
+        "consensus_errors_rank_exposed": 0,
+        "top40_exposed": 0,
+        "deficit_mass_share_carried_by_exposed": 0.0
+      },
+      "emanual": {
+        "n": 132,
+        "n_exposed": 0,
+        "exposed_share_of_subset": 0.0,
+        "consensus_errors_threshold": 9,
+        "consensus_errors_threshold_exposed": 0,
+        "consensus_errors_rank": 15,
+        "consensus_errors_rank_exposed": 0,
+        "top40_exposed": 0,
+        "deficit_mass_share_carried_by_exposed": 0.0
+      },
+      "expertqa": {
+        "n": 203,
+        "n_exposed": 0,
+        "exposed_share_of_subset": 0.0,
+        "consensus_errors_threshold": 19,
+        "consensus_errors_threshold_exposed": 0,
+        "consensus_errors_rank": 6,
+        "consensus_errors_rank_exposed": 0,
+        "top40_exposed": 0,
+        "deficit_mass_share_carried_by_exposed": 0.0
+      },
+      "finqa": {
+        "n": 250,
+        "n_exposed": 0,
+        "exposed_share_of_subset": 0.0,
+        "consensus_errors_threshold": 11,
+        "consensus_errors_threshold_exposed": 0,
+        "consensus_errors_rank": 19,
+        "consensus_errors_rank_exposed": 0,
+        "top40_exposed": 0,
+        "deficit_mass_share_carried_by_exposed": 0.0
+      },
+      "hagrid": {
+        "n": 250,
+        "n_exposed": 0,
+        "exposed_share_of_subset": 0.0,
+        "consensus_errors_threshold": 27,
+        "consensus_errors_threshold_exposed": 0,
+        "consensus_errors_rank": 37,
+        "consensus_errors_rank_exposed": 0,
+        "top40_exposed": 0,
+        "deficit_mass_share_carried_by_exposed": 0.0
+      },
+      "hotpotqa": {
+        "n": 250,
+        "n_exposed": 16,
+        "exposed_share_of_subset": 0.064,
+        "consensus_errors_threshold": 6,
+        "consensus_errors_threshold_exposed": 0,
+        "consensus_errors_rank": 19,
+        "consensus_errors_rank_exposed": 0,
+        "top40_exposed": 3,
+        "deficit_mass_share_carried_by_exposed": 0.0897
+      },
+      "pubmedqa": {
+        "n": 250,
+        "n_exposed": 0,
+        "exposed_share_of_subset": 0.0,
+        "consensus_errors_threshold": 18,
+        "consensus_errors_threshold_exposed": 0,
+        "consensus_errors_rank": 17,
+        "consensus_errors_rank_exposed": 0,
+        "top40_exposed": 0,
+        "deficit_mass_share_carried_by_exposed": 0.0
+      },
+      "tatqa": {
+        "n": 250,
+        "n_exposed": 0,
+        "exposed_share_of_subset": 0.0,
+        "consensus_errors_threshold": 3,
+        "consensus_errors_threshold_exposed": 0,
+        "consensus_errors_rank": 7,
+        "consensus_errors_rank_exposed": 0,
+        "top40_exposed": 0,
+        "deficit_mass_share_carried_by_exposed": 0.0
+      },
+      "techqa": {
+        "n": 250,
+        "n_exposed": 0,
+        "exposed_share_of_subset": 0.0,
+        "consensus_errors_threshold": 22,
+        "consensus_errors_threshold_exposed": 0,
+        "consensus_errors_rank": 14,
+        "consensus_errors_rank_exposed": 0,
+        "top40_exposed": 0,
+        "deficit_mass_share_carried_by_exposed": 0.0
+      }
+    },
+    "totals": {
+      "n": 2264,
+      "n_exposed": 16,
+      "consensus_errors_threshold": 142,
+      "consensus_errors_threshold_exposed": 0,
+      "consensus_errors_rank": 160,
+      "consensus_errors_rank_exposed": 0,
+      "top40_marked": 400,
+      "top40_exposed": 3
+    }
+  },
+  "containment": {
+    "per_subset": {
+      "covidqa": {
+        "n": 245,
+        "n_exposed": 0,
+        "exposed_share_of_subset": 0.0,
+        "consensus_errors_threshold": 23,
+        "consensus_errors_threshold_exposed": 0,
+        "consensus_errors_rank": 21,
+        "consensus_errors_rank_exposed": 0,
+        "top40_exposed": 0,
+        "deficit_mass_share_carried_by_exposed": 0.0
+      },
+      "delucionqa": {
+        "n": 184,
+        "n_exposed": 0,
+        "exposed_share_of_subset": 0.0,
+        "consensus_errors_threshold": 4,
+        "consensus_errors_threshold_exposed": 0,
+        "consensus_errors_rank": 5,
+        "consensus_errors_rank_exposed": 0,
+        "top40_exposed": 0,
+        "deficit_mass_share_carried_by_exposed": 0.0
+      },
+      "emanual": {
+        "n": 132,
+        "n_exposed": 0,
+        "exposed_share_of_subset": 0.0,
+        "consensus_errors_threshold": 9,
+        "consensus_errors_threshold_exposed": 0,
+        "consensus_errors_rank": 15,
+        "consensus_errors_rank_exposed": 0,
+        "top40_exposed": 0,
+        "deficit_mass_share_carried_by_exposed": 0.0
+      },
+      "expertqa": {
+        "n": 203,
+        "n_exposed": 0,
+        "exposed_share_of_subset": 0.0,
+        "consensus_errors_threshold": 19,
+        "consensus_errors_threshold_exposed": 0,
+        "consensus_errors_rank": 6,
+        "consensus_errors_rank_exposed": 0,
+        "top40_exposed": 0,
+        "deficit_mass_share_carried_by_exposed": 0.0
+      },
+      "finqa": {
+        "n": 250,
+        "n_exposed": 0,
+        "exposed_share_of_subset": 0.0,
+        "consensus_errors_threshold": 11,
+        "consensus_errors_threshold_exposed": 0,
+        "consensus_errors_rank": 19,
+        "consensus_errors_rank_exposed": 0,
+        "top40_exposed": 0,
+        "deficit_mass_share_carried_by_exposed": 0.0
+      },
+      "hagrid": {
+        "n": 250,
+        "n_exposed": 15,
+        "exposed_share_of_subset": 0.06,
+        "consensus_errors_threshold": 27,
+        "consensus_errors_threshold_exposed": 1,
+        "consensus_errors_rank": 37,
+        "consensus_errors_rank_exposed": 2,
+        "top40_exposed": 2,
+        "deficit_mass_share_carried_by_exposed": 0.0412
+      },
+      "hotpotqa": {
+        "n": 250,
+        "n_exposed": 102,
+        "exposed_share_of_subset": 0.408,
+        "consensus_errors_threshold": 6,
+        "consensus_errors_threshold_exposed": 3,
+        "consensus_errors_rank": 19,
+        "consensus_errors_rank_exposed": 7,
+        "top40_exposed": 19,
+        "deficit_mass_share_carried_by_exposed": 0.505
+      },
+      "pubmedqa": {
+        "n": 250,
+        "n_exposed": 0,
+        "exposed_share_of_subset": 0.0,
+        "consensus_errors_threshold": 18,
+        "consensus_errors_threshold_exposed": 0,
+        "consensus_errors_rank": 17,
+        "consensus_errors_rank_exposed": 0,
+        "top40_exposed": 0,
+        "deficit_mass_share_carried_by_exposed": 0.0
+      },
+      "tatqa": {
+        "n": 250,
+        "n_exposed": 0,
+        "exposed_share_of_subset": 0.0,
+        "consensus_errors_threshold": 3,
+        "consensus_errors_threshold_exposed": 0,
+        "consensus_errors_rank": 7,
+        "consensus_errors_rank_exposed": 0,
+        "top40_exposed": 0,
+        "deficit_mass_share_carried_by_exposed": 0.0
+      },
+      "techqa": {
+        "n": 250,
+        "n_exposed": 0,
+        "exposed_share_of_subset": 0.0,
+        "consensus_errors_threshold": 22,
+        "consensus_errors_threshold_exposed": 0,
+        "consensus_errors_rank": 14,
+        "consensus_errors_rank_exposed": 0,
+        "top40_exposed": 0,
+        "deficit_mass_share_carried_by_exposed": 0.0
+      }
+    },
+    "totals": {
+      "n": 2264,
+      "n_exposed": 117,
+      "consensus_errors_threshold": 142,
+      "consensus_errors_threshold_exposed": 4,
+      "consensus_errors_rank": 160,
+      "consensus_errors_rank_exposed": 9,
+      "top40_marked": 400,
+      "top40_exposed": 21
+    }
+  },
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates.",
+  "written": "2026-08-17 16:17:02"
+}

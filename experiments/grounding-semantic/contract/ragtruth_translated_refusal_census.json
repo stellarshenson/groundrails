@@ -1,0 +1,21 @@
+{
+  "distinct_repeated_claim_strings_n_ge_3": 13,
+  "rows": 1458,
+  "share_of_member_rows": 0.013803,
+  "label1_rate_of_these_rows": 1.0,
+  "share_of_positive_leg": 0.024885,
+  "per_language_rows": {
+    "cn": 209,
+    "de": 204,
+    "es": 209,
+    "fr": 209,
+    "hu": 209,
+    "it": 209,
+    "pl": 209
+  },
+  "examples": [
+    "A megadott szövegek alapján nem tudok válaszolni.",
+    "Impossibile rispondere in base ai brani forniti.",
+    "Incapable de répondre sur la base des passages fournis."
+  ]
+}

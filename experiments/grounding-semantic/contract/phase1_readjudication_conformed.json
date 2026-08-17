@@ -1,0 +1,329 @@
+{
+ "task": "C-A1 structural C1 test and a uniform predicate-blind attestation reading on every conformed artifact already on disk",
+ "contract": "docs/experiments/dataset-contract.md, amendments C-A1 and C-A2",
+ "compute": "CPU only, HF_HUB_OFFLINE=1; artifacts READ, nothing rebuilt",
+ "artifacts": {
+  "psiloqa_conformed": {
+   "path": "experiments/grounding-semantic/contract/psiloqa_conformed.parquet",
+   "rows": 50474,
+   "built_for_clause": "C1 (struck band) + C2",
+   "label_1_rows": 5547,
+   "label_0_rows": 44927,
+   "structural_C1": {
+    "raw": {
+     "form": "raw",
+     "both_label_pairs": 5,
+     "rows_covered": 10,
+     "hash_level_pairs": 5,
+     "verified_on_literal_strings": true
+    },
+    "evidence_truncated_1500": {
+     "form": "evidence_truncated_1500",
+     "both_label_pairs": 5,
+     "rows_covered": 10,
+     "hash_level_pairs": 5,
+     "verified_on_literal_strings": true
+    },
+    "whitespace_collapsed_casefolded": {
+     "form": "whitespace_collapsed_casefolded",
+     "both_label_pairs": 5,
+     "rows_covered": 10,
+     "hash_level_pairs": 5,
+     "verified_on_literal_strings": true
+    }
+   },
+   "uniform_containment_C1": {
+    "positive_leg": {
+     "n": 5547,
+     "mean": 0.456546,
+     "rate_ge_0.90": 0.141698,
+     "rate_eq_1.00": 0.11015
+    },
+    "negative_leg": {
+     "n": 44927,
+     "mean": 0.372207,
+     "rate_ge_0.90": 0.034078,
+     "rate_eq_1.00": 0.021947
+    },
+    "test2_neg_strictly_below_pos_at_ge_0.90": true,
+    "test2_neg_strictly_below_pos_at_eq_1.00": true,
+    "instrument": "R20-H174_lane_common.containment (banked ASCII [a-z0-9]+)",
+    "instrument_class": "predicate-BLIND baseline, uniform across members"
+   }
+  },
+  "vitaminc_conformed": {
+   "path": "experiments/grounding-semantic/contract/vitaminc_conformed.parquet",
+   "rows": 370393,
+   "built_for_clause": "C2 (+ C1 structural, already removed by its own F2)",
+   "label_1_rows": 185582,
+   "label_0_rows": 184811,
+   "structural_C1": {
+    "raw": {
+     "form": "raw",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    },
+    "evidence_truncated_1500": {
+     "form": "evidence_truncated_1500",
+     "both_label_pairs": 13,
+     "rows_covered": 26,
+     "hash_level_pairs": 13,
+     "verified_on_literal_strings": true
+    },
+    "whitespace_collapsed_casefolded": {
+     "form": "whitespace_collapsed_casefolded",
+     "both_label_pairs": 3,
+     "rows_covered": 6,
+     "hash_level_pairs": 3,
+     "verified_on_literal_strings": true
+    }
+   },
+   "uniform_containment_C1": {
+    "positive_leg": {
+     "n": 185582,
+     "mean": 0.616068,
+     "rate_ge_0.90": 0.122178,
+     "rate_eq_1.00": 0.088209
+    },
+    "negative_leg": {
+     "n": 184811,
+     "mean": 0.477325,
+     "rate_ge_0.90": 0.016806,
+     "rate_eq_1.00": 0.005665
+    },
+    "test2_neg_strictly_below_pos_at_ge_0.90": true,
+    "test2_neg_strictly_below_pos_at_eq_1.00": true,
+    "instrument": "R20-H174_lane_common.containment (banked ASCII [a-z0-9]+)",
+    "instrument_class": "predicate-BLIND baseline, uniform across members"
+   }
+  },
+  "tabfact_conformed": {
+   "path": "experiments/grounding-semantic/contract/tabfact_member_conformed.parquet",
+   "rows": 86206,
+   "built_for_clause": "C2 + C3 + C8",
+   "label_1_rows": 47295,
+   "label_0_rows": 38911,
+   "structural_C1": {
+    "raw": {
+     "form": "raw",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    },
+    "evidence_truncated_1500": {
+     "form": "evidence_truncated_1500",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    },
+    "whitespace_collapsed_casefolded": {
+     "form": "whitespace_collapsed_casefolded",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    }
+   },
+   "uniform_containment_C1": {
+    "positive_leg": {
+     "n": 47295,
+     "mean": 0.514614,
+     "rate_ge_0.90": 0.006132,
+     "rate_eq_1.00": 0.001269
+    },
+    "negative_leg": {
+     "n": 38911,
+     "mean": 0.494943,
+     "rate_ge_0.90": 0.005217,
+     "rate_eq_1.00": 0.001028
+    },
+    "test2_neg_strictly_below_pos_at_ge_0.90": true,
+    "test2_neg_strictly_below_pos_at_eq_1.00": true,
+    "instrument": "R20-H174_lane_common.containment (banked ASCII [a-z0-9]+)",
+    "instrument_class": "predicate-BLIND baseline, uniform across members"
+   }
+  },
+  "quant_misbind_conformed": {
+   "path": "experiments/grounding-semantic/R17-H146_lane_conformed.parquet",
+   "rows": 18652,
+   "built_for_clause": "C2 + C3 + C8",
+   "label_1_rows": 9326,
+   "label_0_rows": 9326,
+   "structural_C1": {
+    "raw": {
+     "form": "raw",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    },
+    "evidence_truncated_1500": {
+     "form": "evidence_truncated_1500",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    },
+    "whitespace_collapsed_casefolded": {
+     "form": "whitespace_collapsed_casefolded",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    }
+   },
+   "uniform_containment_C1": {
+    "positive_leg": {
+     "n": 9326,
+     "mean": 0.679272,
+     "rate_ge_0.90": 0.112588,
+     "rate_eq_1.00": 0.103045
+    },
+    "negative_leg": {
+     "n": 9326,
+     "mean": 0.679409,
+     "rate_ge_0.90": 0.112374,
+     "rate_eq_1.00": 0.103045
+    },
+    "test2_neg_strictly_below_pos_at_ge_0.90": true,
+    "test2_neg_strictly_below_pos_at_eq_1.00": false,
+    "instrument": "R20-H174_lane_common.containment (banked ASCII [a-z0-9]+)",
+    "instrument_class": "predicate-BLIND baseline, uniform across members"
+   }
+  },
+  "attr_pool_conformed": {
+   "path": "experiments/grounding-semantic/R20-H174_lane_L2_conformed.parquet",
+   "rows": 4442,
+   "built_for_clause": "C2 + C6 + C8",
+   "label_1_rows": 2221,
+   "label_0_rows": 2221,
+   "structural_C1": {
+    "raw": {
+     "form": "raw",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    },
+    "evidence_truncated_1500": {
+     "form": "evidence_truncated_1500",
+     "both_label_pairs": 88,
+     "rows_covered": 185,
+     "hash_level_pairs": 88,
+     "verified_on_literal_strings": true
+    },
+    "whitespace_collapsed_casefolded": {
+     "form": "whitespace_collapsed_casefolded",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    }
+   },
+   "uniform_containment_C1": {
+    "positive_leg": {
+     "n": 2221,
+     "mean": 0.834321,
+     "rate_ge_0.90": 0.329131,
+     "rate_eq_1.00": 0.21792
+    },
+    "negative_leg": {
+     "n": 2221,
+     "mean": 0.787973,
+     "rate_ge_0.90": 0.21837,
+     "rate_eq_1.00": 0.142729
+    },
+    "test2_neg_strictly_below_pos_at_ge_0.90": true,
+    "test2_neg_strictly_below_pos_at_eq_1.00": true,
+    "instrument": "R20-H174_lane_common.containment (banked ASCII [a-z0-9]+)",
+    "instrument_class": "predicate-BLIND baseline, uniform across members"
+   }
+  },
+  "halueval_conformed": {
+   "path": "experiments/grounding-semantic/contract/halueval_conformed.parquet",
+   "rows": 480,
+   "built_for_clause": "C5",
+   "label_1_rows": 240,
+   "label_0_rows": 240,
+   "structural_C1": {
+    "raw": {
+     "form": "raw",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    },
+    "evidence_truncated_1500": {
+     "form": "evidence_truncated_1500",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    },
+    "whitespace_collapsed_casefolded": {
+     "form": "whitespace_collapsed_casefolded",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    }
+   },
+   "uniform_containment_C1": {
+    "positive_leg": {
+     "n": 240,
+     "mean": 0.985736,
+     "rate_ge_0.90": 0.945833,
+     "rate_eq_1.00": 0.916667
+    },
+    "negative_leg": {
+     "n": 240,
+     "mean": 0.373874,
+     "rate_ge_0.90": 0.166667,
+     "rate_eq_1.00": 0.15
+    },
+    "test2_neg_strictly_below_pos_at_ge_0.90": true,
+    "test2_neg_strictly_below_pos_at_eq_1.00": true,
+    "instrument": "R20-H174_lane_common.containment (banked ASCII [a-z0-9]+)",
+    "instrument_class": "predicate-BLIND baseline, uniform across members"
+   }
+  },
+  "halueval_besteffort": {
+   "path": "experiments/grounding-semantic/contract/halueval_conform_best_effort.parquet",
+   "rows": 4000,
+   "built_for_clause": "C5",
+   "label_1_rows": 2000,
+   "label_0_rows": 2000,
+   "structural_C1": {
+    "raw": {
+     "form": "raw",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    },
+    "evidence_truncated_1500": {
+     "form": "evidence_truncated_1500",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    },
+    "whitespace_collapsed_casefolded": {
+     "form": "whitespace_collapsed_casefolded",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    }
+   },
+   "uniform_containment_C1": {
+    "positive_leg": {
+     "n": 2000,
+     "mean": 0.924732,
+     "rate_ge_0.90": 0.6735,
+     "rate_eq_1.00": 0.461
+    },
+    "negative_leg": {
+     "n": 2000,
+     "mean": 0.704456,
+     "rate_ge_0.90": 0.1625,
+     "rate_eq_1.00": 0.0655
+    },
+    "test2_neg_strictly_below_pos_at_ge_0.90": true,
+    "test2_neg_strictly_below_pos_at_eq_1.00": true,
+    "instrument": "R20-H174_lane_common.containment (banked ASCII [a-z0-9]+)",
+    "instrument_class": "predicate-BLIND baseline, uniform across members"
+   }
+  }
+ },
+ "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+}

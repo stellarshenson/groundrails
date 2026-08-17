@@ -1,0 +1,226 @@
+{
+  "member": "quant_scale_unit",
+  "artifact": "/home/lab/workspace/private/ai-assistants/groundrails/experiments/grounding-semantic/R18-H150_scaleunit_lane.parquet",
+  "rows": 5540,
+  "pairs": 2770,
+  "label_balance": {
+    "1": 2770,
+    "0": 2770
+  },
+  "containment": [
+    {
+      "instrument": "I1_R20-H175b_precedent",
+      "positive_leg": {
+        "n": 2770,
+        "mean": 0.593761,
+        "median": 0.583333,
+        "p10": 0.428571,
+        "p25": 0.5,
+        "p75": 0.666667,
+        "p90": 0.777778,
+        "min": 0.3,
+        "max": 0.928571,
+        "rate_eq_1_00": 0.0,
+        "rate_ge_0_95": 0.0,
+        "rate_ge_0_90": 0.022022
+      },
+      "negative_leg": {
+        "n": 2770,
+        "mean": 0.593647,
+        "median": 0.583333,
+        "p10": 0.428571,
+        "p25": 0.5,
+        "p75": 0.666667,
+        "p90": 0.777778,
+        "min": 0.3,
+        "max": 0.928571,
+        "rate_eq_1_00": 0.0,
+        "rate_ge_0_95": 0.0,
+        "rate_ge_0_90": 0.0213
+      },
+      "mean_gap_neg_minus_pos": -0.000114,
+      "rate_ge_0_90_gap_neg_minus_pos": -0.000722,
+      "abs_rate_ge_0_90_gap": 0.000722,
+      "rate_eq_1_00_gap_neg_minus_pos": 0.0,
+      "contract_bar_triggered_literal": true
+    },
+    {
+      "instrument": "I2_R19-H161_frozen_content",
+      "positive_leg": {
+        "n": 2770,
+        "mean": 0.677933,
+        "median": 0.666667,
+        "p10": 0.5,
+        "p25": 0.571429,
+        "p75": 0.8,
+        "p90": 0.833333,
+        "min": 0.333333,
+        "max": 0.909091,
+        "rate_eq_1_00": 0.0,
+        "rate_ge_0_95": 0.0,
+        "rate_ge_0_90": 0.00361
+      },
+      "negative_leg": {
+        "n": 2770,
+        "mean": 0.677776,
+        "median": 0.666667,
+        "p10": 0.5,
+        "p25": 0.571429,
+        "p75": 0.777778,
+        "p90": 0.833333,
+        "min": 0.333333,
+        "max": 0.909091,
+        "rate_eq_1_00": 0.0,
+        "rate_ge_0_95": 0.0,
+        "rate_ge_0_90": 0.00361
+      },
+      "mean_gap_neg_minus_pos": -0.000157,
+      "rate_ge_0_90_gap_neg_minus_pos": 0.0,
+      "abs_rate_ge_0_90_gap": 0.0,
+      "rate_eq_1_00_gap_neg_minus_pos": 0.0,
+      "contract_bar_triggered_literal": true
+    },
+    {
+      "instrument": "I3_unit_resolved",
+      "positive_leg": {
+        "n": 2770,
+        "mean": 0.703292,
+        "median": 0.7,
+        "p10": 0.545455,
+        "p25": 0.6,
+        "p75": 0.777778,
+        "p90": 0.9,
+        "min": 0.3,
+        "max": 1.0,
+        "rate_eq_1_00": 0.083032,
+        "rate_ge_0_95": 0.083032,
+        "rate_ge_0_90": 0.101083
+      },
+      "negative_leg": {
+        "n": 2770,
+        "mean": 0.615587,
+        "median": 0.6,
+        "p10": 0.444444,
+        "p25": 0.5,
+        "p75": 0.7,
+        "p90": 0.818182,
+        "min": 0.3,
+        "max": 1.0,
+        "rate_eq_1_00": 0.006137,
+        "rate_ge_0_95": 0.006137,
+        "rate_ge_0_90": 0.03213
+      },
+      "mean_gap_neg_minus_pos": -0.087705,
+      "rate_ge_0_90_gap_neg_minus_pos": -0.068953,
+      "abs_rate_ge_0_90_gap": 0.068953,
+      "rate_eq_1_00_gap_neg_minus_pos": -0.076895,
+      "contract_bar_triggered_literal": true
+    }
+  ],
+  "within_pair_containment_identity": {
+    "pairs": 2770,
+    "mean_abs_diff": 0.00316334,
+    "max_abs_diff": 0.10714286,
+    "pairs_exactly_equal": 2624,
+    "share_exactly_equal": 0.947292,
+    "instrument": "I1_R20-H175b_precedent"
+  },
+  "h148_literal_presence": {
+    "positive_leg_rate": 0.0,
+    "negative_leg_rate": 0.0,
+    "banked_verify_claim": {
+      "positive_leg_rate": 0.0,
+      "negative_leg_rate": 0.0
+    },
+    "definition": "claim unit phrase, or any content token distinguishing it from its twin's phrase, readable in the chunk"
+  },
+  "unit_surface_attestation": {
+    "definition": "the lane's banked SURFACE regex for the CLAIMED unit matches anywhere in the chunk (abbreviation OR spelled out)",
+    "positive_leg_claimed_unit_attested": 0.966787,
+    "negative_leg_claimed_unit_attested": 0.097473,
+    "gap_neg_minus_pos": -0.869314,
+    "negative_leg_correct_unit_attested": 0.966787,
+    "auroc_note": "a presence test separating the legs is the H148 shortcut; it is REPORTED here, not a bar"
+  },
+  "distractor_in_chunk_strata": {
+    "True": {
+      "instrument": "I1_R20-H175b_precedent",
+      "positive_leg": {
+        "n": 270,
+        "mean": 0.610443,
+        "median": 0.6,
+        "p10": 0.444444,
+        "p25": 0.5,
+        "p75": 0.7,
+        "p90": 0.8,
+        "min": 0.3,
+        "max": 0.909091,
+        "rate_eq_1_00": 0.0,
+        "rate_ge_0_95": 0.0,
+        "rate_ge_0_90": 0.014815
+      },
+      "negative_leg": {
+        "n": 270,
+        "mean": 0.610443,
+        "median": 0.6,
+        "p10": 0.444444,
+        "p25": 0.5,
+        "p75": 0.7,
+        "p90": 0.8,
+        "min": 0.3,
+        "max": 0.909091,
+        "rate_eq_1_00": 0.0,
+        "rate_ge_0_95": 0.0,
+        "rate_ge_0_90": 0.014815
+      },
+      "mean_gap_neg_minus_pos": 0.0,
+      "rate_ge_0_90_gap_neg_minus_pos": 0.0,
+      "abs_rate_ge_0_90_gap": 0.0,
+      "rate_eq_1_00_gap_neg_minus_pos": 0.0,
+      "contract_bar_triggered_literal": true,
+      "rows": 540
+    },
+    "False": {
+      "instrument": "I1_R20-H175b_precedent",
+      "positive_leg": {
+        "n": 2500,
+        "mean": 0.591959,
+        "median": 0.571429,
+        "p10": 0.428571,
+        "p25": 0.5,
+        "p75": 0.666667,
+        "p90": 0.777778,
+        "min": 0.3,
+        "max": 0.928571,
+        "rate_eq_1_00": 0.0,
+        "rate_ge_0_95": 0.0,
+        "rate_ge_0_90": 0.0228
+      },
+      "negative_leg": {
+        "n": 2500,
+        "mean": 0.591833,
+        "median": 0.571429,
+        "p10": 0.428571,
+        "p25": 0.5,
+        "p75": 0.666667,
+        "p90": 0.777778,
+        "min": 0.3,
+        "max": 0.928571,
+        "rate_eq_1_00": 0.0,
+        "rate_ge_0_95": 0.0,
+        "rate_ge_0_90": 0.022
+      },
+      "mean_gap_neg_minus_pos": -0.000126,
+      "rate_ge_0_90_gap_neg_minus_pos": -0.0008,
+      "abs_rate_ge_0_90_gap": 0.0008,
+      "rate_eq_1_00_gap_neg_minus_pos": 0.0,
+      "contract_bar_triggered_literal": true,
+      "rows": 5000
+    }
+  },
+  "cited_value_verbatim_in_chunk": {
+    "positive_leg": 1.0,
+    "negative_leg": 1.0,
+    "note": "digits never move between legs by construction"
+  }
+}

@@ -1,0 +1,1357 @@
+{
+  "member": "num_derive",
+  "artifact": "experiments/grounding-semantic/R22-H187_num_derive_lane.parquet",
+  "artifact_blake2b_64": "f0c05ff077c95ec0",
+  "member_class": "constructed lane - a training member of the assembled mix; it teaches the model to CHECK A COMPUTATION, the predicate no existing member covers",
+  "contract": "docs/experiments/dataset-contract.md (with amendments C-A1, C-A2)",
+  "verification_pass": "per-member, CPU only, no GPU touched, no torch imported",
+  "conforming": true,
+  "C1": {
+    "verdict": "PASS",
+    "clause": "C1",
+    "head_declared": "the grounding scalar (`task_head`), trained by pointwise / MIL max-over-windows BCE on the 0/1 label",
+    "label_predicate": "label 1 = the two operand values the claim states are the evidence's cells for the named (row, column) bindings AND the asserted result is what those operands give under the stated operation; label 0 = the same claim shape, the same two operands, and a result the operands do NOT give. The predicate is support of the asserted proposition, which is the head's own predicate",
+    "label_origin": "construction (R22-H187_num_derive_lane.py), not a dataset-supplied label",
+    "decisive_test_1_structural_C_A1": {
+      "definition": "a negative leg's (claim, evidence) pair identical to a positive leg's means no function of (claim, evidence) can separate the legs, so the label cannot encode grounding",
+      "negative_rows_whose_claim_evidence_pair_is_also_a_positive": 0,
+      "within_pair_identical_claim_strings": 0,
+      "bar": "0",
+      "fires": false
+    },
+    "decisive_test_2_strict_separation_C_A2": {
+      "instrument": "arithmetic checker - the asserted result is recomputed from the two operands the claim itself states, under the family's operation (difference, percentage, sum, product). This is the instrument sensitive to the predicate the lane corrupts",
+      "negative_leg_attested_rate": 0.0,
+      "positive_leg_attested_rate": 1.0,
+      "strictly_below": true,
+      "bar": "the negative leg's high-attestation rate must be STRICTLY below the positive leg's; equality is the signature of a label independent of (claim, evidence)"
+    },
+    "decisive_test_3_absolute_level_reported_C_A2": {
+      "negative_share_ge_0.90_containment": 0.000267,
+      "positive_share_ge_0.90_containment": 0.000333,
+      "negative_share_fully_attested_containment": 0.0,
+      "positive_share_fully_attested_containment": 0.0,
+      "negative_share_derivation_attested": 0.0,
+      "reading": "reported always; a negative leg attested at a high absolute rate is a finding even where test 2 passes"
+    },
+    "legs": {
+      "positive": {
+        "containment_untruncated": {
+          "n": 15000,
+          "mean": 0.565561,
+          "std": 0.122074,
+          "min": 0.25,
+          "p10": 0.409091,
+          "p25": 0.470588,
+          "median": 0.5625,
+          "p75": 0.666667,
+          "p90": 0.733333,
+          "max": 0.923077,
+          "share_ge_0.90": 0.000333,
+          "share_ge_0.95": 0.0,
+          "share_fully_attested_eq_1.0": 0.0,
+          "histogram_deciles": [
+            0,
+            0,
+            140,
+            1117,
+            2896,
+            5263,
+            3368,
+            1856,
+            355,
+            5
+          ]
+        },
+        "containment_truncated_1500": {
+          "n": 15000,
+          "mean": 0.565561,
+          "std": 0.122074,
+          "min": 0.25,
+          "p10": 0.409091,
+          "p25": 0.470588,
+          "median": 0.5625,
+          "p75": 0.666667,
+          "p90": 0.733333,
+          "max": 0.923077,
+          "share_ge_0.90": 0.000333,
+          "share_ge_0.95": 0.0,
+          "share_fully_attested_eq_1.0": 0.0,
+          "histogram_deciles": [
+            0,
+            0,
+            140,
+            1117,
+            2896,
+            5263,
+            3368,
+            1856,
+            355,
+            5
+          ]
+        },
+        "derivation_attested_rate": 1.0,
+        "derivation_attested_share_ge_0.90": 1.0,
+        "asserted_result_readable_in_evidence_rate": 0.0,
+        "both_operands_readable_in_evidence_rate": 1.0
+      },
+      "negative": {
+        "containment_untruncated": {
+          "n": 15000,
+          "mean": 0.565524,
+          "std": 0.122089,
+          "min": 0.25,
+          "p10": 0.409091,
+          "p25": 0.470588,
+          "median": 0.5625,
+          "p75": 0.666667,
+          "p90": 0.733333,
+          "max": 0.9375,
+          "share_ge_0.90": 0.000267,
+          "share_ge_0.95": 0.0,
+          "share_fully_attested_eq_1.0": 0.0,
+          "histogram_deciles": [
+            0,
+            0,
+            133,
+            1115,
+            2904,
+            5278,
+            3347,
+            1866,
+            353,
+            4
+          ]
+        },
+        "containment_truncated_1500": {
+          "n": 15000,
+          "mean": 0.565524,
+          "std": 0.122089,
+          "min": 0.25,
+          "p10": 0.409091,
+          "p25": 0.470588,
+          "median": 0.5625,
+          "p75": 0.666667,
+          "p90": 0.733333,
+          "max": 0.9375,
+          "share_ge_0.90": 0.000267,
+          "share_ge_0.95": 0.0,
+          "share_fully_attested_eq_1.0": 0.0,
+          "histogram_deciles": [
+            0,
+            0,
+            133,
+            1115,
+            2904,
+            5278,
+            3347,
+            1866,
+            353,
+            4
+          ]
+        },
+        "derivation_attested_rate": 0.0,
+        "derivation_attested_share_ge_0.90": 0.0,
+        "asserted_result_readable_in_evidence_rate": 0.0,
+        "both_operands_readable_in_evidence_rate": 1.0
+      }
+    },
+    "containment_channel_scoped_to_C1_by_C_A1": {
+      "auroc_containment_vs_label": 0.500292,
+      "within_pair_identical_containment_share": 0.9038,
+      "within_pair_mean_abs_difference": 0.00509,
+      "reading": "BLIND BY CONSTRUCTION and intended: the asserted result is absent from the evidence on both legs, so the two legs differ only in a numeral neither of them attests. C-A1 scopes containment to C1 and requires the diagnostic to be read with a predicate-sensitive instrument; a predicate-blind instrument showing no separation is not evidence of incommensurability"
+    },
+    "asserted_result_presence": {
+      "positive_leg": 0.0,
+      "negative_leg": 0.0,
+      "bar": "0.0 on both legs - the result is ABSENT by construction",
+      "holds": true
+    },
+    "operand_presence": {
+      "positive_leg": 1.0,
+      "negative_leg": 1.0,
+      "bar": "1.0 on both legs - both operands are stated by the evidence",
+      "holds": true
+    },
+    "per_family": {
+      "difference": {
+        "rows": 10500,
+        "negative_containment_mean": 0.573388,
+        "positive_containment_mean": 0.573162,
+        "negative_derivation_attested_rate": 0.0,
+        "positive_derivation_attested_rate": 1.0
+      },
+      "percentage": {
+        "rows": 10500,
+        "negative_containment_mean": 0.535263,
+        "positive_containment_mean": 0.535582,
+        "negative_derivation_attested_rate": 0.0,
+        "positive_derivation_attested_rate": 1.0
+      },
+      "product": {
+        "rows": 4500,
+        "negative_containment_mean": 0.593758,
+        "positive_containment_mean": 0.593705,
+        "negative_derivation_attested_rate": 0.0,
+        "positive_derivation_attested_rate": 1.0
+      },
+      "sum": {
+        "rows": 4500,
+        "negative_containment_mean": 0.589547,
+        "positive_containment_mean": 0.589633,
+        "negative_derivation_attested_rate": 0.0,
+        "positive_derivation_attested_rate": 1.0
+      }
+    },
+    "per_serial_form": {
+      "json_records": {
+        "rows": 1432,
+        "negative_containment_mean": 0.508548,
+        "positive_containment_mean": 0.508231,
+        "negative_derivation_attested_rate": 0.0,
+        "positive_derivation_attested_rate": 1.0
+      },
+      "keyvalue": {
+        "rows": 2940,
+        "negative_containment_mean": 0.508799,
+        "positive_containment_mean": 0.508766,
+        "negative_derivation_attested_rate": 0.0,
+        "positive_derivation_attested_rate": 1.0
+      },
+      "markdown": {
+        "rows": 3204,
+        "negative_containment_mean": 0.517313,
+        "positive_containment_mean": 0.517712,
+        "negative_derivation_attested_rate": 0.0,
+        "positive_derivation_attested_rate": 1.0
+      },
+      "narrative": {
+        "rows": 8960,
+        "negative_containment_mean": 0.556662,
+        "positive_containment_mean": 0.556754,
+        "negative_derivation_attested_rate": 0.0,
+        "positive_derivation_attested_rate": 1.0
+      },
+      "pipe": {
+        "rows": 4252,
+        "negative_containment_mean": 0.508177,
+        "positive_containment_mean": 0.507924,
+        "negative_derivation_attested_rate": 0.0,
+        "positive_derivation_attested_rate": 1.0
+      },
+      "row_prose": {
+        "rows": 9212,
+        "negative_containment_mean": 0.644341,
+        "positive_containment_mean": 0.644412,
+        "negative_derivation_attested_rate": 0.0,
+        "positive_derivation_attested_rate": 1.0
+      }
+    },
+    "seconds": 3.5
+  },
+  "C2": {
+    "verdict": "PASS",
+    "clause": "C2",
+    "member_units": {
+      "distinct_claims": 29940,
+      "distinct_evidence_chunks": 12376,
+      "rows": 30000
+    },
+    "forms": [
+      "raw",
+      "truncated_1500",
+      "normalised_ws_casefold"
+    ],
+    "surfaces_measured": 13,
+    "surfaces_clean": [
+      "R17-H143_evalset",
+      "R17-H146_antigaming_set",
+      "R18-H150_antigaming_set",
+      "R19-H159_antigaming_set",
+      "R20-H175b_qlane_eval",
+      "R20-H175b_qlane_eval_clean",
+      "R20-H175b_qlane_eval_clean_prefix",
+      "R20-H175b_qlane_eval_repaired",
+      "R20-H177_eval_B",
+      "R20-H177_eval_C",
+      "arena_ragbench_10_subsets",
+      "gold_full",
+      "vitaminc_holdout_superset"
+    ],
+    "surfaces": {
+      "arena_ragbench_10_subsets": {
+        "note": "H77 arena sample: 250 items/subset seed 0, first 8 document chunks",
+        "surface_claims": 2260,
+        "surface_evidence_units": 6784,
+        "forms": {
+          "raw": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          },
+          "truncated_1500": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          },
+          "normalised_ws_casefold": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          }
+        },
+        "clean": true
+      },
+      "gold_full": {
+        "note": "all (claim, chunk) rows of the gold teacher-pair table",
+        "surface_claims": 2699,
+        "surface_evidence_units": 10228,
+        "forms": {
+          "raw": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          },
+          "truncated_1500": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          },
+          "normalised_ws_casefold": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          }
+        },
+        "clean": true
+      },
+      "R17-H143_evalset": {
+        "note": "the derivation eval this lane's sources were content-excluded against",
+        "surface_claims": 1048,
+        "surface_evidence_units": 547,
+        "forms": {
+          "raw": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          },
+          "truncated_1500": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          },
+          "normalised_ws_casefold": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          }
+        },
+        "clean": true
+      },
+      "R20-H177_eval_B": {
+        "note": "Lane B compare/direction mechanism eval",
+        "surface_claims": 2000,
+        "surface_evidence_units": 736,
+        "forms": {
+          "raw": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          },
+          "truncated_1500": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          },
+          "normalised_ws_casefold": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          }
+        },
+        "clean": true
+      },
+      "R20-H177_eval_C": {
+        "note": "Lane C role/sign/period mechanism eval",
+        "surface_claims": 1926,
+        "surface_evidence_units": 380,
+        "forms": {
+          "raw": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          },
+          "truncated_1500": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          },
+          "normalised_ws_casefold": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          }
+        },
+        "clean": true
+      },
+      "R20-H175b_qlane_eval": {
+        "note": "withdrawn contrast-lane eval (banked)",
+        "surface_claims": 1001,
+        "surface_evidence_units": 487,
+        "forms": {
+          "raw": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          },
+          "truncated_1500": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          },
+          "normalised_ws_casefold": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          }
+        },
+        "clean": true
+      },
+      "R20-H175b_qlane_eval_repaired": {
+        "note": "withdrawn contrast-lane eval (repaired)",
+        "surface_claims": 839,
+        "surface_evidence_units": 407,
+        "forms": {
+          "raw": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          },
+          "truncated_1500": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          },
+          "normalised_ws_casefold": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          }
+        },
+        "clean": true
+      },
+      "R20-H175b_qlane_eval_clean": {
+        "note": "clean contrast-lane eval",
+        "surface_claims": 44,
+        "surface_evidence_units": 22,
+        "forms": {
+          "raw": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          },
+          "truncated_1500": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          },
+          "normalised_ws_casefold": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          }
+        },
+        "clean": true
+      },
+      "R20-H175b_qlane_eval_clean_prefix": {
+        "note": "clean contrast-lane eval (prefix)",
+        "surface_claims": 16,
+        "surface_evidence_units": 8,
+        "forms": {
+          "raw": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          },
+          "truncated_1500": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          },
+          "normalised_ws_casefold": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          }
+        },
+        "clean": true
+      },
+      "R17-H146_antigaming_set": {
+        "note": "anti-gaming paired probe set - claims only, the set carries no evidence column",
+        "surface_claims": 3185,
+        "surface_evidence_units": 0,
+        "forms": {
+          "raw": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          },
+          "truncated_1500": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          },
+          "normalised_ws_casefold": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          }
+        },
+        "clean": true
+      },
+      "R18-H150_antigaming_set": {
+        "note": "anti-gaming paired probe set - claims only, the set carries no evidence column",
+        "surface_claims": 3186,
+        "surface_evidence_units": 0,
+        "forms": {
+          "raw": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          },
+          "truncated_1500": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          },
+          "normalised_ws_casefold": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          }
+        },
+        "clean": true
+      },
+      "R19-H159_antigaming_set": {
+        "note": "anti-gaming paired probe set - claims only, the set carries no evidence column",
+        "surface_claims": 3186,
+        "surface_evidence_units": 0,
+        "forms": {
+          "raw": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          },
+          "truncated_1500": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          },
+          "normalised_ws_casefold": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          }
+        },
+        "clean": true
+      },
+      "vitaminc_holdout_superset": {
+        "note": "VitaminC test + validation in full - a SUPERSET of the filtered holdout the campaign evaluates on, so the disjointness read is stricter, not a proxy",
+        "surface_claims": 55139,
+        "surface_evidence_units": 54683,
+        "forms": {
+          "raw": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          },
+          "truncated_1500": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          },
+          "normalised_ws_casefold": {
+            "evidence_shared_strings": 0,
+            "member_evidence_units_matched": 0,
+            "surface_evidence_units_matched": 0,
+            "claims_shared_strings": 0,
+            "member_claims_matched": 0,
+            "surface_claims_matched": 0
+          }
+        },
+        "clean": true
+      }
+    },
+    "totals_per_form": {
+      "raw": 0,
+      "truncated_1500": 0,
+      "normalised_ws_casefold": 0
+    },
+    "all_forms_zero": true,
+    "document_level_read_beyond_string_forms": {
+      "why": "string equality cannot see the same source table serialized differently; TabFact carries a stable table_id, so identity is checked on it directly rather than inferred from content",
+      "member_tabfact_tables": 5749,
+      "per_surface": {
+        "R20-H177_eval_B": {
+          "surface_tabfact_tables": 325,
+          "shared_with_member": 0
+        },
+        "R20-H177_eval_C": {
+          "surface_tabfact_tables": 0,
+          "shared_with_member": 0
+        },
+        "R17-H146_antigaming_set": {
+          "surface_tabfact_tables": 1168,
+          "shared_with_member": 0
+        },
+        "R18-H150_antigaming_set": {
+          "surface_tabfact_tables": 1177,
+          "shared_with_member": 0
+        },
+        "R19-H159_antigaming_set": {
+          "surface_tabfact_tables": 1174,
+          "shared_with_member": 0
+        }
+      },
+      "enforced_at_build": "every table_id named by any of these surfaces was dropped whole before construction"
+    },
+    "seconds": 7.5
+  },
+  "C3": {
+    "verdict": "PASS",
+    "clause": "C3",
+    "member_type": "constructed lane - it has no split of its own; the axis that matters is which split of each SOURCE it reads and whether that split is document-disjoint from anything used for evaluation",
+    "sources_read": {
+      "tabfact": "dataset-tabfact.zip, the *__train.parquet member ONLY (R17-H144_pairs.tabfact_tables), deduplicated on table_text"
+    },
+    "feverous_used": false,
+    "why_no_feverous": "quant_misbind is non-conforming on exactly its FEVEROUS half - C3 because the split axis is not measurable for 33.7% of its rows and the identifier it carries for them is unstable across rebuilds, and C8 because that half has no licence, no retrieval date and no tracked source. This member reads the clean half only and inherits none of the defect",
+    "rows_by_source": {
+      "tabfact": 30000
+    },
+    "documents_by_source": {
+      "tabfact": 5749
+    },
+    "axis": "the archive's own table_id",
+    "archive_splits": {
+      "test": 12839,
+      "train": 92585,
+      "validation": 12851
+    },
+    "measured_axis": {
+      "train_table_ids": 13182,
+      "train_vs_test_shared_table_ids": 0,
+      "test_table_ids": 1695,
+      "train_vs_validation_shared_table_ids": 0,
+      "validation_table_ids": 1696
+    },
+    "member_tables_in_a_non_train_split": {
+      "test": 0,
+      "validation": 0
+    },
+    "member_tables": 5749,
+    "identifier_stability": "the member's doc_id is `tabfact:<table_id>` and the table_id is the archive's own key, so document identity survives a rebuild - the defect that makes quant_misbind's FEVEROUS third unmeasurable does not arise here",
+    "seconds": 0.1
+  },
+  "C4": {
+    "verdict": "PASS",
+    "clause": "C4",
+    "instrument": "provenance_gate.py (R14-H136 ruling-2 form): 8-gram, Jaccard >= 0.3, bidirectional, WARN 0.005, KILL > 2% of the candidate side, all ten walled arena subsets",
+    "arena_units": 8645,
+    "coverage": {
+      "evidence": {
+        "units": 12376,
+        "too_short_for_8gram": 0,
+        "share_too_short": 0.0,
+        "covered_by_exact_matching": 0
+      },
+      "claims": {
+        "units": 29940,
+        "too_short_for_8gram": 0,
+        "share_too_short": 0.0,
+        "covered_by_exact_matching": 0
+      },
+      "exact_matching_of_the_short_units": {
+        "method": "normalised claim string sought verbatim inside the concatenated normalised arena document corpus",
+        "arena_documents": 8645,
+        "short_claims_checked": 0,
+        "short_claims_found": 0,
+        "short_evidence_units": 0
+      }
+    },
+    "evidence_gate": {
+      "units": 12376,
+      "verdict": "PASS",
+      "max_fraction": 0.0,
+      "candidate_to_arena": 0.0,
+      "arena_to_candidate": 0.0,
+      "best_jaccard": {
+        "max": 0.0144,
+        "p99": 0.0,
+        "mean": 0.0
+      },
+      "kill_bar": 0.02,
+      "margin": 0.02
+    },
+    "claims_gate": {
+      "units": 29940,
+      "verdict": "PASS",
+      "max_fraction": 0.0,
+      "candidate_to_arena": 0.0,
+      "arena_to_candidate": 0.0,
+      "best_jaccard": {
+        "max": 0.0,
+        "p99": 0.0,
+        "mean": 0.0
+      },
+      "kill_bar": 0.02,
+      "margin": 0.02
+    },
+    "spike_control": {
+      "injected": 10,
+      "detected_total": 10,
+      "baseline_hits": 0,
+      "passes": true,
+      "candidate_units": 2000
+    },
+    "live_positive_control": {
+      "construction": "real RAGBench arena documents (the reference side itself), degraded - near-duplicate by construction, not byte-identical",
+      "tiers": {
+        "verbatim": {
+          "note": "identical arena text - the upper anchor",
+          "units": 250,
+          "detection_fraction": 1.0,
+          "units_with_hit": 250,
+          "best_jaccard": {
+            "max": 1.0,
+            "p99": 1.0,
+            "mean": 1.0
+          },
+          "verdict": "KILL"
+        },
+        "drop_2pct": {
+          "note": "2% of whitespace tokens deleted at random",
+          "units": 250,
+          "detection_fraction": 1.0,
+          "units_with_hit": 250,
+          "best_jaccard": {
+            "max": 1.0,
+            "p99": 1.0,
+            "mean": 0.7787
+          },
+          "verdict": "KILL"
+        },
+        "drop_5pct": {
+          "note": "5% of whitespace tokens deleted at random",
+          "units": 250,
+          "detection_fraction": 0.976,
+          "units_with_hit": 244,
+          "best_jaccard": {
+            "max": 1.0,
+            "p99": 0.9615,
+            "mean": 0.5499
+          },
+          "verdict": "KILL"
+        },
+        "drop_10pct": {
+          "note": "10% of whitespace tokens deleted at random",
+          "units": 250,
+          "detection_fraction": 0.584,
+          "units_with_hit": 146,
+          "best_jaccard": {
+            "max": 0.75,
+            "p99": 0.6512,
+            "mean": 0.3247
+          },
+          "verdict": "KILL"
+        },
+        "drop_5pct_cut_60pct": {
+          "note": "5% deleted then cut to 60% of length",
+          "units": 250,
+          "detection_fraction": 0.724,
+          "units_with_hit": 181,
+          "best_jaccard": {
+            "max": 0.6346,
+            "p99": 0.559,
+            "mean": 0.3521
+          },
+          "verdict": "KILL"
+        },
+        "cut_50pct": {
+          "note": "first half of the document only",
+          "units": 250,
+          "detection_fraction": 0.996,
+          "units_with_hit": 249,
+          "best_jaccard": {
+            "max": 0.9907,
+            "p99": 0.7342,
+            "mean": 0.4761
+          },
+          "verdict": "KILL"
+        }
+      },
+      "fires": true,
+      "reading": "the gate fires on real near-duplicate text and its detection degrades with the damage applied, while the member itself reads 0.000 against the same reference side - so the member's clean verdict comes from a live instrument"
+    },
+    "status": "GREEN",
+    "seconds": 19.1
+  },
+  "C5": {
+    "verdict": "PASS",
+    "clause": "C5",
+    "recomputed_from_the_parquet": true,
+    "note": "recomputed here from the artifact; nothing is cited from the build manifest",
+    "registered_conjunction": {
+      "claim_only_converged_probe": {
+        "value": 0.507675,
+        "bar": "< 0.55",
+        "pass": true,
+        "scoring": "5-fold document-disjoint, out of fold, direction-stratified, liblinear tol 1e-7, char_wb 2-5 TF-IDF",
+        "documents": 5749,
+        "rows": 30000,
+        "two_sided_deviation_report_only": 0.007675,
+        "why_two_sided_is_reported": "the registered bar is one-sided, and a rejected corruption design of this lane read 0.1923 - a leak the one-sided bar would have passed"
+      },
+      "within_pair_claim_only": {
+        "per_family": {
+          "difference": {
+            "acc": 0.505524,
+            "pairs": 5250
+          },
+          "percentage": {
+            "acc": 0.531429,
+            "pairs": 5250
+          },
+          "product": {
+            "acc": 0.507556,
+            "pairs": 2250
+          },
+          "sum": {
+            "acc": 0.502667,
+            "pairs": 2250
+          }
+        },
+        "worst": 0.531429,
+        "bar": "< 0.60",
+        "pass": true,
+        "worst_two_sided_deviation_report_only": 0.031429
+      },
+      "single_channel_probes": {
+        "evidence_only": {
+          "within_pair_identical_chunk_share": 1.0,
+          "auroc": 0.5,
+          "reading": "the legs of a pair share the evidence byte-identically, so an evidence-only reader is exactly at chance within pair - measured, not assumed"
+        },
+        "question_only": {
+          "value": null,
+          "reading": "NOT COMPUTABLE - the lane carries no question field; the construction implies no question channel"
+        }
+      },
+      "surface_parity_channels": {
+        "character_length": {
+          "pooled": 0.5,
+          "per_family": {
+            "difference": 0.5,
+            "percentage": 0.5,
+            "product": 0.5,
+            "sum": 0.5
+          },
+          "worst_deviation_from_0.5": 0.0,
+          "in_band_0.45_0.55": true
+        },
+        "sentence_count": {
+          "pooled": 0.5,
+          "per_family": {
+            "difference": 0.5,
+            "percentage": 0.5,
+            "product": 0.5,
+            "sum": 0.5
+          },
+          "worst_deviation_from_0.5": 0.0,
+          "in_band_0.45_0.55": true
+        },
+        "numeric_token_count": {
+          "pooled": 0.5,
+          "per_family": {
+            "difference": 0.5,
+            "percentage": 0.5,
+            "product": 0.5,
+            "sum": 0.5
+          },
+          "worst_deviation_from_0.5": 0.0,
+          "in_band_0.45_0.55": true
+        },
+        "numeric_density_per_100_chars": {
+          "pooled": 0.5,
+          "per_family": {
+            "difference": 0.5,
+            "percentage": 0.5,
+            "product": 0.5,
+            "sum": 0.5
+          },
+          "worst_deviation_from_0.5": 0.0,
+          "in_band_0.45_0.55": true
+        },
+        "derivation_marker_count": {
+          "pooled": 0.5,
+          "per_family": {
+            "difference": 0.5,
+            "percentage": 0.5,
+            "product": 0.5,
+            "sum": 0.5
+          },
+          "worst_deviation_from_0.5": 0.0,
+          "in_band_0.45_0.55": true
+        },
+        "equals_count": {
+          "pooled": 0.5,
+          "per_family": {
+            "difference": 0.5,
+            "percentage": 0.5,
+            "product": 0.5,
+            "sum": 0.5
+          },
+          "worst_deviation_from_0.5": 0.0,
+          "in_band_0.45_0.55": true
+        },
+        "newline_count": {
+          "pooled": 0.5,
+          "per_family": {
+            "difference": 0.5,
+            "percentage": 0.5,
+            "product": 0.5,
+            "sum": 0.5
+          },
+          "worst_deviation_from_0.5": 0.0,
+          "in_band_0.45_0.55": true
+        },
+        "word_count": {
+          "pooled": 0.5,
+          "per_family": {
+            "difference": 0.5,
+            "percentage": 0.5,
+            "product": 0.5,
+            "sum": 0.5
+          },
+          "worst_deviation_from_0.5": 0.0,
+          "in_band_0.45_0.55": true
+        },
+        "digit_char_fraction": {
+          "pooled": 0.5,
+          "per_family": {
+            "difference": 0.5,
+            "percentage": 0.5,
+            "product": 0.5,
+            "sum": 0.5
+          },
+          "worst_deviation_from_0.5": 0.0,
+          "in_band_0.45_0.55": true
+        },
+        "chars_per_sentence": {
+          "pooled": 0.5,
+          "per_family": {
+            "difference": 0.5,
+            "percentage": 0.5,
+            "product": 0.5,
+            "sum": 0.5
+          },
+          "worst_deviation_from_0.5": 0.0,
+          "in_band_0.45_0.55": true
+        }
+      },
+      "surface_parity_worst": {
+        "channel": "chars_per_sentence",
+        "pooled": 0.5,
+        "worst_deviation_from_0.5": 0.0,
+        "bar": "in [0.45, 0.55] on every channel",
+        "pass": true
+      },
+      "digit_surface_parity": {
+        "pairs": 15000,
+        "identical_signature_rate": 1.0,
+        "identical_rendered_length_rate": 1.0,
+        "share_twin_above_true": 0.5,
+        "digit_count_auroc": 0.5,
+        "trailing_zero_auroc": 0.5,
+        "magnitude_decade_auroc": 0.5,
+        "value_magnitude_auroc": 0.5,
+        "bar": "signature identical on every pair, 50/50 above and below, digit-count / trailing-zero / decade AUROC in [0.45, 0.55]",
+        "pass": true
+      },
+      "balance": {
+        "family_rows": {
+          "difference": 10500,
+          "percentage": 10500,
+          "sum": 4500,
+          "product": 4500
+        },
+        "direction_rows": {
+          "difference:down": 5250,
+          "percentage:up": 5250,
+          "product:up": 2250,
+          "percentage:down": 5250,
+          "sum:down": 2250,
+          "sum:up": 2250,
+          "product:down": 2250,
+          "difference:up": 5250
+        },
+        "direction_balance_exact_50_50_per_family": true
+      }
+    },
+    "arithmetic_rederivation": {
+      "method": "every row recomputed from its two stated operands, full population",
+      "positive_rows": 15000,
+      "positives_verified": 15000,
+      "negative_rows": 15000,
+      "negatives_refuted": 15000,
+      "errors": 0,
+      "error_kinds": {},
+      "bar": "0 errors",
+      "pass": true
+    },
+    "all_registered_bars_pass": true,
+    "executor_added_probes_reported_separately": {
+      "note": "NOT part of the registered conjunction; reported so they cannot silently join it (C5 provenance)",
+      "leading_digit_auroc": 0.5,
+      "decimal_presence_auroc": 0.5,
+      "claim_token_count_auroc": 0.5,
+      "containment_auroc": 0.500292
+    },
+    "seconds": 44.0
+  },
+  "C6": {
+    "verdict": "PASS",
+    "clause": "C6",
+    "pair_key": "the evidence chunk - the two legs of a pair carry it byte-identically",
+    "eval_facing_mix_association": {
+      "definition": "mean label the REST of the assembled mix attaches to this row's evidence key (whitespace-normalised) - the channel that caught attr_pool at 0.9999 and the withdrawn R20-H175b eval at 0.6230",
+      "mix_rows": 760618,
+      "mix_groups": [
+        "attr_pool",
+        "frame_reject",
+        "halueval",
+        "path_bind",
+        "psiloqa",
+        "quant_misbind",
+        "quant_scale_unit",
+        "ragtruth_cn",
+        "ragtruth_de",
+        "ragtruth_en",
+        "ragtruth_es",
+        "ragtruth_fr",
+        "ragtruth_hu",
+        "ragtruth_it",
+        "ragtruth_pl",
+        "tabfact",
+        "vitaminc"
+      ],
+      "key_sharing_by_group": {
+        "quant_misbind": {
+          "rows": 30000,
+          "shared_evidence_raw": 282,
+          "shared_evidence_truncated_1500": 282,
+          "shared_evidence_normalised": 282,
+          "shared_claims_normalised": 0
+        },
+        "quant_scale_unit": {
+          "rows": 5540,
+          "shared_evidence_raw": 5,
+          "shared_evidence_truncated_1500": 5,
+          "shared_evidence_normalised": 5,
+          "shared_claims_normalised": 0
+        },
+        "tabfact": {
+          "rows": 92585,
+          "shared_evidence_raw": 1,
+          "shared_evidence_truncated_1500": 1,
+          "shared_evidence_normalised": 235,
+          "shared_claims_normalised": 0
+        }
+      },
+      "keys_shared_with_any_other_member": 489,
+      "coverage_rows": 2272,
+      "coverage_share": 0.075733,
+      "auroc_vs_label": 0.5,
+      "bar": "undefined or at chance"
+    },
+    "within_member_diagnostics_reported_not_a_bar": {
+      "note": "C-A2 scopes C6 to associations the TRAINING MIX supplies; a within-member leave-one-out lookup is a different question and is reported as a diagnostic",
+      "leave_one_out_label_feature": {
+        "auroc_vs_label": 0.0,
+        "coverage_rows": 30000,
+        "coverage_share": 1.0,
+        "why_it_is_not_a_channel": "with exact 1:1 pairing the leave-one-out value IS the twin's label, so the feature reads AUROC 0.0 on any perfectly paired member. Both legs share the key, so every key-keyed feature takes the same value on both and separates them at exactly 0.5"
+      },
+      "key_keyed_claim_overlap": {
+        "definition": "max Jaccard between this row's claim and any other claim sharing the same evidence chunk",
+        "auroc_vs_label": 0.500088,
+        "coverage_rows": 30000,
+        "coverage_share": 1.0
+      }
+    },
+    "seconds": 36.7
+  },
+  "C7": {
+    "verdict": "PASS",
+    "clause": "declared units and volume",
+    "declared_unit": "BOTH - rows AND pairs are declared in the builder, the manifest and this report",
+    "declared_rows": 30000,
+    "declared_pairs": 15000,
+    "declared_family_pairs": {
+      "difference": 5250,
+      "percentage": 5250,
+      "sum": 2250,
+      "product": 2250
+    },
+    "measured_rows": 30000,
+    "measured_pairs": 15000,
+    "measured_family_pairs": {
+      "percentage": 5250,
+      "difference": 5250,
+      "product": 2250,
+      "sum": 2250
+    },
+    "measured_family_rows": {
+      "sum": 4500,
+      "product": 4500,
+      "difference": 10500,
+      "percentage": 10500
+    },
+    "rows_match": true,
+    "pairs_match": true,
+    "families_match": true,
+    "manifest_declares_both": true,
+    "registration_note": "the member is NEW and is not yet named in any arm wrapper's LANES tuple; the declaration of record is the builder plus this report, and both units are stated in both"
+  },
+  "C8": {
+    "verdict": "PASS",
+    "clause": "provenance, licence and internal structure",
+    "artifact": "experiments/grounding-semantic/R22-H187_num_derive_lane.parquet",
+    "blake2b_64": "f0c05ff077c95ec0",
+    "builder": "experiments/grounding-semantic/R22-H187_num_derive_lane.py, seed 2187",
+    "sources": {
+      "tabfact": {
+        "archive": "data/external/datasets/dataset-tabfact.zip",
+        "sidecar": "data/external/datasets/dataset-tabfact.md (tracked)",
+        "licence": "CC-BY-4.0 (declared in the tracked sidecar)",
+        "licence_declared_in_sidecar": true,
+        "split_read": "the *__train.parquet member ONLY",
+        "selection_predicate": "R17-H144_pairs.tabfact_tables: the *__train.parquet member, deduplicated on table_text; tables with >= 4 body rows of uniform width and >= 2 columns; then a label column (R17-H144_pairs.label_column) and at least one numeric column with a usable header must exist. Every table an evaluation surface names, every table matching an R17-H143 eval-set content fingerprint, and every table_id in a non-train split are dropped whole",
+        "retrieval_script": "scripts/fetch_grounding_datasets.py (tracked)",
+        "retrieval_date_declared_in_sidecar": false,
+        "retrieval_date_observed_from_archive_mtime": "2026-07-31T18:10:02",
+        "gap": "the tracked sidecar names the source, the licence and the fetch script but does not record a retrieval DATE; the date above is the archive's filesystem mtime, which is evidence but not a declaration. The same gap is recorded against quant_misbind's TabFact half"
+      }
+    },
+    "feverous_used": false,
+    "internal_structure": {
+      "rows": 30000,
+      "pairs": 15000,
+      "rows_per_pair": 2.0,
+      "pairs_with_exactly_two_rows": 15000,
+      "distinct_claims": 29940,
+      "distinct_evidence_chunks": 12376,
+      "distinct_documents": 5749,
+      "distinct_source_tables": 5749,
+      "distinct_columns": 1514,
+      "distinct_row_keys": 16936,
+      "distinct_claim_chunk_pairs": 30000,
+      "distinct_asserted_values": 5302,
+      "max_rows_per_chunk": 8,
+      "mean_rows_per_chunk": 2.424047,
+      "max_pairs_per_document": 4,
+      "mean_pairs_per_document": 2.609149,
+      "templates": {
+        "product:0": 1546,
+        "sum:0": 1538,
+        "sum:1": 1612,
+        "product:2": 1516,
+        "difference:1": 3472,
+        "product:1": 1438,
+        "sum:2": 1350,
+        "percentage:2": 3536,
+        "percentage:0": 3470,
+        "difference:2": 3500,
+        "percentage:1": 3494,
+        "difference:0": 3528
+      },
+      "serial_forms": {
+        "keyvalue": 2940,
+        "json_records": 1432,
+        "pipe": 4252,
+        "narrative": 8960,
+        "row_prose": 9212,
+        "markdown": 3204
+      },
+      "rows_by_source": {
+        "tabfact": 30000
+      },
+      "duplicate_claim_strings": 60,
+      "label_balance": {
+        "0": 15000,
+        "1": 15000
+      },
+      "result_digit_lengths": {
+        "2": 10328,
+        "3": 5048,
+        "4": 11712,
+        "5": 2044,
+        "6": 680,
+        "7": 188
+      }
+    },
+    "public_repository_check": {
+      "sources_present": [
+        "tabfact"
+      ],
+      "all_sources_public": true,
+      "method": "every row declares its source; the lane text is TabFact (Wikipedia tables) only"
+    }
+  },
+  "summary": {
+    "pass": [
+      "C1",
+      "C2",
+      "C3",
+      "C4",
+      "C5",
+      "C6",
+      "C7",
+      "C8"
+    ],
+    "fail": [],
+    "not_applicable": [],
+    "conforming": true
+  },
+  "artifacts": [
+    "experiments/grounding-semantic/R22-H187_num_derive_lane.py",
+    "experiments/grounding-semantic/R22-H187_num_derive_lane.parquet",
+    "experiments/grounding-semantic/R22-H187_num_derive_lane_manifest.json",
+    "experiments/grounding-semantic/contract/num_derive_contract.py",
+    "experiments/grounding-semantic/contract/num_derive_contract_report.json",
+    "experiments/grounding-semantic/contract/num_derive_c1.json",
+    "experiments/grounding-semantic/contract/num_derive_c2.json",
+    "experiments/grounding-semantic/contract/num_derive_c3.json",
+    "experiments/grounding-semantic/contract/num_derive_c4.json",
+    "experiments/grounding-semantic/contract/num_derive_c5.json",
+    "experiments/grounding-semantic/contract/num_derive_c6.json",
+    "experiments/grounding-semantic/contract/num_derive_c78.json",
+    "logs/R22-H187_num_derive.log",
+    "logs/R22-H187_num_derive_contract.log"
+  ]
+}

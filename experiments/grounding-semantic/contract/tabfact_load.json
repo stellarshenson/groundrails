@@ -1,0 +1,14 @@
+{
+  "member": "tabfact",
+  "loader": "R10-H108_lane.public_train() under R16-H142_G1_arm.untruncated_evidence(), rows tagged `tabfact`",
+  "archive": "dataset-tabfact.zip :: wenhuchen__Table-Fact-Checking__tabfact__train.parquet",
+  "selection_predicate": "train split only; filter statement.str.len_chars() > 10",
+  "chunk_construction": "f'{table_caption}\\n{table_text}'.replace('\\r\\n','\\n').replace('#',' | ')[:chunk_max_chars]",
+  "chunk_max_chars": 1500,
+  "clean_mix_rows": 685670,
+  "member_rows": 92585,
+  "archive_train_rows": 92585,
+  "rows_dropped_by_filter": 0,
+  "member_share_of_clean_mix": 0.135029,
+  "elapsed_s": 7.7
+}

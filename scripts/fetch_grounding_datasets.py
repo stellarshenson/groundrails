@@ -4,7 +4,9 @@ Survey and selection rationale: reports/research-grounding-datasets.md.
 Registered against round 7 of docs/experiments/semantic-grounding-experiments.md;
 the six R19 supply-wave corpora (fava, pubhealth, minicheck, factscore, findver,
 attributionbench) are registered in docs/experiments/semantic-dataset-enhancements.md
-section "R19 supply wave".
+section "R19 supply wave"; the five R22 derivation-supply corpora (equate,
+numglue, hitab, scitab, drop) answer the R22 audit finding that no member of the
+mix carries a claim stating a value COMPUTED from evidence values.
 
 Every corpus here passed three filters simultaneously, which most did not:
 
@@ -36,6 +38,7 @@ Run:  uv run python scripts/fetch_grounding_datasets.py            # all
 """
 
 from pathlib import Path
+import collections
 import json
 import shutil
 import sys
@@ -44,6 +47,10 @@ import urllib.request
 import zipfile
 
 OUT = Path(__file__).resolve().parent.parent / "data" / "external" / "datasets"
+
+# Stamped into `_counts.json` and the sidecar's Size bullet on a fresh fetch.
+# Corpora banked before this key existed default to their build date, 2026-08-13.
+FETCH_DATE = "2026-08-17"
 
 DEFAULT_PROVENANCE = (
     "Selected in the round 7 dataset survey, `reports/research-grounding-datasets.md`. Every "
@@ -66,6 +73,22 @@ PROVENANCE_R19 = (
     "`experiments/grounding-semantic/R19_{name}_gate.json`; the pair-formatted lane, manifest "
     "and verify\nJSON land beside it as `R19_{name}_lane.parquet` / `_manifest.json` / "
     "`_verify.json`."
+)
+
+PROVENANCE_R22 = (
+    "Selected in the R22 derivation-supply survey of 2026-08-17, whose findings were returned "
+    "to the\ncoordinator for `reports/research-grounding-datasets.md`.  The wave exists "
+    "because the mix has\nnever contained a claim stating a value DERIVED from evidence "
+    "values: every numeric member builds\nits negatives by substituting an operand, so no row "
+    "shows the model correct, present operands\nand a false computed result - which is the "
+    "dominant failure of the finqa arena subset.\nLicence read AT SOURCE in the survey and "
+    "RE-VERIFIED at pull time in this build; the licence\nline above is the tag read from the "
+    "source pulled, not the survey's say-so.  SUPPLY ONLY -\nnothing here enters a training "
+    "mix without its own registered hypothesis and arm.  The contamination gate (R14-H136 "
+    "8-gram Jaccard instrument against\nthe ten walled arena corpora, bar 0.02 max fraction "
+    "plus spike control) runs after this fetch via\n"
+    "`experiments/grounding-semantic/R22_supply_gates.py`, verdict recorded in\n"
+    "`experiments/grounding-semantic/R22_{name}_gate.json`."
 )
 
 # One source of truth: the sidecars are generated from this spec, so a
@@ -428,6 +451,146 @@ DATASETS = {
         "attributable → 0",
         "provenance": PROVENANCE_R19,
     },
+    # ------------------------------------------------------------------ #
+    # R22 derivation-supply wave (2026-08-17).  The binding criterion is
+    # whether the corpus carries claims that state a value COMPUTED from
+    # evidence values - a difference, ratio, percentage, count or ordering -
+    # rather than quoting a figure the evidence already states.  SUPPLY ONLY.
+    # ------------------------------------------------------------------ #
+    "equate": {
+        "title": "EQUATE - quantitative-reasoning NLI, incl. AWPNLI arithmetic entailment",
+        "source": "github.com/AbhilashaRavichander/EQUATE (`ProcessedDatasets/*.jsonl`, "
+        "git-LFS); paper Ravichander et al., CoNLL 2019",
+        "fetcher": "equate",
+        "licence": "MIT (repo LICENSE, GitHub licence API `spdx_id: MIT`, re-read at fetch "
+        "2026-08-17)",
+        "size": "9,702 premise/hypothesis pairs - AWPNLI 722, NewsNLI 968, RTE_Quant 166, "
+        "RedditNLI 250, StressTest 7,596",
+        "languages": "English",
+        "negatives": "For AWPNLI, the SAME premise paired with a hypothesis stating a wrong "
+        "arithmetic result - operands correct and present, only the computed value false, "
+        "361 such against 361 correct. The other four sets carry natural or template "
+        "quantity mismatches",
+        "labels": "Human entailment labels (2-way on AWPNLI and NewsNLI, 3-way elsewhere)",
+        "why": "The ONLY public corpus found carrying the derivation signal in LABELED form "
+        "on both legs. `Sam had 9.0 dimes ... his dad gave him 7.0` / `Sam has 16.0 dimes now` "
+        "→ entailment; `... 17.0 dimes now` → contradiction. That is exactly the finqa failure "
+        "shape - every figure attributable, only the result false - and nothing in the mix "
+        "teaches it.",
+        "caveats": "Small: the derivation-pure part is AWPNLI's 361 pairs. StressTest (7,596) "
+        "is template-perturbed quantifier reasoning in a degraded register ('more than 1 years "
+        "old twin brothers') and is banked SEPARATELY so it can be excluded without a refetch. "
+        "NumGLUE Type_7 re-serves part of the NewsNLI/RTE_Quant/StressTest lineage - do not "
+        "double-count the two members. The CoreNLP parse columns (dep / syntax / binary parse, "
+        "pos, tokens) are DROPPED at fetch; premise, hypothesis and label are kept.",
+        "mapping": "hypothesis → claim; premise → evidence; entailment → 1, "
+        "contradiction/neutral → 0",
+        "provenance": PROVENANCE_R22,
+    },
+    "numglue": {
+        "title": "NumGLUE - eight-task numerical reasoning suite",
+        "source": "github.com/allenai/numglue (`data/NumGLUE_{train,dev,test}.json`, JSONL "
+        "despite the extension); paper Mishra et al., ACL 2022",
+        "fetcher": "numglue",
+        "licence": "ODC-By 1.0 (repo `license.txt`, read at fetch 2026-08-17 - Open Data "
+        "Commons Attribution, commercial use permitted with attribution)",
+        "size": "92,049 rows - 71,281 train / 10,185 dev / 10,583 test across 8 task types",
+        "languages": "English",
+        "negatives": "Only Type_7 (quantitative NLI, 9,452 rows) ships both legs. The word-"
+        "problem types ship the correct answer alone - negatives must be constructed",
+        "labels": "Human, inherited from the eight source tasks",
+        "why": "Type_7 adds ~9.5k labeled quantitative-entailment rows; Types 1/2/4/8 (~3.5k) "
+        "add word problems whose answer is a derived value with the operands stated in the "
+        "text, which is the raw material for a result-perturbation negative the mix has never "
+        "had.",
+        "caveats": "**Type_5 and Type_6 (60,857 rows, 66% of the corpus) ARE DROP items** "
+        "re-served; fetching both this and `drop` double-counts them, and the split axis "
+        "differs between the two. Type_3 is a multiple-choice commonsense-physics task with no "
+        "evidence document. Answers for Types 5/6 are DROP answer dicts, stored JSON-encoded. "
+        "The eight types carry different keys; the frame is the normalized union with nulls.",
+        "mapping": "Type_7 statement2 → claim, statement1 → evidence, Entailment → 1; word-"
+        "problem types: answer → claim value, question text → evidence, negatives constructed",
+        "provenance": PROVENANCE_R22,
+    },
+    "hitab": {
+        "title": "HiTab - hierarchical statistical tables with aggregation operators and "
+        "answer formulas",
+        "source": "github.com/microsoft/HiTab (`data/{train,dev,test}_samples.jsonl` plus "
+        "`data/tables.zip`, 3,597 tables); paper Cheng et al., ACL 2022",
+        "fetcher": "hitab",
+        "licence": "Computational Use of Data Agreement v1.0 (repo LICENSE, read at fetch "
+        "2026-08-17). C-UDA restricts the DATA to Computational Use - clause 5.1, 'activities "
+        "necessary to enable the use of Data for analysis by a computer' - and clause 2.2 "
+        "places NO restriction on Results, so a model trained on it is unencumbered. No "
+        "non-commercial and no research-only clause",
+        "size": "10,672 QA rows over 3,597 hierarchical tables from StatCan, NSF and Wikipedia",
+        "languages": "English",
+        "negatives": "None ship - every row is a true analyst statement. Negatives are "
+        "constructed at lane build by perturbing the RESULT while leaving the linked cells "
+        "intact, which the `answer_formulas` and `linked_cells` fields make deterministic",
+        "labels": "Human annotation of the aggregation operator, the answer formula and the "
+        "cell-level entity/quantity alignment",
+        "why": "The only corpus found that ships the DERIVATION ITSELF machine-readably: each "
+        "row carries the aggregation operator (`div`, `diff`, `sum`, `average`, `argmax`, "
+        "`range`, ...), an Excel-style `answer_formulas` naming the operand cells, and the "
+        "`sub_sentence` a human analyst actually wrote stating the derived value. That makes a "
+        "result-only corruption constructible with the operands provably untouched.",
+        "caveats": "**Lookup-dominant**: on the dev split 1,195 of 1,671 rows carry "
+        "`aggregation: ['none']` - 71.5% are pure lookup and add nothing this wave needs; the "
+        "derived slice is the other ~28%. Statistical-agency register, not business documents. "
+        "Nested fields (`linked_cells`, `reference_cells_map`, `answer`, `aggregation`, "
+        "`answer_formulas`) are JSON-encoded into string columns for a stable parquet schema.",
+        "mapping": "`sub_sentence` → claim; linearized table (title + cells) → evidence; "
+        "shipped rows → 1, result-perturbed rows → 0 (constructed, not shipped)",
+        "provenance": PROVENANCE_R22,
+    },
+    "scitab": {
+        "title": "SciTab - compositional claim verification over scientific tables",
+        "source": "github.com/XinyuanLu00/SciTab (`dataset/sci_tab.json`); paper Lu et al., "
+        "EMNLP 2023",
+        "fetcher": "scitab",
+        "licence": "MIT (repo LICENSE, GitHub licence API `spdx_id: MIT`, re-read at fetch "
+        "2026-08-17)",
+        "size": "1,224 expert-verified claims - 457 supports / 411 refutes / 356 not enough "
+        "info - over tables from arXiv papers",
+        "languages": "English",
+        "negatives": "Counter-claims over the same table, expert-verified; refutation turns on "
+        "the comparison or the computed quantity, not on a swapped entity",
+        "labels": "Human, by the papers' own authors' statements plus expert verification",
+        "why": "Claims are real result statements from papers - 'the models using BoC "
+        "outperform models using BoW as well as ASM features' - whose verification needs a "
+        "comparison across several table cells. Compositional reasoning over numbers is the "
+        "corpus's stated design point, and it ships a NOT-ENOUGH-INFO leg the mix is thin on.",
+        "caveats": "Small (1,224). Scientific-paper register. Three-way labels need collapsing "
+        "to binary and the NEI leg needs a ruling (recommend NEI → 0). Table cells carry "
+        "`[BOLD]` markup from the SciGen extraction that must be stripped at lane build. "
+        "Published as an EVAL benchmark - a later hypothesis decides any training use.",
+        "mapping": "claim → claim; table_caption + linearized table_content_values → evidence; "
+        "supports → 1, refutes/not-enough-info → 0",
+        "provenance": PROVENANCE_R22,
+    },
+    "drop": {
+        "title": "DROP - reading comprehension requiring discrete reasoning over paragraphs",
+        "hf": ["ucinlp/drop"],
+        "licence": "CC-BY-SA-4.0 (HF card YAML `license: cc-by-sa-4.0`, re-verified at the Hub "
+        "2026-08-17)",
+        "size": "86,945 rows - 77,409 train / 9,536 validation",
+        "languages": "English",
+        "negatives": "None ship - answers are correct by construction. Negatives are built by "
+        "perturbing the computed answer while the passage's operands stay untouched",
+        "labels": "Crowdsourced, adversarially filtered against a QA model",
+        "why": "The largest licence-clean supply of derived-value claims over natural prose: "
+        "the benchmark exists precisely because answering needs addition, subtraction, counting "
+        "or sorting over figures the passage states. 96k questions against ~6.7k passages.",
+        "caveats": "**QA, not entailment** - forming a claim needs a question+answer → "
+        "declarative rewrite, and that rewrite is lossy and must be reported as such. Only the "
+        "`number`-typed answers carry the derivation; span and date answers are lookup. "
+        "Wikipedia register (NFL recaps, history) and CC-BY-SA share-alike, the same class of "
+        "term as the banked VitaminC. Overlaps NumGLUE Types 5/6 - do not mix both.",
+        "mapping": "question + answer rewritten to a declarative claim; passage → evidence; "
+        "shipped answer → 1, perturbed result → 0 (constructed, not shipped)",
+        "provenance": PROVENANCE_R22,
+    },
 }
 
 SIDECAR = """# {title}
@@ -474,7 +637,8 @@ def write_sidecar(name, spec, counts=None):
                   if isinstance(v, int) and not k.startswith("_")}
         total = sum(splits.values())
         detail = ", ".join(f"{k}: {v}" for k, v in splits.items())
-        fetched = f"; fetched 2026-08-13: {total} rows ({detail})"
+        fetched = (f"; fetched {counts.get('_fetched_utc', '2026-08-13')}: "
+                   f"{total} rows ({detail})")
     body = SIDECAR.format(
         source_lines=_source_lines(spec),
         fetched=fetched,
@@ -883,7 +1047,152 @@ def fetch_findver(spec, tree):
     return counts
 
 
+# --------------------------------------------------------------------------- #
+# R22 derivation-supply fetchers
+# --------------------------------------------------------------------------- #
+GH_UA = {"User-Agent": "groundrails-research/1.0"}
+
+EQUATE_LFS = ("https://media.githubusercontent.com/media/AbhilashaRavichander/"
+              "EQUATE/master/ProcessedDatasets/")
+EQUATE_SETS = {
+    "awpnli": "AWPNLI.jsonl",
+    "newsnli": "NewsNLI.jsonl",
+    "rte_quant": "RTE_Quant.jsonl",
+    "redditnli": "RedditNLI.jsonl",
+    "stresstest": "StressTest.jsonl",
+}
+EQUATE_KEEP = ("sentence1", "sentence2", "gold_label")
+
+
+def fetch_equate(spec, staging):
+    """The five jsonl files are git-LFS objects, so raw.githubusercontent serves
+    the 132-byte pointer and only the media endpoint returns the bytes.  The
+    CoreNLP columns (dep / syntax / binary parse, pos, tokens) are dropped -
+    60 MB of constituency parses we never read - keeping premise, hypothesis
+    and label.  Each set lands as its own split so StressTest, whose register is
+    degraded template text, can be excluded without a refetch."""
+    import polars as pl
+
+    counts = {}
+    for split, fn in EQUATE_SETS.items():
+        req = urllib.request.Request(EQUATE_LFS + fn, headers=GH_UA)
+        raw = urllib.request.urlopen(req, timeout=600).read().decode("utf-8")
+        rows = [{k: r.get(k) for k in EQUATE_KEEP}
+                for r in (json.loads(ln) for ln in raw.splitlines() if ln.strip())]
+        f = staging / f"EQUATE__{split}.parquet"
+        pl.DataFrame(rows).write_parquet(f)
+        counts[split] = len(rows)
+        print(f"    equate/{split}: {len(rows)} rows -> {f.name}", flush=True)
+    return counts
+
+
+def _codeload(repo, branch="main"):
+    """Repo tree as a ZipFile.  codeload is the route that survives the raw-host
+    rate limiter, which 429s on unauthenticated bursts."""
+    import io
+
+    url = f"https://codeload.github.com/{repo}/zip/refs/heads/{branch}"
+    req = urllib.request.Request(url, headers=GH_UA)
+    return zipfile.ZipFile(io.BytesIO(urllib.request.urlopen(req, timeout=900).read()))
+
+
+NUMGLUE_COLS = ("type", "passage", "question", "statement1", "statement2",
+                "options", "answer")
+
+
+def fetch_numglue(spec, staging):
+    """The three `.json` files are JSONL despite the extension, and the eight
+    task types carry different keys - normalized to the union with nulls, and
+    every non-scalar value (the Type_5/6 DROP answer dicts) JSON-encoded."""
+    import polars as pl
+
+    z = _codeload("allenai/numglue")
+    counts = {}
+    for split in ("train", "dev", "test"):
+        name = next(n for n in z.namelist() if n.endswith(f"NumGLUE_{split}.json"))
+        rows = []
+        for ln in z.read(name).decode("utf-8").splitlines():
+            if not ln.strip():
+                continue
+            r = json.loads(ln)
+            rows.append({c: (r[c] if isinstance(r.get(c), str)
+                             else json.dumps(r[c]) if c in r else None)
+                         for c in NUMGLUE_COLS})
+        f = staging / f"allenai__numglue__{split}.parquet"
+        pl.DataFrame(rows, schema={c: pl.String for c in NUMGLUE_COLS}).write_parquet(f)
+        counts[split] = len(rows)
+        types = collections.Counter(r["type"] for r in rows)
+        print(f"    numglue/{split}: {len(rows)} rows {dict(types)} -> {f.name}", flush=True)
+    return counts
+
+
+HITAB_SCALAR = ("id", "table_id", "table_source", "sub_sentence", "question")
+
+
+def fetch_hitab(spec, staging):
+    """Samples plus the 3,597 tables, which ship as `data/tables.zip` - a zip
+    inside the repo zip.  Nested sample fields are JSON-encoded so the parquet
+    schema is stable across splits."""
+    import io
+
+    import polars as pl
+
+    z = _codeload("microsoft/HiTab")
+    counts = {}
+    for split in ("train", "dev", "test"):
+        name = next(n for n in z.namelist()
+                    if n.endswith(f"data/{split}_samples.jsonl"))
+        rows = []
+        for ln in z.read(name).decode("utf-8").splitlines():
+            if not ln.strip():
+                continue
+            r = json.loads(ln)
+            row = {c: r.get(c) if isinstance(r.get(c), str) else json.dumps(r.get(c))
+                   for c in HITAB_SCALAR}
+            for c in ("answer", "aggregation", "answer_formulas", "linked_cells",
+                      "reference_cells_map"):
+                row[c] = json.dumps(r.get(c))
+            rows.append(row)
+        f = staging / f"microsoft__HiTab__{split}.parquet"
+        pl.DataFrame(rows).write_parquet(f)
+        counts[split] = len(rows)
+        agg = collections.Counter(
+            "none" if json.loads(r["aggregation"]) == ["none"] else "derived" for r in rows)
+        print(f"    hitab/{split}: {len(rows)} rows ({dict(agg)}) -> {f.name}", flush=True)
+
+    inner = zipfile.ZipFile(io.BytesIO(
+        z.read(next(n for n in z.namelist() if n.endswith("data/tables.zip")))))
+    tables = [{"table_file": m.split("/")[-1],
+               "table_json": inner.read(m).decode("utf-8")}
+              for m in inner.namelist() if m.endswith(".json")]
+    f = staging / "microsoft__HiTab__tables.parquet"
+    pl.DataFrame(tables).write_parquet(f)
+    counts["tables"] = len(tables)
+    print(f"    hitab/tables: {len(tables)} tables -> {f.name}", flush=True)
+    return counts
+
+
+def fetch_scitab(spec, staging):
+    """One json file, one split; the table columns and cell values are
+    JSON-encoded (`table_content_values` is a ragged list of lists)."""
+    import polars as pl
+
+    z = _codeload("XinyuanLu00/SciTab")
+    rows = json.loads(z.read(next(n for n in z.namelist() if n.endswith("sci_tab.json"))))
+    frame = [{k: (v if isinstance(v, str) else json.dumps(v)) for k, v in r.items()}
+             for r in rows]
+    f = staging / "XinyuanLu00__SciTab__all.parquet"
+    pl.DataFrame(frame).write_parquet(f)
+    labels = collections.Counter(r["label"] for r in frame)
+    print(f"    scitab/all: {len(frame)} rows {dict(labels)} -> {f.name}", flush=True)
+    return {"all": len(frame)}
+
+
 FETCHERS = {
+    "equate": fetch_equate,
+    "numglue": fetch_numglue,
+    "hitab": fetch_hitab,
+    "scitab": fetch_scitab,
     "fava": fetch_fava,
     "pubhealth": fetch_pubhealth,
     "minicheck": fetch_minicheck,
@@ -915,8 +1224,9 @@ def fetch(name, spec):
         if not counts:
             shutil.rmtree(tree, ignore_errors=True)
             return None, None
+        counts["_fetched_utc"] = FETCH_DATE
         (tree / "_counts.json").write_text(json.dumps(
-            {"counts": counts, "fetched_utc": "2026-08-13", "source": spec.get("source", "")},
+            {"counts": counts, "fetched_utc": FETCH_DATE, "source": spec.get("source", "")},
             indent=2))
         return "tree", counts
 
@@ -933,6 +1243,7 @@ def fetch(name, spec):
     if not counts:
         shutil.rmtree(staging)
         return None, None
+    counts["_fetched_utc"] = FETCH_DATE
     return "staged", counts
 
 
@@ -940,7 +1251,7 @@ def finalize_zip(name, spec, counts):
     """Archive staging + the FINAL sidecar (post-fetch render) + _counts.json."""
     staging = OUT / f"_staging_{name}"
     (staging / "_counts.json").write_text(json.dumps(
-        {"counts": counts, "fetched_utc": "2026-08-13",
+        {"counts": counts, "fetched_utc": counts.get("_fetched_utc", FETCH_DATE),
          "source": spec.get("source") or ", ".join(spec.get("hf", []))}, indent=2))
     archive = OUT / f"dataset-{name}.zip"
     with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as z:

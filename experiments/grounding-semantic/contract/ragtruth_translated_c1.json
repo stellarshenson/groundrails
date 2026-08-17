@@ -1,0 +1,1819 @@
+{
+  "member": "ragtruth_translated",
+  "rows": 105630,
+  "predicate": {
+    "head": "grounding scalar (task_head) - the shipped ground() support score",
+    "label_rule_in_loader": "label = 1.0 iff labels.list.len() == 0, i.e. the row carries NO annotated hallucination span; else 0.0",
+    "corpus_predicate": "RAGTruth response-level faithfulness: a response is labelled unsupported iff a human annotator (spans inherited from the English original and re-aligned after machine translation) marked ANY span of it as evident_conflict or baseless_info against the prompt's source material",
+    "is_support": true,
+    "caveats": [
+      "the unit is the WHOLE response, not a claim - a negative is a response most of which is normally supported, carrying one unsupported span",
+      "the evidence field is the RAGTruth `prompt`, which is the task instruction plus (for QA) the question plus the passages - not a passage alone"
+    ]
+  },
+  "instruments": {
+    "banked": "R20-H174_lane_common.containment verbatim, [a-z0-9]+ over lower(); the instrument behind the campaign's 0.9129 figure",
+    "unicode_primary": "\\w+ re.UNICODE over casefold(), CJK runs split to character BIGRAMS",
+    "unicode_cjk_unigram": "same, CJK runs split to character UNIGRAMS"
+  },
+  "per_language": {
+    "de": {
+      "rows": 15090,
+      "label1_rate": 0.5546,
+      "banked": {
+        "positive": {
+          "n": 8369,
+          "unscorable": 0,
+          "mean": 0.6212,
+          "median": 0.6735,
+          "p10": 0.2452,
+          "p25": 0.5413,
+          "p75": 0.7553,
+          "p90": 0.8246,
+          "frac_ge_0.90": 0.0306,
+          "frac_eq_1.0": 0.0173
+        },
+        "negative": {
+          "n": 6721,
+          "unscorable": 0,
+          "mean": 0.4275,
+          "median": 0.4107,
+          "p10": 0.1892,
+          "p25": 0.2286,
+          "p75": 0.6184,
+          "p90": 0.7188,
+          "frac_ge_0.90": 0.0006,
+          "frac_eq_1.0": 0.0
+        },
+        "gap_mean_pos_minus_neg": 0.1937,
+        "neg_mean": 0.4275,
+        "neg_ge90_share": 0.0006,
+        "neg_fully_attested_share": 0.0,
+        "c1_reject": false,
+        "c1_reject_share_reading": false
+      },
+      "unicode": {
+        "positive": {
+          "n": 8369,
+          "unscorable": 0,
+          "mean": 0.6164,
+          "median": 0.6667,
+          "p10": 0.2567,
+          "p25": 0.5333,
+          "p75": 0.7471,
+          "p90": 0.82,
+          "frac_ge_0.90": 0.0289,
+          "frac_eq_1.0": 0.0173
+        },
+        "negative": {
+          "n": 6721,
+          "unscorable": 0,
+          "mean": 0.4265,
+          "median": 0.4062,
+          "p10": 0.1939,
+          "p25": 0.2366,
+          "p75": 0.6098,
+          "p90": 0.7113,
+          "frac_ge_0.90": 0.0003,
+          "frac_eq_1.0": 0.0
+        },
+        "gap_mean_pos_minus_neg": 0.1899,
+        "neg_mean": 0.4265,
+        "neg_ge90_share": 0.0003,
+        "neg_fully_attested_share": 0.0,
+        "c1_reject": false,
+        "c1_reject_share_reading": false
+      },
+      "unicode_uni": {
+        "positive": {
+          "n": 8369,
+          "unscorable": 0,
+          "mean": 0.6164,
+          "median": 0.6667,
+          "p10": 0.2567,
+          "p25": 0.5333,
+          "p75": 0.7471,
+          "p90": 0.82,
+          "frac_ge_0.90": 0.0289,
+          "frac_eq_1.0": 0.0173
+        },
+        "negative": {
+          "n": 6721,
+          "unscorable": 0,
+          "mean": 0.4265,
+          "median": 0.4062,
+          "p10": 0.1939,
+          "p25": 0.2366,
+          "p75": 0.6098,
+          "p90": 0.7113,
+          "frac_ge_0.90": 0.0003,
+          "frac_eq_1.0": 0.0
+        },
+        "gap_mean_pos_minus_neg": 0.1899,
+        "neg_mean": 0.4265,
+        "neg_ge90_share": 0.0003,
+        "neg_fully_attested_share": 0.0,
+        "c1_reject": false,
+        "c1_reject_share_reading": false
+      },
+      "supplementary_annotated_span_containment": {
+        "note": "EXECUTOR-ADDED probe, reported separately from the registered C1 conjunction - containment of the concatenated annotated hallucinated spans of each negative response",
+        "unicode_primary": {
+          "n": 6721,
+          "unscorable": 0,
+          "mean": 0.3612,
+          "median": 0.3333,
+          "p10": 0.0,
+          "p25": 0.1765,
+          "p75": 0.5,
+          "p90": 0.7143,
+          "frac_ge_0.90": 0.032,
+          "frac_eq_1.0": 0.0247
+        },
+        "banked": {
+          "n": 6721,
+          "unscorable": 0,
+          "mean": 0.3633,
+          "median": 0.3333,
+          "p10": 0.0,
+          "p25": 0.1739,
+          "p75": 0.5263,
+          "p90": 0.7143,
+          "frac_ge_0.90": 0.0333,
+          "frac_eq_1.0": 0.0251
+        }
+      },
+      "by_task_type_unicode_primary": {
+        "Data2txt": {
+          "positive": {
+            "n": 1623,
+            "unscorable": 0,
+            "mean": 0.289,
+            "median": 0.2551,
+            "p10": 0.1905,
+            "p25": 0.2181,
+            "p75": 0.3248,
+            "p90": 0.4658,
+            "frac_ge_0.90": 0.0,
+            "frac_eq_1.0": 0.0
+          },
+          "negative": {
+            "n": 3675,
+            "unscorable": 0,
+            "mean": 0.2726,
+            "median": 0.2439,
+            "p10": 0.1758,
+            "p25": 0.2049,
+            "p75": 0.3138,
+            "p90": 0.4333,
+            "frac_ge_0.90": 0.0,
+            "frac_eq_1.0": 0.0
+          },
+          "gap_mean_pos_minus_neg": 0.0164,
+          "neg_mean": 0.2726,
+          "neg_ge90_share": 0.0,
+          "neg_fully_attested_share": 0.0,
+          "c1_reject": false,
+          "c1_reject_share_reading": false
+        },
+        "QA": {
+          "positive": {
+            "n": 3470,
+            "unscorable": 0,
+            "mean": 0.6788,
+            "median": 0.6758,
+            "p10": 0.5161,
+            "p25": 0.595,
+            "p75": 0.7571,
+            "p90": 0.8462,
+            "frac_ge_0.90": 0.0519,
+            "frac_eq_1.0": 0.0412
+          },
+          "negative": {
+            "n": 1564,
+            "unscorable": 0,
+            "mean": 0.5541,
+            "median": 0.5596,
+            "p10": 0.3918,
+            "p25": 0.471,
+            "p75": 0.6379,
+            "p90": 0.7115,
+            "frac_ge_0.90": 0.0006,
+            "frac_eq_1.0": 0.0
+          },
+          "gap_mean_pos_minus_neg": 0.1247,
+          "neg_mean": 0.5541,
+          "neg_ge90_share": 0.0006,
+          "neg_fully_attested_share": 0.0,
+          "c1_reject": false,
+          "c1_reject_share_reading": false
+        },
+        "Summary": {
+          "positive": {
+            "n": 3276,
+            "unscorable": 0,
+            "mean": 0.7124,
+            "median": 0.7143,
+            "p10": 0.5976,
+            "p25": 0.6538,
+            "p75": 0.7733,
+            "p90": 0.8269,
+            "frac_ge_0.90": 0.0189,
+            "frac_eq_1.0": 0.0006
+          },
+          "negative": {
+            "n": 1482,
+            "unscorable": 0,
+            "mean": 0.6734,
+            "median": 0.6763,
+            "p10": 0.5626,
+            "p25": 0.6173,
+            "p75": 0.7313,
+            "p90": 0.7838,
+            "frac_ge_0.90": 0.0007,
+            "frac_eq_1.0": 0.0
+          },
+          "gap_mean_pos_minus_neg": 0.039,
+          "neg_mean": 0.6734,
+          "neg_ge90_share": 0.0007,
+          "neg_fully_attested_share": 0.0,
+          "c1_reject": false,
+          "c1_reject_share_reading": false
+        }
+      }
+    },
+    "fr": {
+      "rows": 15090,
+      "label1_rate": 0.5547,
+      "banked": {
+        "positive": {
+          "n": 8370,
+          "unscorable": 0,
+          "mean": 0.7176,
+          "median": 0.7538,
+          "p10": 0.5,
+          "p25": 0.6377,
+          "p75": 0.8276,
+          "p90": 0.8889,
+          "frac_ge_0.90": 0.084,
+          "frac_eq_1.0": 0.0026
+        },
+        "negative": {
+          "n": 6720,
+          "unscorable": 0,
+          "mean": 0.5569,
+          "median": 0.5481,
+          "p10": 0.3048,
+          "p25": 0.4556,
+          "p75": 0.6914,
+          "p90": 0.7826,
+          "frac_ge_0.90": 0.0061,
+          "frac_eq_1.0": 0.0001
+        },
+        "gap_mean_pos_minus_neg": 0.1607,
+        "neg_mean": 0.5569,
+        "neg_ge90_share": 0.0061,
+        "neg_fully_attested_share": 0.0001,
+        "c1_reject": false,
+        "c1_reject_share_reading": false
+      },
+      "unicode": {
+        "positive": {
+          "n": 8370,
+          "unscorable": 0,
+          "mean": 0.7026,
+          "median": 0.7389,
+          "p10": 0.479,
+          "p25": 0.6203,
+          "p75": 0.8158,
+          "p90": 0.8788,
+          "frac_ge_0.90": 0.0491,
+          "frac_eq_1.0": 0.0025
+        },
+        "negative": {
+          "n": 6720,
+          "unscorable": 0,
+          "mean": 0.5378,
+          "median": 0.5263,
+          "p10": 0.2856,
+          "p25": 0.4328,
+          "p75": 0.6748,
+          "p90": 0.7671,
+          "frac_ge_0.90": 0.0036,
+          "frac_eq_1.0": 0.0001
+        },
+        "gap_mean_pos_minus_neg": 0.1648,
+        "neg_mean": 0.5378,
+        "neg_ge90_share": 0.0036,
+        "neg_fully_attested_share": 0.0001,
+        "c1_reject": false,
+        "c1_reject_share_reading": false
+      },
+      "unicode_uni": {
+        "positive": {
+          "n": 8370,
+          "unscorable": 0,
+          "mean": 0.7026,
+          "median": 0.7389,
+          "p10": 0.479,
+          "p25": 0.6203,
+          "p75": 0.8158,
+          "p90": 0.8788,
+          "frac_ge_0.90": 0.0491,
+          "frac_eq_1.0": 0.0025
+        },
+        "negative": {
+          "n": 6720,
+          "unscorable": 0,
+          "mean": 0.5378,
+          "median": 0.5263,
+          "p10": 0.2856,
+          "p25": 0.4328,
+          "p75": 0.6748,
+          "p90": 0.7671,
+          "frac_ge_0.90": 0.0036,
+          "frac_eq_1.0": 0.0001
+        },
+        "gap_mean_pos_minus_neg": 0.1648,
+        "neg_mean": 0.5378,
+        "neg_ge90_share": 0.0036,
+        "neg_fully_attested_share": 0.0001,
+        "c1_reject": false,
+        "c1_reject_share_reading": false
+      },
+      "supplementary_annotated_span_containment": {
+        "note": "EXECUTOR-ADDED probe, reported separately from the registered C1 conjunction - containment of the concatenated annotated hallucinated spans of each negative response",
+        "unicode_primary": {
+          "n": 6720,
+          "unscorable": 0,
+          "mean": 0.5155,
+          "median": 0.5,
+          "p10": 0.25,
+          "p25": 0.3702,
+          "p75": 0.6667,
+          "p90": 0.8,
+          "frac_ge_0.90": 0.0576,
+          "frac_eq_1.0": 0.0408
+        },
+        "banked": {
+          "n": 6720,
+          "unscorable": 0,
+          "mean": 0.535,
+          "median": 0.5294,
+          "p10": 0.25,
+          "p25": 0.3913,
+          "p75": 0.6667,
+          "p90": 0.8333,
+          "frac_ge_0.90": 0.0618,
+          "frac_eq_1.0": 0.0448
+        }
+      },
+      "by_task_type_unicode_primary": {
+        "Data2txt": {
+          "positive": {
+            "n": 1623,
+            "unscorable": 0,
+            "mean": 0.4544,
+            "median": 0.4828,
+            "p10": 0.2542,
+            "p25": 0.3974,
+            "p75": 0.5368,
+            "p90": 0.5806,
+            "frac_ge_0.90": 0.0,
+            "frac_eq_1.0": 0.0
+          },
+          "negative": {
+            "n": 3675,
+            "unscorable": 0,
+            "mean": 0.4234,
+            "median": 0.4495,
+            "p10": 0.2388,
+            "p25": 0.3587,
+            "p75": 0.5043,
+            "p90": 0.55,
+            "frac_ge_0.90": 0.0,
+            "frac_eq_1.0": 0.0
+          },
+          "gap_mean_pos_minus_neg": 0.031,
+          "neg_mean": 0.4234,
+          "neg_ge90_share": 0.0,
+          "neg_fully_attested_share": 0.0,
+          "c1_reject": false,
+          "c1_reject_share_reading": false
+        },
+        "QA": {
+          "positive": {
+            "n": 3471,
+            "unscorable": 0,
+            "mean": 0.7604,
+            "median": 0.7705,
+            "p10": 0.6164,
+            "p25": 0.6914,
+            "p75": 0.8421,
+            "p90": 0.8889,
+            "frac_ge_0.90": 0.066,
+            "frac_eq_1.0": 0.0055
+          },
+          "negative": {
+            "n": 1563,
+            "unscorable": 0,
+            "mean": 0.632,
+            "median": 0.6387,
+            "p10": 0.4706,
+            "p25": 0.5529,
+            "p75": 0.7198,
+            "p90": 0.7895,
+            "frac_ge_0.90": 0.0077,
+            "frac_eq_1.0": 0.0006
+          },
+          "gap_mean_pos_minus_neg": 0.1284,
+          "neg_mean": 0.632,
+          "neg_ge90_share": 0.0077,
+          "neg_fully_attested_share": 0.0006,
+          "c1_reject": false,
+          "c1_reject_share_reading": false
+        },
+        "Summary": {
+          "positive": {
+            "n": 3276,
+            "unscorable": 0,
+            "mean": 0.7643,
+            "median": 0.7667,
+            "p10": 0.6527,
+            "p25": 0.7079,
+            "p75": 0.8235,
+            "p90": 0.8736,
+            "frac_ge_0.90": 0.0556,
+            "frac_eq_1.0": 0.0006
+          },
+          "negative": {
+            "n": 1482,
+            "unscorable": 0,
+            "mean": 0.7223,
+            "median": 0.7292,
+            "p10": 0.6125,
+            "p25": 0.6705,
+            "p75": 0.7778,
+            "p90": 0.8235,
+            "frac_ge_0.90": 0.0081,
+            "frac_eq_1.0": 0.0
+          },
+          "gap_mean_pos_minus_neg": 0.042,
+          "neg_mean": 0.7223,
+          "neg_ge90_share": 0.0081,
+          "neg_fully_attested_share": 0.0,
+          "c1_reject": false,
+          "c1_reject_share_reading": false
+        }
+      }
+    },
+    "es": {
+      "rows": 15090,
+      "label1_rate": 0.5547,
+      "banked": {
+        "positive": {
+          "n": 8370,
+          "unscorable": 0,
+          "mean": 0.7159,
+          "median": 0.7326,
+          "p10": 0.5263,
+          "p25": 0.6234,
+          "p75": 0.8095,
+          "p90": 0.873,
+          "frac_ge_0.90": 0.0654,
+          "frac_eq_1.0": 0.0268
+        },
+        "negative": {
+          "n": 6720,
+          "unscorable": 0,
+          "mean": 0.5705,
+          "median": 0.5476,
+          "p10": 0.4217,
+          "p25": 0.4762,
+          "p75": 0.6667,
+          "p90": 0.7593,
+          "frac_ge_0.90": 0.0028,
+          "frac_eq_1.0": 0.0001
+        },
+        "gap_mean_pos_minus_neg": 0.1454,
+        "neg_mean": 0.5705,
+        "neg_ge90_share": 0.0028,
+        "neg_fully_attested_share": 0.0001,
+        "c1_reject": false,
+        "c1_reject_share_reading": false
+      },
+      "unicode": {
+        "positive": {
+          "n": 8370,
+          "unscorable": 0,
+          "mean": 0.7037,
+          "median": 0.7212,
+          "p10": 0.5053,
+          "p25": 0.608,
+          "p75": 0.8,
+          "p90": 0.8652,
+          "frac_ge_0.90": 0.06,
+          "frac_eq_1.0": 0.0266
+        },
+        "negative": {
+          "n": 6720,
+          "unscorable": 0,
+          "mean": 0.5539,
+          "median": 0.5289,
+          "p10": 0.4,
+          "p25": 0.4556,
+          "p75": 0.6538,
+          "p90": 0.75,
+          "frac_ge_0.90": 0.0025,
+          "frac_eq_1.0": 0.0001
+        },
+        "gap_mean_pos_minus_neg": 0.1498,
+        "neg_mean": 0.5539,
+        "neg_ge90_share": 0.0025,
+        "neg_fully_attested_share": 0.0001,
+        "c1_reject": false,
+        "c1_reject_share_reading": false
+      },
+      "unicode_uni": {
+        "positive": {
+          "n": 8370,
+          "unscorable": 0,
+          "mean": 0.7037,
+          "median": 0.7212,
+          "p10": 0.5053,
+          "p25": 0.608,
+          "p75": 0.8,
+          "p90": 0.8652,
+          "frac_ge_0.90": 0.06,
+          "frac_eq_1.0": 0.0266
+        },
+        "negative": {
+          "n": 6720,
+          "unscorable": 0,
+          "mean": 0.5539,
+          "median": 0.5289,
+          "p10": 0.4,
+          "p25": 0.4556,
+          "p75": 0.6538,
+          "p90": 0.75,
+          "frac_ge_0.90": 0.0025,
+          "frac_eq_1.0": 0.0001
+        },
+        "gap_mean_pos_minus_neg": 0.1498,
+        "neg_mean": 0.5539,
+        "neg_ge90_share": 0.0025,
+        "neg_fully_attested_share": 0.0001,
+        "c1_reject": false,
+        "c1_reject_share_reading": false
+      },
+      "supplementary_annotated_span_containment": {
+        "note": "EXECUTOR-ADDED probe, reported separately from the registered C1 conjunction - containment of the concatenated annotated hallucinated spans of each negative response",
+        "unicode_primary": {
+          "n": 6720,
+          "unscorable": 0,
+          "mean": 0.5226,
+          "median": 0.5,
+          "p10": 0.25,
+          "p25": 0.3939,
+          "p75": 0.6667,
+          "p90": 0.8056,
+          "frac_ge_0.90": 0.0583,
+          "frac_eq_1.0": 0.0475
+        },
+        "banked": {
+          "n": 6720,
+          "unscorable": 0,
+          "mean": 0.5455,
+          "median": 0.5417,
+          "p10": 0.2857,
+          "p25": 0.4176,
+          "p75": 0.68,
+          "p90": 0.8333,
+          "frac_ge_0.90": 0.0626,
+          "frac_eq_1.0": 0.0493
+        }
+      },
+      "by_task_type_unicode_primary": {
+        "Data2txt": {
+          "positive": {
+            "n": 1623,
+            "unscorable": 0,
+            "mean": 0.5132,
+            "median": 0.5152,
+            "p10": 0.4257,
+            "p25": 0.4692,
+            "p75": 0.5623,
+            "p90": 0.602,
+            "frac_ge_0.90": 0.0,
+            "frac_eq_1.0": 0.0
+          },
+          "negative": {
+            "n": 3675,
+            "unscorable": 0,
+            "mean": 0.4707,
+            "median": 0.4737,
+            "p10": 0.3801,
+            "p25": 0.4241,
+            "p75": 0.5191,
+            "p90": 0.563,
+            "frac_ge_0.90": 0.0,
+            "frac_eq_1.0": 0.0
+          },
+          "gap_mean_pos_minus_neg": 0.0425,
+          "neg_mean": 0.4707,
+          "neg_ge90_share": 0.0,
+          "neg_fully_attested_share": 0.0,
+          "c1_reject": false,
+          "c1_reject_share_reading": false
+        },
+        "QA": {
+          "positive": {
+            "n": 3471,
+            "unscorable": 0,
+            "mean": 0.75,
+            "median": 0.75,
+            "p10": 0.6,
+            "p25": 0.6721,
+            "p75": 0.8235,
+            "p90": 0.9038,
+            "frac_ge_0.90": 0.104,
+            "frac_eq_1.0": 0.0637
+          },
+          "negative": {
+            "n": 1563,
+            "unscorable": 0,
+            "mean": 0.609,
+            "median": 0.6139,
+            "p10": 0.4437,
+            "p25": 0.5271,
+            "p75": 0.6957,
+            "p90": 0.769,
+            "frac_ge_0.90": 0.0051,
+            "frac_eq_1.0": 0.0006
+          },
+          "gap_mean_pos_minus_neg": 0.141,
+          "neg_mean": 0.609,
+          "neg_ge90_share": 0.0051,
+          "neg_fully_attested_share": 0.0006,
+          "c1_reject": false,
+          "c1_reject_share_reading": false
+        },
+        "Summary": {
+          "positive": {
+            "n": 3276,
+            "unscorable": 0,
+            "mean": 0.749,
+            "median": 0.7523,
+            "p10": 0.6316,
+            "p25": 0.6905,
+            "p75": 0.8108,
+            "p90": 0.8624,
+            "frac_ge_0.90": 0.043,
+            "frac_eq_1.0": 0.0006
+          },
+          "negative": {
+            "n": 1482,
+            "unscorable": 0,
+            "mean": 0.7019,
+            "median": 0.7089,
+            "p10": 0.5872,
+            "p25": 0.6435,
+            "p75": 0.7632,
+            "p90": 0.8111,
+            "frac_ge_0.90": 0.0061,
+            "frac_eq_1.0": 0.0
+          },
+          "gap_mean_pos_minus_neg": 0.0471,
+          "neg_mean": 0.7019,
+          "neg_ge90_share": 0.0061,
+          "neg_fully_attested_share": 0.0,
+          "c1_reject": false,
+          "c1_reject_share_reading": false
+        }
+      }
+    },
+    "it": {
+      "rows": 15090,
+      "label1_rate": 0.5546,
+      "banked": {
+        "positive": {
+          "n": 8369,
+          "unscorable": 0,
+          "mean": 0.7044,
+          "median": 0.7204,
+          "p10": 0.5227,
+          "p25": 0.6129,
+          "p75": 0.8033,
+          "p90": 0.8571,
+          "frac_ge_0.90": 0.0354,
+          "frac_eq_1.0": 0.0037
+        },
+        "negative": {
+          "n": 6721,
+          "unscorable": 0,
+          "mean": 0.5655,
+          "median": 0.5435,
+          "p10": 0.4138,
+          "p25": 0.4713,
+          "p75": 0.661,
+          "p90": 0.7541,
+          "frac_ge_0.90": 0.0034,
+          "frac_eq_1.0": 0.0001
+        },
+        "gap_mean_pos_minus_neg": 0.1389,
+        "neg_mean": 0.5655,
+        "neg_ge90_share": 0.0034,
+        "neg_fully_attested_share": 0.0001,
+        "c1_reject": false,
+        "c1_reject_share_reading": false
+      },
+      "unicode": {
+        "positive": {
+          "n": 8369,
+          "unscorable": 0,
+          "mean": 0.7048,
+          "median": 0.7222,
+          "p10": 0.5217,
+          "p25": 0.6124,
+          "p75": 0.8046,
+          "p90": 0.8571,
+          "frac_ge_0.90": 0.0361,
+          "frac_eq_1.0": 0.0037
+        },
+        "negative": {
+          "n": 6721,
+          "unscorable": 0,
+          "mean": 0.5647,
+          "median": 0.5417,
+          "p10": 0.4133,
+          "p25": 0.47,
+          "p75": 0.6625,
+          "p90": 0.7561,
+          "frac_ge_0.90": 0.0036,
+          "frac_eq_1.0": 0.0001
+        },
+        "gap_mean_pos_minus_neg": 0.1401,
+        "neg_mean": 0.5647,
+        "neg_ge90_share": 0.0036,
+        "neg_fully_attested_share": 0.0001,
+        "c1_reject": false,
+        "c1_reject_share_reading": false
+      },
+      "unicode_uni": {
+        "positive": {
+          "n": 8369,
+          "unscorable": 0,
+          "mean": 0.7048,
+          "median": 0.7222,
+          "p10": 0.5217,
+          "p25": 0.6124,
+          "p75": 0.8046,
+          "p90": 0.8571,
+          "frac_ge_0.90": 0.0361,
+          "frac_eq_1.0": 0.0037
+        },
+        "negative": {
+          "n": 6721,
+          "unscorable": 0,
+          "mean": 0.5647,
+          "median": 0.5417,
+          "p10": 0.4133,
+          "p25": 0.47,
+          "p75": 0.6625,
+          "p90": 0.7561,
+          "frac_ge_0.90": 0.0036,
+          "frac_eq_1.0": 0.0001
+        },
+        "gap_mean_pos_minus_neg": 0.1401,
+        "neg_mean": 0.5647,
+        "neg_ge90_share": 0.0036,
+        "neg_fully_attested_share": 0.0001,
+        "c1_reject": false,
+        "c1_reject_share_reading": false
+      },
+      "supplementary_annotated_span_containment": {
+        "note": "EXECUTOR-ADDED probe, reported separately from the registered C1 conjunction - containment of the concatenated annotated hallucinated spans of each negative response",
+        "unicode_primary": {
+          "n": 6721,
+          "unscorable": 0,
+          "mean": 0.5253,
+          "median": 0.5,
+          "p10": 0.25,
+          "p25": 0.3913,
+          "p75": 0.6667,
+          "p90": 0.8333,
+          "frac_ge_0.90": 0.0626,
+          "frac_eq_1.0": 0.0497
+        },
+        "banked": {
+          "n": 6721,
+          "unscorable": 0,
+          "mean": 0.5233,
+          "median": 0.5,
+          "p10": 0.25,
+          "p25": 0.3846,
+          "p75": 0.6667,
+          "p90": 0.8333,
+          "frac_ge_0.90": 0.0623,
+          "frac_eq_1.0": 0.0506
+        }
+      },
+      "by_task_type_unicode_primary": {
+        "Data2txt": {
+          "positive": {
+            "n": 1623,
+            "unscorable": 0,
+            "mean": 0.5337,
+            "median": 0.5375,
+            "p10": 0.4444,
+            "p25": 0.4883,
+            "p75": 0.584,
+            "p90": 0.6229,
+            "frac_ge_0.90": 0.0,
+            "frac_eq_1.0": 0.0
+          },
+          "negative": {
+            "n": 3675,
+            "unscorable": 0,
+            "mean": 0.4864,
+            "median": 0.4889,
+            "p10": 0.3956,
+            "p25": 0.4403,
+            "p75": 0.5357,
+            "p90": 0.5814,
+            "frac_ge_0.90": 0.0,
+            "frac_eq_1.0": 0.0
+          },
+          "gap_mean_pos_minus_neg": 0.0473,
+          "neg_mean": 0.4864,
+          "neg_ge90_share": 0.0,
+          "neg_fully_attested_share": 0.0,
+          "c1_reject": false,
+          "c1_reject_share_reading": false
+        },
+        "QA": {
+          "positive": {
+            "n": 3470,
+            "unscorable": 0,
+            "mean": 0.7384,
+            "median": 0.75,
+            "p10": 0.5873,
+            "p25": 0.6638,
+            "p75": 0.8261,
+            "p90": 0.8652,
+            "frac_ge_0.90": 0.0496,
+            "frac_eq_1.0": 0.0086
+          },
+          "negative": {
+            "n": 1564,
+            "unscorable": 0,
+            "mean": 0.6075,
+            "median": 0.6134,
+            "p10": 0.4367,
+            "p25": 0.5268,
+            "p75": 0.6987,
+            "p90": 0.7689,
+            "frac_ge_0.90": 0.0077,
+            "frac_eq_1.0": 0.0006
+          },
+          "gap_mean_pos_minus_neg": 0.1309,
+          "neg_mean": 0.6075,
+          "neg_ge90_share": 0.0077,
+          "neg_fully_attested_share": 0.0006,
+          "c1_reject": false,
+          "c1_reject_share_reading": false
+        },
+        "Summary": {
+          "positive": {
+            "n": 3276,
+            "unscorable": 0,
+            "mean": 0.754,
+            "median": 0.7579,
+            "p10": 0.6379,
+            "p25": 0.6973,
+            "p75": 0.8169,
+            "p90": 0.8654,
+            "frac_ge_0.90": 0.0397,
+            "frac_eq_1.0": 0.0003
+          },
+          "negative": {
+            "n": 1482,
+            "unscorable": 0,
+            "mean": 0.7137,
+            "median": 0.7206,
+            "p10": 0.6002,
+            "p25": 0.6613,
+            "p75": 0.7722,
+            "p90": 0.8169,
+            "frac_ge_0.90": 0.0081,
+            "frac_eq_1.0": 0.0
+          },
+          "gap_mean_pos_minus_neg": 0.0403,
+          "neg_mean": 0.7137,
+          "neg_ge90_share": 0.0081,
+          "neg_fully_attested_share": 0.0,
+          "c1_reject": false,
+          "c1_reject_share_reading": false
+        }
+      }
+    },
+    "pl": {
+      "rows": 15090,
+      "label1_rate": 0.5548,
+      "banked": {
+        "positive": {
+          "n": 8372,
+          "unscorable": 0,
+          "mean": 0.6335,
+          "median": 0.6575,
+          "p10": 0.4103,
+          "p25": 0.5288,
+          "p75": 0.7465,
+          "p90": 0.8163,
+          "frac_ge_0.90": 0.0272,
+          "frac_eq_1.0": 0.0141
+        },
+        "negative": {
+          "n": 6718,
+          "unscorable": 0,
+          "mean": 0.4805,
+          "median": 0.45,
+          "p10": 0.3125,
+          "p25": 0.3737,
+          "p75": 0.6,
+          "p90": 0.696,
+          "frac_ge_0.90": 0.0007,
+          "frac_eq_1.0": 0.0
+        },
+        "gap_mean_pos_minus_neg": 0.153,
+        "neg_mean": 0.4805,
+        "neg_ge90_share": 0.0007,
+        "neg_fully_attested_share": 0.0,
+        "c1_reject": false,
+        "c1_reject_share_reading": false
+      },
+      "unicode": {
+        "positive": {
+          "n": 8372,
+          "unscorable": 0,
+          "mean": 0.5841,
+          "median": 0.6,
+          "p10": 0.3529,
+          "p25": 0.4667,
+          "p75": 0.7,
+          "p90": 0.7812,
+          "frac_ge_0.90": 0.0217,
+          "frac_eq_1.0": 0.0139
+        },
+        "negative": {
+          "n": 6718,
+          "unscorable": 0,
+          "mean": 0.4254,
+          "median": 0.3897,
+          "p10": 0.2553,
+          "p25": 0.3118,
+          "p75": 0.5423,
+          "p90": 0.6462,
+          "frac_ge_0.90": 0.0,
+          "frac_eq_1.0": 0.0
+        },
+        "gap_mean_pos_minus_neg": 0.1587,
+        "neg_mean": 0.4254,
+        "neg_ge90_share": 0.0,
+        "neg_fully_attested_share": 0.0,
+        "c1_reject": false,
+        "c1_reject_share_reading": false
+      },
+      "unicode_uni": {
+        "positive": {
+          "n": 8372,
+          "unscorable": 0,
+          "mean": 0.5841,
+          "median": 0.6,
+          "p10": 0.3529,
+          "p25": 0.4667,
+          "p75": 0.7,
+          "p90": 0.7812,
+          "frac_ge_0.90": 0.0217,
+          "frac_eq_1.0": 0.0139
+        },
+        "negative": {
+          "n": 6718,
+          "unscorable": 0,
+          "mean": 0.4254,
+          "median": 0.3897,
+          "p10": 0.2553,
+          "p25": 0.3118,
+          "p75": 0.5423,
+          "p90": 0.6462,
+          "frac_ge_0.90": 0.0,
+          "frac_eq_1.0": 0.0
+        },
+        "gap_mean_pos_minus_neg": 0.1587,
+        "neg_mean": 0.4254,
+        "neg_ge90_share": 0.0,
+        "neg_fully_attested_share": 0.0,
+        "c1_reject": false,
+        "c1_reject_share_reading": false
+      },
+      "supplementary_annotated_span_containment": {
+        "note": "EXECUTOR-ADDED probe, reported separately from the registered C1 conjunction - containment of the concatenated annotated hallucinated spans of each negative response",
+        "unicode_primary": {
+          "n": 6718,
+          "unscorable": 0,
+          "mean": 0.3803,
+          "median": 0.3636,
+          "p10": 0.0,
+          "p25": 0.2353,
+          "p75": 0.5,
+          "p90": 0.6667,
+          "frac_ge_0.90": 0.0296,
+          "frac_eq_1.0": 0.0268
+        },
+        "banked": {
+          "n": 6718,
+          "unscorable": 0,
+          "mean": 0.4389,
+          "median": 0.4286,
+          "p10": 0.1667,
+          "p25": 0.2963,
+          "p75": 0.5714,
+          "p90": 0.75,
+          "frac_ge_0.90": 0.0354,
+          "frac_eq_1.0": 0.0296
+        }
+      },
+      "by_task_type_unicode_primary": {
+        "Data2txt": {
+          "positive": {
+            "n": 1626,
+            "unscorable": 0,
+            "mean": 0.3505,
+            "median": 0.3582,
+            "p10": 0.2455,
+            "p25": 0.3096,
+            "p75": 0.4044,
+            "p90": 0.4381,
+            "frac_ge_0.90": 0.0,
+            "frac_eq_1.0": 0.0
+          },
+          "negative": {
+            "n": 3672,
+            "unscorable": 0,
+            "mean": 0.3213,
+            "median": 0.3246,
+            "p10": 0.2289,
+            "p25": 0.2774,
+            "p75": 0.3692,
+            "p90": 0.4107,
+            "frac_ge_0.90": 0.0,
+            "frac_eq_1.0": 0.0
+          },
+          "gap_mean_pos_minus_neg": 0.0292,
+          "neg_mean": 0.3213,
+          "neg_ge90_share": 0.0,
+          "neg_fully_attested_share": 0.0,
+          "c1_reject": false,
+          "c1_reject_share_reading": false
+        },
+        "QA": {
+          "positive": {
+            "n": 3470,
+            "unscorable": 0,
+            "mean": 0.6501,
+            "median": 0.6484,
+            "p10": 0.4697,
+            "p25": 0.5594,
+            "p75": 0.7431,
+            "p90": 0.8206,
+            "frac_ge_0.90": 0.0455,
+            "frac_eq_1.0": 0.0331
+          },
+          "negative": {
+            "n": 1564,
+            "unscorable": 0,
+            "mean": 0.5205,
+            "median": 0.5208,
+            "p10": 0.3374,
+            "p25": 0.4254,
+            "p75": 0.6168,
+            "p90": 0.7096,
+            "frac_ge_0.90": 0.0,
+            "frac_eq_1.0": 0.0
+          },
+          "gap_mean_pos_minus_neg": 0.1296,
+          "neg_mean": 0.5205,
+          "neg_ge90_share": 0.0,
+          "neg_fully_attested_share": 0.0,
+          "c1_reject": false,
+          "c1_reject_share_reading": false
+        },
+        "Summary": {
+          "positive": {
+            "n": 3276,
+            "unscorable": 0,
+            "mean": 0.63,
+            "median": 0.6279,
+            "p10": 0.4953,
+            "p25": 0.5556,
+            "p75": 0.7015,
+            "p90": 0.7726,
+            "frac_ge_0.90": 0.0073,
+            "frac_eq_1.0": 0.0003
+          },
+          "negative": {
+            "n": 1482,
+            "unscorable": 0,
+            "mean": 0.5829,
+            "median": 0.5851,
+            "p10": 0.459,
+            "p25": 0.5194,
+            "p75": 0.6478,
+            "p90": 0.7045,
+            "frac_ge_0.90": 0.0,
+            "frac_eq_1.0": 0.0
+          },
+          "gap_mean_pos_minus_neg": 0.0471,
+          "neg_mean": 0.5829,
+          "neg_ge90_share": 0.0,
+          "neg_fully_attested_share": 0.0,
+          "c1_reject": false,
+          "c1_reject_share_reading": false
+        }
+      }
+    },
+    "hu": {
+      "rows": 15090,
+      "label1_rate": 0.5547,
+      "banked": {
+        "positive": {
+          "n": 8370,
+          "unscorable": 0,
+          "mean": 0.6328,
+          "median": 0.6667,
+          "p10": 0.4184,
+          "p25": 0.5565,
+          "p75": 0.7374,
+          "p90": 0.8,
+          "frac_ge_0.90": 0.0232,
+          "frac_eq_1.0": 0.0006
+        },
+        "negative": {
+          "n": 6720,
+          "unscorable": 0,
+          "mean": 0.481,
+          "median": 0.4787,
+          "p10": 0.2358,
+          "p25": 0.3658,
+          "p75": 0.6118,
+          "p90": 0.7051,
+          "frac_ge_0.90": 0.001,
+          "frac_eq_1.0": 0.0001
+        },
+        "gap_mean_pos_minus_neg": 0.1518,
+        "neg_mean": 0.481,
+        "neg_ge90_share": 0.001,
+        "neg_fully_attested_share": 0.0001,
+        "c1_reject": false,
+        "c1_reject_share_reading": false
+      },
+      "unicode": {
+        "positive": {
+          "n": 8370,
+          "unscorable": 0,
+          "mean": 0.512,
+          "median": 0.5324,
+          "p10": 0.2812,
+          "p25": 0.4043,
+          "p75": 0.6207,
+          "p90": 0.7049,
+          "frac_ge_0.90": 0.0017,
+          "frac_eq_1.0": 0.0005
+        },
+        "negative": {
+          "n": 6720,
+          "unscorable": 0,
+          "mean": 0.3615,
+          "median": 0.3333,
+          "p10": 0.1739,
+          "p25": 0.2444,
+          "p75": 0.4762,
+          "p90": 0.5821,
+          "frac_ge_0.90": 0.0004,
+          "frac_eq_1.0": 0.0001
+        },
+        "gap_mean_pos_minus_neg": 0.1505,
+        "neg_mean": 0.3615,
+        "neg_ge90_share": 0.0004,
+        "neg_fully_attested_share": 0.0001,
+        "c1_reject": false,
+        "c1_reject_share_reading": false
+      },
+      "unicode_uni": {
+        "positive": {
+          "n": 8370,
+          "unscorable": 0,
+          "mean": 0.512,
+          "median": 0.5324,
+          "p10": 0.2812,
+          "p25": 0.4043,
+          "p75": 0.6207,
+          "p90": 0.7049,
+          "frac_ge_0.90": 0.0017,
+          "frac_eq_1.0": 0.0005
+        },
+        "negative": {
+          "n": 6720,
+          "unscorable": 0,
+          "mean": 0.3615,
+          "median": 0.3333,
+          "p10": 0.1739,
+          "p25": 0.2444,
+          "p75": 0.4762,
+          "p90": 0.5821,
+          "frac_ge_0.90": 0.0004,
+          "frac_eq_1.0": 0.0001
+        },
+        "gap_mean_pos_minus_neg": 0.1505,
+        "neg_mean": 0.3615,
+        "neg_ge90_share": 0.0004,
+        "neg_fully_attested_share": 0.0001,
+        "c1_reject": false,
+        "c1_reject_share_reading": false
+      },
+      "supplementary_annotated_span_containment": {
+        "note": "EXECUTOR-ADDED probe, reported separately from the registered C1 conjunction - containment of the concatenated annotated hallucinated spans of each negative response",
+        "unicode_primary": {
+          "n": 6720,
+          "unscorable": 0,
+          "mean": 0.3195,
+          "median": 0.2941,
+          "p10": 0.0,
+          "p25": 0.1765,
+          "p75": 0.4444,
+          "p90": 0.6189,
+          "frac_ge_0.90": 0.0214,
+          "frac_eq_1.0": 0.0208
+        },
+        "banked": {
+          "n": 6720,
+          "unscorable": 0,
+          "mean": 0.508,
+          "median": 0.5,
+          "p10": 0.25,
+          "p25": 0.3712,
+          "p75": 0.6478,
+          "p90": 0.7895,
+          "frac_ge_0.90": 0.039,
+          "frac_eq_1.0": 0.031
+        }
+      },
+      "by_task_type_unicode_primary": {
+        "Data2txt": {
+          "positive": {
+            "n": 1623,
+            "unscorable": 0,
+            "mean": 0.2823,
+            "median": 0.2872,
+            "p10": 0.1705,
+            "p25": 0.2143,
+            "p75": 0.3444,
+            "p90": 0.3878,
+            "frac_ge_0.90": 0.0,
+            "frac_eq_1.0": 0.0
+          },
+          "negative": {
+            "n": 3675,
+            "unscorable": 0,
+            "mean": 0.2581,
+            "median": 0.2619,
+            "p10": 0.1475,
+            "p25": 0.1948,
+            "p75": 0.3176,
+            "p90": 0.3623,
+            "frac_ge_0.90": 0.0,
+            "frac_eq_1.0": 0.0
+          },
+          "gap_mean_pos_minus_neg": 0.0242,
+          "neg_mean": 0.2581,
+          "neg_ge90_share": 0.0,
+          "neg_fully_attested_share": 0.0,
+          "c1_reject": false,
+          "c1_reject_share_reading": false
+        },
+        "QA": {
+          "positive": {
+            "n": 3471,
+            "unscorable": 0,
+            "mean": 0.5623,
+            "median": 0.5625,
+            "p10": 0.3913,
+            "p25": 0.4737,
+            "p75": 0.641,
+            "p90": 0.7368,
+            "frac_ge_0.90": 0.0035,
+            "frac_eq_1.0": 0.0009
+          },
+          "negative": {
+            "n": 1563,
+            "unscorable": 0,
+            "mean": 0.4437,
+            "median": 0.4407,
+            "p10": 0.2753,
+            "p25": 0.3586,
+            "p75": 0.5238,
+            "p90": 0.6074,
+            "frac_ge_0.90": 0.0013,
+            "frac_eq_1.0": 0.0006
+          },
+          "gap_mean_pos_minus_neg": 0.1186,
+          "neg_mean": 0.4437,
+          "neg_ge90_share": 0.0013,
+          "neg_fully_attested_share": 0.0006,
+          "c1_reject": false,
+          "c1_reject_share_reading": false
+        },
+        "Summary": {
+          "positive": {
+            "n": 3276,
+            "unscorable": 0,
+            "mean": 0.5725,
+            "median": 0.5714,
+            "p10": 0.4375,
+            "p25": 0.5,
+            "p75": 0.6406,
+            "p90": 0.709,
+            "frac_ge_0.90": 0.0006,
+            "frac_eq_1.0": 0.0003
+          },
+          "negative": {
+            "n": 1482,
+            "unscorable": 0,
+            "mean": 0.5312,
+            "median": 0.5325,
+            "p10": 0.4039,
+            "p25": 0.4632,
+            "p75": 0.5965,
+            "p90": 0.6559,
+            "frac_ge_0.90": 0.0007,
+            "frac_eq_1.0": 0.0
+          },
+          "gap_mean_pos_minus_neg": 0.0413,
+          "neg_mean": 0.5312,
+          "neg_ge90_share": 0.0007,
+          "neg_fully_attested_share": 0.0,
+          "c1_reject": false,
+          "c1_reject_share_reading": false
+        }
+      }
+    },
+    "cn": {
+      "rows": 15090,
+      "label1_rate": 0.5547,
+      "banked": {
+        "positive": {
+          "n": 6779,
+          "unscorable": 1591,
+          "mean": 0.8737,
+          "median": 1.0,
+          "p10": 0.6,
+          "p25": 0.8,
+          "p75": 1.0,
+          "p90": 1.0,
+          "frac_ge_0.90": 0.6685,
+          "frac_eq_1.0": 0.6356
+        },
+        "negative": {
+          "n": 6140,
+          "unscorable": 580,
+          "mean": 0.842,
+          "median": 1.0,
+          "p10": 0.5,
+          "p25": 0.75,
+          "p75": 1.0,
+          "p90": 1.0,
+          "frac_ge_0.90": 0.5534,
+          "frac_eq_1.0": 0.5195
+        },
+        "gap_mean_pos_minus_neg": 0.0317,
+        "neg_mean": 0.842,
+        "neg_ge90_share": 0.5534,
+        "neg_fully_attested_share": 0.5195,
+        "c1_reject": false,
+        "c1_reject_share_reading": false
+      },
+      "unicode": {
+        "positive": {
+          "n": 8370,
+          "unscorable": 0,
+          "mean": 0.4797,
+          "median": 0.5294,
+          "p10": 0.0833,
+          "p25": 0.378,
+          "p75": 0.6276,
+          "p90": 0.7,
+          "frac_ge_0.90": 0.0012,
+          "frac_eq_1.0": 0.0001
+        },
+        "negative": {
+          "n": 6720,
+          "unscorable": 0,
+          "mean": 0.2847,
+          "median": 0.257,
+          "p10": 0.0426,
+          "p25": 0.0863,
+          "p75": 0.4638,
+          "p90": 0.5731,
+          "frac_ge_0.90": 0.0,
+          "frac_eq_1.0": 0.0
+        },
+        "gap_mean_pos_minus_neg": 0.195,
+        "neg_mean": 0.2847,
+        "neg_ge90_share": 0.0,
+        "neg_fully_attested_share": 0.0,
+        "c1_reject": false,
+        "c1_reject_share_reading": false
+      },
+      "unicode_uni": {
+        "positive": {
+          "n": 8370,
+          "unscorable": 0,
+          "mean": 0.7313,
+          "median": 0.8192,
+          "p10": 0.1895,
+          "p25": 0.6991,
+          "p75": 0.8829,
+          "p90": 0.9198,
+          "frac_ge_0.90": 0.1827,
+          "frac_eq_1.0": 0.0043
+        },
+        "negative": {
+          "n": 6720,
+          "unscorable": 0,
+          "mean": 0.5154,
+          "median": 0.5852,
+          "p10": 0.1441,
+          "p25": 0.192,
+          "p75": 0.7643,
+          "p90": 0.8559,
+          "frac_ge_0.90": 0.0381,
+          "frac_eq_1.0": 0.0
+        },
+        "gap_mean_pos_minus_neg": 0.2159,
+        "neg_mean": 0.5154,
+        "neg_ge90_share": 0.0381,
+        "neg_fully_attested_share": 0.0,
+        "c1_reject": false,
+        "c1_reject_share_reading": false
+      },
+      "supplementary_annotated_span_containment": {
+        "note": "EXECUTOR-ADDED probe, reported separately from the registered C1 conjunction - containment of the concatenated annotated hallucinated spans of each negative response",
+        "unicode_primary": {
+          "n": 6718,
+          "unscorable": 2,
+          "mean": 0.2137,
+          "median": 0.1429,
+          "p10": 0.0,
+          "p25": 0.0176,
+          "p75": 0.3333,
+          "p90": 0.543,
+          "frac_ge_0.90": 0.021,
+          "frac_eq_1.0": 0.0192
+        },
+        "banked": {
+          "n": 2514,
+          "unscorable": 4206,
+          "mean": 0.5859,
+          "median": 0.6667,
+          "p10": 0.0,
+          "p25": 0.25,
+          "p75": 1.0,
+          "p90": 1.0,
+          "frac_ge_0.90": 0.3874,
+          "frac_eq_1.0": 0.3874
+        }
+      },
+      "by_task_type_unicode_primary": {
+        "Data2txt": {
+          "positive": {
+            "n": 1623,
+            "unscorable": 0,
+            "mean": 0.1337,
+            "median": 0.0818,
+            "p10": 0.0381,
+            "p25": 0.0547,
+            "p75": 0.2259,
+            "p90": 0.2932,
+            "frac_ge_0.90": 0.0,
+            "frac_eq_1.0": 0.0
+          },
+          "negative": {
+            "n": 3675,
+            "unscorable": 0,
+            "mean": 0.1278,
+            "median": 0.0952,
+            "p10": 0.0301,
+            "p25": 0.0526,
+            "p75": 0.2048,
+            "p90": 0.2695,
+            "frac_ge_0.90": 0.0,
+            "frac_eq_1.0": 0.0
+          },
+          "gap_mean_pos_minus_neg": 0.0059,
+          "neg_mean": 0.1278,
+          "neg_ge90_share": 0.0,
+          "neg_fully_attested_share": 0.0,
+          "c1_reject": false,
+          "c1_reject_share_reading": false
+        },
+        "QA": {
+          "positive": {
+            "n": 3471,
+            "unscorable": 0,
+            "mean": 0.5727,
+            "median": 0.5843,
+            "p10": 0.3905,
+            "p25": 0.4828,
+            "p75": 0.6784,
+            "p90": 0.7333,
+            "frac_ge_0.90": 0.0023,
+            "frac_eq_1.0": 0.0003
+          },
+          "negative": {
+            "n": 1563,
+            "unscorable": 0,
+            "mean": 0.4431,
+            "median": 0.4384,
+            "p10": 0.2594,
+            "p25": 0.3462,
+            "p75": 0.5403,
+            "p90": 0.6267,
+            "frac_ge_0.90": 0.0,
+            "frac_eq_1.0": 0.0
+          },
+          "gap_mean_pos_minus_neg": 0.1296,
+          "neg_mean": 0.4431,
+          "neg_ge90_share": 0.0,
+          "neg_fully_attested_share": 0.0,
+          "c1_reject": false,
+          "c1_reject_share_reading": false
+        },
+        "Summary": {
+          "positive": {
+            "n": 3276,
+            "unscorable": 0,
+            "mean": 0.5526,
+            "median": 0.5544,
+            "p10": 0.4154,
+            "p25": 0.4802,
+            "p75": 0.6241,
+            "p90": 0.6883,
+            "frac_ge_0.90": 0.0006,
+            "frac_eq_1.0": 0.0
+          },
+          "negative": {
+            "n": 1482,
+            "unscorable": 0,
+            "mean": 0.5068,
+            "median": 0.5088,
+            "p10": 0.3731,
+            "p25": 0.4388,
+            "p75": 0.5739,
+            "p90": 0.6326,
+            "frac_ge_0.90": 0.0,
+            "frac_eq_1.0": 0.0
+          },
+          "gap_mean_pos_minus_neg": 0.0458,
+          "neg_mean": 0.5068,
+          "neg_ge90_share": 0.0,
+          "neg_fully_attested_share": 0.0,
+          "c1_reject": false,
+          "c1_reject_share_reading": false
+        }
+      }
+    }
+  },
+  "pooled": {
+    "banked": {
+      "positive": {
+        "n": 56999,
+        "unscorable": 1591,
+        "mean": 0.695,
+        "median": 0.7131,
+        "p10": 0.4615,
+        "p25": 0.5969,
+        "p75": 0.8106,
+        "p90": 0.918,
+        "frac_ge_0.90": 0.1185,
+        "frac_eq_1.0": 0.0852
+      },
+      "negative": {
+        "n": 46460,
+        "unscorable": 580,
+        "mean": 0.557,
+        "median": 0.5376,
+        "p10": 0.27,
+        "p25": 0.4211,
+        "p75": 0.6936,
+        "p90": 0.8333,
+        "frac_ge_0.90": 0.0753,
+        "frac_eq_1.0": 0.0687
+      },
+      "gap_mean_pos_minus_neg": 0.138,
+      "neg_mean": 0.557,
+      "neg_ge90_share": 0.0753,
+      "neg_fully_attested_share": 0.0687,
+      "c1_reject": false,
+      "c1_reject_share_reading": false
+    },
+    "unicode": {
+      "positive": {
+        "n": 58590,
+        "unscorable": 0,
+        "mean": 0.6147,
+        "median": 0.641,
+        "p10": 0.3471,
+        "p25": 0.5094,
+        "p75": 0.7525,
+        "p90": 0.8333,
+        "frac_ge_0.90": 0.0284,
+        "frac_eq_1.0": 0.0092
+      },
+      "negative": {
+        "n": 47040,
+        "unscorable": 0,
+        "mean": 0.4506,
+        "median": 0.4615,
+        "p10": 0.1937,
+        "p25": 0.3034,
+        "p75": 0.5887,
+        "p90": 0.7097,
+        "frac_ge_0.90": 0.0015,
+        "frac_eq_1.0": 0.0001
+      },
+      "gap_mean_pos_minus_neg": 0.1641,
+      "neg_mean": 0.4506,
+      "neg_ge90_share": 0.0015,
+      "neg_fully_attested_share": 0.0001,
+      "c1_reject": false,
+      "c1_reject_share_reading": false
+    },
+    "unicode_uni": {
+      "positive": {
+        "n": 58590,
+        "unscorable": 0,
+        "mean": 0.6507,
+        "median": 0.6818,
+        "p10": 0.3774,
+        "p25": 0.5424,
+        "p75": 0.7917,
+        "p90": 0.8667,
+        "frac_ge_0.90": 0.0543,
+        "frac_eq_1.0": 0.0098
+      },
+      "negative": {
+        "n": 47040,
+        "unscorable": 0,
+        "mean": 0.4836,
+        "median": 0.4874,
+        "p10": 0.2105,
+        "p25": 0.3293,
+        "p75": 0.6279,
+        "p90": 0.75,
+        "frac_ge_0.90": 0.0069,
+        "frac_eq_1.0": 0.0001
+      },
+      "gap_mean_pos_minus_neg": 0.1671,
+      "neg_mean": 0.4836,
+      "neg_ge90_share": 0.0069,
+      "neg_fully_attested_share": 0.0001,
+      "c1_reject": false,
+      "c1_reject_share_reading": false
+    },
+    "supplementary_annotated_span_containment": {
+      "note": "EXECUTOR-ADDED, separate from the registered conjunction",
+      "unicode_primary": {
+        "n": 47038,
+        "unscorable": 2,
+        "mean": 0.4055,
+        "median": 0.4,
+        "p10": 0.0,
+        "p25": 0.2222,
+        "p75": 0.5714,
+        "p90": 0.75,
+        "frac_ge_0.90": 0.0404,
+        "frac_eq_1.0": 0.0328
+      },
+      "banked": {
+        "n": 42834,
+        "unscorable": 4206,
+        "mean": 0.4916,
+        "median": 0.5,
+        "p10": 0.1667,
+        "p25": 0.3333,
+        "p75": 0.6667,
+        "p90": 0.8261,
+        "frac_ge_0.90": 0.0689,
+        "frac_eq_1.0": 0.0589
+      }
+    }
+  },
+  "pooled_by_task_type_unicode_primary": {
+    "Data2txt": {
+      "positive": {
+        "n": 11364,
+        "unscorable": 0,
+        "mean": 0.3653,
+        "median": 0.3722,
+        "p10": 0.1429,
+        "p25": 0.2441,
+        "p75": 0.5,
+        "p90": 0.5679,
+        "frac_ge_0.90": 0.0,
+        "frac_eq_1.0": 0.0
+      },
+      "negative": {
+        "n": 25722,
+        "unscorable": 0,
+        "mean": 0.3372,
+        "median": 0.3394,
+        "p10": 0.1304,
+        "p25": 0.2273,
+        "p75": 0.4615,
+        "p90": 0.5263,
+        "frac_ge_0.90": 0.0,
+        "frac_eq_1.0": 0.0
+      },
+      "gap_mean_pos_minus_neg": 0.0281,
+      "neg_mean": 0.3372,
+      "neg_ge90_share": 0.0,
+      "neg_fully_attested_share": 0.0,
+      "c1_reject": false,
+      "c1_reject_share_reading": false
+    },
+    "QA": {
+      "positive": {
+        "n": 24294,
+        "unscorable": 0,
+        "mean": 0.6732,
+        "median": 0.6818,
+        "p10": 0.4746,
+        "p25": 0.574,
+        "p75": 0.7778,
+        "p90": 0.8571,
+        "frac_ge_0.90": 0.0461,
+        "frac_eq_1.0": 0.0219
+      },
+      "negative": {
+        "n": 10944,
+        "unscorable": 0,
+        "mean": 0.5443,
+        "median": 0.5506,
+        "p10": 0.3415,
+        "p25": 0.4409,
+        "p75": 0.6514,
+        "p90": 0.7368,
+        "frac_ge_0.90": 0.0032,
+        "frac_eq_1.0": 0.0004
+      },
+      "gap_mean_pos_minus_neg": 0.1289,
+      "neg_mean": 0.5443,
+      "neg_ge90_share": 0.0032,
+      "neg_fully_attested_share": 0.0004,
+      "c1_reject": false,
+      "c1_reject_share_reading": false
+    },
+    "Summary": {
+      "positive": {
+        "n": 22932,
+        "unscorable": 0,
+        "mean": 0.6764,
+        "median": 0.6875,
+        "p10": 0.5,
+        "p25": 0.5902,
+        "p75": 0.7712,
+        "p90": 0.8345,
+        "frac_ge_0.90": 0.0237,
+        "frac_eq_1.0": 0.0004
+      },
+      "negative": {
+        "n": 10374,
+        "unscorable": 0,
+        "mean": 0.6332,
+        "median": 0.6433,
+        "p10": 0.4628,
+        "p25": 0.5474,
+        "p75": 0.7273,
+        "p90": 0.7857,
+        "frac_ge_0.90": 0.0034,
+        "frac_eq_1.0": 0.0
+      },
+      "gap_mean_pos_minus_neg": 0.0432,
+      "neg_mean": 0.6332,
+      "neg_ge90_share": 0.0034,
+      "neg_fully_attested_share": 0.0,
+      "c1_reject": false,
+      "c1_reject_share_reading": false
+    }
+  }
+}

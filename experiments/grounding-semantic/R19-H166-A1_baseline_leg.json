@@ -1,0 +1,75 @@
+{
+  "experiment": "R19-H166 AMENDMENT A1 BASELINE LEG - flagship BINARY serving scalar on a held-out VitaminC REFUTES-vs-NEI split (measurement only, zero training)",
+  "registration": "docs/experiments/semantic-grounding-experiments.md, block 'R19-H166 AMENDMENT A1' (2026-08-16)",
+  "registered_prediction": "near-chance - the binary objective cannot express contradiction-versus-absence",
+  "arm_primary_after_training": ">= 0.85 on the new con_head contradiction channel",
+  "channel_read_here": "the BINARY task head (the shipped serving scalar); the arm's con_head does not exist on the banked flagship",
+  "positive_class": "REFUTES (contradiction)",
+  "negative_class": "NOT ENOUGH INFO (absence)",
+  "protocol": "untruncated evidence windowed 1500/750, MAX over windows; frozen trunk + task head (R15_gate_common.load_ckpt/.score)",
+  "split_construction": "A REFUTES-vs-NEI split with zero overlap against the training mix.\n\n    Construction, stated so it is auditable:\n      1. The mix takes VitaminC from `tals__vitaminc__train.parquet` ONLY\n         (`R10-H108_lane.py:150-165`, single `endswith(\"__train.parquet\")`\n         selection; the count is pinned by the `R19-H166_labels3` alignment\n         assertion at 370,653). `__test` and `__validation` are untouched by\n         every flagship-mix path.\n      2. Candidate held-out pool = `__test` + `__validation` (118,251 rows).\n      3. Hard key filter: drop any candidate row whose `page`, `claim`,\n         `evidence` or `wiki_revision_id` value occurs ANYWHERE in the VitaminC\n         train split. `unique_id` and `case_id` are already 0-shared by the\n         official split; page/claim/evidence/revision are not, so they are\n         filtered rather than assumed.\n      4. Text filter against the ASSEMBLED flagship mix (all 14 DANN groups plus\n         both lanes, not just VitaminC): drop any candidate whose claim string,\n         evidence string, or (claim, evidence) pair appears in the mix. This\n         closes any route by which another corpus could carry the same text.\n      5. Keep label in {REFUTES, NOT ENOUGH INFO}; REFUTES is the positive class\n         (the contradiction the amended arm's `con_head` must separate), NOT\n         ENOUGH INFO the negative (absence).\n    ",
+  "split_report": {
+    "candidate_pool_rows": 118251,
+    "after_key_filter": 76324,
+    "after_mix_text_filter": 76324,
+    "raw_key_collisions_vs_train": {
+      "unique_id": 0,
+      "case_id": 0,
+      "page": 1214,
+      "claim": 110,
+      "evidence": 221,
+      "wiki_revision_id": 41488
+    },
+    "verify_zero_overlap": {
+      "shared_unique_id_with_vitaminc_train": 0,
+      "shared_case_id_with_vitaminc_train": 0,
+      "shared_page_with_vitaminc_train": 0,
+      "shared_claim_with_vitaminc_train": 0,
+      "shared_evidence_with_vitaminc_train": 0,
+      "shared_wiki_revision_id_with_vitaminc_train": 0,
+      "shared_claim_with_flagship_mix": 0,
+      "shared_evidence_with_flagship_mix": 0,
+      "shared_pair_with_flagship_mix": 0
+    }
+  },
+  "n_rows": 38126,
+  "n_refutes": 21921,
+  "n_nei": 16205,
+  "n_pages": 5553,
+  "per_draw": {
+    "h150d1": {
+      "checkpoint": "R18-H150-arm-draw1",
+      "auroc": 0.3775,
+      "by_source_split": {
+        "test": {
+          "n_rows": 17071,
+          "auroc": 0.3823
+        },
+        "validation": {
+          "n_rows": 21055,
+          "auroc": 0.3736
+        }
+      },
+      "mean_score_refutes": 0.0812,
+      "mean_score_nei": 0.1322
+    },
+    "h150d2": {
+      "checkpoint": "R18-H150-arm-draw2",
+      "auroc": 0.4095,
+      "by_source_split": {
+        "test": {
+          "n_rows": 17071,
+          "auroc": 0.4117
+        },
+        "validation": {
+          "n_rows": 21055,
+          "auroc": 0.4074
+        }
+      },
+      "mean_score_refutes": 0.0825,
+      "mean_score_nei": 0.1297
+    }
+  },
+  "two_draw_mean_auroc": 0.3935,
+  "timestamp": "2026-08-17 05:41:12"
+}

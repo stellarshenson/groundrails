@@ -1,0 +1,59 @@
+{
+  "C5": {
+    "surface_parity": {
+      "all": {
+        "auroc": {
+          "claim_char_length": 0.3191,
+          "claim_token_count": 0.3203,
+          "chunk_char_length": 0.5,
+          "claim_chunk_containment": 0.8509
+        },
+        "report_only": [],
+        "bar": "each barred channel in [0.45, 0.55]",
+        "worst_deviation": 0.3509,
+        "pass": false
+      },
+      "qa": {
+        "auroc": {
+          "claim_char_length": 0.0288,
+          "claim_token_count": 0.0286,
+          "chunk_char_length": 0.5,
+          "claim_chunk_containment": 0.9058
+        },
+        "report_only": [],
+        "bar": "each barred channel in [0.45, 0.55]",
+        "worst_deviation": 0.4714,
+        "pass": false
+      },
+      "summarization": {
+        "auroc": {
+          "claim_char_length": 0.252,
+          "claim_token_count": 0.2577,
+          "chunk_char_length": 0.5,
+          "claim_chunk_containment": 0.752
+        },
+        "report_only": [],
+        "bar": "each barred channel in [0.45, 0.55]",
+        "worst_deviation": 0.252,
+        "pass": false
+      }
+    },
+    "applicability": "C5 governs CONSTRUCTED lanes and paired-contrast EVALS. halueval is a source corpus and is not an evaluation surface, so the registered C5 conjunction does not bind it. The probes below are EXECUTOR-ADDED and are reported separately; they join no registered bar.",
+    "claim_only_probe_auroc": 0.9519,
+    "claim_only_probe_per_half": {
+      "qa": 0.9688,
+      "summarization": 0.9418
+    },
+    "within_pair_claim_only_accuracy": {
+      "all": {
+        "acc": 0.9666,
+        "pairs": 20000
+      }
+    },
+    "reference_bars_if_they_had_applied": {
+      "claim_only": 0.55,
+      "within_pair": 0.6
+    },
+    "instrument": "R20-H174_lane_common.claim_only_probe - out-of-fold char_wb TF-IDF 2-5 grams + liblinear C=4 tol 1e-7, folds disjoint on the pair key"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "loader": "R10-H108_lane.public_train() with the evidence cut lifted",
+  "chunk_max_chars": 1500,
+  "clean_public_rows": 685670,
+  "clean_public_rows_per_group": {
+    "halueval": 40000,
+    "psiloqa": 61712,
+    "ragtruth_cn": 15090,
+    "ragtruth_de": 15090,
+    "ragtruth_en": 15090,
+    "ragtruth_es": 15090,
+    "ragtruth_fr": 15090,
+    "ragtruth_hu": 15090,
+    "ragtruth_it": 15090,
+    "ragtruth_pl": 15090,
+    "tabfact": 92585,
+    "vitaminc": 370653
+  },
+  "member_tags": [
+    "ragtruth_de",
+    "ragtruth_fr",
+    "ragtruth_es",
+    "ragtruth_it",
+    "ragtruth_pl",
+    "ragtruth_hu",
+    "ragtruth_cn"
+  ],
+  "member_rows": 105630,
+  "member_rows_per_lang": {
+    "cn": 15090,
+    "de": 15090,
+    "es": 15090,
+    "fr": 15090,
+    "hu": 15090,
+    "it": 15090,
+    "pl": 15090
+  },
+  "member_label_mean": 0.554672,
+  "parquet": "/home/lab/workspace/private/ai-assistants/groundrails/experiments/grounding-semantic/contract/ragtruth_translated_member.parquet"
+}

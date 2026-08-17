@@ -1,0 +1,92 @@
+{
+  "control": "live positive control for the R14-H136 census on quant_misbind",
+  "instrument": "provenance_gate.run_gate, 8-gram, Jaccard >= 0.3, KILL > 2%",
+  "source": "real RAGBench arena documents (the reference side itself), degraded",
+  "sample_units": 250,
+  "baseline_lane_reads": "0.0 - the member's own evidence and claim gates both read max fraction 0.000 against the same arena",
+  "tiers": {
+    "verbatim": {
+      "note": "identical arena text - the upper anchor",
+      "units": 250,
+      "detection_fraction": 1.0,
+      "units_with_hit": 250,
+      "best_jaccard": {
+        "max": 1.0,
+        "p99": 1.0,
+        "mean": 1.0
+      },
+      "verdict": "KILL"
+    },
+    "drop_2pct": {
+      "note": "2% of whitespace tokens deleted at random",
+      "units": 250,
+      "detection_fraction": 1.0,
+      "units_with_hit": 250,
+      "best_jaccard": {
+        "max": 1.0,
+        "p99": 1.0,
+        "mean": 0.7944
+      },
+      "verdict": "KILL"
+    },
+    "drop_5pct": {
+      "note": "5% of whitespace tokens deleted at random",
+      "units": 250,
+      "detection_fraction": 0.972,
+      "units_with_hit": 243,
+      "best_jaccard": {
+        "max": 1.0,
+        "p99": 1.0,
+        "mean": 0.5562
+      },
+      "verdict": "KILL"
+    },
+    "drop_10pct": {
+      "note": "10% of whitespace tokens deleted at random",
+      "units": 250,
+      "detection_fraction": 0.556,
+      "units_with_hit": 139,
+      "best_jaccard": {
+        "max": 0.7101,
+        "p99": 0.6332,
+        "mean": 0.3179
+      },
+      "verdict": "KILL"
+    },
+    "drop_5pct_cut_60pct": {
+      "note": "5% deleted then cut to 60% of length",
+      "units": 250,
+      "detection_fraction": 0.632,
+      "units_with_hit": 158,
+      "best_jaccard": {
+        "max": 0.5816,
+        "p99": 0.5602,
+        "mean": 0.3338
+      },
+      "verdict": "KILL"
+    },
+    "cut_50pct": {
+      "note": "first half of the document only",
+      "units": 250,
+      "detection_fraction": 0.992,
+      "units_with_hit": 248,
+      "best_jaccard": {
+        "max": 0.7915,
+        "p99": 0.7139,
+        "mean": 0.4693
+      },
+      "verdict": "KILL"
+    }
+  },
+  "fires": true,
+  "monotone_in_degradation": [
+    1.0,
+    1.0,
+    0.972,
+    0.556,
+    0.632,
+    0.992
+  ],
+  "reading": "the gate fires on real near-duplicate text and its detection degrades with the damage applied, while the member itself reads 0.000 against the same reference side - so the member's clean verdict comes from a live instrument",
+  "seconds": 11.1
+}

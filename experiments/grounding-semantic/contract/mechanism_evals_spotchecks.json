@@ -1,0 +1,113 @@
+{
+  "artifact": "mechanism_evals_spotchecks.json",
+  "scope": "independent re-derivation of the strongest findings in contract/mechanism_evals_report.json",
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates.",
+  "checks": {
+    "1_unitswap_probe_document_disjointness": {
+      "registered_as": "document-disjoint probe from unused supply - 140 pairs / 42 documents (canonical log, R18-H150 block)",
+      "probe_documents": 42,
+      "in_the_tabfact_member": 23,
+      "in_the_quant_misbind_lane": 17,
+      "in_the_quant_scale_unit_lane_it_was_built_beside": 0,
+      "in_the_union": 27,
+      "probe_rows_on_such_a_document": 196,
+      "probe_rows": 280,
+      "share_of_rows": 0.7,
+      "mechanism": "the probe reserved documents the SCALE/UNIT lane did not use - and is disjoint from that lane at 0. The mix also carries the `tabfact` member and the `quant_misbind` lane, which is where the 27 documents come from. C2 exists for exactly this: disjointness is owed against every surface, `not only the lane a member was built beside`",
+      "example_overlapping_ids": [
+        "feverous:13797",
+        "feverous:38071",
+        "feverous:43574",
+        "feverous:9290",
+        "tabfact:1-1176162-3.html.csv"
+      ]
+    },
+    "2_h117_evidence_in_the_tabfact_member": {
+      "distinct_evidence": 1933,
+      "byte_identical_to_a_tabfact_member_passage": 306,
+      "share": 0.1583,
+      "rows_affected": 310,
+      "rows": 2000,
+      "by_engine": {
+        "H112": 310
+      },
+      "example_head": "japan open (badminton)\nyear | mens singles | womens singles | mens doubles | womens doubles | mixed doubles\n1984 | morten frost | zheng yuli | thomas kihlstr\u00e3m stefan karlsson | ka",
+      "mechanism": "the DR pilot's H112 engine drew seeds from TabFact tables serialised the way the mix serialises them, so 306 of the held-out set's 1,933 passages are training passages"
+    },
+    "3_typeprobe_structural_collisions": {
+      "pairs_carrying_both_labels": 6,
+      "examples": [
+        {
+          "claim": "The attendance of 1 november 2008 is approximately 1190.",
+          "table_id": "2-17026847-18.html.csv"
+        },
+        {
+          "claim": "The points of michael schumacher is approximately 150.",
+          "table_id": "2-13599687-60.html.csv"
+        },
+        {
+          "claim": "The date of runner - up and that of winner are 1 years apart.",
+          "table_id": "2-1171445-6.html.csv"
+        }
+      ],
+      "mechanism": "the derived-value families print an APPROXIMATE value, so a rounded correct answer in one quad equals a wrong-value leg in another over the same table"
+    },
+    "4a_h166a1_structural_collisions": {
+      "rows": 38126,
+      "pairs_carrying_both_REFUTES_and_NOT_ENOUGH_INFO": 6,
+      "examples": [
+        {
+          "claim": "Over 621,000 coronavirus cases and more than 28,700 fatalities have been registered around the world .",
+          "evidence": "more than 620,000 cases of COVID-19 have been reported in over 190 countries and territories , resulting in approximately 28,600 deaths .",
+          "labels": [
+            "NOT ENOUGH INFO",
+            "REFUTES"
+          ],
+          "unique_ids": [
+            "5ee393b6c9e77c0008ccbdae_3",
+            "5ee3932bc9e77c0008cca254_3"
+          ]
+        },
+        {
+          "claim": "More than 112,500 people have recovered from coronavirus globally .",
+          "evidence": "more than 446,000 cases have been reported worldwide ; more than 19,800 people have died and more than 112,000 have recovered.",
+          "labels": [
+            "NOT ENOUGH INFO",
+            "REFUTES"
+          ],
+          "unique_ids": [
+            "5ee393b6c9e77c0008ccbcd7_3",
+            "5ee39329c9e77c0008cc9423_3"
+          ]
+        },
+        {
+          "claim": "More than 681,500 cases of COVID-19 have been reported along with less than 32,000 deaths .",
+          "evidence": "more than 680,000 cases of COVID-19 have been reported in over 190 countries and territories , resulting in approximately 31,900 deaths .",
+          "labels": [
+            "NOT ENOUGH INFO",
+            "REFUTES"
+          ],
+          "unique_ids": [
+            "5ee39329c9e77c0008cc923b_3",
+            "5ee3932ac9e77c0008cc9bdb_3"
+          ]
+        }
+      ],
+      "mechanism": "genuine annotation disagreement inside VitaminC's own held-out splits - the same claim over the same evidence is annotated REFUTES in one case and NOT ENOUGH INFO in another. A corpus property, not a builder defect"
+    },
+    "4b_antigaming_claims_in_a_training_lane": {
+      "distinct_eval_claims": 3186,
+      "verbatim_in_the_R17_H146_misbind_lane_which_is_in_the_flagship_mix": 15,
+      "verbatim_in_the_R14_H133_lane_the_only_set_the_builder_guards_against": 0,
+      "by_kind": {
+        "bind_row": 14
+      },
+      "examples": [
+        "The against of scotland is 0.",
+        "The crowd of essendon is 15000.",
+        "The crowd of geelong is 11000."
+      ],
+      "mechanism": "`R14-H133_antigaming.build_bindrow` rejects a candidate whose claim is in `R14-H133_lane.parquet` - the lane of the arm the instrument was written for. Every arm since trains on `R17-H146_lane.parquet` instead, which the guard never reads, and which emits the identical `The <column> of <row key> is <value>.` template"
+    }
+  }
+}

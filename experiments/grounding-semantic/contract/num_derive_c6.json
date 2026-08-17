@@ -1,0 +1,71 @@
+{
+  "clause": "C6",
+  "pair_key": "the evidence chunk - the two legs of a pair carry it byte-identically",
+  "eval_facing_mix_association": {
+    "definition": "mean label the REST of the assembled mix attaches to this row's evidence key (whitespace-normalised) - the channel that caught attr_pool at 0.9999 and the withdrawn R20-H175b eval at 0.6230",
+    "mix_rows": 760618,
+    "mix_groups": [
+      "attr_pool",
+      "frame_reject",
+      "halueval",
+      "path_bind",
+      "psiloqa",
+      "quant_misbind",
+      "quant_scale_unit",
+      "ragtruth_cn",
+      "ragtruth_de",
+      "ragtruth_en",
+      "ragtruth_es",
+      "ragtruth_fr",
+      "ragtruth_hu",
+      "ragtruth_it",
+      "ragtruth_pl",
+      "tabfact",
+      "vitaminc"
+    ],
+    "key_sharing_by_group": {
+      "quant_misbind": {
+        "rows": 30000,
+        "shared_evidence_raw": 282,
+        "shared_evidence_truncated_1500": 282,
+        "shared_evidence_normalised": 282,
+        "shared_claims_normalised": 0
+      },
+      "quant_scale_unit": {
+        "rows": 5540,
+        "shared_evidence_raw": 5,
+        "shared_evidence_truncated_1500": 5,
+        "shared_evidence_normalised": 5,
+        "shared_claims_normalised": 0
+      },
+      "tabfact": {
+        "rows": 92585,
+        "shared_evidence_raw": 1,
+        "shared_evidence_truncated_1500": 1,
+        "shared_evidence_normalised": 235,
+        "shared_claims_normalised": 0
+      }
+    },
+    "keys_shared_with_any_other_member": 489,
+    "coverage_rows": 2272,
+    "coverage_share": 0.075733,
+    "auroc_vs_label": 0.5,
+    "bar": "undefined or at chance"
+  },
+  "within_member_diagnostics_reported_not_a_bar": {
+    "note": "C-A2 scopes C6 to associations the TRAINING MIX supplies; a within-member leave-one-out lookup is a different question and is reported as a diagnostic",
+    "leave_one_out_label_feature": {
+      "auroc_vs_label": 0.0,
+      "coverage_rows": 30000,
+      "coverage_share": 1.0,
+      "why_it_is_not_a_channel": "with exact 1:1 pairing the leave-one-out value IS the twin's label, so the feature reads AUROC 0.0 on any perfectly paired member. Both legs share the key, so every key-keyed feature takes the same value on both and separates them at exactly 0.5"
+    },
+    "key_keyed_claim_overlap": {
+      "definition": "max Jaccard between this row's claim and any other claim sharing the same evidence chunk",
+      "auroc_vs_label": 0.500088,
+      "coverage_rows": 30000,
+      "coverage_share": 1.0
+    }
+  },
+  "seconds": 36.7
+}

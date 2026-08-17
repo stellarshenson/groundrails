@@ -1,0 +1,143 @@
+{
+  "clause": "C5",
+  "registered_conjunction": {
+    "claim_only_converged_probe": {
+      "value": 0.505945,
+      "bar": "< 0.55",
+      "pass": true,
+      "scoring": "5-fold document-disjoint, out of fold, direction-stratified, liblinear tol 1e-7, char_wb 2-5 TF-IDF",
+      "documents": 4716,
+      "rows": 18652,
+      "recomputed": "from the parquet in this pass; not cited from the manifest"
+    },
+    "within_pair_claim_only": {
+      "per_family": {
+        "misbound_col": {
+          "acc": 0.488592,
+          "pairs": 3068
+        },
+        "misbound_row": {
+          "acc": 0.500879,
+          "pairs": 6258
+        }
+      },
+      "worst": 0.500879,
+      "bar": "< 0.60",
+      "pass": true
+    },
+    "single_channel_probes": {
+      "evidence_only": {
+        "within_pair_identical_chunk_share": 1.0,
+        "auroc": 0.5,
+        "reading": "the legs of a pair share the evidence byte-identically, so an evidence-only reader is exactly at chance within pair by construction - measured above, not assumed"
+      },
+      "question_only": {
+        "value": null,
+        "reading": "NOT COMPUTABLE - the lane carries no question field; the construction implies no question channel"
+      }
+    },
+    "surface_parity_channels": {
+      "trailing_zero": {
+        "pooled": 0.499351,
+        "per_family": {
+          "misbound_col": 0.495125,
+          "misbound_row": 0.501348
+        },
+        "worst_deviation_from_0.5": 0.004875,
+        "in_band_0.45_0.55": true
+      },
+      "digit_count": {
+        "pooled": 0.499938,
+        "per_family": {
+          "misbound_col": 0.499121,
+          "misbound_row": 0.500522
+        },
+        "worst_deviation_from_0.5": 0.000879,
+        "in_band_0.45_0.55": true
+      },
+      "claim_char_length": {
+        "pooled": 0.500043,
+        "per_family": {
+          "misbound_col": 0.500016,
+          "misbound_row": 0.500108
+        },
+        "worst_deviation_from_0.5": 0.000108,
+        "in_band_0.45_0.55": true
+      },
+      "leading_digit": {
+        "pooled": 0.500998,
+        "per_family": {
+          "misbound_col": 0.504323,
+          "misbound_row": 0.498813
+        },
+        "worst_deviation_from_0.5": 0.004323,
+        "in_band_0.45_0.55": true
+      },
+      "decimal_presence": {
+        "pooled": 0.500429,
+        "per_family": {
+          "misbound_col": 0.501467,
+          "misbound_row": 0.49992
+        },
+        "worst_deviation_from_0.5": 0.001467,
+        "in_band_0.45_0.55": true
+      },
+      "value_magnitude": {
+        "pooled": 0.499663,
+        "per_family": {
+          "misbound_col": 0.49892,
+          "misbound_row": 0.500149
+        },
+        "worst_deviation_from_0.5": 0.00108,
+        "in_band_0.45_0.55": true
+      },
+      "claim_token_count": {
+        "pooled": 0.49984,
+        "per_family": {
+          "misbound_col": 0.499696,
+          "misbound_row": 0.50003
+        },
+        "worst_deviation_from_0.5": 0.000304,
+        "in_band_0.45_0.55": true
+      }
+    },
+    "balance": {
+      "family_rows": {
+        "misbound_col": 6136,
+        "misbound_row": 12516
+      },
+      "direction_rows": {
+        "misbound_row:up": 6258,
+        "misbound_row:down": 6258,
+        "misbound_col:up": 3068,
+        "misbound_col:down": 3068
+      },
+      "direction_balance_exact_50_50_per_family": true
+    },
+    "attestation_symmetry": {
+      "reading": "measured in the C1 stage - asserted numeral present verbatim on both legs at 1.0"
+    }
+  },
+  "executor_added_probes_reported_separately": {
+    "note": "these are NOT part of the registered conjunction and do not join it",
+    "claim_token_count_auroc": {
+      "pooled": 0.49984,
+      "per_family": {
+        "misbound_col": 0.499696,
+        "misbound_row": 0.50003
+      },
+      "worst_deviation_from_0.5": 0.000304,
+      "in_band_0.45_0.55": true
+    },
+    "surface_parity_rate_per_family": {
+      "pooled": 0.494639,
+      "per_family": {
+        "misbound_col": 0.099413,
+        "misbound_row": 0.688399
+      },
+      "reading": "this is the rate at which the construction achieved digit-surface parity between the two values, NOT a channel AUROC. It is reported because the per-family rates are far from 0.5 and could be mistaken for the C5 parity bar, which is a bar on channel AUROCs and is reported above"
+    }
+  },
+  "seconds": 47.0,
+  "all_registered_bars_pass": true
+}

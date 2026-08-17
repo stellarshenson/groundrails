@@ -305,3 +305,96 @@ The dataset recon (register addendum, `reports/research-grounding-datasets.md` "
 - **Integrity**: every lane clean on labels-in-{0,1}, no empty claims/chunks, no duplicate (claim, chunk, label) rows, document-disjoint verification. Claim-only TF-IDF AUROC is recorded per lane as MEASUREMENT ONLY (0.645 FActScore, 0.654 AttributionBench) - the < 0.55 bar governs synthetic minimal-pair lanes; real corpora carry legitimate claim-side signal, so banking rests on the licence and contamination gates as registered
 - **Supply-only clause stands**: no corpus enters a training mix without its own registered hypothesis and arm. Nearest named use: FinDVer + EDGAR synthetics as the finqa derivation lane (R18-H157 lever 1), unregistered pending the author's word
 - **Toolchain**: fetched through `scripts/fetch_grounding_datasets.py` spec entries per the datascience dataset skill; sidecars generated from the spec and re-rendered post-fetch with observed counts; gitignore verified (`git check-ignore -v` - `.gitignore:9` ignores the archives, `:10` un-ignores the `.md` sidecars)
+
+## R22 derivation supply wave - the author's word given on the FinDVer/EDGAR lever (2026-08-17 ~17:20)
+
+The R19 wave banked FinDVer with the note *"Nearest named use: FinDVer + EDGAR synthetics as the finqa derivation lane (R18-H157 lever 1), unregistered pending the author's word."* That word is now given: **enhanced training against the derivation root cause, and further supply of the same kind.**
+
+### What the wave targets - two independently measured gaps
+
+- **The capability gap (R22-H186, 2026-08-17)** - no member of the training mix has ever shown the model a claim stating a value COMPUTED from evidence values. Both numeric lanes in the mix build negatives by substituting an operand; verified twice, against every claim template in the builders and against the built data. 0 of 2 under every reading
+- **The register gap (R14 register-gap audit, 2026-08-09)** - 904 rows carrying financial vocabulary, **0.13% of the mix against 50.3% of finqa arena rows, a 382x deficit**. Measured eight days before the capability gap and pointing at the same subset from the other side
+
+### Supply position
+
+| source | state | rows / units | what it supplies | wall status |
+|---|---|---|---|---|
+| `num_derive` (R22-H187) | **building** | 15,000 pairs / 30,000 rows target | synthetic minimal pairs over TabFact; operands identical across legs, only the computed result differs | TabFact, contamination-gated at build |
+| FinDVer | **banked, released by this ruling** | 2,400 claims, 1,201 / 1,199, 539 documents | human-annotated entailed/refuted over 2024 10-K and 10-Q filings; the `numeric` subset is the derivation signal in real financial prose | clear - 2024 filings against pre-2020 walled corpora; 8-gram instrument ran, max fraction 0.0 |
+| EDGAR-restricted | **banked, released by this ruling** | 6,379 filings kept, 4,384 with MD&A over 500 characters | unlabeled 10-K management-discussion prose - the substrate on which derivation negatives are manufactured, in the exact register finqa draws from | clear BY CONSTRUCTION - non-S&P-500 filers AND filing year >= 2020, both clauses, no relaxation |
+| new survey | **in flight** | - | corpora carrying computed-value claims; RAGBench wall, commercial licence and evidence-ships-with-claims filters binding | to be gated per corpus |
+
+### Two caveats recorded now, not discovered later
+
+- **EDGAR's restriction is a self-imposed contamination firewall, not a licence limit.** The corpus is Apache-2.0 over US government public records that carry no copyright. The restriction exists because FinQA was built from S&P 500 annual reports 1999-2019 via FinTabNet, so excluding those filers and those years makes the slice document-disjoint from FinQA's population by company and by year. **It does not block this wave, and it must never be relaxed to enlarge the slice** - the disjointness is the whole reason the corpus is usable
+- **FinDVer is the test and testmini splits of a public benchmark.** Training on it is licence-clean and wall-clean, but it permanently forfeits FinDVer as a reportable evaluation surface for this project, and any external comparison drawing on FinDVer becomes unavailable to us. That is an acceptable price for 2,400 balanced human-annotated derivation rows, and it is a decision rather than an oversight
+
+### The honest ceiling, restated so no arm overstates it
+
+The R22-H182 autopsy decomposed finqa's twenty unsupported responses: **9 need a derivation checker, 7 need the question in the model input, 4 are label noise or defensibly correct**. This wave addresses the 9. The 7 are structurally out of reach of any function of `(claim, evidence)` alone - both the chosen operand and the correct one are present in the evidence, and only the question says which is right - and they belong to the question-conditioning arc. No lane from this wave may be described as reaching them.
+
+**The supply-only clause stands unchanged**: nothing here enters a training mix without its own registered hypothesis, its own arm, and pre-registered bars set before the arena is read.
+
+
+### CORRECTION to the R22 wave - FinDVer is WITHDRAWN from training supply and stays an evaluation surface (2026-08-17 ~17:30)
+
+The block above released FinDVer for training use. **That release is withdrawn.** It was issued without checking what FinDVer already does in this campaign, and it does something the release would have destroyed.
+
+`R20-H176` (2026-08-16) banked a FinDVer instrument read on two flagship draws:
+
+| subset | draw 1 | draw 2 |
+|---|---|---|
+| ie | 0.6561 | 0.6658 |
+| knowledge | 0.5715 | 0.5961 |
+| **numeric** | **0.4950** | **0.4967** |
+| overall | 0.5707 | 0.5839 |
+
+Its own recorded branch: *"numeric < 0.65 and numeric < (ie+knowledge)/2 - 0.05 → deficit derivation-specific off-arena; **FinDVer-numeric banks as the standing non-arena mechanism instrument**"*.
+
+**The flagship reads chance on FinDVer-numeric, twice.** That is a pristine off-arena gate for exactly the capability R22 exists to install: human-annotated, exactly balanced, built on 2024 filings the model has never seen, with a banked baseline taken before any of this round's work. Training on it would consume the one instrument that can tell us whether the capability was installed, and would leave the arena - which must never be tuned on - as the only place to look.
+
+The dataset contract is explicit: **"A dataset may not be both. That is checked, not assumed."** It was not checked. It is now.
+
+- **FinDVer - EVALUATION ONLY.** Not loaded into any mix. It is the primary gate for R22-H188
+- **EDGAR-restricted - training supply, released as stated.** Unlabeled substrate, never an evaluation surface, no conflict
+- **Splitting FinDVer** (train on `test` 1,700, evaluate on `testmini` 700) was considered and rejected: the two splits share their 539 source documents, so they are not disjoint, and the banked two-draw baseline is over all 2,400 rows and would have to be discarded
+
+The 2,400 rows lost to training are amply replaced by `num_derive`'s 30,000 rows of the same predicate. The instrument is not replaceable.
+
+
+### R22 supply wave - BUILD VERDICT: five corpora fetched, all GATE GREEN; the signal is largely unfetchable and must be built (2026-08-17 ~17:40)
+
+**The wave's honest yield first: exactly ONE public corpus carries the target signal fully labeled on both legs, and it is 361 pairs.** Every other admitted corpus supplies derivation POSITIVES - the operands and the correct answer - from which a result-only negative must be CONSTRUCTED. If this capability is wanted at volume, it is built, not fetched. That is the wave's finding, and it retroactively justifies `num_derive` rather than making it redundant.
+
+| corpus | rows | licence | derivation signal | gate |
+|---|---|---|---|---|
+| **EQUATE** | 9,702 | MIT | **YES, both legs labeled.** AWPNLI 361/361 exactly balanced; **353 of 356 pairs differ ONLY in numeric tokens** - operands correct and present, result false, the exact finqa shape | PASS, max fraction 0.0 |
+| **HiTab** | 10,672 + 7,194 tables | CUDA v1.0 | **PARTIAL and uniquely machine-readable** - 3,136 rows (29.4%) carry an aggregation operator, and **3,136 of 3,136 also ship an Excel-style `answer_formula` naming the operand cells** | PASS, max fraction 0.0 |
+| **NumGLUE** | 92,049 | ODC-By 1.0 | PARTIAL - Type_7 quantitative NLI 9,452 rows both legs labeled; 4,390 word problems answer-key only | PASS, max fraction 0.000116 |
+| **DROP** | 86,935 | CC-BY-SA-4.0 | PARTIAL, largest by volume - 60,915 number-typed answers; the benchmark exists because answering needs arithmetic over stated figures | PASS, max fraction 0.000164 |
+| **SciTab** | 1,224 | MIT | PARTIAL - real paper result statements needing cross-cell comparison; also supplies a **not-enough-info leg the mix is thin on** (457/411/356) | PASS, max fraction 0.0 |
+
+Spike controls 10/10 detected at 0 baseline hits on all five. Gate coverage 1.0 - no subsampling.
+
+#### Three constraints that bind any lane built from this wave
+
+- **NumGLUE contains DROP.** Type_5 + Type_6 = 77,400 rows, **84.1% of NumGLUE, is DROP's train split verbatim** - measured, not inferred. Loading both double-counts them and breaks both split axes. Only one may enter a mix, or NumGLUE must be carved to Type_7 alone
+- **One arena near-duplicate, named and not waived.** A single shared Wikipedia paragraph appears in DROP and - through Type_5/6 - in NumGLUE, hitting `hagrid` at Jaccard 0.7881. That is 122x under the 2% kill bar, it is recorded in both gate JSONs with its unit ids, and **it must be dropped by predicate at lane build** rather than left to the margin
+- **HiTab's licence needs the author's eye before publication.** It is the Computational Use of Data Agreement v1.0, not a standard permissive licence. The executor read it at source: clause 2.1 restricts the DATA to Computational Use, 5.1 defines that as enabling use by a computer for analysis, and **clause 2.2 places no restriction on Results**, so a trained model is unencumbered. That reading is defensible and is recorded as a reading, not a certainty
+
+#### Rejections, with the binding reason
+
+- **Non-commercial licence**, verified at source: QuanTemp (CC-BY-NC-4.0, 15,514 claims, strong derivation signal), QuanTemp++, TabMWP (CC-BY-NC-SA-4.0, 38,431)
+- **Inside the RAGBench wall**: **MultiHiertt** - built on FinTabNet, which is S&P 500 annual reports, precisely the population this project's own EDGAR sidecar names as FinQA's source, and with no year-disjointness available the way FinDVer's 2024 filings gave one. **DocMath-Eval** - its own README states `simpshort` is reannotated from TAT-QA and FinQA, `simplong` from MultiHiertt, `compshort` from TAT-HQA; only `complong` is annotated from scratch and a carve-out to it alone is an author ruling, not an executor's. **ConvFinQA** - FinQA derivative
+- **Wrong shape**: ClaimDB (evidence is a live 4.6M-record database; verification is SQL execution, not attribution reading), FinanceMath (needs an external knowledge bank, so the evidence does not determine the answer)
+- **Too small to supply**: FinVerBench (105 instances, also S&P 500), TSVer (287 claims, evidence is numeric time series)
+- **Lookup-dominant and redundant** with the 35,540 lookup rows already banked plus TabFact: WikiTableQuestions, FeTaQA, HybridQA, InfoTabs, AIT-QA
+
+#### Where this goes next - QUEUED, NOT LAUNCHED
+
+**HiTab is the best raw material for a derivation lane at volume**, because 100% of its derived rows ship the formula, which makes the corruption deterministic and leaves the operands provably untouched. Pairing it with EDGAR-restricted's unlabeled financial prose is the only route by which EDGAR reaches this gap at all - EDGAR supplies register, never signal.
+
+**That build is gated on R22-H188.** Scaling a second, larger lane of the same construction before knowing whether the first one installs the predicate would be spending ahead of the gate. If FinDVer-numeric moves off chance, the HiTab lane is justified; if it does not, a bigger lane of the same kind is the wrong response and the reason needs finding first.
+
+**Supply-only clause stands**: none of these five enters a training mix without its own registered hypothesis, its own arm, and bars fixed before the arena is read.
+

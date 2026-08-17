@@ -1,0 +1,243 @@
+{
+  "clause": "C1",
+  "head_declared": "the grounding scalar (`task_head`), trained by pointwise / MIL max-over-windows BCE on the 0/1 label",
+  "label_predicate": "label 1 = the two operand values the claim states are the evidence's cells for the named (row, column) bindings AND the asserted result is what those operands give under the stated operation; label 0 = the same claim shape, the same two operands, and a result the operands do NOT give. The predicate is support of the asserted proposition, which is the head's own predicate",
+  "label_origin": "construction (R22-H187_num_derive_lane.py), not a dataset-supplied label",
+  "decisive_test_1_structural_C_A1": {
+    "definition": "a negative leg's (claim, evidence) pair identical to a positive leg's means no function of (claim, evidence) can separate the legs, so the label cannot encode grounding",
+    "negative_rows_whose_claim_evidence_pair_is_also_a_positive": 0,
+    "within_pair_identical_claim_strings": 0,
+    "bar": "0",
+    "fires": false
+  },
+  "decisive_test_2_strict_separation_C_A2": {
+    "instrument": "arithmetic checker - the asserted result is recomputed from the two operands the claim itself states, under the family's operation (difference, percentage, sum, product). This is the instrument sensitive to the predicate the lane corrupts",
+    "negative_leg_attested_rate": 0.0,
+    "positive_leg_attested_rate": 1.0,
+    "strictly_below": true,
+    "bar": "the negative leg's high-attestation rate must be STRICTLY below the positive leg's; equality is the signature of a label independent of (claim, evidence)"
+  },
+  "decisive_test_3_absolute_level_reported_C_A2": {
+    "negative_share_ge_0.90_containment": 0.000267,
+    "positive_share_ge_0.90_containment": 0.000333,
+    "negative_share_fully_attested_containment": 0.0,
+    "positive_share_fully_attested_containment": 0.0,
+    "negative_share_derivation_attested": 0.0,
+    "reading": "reported always; a negative leg attested at a high absolute rate is a finding even where test 2 passes"
+  },
+  "legs": {
+    "positive": {
+      "containment_untruncated": {
+        "n": 15000,
+        "mean": 0.565561,
+        "std": 0.122074,
+        "min": 0.25,
+        "p10": 0.409091,
+        "p25": 0.470588,
+        "median": 0.5625,
+        "p75": 0.666667,
+        "p90": 0.733333,
+        "max": 0.923077,
+        "share_ge_0.90": 0.000333,
+        "share_ge_0.95": 0.0,
+        "share_fully_attested_eq_1.0": 0.0,
+        "histogram_deciles": [
+          0,
+          0,
+          140,
+          1117,
+          2896,
+          5263,
+          3368,
+          1856,
+          355,
+          5
+        ]
+      },
+      "containment_truncated_1500": {
+        "n": 15000,
+        "mean": 0.565561,
+        "std": 0.122074,
+        "min": 0.25,
+        "p10": 0.409091,
+        "p25": 0.470588,
+        "median": 0.5625,
+        "p75": 0.666667,
+        "p90": 0.733333,
+        "max": 0.923077,
+        "share_ge_0.90": 0.000333,
+        "share_ge_0.95": 0.0,
+        "share_fully_attested_eq_1.0": 0.0,
+        "histogram_deciles": [
+          0,
+          0,
+          140,
+          1117,
+          2896,
+          5263,
+          3368,
+          1856,
+          355,
+          5
+        ]
+      },
+      "derivation_attested_rate": 1.0,
+      "derivation_attested_share_ge_0.90": 1.0,
+      "asserted_result_readable_in_evidence_rate": 0.0,
+      "both_operands_readable_in_evidence_rate": 1.0
+    },
+    "negative": {
+      "containment_untruncated": {
+        "n": 15000,
+        "mean": 0.565524,
+        "std": 0.122089,
+        "min": 0.25,
+        "p10": 0.409091,
+        "p25": 0.470588,
+        "median": 0.5625,
+        "p75": 0.666667,
+        "p90": 0.733333,
+        "max": 0.9375,
+        "share_ge_0.90": 0.000267,
+        "share_ge_0.95": 0.0,
+        "share_fully_attested_eq_1.0": 0.0,
+        "histogram_deciles": [
+          0,
+          0,
+          133,
+          1115,
+          2904,
+          5278,
+          3347,
+          1866,
+          353,
+          4
+        ]
+      },
+      "containment_truncated_1500": {
+        "n": 15000,
+        "mean": 0.565524,
+        "std": 0.122089,
+        "min": 0.25,
+        "p10": 0.409091,
+        "p25": 0.470588,
+        "median": 0.5625,
+        "p75": 0.666667,
+        "p90": 0.733333,
+        "max": 0.9375,
+        "share_ge_0.90": 0.000267,
+        "share_ge_0.95": 0.0,
+        "share_fully_attested_eq_1.0": 0.0,
+        "histogram_deciles": [
+          0,
+          0,
+          133,
+          1115,
+          2904,
+          5278,
+          3347,
+          1866,
+          353,
+          4
+        ]
+      },
+      "derivation_attested_rate": 0.0,
+      "derivation_attested_share_ge_0.90": 0.0,
+      "asserted_result_readable_in_evidence_rate": 0.0,
+      "both_operands_readable_in_evidence_rate": 1.0
+    }
+  },
+  "containment_channel_scoped_to_C1_by_C_A1": {
+    "auroc_containment_vs_label": 0.500292,
+    "within_pair_identical_containment_share": 0.9038,
+    "within_pair_mean_abs_difference": 0.00509,
+    "reading": "BLIND BY CONSTRUCTION and intended: the asserted result is absent from the evidence on both legs, so the two legs differ only in a numeral neither of them attests. C-A1 scopes containment to C1 and requires the diagnostic to be read with a predicate-sensitive instrument; a predicate-blind instrument showing no separation is not evidence of incommensurability"
+  },
+  "asserted_result_presence": {
+    "positive_leg": 0.0,
+    "negative_leg": 0.0,
+    "bar": "0.0 on both legs - the result is ABSENT by construction",
+    "holds": true
+  },
+  "operand_presence": {
+    "positive_leg": 1.0,
+    "negative_leg": 1.0,
+    "bar": "1.0 on both legs - both operands are stated by the evidence",
+    "holds": true
+  },
+  "per_family": {
+    "difference": {
+      "rows": 10500,
+      "negative_containment_mean": 0.573388,
+      "positive_containment_mean": 0.573162,
+      "negative_derivation_attested_rate": 0.0,
+      "positive_derivation_attested_rate": 1.0
+    },
+    "percentage": {
+      "rows": 10500,
+      "negative_containment_mean": 0.535263,
+      "positive_containment_mean": 0.535582,
+      "negative_derivation_attested_rate": 0.0,
+      "positive_derivation_attested_rate": 1.0
+    },
+    "product": {
+      "rows": 4500,
+      "negative_containment_mean": 0.593758,
+      "positive_containment_mean": 0.593705,
+      "negative_derivation_attested_rate": 0.0,
+      "positive_derivation_attested_rate": 1.0
+    },
+    "sum": {
+      "rows": 4500,
+      "negative_containment_mean": 0.589547,
+      "positive_containment_mean": 0.589633,
+      "negative_derivation_attested_rate": 0.0,
+      "positive_derivation_attested_rate": 1.0
+    }
+  },
+  "per_serial_form": {
+    "json_records": {
+      "rows": 1432,
+      "negative_containment_mean": 0.508548,
+      "positive_containment_mean": 0.508231,
+      "negative_derivation_attested_rate": 0.0,
+      "positive_derivation_attested_rate": 1.0
+    },
+    "keyvalue": {
+      "rows": 2940,
+      "negative_containment_mean": 0.508799,
+      "positive_containment_mean": 0.508766,
+      "negative_derivation_attested_rate": 0.0,
+      "positive_derivation_attested_rate": 1.0
+    },
+    "markdown": {
+      "rows": 3204,
+      "negative_containment_mean": 0.517313,
+      "positive_containment_mean": 0.517712,
+      "negative_derivation_attested_rate": 0.0,
+      "positive_derivation_attested_rate": 1.0
+    },
+    "narrative": {
+      "rows": 8960,
+      "negative_containment_mean": 0.556662,
+      "positive_containment_mean": 0.556754,
+      "negative_derivation_attested_rate": 0.0,
+      "positive_derivation_attested_rate": 1.0
+    },
+    "pipe": {
+      "rows": 4252,
+      "negative_containment_mean": 0.508177,
+      "positive_containment_mean": 0.507924,
+      "negative_derivation_attested_rate": 0.0,
+      "positive_derivation_attested_rate": 1.0
+    },
+    "row_prose": {
+      "rows": 9212,
+      "negative_containment_mean": 0.644341,
+      "positive_containment_mean": 0.644412,
+      "negative_derivation_attested_rate": 0.0,
+      "positive_derivation_attested_rate": 1.0
+    }
+  },
+  "seconds": 3.5
+}

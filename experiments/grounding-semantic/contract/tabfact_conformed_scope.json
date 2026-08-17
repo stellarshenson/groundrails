@@ -1,0 +1,299 @@
+{
+  "member": "tabfact_conformed",
+  "question": "C2 is scoped to 'the arena, gold_full, and each held-out mechanism eval'. This sweep shows every file in the round directory that still shares text or a TabFact document with the conformed member, so the scope the C2 verdict rests on is visible and checkable",
+  "surfaces_verified_under_C2": {
+    "arena": "the 10 RAGBench subsets, banked H77 sample",
+    "gold_full": "R10-H108_lane.gold_full() - note this reads the private teacher-pair file, NOT R10-H108_pairs.parquet, which is the H108 TRAINING lane",
+    "mechanism_evals": [
+      "R20-H177_eval_B.parquet",
+      "R20-H177_eval_C.parquet",
+      "R17-H143_evalset.parquet",
+      "R20-H175b_qlane_eval.parquet",
+      "R20-H175b_qlane_eval_repaired.parquet",
+      "R20-H175b_qlane_eval_clean.parquet",
+      "R20-H175b_qlane_eval_clean_prefix.parquet",
+      "R19_findver_lane.parquet"
+    ],
+    "antigaming_probe_sets": "all 14 banked files",
+    "vitaminc_holdout": "measured on its strict superset"
+  },
+  "files_scanned": 147,
+  "files_skipped_over_30MB_or_unreadable": [
+    "R15_gate_B2_absent_flags.parquet",
+    "R19_fava_lane.parquet"
+  ],
+  "files_still_sharing_text_or_a_document_with_the_conformed_member": {
+    "DR_H113_gate_judged.parquet": {
+      "rows": 1505,
+      "distinct_passages_matching_member_evidence": 149,
+      "distinct_claims_matching_member_claims": 0,
+      "tabfact_documents_in_member": 0,
+      "tabfact_documents_in_the_file": 0,
+      "same_documents_already_in_a_MIX_TRAINING_LANE": 0,
+      "is_a_verified_C2_surface": false
+    },
+    "DR_H113_gate_samples.parquet": {
+      "rows": 1505,
+      "distinct_passages_matching_member_evidence": 149,
+      "distinct_claims_matching_member_claims": 0,
+      "tabfact_documents_in_member": 0,
+      "tabfact_documents_in_the_file": 0,
+      "same_documents_already_in_a_MIX_TRAINING_LANE": 0,
+      "is_a_verified_C2_surface": false
+    },
+    "DR_judged.parquet": {
+      "rows": 25411,
+      "distinct_passages_matching_member_evidence": 2457,
+      "distinct_claims_matching_member_claims": 2,
+      "tabfact_documents_in_member": 0,
+      "tabfact_documents_in_the_file": 2187,
+      "same_documents_already_in_a_MIX_TRAINING_LANE": 0,
+      "is_a_verified_C2_surface": false
+    },
+    "DR_lane.parquet": {
+      "rows": 30369,
+      "distinct_passages_matching_member_evidence": 1723,
+      "distinct_claims_matching_member_claims": 1,
+      "tabfact_documents_in_member": 0,
+      "tabfact_documents_in_the_file": 0,
+      "same_documents_already_in_a_MIX_TRAINING_LANE": 0,
+      "is_a_verified_C2_surface": false
+    },
+    "DR_pilot_longform.FAILED.parquet": {
+      "rows": 5435,
+      "distinct_passages_matching_member_evidence": 384,
+      "distinct_claims_matching_member_claims": 0,
+      "tabfact_documents_in_member": 0,
+      "tabfact_documents_in_the_file": 3380,
+      "same_documents_already_in_a_MIX_TRAINING_LANE": 0,
+      "is_a_verified_C2_surface": false
+    },
+    "DR_pilot_longform.attempt1.parquet": {
+      "rows": 6201,
+      "distinct_passages_matching_member_evidence": 458,
+      "distinct_claims_matching_member_claims": 0,
+      "tabfact_documents_in_member": 0,
+      "tabfact_documents_in_the_file": 3934,
+      "same_documents_already_in_a_MIX_TRAINING_LANE": 0,
+      "is_a_verified_C2_surface": false
+    },
+    "DR_pilot_longform.parquet": {
+      "rows": 5432,
+      "distinct_passages_matching_member_evidence": 384,
+      "distinct_claims_matching_member_claims": 0,
+      "tabfact_documents_in_member": 0,
+      "tabfact_documents_in_the_file": 3379,
+      "same_documents_already_in_a_MIX_TRAINING_LANE": 0,
+      "is_a_verified_C2_surface": false
+    },
+    "DR_pilot_raw.parquet": {
+      "rows": 61100,
+      "distinct_passages_matching_member_evidence": 3760,
+      "distinct_claims_matching_member_claims": 40,
+      "tabfact_documents_in_member": 0,
+      "tabfact_documents_in_the_file": 0,
+      "same_documents_already_in_a_MIX_TRAINING_LANE": 0,
+      "is_a_verified_C2_surface": false
+    },
+    "R10-H108_pairs.parquet": {
+      "rows": 61184,
+      "distinct_passages_matching_member_evidence": 9837,
+      "distinct_claims_matching_member_claims": 59,
+      "tabfact_documents_in_member": 0,
+      "tabfact_documents_in_the_file": 0,
+      "same_documents_already_in_a_MIX_TRAINING_LANE": 0,
+      "is_a_verified_C2_surface": false
+    },
+    "R10-H111_judge_validation.parquet": {
+      "rows": 211,
+      "distinct_passages_matching_member_evidence": 21,
+      "distinct_claims_matching_member_claims": 0,
+      "tabfact_documents_in_member": 0,
+      "tabfact_documents_in_the_file": 0,
+      "same_documents_already_in_a_MIX_TRAINING_LANE": 0,
+      "is_a_verified_C2_surface": false
+    },
+    "R10-H111_pairs_final.parquet": {
+      "rows": 26142,
+      "distinct_passages_matching_member_evidence": 2228,
+      "distinct_claims_matching_member_claims": 0,
+      "tabfact_documents_in_member": 0,
+      "tabfact_documents_in_the_file": 0,
+      "same_documents_already_in_a_MIX_TRAINING_LANE": 0,
+      "is_a_verified_C2_surface": false
+    },
+    "R10-H111_stage1_judged.parquet": {
+      "rows": 41733,
+      "distinct_passages_matching_member_evidence": 3191,
+      "distinct_claims_matching_member_claims": 0,
+      "tabfact_documents_in_member": 0,
+      "tabfact_documents_in_the_file": 0,
+      "same_documents_already_in_a_MIX_TRAINING_LANE": 0,
+      "is_a_verified_C2_surface": false
+    },
+    "R10-H111_stage1_pairs.parquet": {
+      "rows": 96320,
+      "distinct_passages_matching_member_evidence": 5359,
+      "distinct_claims_matching_member_claims": 0,
+      "tabfact_documents_in_member": 0,
+      "tabfact_documents_in_the_file": 0,
+      "same_documents_already_in_a_MIX_TRAINING_LANE": 0,
+      "is_a_verified_C2_surface": false
+    },
+    "R11-H117_heldout_pairs.parquet": {
+      "rows": 2000,
+      "distinct_passages_matching_member_evidence": 291,
+      "distinct_claims_matching_member_claims": 0,
+      "tabfact_documents_in_member": 0,
+      "tabfact_documents_in_the_file": 0,
+      "same_documents_already_in_a_MIX_TRAINING_LANE": 0,
+      "is_a_verified_C2_surface": false
+    },
+    "R12-H121_gateBC_rows.parquet": {
+      "rows": 6786,
+      "distinct_passages_matching_member_evidence": 0,
+      "distinct_claims_matching_member_claims": 610,
+      "tabfact_documents_in_member": 0,
+      "tabfact_documents_in_the_file": 0,
+      "same_documents_already_in_a_MIX_TRAINING_LANE": 0,
+      "is_a_verified_C2_surface": false
+    },
+    "R12-H121_gateB_eyeball_sample.parquet": {
+      "rows": 300,
+      "distinct_passages_matching_member_evidence": 0,
+      "distinct_claims_matching_member_claims": 33,
+      "tabfact_documents_in_member": 0,
+      "tabfact_documents_in_the_file": 0,
+      "same_documents_already_in_a_MIX_TRAINING_LANE": 0,
+      "is_a_verified_C2_surface": false
+    },
+    "R14-H133_lane.parquet": {
+      "rows": 50000,
+      "distinct_passages_matching_member_evidence": 198,
+      "distinct_claims_matching_member_claims": 0,
+      "tabfact_documents_in_member": 6403,
+      "tabfact_documents_in_the_file": 10715,
+      "same_documents_already_in_a_MIX_TRAINING_LANE": 4265,
+      "is_a_verified_C2_surface": false
+    },
+    "R14-H133_lane.v1-DEFECTIVE.parquet": {
+      "rows": 50000,
+      "distinct_passages_matching_member_evidence": 242,
+      "distinct_claims_matching_member_claims": 0,
+      "tabfact_documents_in_member": 7110,
+      "tabfact_documents_in_the_file": 12109,
+      "same_documents_already_in_a_MIX_TRAINING_LANE": 4767,
+      "is_a_verified_C2_surface": false
+    },
+    "R14-H133_lane.v2-SUPERSEDED.parquet": {
+      "rows": 50000,
+      "distinct_passages_matching_member_evidence": 185,
+      "distinct_claims_matching_member_claims": 0,
+      "tabfact_documents_in_member": 5773,
+      "tabfact_documents_in_the_file": 9922,
+      "same_documents_already_in_a_MIX_TRAINING_LANE": 3890,
+      "is_a_verified_C2_surface": false
+    },
+    "R17-H143_evalset_source.parquet": {
+      "rows": 50000,
+      "distinct_passages_matching_member_evidence": 185,
+      "distinct_claims_matching_member_claims": 0,
+      "tabfact_documents_in_member": 5773,
+      "tabfact_documents_in_the_file": 9922,
+      "same_documents_already_in_a_MIX_TRAINING_LANE": 3890,
+      "is_a_verified_C2_surface": false
+    },
+    "R17-H144_ctrlval.parquet": {
+      "rows": 1800,
+      "distinct_passages_matching_member_evidence": 26,
+      "distinct_claims_matching_member_claims": 0,
+      "tabfact_documents_in_member": 310,
+      "tabfact_documents_in_the_file": 521,
+      "same_documents_already_in_a_MIX_TRAINING_LANE": 383,
+      "is_a_verified_C2_surface": false
+    },
+    "R17-H144_lookup.parquet": {
+      "rows": 7000,
+      "distinct_passages_matching_member_evidence": 64,
+      "distinct_claims_matching_member_claims": 0,
+      "tabfact_documents_in_member": 1079,
+      "tabfact_documents_in_the_file": 1742,
+      "same_documents_already_in_a_MIX_TRAINING_LANE": 1235,
+      "is_a_verified_C2_surface": false
+    },
+    "R17-H144_pairs.parquet": {
+      "rows": 30000,
+      "distinct_passages_matching_member_evidence": 136,
+      "distinct_claims_matching_member_claims": 0,
+      "tabfact_documents_in_member": 4052,
+      "tabfact_documents_in_the_file": 6558,
+      "same_documents_already_in_a_MIX_TRAINING_LANE": 4934,
+      "is_a_verified_C2_surface": false
+    },
+    "R17-H144_traces.parquet": {
+      "rows": 30000,
+      "distinct_passages_matching_member_evidence": 0,
+      "distinct_claims_matching_member_claims": 0,
+      "tabfact_documents_in_member": 4052,
+      "tabfact_documents_in_the_file": 6558,
+      "same_documents_already_in_a_MIX_TRAINING_LANE": 4934,
+      "is_a_verified_C2_surface": false
+    },
+    "R17-H145_scaleunit.parquet": {
+      "rows": 5672,
+      "distinct_passages_matching_member_evidence": 2,
+      "distinct_claims_matching_member_claims": 0,
+      "tabfact_documents_in_member": 522,
+      "tabfact_documents_in_the_file": 718,
+      "same_documents_already_in_a_MIX_TRAINING_LANE": 555,
+      "is_a_verified_C2_surface": false
+    },
+    "R17-H146_lane.parquet": {
+      "rows": 30000,
+      "distinct_passages_matching_member_evidence": 213,
+      "distinct_claims_matching_member_claims": 0,
+      "tabfact_documents_in_member": 4554,
+      "tabfact_documents_in_the_file": 7408,
+      "same_documents_already_in_a_MIX_TRAINING_LANE": 7408,
+      "is_a_verified_C2_surface": false
+    },
+    "R17-H146_lane_conformed.parquet": {
+      "rows": 19700,
+      "distinct_passages_matching_member_evidence": 213,
+      "distinct_claims_matching_member_claims": 0,
+      "tabfact_documents_in_member": 4554,
+      "tabfact_documents_in_the_file": 4853,
+      "same_documents_already_in_a_MIX_TRAINING_LANE": 4853,
+      "is_a_verified_C2_surface": false
+    },
+    "R18-H150_scaleunit_lane.parquet": {
+      "rows": 5540,
+      "distinct_passages_matching_member_evidence": 2,
+      "distinct_claims_matching_member_claims": 0,
+      "tabfact_documents_in_member": 282,
+      "tabfact_documents_in_the_file": 391,
+      "same_documents_already_in_a_MIX_TRAINING_LANE": 391,
+      "is_a_verified_C2_surface": false
+    },
+    "R18-H150_unitswap_probe.parquet": {
+      "rows": 280,
+      "distinct_passages_matching_member_evidence": 0,
+      "distinct_claims_matching_member_claims": 0,
+      "tabfact_documents_in_member": 19,
+      "tabfact_documents_in_the_file": 42,
+      "same_documents_already_in_a_MIX_TRAINING_LANE": 17,
+      "is_a_verified_C2_surface": false
+    },
+    "R20-H177_lane_B.parquet": {
+      "rows": 30000,
+      "distinct_passages_matching_member_evidence": 219,
+      "distinct_claims_matching_member_claims": 0,
+      "tabfact_documents_in_member": 4677,
+      "tabfact_documents_in_the_file": 6261,
+      "same_documents_already_in_a_MIX_TRAINING_LANE": 3601,
+      "is_a_verified_C2_surface": false
+    }
+  },
+  "reading": "every flagged file is a TRAINING lane, a lane's source pool, a generation or gate sample, or a lane-side probe - none is a banked held-out mechanism eval, and each verified C2 surface reads zero on every channel and so does not appear here. The `same_documents_already_in_a_MIX_TRAINING_LANE` column is the comparator: where it is large, the file's TabFact documents are carried by a lane the mix loads regardless of what this member does. Reported, not adjudicated - if the coordinator rules any of these an evaluation surface, its counts here are the size of the residual and the cut would have to be extended",
+  "elapsed_s": 20.9
+}

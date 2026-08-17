@@ -1,0 +1,276 @@
+{
+  "member": "halueval",
+  "loaded": {
+    "mix_rows_total": 685670,
+    "member_slice": [
+      120720,
+      160720
+    ],
+    "chunk_max_chars": 1500,
+    "subset_rows": {
+      "qa": 10000,
+      "summarization": 10000
+    }
+  },
+  "C1": {
+    "instrument": "R20-H174_lane_common.containment (content-token containment of claim in evidence), banked",
+    "presentations": {
+      "untruncated": {
+        "all": {
+          "positive_leg": {
+            "n": 20000,
+            "mean": 0.8979,
+            "median": 0.9773,
+            "p10": 0.7593,
+            "p90": 1.0,
+            "frac_ge_0.90": 0.6592,
+            "frac_eq_1.00": 0.4884,
+            "frac_ge_0.75": 0.9097,
+            "frac_le_0.50": 0.0332
+          },
+          "negative_leg": {
+            "n": 20000,
+            "mean": 0.7109,
+            "median": 0.7465,
+            "p10": 0.5,
+            "p90": 0.9,
+            "frac_ge_0.90": 0.1032,
+            "frac_eq_1.00": 0.0339,
+            "frac_ge_0.75": 0.4991,
+            "frac_le_0.50": 0.1312
+          },
+          "attested_rate_gap_at_0.90": 0.556,
+          "mean_gap": 0.187,
+          "rejected_by_c1_bar": false
+        },
+        "qa": {
+          "positive_leg": {
+            "n": 10000,
+            "mean": 0.9362,
+            "median": 1.0,
+            "p10": 1.0,
+            "p90": 1.0,
+            "frac_ge_0.90": 0.9358,
+            "frac_eq_1.00": 0.9358,
+            "frac_ge_0.75": 0.9358,
+            "frac_le_0.50": 0.064
+          },
+          "negative_leg": {
+            "n": 10000,
+            "mean": 0.6527,
+            "median": 0.6667,
+            "p10": 0.3684,
+            "p90": 0.9091,
+            "frac_ge_0.90": 0.1123,
+            "frac_eq_1.00": 0.0663,
+            "frac_ge_0.75": 0.3848,
+            "frac_le_0.50": 0.25
+          },
+          "attested_rate_gap_at_0.90": 0.8235,
+          "mean_gap": 0.2835,
+          "rejected_by_c1_bar": false
+        },
+        "summarization": {
+          "positive_leg": {
+            "n": 10000,
+            "mean": 0.8597,
+            "median": 0.875,
+            "p10": 0.7358,
+            "p90": 0.9677,
+            "frac_ge_0.90": 0.3825,
+            "frac_eq_1.00": 0.041,
+            "frac_ge_0.75": 0.8837,
+            "frac_le_0.50": 0.0024
+          },
+          "negative_leg": {
+            "n": 10000,
+            "mean": 0.7691,
+            "median": 0.7778,
+            "p10": 0.6304,
+            "p90": 0.8961,
+            "frac_ge_0.90": 0.0942,
+            "frac_eq_1.00": 0.0015,
+            "frac_ge_0.75": 0.6134,
+            "frac_le_0.50": 0.0124
+          },
+          "attested_rate_gap_at_0.90": 0.2883,
+          "mean_gap": 0.0906,
+          "rejected_by_c1_bar": false
+        }
+      },
+      "truncated_1500": {
+        "all": {
+          "positive_leg": {
+            "n": 20000,
+            "mean": 0.8426,
+            "median": 0.9429,
+            "p10": 0.5932,
+            "p90": 1.0,
+            "frac_ge_0.90": 0.5403,
+            "frac_eq_1.00": 0.4778,
+            "frac_ge_0.75": 0.7361,
+            "frac_le_0.50": 0.057
+          },
+          "negative_leg": {
+            "n": 20000,
+            "mean": 0.6398,
+            "median": 0.6471,
+            "p10": 0.4286,
+            "p90": 0.8571,
+            "frac_ge_0.90": 0.0626,
+            "frac_eq_1.00": 0.0335,
+            "frac_ge_0.75": 0.2791,
+            "frac_le_0.50": 0.2086
+          },
+          "attested_rate_gap_at_0.90": 0.4777,
+          "mean_gap": 0.2028,
+          "rejected_by_c1_bar": false
+        },
+        "qa": {
+          "positive_leg": {
+            "n": 10000,
+            "mean": 0.9362,
+            "median": 1.0,
+            "p10": 1.0,
+            "p90": 1.0,
+            "frac_ge_0.90": 0.9358,
+            "frac_eq_1.00": 0.9358,
+            "frac_ge_0.75": 0.9358,
+            "frac_le_0.50": 0.064
+          },
+          "negative_leg": {
+            "n": 10000,
+            "mean": 0.6527,
+            "median": 0.6667,
+            "p10": 0.3684,
+            "p90": 0.9091,
+            "frac_ge_0.90": 0.1123,
+            "frac_eq_1.00": 0.0663,
+            "frac_ge_0.75": 0.3848,
+            "frac_le_0.50": 0.25
+          },
+          "attested_rate_gap_at_0.90": 0.8235,
+          "mean_gap": 0.2835,
+          "rejected_by_c1_bar": false
+        },
+        "summarization": {
+          "positive_leg": {
+            "n": 10000,
+            "mean": 0.7491,
+            "median": 0.7593,
+            "p10": 0.5625,
+            "p90": 0.9211,
+            "frac_ge_0.90": 0.1449,
+            "frac_eq_1.00": 0.0198,
+            "frac_ge_0.75": 0.5364,
+            "frac_le_0.50": 0.0499
+          },
+          "negative_leg": {
+            "n": 10000,
+            "mean": 0.6269,
+            "median": 0.6271,
+            "p10": 0.4667,
+            "p90": 0.7895,
+            "frac_ge_0.90": 0.0129,
+            "frac_eq_1.00": 0.0007,
+            "frac_ge_0.75": 0.1734,
+            "frac_le_0.50": 0.1672
+          },
+          "attested_rate_gap_at_0.90": 0.132,
+          "mean_gap": 0.1222,
+          "rejected_by_c1_bar": false
+        }
+      }
+    }
+  },
+  "C6": {
+    "test": "the member's two legs share the evidence field, so the association a memoriser could key on is (evidence -> claim); measured, not assumed",
+    "pairs": 20000,
+    "pairs_with_byte_identical_evidence_on_both_legs": 20000,
+    "evidence_only_auroc": 0.5,
+    "evidence_only_auroc_note": "exactly 0.5 BY MEASUREMENT when every pair's legs are byte-identical in evidence - the feature is constant within a pair",
+    "claims_carrying_both_labels": 46,
+    "rows_on_those_claims": 199,
+    "evidence_blocks_shared_by_2plus_pairs": 65,
+    "rows_on_shared_evidence": 262,
+    "positive_negative_claim_string_collisions": 46
+  },
+  "C7": {
+    "unit_declared_by_loader": "rows (the loader appends two rows per source record and tags both `halueval`)",
+    "rows": 40000,
+    "pairs": 20000,
+    "rows_per_pair": 2.0,
+    "per_half": {
+      "summarization": {
+        "rows": 20000,
+        "pairs": 10000
+      },
+      "qa": {
+        "rows": 20000,
+        "pairs": 10000
+      }
+    },
+    "share_of_assembled_mix_rows": {
+      "clean_public_685670": 0.058337,
+      "h150_flagship_721210": 0.055462,
+      "h174_portfolio_760618": 0.052589
+    },
+    "mix_rows_measured": 685670,
+    "registered_figure": "40,000 rows (R8-H90 registration, `HaluEval 40k`)",
+    "pass": true
+  },
+  "C8": {
+    "source": "HuggingFace `pminervini/HaluEval`",
+    "licence": "MIT",
+    "retrieval_date": [
+      "2026-07-29"
+    ],
+    "archive": "data/external/datasets/dataset-halueval.zip (gitignored); tracked sidecar data/external/datasets/dataset-halueval.md",
+    "fetcher": "scripts/fetch_grounding_datasets.py",
+    "selection_predicate": "subsets `qa` and `summarization`, ALL rows, no filter; two mix rows per source record (right_answer/right_summary -> label 1, hallucinated_answer/hallucinated_summary -> label 0); evidence = knowledge / document, truncated to CFG.chunk_max_chars in the incumbent read and untruncated then windowed 1500/750 in the H150/H174 arms",
+    "subsets_in_archive_not_loaded": [
+      "dialogue",
+      "general"
+    ],
+    "duplication": {
+      "rows": 40000,
+      "distinct_claims": 37662,
+      "distinct_evidence": 19934,
+      "distinct_claim_evidence_pairs": 39978,
+      "evidence_reuse_rows": 20066,
+      "per_half": {
+        "qa": {
+          "rows": 20000,
+          "pairs": 10000,
+          "distinct_claims": 17698,
+          "distinct_evidence": 9936,
+          "evidence_chars_mean": 344.3,
+          "evidence_chars_p95": 594.0,
+          "evidence_chars_max": 1557,
+          "evidence_over_1500_chars": 2,
+          "claim_chars_mean": 39.9,
+          "claim_chars_max": 529
+        },
+        "summarization": {
+          "rows": 20000,
+          "pairs": 10000,
+          "distinct_claims": 19964,
+          "distinct_evidence": 9998,
+          "evidence_chars_mean": 3878.9,
+          "evidence_chars_p95": 7967.2,
+          "evidence_chars_max": 11585,
+          "evidence_over_1500_chars": 18588,
+          "claim_chars_mean": 367.9,
+          "claim_chars_max": 3381
+        }
+      }
+    },
+    "geometry": {
+      "evidence_chars_mean": 2111.6,
+      "evidence_chars_max": 11585,
+      "claim_chars_mean": 203.9,
+      "rows_with_evidence_over_1500_chars": 18590
+    },
+    "public_repo_check": "no client or company name appears in this artifact or in the member's text fields as loaded"
+  }
+}

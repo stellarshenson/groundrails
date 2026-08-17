@@ -1,0 +1,3792 @@
+{
+  "member": "vitaminc",
+  "class": "training member - source corpus",
+  "contract": "docs/experiments/dataset-contract.md (C1-C8)",
+  "assembly": {
+    "loader": "R10-H108_lane.public_train() under R16-H142_G1_arm.untruncated_evidence(), plus R20-H174_arm_run.LANES",
+    "assembled_mix_rows": 760618,
+    "member_rows": 370653,
+    "member_row_order_matches_archive": true
+  },
+  "cpu_only": true,
+  "C1": {
+    "head_declared": "the grounding scalar - `task_head = nn.Linear(hidden, 1)` trained with BCEWithLogitsLoss against the row label (R10-H108_lane.DANNStudent, carried unchanged into R16-H142 G1 / R18-H150 / R20-H174 as MIL max-over-windows BCE). No parallel head consumes this member's label in the live arm",
+    "label_predicate": "SUPPORT. The corpus ships a 3-way NLI verdict over a (claim, evidence) pair - SUPPORTS / REFUTES / NOT ENOUGH INFO - and the loader collapses it `label.str.to_uppercase() == \"SUPPORTS\"` -> 1.0, everything else -> 0.0 (R10-H108_lane.py:157-161). The positive class is therefore exactly 'the evidence supports the claim'; the negative class merges two distinct predicates, contradiction (REFUTES) and absence (NOT ENOUGH INFO), both of which are correctly NOT-supported",
+    "label_is_from": "the dataset (human annotation over Wikipedia revision pairs), not from a construction of ours",
+    "instrument": "content-token containment |tok(claim) & tok(evidence)| / |tok(claim)|, the banked campaign instrument: PRIMARY R20-H175b_qlane.containment (unicode tokenizer - the instrument that produced the C1 provenance figures), robustness leg R20-H174_lane_common.containment (ASCII)",
+    "positive_leg": {
+      "definition": "label == 1 (SUPPORTS)",
+      "unicode": {
+        "n": 185714,
+        "mean": 0.6167,
+        "sd": 0.2335,
+        "p25": 0.4545,
+        "median": 0.625,
+        "p75": 0.8,
+        "rate_full_1.0": 0.0884,
+        "rate_ge_0.90": 0.1227,
+        "rate_ge_0.50": 0.7219
+      },
+      "ascii": {
+        "n": 185714,
+        "mean": 0.6161,
+        "sd": 0.2336,
+        "p25": 0.45,
+        "median": 0.625,
+        "p75": 0.8,
+        "rate_full_1.0": 0.0882,
+        "rate_ge_0.90": 0.1222,
+        "rate_ge_0.50": 0.721
+      }
+    },
+    "negative_leg": {
+      "definition": "label == 0 (REFUTES + NOT ENOUGH INFO)",
+      "unicode": {
+        "n": 184939,
+        "mean": 0.4777,
+        "sd": 0.2213,
+        "p25": 0.3333,
+        "median": 0.5,
+        "p75": 0.6364,
+        "rate_full_1.0": 0.0058,
+        "rate_ge_0.90": 0.0169,
+        "rate_ge_0.50": 0.5183
+      },
+      "ascii": {
+        "n": 184939,
+        "mean": 0.4774,
+        "sd": 0.2214,
+        "p25": 0.3333,
+        "median": 0.5,
+        "p75": 0.6364,
+        "rate_full_1.0": 0.0057,
+        "rate_ge_0.90": 0.0169,
+        "rate_ge_0.50": 0.5176
+      }
+    },
+    "negative_leg_by_native_label": {
+      "REFUTES": {
+        "unicode": {
+          "n": 131958,
+          "mean": 0.5064,
+          "sd": 0.2172,
+          "p25": 0.3636,
+          "median": 0.5,
+          "p75": 0.6667,
+          "rate_full_1.0": 0.0072,
+          "rate_ge_0.90": 0.0198,
+          "rate_ge_0.50": 0.5776
+        },
+        "ascii": {
+          "n": 131958,
+          "mean": 0.5061,
+          "sd": 0.2172,
+          "p25": 0.3636,
+          "median": 0.5,
+          "p75": 0.6667,
+          "rate_full_1.0": 0.0071,
+          "rate_ge_0.90": 0.0196,
+          "rate_ge_0.50": 0.5771
+        }
+      },
+      "NOT ENOUGH INFO": {
+        "unicode": {
+          "n": 52981,
+          "mean": 0.4062,
+          "sd": 0.2153,
+          "p25": 0.25,
+          "median": 0.4,
+          "p75": 0.5556,
+          "rate_full_1.0": 0.0022,
+          "rate_ge_0.90": 0.0099,
+          "rate_ge_0.50": 0.3704
+        },
+        "ascii": {
+          "n": 52981,
+          "mean": 0.4059,
+          "sd": 0.2153,
+          "p25": 0.25,
+          "median": 0.4,
+          "p75": 0.5556,
+          "rate_full_1.0": 0.0021,
+          "rate_ge_0.90": 0.01,
+          "rate_ge_0.50": 0.3695
+        }
+      }
+    },
+    "positive_leg_native": {
+      "SUPPORTS": {
+        "unicode": {
+          "n": 185714,
+          "mean": 0.6167,
+          "sd": 0.2335,
+          "p25": 0.4545,
+          "median": 0.625,
+          "p75": 0.8,
+          "rate_full_1.0": 0.0884,
+          "rate_ge_0.90": 0.1227,
+          "rate_ge_0.50": 0.7219
+        }
+      }
+    },
+    "label_varying_channel": {
+      "why": "the C1 provenance failure was a lane that held BOTH claim and passage fixed and flipped the label on question relevance, so the label could not be about support. This census asks which channel actually moves with the label inside this member's own contrastive groups (case_id)",
+      "contrastive_cases_total": 112426,
+      "cases_carrying_both_labels": 111323,
+      "rows_in_mixed_label_cases": 369428,
+      "breakdown_of_mixed_label_cases": {
+        "evidence_varies_claim_constant": {
+          "cases": 37963,
+          "rows": 75996,
+          "share_of_mixed_cases": 0.341
+        },
+        "claim_varies_evidence_constant": {
+          "cases": 4,
+          "rows": 16,
+          "share_of_mixed_cases": 0.0
+        },
+        "both_vary": {
+          "cases": 73356,
+          "rows": 293416,
+          "share_of_mixed_cases": 0.6589
+        },
+        "neither_varies": {
+          "cases": 0,
+          "rows": 0,
+          "share_of_mixed_cases": 0.0
+        }
+      },
+      "reading": "a member whose label moves with the EVIDENCE while the claim is held fixed is asking exactly 'does this evidence support this claim'; the H175b failure mode is the `neither_varies` cell"
+    },
+    "bar_readings": {
+      "A_full_attestation": {
+        "statistic": "fraction of a leg whose claim is FULLY attested (containment == 1.0) - the statistic the C1 provenance quotes ('66.4% of its negatives fully attested')",
+        "negatives": 0.0058,
+        "positives": 0.0884,
+        "gap": 0.0826,
+        "rejects": false
+      },
+      "B_ge_90pct_attested": {
+        "statistic": "fraction of a leg attested at >= 90% containment - the other admissible reading of 'negatives >= 90% attested'",
+        "negatives": 0.0169,
+        "positives": 0.1227,
+        "gap": 0.1058,
+        "rejects": false
+      }
+    },
+    "bar_note": "The C1 bar sentence - 'negatives >= 90% attested at a rate within 0.10 of its positives' - admits two readings. BOTH are computed and BOTH must clear for a PASS; no reading is selected after seeing a number.",
+    "mean_containment_gap": 0.139,
+    "verdict": "PASS",
+    "executor_added_probes": {
+      "claim_only": {
+        "status": "EXECUTOR-ADDED, reported separately - C5 is NOT-APPLICABLE to a source corpus and this is not a C5 bar. It joins no registered conjunction and moves no clause verdict",
+        "instrument": "R20-H174_lane_common.claim_only_probe - out-of-fold char_wb TF-IDF (2-5) + liblinear tol 1e-7, folds disjoint on `page`",
+        "subsample": {
+          "pages": 4000,
+          "rows": 65749,
+          "of_member_rows": 370653,
+          "positive_rate": 0.5009,
+          "why": "the full member is 370,653 rows; the probe is fitted five times, so a page-disjoint document subsample is used and its size is stated"
+        },
+        "claim_only_auroc": 0.4998,
+        "within_case_claim_only_accuracy": 0.4999,
+        "within_case_n": 12949,
+        "reference_bars_for_context_only": {
+          "C5_claim_only_converged_probe": "< 0.55",
+          "C5_within_pair_claim_only": "< 0.60",
+          "note": "quoted so the numbers can be placed, NOT applied - these bars are defined for constructed lanes"
+        }
+      }
+    }
+  },
+  "C3": {
+    "rows": {
+      "train": 370653,
+      "test": 55197,
+      "validation": 63054
+    },
+    "split_axis": {
+      "measured_axis": "case_id - the revision case. `unique_id` is `case_id` plus a within-case ordinal, so the two are one axis, and the official split cuts there",
+      "unique_id_shared": 0,
+      "case_id_shared": 0,
+      "page_shared_rows": 1214,
+      "page_shared_values": 38,
+      "claim_shared_rows": 110,
+      "evidence_shared_rows": 221,
+      "not_cut_on": "page / document, claim text, evidence text. The split is NOT document-disjoint"
+    },
+    "shared_keys": {
+      "unique_id": {
+        "held_out_rows_colliding": 0,
+        "distinct_shared_values": 0,
+        "train_distinct": 370653,
+        "held_out_distinct": 118251,
+        "fraction_of_held_out_rows": 0.0,
+        "shared_values_that_are_empty_sentinels": 0,
+        "held_out_rows_on_empty_sentinel": 0,
+        "held_out_rows_on_genuine_values": 0,
+        "genuine_shared_values": 0
+      },
+      "case_id": {
+        "held_out_rows_colliding": 0,
+        "distinct_shared_values": 0,
+        "train_distinct": 112426,
+        "held_out_distinct": 35323,
+        "fraction_of_held_out_rows": 0.0,
+        "shared_values_that_are_empty_sentinels": 0,
+        "held_out_rows_on_empty_sentinel": 0,
+        "held_out_rows_on_genuine_values": 0,
+        "genuine_shared_values": 0
+      },
+      "page": {
+        "held_out_rows_colliding": 1214,
+        "distinct_shared_values": 38,
+        "train_distinct": 22198,
+        "held_out_distinct": 6041,
+        "fraction_of_held_out_rows": 0.010266,
+        "shared_values_that_are_empty_sentinels": 0,
+        "held_out_rows_on_empty_sentinel": 0,
+        "held_out_rows_on_genuine_values": 1214,
+        "genuine_shared_values": 38
+      },
+      "claim": {
+        "held_out_rows_colliding": 110,
+        "distinct_shared_values": 38,
+        "train_distinct": 175905,
+        "held_out_distinct": 55139,
+        "fraction_of_held_out_rows": 0.00093,
+        "shared_values_that_are_empty_sentinels": 0,
+        "held_out_rows_on_empty_sentinel": 0,
+        "held_out_rows_on_genuine_values": 110,
+        "genuine_shared_values": 38
+      },
+      "evidence": {
+        "held_out_rows_colliding": 221,
+        "distinct_shared_values": 85,
+        "train_distinct": 185217,
+        "held_out_distinct": 54683,
+        "fraction_of_held_out_rows": 0.001869,
+        "shared_values_that_are_empty_sentinels": 0,
+        "held_out_rows_on_empty_sentinel": 0,
+        "held_out_rows_on_genuine_values": 221,
+        "genuine_shared_values": 85
+      },
+      "wiki_revision_id": {
+        "held_out_rows_colliding": 41488,
+        "distinct_shared_values": 3,
+        "train_distinct": 74415,
+        "held_out_distinct": 21282,
+        "fraction_of_held_out_rows": 0.350847,
+        "shared_values_that_are_empty_sentinels": 1,
+        "held_out_rows_on_empty_sentinel": 41480,
+        "held_out_rows_on_genuine_values": 8,
+        "genuine_shared_values": 2
+      },
+      "FEVER_id": {
+        "held_out_rows_colliding": 76771,
+        "distinct_shared_values": 1,
+        "train_distinct": 25752,
+        "held_out_distinct": 8141,
+        "fraction_of_held_out_rows": 0.649221,
+        "shared_values_that_are_empty_sentinels": 1,
+        "held_out_rows_on_empty_sentinel": 76771,
+        "held_out_rows_on_genuine_values": 0,
+        "genuine_shared_values": 0
+      }
+    },
+    "clause_test": "C3 requires the split axis be MEASURED from the archive rather than read off the card, and that an official split not be taken as evidence of disjointness. Both were done",
+    "known_facts_reproduced": {
+      "unique_id_and_case_id_disjoint": true,
+      "pages_shared_rows": 1214,
+      "claims_shared_rows": 110,
+      "evidence_shared_rows": 221,
+      "revision_id_shared_rows": 41488,
+      "revision_id_empty_sentinel_rows": 41480,
+      "revision_id_genuine_rows": 8,
+      "note": "all four figures the coordinator's log records (1,214 page / 110 claim / 221 evidence / 41,488 revision rows) reproduce exactly, and the 2026-08-17 correction is confirmed: 3 distinct revision values are shared, one is the EMPTY STRING carrying 41,480 rows, so 8 rows on 2 values are genuine"
+    },
+    "new_finding_same_species": {
+      "field": "FEVER_id",
+      "shared_rows": 76771,
+      "distinct_shared_values": 1,
+      "genuine_shared_values": 0,
+      "reading": "76,771 held-out rows 'collide' on FEVER_id and ALL of them are the empty-string sentinel - a second null-sentinel artifact of exactly the species the revision-id correction named, not previously recorded. Genuine FEVER_id overlap is ZERO"
+    },
+    "corpus_property_recorded": "the official split is disjoint on its own axis (case_id) and is NOT page-, claim- or evidence-disjoint: 1.03% of held-out rows sit on a page the member also carries, 0.09% repeat a member claim verbatim and 0.19% repeat a member evidence string verbatim. Any eval built from this corpus's official test/validation split without key filtering is contaminated at those rates",
+    "verdict": "PASS",
+    "verdict_basis": "the clause is procedural - state and test the axis. The axis is measured (case_id), the official split is tested rather than assumed, and the non-disjointness it hides is quantified. The clause sets no numeric disjointness bar; that is C2's job"
+  },
+  "C7": {
+    "declared_unit": "ROWS. Every member row is one (claim, evidence) training pair and the mix's unit is the row; rows == pairs for this member by construction",
+    "rows": 370653,
+    "pairs_claim_evidence": 370653,
+    "distinct_claim_evidence_pairs": 367549,
+    "exact_duplicate_rows": 2989,
+    "label_conflicts": {
+      "definition": "distinct (claim, evidence) pairs that appear in the member under BOTH binary labels",
+      "conflicting_pairs": 115,
+      "rows_involved": 236,
+      "fraction_of_rows": 0.000637
+    },
+    "registered_rows": 370653,
+    "reproduces_registration": true,
+    "contrastive_cases_case_id": 112426,
+    "share_of_assembled_mix": 0.4873,
+    "assembled_mix_rows": 760618,
+    "label_counts_native": {
+      "NOT ENOUGH INFO": 52981,
+      "REFUTES": 131958,
+      "SUPPORTS": 185714
+    },
+    "label_counts_binary": {
+      "1": 185714,
+      "0": 184939
+    }
+  },
+  "C8": {
+    "source": {
+      "huggingface": "tals/vitaminc",
+      "archive": "data/external/datasets/dataset-vitaminc.zip",
+      "member_file": "tals__vitaminc__train.parquet",
+      "sidecar": "data/external/datasets/dataset-vitaminc.md",
+      "archive_entries": {
+        "tals__vitaminc__test.parquet": {
+          "size": 3724638,
+          "zip_timestamp": [
+            2026,
+            7,
+            29,
+            11,
+            23,
+            20
+          ]
+        },
+        "tals__vitaminc__train.parquet": {
+          "size": 28317178,
+          "zip_timestamp": [
+            2026,
+            7,
+            29,
+            11,
+            23,
+            20
+          ]
+        },
+        "tals__vitaminc__validation.parquet": {
+          "size": 4224088,
+          "zip_timestamp": [
+            2026,
+            7,
+            29,
+            11,
+            23,
+            20
+          ]
+        },
+        "dataset-vitaminc.md": {
+          "size": 2020,
+          "zip_timestamp": [
+            2026,
+            7,
+            29,
+            11,
+            23,
+            12
+          ]
+        }
+      }
+    },
+    "licence": {
+      "tag": "CC-BY-SA-3.0 (Wikipedia-derived)",
+      "recorded_in": "the tracked sidecar dataset-vitaminc.md",
+      "caveat_verbatim_from_sidecar": "VERIFY before shipping a model trained on it",
+      "share_alike": "CC-BY-SA is a copyleft licence; the sidecar's own caveat is carried, not resolved here"
+    },
+    "retrieval_date": {
+      "zip_entry_timestamps": "2026-07-29 11:23:20 (all three parquet members; the sidecar member is 11:23:12)",
+      "fetcher": "scripts/fetch_grounding_datasets.py",
+      "recorded_in_a_tracked_artifact": false,
+      "finding": "the tracked sidecar records source, licence, size, negatives and caveats but NO retrieval date. The date above is INFERRED from the zip members' own timestamps inside the gitignored archive - it is the only recoverable evidence, and it is recorded here for the first time"
+    },
+    "provenance_weaknesses": [
+      "retrieval date is not recorded at pull time in any tracked artifact; inferred from archive member timestamps",
+      "the licence tag is a hard-coded string in scripts/fetch_grounding_datasets.py (line 213) reproduced verbatim into the sidecar - it was NOT re-read from the source at pull time, which is what the R19 supply wave's clause 1 requires of later corpora. The licence is therefore asserted, not verified, and the sidecar's own 'VERIFY before shipping' caveat is unresolved",
+      "CC-BY-SA-3.0 is share-alike and this member is 48.73% of the assembled mix - a licence question with shipping consequences, recorded here as a measurement, not adjudicated"
+    ],
+    "selection_predicate": "R10-H108_lane.public_train, lines 150-165: open dataset-vitaminc.zip, take the single member whose name endswith '__train.parquet', take ALL rows (no length or quality filter - unlike ragtruth/psiloqa, which are filtered), label = (label.to_uppercase() == 'SUPPORTS'), claim column 'claim', evidence column 'evidence', evidence cut to CFG.chunk_max_chars under the H108 protocol and read UNTRUNCATED under R16-H142/R18-H150/R20-H174",
+    "internal_duplication": {
+      "rows": 370653,
+      "distinct_claims": 175905,
+      "distinct_evidence": 185217,
+      "distinct_pairs": 367549,
+      "claim_repeat_max": 92,
+      "claim_repeat_mean": 2.1071,
+      "evidence_repeat_max": 61,
+      "evidence_repeat_mean": 2.0012,
+      "rows_on_repeated_evidence": 303530,
+      "distinct_pages": 22198,
+      "revision_type": {
+        "synthetic": 121700,
+        "real": 248953
+      }
+    },
+    "presentation": {
+      "rows_over_serve_chars": 88,
+      "note": "88 of 370653 evidence strings exceed 1500 chars, so the truncated and untruncated protocols differ on those rows only"
+    },
+    "public_repository": {
+      "client_or_company_name_in_artifacts": false,
+      "how_checked": "every artifact this verification writes is derived from the public tals/vitaminc archive and the contract's own clause names; no private corpus text is read or emitted"
+    }
+  },
+  "C6": {
+    "clause_test": "C6's own test is EVAL-FACING - 'for each pair, measure overlap between the eval claim and whatever the training mix associates with that pair's key'. It is computed below against the one evaluation surface keyed in this member's namespace",
+    "executor_added_within_member_channel": {
+      "status": "EXECUTOR-ADDED, reported separately and NOT folded into the C6 verdict, per C5's separation rule. It answers a different question: can a lookup keyed on a shared field alone predict the label INSIDE the member",
+      "channels": {
+        "chunk": {
+          "distinct_keys": 185217,
+          "rows": 370653,
+          "base_rate": 0.501,
+          "majority_baseline": 0.501,
+          "key_lookup_accuracy": 0.6026,
+          "lift_over_base": 0.1016,
+          "rows_in_label_pure_groups": 73419,
+          "fraction_rows_label_pure": 0.1981,
+          "rows_in_multi_row_groups": 303530
+        },
+        "claim": {
+          "distinct_keys": 175905,
+          "rows": 370653,
+          "base_rate": 0.501,
+          "majority_baseline": 0.501,
+          "key_lookup_accuracy": 0.5021,
+          "lift_over_base": 0.001,
+          "rows_in_label_pure_groups": 1499,
+          "fraction_rows_label_pure": 0.004,
+          "rows_in_multi_row_groups": 369640
+        },
+        "page": {
+          "distinct_keys": 22198,
+          "rows": 370653,
+          "base_rate": 0.501,
+          "majority_baseline": 0.501,
+          "key_lookup_accuracy": 0.5019,
+          "lift_over_base": 0.0009,
+          "rows_in_label_pure_groups": 156,
+          "fraction_rows_label_pure": 0.0004,
+          "rows_in_multi_row_groups": 370509
+        },
+        "case_id": {
+          "distinct_keys": 112426,
+          "rows": 370653,
+          "base_rate": 0.501,
+          "majority_baseline": 0.501,
+          "key_lookup_accuracy": 0.502,
+          "lift_over_base": 0.001,
+          "rows_in_label_pure_groups": 1225,
+          "fraction_rows_label_pure": 0.0033,
+          "rows_in_multi_row_groups": 369638
+        }
+      }
+    },
+    "eval_facing_channel": {
+      "eval": "R19-H166-A1_vitaminc_holdout (the only evaluation surface keyed in this member's namespace)",
+      "eval_rows": 38126,
+      "eval_rows_whose_page_is_in_member": 0,
+      "eval_rows_whose_case_id_is_in_member": 0,
+      "reading": "the key join is EMPTY, so the C6 feature 'overlap between the eval claim and what training associates with that pair's key' is UNDEFINED here - which is the clean reading the clause names",
+      "caveat_stated_not_buried": "the join is empty BECAUSE the eval's builder dropped every candidate row sharing a page, claim, evidence or revision value with this member. It is clean by construction of the eval, not by accident - and C2 shows that construction used raw exact matching only, so 5 of its 38,126 rows still collide under whitespace/case normalisation"
+    },
+    "verdict": "PASS",
+    "verdict_basis": "the clause's own feature is undefined on this member - the only key-sharing evaluation surface has a zero-row key join - which the clause names as the clean state"
+  },
+  "C2": {
+    "forms": [
+      "raw",
+      "truncated_1500",
+      "ws_collapsed_casefold"
+    ],
+    "form_definitions": {
+      "raw": "the string as loaded",
+      "truncated_1500": "chunk[:CFG.chunk_max_chars] (1500)",
+      "ws_collapsed_casefold": "re.sub(r'\\s+', ' ', s).strip().casefold()"
+    },
+    "surfaces_tested": [
+      "arena_sample_10_subsets",
+      "arena_full_test_splits",
+      "gold_full",
+      "R17-H143_evalset.parquet",
+      "R20-H177_eval_B.parquet",
+      "R20-H177_eval_C.parquet",
+      "R20-H175b_qlane_eval.parquet",
+      "R20-H175b_qlane_eval_clean.parquet",
+      "R20-H175b_qlane_eval_clean_prefix.parquet",
+      "R11-H117_heldout_pairs.parquet",
+      "R17-H148_probe.parquet",
+      "R17-H149_probe.parquet",
+      "R18-H150_unitswap_probe.parquet",
+      "R20-G0b_composed_probes.parquet",
+      "R15_L1_bindprobe_pairs.parquet",
+      "R15_P1_typeprobe_quads.parquet",
+      "R19_findver_lane.parquet",
+      "R19-H166-A1_vitaminc_holdout"
+    ],
+    "per_surface": {
+      "arena_sample_10_subsets": {
+        "surface_claim_units": 2260,
+        "surface_evidence_units": 6784,
+        "claims": {
+          "raw": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 2260,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 2260,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 175859,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 2260,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          }
+        },
+        "evidence": {
+          "raw": {
+            "member_unique_units": 185217,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 6784,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 185200,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 6778,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 185124,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 6783,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          }
+        },
+        "pairs": {
+          "raw": {
+            "computable": false,
+            "why": "surface claim and evidence columns are not row-aligned"
+          },
+          "truncated_1500": {
+            "computable": false,
+            "why": "surface claim and evidence columns are not row-aligned"
+          },
+          "ws_collapsed_casefold": {
+            "computable": false,
+            "why": "surface claim and evidence columns are not row-aligned"
+          }
+        }
+      },
+      "arena_full_test_splits": {
+        "surface_claim_units": 10847,
+        "surface_evidence_units": 14641,
+        "claims": {
+          "raw": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 10847,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 10847,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 175859,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 10846,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          }
+        },
+        "evidence": {
+          "raw": {
+            "member_unique_units": 185217,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 14641,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 185200,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 14635,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 185124,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 14640,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          }
+        },
+        "pairs": {
+          "raw": {
+            "computable": false,
+            "why": "surface claim and evidence columns are not row-aligned"
+          },
+          "truncated_1500": {
+            "computable": false,
+            "why": "surface claim and evidence columns are not row-aligned"
+          },
+          "ws_collapsed_casefold": {
+            "computable": false,
+            "why": "surface claim and evidence columns are not row-aligned"
+          }
+        }
+      },
+      "gold_full": {
+        "surface_claim_units": 2699,
+        "surface_evidence_units": 10228,
+        "claims": {
+          "raw": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 2699,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 2699,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 175859,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 2699,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          }
+        },
+        "evidence": {
+          "raw": {
+            "member_unique_units": 185217,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 10228,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 185200,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 10228,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 185124,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 10227,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          }
+        },
+        "pairs": {
+          "raw": {
+            "computable": false,
+            "why": "surface claim and evidence columns are not row-aligned"
+          },
+          "truncated_1500": {
+            "computable": false,
+            "why": "surface claim and evidence columns are not row-aligned"
+          },
+          "ws_collapsed_casefold": {
+            "computable": false,
+            "why": "surface claim and evidence columns are not row-aligned"
+          }
+        }
+      },
+      "R17-H143_evalset.parquet": {
+        "surface_claim_units": 1048,
+        "surface_evidence_units": 547,
+        "claims": {
+          "raw": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 1048,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 1048,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 175859,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 1048,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          }
+        },
+        "evidence": {
+          "raw": {
+            "member_unique_units": 185217,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 547,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 185200,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 547,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 185124,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 547,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          }
+        },
+        "pairs": {
+          "raw": {
+            "computable": true,
+            "member_unique_pairs": 367549,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          },
+          "truncated_1500": {
+            "computable": true,
+            "member_unique_pairs": 367536,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          },
+          "ws_collapsed_casefold": {
+            "computable": true,
+            "member_unique_pairs": 367498,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          }
+        }
+      },
+      "R20-H177_eval_B.parquet": {
+        "surface_claim_units": 2000,
+        "surface_evidence_units": 736,
+        "claims": {
+          "raw": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 2000,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 2000,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 175859,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 2000,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          }
+        },
+        "evidence": {
+          "raw": {
+            "member_unique_units": 185217,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 736,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 185200,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 736,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 185124,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 736,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          }
+        },
+        "pairs": {
+          "raw": {
+            "computable": true,
+            "member_unique_pairs": 367549,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          },
+          "truncated_1500": {
+            "computable": true,
+            "member_unique_pairs": 367536,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          },
+          "ws_collapsed_casefold": {
+            "computable": true,
+            "member_unique_pairs": 367498,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          }
+        }
+      },
+      "R20-H177_eval_C.parquet": {
+        "surface_claim_units": 1926,
+        "surface_evidence_units": 380,
+        "claims": {
+          "raw": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 1926,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 1926,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 175859,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 1926,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          }
+        },
+        "evidence": {
+          "raw": {
+            "member_unique_units": 185217,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 380,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 185200,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 380,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 185124,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 380,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          }
+        },
+        "pairs": {
+          "raw": {
+            "computable": true,
+            "member_unique_pairs": 367549,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          },
+          "truncated_1500": {
+            "computable": true,
+            "member_unique_pairs": 367536,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          },
+          "ws_collapsed_casefold": {
+            "computable": true,
+            "member_unique_pairs": 367498,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          }
+        }
+      },
+      "R20-H175b_qlane_eval.parquet": {
+        "surface_claim_units": 1001,
+        "surface_evidence_units": 487,
+        "claims": {
+          "raw": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 1001,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 1001,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 175859,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 1001,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          }
+        },
+        "evidence": {
+          "raw": {
+            "member_unique_units": 185217,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 487,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 185200,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 487,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 185124,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 487,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          }
+        },
+        "pairs": {
+          "raw": {
+            "computable": true,
+            "member_unique_pairs": 367549,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          },
+          "truncated_1500": {
+            "computable": true,
+            "member_unique_pairs": 367536,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          },
+          "ws_collapsed_casefold": {
+            "computable": true,
+            "member_unique_pairs": 367498,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          }
+        }
+      },
+      "R20-H175b_qlane_eval_clean.parquet": {
+        "surface_claim_units": 44,
+        "surface_evidence_units": 22,
+        "claims": {
+          "raw": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 44,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 44,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 175859,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 44,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          }
+        },
+        "evidence": {
+          "raw": {
+            "member_unique_units": 185217,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 22,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 185200,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 22,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 185124,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 22,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          }
+        },
+        "pairs": {
+          "raw": {
+            "computable": true,
+            "member_unique_pairs": 367549,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          },
+          "truncated_1500": {
+            "computable": true,
+            "member_unique_pairs": 367536,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          },
+          "ws_collapsed_casefold": {
+            "computable": true,
+            "member_unique_pairs": 367498,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          }
+        }
+      },
+      "R20-H175b_qlane_eval_clean_prefix.parquet": {
+        "surface_claim_units": 16,
+        "surface_evidence_units": 8,
+        "claims": {
+          "raw": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 16,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 16,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 175859,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 16,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          }
+        },
+        "evidence": {
+          "raw": {
+            "member_unique_units": 185217,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 8,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 185200,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 8,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 185124,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 8,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          }
+        },
+        "pairs": {
+          "raw": {
+            "computable": true,
+            "member_unique_pairs": 367549,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          },
+          "truncated_1500": {
+            "computable": true,
+            "member_unique_pairs": 367536,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          },
+          "ws_collapsed_casefold": {
+            "computable": true,
+            "member_unique_pairs": 367498,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          }
+        }
+      },
+      "R11-H117_heldout_pairs.parquet": {
+        "surface_claim_units": 2000,
+        "surface_evidence_units": 1933,
+        "claims": {
+          "raw": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 2000,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 2000,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 175859,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 2000,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          }
+        },
+        "evidence": {
+          "raw": {
+            "member_unique_units": 185217,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 1933,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 185200,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 1933,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 185124,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 1933,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          }
+        },
+        "pairs": {
+          "raw": {
+            "computable": true,
+            "member_unique_pairs": 367549,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          },
+          "truncated_1500": {
+            "computable": true,
+            "member_unique_pairs": 367536,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          },
+          "ws_collapsed_casefold": {
+            "computable": true,
+            "member_unique_pairs": 367498,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          }
+        }
+      },
+      "R17-H148_probe.parquet": {
+        "surface_claim_units": 1813,
+        "surface_evidence_units": 390,
+        "claims": {
+          "raw": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 1813,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 1813,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 175859,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 1813,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          }
+        },
+        "evidence": {
+          "raw": {
+            "member_unique_units": 185217,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 390,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 185200,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 390,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 185124,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 390,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          }
+        },
+        "pairs": {
+          "raw": {
+            "computable": true,
+            "member_unique_pairs": 367549,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          },
+          "truncated_1500": {
+            "computable": true,
+            "member_unique_pairs": 367536,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          },
+          "ws_collapsed_casefold": {
+            "computable": true,
+            "member_unique_pairs": 367498,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          }
+        }
+      },
+      "R17-H149_probe.parquet": {
+        "surface_claim_units": 714,
+        "surface_evidence_units": 342,
+        "claims": {
+          "raw": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 714,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 714,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 175859,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 714,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          }
+        },
+        "evidence": {
+          "raw": {
+            "member_unique_units": 185217,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 342,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 185200,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 342,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 185124,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 342,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          }
+        },
+        "pairs": {
+          "raw": {
+            "computable": true,
+            "member_unique_pairs": 367549,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          },
+          "truncated_1500": {
+            "computable": true,
+            "member_unique_pairs": 367536,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          },
+          "ws_collapsed_casefold": {
+            "computable": true,
+            "member_unique_pairs": 367498,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          }
+        }
+      },
+      "R18-H150_unitswap_probe.parquet": {
+        "surface_claim_units": 278,
+        "surface_evidence_units": 115,
+        "claims": {
+          "raw": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 278,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 278,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 175859,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 278,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          }
+        },
+        "evidence": {
+          "raw": {
+            "member_unique_units": 185217,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 115,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 185200,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 115,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 185124,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 115,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          }
+        },
+        "pairs": {
+          "raw": {
+            "computable": true,
+            "member_unique_pairs": 367549,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          },
+          "truncated_1500": {
+            "computable": true,
+            "member_unique_pairs": 367536,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          },
+          "ws_collapsed_casefold": {
+            "computable": true,
+            "member_unique_pairs": 367498,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          }
+        }
+      },
+      "R20-G0b_composed_probes.parquet": {
+        "surface_claim_units": 1499,
+        "surface_evidence_units": 571,
+        "claims": {
+          "raw": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 1499,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 1499,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 175859,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 1499,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          }
+        },
+        "evidence": {
+          "raw": {
+            "member_unique_units": 185217,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 571,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 185200,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 571,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 185124,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 571,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          }
+        },
+        "pairs": {
+          "raw": {
+            "computable": false,
+            "why": "surface claim and evidence columns are not row-aligned"
+          },
+          "truncated_1500": {
+            "computable": false,
+            "why": "surface claim and evidence columns are not row-aligned"
+          },
+          "ws_collapsed_casefold": {
+            "computable": false,
+            "why": "surface claim and evidence columns are not row-aligned"
+          }
+        }
+      },
+      "R15_L1_bindprobe_pairs.parquet": {
+        "surface_claim_units": 3852,
+        "surface_evidence_units": 0,
+        "claims": {
+          "raw": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 3852,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 3852,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 175859,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 3852,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          }
+        }
+      },
+      "R15_P1_typeprobe_quads.parquet": {
+        "surface_claim_units": 13476,
+        "surface_evidence_units": 0,
+        "claims": {
+          "raw": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 13476,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 13476,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 175859,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 13476,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          }
+        }
+      },
+      "R19_findver_lane.parquet": {
+        "surface_claim_units": 2400,
+        "surface_evidence_units": 2370,
+        "claims": {
+          "raw": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 2400,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 2400,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 175859,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 2400,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          }
+        },
+        "evidence": {
+          "raw": {
+            "member_unique_units": 185217,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 2370,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 185200,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 2336,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 185124,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 2370,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          }
+        },
+        "pairs": {
+          "raw": {
+            "computable": true,
+            "member_unique_pairs": 367549,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          },
+          "truncated_1500": {
+            "computable": true,
+            "member_unique_pairs": 367536,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          },
+          "ws_collapsed_casefold": {
+            "computable": true,
+            "member_unique_pairs": 367498,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          }
+        }
+      },
+      "R19-H166-A1_vitaminc_holdout": {
+        "surface_claim_units": 37470,
+        "surface_evidence_units": 30707,
+        "claims": {
+          "raw": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 37470,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 175905,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 37470,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 175859,
+            "member_units_colliding": 2,
+            "member_rows_colliding": 4,
+            "surface_unique_units": 37464,
+            "surface_units_colliding": 2,
+            "fraction_of_member_units": 1.1e-05
+          }
+        },
+        "evidence": {
+          "raw": {
+            "member_unique_units": 185217,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 30707,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "truncated_1500": {
+            "member_unique_units": 185200,
+            "member_units_colliding": 0,
+            "member_rows_colliding": 0,
+            "surface_unique_units": 30707,
+            "surface_units_colliding": 0,
+            "fraction_of_member_units": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_unique_units": 185124,
+            "member_units_colliding": 2,
+            "member_rows_colliding": 8,
+            "surface_unique_units": 30694,
+            "surface_units_colliding": 2,
+            "fraction_of_member_units": 1.1e-05
+          }
+        },
+        "pairs": {
+          "raw": {
+            "computable": true,
+            "member_unique_pairs": 367549,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          },
+          "truncated_1500": {
+            "computable": true,
+            "member_unique_pairs": 367536,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          },
+          "ws_collapsed_casefold": {
+            "computable": true,
+            "member_unique_pairs": 367498,
+            "member_pairs_colliding": 0,
+            "member_rows_colliding": 0
+          }
+        },
+        "collision_forensics": {
+          "claims": {
+            "ws_collapsed_casefold": [
+              {
+                "member_rows": 2,
+                "surface_rows": 1,
+                "member_distinct_variants": 1,
+                "surface_distinct_variants": 1,
+                "differs_in": "case only",
+                "member_text": "The Pretty Reckless is a Country band .",
+                "surface_text": "The Pretty Reckless is a country band ."
+              },
+              {
+                "member_rows": 2,
+                "surface_rows": 1,
+                "member_distinct_variants": 1,
+                "surface_distinct_variants": 1,
+                "differs_in": "case only",
+                "member_text": "Xi Jinping is the General Secretary of the Chinese Communist Party .",
+                "surface_text": "Xi Jinping is the general secretary of the Chinese Communist Party ."
+              }
+            ]
+          },
+          "evidence": {
+            "ws_collapsed_casefold": [
+              {
+                "member_rows": 4,
+                "surface_rows": 2,
+                "member_distinct_variants": 1,
+                "surface_distinct_variants": 1,
+                "differs_in": "whitespace only",
+                "member_text": "`` On Metacritic , the film has a weighted average score of 47 out of 100 , based on 21 critics , indicating `` '' mixed or average reviews '' '' .  ''",
+                "surface_text": "`` On Metacritic , the film has a weighted average score of 47 out of 100 , based on 21 critics , indicating `` '' mixed or average reviews '' '' . ''"
+              },
+              {
+                "member_rows": 4,
+                "surface_rows": 1,
+                "member_distinct_variants": 1,
+                "surface_distinct_variants": 1,
+                "differs_in": "case only",
+                "member_text": "On Metacritic , the film has a score of 72 out of 100 , based on 28 critics , indicating `` Generally Favorable Reviews '' .",
+                "surface_text": "On Metacritic , the film has a score of 72 out of 100 , based on 28 critics , indicating `` generally favorable reviews '' ."
+              }
+            ]
+          }
+        },
+        "eval_row_impact": {
+          "raw": {
+            "eval_rows": 38126,
+            "eval_rows_with_colliding_claim": 0,
+            "eval_rows_with_colliding_evidence": 0,
+            "eval_rows_touched_either": 0,
+            "fraction_of_eval_rows": 0.0
+          },
+          "truncated_1500": {
+            "eval_rows": 38126,
+            "eval_rows_with_colliding_claim": 0,
+            "eval_rows_with_colliding_evidence": 0,
+            "eval_rows_touched_either": 0,
+            "fraction_of_eval_rows": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "eval_rows": 38126,
+            "eval_rows_with_colliding_claim": 2,
+            "eval_rows_with_colliding_evidence": 3,
+            "eval_rows_touched_either": 5,
+            "fraction_of_eval_rows": 0.000131
+          },
+          "auroc_bound": {
+            "eval_positives_REFUTES": 21921,
+            "eval_negatives_NEI": 16205,
+            "bound": 0.000309,
+            "derivation": "one row's score can move the AUROC by at most 1/n_pos (a positive) or 1/n_neg (a negative), so k touched rows bound the shift by k / min(n_pos, n_neg). This is a WORST CASE, not an estimate: it assumes every touched row is scored perfectly by memorisation from its current rank"
+          }
+        }
+      }
+    },
+    "cross_channel_extra": {
+      "status": "EXECUTOR-ADDED, reported separately from the contract's registered channels per C5's separation rule - not folded into the C2 verdict",
+      "detail": {
+        "arena_sample_10_subsets": {
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "member_unique_units": 175905,
+              "member_units_colliding": 1,
+              "member_rows_colliding": 1,
+              "surface_unique_units": 6784,
+              "surface_units_colliding": 1,
+              "fraction_of_member_units": 6e-06
+            },
+            "truncated_1500": {
+              "member_unique_units": 175905,
+              "member_units_colliding": 1,
+              "member_rows_colliding": 1,
+              "surface_unique_units": 6778,
+              "surface_units_colliding": 1,
+              "fraction_of_member_units": 6e-06
+            },
+            "ws_collapsed_casefold": {
+              "member_unique_units": 175859,
+              "member_units_colliding": 1,
+              "member_rows_colliding": 1,
+              "surface_unique_units": 6783,
+              "surface_units_colliding": 1,
+              "fraction_of_member_units": 6e-06
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "member_unique_units": 185217,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 2260,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "truncated_1500": {
+              "member_unique_units": 185200,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 2260,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "ws_collapsed_casefold": {
+              "member_unique_units": 185124,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 2260,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            }
+          }
+        },
+        "arena_full_test_splits": {
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "member_unique_units": 175905,
+              "member_units_colliding": 1,
+              "member_rows_colliding": 1,
+              "surface_unique_units": 14641,
+              "surface_units_colliding": 1,
+              "fraction_of_member_units": 6e-06
+            },
+            "truncated_1500": {
+              "member_unique_units": 175905,
+              "member_units_colliding": 1,
+              "member_rows_colliding": 1,
+              "surface_unique_units": 14635,
+              "surface_units_colliding": 1,
+              "fraction_of_member_units": 6e-06
+            },
+            "ws_collapsed_casefold": {
+              "member_unique_units": 175859,
+              "member_units_colliding": 1,
+              "member_rows_colliding": 1,
+              "surface_unique_units": 14640,
+              "surface_units_colliding": 1,
+              "fraction_of_member_units": 6e-06
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "member_unique_units": 185217,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 10847,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "truncated_1500": {
+              "member_unique_units": 185200,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 10847,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "ws_collapsed_casefold": {
+              "member_unique_units": 185124,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 10846,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            }
+          }
+        },
+        "gold_full": {
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "member_unique_units": 175905,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 10228,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "truncated_1500": {
+              "member_unique_units": 175905,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 10228,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "ws_collapsed_casefold": {
+              "member_unique_units": 175859,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 10227,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "member_unique_units": 185217,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 2699,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "truncated_1500": {
+              "member_unique_units": 185200,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 2699,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "ws_collapsed_casefold": {
+              "member_unique_units": 185124,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 2699,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            }
+          }
+        },
+        "R17-H143_evalset.parquet": {
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "member_unique_units": 175905,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 547,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "truncated_1500": {
+              "member_unique_units": 175905,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 547,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "ws_collapsed_casefold": {
+              "member_unique_units": 175859,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 547,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "member_unique_units": 185217,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 1048,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "truncated_1500": {
+              "member_unique_units": 185200,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 1048,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "ws_collapsed_casefold": {
+              "member_unique_units": 185124,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 1048,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            }
+          }
+        },
+        "R20-H177_eval_B.parquet": {
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "member_unique_units": 175905,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 736,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "truncated_1500": {
+              "member_unique_units": 175905,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 736,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "ws_collapsed_casefold": {
+              "member_unique_units": 175859,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 736,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "member_unique_units": 185217,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 2000,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "truncated_1500": {
+              "member_unique_units": 185200,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 2000,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "ws_collapsed_casefold": {
+              "member_unique_units": 185124,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 2000,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            }
+          }
+        },
+        "R20-H177_eval_C.parquet": {
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "member_unique_units": 175905,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 380,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "truncated_1500": {
+              "member_unique_units": 175905,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 380,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "ws_collapsed_casefold": {
+              "member_unique_units": 175859,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 380,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "member_unique_units": 185217,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 1926,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "truncated_1500": {
+              "member_unique_units": 185200,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 1926,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "ws_collapsed_casefold": {
+              "member_unique_units": 185124,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 1926,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            }
+          }
+        },
+        "R20-H175b_qlane_eval.parquet": {
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "member_unique_units": 175905,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 487,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "truncated_1500": {
+              "member_unique_units": 175905,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 487,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "ws_collapsed_casefold": {
+              "member_unique_units": 175859,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 487,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "member_unique_units": 185217,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 1001,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "truncated_1500": {
+              "member_unique_units": 185200,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 1001,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "ws_collapsed_casefold": {
+              "member_unique_units": 185124,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 1001,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            }
+          }
+        },
+        "R20-H175b_qlane_eval_clean.parquet": {
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "member_unique_units": 175905,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 22,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "truncated_1500": {
+              "member_unique_units": 175905,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 22,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "ws_collapsed_casefold": {
+              "member_unique_units": 175859,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 22,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "member_unique_units": 185217,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 44,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "truncated_1500": {
+              "member_unique_units": 185200,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 44,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "ws_collapsed_casefold": {
+              "member_unique_units": 185124,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 44,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            }
+          }
+        },
+        "R20-H175b_qlane_eval_clean_prefix.parquet": {
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "member_unique_units": 175905,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 8,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "truncated_1500": {
+              "member_unique_units": 175905,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 8,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "ws_collapsed_casefold": {
+              "member_unique_units": 175859,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 8,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "member_unique_units": 185217,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 16,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "truncated_1500": {
+              "member_unique_units": 185200,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 16,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "ws_collapsed_casefold": {
+              "member_unique_units": 185124,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 16,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            }
+          }
+        },
+        "R11-H117_heldout_pairs.parquet": {
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "member_unique_units": 175905,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 1933,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "truncated_1500": {
+              "member_unique_units": 175905,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 1933,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "ws_collapsed_casefold": {
+              "member_unique_units": 175859,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 1933,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "member_unique_units": 185217,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 2000,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "truncated_1500": {
+              "member_unique_units": 185200,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 2000,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "ws_collapsed_casefold": {
+              "member_unique_units": 185124,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 2000,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            }
+          }
+        },
+        "R17-H148_probe.parquet": {
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "member_unique_units": 175905,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 390,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "truncated_1500": {
+              "member_unique_units": 175905,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 390,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "ws_collapsed_casefold": {
+              "member_unique_units": 175859,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 390,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "member_unique_units": 185217,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 1813,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "truncated_1500": {
+              "member_unique_units": 185200,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 1813,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "ws_collapsed_casefold": {
+              "member_unique_units": 185124,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 1813,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            }
+          }
+        },
+        "R17-H149_probe.parquet": {
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "member_unique_units": 175905,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 342,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "truncated_1500": {
+              "member_unique_units": 175905,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 342,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "ws_collapsed_casefold": {
+              "member_unique_units": 175859,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 342,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "member_unique_units": 185217,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 714,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "truncated_1500": {
+              "member_unique_units": 185200,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 714,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "ws_collapsed_casefold": {
+              "member_unique_units": 185124,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 714,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            }
+          }
+        },
+        "R18-H150_unitswap_probe.parquet": {
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "member_unique_units": 175905,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 115,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "truncated_1500": {
+              "member_unique_units": 175905,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 115,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "ws_collapsed_casefold": {
+              "member_unique_units": 175859,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 115,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "member_unique_units": 185217,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 278,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "truncated_1500": {
+              "member_unique_units": 185200,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 278,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "ws_collapsed_casefold": {
+              "member_unique_units": 185124,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 278,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            }
+          }
+        },
+        "R20-G0b_composed_probes.parquet": {
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "member_unique_units": 175905,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 571,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "truncated_1500": {
+              "member_unique_units": 175905,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 571,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "ws_collapsed_casefold": {
+              "member_unique_units": 175859,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 571,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "member_unique_units": 185217,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 1499,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "truncated_1500": {
+              "member_unique_units": 185200,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 1499,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "ws_collapsed_casefold": {
+              "member_unique_units": 185124,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 1499,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            }
+          }
+        },
+        "R19_findver_lane.parquet": {
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "member_unique_units": 175905,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 2370,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "truncated_1500": {
+              "member_unique_units": 175905,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 2336,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "ws_collapsed_casefold": {
+              "member_unique_units": 175859,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 2370,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "member_unique_units": 185217,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 2400,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "truncated_1500": {
+              "member_unique_units": 185200,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 2400,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "ws_collapsed_casefold": {
+              "member_unique_units": 185124,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 2400,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            }
+          }
+        },
+        "R19-H166-A1_vitaminc_holdout": {
+          "member_claims_vs_surface_evidence": {
+            "raw": {
+              "member_unique_units": 175905,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 30707,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "truncated_1500": {
+              "member_unique_units": 175905,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 30707,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            },
+            "ws_collapsed_casefold": {
+              "member_unique_units": 175859,
+              "member_units_colliding": 0,
+              "member_rows_colliding": 0,
+              "surface_unique_units": 30694,
+              "surface_units_colliding": 0,
+              "fraction_of_member_units": 0.0
+            }
+          },
+          "member_evidence_vs_surface_claims": {
+            "raw": {
+              "member_unique_units": 185217,
+              "member_units_colliding": 1,
+              "member_rows_colliding": 11,
+              "surface_unique_units": 37470,
+              "surface_units_colliding": 1,
+              "fraction_of_member_units": 5e-06
+            },
+            "truncated_1500": {
+              "member_unique_units": 185200,
+              "member_units_colliding": 1,
+              "member_rows_colliding": 11,
+              "surface_unique_units": 37470,
+              "surface_units_colliding": 1,
+              "fraction_of_member_units": 5e-06
+            },
+            "ws_collapsed_casefold": {
+              "member_unique_units": 185124,
+              "member_units_colliding": 1,
+              "member_rows_colliding": 11,
+              "surface_unique_units": 37464,
+              "surface_units_colliding": 1,
+              "fraction_of_member_units": 5e-06
+            }
+          }
+        }
+      }
+    },
+    "h166a1_holdout_construction": {
+      "candidate_pool_rows": 118251,
+      "after_key_filter": 76324,
+      "after_mix_text_filter": 76324,
+      "raw_key_collisions_vs_train": {
+        "unique_id": 0,
+        "case_id": 0,
+        "page": 1214,
+        "claim": 110,
+        "evidence": 221,
+        "wiki_revision_id": 41488
+      },
+      "verify_zero_overlap": {
+        "shared_unique_id_with_vitaminc_train": 0,
+        "shared_case_id_with_vitaminc_train": 0,
+        "shared_page_with_vitaminc_train": 0,
+        "shared_claim_with_vitaminc_train": 0,
+        "shared_evidence_with_vitaminc_train": 0,
+        "shared_wiki_revision_id_with_vitaminc_train": 0,
+        "shared_claim_with_flagship_mix": 0,
+        "shared_evidence_with_flagship_mix": 0,
+        "shared_pair_with_flagship_mix": 0
+      }
+    },
+    "exhaustive_sweep": {
+      "files_scanned": 89,
+      "files_with_any_collision": 16,
+      "collisions": {
+        "DR_pilot_longform.FAILED.parquet": {
+          "columns": [
+            "claim",
+            "chunk",
+            "seed"
+          ],
+          "rows": 5435,
+          "text_units": 15176,
+          "member_claims": {
+            "raw": 0,
+            "truncated_1500": 0,
+            "ws_collapsed_casefold": 1
+          },
+          "member_evidence": {
+            "raw": 0,
+            "truncated_1500": 0,
+            "ws_collapsed_casefold": 0
+          },
+          "kind": "other_artifact"
+        },
+        "DR_pilot_longform.attempt1.parquet": {
+          "columns": [
+            "claim",
+            "chunk",
+            "seed"
+          ],
+          "rows": 6201,
+          "text_units": 17069,
+          "member_claims": {
+            "raw": 0,
+            "truncated_1500": 0,
+            "ws_collapsed_casefold": 1
+          },
+          "member_evidence": {
+            "raw": 0,
+            "truncated_1500": 0,
+            "ws_collapsed_casefold": 0
+          },
+          "kind": "other_artifact"
+        },
+        "DR_pilot_longform.parquet": {
+          "columns": [
+            "claim",
+            "chunk",
+            "seed"
+          ],
+          "rows": 5432,
+          "text_units": 15167,
+          "member_claims": {
+            "raw": 0,
+            "truncated_1500": 0,
+            "ws_collapsed_casefold": 1
+          },
+          "member_evidence": {
+            "raw": 0,
+            "truncated_1500": 0,
+            "ws_collapsed_casefold": 0
+          },
+          "kind": "other_artifact"
+        },
+        "R10-H111_pairs_final.parquet": {
+          "columns": [
+            "claim",
+            "chunk",
+            "seed"
+          ],
+          "rows": 26142,
+          "text_units": 69470,
+          "member_claims": {
+            "raw": 0,
+            "truncated_1500": 0,
+            "ws_collapsed_casefold": 0
+          },
+          "member_evidence": {
+            "raw": 1,
+            "truncated_1500": 1,
+            "ws_collapsed_casefold": 1
+          },
+          "kind": "other_artifact"
+        },
+        "R10-H111_stage1_judged.parquet": {
+          "columns": [
+            "claim",
+            "chunk",
+            "seed"
+          ],
+          "rows": 41733,
+          "text_units": 104602,
+          "member_claims": {
+            "raw": 0,
+            "truncated_1500": 0,
+            "ws_collapsed_casefold": 0
+          },
+          "member_evidence": {
+            "raw": 1,
+            "truncated_1500": 1,
+            "ws_collapsed_casefold": 1
+          },
+          "kind": "other_artifact"
+        },
+        "R10-H111_stage1_pairs.parquet": {
+          "columns": [
+            "claim",
+            "chunk",
+            "seed"
+          ],
+          "rows": 96320,
+          "text_units": 213650,
+          "member_claims": {
+            "raw": 1,
+            "truncated_1500": 1,
+            "ws_collapsed_casefold": 1
+          },
+          "member_evidence": {
+            "raw": 1,
+            "truncated_1500": 1,
+            "ws_collapsed_casefold": 1
+          },
+          "kind": "other_artifact"
+        },
+        "R12-H121_gateBC_rows.parquet": {
+          "columns": [
+            "claim"
+          ],
+          "rows": 6786,
+          "text_units": 2476,
+          "member_claims": {
+            "raw": 1,
+            "truncated_1500": 1,
+            "ws_collapsed_casefold": 1
+          },
+          "member_evidence": {
+            "raw": 0,
+            "truncated_1500": 0,
+            "ws_collapsed_casefold": 0
+          },
+          "kind": "other_artifact"
+        },
+        "R12-H121_gateB_eyeball_sample.parquet": {
+          "columns": [
+            "claim"
+          ],
+          "rows": 300,
+          "text_units": 269,
+          "member_claims": {
+            "raw": 1,
+            "truncated_1500": 1,
+            "ws_collapsed_casefold": 1
+          },
+          "member_evidence": {
+            "raw": 0,
+            "truncated_1500": 0,
+            "ws_collapsed_casefold": 0
+          },
+          "kind": "other_artifact"
+        },
+        "R15_gate_B2_absent_flags.parquet": {
+          "columns": [
+            "claim",
+            "chunk"
+          ],
+          "rows": 746854,
+          "text_units": 899144,
+          "member_claims": {
+            "raw": 175905,
+            "truncated_1500": 175905,
+            "ws_collapsed_casefold": 175859
+          },
+          "member_evidence": {
+            "raw": 185145,
+            "truncated_1500": 185200,
+            "ws_collapsed_casefold": 185052
+          },
+          "kind": "other_artifact"
+        },
+        "R15_gate_B5arm8_candidates.parquet": {
+          "columns": [
+            "claim_pos",
+            "claim_neg",
+            "evidence"
+          ],
+          "rows": 855,
+          "text_units": 2366,
+          "member_claims": {
+            "raw": 498,
+            "truncated_1500": 498,
+            "ws_collapsed_casefold": 498
+          },
+          "member_evidence": {
+            "raw": 487,
+            "truncated_1500": 487,
+            "ws_collapsed_casefold": 487
+          },
+          "kind": "other_artifact"
+        },
+        "R15_gate_B5arm8_judged.parquet": {
+          "columns": [
+            "claim_pos",
+            "claim_neg",
+            "evidence"
+          ],
+          "rows": 500,
+          "text_units": 1485,
+          "member_claims": {
+            "raw": 498,
+            "truncated_1500": 498,
+            "ws_collapsed_casefold": 498
+          },
+          "member_evidence": {
+            "raw": 487,
+            "truncated_1500": 487,
+            "ws_collapsed_casefold": 487
+          },
+          "kind": "other_artifact"
+        },
+        "R15_gate_B5arm8_scored.parquet": {
+          "columns": [
+            "claim_pos",
+            "claim_neg"
+          ],
+          "rows": 855,
+          "text_units": 1708,
+          "member_claims": {
+            "raw": 498,
+            "truncated_1500": 498,
+            "ws_collapsed_casefold": 498
+          },
+          "member_evidence": {
+            "raw": 0,
+            "truncated_1500": 0,
+            "ws_collapsed_casefold": 0
+          },
+          "kind": "other_artifact"
+        },
+        "R19_attributionbench_lane.parquet": {
+          "columns": [
+            "claim",
+            "chunk"
+          ],
+          "rows": 16444,
+          "text_units": 25566,
+          "member_claims": {
+            "raw": 1,
+            "truncated_1500": 1,
+            "ws_collapsed_casefold": 1
+          },
+          "member_evidence": {
+            "raw": 0,
+            "truncated_1500": 0,
+            "ws_collapsed_casefold": 0
+          },
+          "kind": "other_artifact"
+        },
+        "R19_factscore_lane.parquet": {
+          "columns": [
+            "claim",
+            "chunk"
+          ],
+          "rows": 13653,
+          "text_units": 13692,
+          "member_claims": {
+            "raw": 0,
+            "truncated_1500": 0,
+            "ws_collapsed_casefold": 0
+          },
+          "member_evidence": {
+            "raw": 5,
+            "truncated_1500": 5,
+            "ws_collapsed_casefold": 5
+          },
+          "kind": "other_artifact"
+        },
+        "R20-H174_lane_L1.parquet": {
+          "columns": [
+            "claim",
+            "chunk"
+          ],
+          "rows": 8000,
+          "text_units": 11095,
+          "member_claims": {
+            "raw": 585,
+            "truncated_1500": 585,
+            "ws_collapsed_casefold": 585
+          },
+          "member_evidence": {
+            "raw": 2,
+            "truncated_1500": 2,
+            "ws_collapsed_casefold": 2
+          },
+          "kind": "mix_training_lane"
+        },
+        "R20-H174_lane_L2.parquet": {
+          "columns": [
+            "claim",
+            "chunk"
+          ],
+          "rows": 21408,
+          "text_units": 27204,
+          "member_claims": {
+            "raw": 6894,
+            "truncated_1500": 6894,
+            "ws_collapsed_casefold": 6894
+          },
+          "member_evidence": {
+            "raw": 30,
+            "truncated_1500": 30,
+            "ws_collapsed_casefold": 30
+          },
+          "kind": "mix_training_lane"
+        }
+      },
+      "clean_files": [
+        "DR_H112_gate_judge_sample.parquet",
+        "DR_H112_gate_judged.parquet",
+        "DR_H112_gate_samples.parquet",
+        "DR_H113_gate_judged.parquet",
+        "DR_H113_gate_samples.parquet",
+        "DR_H113_veto_measurement.parquet",
+        "DR_H114_gate_results.parquet",
+        "DR_H115_gate_results.parquet",
+        "DR_H116_subgate_spans.parquet",
+        "DR_judged.parquet",
+        "DR_lane.parquet",
+        "DR_pilot_raw.parquet",
+        "R10-H108_pairs.parquet",
+        "R10-H111_judge_validation.parquet",
+        "R10-H111_stage0b_recons.parquet",
+        "R11-H117_heldout_pairs.parquet",
+        "R13-H128_lane.parquet",
+        "R13-H128_sample_pairs.parquet",
+        "R14-H133_antigaming_set.parquet",
+        "R14-H133_antigaming_traced.parquet",
+        "R14-H133_lane.parquet",
+        "R14-H133_lane.v1-DEFECTIVE.parquet",
+        "R14-H133_lane.v2-SUPERSEDED.parquet",
+        "R14_H133_triples.parquet",
+        "R15_L1_bindprobe_pairs.parquet",
+        "R15_L1_bindprobe_pairs_R10-H108-lane-draw1.parquet",
+        "R15_P1_typeprobe_quads.parquet",
+        "R15_P1_typeprobe_topup_quads.parquet",
+        "R15_gate_B4_pairs.parquet",
+        "R15_gate_B6_pairs.parquet",
+        "R16-H142-T-d2_antigaming_set.parquet",
+        "R16-H142-T_antigaming_set.parquet",
+        "R17-H143_evalset.parquet",
+        "R17-H143_evalset_source.parquet",
+        "R17-H144_ctrlval.parquet",
+        "R17-H144_lookup.parquet",
+        "R17-H144_pairs.parquet",
+        "R17-H145_antigaming_set.parquet",
+        "R17-H145_scaleunit.parquet",
+        "R17-H146_antigaming_set.parquet",
+        "R17-H146_lane.parquet",
+        "R17-H148_probe.parquet",
+        "R17-H149_probe.parquet",
+        "R18-H150-d2_antigaming_set.parquet",
+        "R18-H150_antigaming_set.parquet",
+        "R18-H150_edgar_admitted.parquet",
+        "R18-H150_edgar_chunks.parquet",
+        "R18-H150_scaleunit_lane.parquet",
+        "R18-H150_unitswap_probe.parquet",
+        "R18-H152-d1_antigaming_set.parquet",
+        "R18-H152-d2_antigaming_set.parquet",
+        "R18-H155-d1_antigaming_set.parquet",
+        "R18-H155-d2_antigaming_set.parquet",
+        "R18-H156_antigaming_set.parquet",
+        "R19-H159_antigaming_set.parquet",
+        "R19-H160-soupB_antigaming_set.parquet",
+        "R19_fava_lane.parquet",
+        "R19_findver_lane.parquet",
+        "R19_minicheck_lane.parquet",
+        "R19_pubhealth_lane.parquet",
+        "R20-G0b_composed_probes.parquet",
+        "R20-H174_lane_L2_conformed.parquet",
+        "R20-H174_lane_L4.parquet",
+        "R20-H175b_qlane.parquet",
+        "R20-H175b_qlane_eval.parquet",
+        "R20-H175b_qlane_eval_clean.parquet",
+        "R20-H175b_qlane_eval_clean_prefix.parquet",
+        "R20-H175b_qlane_eval_repaired.parquet",
+        "R20-H175b_qlane_repaired.parquet",
+        "R20-H177_eval_B.parquet",
+        "R20-H177_eval_C.parquet",
+        "R20-H177_lane_B.parquet",
+        "R20-H177_lane_C.parquet"
+      ]
+    },
+    "worst_collision_count": 2,
+    "verdict": "FAIL"
+  },
+  "C4": {
+    "member": "vitaminc",
+    "clause": "C4",
+    "instrument": "provenance_gate.py (R14-H136 ruling-2 form: 8-gram, Jaccard >= 0.3, bidirectional, KILL > 2%); thresholds read from R19_supply_gates.py",
+    "selection_predicate": "dataset-vitaminc.zip :: tals__vitaminc__train.parquet, ALL rows (R10-H108_lane.public_train lines 150-165), evidence UNTRUNCATED",
+    "rows": 370653,
+    "evidence_units": 185217,
+    "claim_units": 175905,
+    "arena_units": 8645,
+    "evidence_gate": {
+      "pass": true,
+      "result": {
+        "instrument": "provenance_gate.py (R13 ruling 4)",
+        "mode": "jaccard",
+        "n": 8,
+        "jaccard_threshold": 0.3,
+        "thresholds": {
+          "warn": 0.005,
+          "kill": 0.02
+        },
+        "candidate": {
+          "label": "vitaminc_train_evidence",
+          "n_units": 185217,
+          "n_units_scorable": 182234
+        },
+        "arena": {
+          "subsets": {
+            "covidqa": 980,
+            "delucionqa": 552,
+            "emanual": 396,
+            "expertqa": 759,
+            "finqa": 725,
+            "hagrid": 703,
+            "hotpotqa": 998,
+            "pubmedqa": 1250,
+            "tatqa": 1032,
+            "techqa": 1250
+          },
+          "n_units": 8645,
+          "n_units_scorable": 8555
+        },
+        "candidate_vs_arena": {
+          "n_units": 185217,
+          "units_with_hit": 9,
+          "fraction": 4.9e-05,
+          "per_arena_subset": {
+            "covidqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "delucionqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "emanual": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "expertqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "finqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hagrid": {
+              "units_with_hit": 1,
+              "fraction": 5e-06
+            },
+            "hotpotqa": {
+              "units_with_hit": 8,
+              "fraction": 4.3e-05
+            },
+            "pubmedqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "tatqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "techqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            }
+          },
+          "best_jaccard": {
+            "max": 0.7429,
+            "p99": 0.0,
+            "mean": 0.0003
+          }
+        },
+        "arena_vs_candidate": {
+          "n_units": 8645,
+          "units_with_hit": 7,
+          "fraction": 0.00081,
+          "per_arena_subset": {
+            "vitaminc_train_evidence": {
+              "units_with_hit": 7,
+              "fraction": 0.00081
+            }
+          },
+          "best_jaccard": {
+            "max": 0.7429,
+            "p99": 0.0277,
+            "mean": 0.0015
+          }
+        },
+        "max_fraction": 0.00081,
+        "verdict": "PASS",
+        "hit_examples": [
+          {
+            "candidate_unit": 13408,
+            "bucket": "hotpotqa",
+            "unit": 82,
+            "jaccard": 0.3605
+          },
+          {
+            "candidate_unit": 48217,
+            "bucket": "hotpotqa",
+            "unit": 636,
+            "jaccard": 0.3864
+          },
+          {
+            "candidate_unit": 48218,
+            "bucket": "hotpotqa",
+            "unit": 636,
+            "jaccard": 0.7429
+          },
+          {
+            "candidate_unit": 62262,
+            "bucket": "hotpotqa",
+            "unit": 154,
+            "jaccard": 0.3385
+          },
+          {
+            "candidate_unit": 74738,
+            "bucket": "hotpotqa",
+            "unit": 277,
+            "jaccard": 0.7407
+          },
+          {
+            "candidate_unit": 74739,
+            "bucket": "hotpotqa",
+            "unit": 277,
+            "jaccard": 0.3429
+          },
+          {
+            "candidate_unit": 75384,
+            "bucket": "hagrid",
+            "unit": 289,
+            "jaccard": 0.3333
+          },
+          {
+            "candidate_unit": 119188,
+            "bucket": "hotpotqa",
+            "unit": 648,
+            "jaccard": 0.3393
+          },
+          {
+            "candidate_unit": 140567,
+            "bucket": "hotpotqa",
+            "unit": 519,
+            "jaccard": 0.3293
+          }
+        ]
+      },
+      "seconds": 18.0,
+      "spike_control": {
+        "injected": 10,
+        "detected_total": 10,
+        "baseline_hits": 0,
+        "passes": true,
+        "candidate_units": 2000
+      }
+    },
+    "claim_gate": {
+      "pass": true,
+      "result": {
+        "instrument": "provenance_gate.py (R13 ruling 4)",
+        "mode": "jaccard",
+        "n": 8,
+        "jaccard_threshold": 0.3,
+        "thresholds": {
+          "warn": 0.005,
+          "kill": 0.02
+        },
+        "candidate": {
+          "label": "vitaminc_train_claims",
+          "n_units": 175905,
+          "n_units_scorable": 132590
+        },
+        "arena": {
+          "subsets": {
+            "covidqa": 980,
+            "delucionqa": 552,
+            "emanual": 396,
+            "expertqa": 759,
+            "finqa": 725,
+            "hagrid": 703,
+            "hotpotqa": 998,
+            "pubmedqa": 1250,
+            "tatqa": 1032,
+            "techqa": 1250
+          },
+          "n_units": 8645,
+          "n_units_scorable": 8555
+        },
+        "candidate_vs_arena": {
+          "n_units": 175905,
+          "units_with_hit": 1,
+          "fraction": 6e-06,
+          "per_arena_subset": {
+            "covidqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "delucionqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "emanual": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "expertqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "finqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hagrid": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hotpotqa": {
+              "units_with_hit": 1,
+              "fraction": 6e-06
+            },
+            "pubmedqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "tatqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "techqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            }
+          },
+          "best_jaccard": {
+            "max": 0.3448,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "arena_vs_candidate": {
+          "n_units": 8645,
+          "units_with_hit": 1,
+          "fraction": 0.000116,
+          "per_arena_subset": {
+            "vitaminc_train_claims": {
+              "units_with_hit": 1,
+              "fraction": 0.000116
+            }
+          },
+          "best_jaccard": {
+            "max": 0.3448,
+            "p99": 0.0,
+            "mean": 0.0002
+          }
+        },
+        "max_fraction": 0.000116,
+        "verdict": "PASS",
+        "hit_examples": [
+          {
+            "candidate_unit": 87462,
+            "bucket": "hotpotqa",
+            "unit": 277,
+            "jaccard": 0.3448
+          }
+        ]
+      },
+      "seconds": 9.1,
+      "spike_control": {
+        "injected": 10,
+        "detected_total": 10,
+        "baseline_hits": 0,
+        "passes": true,
+        "candidate_units": 2000
+      }
+    },
+    "live_positive_control": {
+      "why": "VitaminC's official split is disjoint by unique_id/case_id but NOT by page, claim or evidence text; its test split is therefore genuinely near-duplicate to train by construction and must make this instrument fire",
+      "candidate": "tals__vitaminc__test.parquet",
+      "candidate_rows": 55197,
+      "claims": {
+        "pass": true,
+        "result": {
+          "instrument": "provenance_gate.py (R13 ruling 4)",
+          "mode": "jaccard",
+          "n": 8,
+          "jaccard_threshold": 0.3,
+          "thresholds": {
+            "warn": 0.005,
+            "kill": 0.02
+          },
+          "candidate": {
+            "label": "vitaminc_test_claims_vs_train",
+            "n_units": 25689,
+            "n_units_scorable": 19829
+          },
+          "arena": {
+            "subsets": {
+              "vitaminc_train_claims": 175905
+            },
+            "n_units": 175905,
+            "n_units_scorable": 132590
+          },
+          "candidate_vs_arena": {
+            "n_units": 25689,
+            "units_with_hit": 57,
+            "fraction": 0.002219,
+            "per_arena_subset": {
+              "vitaminc_train_claims": {
+                "units_with_hit": 57,
+                "fraction": 0.002219
+              }
+            },
+            "best_jaccard": {
+              "max": 1.0,
+              "p99": 0.1538,
+              "mean": 0.006
+            }
+          },
+          "arena_vs_candidate": {
+            "n_units": 175905,
+            "units_with_hit": 67,
+            "fraction": 0.000381,
+            "per_arena_subset": {
+              "vitaminc_test_claims_vs_train": {
+                "units_with_hit": 67,
+                "fraction": 0.000381
+              }
+            },
+            "best_jaccard": {
+              "max": 1.0,
+              "p99": 0.0667,
+              "mean": 0.0019
+            }
+          },
+          "max_fraction": 0.002219,
+          "verdict": "PASS",
+          "hit_examples": [
+            {
+              "candidate_unit": 1530,
+              "bucket": "vitaminc_train_claims",
+              "unit": 10261,
+              "jaccard": 1.0
+            },
+            {
+              "candidate_unit": 2008,
+              "bucket": "vitaminc_train_claims",
+              "unit": 143641,
+              "jaccard": 0.375
+            },
+            {
+              "candidate_unit": 2009,
+              "bucket": "vitaminc_train_claims",
+              "unit": 143642,
+              "jaccard": 0.375
+            },
+            {
+              "candidate_unit": 3310,
+              "bucket": "vitaminc_train_claims",
+              "unit": 22925,
+              "jaccard": 0.4545
+            },
+            {
+              "candidate_unit": 3523,
+              "bucket": "vitaminc_train_claims",
+              "unit": 64980,
+              "jaccard": 0.3333
+            },
+            {
+              "candidate_unit": 5113,
+              "bucket": "vitaminc_train_claims",
+              "unit": 10261,
+              "jaccard": 0.75
+            },
+            {
+              "candidate_unit": 6595,
+              "bucket": "vitaminc_train_claims",
+              "unit": 47877,
+              "jaccard": 0.6667
+            },
+            {
+              "candidate_unit": 6604,
+              "bucket": "vitaminc_train_claims",
+              "unit": 47900,
+              "jaccard": 0.6667
+            },
+            {
+              "candidate_unit": 6620,
+              "bucket": "vitaminc_train_claims",
+              "unit": 47989,
+              "jaccard": 0.6
+            },
+            {
+              "candidate_unit": 7327,
+              "bucket": "vitaminc_train_claims",
+              "unit": 14997,
+              "jaccard": 0.5
+            }
+          ]
+        },
+        "seconds": 4.2
+      },
+      "evidence": {
+        "pass": false,
+        "result": {
+          "instrument": "provenance_gate.py (R13 ruling 4)",
+          "mode": "jaccard",
+          "n": 8,
+          "jaccard_threshold": 0.3,
+          "thresholds": {
+            "warn": 0.005,
+            "kill": 0.02
+          },
+          "candidate": {
+            "label": "vitaminc_test_evidence_vs_train",
+            "n_units": 26248,
+            "n_units_scorable": 25829
+          },
+          "arena": {
+            "subsets": {
+              "vitaminc_train_evidence": 185217
+            },
+            "n_units": 185217,
+            "n_units_scorable": 182234
+          },
+          "candidate_vs_arena": {
+            "n_units": 26248,
+            "units_with_hit": 542,
+            "fraction": 0.020649,
+            "per_arena_subset": {
+              "vitaminc_train_evidence": {
+                "units_with_hit": 542,
+                "fraction": 0.020649
+              }
+            },
+            "best_jaccard": {
+              "max": 1.0,
+              "p99": 0.3902,
+              "mean": 0.023
+            }
+          },
+          "arena_vs_candidate": {
+            "n_units": 185217,
+            "units_with_hit": 1429,
+            "fraction": 0.007715,
+            "per_arena_subset": {
+              "vitaminc_test_evidence_vs_train": {
+                "units_with_hit": 1429,
+                "fraction": 0.007715
+              }
+            },
+            "best_jaccard": {
+              "max": 1.0,
+              "p99": 0.2778,
+              "mean": 0.0135
+            }
+          },
+          "max_fraction": 0.020649,
+          "verdict": "KILL",
+          "hit_examples": [
+            {
+              "candidate_unit": 72,
+              "bucket": "vitaminc_train_evidence",
+              "unit": 1515,
+              "jaccard": 0.3077
+            },
+            {
+              "candidate_unit": 100,
+              "bucket": "vitaminc_train_evidence",
+              "unit": 1515,
+              "jaccard": 0.3243
+            },
+            {
+              "candidate_unit": 101,
+              "bucket": "vitaminc_train_evidence",
+              "unit": 2579,
+              "jaccard": 0.3429
+            },
+            {
+              "candidate_unit": 104,
+              "bucket": "vitaminc_train_evidence",
+              "unit": 1335,
+              "jaccard": 0.3095
+            },
+            {
+              "candidate_unit": 108,
+              "bucket": "vitaminc_train_evidence",
+              "unit": 1511,
+              "jaccard": 0.3243
+            },
+            {
+              "candidate_unit": 109,
+              "bucket": "vitaminc_train_evidence",
+              "unit": 1730,
+              "jaccard": 0.3333
+            },
+            {
+              "candidate_unit": 110,
+              "bucket": "vitaminc_train_evidence",
+              "unit": 1730,
+              "jaccard": 0.3333
+            },
+            {
+              "candidate_unit": 111,
+              "bucket": "vitaminc_train_evidence",
+              "unit": 2116,
+              "jaccard": 0.3611
+            },
+            {
+              "candidate_unit": 131,
+              "bucket": "vitaminc_train_evidence",
+              "unit": 2215,
+              "jaccard": 0.3243
+            },
+            {
+              "candidate_unit": 133,
+              "bucket": "vitaminc_train_evidence",
+              "unit": 2217,
+              "jaccard": 0.3514
+            }
+          ]
+        },
+        "seconds": 8.0
+      },
+      "how_to_read_the_verdict_string": "the control's own gate prints KILL on the evidence leg. That is the control WORKING: it says the VitaminC test split is 2.06% near-duplicate to the VitaminC train side, which is the overlap C3 measures and the reason the H166-A1 holdout is key-filtered. It is NOT a verdict on the member's arena census, which is the `evidence_gate` / `claim_gate` pair above and reads PASS"
+    },
+    "coverage": {
+      "evidence_scorable": 182234,
+      "evidence_units": 185217,
+      "claims_scorable": 132590,
+      "claim_units": 175905,
+      "note": "units shorter than the 8-gram window carry no n-gram and are unscorable by this instrument; they are covered by the C2 exact-match channel",
+      "short_units_covered_by": "the C2 exact-match channel, which reads zero against the arena on all three string forms - so the 43,315 claims and 2,983 evidence strings too short to carry an 8-gram are covered, not merely excluded"
+    },
+    "status": "GREEN",
+    "seconds": 43.0
+  },
+  "C5": {
+    "applicable": false,
+    "why": "C5 scopes to 'every constructed lane and every paired-contrast eval'. `vitaminc` is neither: it is a source corpus loaded verbatim from the shipped archive with no construction step of ours - no generator, no distractor pairing, no negative family, no direction/element/family balance to declare. The leak-suite bars (claim-only converged probe, single-channel probes, surface parity) are defined against a construction that does not exist here, and substituting them would be a proxy",
+    "note_not_a_substitute": "the corpus DOES ship native contrastive pairs (112,426 case_id groups), so a claim-only signal is a real corpus property; it is not measured here because C5 does not scope to it and a proxy would have to be flagged as one. It is recorded as an open measurement, not as a passed bar"
+  },
+  "clause_verdicts": {
+    "C1": {
+      "verdict": "PASS",
+      "measured": "negatives fully attested 0.0058 vs positives 0.0884 (gap 0.0826); negatives attested >= 90% 0.0169 vs positives 0.1227 (gap 0.1058); mean containment 0.4777 neg vs 0.6167 pos",
+      "margin": "the rejection trigger needs negatives >= 0.90 attested; they read 0.0058 (reading A) and 0.0169 (reading B) - 0.8942 and 0.8831 below the trigger"
+    },
+    "C2": {
+      "verdict": "FAIL",
+      "measured": "worst per-form colliding member units 2 (zero on 16 of 17 surfaces and on all 3 forms; the residual is the R19-H166-A1 held-out mechanism eval under the whitespace-collapsed case-folded form: 2 claim units / 4 member rows and 2 evidence units / 8 member rows, touching 5 of 38,126 eval rows = 0.000131; zero pair collisions on every form)",
+      "margin": "the bar is exactly zero on every form; it is missed by 2 units"
+    },
+    "C3": {
+      "verdict": "PASS",
+      "measured": "axis measured = case_id, 0 shared; page 1214 rows / 38 values, claim 110, evidence 221, revision 41488 of which 8 genuine",
+      "margin": "procedural clause, no numeric bar"
+    },
+    "C4": {
+      "verdict": "PASS",
+      "measured": "evidence max fraction 0.00081 (best Jaccard 0.7429), claims max fraction 0.000116 (best Jaccard 0.3448)",
+      "margin": "KILL is 0.02 and WARN 0.005; the worst read is 0.00081 - 0.01919 under KILL and under WARN as well"
+    },
+    "C5": {
+      "verdict": "NOT-APPLICABLE",
+      "measured": "source corpus, no construction of ours to leak-test",
+      "margin": "n/a"
+    },
+    "C6": {
+      "verdict": "PASS",
+      "measured": "the clause's feature is UNDEFINED - 0 of 38126 eval rows share a page or case_id with the member. Executor-added within-member reading, reported separately: evidence-keyed lookup accuracy 0.6026 vs base rate 0.501",
+      "margin": "undefined / at chance is the clean state; the clause's own channel is undefined"
+    },
+    "C7": {
+      "verdict": "PASS",
+      "measured": "370653 rows = 370653 (claim, evidence) pairs; 367549 distinct pairs; 112426 native contrastive cases; registration says 370,653 rows and the rebuild reproduces it",
+      "margin": "exact match to the registered count"
+    },
+    "C8": {
+      "verdict": "PASS",
+      "measured": "source, licence CC-BY-SA-3.0, selection predicate and duplication all reported; retrieval date 2026-07-29 recovered from archive member timestamps",
+      "margin": "two provenance weaknesses recorded, see C8.provenance_weaknesses"
+    }
+  },
+  "conforming": false,
+  "failed_clauses": [
+    "C2"
+  ],
+  "failure_analysis": {
+    "C2": {
+      "binding_constraint": "the R19-H166-A1 held-out mechanism eval was built with a key and text filter that used RAW exact matching only (R20_baseline_legs.vitaminc_holdout steps 3-4). Two claim strings and two evidence strings survive that filter and match member strings once whitespace is collapsed and case folded - one evidence collision is whitespace-only, the other three are case-only",
+      "where_it_is_NOT": "the arena (both the 10-subset sample and the full test splits), gold_full, and all 14 other registered eval surfaces read exactly zero on all three forms and in both directions",
+      "fixable_by": "PIPELINE",
+      "fix": "re-run the holdout builder with its key and text filters applied on the whitespace-collapsed case-folded form as well as raw. That drops 5 of 38,126 eval rows. The member itself needs no change - the defect is in the eval's filter, and the member is only one side of the comparison",
+      "consequence_if_left": "R19-H166-A1 is the NEXT arm in the queue (H174 -> R19-H166-A1 -> H177) and this is its PRIMARY read surface (con_head REFUTES-vs-NEI AUROC >= 0.85). The worst-case AUROC shift from the 5 touched rows is bounded at 0.000309, four orders below the bar's margin, so no banked or future verdict on that surface turns on it. The finding's weight is that the filter is not normalisation-robust, which is exactly the C2 provenance failure re-appearing on the first member verified"
+    }
+  },
+  "cross_member_observations": {
+    "status": "reported separately - NOT part of any clause verdict",
+    "attr_pool_reuses_member_claims": {
+      "file": "R20-H174_lane_L2.parquet",
+      "member_claim_strings_reused": 6894,
+      "member_evidence_strings_reused": 30,
+      "why_expected": "L2 `attr_pool` is documented as built over MiniCheck and VitaminC (R20-H174_lane_common.SOURCES), so the same claim text enters the mix under two DANN groups. Both are training members, so this is not a C2 disjointness breach; it belongs to the attr_pool member's own verification"
+    },
+    "frame_reject_reuses_member_claims": {
+      "file": "R20-H174_lane_L1.parquet",
+      "member_claim_strings_reused": 585
+    }
+  },
+  "artifacts": [
+    "experiments/grounding-semantic/contract/vitaminc_contract.py",
+    "experiments/grounding-semantic/contract/vitaminc_census.py",
+    "experiments/grounding-semantic/contract/vitaminc_contract_report.json",
+    "experiments/grounding-semantic/contract/vitaminc_census.json",
+    "logs/vitaminc_contract.log",
+    "logs/vitaminc_contract_census.log",
+    "experiments/grounding-semantic/contract/vitaminc_claim_probe.py",
+    "logs/vitaminc_contract_claim_probe.log"
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates.",
+  "member": "halueval_besteffort",
+  "built_from": "the `halueval` DANN group of the assembled training mix, loaded through R16-H142_G1_arm.H108.public_train() under untruncated_evidence(), pair structure recovered by an archive replay PROVED aligned row-for-row",
+  "conforming_pipeline": {
+    "F1_pair_level_selection": {
+      "strategy": "peel_probe_margin",
+      "what": "pairs ordered by |within-pair margin| of the full claim-only probe, ascending - the ambiguous band kept first",
+      "unit": "PAIRS - both legs of a kept pair are kept, so the evidence field stays byte-identical across the legs and the C1 / C6 pair tests remain computable",
+      "pairs_kept": 2000,
+      "rows_kept": 4000,
+      "retention_rows": 0.1,
+      "retention_pairs": 0.1
+    }
+  },
+  "measured_on_the_variant": {
+    "rows": 4000,
+    "pairs": 2000,
+    "retention_rows": 0.1,
+    "claim_only_probe_auroc": 0.5562,
+    "within_pair_claim_only_accuracy": 0.5895,
+    "surface_parity_C_A1": {
+      "auroc": {
+        "claim_char_length": 0.3923,
+        "claim_token_count": 0.3929,
+        "chunk_char_length": 0.5,
+        "claim_chunk_containment": 0.8375
+      },
+      "report_only": [
+        "claim_chunk_containment"
+      ],
+      "worst_barred_deviation": 0.1077,
+      "pass": false
+    },
+    "half_composition": {
+      "summarization": 2264,
+      "qa": 1736
+    },
+    "clears_claim_only_bar_0.55": false,
+    "clears_within_pair_bar_0.60": true,
+    "per_half_auroc": {
+      "qa": 0.5085,
+      "summarization": 0.6077
+    }
+  },
+  "columns": [
+    "pair_id",
+    "half",
+    "label",
+    "claim",
+    "chunk",
+    "chunk_trunc_1500"
+  ],
+  "artifact": "experiments/grounding-semantic/contract/halueval_conform_best_effort.parquet"
+}

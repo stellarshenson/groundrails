@@ -1,0 +1,330 @@
+{
+  "member": "quant_scale_unit",
+  "instrument": "R18-H150_scaleunit_lane.verify (BANKED, unedited)",
+  "reproduction_caveat": "fresh random.Random(1150); the build's rng state at verify time is unrecoverable, so fold assignment differs from the banked run",
+  "corpus_rebuild": {
+    "candidate_tables": 23423,
+    "tables_carrying_eval_content": 3516,
+    "dropped": 3556,
+    "admitted": 16738,
+    "lane_documents_resolved": 410,
+    "lane_documents": 410
+  },
+  "verify": {
+    "claim_only_tfidf_auroc": {
+      "value": 0.4257,
+      "bar": "< 0.55",
+      "pass": true,
+      "scoring": "5-fold document-disjoint, out of fold, direction-stratified, liblinear tol 1e-7",
+      "documents": 410,
+      "rows": 5540
+    },
+    "within_pair_claim_only_accuracy": {
+      "per_swap_family": {
+        "km<->mm": {
+          "acc": 0.4293,
+          "pairs": 198,
+          "se_at_chance": 0.0355,
+          "z_vs_chance": -1.99
+        },
+        "gb<->mb": {
+          "acc": 0.3311,
+          "pairs": 148,
+          "se_at_chance": 0.0411,
+          "z_vs_chance": -4.11
+        },
+        "kg<->lb": {
+          "acc": 0.4514,
+          "pairs": 144,
+          "se_at_chance": 0.0417,
+          "z_vs_chance": -1.17
+        },
+        "ghz<->mhz": {
+          "acc": 0.4545,
+          "pairs": 132,
+          "se_at_chance": 0.0435,
+          "z_vs_chance": -1.04
+        },
+        "khz<->mhz": {
+          "acc": 0.4539,
+          "pairs": 152,
+          "se_at_chance": 0.0406,
+          "z_vs_chance": -1.14
+        },
+        "cm<->m": {
+          "acc": 0.4034,
+          "pairs": 238,
+          "se_at_chance": 0.0324,
+          "z_vs_chance": -2.98
+        },
+        "kmh<->mph": {
+          "acc": 0.3718,
+          "pairs": 156,
+          "se_at_chance": 0.04,
+          "z_vs_chance": -3.2
+        },
+        "km2<->sqmi": {
+          "acc": 0.4331,
+          "pairs": 568,
+          "se_at_chance": 0.021,
+          "z_vs_chance": -3.19
+        },
+        "ha<->km2": {
+          "acc": 0.411,
+          "pairs": 146,
+          "se_at_chance": 0.0414,
+          "z_vs_chance": -2.15
+        },
+        "kb<->mb": {
+          "acc": 0.3113,
+          "pairs": 106,
+          "se_at_chance": 0.0486,
+          "z_vs_chance": -3.89
+        },
+        "km<->m": {
+          "acc": 0.4629,
+          "pairs": 782,
+          "se_at_chance": 0.0179,
+          "z_vs_chance": -2.07
+        }
+      },
+      "per_neg_family": {
+        "unit_swap": {
+          "acc": 0.4271,
+          "pairs": 2770,
+          "se_at_chance": 0.0095,
+          "z_vs_chance": -7.68
+        }
+      },
+      "worst": 0.4629,
+      "bar": "< 0.60",
+      "pass": true,
+      "worst_two_sided_deviation_report_only": 0.1887
+    },
+    "surface_parity": {
+      "auroc": {
+        "claim_char_length": 0.499,
+        "claim_token_count": 0.4998,
+        "claim_numeral_count": 0.5,
+        "claim_chunk_overlap": 0.4999
+      },
+      "bar": "each in [0.45, 0.55]",
+      "pass": true,
+      "max_deviation": 0.001,
+      "pooled_within_pair_parity_flag_rate": 0.2657
+    },
+    "positive_verbatim_substring": {
+      "positive_verbatim_rate": 1.0,
+      "all_rows_verbatim_rate": 1.0,
+      "all_rows_canonical_rate": 0.941155,
+      "bar": "1.0 on the positive leg",
+      "pass": true
+    },
+    "minimal_pair_integrity": {
+      "pairs_checked": 2770,
+      "errors": 0,
+      "bar": "0 errors over the FULL set",
+      "pass": true,
+      "examples": []
+    },
+    "dedupe_disjointness": {
+      "duplicate_claim_chunk_label_rows": 0,
+      "documents": 410,
+      "distinct_claims": 5456,
+      "distinct_chunks": 2509,
+      "pairs_per_document_mean": 6.756,
+      "pairs_per_document_max": 32,
+      "evalset_shared_documents": 0,
+      "evalset_shared_chunks": 0,
+      "bar": "0 duplicate rows, 0 eval-set documents",
+      "pass": true
+    },
+    "claim_unit_literal_presence": {
+      "positive_leg_rate": 0.0,
+      "negative_leg_rate": 0.0,
+      "auroc": 0.5,
+      "definition": "claim unit phrase, or any token distinguishing it from its twin's unit phrase, readable in the chunk",
+      "bar": "0.0 on both legs (H148 rule: no adjacent-string solution)",
+      "pass": true
+    },
+    "value_surface_direction_parity": {
+      "per_swap_family": {
+        "km2<->sqmi": {
+          "digit_count_auroc": 0.5,
+          "magnitude_auroc": 0.7833,
+          "decimal_auroc": 0.5,
+          "pairs": 568
+        },
+        "khz<->mhz": {
+          "digit_count_auroc": 0.5,
+          "magnitude_auroc": 0.5718,
+          "decimal_auroc": 0.5,
+          "pairs": 152
+        },
+        "kg<->lb": {
+          "digit_count_auroc": 0.5,
+          "magnitude_auroc": 0.4759,
+          "decimal_auroc": 0.5,
+          "pairs": 144
+        },
+        "km<->m": {
+          "digit_count_auroc": 0.5,
+          "magnitude_auroc": 0.5215,
+          "decimal_auroc": 0.5,
+          "pairs": 782
+        },
+        "cm<->m": {
+          "digit_count_auroc": 0.5,
+          "magnitude_auroc": 0.2909,
+          "decimal_auroc": 0.5,
+          "pairs": 238
+        },
+        "km<->mm": {
+          "digit_count_auroc": 0.5,
+          "magnitude_auroc": 0.4544,
+          "decimal_auroc": 0.5,
+          "pairs": 198
+        },
+        "kmh<->mph": {
+          "digit_count_auroc": 0.5,
+          "magnitude_auroc": 0.8629,
+          "decimal_auroc": 0.5,
+          "pairs": 156
+        },
+        "ha<->km2": {
+          "digit_count_auroc": 0.5,
+          "magnitude_auroc": 0.4736,
+          "decimal_auroc": 0.5,
+          "pairs": 146
+        },
+        "kb<->mb": {
+          "digit_count_auroc": 0.5,
+          "magnitude_auroc": 0.5687,
+          "decimal_auroc": 0.5,
+          "pairs": 106
+        },
+        "gb<->mb": {
+          "digit_count_auroc": 0.5,
+          "magnitude_auroc": 0.435,
+          "decimal_auroc": 0.5,
+          "pairs": 148
+        },
+        "ghz<->mhz": {
+          "digit_count_auroc": 0.5,
+          "magnitude_auroc": 0.0869,
+          "decimal_auroc": 0.5,
+          "pairs": 132
+        }
+      },
+      "max_digit_count_deviation": 0.0,
+      "max_decimal_deviation": 0.0,
+      "bar": "digit-count AUROC in [0.45, 0.55] (report-only; enforced by bucket-matched construction)"
+    },
+    "word_label_marginal_balance": {
+      "per_word": {
+        "cm": {
+          "as_positive": 119,
+          "as_negative": 119,
+          "skew": 0.0
+        },
+        "gb": {
+          "as_positive": 74,
+          "as_negative": 74,
+          "skew": 0.0
+        },
+        "ghz": {
+          "as_positive": 66,
+          "as_negative": 66,
+          "skew": 0.0
+        },
+        "ha": {
+          "as_positive": 73,
+          "as_negative": 73,
+          "skew": 0.0
+        },
+        "kb": {
+          "as_positive": 53,
+          "as_negative": 53,
+          "skew": 0.0
+        },
+        "kg": {
+          "as_positive": 72,
+          "as_negative": 72,
+          "skew": 0.0
+        },
+        "khz": {
+          "as_positive": 76,
+          "as_negative": 76,
+          "skew": 0.0
+        },
+        "km": {
+          "as_positive": 490,
+          "as_negative": 490,
+          "skew": 0.0
+        },
+        "km2": {
+          "as_positive": 357,
+          "as_negative": 357,
+          "skew": 0.0
+        },
+        "kmh": {
+          "as_positive": 78,
+          "as_negative": 78,
+          "skew": 0.0
+        },
+        "lb": {
+          "as_positive": 72,
+          "as_negative": 72,
+          "skew": 0.0
+        },
+        "m": {
+          "as_positive": 510,
+          "as_negative": 510,
+          "skew": 0.0
+        },
+        "mb": {
+          "as_positive": 127,
+          "as_negative": 127,
+          "skew": 0.0
+        },
+        "mhz": {
+          "as_positive": 142,
+          "as_negative": 142,
+          "skew": 0.0
+        },
+        "mm": {
+          "as_positive": 99,
+          "as_negative": 99,
+          "skew": 0.0
+        },
+        "mph": {
+          "as_positive": 78,
+          "as_negative": 78,
+          "skew": 0.0
+        },
+        "sqmi": {
+          "as_positive": 284,
+          "as_negative": 284,
+          "skew": 0.0
+        }
+      },
+      "max_skew": 0.0,
+      "bar": "0.0 by construction (50/50 inside every family)"
+    },
+    "digit_surface_report_only": {
+      "trailing_zero_auroc": 0.5,
+      "digit_count_auroc": 0.5,
+      "leading_digit_auroc": 0.5,
+      "value_magnitude_auroc": 0.5
+    },
+    "unit_rederivation_audit": {
+      "sampled": 500,
+      "errors": 0,
+      "bar": "0 errors",
+      "pass": true,
+      "examples": []
+    },
+    "all_bars_pass": true,
+    "h148_and_audit_pass": true
+  }
+}

@@ -1,0 +1,558 @@
+{
+  "member": "vitaminc_conformed",
+  "clause": "C4",
+  "instrument": "provenance_gate.py (R14-H136 ruling-2 form: 8-gram, Jaccard >= 0.3, bidirectional, KILL > 2%); thresholds read from R19_supply_gates.py",
+  "selection_predicate": "vitaminc_conformed.parquet - the archive train split under the loader's own predicate, then the F1 evaluation-surface collision filter and the F2 structural label-conflict filter; evidence UNTRUNCATED",
+  "rows": 370393,
+  "evidence_units": 185169,
+  "claim_units": 175862,
+  "arena_units": 8645,
+  "evidence_gate": {
+    "pass": true,
+    "result": {
+      "instrument": "provenance_gate.py (R13 ruling 4)",
+      "mode": "jaccard",
+      "n": 8,
+      "jaccard_threshold": 0.3,
+      "thresholds": {
+        "warn": 0.005,
+        "kill": 0.02
+      },
+      "candidate": {
+        "label": "vitaminc_conformed_evidence",
+        "n_units": 185169,
+        "n_units_scorable": 182187
+      },
+      "arena": {
+        "subsets": {
+          "covidqa": 980,
+          "delucionqa": 552,
+          "emanual": 396,
+          "expertqa": 759,
+          "finqa": 725,
+          "hagrid": 703,
+          "hotpotqa": 998,
+          "pubmedqa": 1250,
+          "tatqa": 1032,
+          "techqa": 1250
+        },
+        "n_units": 8645,
+        "n_units_scorable": 8555
+      },
+      "candidate_vs_arena": {
+        "n_units": 185169,
+        "units_with_hit": 9,
+        "fraction": 4.9e-05,
+        "per_arena_subset": {
+          "covidqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "delucionqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "emanual": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "expertqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "finqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hagrid": {
+            "units_with_hit": 1,
+            "fraction": 5e-06
+          },
+          "hotpotqa": {
+            "units_with_hit": 8,
+            "fraction": 4.3e-05
+          },
+          "pubmedqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "tatqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "techqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        },
+        "best_jaccard": {
+          "max": 0.7429,
+          "p99": 0.0,
+          "mean": 0.0003
+        }
+      },
+      "arena_vs_candidate": {
+        "n_units": 8645,
+        "units_with_hit": 7,
+        "fraction": 0.00081,
+        "per_arena_subset": {
+          "vitaminc_conformed_evidence": {
+            "units_with_hit": 7,
+            "fraction": 0.00081
+          }
+        },
+        "best_jaccard": {
+          "max": 0.7429,
+          "p99": 0.0277,
+          "mean": 0.0015
+        }
+      },
+      "max_fraction": 0.00081,
+      "verdict": "PASS",
+      "hit_examples": [
+        {
+          "candidate_unit": 13406,
+          "bucket": "hotpotqa",
+          "unit": 82,
+          "jaccard": 0.3605
+        },
+        {
+          "candidate_unit": 48212,
+          "bucket": "hotpotqa",
+          "unit": 636,
+          "jaccard": 0.3864
+        },
+        {
+          "candidate_unit": 48213,
+          "bucket": "hotpotqa",
+          "unit": 636,
+          "jaccard": 0.7429
+        },
+        {
+          "candidate_unit": 62254,
+          "bucket": "hotpotqa",
+          "unit": 154,
+          "jaccard": 0.3385
+        },
+        {
+          "candidate_unit": 74727,
+          "bucket": "hotpotqa",
+          "unit": 277,
+          "jaccard": 0.7407
+        },
+        {
+          "candidate_unit": 74728,
+          "bucket": "hotpotqa",
+          "unit": 277,
+          "jaccard": 0.3429
+        },
+        {
+          "candidate_unit": 75373,
+          "bucket": "hagrid",
+          "unit": 289,
+          "jaccard": 0.3333
+        },
+        {
+          "candidate_unit": 119164,
+          "bucket": "hotpotqa",
+          "unit": 648,
+          "jaccard": 0.3393
+        },
+        {
+          "candidate_unit": 140535,
+          "bucket": "hotpotqa",
+          "unit": 519,
+          "jaccard": 0.3293
+        }
+      ]
+    },
+    "seconds": 21.5,
+    "spike_control": {
+      "injected": 10,
+      "detected_total": 10,
+      "baseline_hits": 0,
+      "passes": true,
+      "candidate_units": 2000
+    }
+  },
+  "claim_gate": {
+    "pass": true,
+    "result": {
+      "instrument": "provenance_gate.py (R13 ruling 4)",
+      "mode": "jaccard",
+      "n": 8,
+      "jaccard_threshold": 0.3,
+      "thresholds": {
+        "warn": 0.005,
+        "kill": 0.02
+      },
+      "candidate": {
+        "label": "vitaminc_conformed_claims",
+        "n_units": 175862,
+        "n_units_scorable": 132557
+      },
+      "arena": {
+        "subsets": {
+          "covidqa": 980,
+          "delucionqa": 552,
+          "emanual": 396,
+          "expertqa": 759,
+          "finqa": 725,
+          "hagrid": 703,
+          "hotpotqa": 998,
+          "pubmedqa": 1250,
+          "tatqa": 1032,
+          "techqa": 1250
+        },
+        "n_units": 8645,
+        "n_units_scorable": 8555
+      },
+      "candidate_vs_arena": {
+        "n_units": 175862,
+        "units_with_hit": 1,
+        "fraction": 6e-06,
+        "per_arena_subset": {
+          "covidqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "delucionqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "emanual": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "expertqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "finqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hagrid": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hotpotqa": {
+            "units_with_hit": 1,
+            "fraction": 6e-06
+          },
+          "pubmedqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "tatqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "techqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        },
+        "best_jaccard": {
+          "max": 0.3448,
+          "p99": 0.0,
+          "mean": 0.0
+        }
+      },
+      "arena_vs_candidate": {
+        "n_units": 8645,
+        "units_with_hit": 1,
+        "fraction": 0.000116,
+        "per_arena_subset": {
+          "vitaminc_conformed_claims": {
+            "units_with_hit": 1,
+            "fraction": 0.000116
+          }
+        },
+        "best_jaccard": {
+          "max": 0.3448,
+          "p99": 0.0,
+          "mean": 0.0002
+        }
+      },
+      "max_fraction": 0.000116,
+      "verdict": "PASS",
+      "hit_examples": [
+        {
+          "candidate_unit": 87439,
+          "bucket": "hotpotqa",
+          "unit": 277,
+          "jaccard": 0.3448
+        }
+      ]
+    },
+    "seconds": 13.0,
+    "spike_control": {
+      "injected": 10,
+      "detected_total": 10,
+      "baseline_hits": 0,
+      "passes": true,
+      "candidate_units": 2000
+    }
+  },
+  "live_positive_control": {
+    "why": "VitaminC's official split is disjoint by unique_id/case_id but NOT by page, claim or evidence text; its test split is therefore genuinely near-duplicate to train by construction and must make this instrument fire",
+    "candidate": "tals__vitaminc__test.parquet",
+    "candidate_rows": 55197,
+    "claims": {
+      "pass": true,
+      "result": {
+        "instrument": "provenance_gate.py (R13 ruling 4)",
+        "mode": "jaccard",
+        "n": 8,
+        "jaccard_threshold": 0.3,
+        "thresholds": {
+          "warn": 0.005,
+          "kill": 0.02
+        },
+        "candidate": {
+          "label": "vitaminc_test_claims_vs_conformed",
+          "n_units": 25689,
+          "n_units_scorable": 19829
+        },
+        "arena": {
+          "subsets": {
+            "vitaminc_conformed_claims": 175862
+          },
+          "n_units": 175862,
+          "n_units_scorable": 132557
+        },
+        "candidate_vs_arena": {
+          "n_units": 25689,
+          "units_with_hit": 57,
+          "fraction": 0.002219,
+          "per_arena_subset": {
+            "vitaminc_conformed_claims": {
+              "units_with_hit": 57,
+              "fraction": 0.002219
+            }
+          },
+          "best_jaccard": {
+            "max": 1.0,
+            "p99": 0.1538,
+            "mean": 0.006
+          }
+        },
+        "arena_vs_candidate": {
+          "n_units": 175862,
+          "units_with_hit": 67,
+          "fraction": 0.000381,
+          "per_arena_subset": {
+            "vitaminc_test_claims_vs_conformed": {
+              "units_with_hit": 67,
+              "fraction": 0.000381
+            }
+          },
+          "best_jaccard": {
+            "max": 1.0,
+            "p99": 0.0667,
+            "mean": 0.0019
+          }
+        },
+        "max_fraction": 0.002219,
+        "verdict": "PASS",
+        "hit_examples": [
+          {
+            "candidate_unit": 1530,
+            "bucket": "vitaminc_conformed_claims",
+            "unit": 10259,
+            "jaccard": 1.0
+          },
+          {
+            "candidate_unit": 2008,
+            "bucket": "vitaminc_conformed_claims",
+            "unit": 143608,
+            "jaccard": 0.375
+          },
+          {
+            "candidate_unit": 2009,
+            "bucket": "vitaminc_conformed_claims",
+            "unit": 143609,
+            "jaccard": 0.375
+          },
+          {
+            "candidate_unit": 3310,
+            "bucket": "vitaminc_conformed_claims",
+            "unit": 22920,
+            "jaccard": 0.4545
+          },
+          {
+            "candidate_unit": 3523,
+            "bucket": "vitaminc_conformed_claims",
+            "unit": 64967,
+            "jaccard": 0.3333
+          },
+          {
+            "candidate_unit": 5113,
+            "bucket": "vitaminc_conformed_claims",
+            "unit": 10259,
+            "jaccard": 0.75
+          },
+          {
+            "candidate_unit": 6595,
+            "bucket": "vitaminc_conformed_claims",
+            "unit": 47866,
+            "jaccard": 0.6667
+          },
+          {
+            "candidate_unit": 6604,
+            "bucket": "vitaminc_conformed_claims",
+            "unit": 47889,
+            "jaccard": 0.6667
+          },
+          {
+            "candidate_unit": 6620,
+            "bucket": "vitaminc_conformed_claims",
+            "unit": 47978,
+            "jaccard": 0.6
+          },
+          {
+            "candidate_unit": 7327,
+            "bucket": "vitaminc_conformed_claims",
+            "unit": 14995,
+            "jaccard": 0.5
+          }
+        ]
+      },
+      "seconds": 5.4
+    },
+    "evidence": {
+      "pass": false,
+      "result": {
+        "instrument": "provenance_gate.py (R13 ruling 4)",
+        "mode": "jaccard",
+        "n": 8,
+        "jaccard_threshold": 0.3,
+        "thresholds": {
+          "warn": 0.005,
+          "kill": 0.02
+        },
+        "candidate": {
+          "label": "vitaminc_test_evidence_vs_conformed",
+          "n_units": 26248,
+          "n_units_scorable": 25829
+        },
+        "arena": {
+          "subsets": {
+            "vitaminc_conformed_evidence": 185169
+          },
+          "n_units": 185169,
+          "n_units_scorable": 182187
+        },
+        "candidate_vs_arena": {
+          "n_units": 26248,
+          "units_with_hit": 534,
+          "fraction": 0.020344,
+          "per_arena_subset": {
+            "vitaminc_conformed_evidence": {
+              "units_with_hit": 534,
+              "fraction": 0.020344
+            }
+          },
+          "best_jaccard": {
+            "max": 1.0,
+            "p99": 0.3889,
+            "mean": 0.023
+          }
+        },
+        "arena_vs_candidate": {
+          "n_units": 185169,
+          "units_with_hit": 1426,
+          "fraction": 0.007701,
+          "per_arena_subset": {
+            "vitaminc_test_evidence_vs_conformed": {
+              "units_with_hit": 1426,
+              "fraction": 0.007701
+            }
+          },
+          "best_jaccard": {
+            "max": 1.0,
+            "p99": 0.2778,
+            "mean": 0.0135
+          }
+        },
+        "max_fraction": 0.020344,
+        "verdict": "KILL",
+        "hit_examples": [
+          {
+            "candidate_unit": 72,
+            "bucket": "vitaminc_conformed_evidence",
+            "unit": 1515,
+            "jaccard": 0.3077
+          },
+          {
+            "candidate_unit": 100,
+            "bucket": "vitaminc_conformed_evidence",
+            "unit": 1515,
+            "jaccard": 0.3243
+          },
+          {
+            "candidate_unit": 101,
+            "bucket": "vitaminc_conformed_evidence",
+            "unit": 2579,
+            "jaccard": 0.3429
+          },
+          {
+            "candidate_unit": 104,
+            "bucket": "vitaminc_conformed_evidence",
+            "unit": 1335,
+            "jaccard": 0.3095
+          },
+          {
+            "candidate_unit": 108,
+            "bucket": "vitaminc_conformed_evidence",
+            "unit": 1511,
+            "jaccard": 0.3243
+          },
+          {
+            "candidate_unit": 109,
+            "bucket": "vitaminc_conformed_evidence",
+            "unit": 1730,
+            "jaccard": 0.3333
+          },
+          {
+            "candidate_unit": 110,
+            "bucket": "vitaminc_conformed_evidence",
+            "unit": 1730,
+            "jaccard": 0.3333
+          },
+          {
+            "candidate_unit": 111,
+            "bucket": "vitaminc_conformed_evidence",
+            "unit": 2116,
+            "jaccard": 0.3611
+          },
+          {
+            "candidate_unit": 131,
+            "bucket": "vitaminc_conformed_evidence",
+            "unit": 2215,
+            "jaccard": 0.3243
+          },
+          {
+            "candidate_unit": 133,
+            "bucket": "vitaminc_conformed_evidence",
+            "unit": 2217,
+            "jaccard": 0.3514
+          }
+        ]
+      },
+      "seconds": 8.1
+    },
+    "fires": true,
+    "how_to_read_the_verdict_string": "the control's own gate prints KILL on the evidence leg. That is the control WORKING: it says the VitaminC test split is near-duplicate to the VitaminC train side, which is the overlap C3 measures and the reason the H166-A1 holdout is key-filtered. It is NOT a verdict on the member's arena census, which is the `evidence_gate` / `claim_gate` pair above"
+  },
+  "coverage": {
+    "evidence_scorable": 182187,
+    "evidence_units": 185169,
+    "claims_scorable": 132557,
+    "claim_units": 175862,
+    "note": "units shorter than the 8-gram window carry no n-gram and are unscorable by this instrument; they are covered by the C2 exact-match channel, which reads zero against every registered evaluation surface on all three string forms"
+  },
+  "status": "GREEN",
+  "seconds": 54.5
+}

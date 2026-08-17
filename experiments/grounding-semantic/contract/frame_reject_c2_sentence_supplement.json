@@ -1,0 +1,94 @@
+{
+  "supplement": "C2 - arena CLAIM side at response-sentence grain",
+  "member": "frame_reject",
+  "arena_response_sentences": {
+    "distinct": 46082,
+    "per_subset": {
+      "covidqa": {
+        "rows": 246,
+        "response_sentences": 388
+      },
+      "delucionqa": {
+        "rows": 184,
+        "response_sentences": 1055
+      },
+      "emanual": {
+        "rows": 132,
+        "response_sentences": 836
+      },
+      "expertqa": {
+        "rows": 203,
+        "response_sentences": 1389
+      },
+      "finqa": {
+        "rows": 2294,
+        "response_sentences": 11778
+      },
+      "hagrid": {
+        "rows": 1318,
+        "response_sentences": 2846
+      },
+      "hotpotqa": {
+        "rows": 390,
+        "response_sentences": 442
+      },
+      "pubmedqa": {
+        "rows": 2450,
+        "response_sentences": 13603
+      },
+      "tatqa": {
+        "rows": 3338,
+        "response_sentences": 11156
+      },
+      "techqa": {
+        "rows": 314,
+        "response_sentences": 2756
+      }
+    }
+  },
+  "member_units": {
+    "distinct_claims": 7576,
+    "distinct_negative_claims": 3688,
+    "distinct_positive_claims": 3888
+  },
+  "member_claims_vs_arena_response_sentences": {
+    "raw_vs_raw": 0,
+    "truncated_vs_truncated": 0,
+    "normalised_vs_normalised": 0,
+    "raw_vs_truncated": 0,
+    "truncated_vs_raw": 0
+  },
+  "member_negative_claims_vs_arena_response_sentences": {
+    "raw_vs_raw": 0,
+    "truncated_vs_truncated": 0,
+    "normalised_vs_normalised": 0,
+    "raw_vs_truncated": 0,
+    "truncated_vs_raw": 0
+  },
+  "member_positive_claims_vs_arena_response_sentences": {
+    "raw_vs_raw": 0,
+    "truncated_vs_truncated": 0,
+    "normalised_vs_normalised": 0,
+    "raw_vs_truncated": 0,
+    "truncated_vs_raw": 0
+  },
+  "colliding_negative_claims": {
+    "count": 0,
+    "rows_of_the_member_carrying_one": 0,
+    "examples": []
+  },
+  "colliding_positive_claims": {
+    "count": 0,
+    "rows_of_the_member_carrying_one": 0,
+    "examples": []
+  },
+  "hagrid_frame_only_artifact": {
+    "string": "Based on the given context ,",
+    "hagrid_test_responses_equal_to_it": 11,
+    "hagrid_test_responses_opening_with_the_frame": 103,
+    "member_negative_claims_equal_to_it": 0,
+    "member_rows_equal_to_it": 0,
+    "member_negative_claims_normalising_to_it": 0,
+    "member_rows_normalising_to_it": 0
+  }
+}

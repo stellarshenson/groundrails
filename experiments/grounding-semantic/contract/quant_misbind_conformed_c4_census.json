@@ -1,0 +1,185 @@
+{
+  "clause": "C4",
+  "instrument": "provenance_gate.py (R14-H136 ruling-2 form): 8-gram, Jaccard >= 0.3, bidirectional, WARN 0.005, KILL > 2% of the candidate side, all ten walled arena subsets",
+  "arena_units": 8645,
+  "coverage": {
+    "evidence": {
+      "units": 8123,
+      "too_short_for_8gram": 0,
+      "share_too_short": 0.0,
+      "covered_by_exact_matching": 0
+    },
+    "claims": {
+      "units": 18435,
+      "too_short_for_8gram": 4728,
+      "share_too_short": 0.256469,
+      "covered_by_exact_matching": 4728
+    }
+  },
+  "evidence_gate": {
+    "verdict": "PASS",
+    "max_fraction": 0.0,
+    "candidate_vs_arena": {
+      "n_units": 8123,
+      "units_with_hit": 0,
+      "fraction": 0.0,
+      "per_arena_subset": {
+        "covidqa": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        },
+        "delucionqa": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        },
+        "emanual": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        },
+        "expertqa": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        },
+        "finqa": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        },
+        "hagrid": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        },
+        "hotpotqa": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        },
+        "pubmedqa": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        },
+        "tatqa": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        },
+        "techqa": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        }
+      },
+      "best_jaccard": {
+        "max": 0.008,
+        "p99": 0.0,
+        "mean": 0.0
+      }
+    },
+    "arena_vs_candidate": {
+      "n_units": 8645,
+      "units_with_hit": 0,
+      "fraction": 0.0,
+      "per_arena_subset": {
+        "quant_misbind_evidence": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        }
+      },
+      "best_jaccard": {
+        "max": 0.008,
+        "p99": 0.0,
+        "mean": 0.0
+      }
+    }
+  },
+  "claims_gate": {
+    "verdict": "PASS",
+    "max_fraction": 0.0,
+    "candidate_vs_arena": {
+      "n_units": 18435,
+      "units_with_hit": 0,
+      "fraction": 0.0,
+      "per_arena_subset": {
+        "covidqa": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        },
+        "delucionqa": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        },
+        "emanual": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        },
+        "expertqa": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        },
+        "finqa": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        },
+        "hagrid": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        },
+        "hotpotqa": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        },
+        "pubmedqa": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        },
+        "tatqa": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        },
+        "techqa": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        }
+      },
+      "best_jaccard": {
+        "max": 0.0,
+        "p99": 0.0,
+        "mean": 0.0
+      }
+    },
+    "arena_vs_candidate": {
+      "n_units": 8645,
+      "units_with_hit": 0,
+      "fraction": 0.0,
+      "per_arena_subset": {
+        "quant_misbind_claims": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        }
+      },
+      "best_jaccard": {
+        "max": 0.0,
+        "p99": 0.0,
+        "mean": 0.0
+      }
+    }
+  },
+  "spike_control": {
+    "injected": 10,
+    "detected_total": 10,
+    "baseline_hits": 0,
+    "passes": true,
+    "candidate_units": 2000
+  },
+  "live_positive_control": {
+    "construction": "250 real arena documents, 5% of whitespace tokens deleted at random then cut to 60% of the remaining length - genuinely near-duplicate, not byte-identical",
+    "units": 200,
+    "detection_fraction": 0.71,
+    "units_with_hit": 142,
+    "best_jaccard": {
+      "max": 0.6429,
+      "p99": 0.5893,
+      "mean": 0.3569
+    },
+    "verdict": "KILL",
+    "fires": false
+  },
+  "status": "RED",
+  "seconds": 10.9
+}

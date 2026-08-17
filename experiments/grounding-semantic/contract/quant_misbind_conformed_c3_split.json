@@ -1,0 +1,46 @@
+{
+  "clause": "C3",
+  "member_type": "constructed lane - it has no split of its own; the axis that matters is which split of each SOURCE it reads and whether that split is disjoint from anything used for evaluation",
+  "rows_by_source": {
+    "tabfact": 18652
+  },
+  "distinct_documents_by_namespace": {
+    "tabfact": 4716
+  },
+  "single_source": true,
+  "tabfact": {
+    "axis": "the archive's own table_id",
+    "archive_split_rows": {
+      "test": 12839,
+      "train": 92585,
+      "validation": 12851
+    },
+    "measured_axis": {
+      "train_vs_test_shared_table_ids": 0,
+      "test_table_ids": 1695,
+      "train_vs_validation_shared_table_ids": 0,
+      "validation_table_ids": 1696,
+      "train_table_ids": 13182
+    },
+    "member_tables": 4716,
+    "member_tables_in_train": 4716,
+    "member_tables_in_a_non_train_split": {
+      "test": 0,
+      "validation": 0
+    },
+    "selection_predicate": "the *__train.parquet member of dataset-tabfact.zip ONLY (R17-H144_pairs.tabfact_tables), deduplicated on table_text"
+  },
+  "decisive_document_read_against_the_mechanism_eval": {
+    "eval_surface": "R17-H143_evalset.parquet - the held-out mechanism eval this member's source pool was excluded against",
+    "eval_resolved_source_documents": 536,
+    "eval_documents_by_namespace": {
+      "tabfact": 352,
+      "feverous": 184
+    },
+    "eval_tabfact_documents_stable_ids": 352,
+    "shared_with_member": 0,
+    "all_eval_documents_shared_with_member": 0,
+    "reading": "for a TabFact-only member every document on both sides carries the corpus's own stable table_id, so this is an identity read, not a similarity heuristic. The FEVEROUS documents of the eval remain unstably keyed, but the member no longer contains any FEVEROUS document, so no unmeasurable side remains"
+  },
+  "seconds": 0.3
+}

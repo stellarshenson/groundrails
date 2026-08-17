@@ -1,0 +1,177 @@
+{
+  "windowing": "1500/750, final window flush to the end (byte-identical to R8-H101 / R16-H142)",
+  "purpose": "R22-H188 - the re-banked combined census the derivation arm's census_crosscheck reads instead of R18-H150_window_census.json; the control is repointed, not weakened",
+  "clean_mix": {
+    "rows": 685670,
+    "mean_windows": 1.5071,
+    "median_windows": 1,
+    "max_windows": 40,
+    "total_windows": 1033365,
+    "multi_window_rows": 137622,
+    "multi_window_share": 0.2007
+  },
+  "clean_mix_per_group": {
+    "halueval": {
+      "rows": 40000,
+      "mean_windows": 2.839,
+      "median_windows": 1,
+      "max_windows": 15,
+      "total_windows": 113562,
+      "multi_window_rows": 18590,
+      "multi_window_share": 0.4647
+    },
+    "psiloqa": {
+      "rows": 61712,
+      "mean_windows": 1.0705,
+      "median_windows": 1,
+      "max_windows": 25,
+      "total_windows": 66060,
+      "multi_window_rows": 2705,
+      "multi_window_share": 0.0438
+    },
+    "ragtruth_cn": {
+      "rows": 15090,
+      "mean_windows": 1.58,
+      "median_windows": 1,
+      "max_windows": 11,
+      "total_windows": 23842,
+      "multi_window_rows": 5248,
+      "multi_window_share": 0.3478
+    },
+    "ragtruth_de": {
+      "rows": 15090,
+      "mean_windows": 3.3121,
+      "median_windows": 3,
+      "max_windows": 16,
+      "total_windows": 49979,
+      "multi_window_rows": 13291,
+      "multi_window_share": 0.8808
+    },
+    "ragtruth_en": {
+      "rows": 15090,
+      "mean_windows": 2.6871,
+      "median_windows": 2,
+      "max_windows": 14,
+      "total_windows": 40548,
+      "multi_window_rows": 11496,
+      "multi_window_share": 0.7618
+    },
+    "ragtruth_es": {
+      "rows": 15090,
+      "mean_windows": 3.3156,
+      "median_windows": 3,
+      "max_windows": 17,
+      "total_windows": 50033,
+      "multi_window_rows": 13345,
+      "multi_window_share": 0.8844
+    },
+    "ragtruth_fr": {
+      "rows": 15090,
+      "mean_windows": 3.44,
+      "median_windows": 3,
+      "max_windows": 16,
+      "total_windows": 51910,
+      "multi_window_rows": 13730,
+      "multi_window_share": 0.9099
+    },
+    "ragtruth_hu": {
+      "rows": 15090,
+      "mean_windows": 3.0038,
+      "median_windows": 3,
+      "max_windows": 40,
+      "total_windows": 45328,
+      "multi_window_rows": 12686,
+      "multi_window_share": 0.8407
+    },
+    "ragtruth_it": {
+      "rows": 15090,
+      "mean_windows": 3.3317,
+      "median_windows": 3,
+      "max_windows": 16,
+      "total_windows": 50276,
+      "multi_window_rows": 13208,
+      "multi_window_share": 0.8753
+    },
+    "ragtruth_pl": {
+      "rows": 15090,
+      "mean_windows": 3.0779,
+      "median_windows": 3,
+      "max_windows": 15,
+      "total_windows": 46445,
+      "multi_window_rows": 12766,
+      "multi_window_share": 0.846
+    },
+    "tabfact": {
+      "rows": 92585,
+      "mean_windows": 1.346,
+      "median_windows": 1,
+      "max_windows": 12,
+      "total_windows": 124616,
+      "multi_window_rows": 20469,
+      "multi_window_share": 0.2211
+    },
+    "vitaminc": {
+      "rows": 370653,
+      "mean_windows": 1.0003,
+      "median_windows": 1,
+      "max_windows": 5,
+      "total_windows": 370766,
+      "multi_window_rows": 88,
+      "multi_window_share": 0.0002
+    }
+  },
+  "misbind_lane_H146": {
+    "rows": 30000,
+    "mean_windows": 1.0,
+    "median_windows": 1,
+    "max_windows": 1,
+    "total_windows": 30000,
+    "multi_window_rows": 0,
+    "multi_window_share": 0.0
+  },
+  "scaleunit_lane_H150": {
+    "rows": 5540,
+    "mean_windows": 1.0,
+    "median_windows": 1,
+    "max_windows": 1,
+    "total_windows": 5540,
+    "multi_window_rows": 0,
+    "multi_window_share": 0.0
+  },
+  "num_derive_lane_H187": {
+    "rows": 30000,
+    "mean_windows": 1.0,
+    "median_windows": 1,
+    "max_windows": 1,
+    "total_windows": 30000,
+    "multi_window_rows": 0,
+    "multi_window_share": 0.0
+  },
+  "combined": {
+    "rows": 751210,
+    "multi_window_rows": 137622,
+    "multi_window_share": 0.1832,
+    "mean_windows": 1.4628,
+    "total_windows": 1098905,
+    "max_windows": 40
+  },
+  "expected": {
+    "rows": 751210,
+    "mean_windows": 1.4628,
+    "multi_window_share": 0.1832
+  },
+  "expected_derivation": "clean mix 685,670 rows / 1,033,365 windows / 137,622 multi-window (R20-H174_window_census.json) plus three all-single-window lanes 30,000 + 5,540 + 30,000",
+  "matches_expected": true,
+  "banked_h150_combined": {
+    "rows": 721210,
+    "multi_window_rows": 137622,
+    "multi_window_share": 0.1908,
+    "mean_windows": 1.4821
+  },
+  "delta_vs_h150": {
+    "rows": 30000,
+    "mean_windows": -0.0193,
+    "multi_window_share": -0.0076
+  },
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+}

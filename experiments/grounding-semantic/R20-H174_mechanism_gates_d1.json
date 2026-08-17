@@ -1,0 +1,449 @@
+{
+  "experiment": "R20-H174 mechanism gates A (frame-only misrank share) and B (k-doc-curve slope) - ANALYSIS ONLY, no training",
+  "subset": "hagrid",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Max-Q Workstation Edition",
+  "definition_source": {
+    "gate_a": "R19-H162_hagrid_mechanisms.misrank_block - misrank mass is the count of (positive, negative) item pairs with pos_score <= neg_score; the frame-only share is the fraction of that mass in the frame-only negatives' columns. Banked values it produced: 0.2124 (h150d1), 0.2076 (h150d2), 0.1727 (h159d1 enriched).",
+    "gate_b_primary": "R19-H162_hagrid_mechanisms.vacuous_excluded -> strata ndoc_1 / ndoc_2_3 / ndoc_4plus, four frame-only items removed. Banked flagship: 0.8577/0.8129, 0.6890/0.6277, 0.5096/0.6052.",
+    "gate_b_secondary": "R19-H162_hagrid_mechanisms.kdoc_curve - pool truncated to the first k documents, k in (1,2,3,4,6,8).",
+    "slope_statistics": "NOT banked - stated in this script before the read. pool-depth slope = OLS on bucket index (0,1,2); k-truncation slope = OLS on k."
+  },
+  "bars": {
+    "gate_a": {
+      "bar": 0.05,
+      "direction": "below",
+      "registered_baseline": 0.212
+    },
+    "gate_b": {
+      "bar": 0.0,
+      "direction": "non-negative"
+    }
+  },
+  "checkpoints": {
+    "h174d1": {
+      "label": "R20-H174 portfolio arm, draw 1 (seed 1174)",
+      "path": "/home/lab/workspace/private/ai-assistants/groundrails/models/R20-H174-arm-draw1",
+      "dump": "R20-H174_pairs_h174d1.parquet",
+      "banked_read": "R20-H174_arm_draw1_windowed_result.json"
+    },
+    "h150d1": {
+      "label": "R18-H150 flagship, draw 1 (banked dump, re-verified)",
+      "path": "/home/lab/workspace/private/ai-assistants/groundrails/models/R18-H150-arm-draw1",
+      "dump": "R19-H161_pairs_h150d1.parquet",
+      "banked_read": "R18-H150_arm_draw1_windowed_result.json"
+    },
+    "h150d2": {
+      "label": "R18-H150 flagship, draw 2 (banked dump, re-verified)",
+      "path": "/home/lab/workspace/private/ai-assistants/groundrails/models/R18-H150-arm-draw2",
+      "dump": "R19-H161_pairs_h150d2.parquet",
+      "banked_read": "R18-H150_arm_draw2_windowed_result.json"
+    },
+    "h159d1": {
+      "label": "R19-H159 enriched mix, draw 1 - REFERENCE, the existence proof",
+      "path": "/home/lab/workspace/private/ai-assistants/groundrails/models/R19-H159-arm-draw1",
+      "dump": "R19-H161_pairs_h159d1.parquet",
+      "banked_read": "R19-H159_arm_draw1_windowed_result.json"
+    }
+  },
+  "positive_control": {
+    "h174d1": {
+      "reproduced": 0.616559,
+      "banked": 0.6166,
+      "abs_delta": 4.1e-05,
+      "fingerprint": {
+        "n": 250,
+        "n_sent": 537,
+        "n_pairs": 1941
+      },
+      "fingerprint_ok": true,
+      "pass": true
+    },
+    "h150d1": {
+      "reproduced": 0.642254,
+      "banked": 0.6423,
+      "abs_delta": 4.6e-05,
+      "fingerprint": {
+        "n": 250,
+        "n_sent": 537,
+        "n_pairs": 1941
+      },
+      "fingerprint_ok": true,
+      "pass": true
+    },
+    "h150d2": {
+      "reproduced": 0.642502,
+      "banked": 0.6425,
+      "abs_delta": 2e-06,
+      "fingerprint": {
+        "n": 250,
+        "n_sent": 537,
+        "n_pairs": 1941
+      },
+      "fingerprint_ok": true,
+      "pass": true
+    },
+    "h159d1": {
+      "reproduced": 0.707423,
+      "banked": 0.7074,
+      "abs_delta": 2.3e-05,
+      "fingerprint": {
+        "n": 250,
+        "n_sent": 537,
+        "n_pairs": 1941
+      },
+      "fingerprint_ok": true,
+      "pass": true
+    }
+  },
+  "gate_a": {
+    "h174d1": {
+      "frame_only_items": [
+        49,
+        86,
+        188,
+        196
+      ],
+      "frame_only_misrank_share": 0.1962,
+      "frame_only_misrank_pairs": 606,
+      "total_misrank_pairs": 3089,
+      "n_pos": 212,
+      "n_neg": 38,
+      "total_pos_neg_pairs": 8056,
+      "frame_only_item_scores": {
+        "49": 7.5098,
+        "86": 4.7128,
+        "188": 1.1549,
+        "196": 0.0444
+      },
+      "frame_only_scored_positive": {
+        "49": true,
+        "86": true,
+        "188": true,
+        "196": true
+      },
+      "artifact_misrank_share": 0.2269,
+      "auroc_excluding_artifact_items": 0.6366,
+      "top12_cumulative_share": 0.6714,
+      "pass_vs_bar": false
+    },
+    "h150d1": {
+      "frame_only_items": [
+        49,
+        86,
+        188,
+        196
+      ],
+      "frame_only_misrank_share": 0.2124,
+      "frame_only_misrank_pairs": 612,
+      "total_misrank_pairs": 2882,
+      "n_pos": 212,
+      "n_neg": 38,
+      "total_pos_neg_pairs": 8056,
+      "frame_only_item_scores": {
+        "49": 1.4071,
+        "86": 2.6342,
+        "188": 2.7486,
+        "196": 2.0728
+      },
+      "frame_only_scored_positive": {
+        "49": true,
+        "86": true,
+        "188": true,
+        "196": true
+      },
+      "artifact_misrank_share": 0.2734,
+      "auroc_excluding_artifact_items": 0.6814,
+      "top12_cumulative_share": 0.6544,
+      "pass_vs_bar": false
+    },
+    "h150d2": {
+      "frame_only_items": [
+        49,
+        86,
+        188,
+        196
+      ],
+      "frame_only_misrank_share": 0.2076,
+      "frame_only_misrank_pairs": 598,
+      "total_misrank_pairs": 2880,
+      "n_pos": 212,
+      "n_neg": 38,
+      "total_pos_neg_pairs": 8056,
+      "frame_only_item_scores": {
+        "49": 1.3095,
+        "86": 1.6963,
+        "188": 2.3118,
+        "196": 1.7719
+      },
+      "frame_only_scored_positive": {
+        "49": true,
+        "86": true,
+        "188": true,
+        "196": true
+      },
+      "artifact_misrank_share": 0.241,
+      "auroc_excluding_artifact_items": 0.6674,
+      "top12_cumulative_share": 0.6851,
+      "pass_vs_bar": false
+    },
+    "h159d1": {
+      "frame_only_items": [
+        49,
+        86,
+        188,
+        196
+      ],
+      "frame_only_misrank_share": 0.1727,
+      "frame_only_misrank_pairs": 407,
+      "total_misrank_pairs": 2357,
+      "n_pos": 212,
+      "n_neg": 38,
+      "total_pos_neg_pairs": 8056,
+      "frame_only_item_scores": {
+        "49": 0.57,
+        "86": 0.1612,
+        "188": 1.1136,
+        "196": 0.2272
+      },
+      "frame_only_scored_positive": {
+        "49": true,
+        "86": true,
+        "188": true,
+        "196": true
+      },
+      "artifact_misrank_share": 0.1981,
+      "auroc_excluding_artifact_items": 0.7124,
+      "top12_cumulative_share": 0.7246,
+      "pass_vs_bar": false
+    }
+  },
+  "gate_b": {
+    "h174d1": {
+      "pool_depth_vacuous_excluded": {
+        "ndoc_1": {
+          "n": 66,
+          "neg": 9,
+          "auroc": 0.7739,
+          "se": 0.0711
+        },
+        "ndoc_2_3": {
+          "n": 107,
+          "neg": 13,
+          "auroc": 0.6326,
+          "se": 0.0763
+        },
+        "ndoc_4plus": {
+          "n": 73,
+          "neg": 12,
+          "auroc": 0.597,
+          "se": 0.0857
+        }
+      },
+      "pool_depth_slope_ols_bucket_index": -0.0885,
+      "pool_depth_endpoint_delta_4plus_minus_1": -0.1769,
+      "auroc_vacuous_excluded_all": 0.6555,
+      "n_items_vacuous_excluded": 246,
+      "kdoc_truncation_curve": {
+        "1": {
+          "auroc_all": 0.575,
+          "auroc_pool4plus": 0.6038
+        },
+        "2": {
+          "auroc_all": 0.627,
+          "auroc_pool4plus": 0.597
+        },
+        "3": {
+          "auroc_all": 0.6027,
+          "auroc_pool4plus": 0.5478
+        },
+        "4": {
+          "auroc_all": 0.6063,
+          "auroc_pool4plus": 0.5628
+        },
+        "6": {
+          "auroc_all": 0.6153,
+          "auroc_pool4plus": 0.5943
+        },
+        "8": {
+          "auroc_all": 0.6166,
+          "auroc_pool4plus": 0.597
+        }
+      },
+      "kdoc_slope_ols_all": 0.00339,
+      "kdoc_slope_ols_pool4plus": 0.00069
+    },
+    "h150d1": {
+      "pool_depth_vacuous_excluded": {
+        "ndoc_1": {
+          "n": 66,
+          "neg": 9,
+          "auroc": 0.8577,
+          "se": 0.0527
+        },
+        "ndoc_2_3": {
+          "n": 107,
+          "neg": 13,
+          "auroc": 0.689,
+          "se": 0.07
+        },
+        "ndoc_4plus": {
+          "n": 73,
+          "neg": 12,
+          "auroc": 0.5096,
+          "se": 0.0914
+        }
+      },
+      "pool_depth_slope_ols_bucket_index": -0.174,
+      "pool_depth_endpoint_delta_4plus_minus_1": -0.3481,
+      "auroc_vacuous_excluded_all": 0.6851,
+      "n_items_vacuous_excluded": 246,
+      "kdoc_truncation_curve": {
+        "1": {
+          "auroc_all": 0.612,
+          "auroc_pool4plus": 0.6216
+        },
+        "2": {
+          "auroc_all": 0.6606,
+          "auroc_pool4plus": 0.5779
+        },
+        "3": {
+          "auroc_all": 0.6435,
+          "auroc_pool4plus": 0.515
+        },
+        "4": {
+          "auroc_all": 0.6451,
+          "auroc_pool4plus": 0.5232
+        },
+        "6": {
+          "auroc_all": 0.6461,
+          "auroc_pool4plus": 0.5314
+        },
+        "8": {
+          "auroc_all": 0.6423,
+          "auroc_pool4plus": 0.5096
+        }
+      },
+      "kdoc_slope_ols_all": 0.00179,
+      "kdoc_slope_ols_pool4plus": -0.01278
+    },
+    "h150d2": {
+      "pool_depth_vacuous_excluded": {
+        "ndoc_1": {
+          "n": 66,
+          "neg": 9,
+          "auroc": 0.8129,
+          "se": 0.0631
+        },
+        "ndoc_2_3": {
+          "n": 107,
+          "neg": 13,
+          "auroc": 0.6277,
+          "se": 0.0768
+        },
+        "ndoc_4plus": {
+          "n": 73,
+          "neg": 12,
+          "auroc": 0.6052,
+          "se": 0.085
+        }
+      },
+      "pool_depth_slope_ols_bucket_index": -0.1038,
+      "pool_depth_endpoint_delta_4plus_minus_1": -0.2077,
+      "auroc_vacuous_excluded_all": 0.6834,
+      "n_items_vacuous_excluded": 246,
+      "kdoc_truncation_curve": {
+        "1": {
+          "auroc_all": 0.575,
+          "auroc_pool4plus": 0.5833
+        },
+        "2": {
+          "auroc_all": 0.6449,
+          "auroc_pool4plus": 0.6134
+        },
+        "3": {
+          "auroc_all": 0.6285,
+          "auroc_pool4plus": 0.5369
+        },
+        "4": {
+          "auroc_all": 0.6342,
+          "auroc_pool4plus": 0.5697
+        },
+        "6": {
+          "auroc_all": 0.6435,
+          "auroc_pool4plus": 0.6079
+        },
+        "8": {
+          "auroc_all": 0.6425,
+          "auroc_pool4plus": 0.6052
+        }
+      },
+      "kdoc_slope_ols_all": 0.00629,
+      "kdoc_slope_ols_pool4plus": 0.00362
+    },
+    "h159d1": {
+      "pool_depth_vacuous_excluded": {
+        "ndoc_1": {
+          "n": 66,
+          "neg": 9,
+          "auroc": 0.8187,
+          "se": 0.0618
+        },
+        "ndoc_2_3": {
+          "n": 107,
+          "neg": 13,
+          "auroc": 0.6743,
+          "se": 0.0718
+        },
+        "ndoc_4plus": {
+          "n": 73,
+          "neg": 12,
+          "auroc": 0.709,
+          "se": 0.0733
+        }
+      },
+      "pool_depth_slope_ols_bucket_index": -0.0549,
+      "pool_depth_endpoint_delta_4plus_minus_1": -0.1097,
+      "auroc_vacuous_excluded_all": 0.7295,
+      "n_items_vacuous_excluded": 246,
+      "kdoc_truncation_curve": {
+        "1": {
+          "auroc_all": 0.606,
+          "auroc_pool4plus": 0.6557
+        },
+        "2": {
+          "auroc_all": 0.6744,
+          "auroc_pool4plus": 0.6202
+        },
+        "3": {
+          "auroc_all": 0.682,
+          "auroc_pool4plus": 0.5997
+        },
+        "4": {
+          "auroc_all": 0.6945,
+          "auroc_pool4plus": 0.653
+        },
+        "6": {
+          "auroc_all": 0.7059,
+          "auroc_pool4plus": 0.6995
+        },
+        "8": {
+          "auroc_all": 0.7074,
+          "auroc_pool4plus": 0.709
+        }
+      },
+      "kdoc_slope_ols_all": 0.01155,
+      "kdoc_slope_ols_pool4plus": 0.01258
+    }
+  },
+  "comparison": {
+    "gate_a_flagship_2draw_mean_share": 0.21,
+    "gate_a_h174d1_share": 0.1962,
+    "gate_a_h174d1_vs_bar": "FAIL",
+    "gate_b_flagship_2draw_mean_pool_slope": -0.1389,
+    "gate_b_h174d1_pool_slope": -0.0885,
+    "gate_b_h174d1_vs_bar": "FAIL",
+    "gate_a_reference_h159d1_share": 0.1727,
+    "gate_b_reference_h159d1_pool_slope": -0.0549
+  },
+  "runtime_seconds": 2.3
+}

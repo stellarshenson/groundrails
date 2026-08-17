@@ -1,0 +1,45 @@
+{
+  "arm": "R21-H179R incumbent hotpotqa re-read on the reduced item set",
+  "model": "KRLabsOrg/lettucedect-v2-mmbert-base",
+  "convention": "native_truncated (R19-H171_incumbent_native.score_native)",
+  "max_length": 4096,
+  "subset": "hotpotqa",
+  "fidelity_control": {
+    "banked_hotpotqa": 0.6161,
+    "recomputed_all250": 0.61601,
+    "recomputed_all250_rounded4": 0.616,
+    "abs_delta": 0.0001,
+    "tolerance": 0.0001,
+    "verdict": "PASS"
+  },
+  "auroc": {
+    "all_250": 0.61601,
+    "minus_exposed_verbatim": 0.61169,
+    "minus_exposed_containment": 0.62676
+  },
+  "counts": {
+    "all": 250,
+    "minus_verbatim": 234,
+    "minus_containment": 148,
+    "exposed_verbatim": 16,
+    "exposed_containment": 102,
+    "positives_all": 233,
+    "positives_minus_verbatim": 220,
+    "positives_minus_containment": 142,
+    "items_at_max_length": 0
+  },
+  "deltas_vs_all250": {
+    "minus_verbatim": -0.00432,
+    "minus_containment": 0.01075
+  },
+  "artifacts": {
+    "npz": "/home/lab/workspace/private/ai-assistants/groundrails/experiments/grounding-semantic/R21-H179R_incumbent_hotpotqa.npz",
+    "json": "/home/lab/workspace/private/ai-assistants/groundrails/experiments/grounding-semantic/R21-H179R_incumbent_hotpotqa.json",
+    "log": "/home/lab/workspace/private/ai-assistants/groundrails/logs/R21-H179R_incumbent_hotpotqa.log"
+  },
+  "flags_source": "/home/lab/workspace/private/ai-assistants/groundrails/experiments/grounding-semantic/R21-H179_consensus_errors.parquet",
+  "items_source": "/home/lab/workspace/private/ai-assistants/groundrails/experiments/grounding-semantic/R21-H179_arena_items.parquet",
+  "join_key": "(subset, item) - row_id is the RAGBench source row and is not unique",
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates.",
+  "elapsed_s": 6.5
+}

@@ -1,0 +1,1095 @@
+{
+  "member": "tabfact",
+  "clause": "C2 - disjointness from every evaluation surface",
+  "method": "three string forms (raw / truncated to 1,500 / whitespace-collapsed case-folded) crossed six ways, run in both directions, on EVIDENCE and CLAIM units; plus the document-id channel wherever the surface exposes a TabFact table id",
+  "member_profile": {
+    "rows": 92585,
+    "distinct_evidence_untruncated": 13173,
+    "distinct_claims": 92304,
+    "distinct_table_id": 13182,
+    "distinct_table_id_stem": 12753
+  },
+  "surfaces": {
+    "arena_ragbench_10_subsets": {
+      "kind": "blind arena - the 10 RAGBench subsets, banked H77 sample (250 rows/subset seed 0, first 8 document chunks)",
+      "subsets": {
+        "covidqa": 980,
+        "delucionqa": 552,
+        "emanual": 396,
+        "expertqa": 759,
+        "finqa": 725,
+        "hagrid": 703,
+        "hotpotqa": 998,
+        "pubmedqa": 1250,
+        "tatqa": 1032,
+        "techqa": 1250
+      },
+      "evidence": {
+        "surface_units_into_member": {
+          "n_query_units": 6784,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 13173,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "claim_vs_arena_response": {
+        "surface_units_into_member": {
+          "n_query_units": 2260,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 92304,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "document_id_channel": "the arena parquet exposes no table id - no document-level join is computable; the n-gram census under C4 covers that direction"
+    },
+    "gold_full": {
+      "kind": "the held-out gold test surface (R10-H108_lane.gold_full, all 2,752 claims); chunk lists flattened",
+      "claims": 2752,
+      "chunks": 123579,
+      "evidence": {
+        "surface_units_into_member": {
+          "n_query_units": 10228,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 13173,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "claim": {
+        "surface_units_into_member": {
+          "n_query_units": 2699,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 92304,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "document_id_channel": "gold_full carries no corpus document id (banked R20 gold_full audit) - not computable"
+    },
+    "R20-H177_eval_B": {
+      "kind": "held-out mechanism eval",
+      "rows": 2000,
+      "evidence": {
+        "surface_units_into_member": {
+          "n_query_units": 736,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 15,
+          "normalised_in_normalised_truncated": 15,
+          "any_form": 15
+        },
+        "member_units_into_surface": {
+          "n_query_units": 13173,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 15,
+          "normalised_in_normalised_truncated": 15,
+          "any_form": 15
+        }
+      },
+      "claim": {
+        "surface_units_into_member": {
+          "n_query_units": 2000,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 92304,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "document_id_channel": {
+        "surface_tabfact_doc_ids": 325,
+        "exact_table_id_in_member": 325,
+        "STEM_table_id_in_member": 325,
+        "share_of_surface_tabfact_docs_in_member": 1.0,
+        "tabfact_half_rows": 1300,
+        "tabfact_half_pairs": 650,
+        "tabfact_half_docs": 325,
+        "tabfact_half_docs_in_member": 325
+      },
+      "rows_by_source": {
+        "tabfact": 1300,
+        "edgar": 700
+      }
+    },
+    "R20-H177_eval_C": {
+      "kind": "held-out mechanism eval",
+      "rows": 1936,
+      "evidence": {
+        "surface_units_into_member": {
+          "n_query_units": 380,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 13173,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "claim": {
+        "surface_units_into_member": {
+          "n_query_units": 1926,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 92304,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "document_id_channel": {
+        "surface_tabfact_doc_ids": 0,
+        "exact_table_id_in_member": 0,
+        "STEM_table_id_in_member": 0,
+        "share_of_surface_tabfact_docs_in_member": 0.0
+      },
+      "rows_by_source": {
+        "edgar": 1936
+      }
+    },
+    "R17-H143_evalset": {
+      "kind": "held-out mechanism eval",
+      "rows": 1050,
+      "evidence": {
+        "surface_units_into_member": {
+          "n_query_units": 547,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 10,
+          "normalised_in_normalised_truncated": 10,
+          "any_form": 10
+        },
+        "member_units_into_surface": {
+          "n_query_units": 13173,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 10,
+          "normalised_in_normalised_truncated": 10,
+          "any_form": 10
+        }
+      },
+      "claim": {
+        "surface_units_into_member": {
+          "n_query_units": 1048,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 92304,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      }
+    },
+    "R20-H175b_qlane_eval": {
+      "kind": "held-out mechanism eval",
+      "rows": 2002,
+      "evidence": {
+        "surface_units_into_member": {
+          "n_query_units": 487,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 13173,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "claim": {
+        "surface_units_into_member": {
+          "n_query_units": 1001,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 92304,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "document_id_channel": {
+        "surface_tabfact_doc_ids": 0,
+        "exact_table_id_in_member": 0,
+        "STEM_table_id_in_member": 0,
+        "share_of_surface_tabfact_docs_in_member": 0.0
+      },
+      "rows_by_source": {
+        "psiloqa": 2002
+      }
+    },
+    "R20-H175b_qlane_eval_repaired": {
+      "kind": "held-out mechanism eval",
+      "rows": 1678,
+      "evidence": {
+        "surface_units_into_member": {
+          "n_query_units": 407,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 13173,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "claim": {
+        "surface_units_into_member": {
+          "n_query_units": 839,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 92304,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "document_id_channel": {
+        "surface_tabfact_doc_ids": 0,
+        "exact_table_id_in_member": 0,
+        "STEM_table_id_in_member": 0,
+        "share_of_surface_tabfact_docs_in_member": 0.0
+      },
+      "rows_by_source": {
+        "psiloqa": 1678
+      }
+    },
+    "R20-H175b_qlane_eval_clean": {
+      "kind": "held-out mechanism eval",
+      "rows": 88,
+      "evidence": {
+        "surface_units_into_member": {
+          "n_query_units": 22,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 13173,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "claim": {
+        "surface_units_into_member": {
+          "n_query_units": 44,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 92304,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "document_id_channel": {
+        "surface_tabfact_doc_ids": 0,
+        "exact_table_id_in_member": 0,
+        "STEM_table_id_in_member": 0,
+        "share_of_surface_tabfact_docs_in_member": 0.0
+      },
+      "rows_by_source": {
+        "psiloqa": 88
+      }
+    },
+    "R19_findver_lane": {
+      "kind": "held-out mechanism eval",
+      "rows": 2400,
+      "evidence": {
+        "surface_units_into_member": {
+          "n_query_units": 2370,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 13173,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "claim": {
+        "surface_units_into_member": {
+          "n_query_units": 2400,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 92304,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "document_id_channel": {
+        "surface_tabfact_doc_ids": 0,
+        "exact_table_id_in_member": 0,
+        "STEM_table_id_in_member": 0,
+        "share_of_surface_tabfact_docs_in_member": 0.0
+      },
+      "rows_by_source": {
+        "test": 1700,
+        "testmini": 700
+      }
+    },
+    "antigaming_probe_sets": {
+      "kind": "held-out anti-gaming probe sets - built from TabFact test+validation with every table_id present in TabFact train removed (R14-H133_antigaming construction)",
+      "per_file": {
+        "R14-H133_antigaming_set.parquet": {
+          "rows": 1601,
+          "distinct_table_id": 1171,
+          "exact_table_id_in_member": 0,
+          "STEM_table_id_in_member": 55,
+          "claim": {
+            "surface_units_into_member": {
+              "n_query_units": 3187,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            },
+            "member_units_into_surface": {
+              "n_query_units": 92304,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            }
+          },
+          "evidence_channel": "the banked parquet stores no evidence column; evidence is regenerated from table_id, so the table-id count above IS the evidence test"
+        },
+        "R16-H142-T-d2_antigaming_set.parquet": {
+          "rows": 1600,
+          "distinct_table_id": 1186,
+          "exact_table_id_in_member": 0,
+          "STEM_table_id_in_member": 50,
+          "claim": {
+            "surface_units_into_member": {
+              "n_query_units": 3191,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            },
+            "member_units_into_surface": {
+              "n_query_units": 92304,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            }
+          },
+          "evidence_channel": "the banked parquet stores no evidence column; evidence is regenerated from table_id, so the table-id count above IS the evidence test"
+        },
+        "R16-H142-T_antigaming_set.parquet": {
+          "rows": 1600,
+          "distinct_table_id": 1177,
+          "exact_table_id_in_member": 0,
+          "STEM_table_id_in_member": 51,
+          "claim": {
+            "surface_units_into_member": {
+              "n_query_units": 3181,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            },
+            "member_units_into_surface": {
+              "n_query_units": 92304,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            }
+          },
+          "evidence_channel": "the banked parquet stores no evidence column; evidence is regenerated from table_id, so the table-id count above IS the evidence test"
+        },
+        "R17-H145_antigaming_set.parquet": {
+          "rows": 1600,
+          "distinct_table_id": 1184,
+          "exact_table_id_in_member": 0,
+          "STEM_table_id_in_member": 62,
+          "claim": {
+            "surface_units_into_member": {
+              "n_query_units": 3183,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            },
+            "member_units_into_surface": {
+              "n_query_units": 92304,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            }
+          },
+          "evidence_channel": "the banked parquet stores no evidence column; evidence is regenerated from table_id, so the table-id count above IS the evidence test"
+        },
+        "R17-H146_antigaming_set.parquet": {
+          "rows": 1601,
+          "distinct_table_id": 1168,
+          "exact_table_id_in_member": 0,
+          "STEM_table_id_in_member": 57,
+          "claim": {
+            "surface_units_into_member": {
+              "n_query_units": 3185,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            },
+            "member_units_into_surface": {
+              "n_query_units": 92304,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            }
+          },
+          "evidence_channel": "the banked parquet stores no evidence column; evidence is regenerated from table_id, so the table-id count above IS the evidence test"
+        },
+        "R18-H150-d2_antigaming_set.parquet": {
+          "rows": 1600,
+          "distinct_table_id": 1170,
+          "exact_table_id_in_member": 0,
+          "STEM_table_id_in_member": 52,
+          "claim": {
+            "surface_units_into_member": {
+              "n_query_units": 3179,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            },
+            "member_units_into_surface": {
+              "n_query_units": 92304,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            }
+          },
+          "evidence_channel": "the banked parquet stores no evidence column; evidence is regenerated from table_id, so the table-id count above IS the evidence test"
+        },
+        "R18-H150_antigaming_set.parquet": {
+          "rows": 1600,
+          "distinct_table_id": 1177,
+          "exact_table_id_in_member": 0,
+          "STEM_table_id_in_member": 59,
+          "claim": {
+            "surface_units_into_member": {
+              "n_query_units": 3186,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            },
+            "member_units_into_surface": {
+              "n_query_units": 92304,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            }
+          },
+          "evidence_channel": "the banked parquet stores no evidence column; evidence is regenerated from table_id, so the table-id count above IS the evidence test"
+        },
+        "R18-H152-d1_antigaming_set.parquet": {
+          "rows": 1600,
+          "distinct_table_id": 1174,
+          "exact_table_id_in_member": 0,
+          "STEM_table_id_in_member": 55,
+          "claim": {
+            "surface_units_into_member": {
+              "n_query_units": 3190,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            },
+            "member_units_into_surface": {
+              "n_query_units": 92304,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            }
+          },
+          "evidence_channel": "the banked parquet stores no evidence column; evidence is regenerated from table_id, so the table-id count above IS the evidence test"
+        },
+        "R18-H152-d2_antigaming_set.parquet": {
+          "rows": 1601,
+          "distinct_table_id": 1178,
+          "exact_table_id_in_member": 0,
+          "STEM_table_id_in_member": 60,
+          "claim": {
+            "surface_units_into_member": {
+              "n_query_units": 3186,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            },
+            "member_units_into_surface": {
+              "n_query_units": 92304,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            }
+          },
+          "evidence_channel": "the banked parquet stores no evidence column; evidence is regenerated from table_id, so the table-id count above IS the evidence test"
+        },
+        "R18-H155-d1_antigaming_set.parquet": {
+          "rows": 1600,
+          "distinct_table_id": 1185,
+          "exact_table_id_in_member": 0,
+          "STEM_table_id_in_member": 56,
+          "claim": {
+            "surface_units_into_member": {
+              "n_query_units": 3188,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            },
+            "member_units_into_surface": {
+              "n_query_units": 92304,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            }
+          },
+          "evidence_channel": "the banked parquet stores no evidence column; evidence is regenerated from table_id, so the table-id count above IS the evidence test"
+        },
+        "R18-H155-d2_antigaming_set.parquet": {
+          "rows": 1600,
+          "distinct_table_id": 1191,
+          "exact_table_id_in_member": 0,
+          "STEM_table_id_in_member": 52,
+          "claim": {
+            "surface_units_into_member": {
+              "n_query_units": 3184,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            },
+            "member_units_into_surface": {
+              "n_query_units": 92304,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            }
+          },
+          "evidence_channel": "the banked parquet stores no evidence column; evidence is regenerated from table_id, so the table-id count above IS the evidence test"
+        },
+        "R18-H156_antigaming_set.parquet": {
+          "rows": 1600,
+          "distinct_table_id": 1173,
+          "exact_table_id_in_member": 0,
+          "STEM_table_id_in_member": 52,
+          "claim": {
+            "surface_units_into_member": {
+              "n_query_units": 3190,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            },
+            "member_units_into_surface": {
+              "n_query_units": 92304,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            }
+          },
+          "evidence_channel": "the banked parquet stores no evidence column; evidence is regenerated from table_id, so the table-id count above IS the evidence test"
+        },
+        "R19-H159_antigaming_set.parquet": {
+          "rows": 1601,
+          "distinct_table_id": 1174,
+          "exact_table_id_in_member": 0,
+          "STEM_table_id_in_member": 61,
+          "claim": {
+            "surface_units_into_member": {
+              "n_query_units": 3186,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            },
+            "member_units_into_surface": {
+              "n_query_units": 92304,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            }
+          },
+          "evidence_channel": "the banked parquet stores no evidence column; evidence is regenerated from table_id, so the table-id count above IS the evidence test"
+        },
+        "R19-H160-soupB_antigaming_set.parquet": {
+          "rows": 1600,
+          "distinct_table_id": 1185,
+          "exact_table_id_in_member": 0,
+          "STEM_table_id_in_member": 54,
+          "claim": {
+            "surface_units_into_member": {
+              "n_query_units": 3187,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            },
+            "member_units_into_surface": {
+              "n_query_units": 92304,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            }
+          },
+          "evidence_channel": "the banked parquet stores no evidence column; evidence is regenerated from table_id, so the table-id count above IS the evidence test"
+        }
+      }
+    },
+    "vitaminc_holdout_SUPERSET": {
+      "kind": "the `vitaminc_holdout` eval is filtered out of VitaminC test+validation. Measured here against that full pool, which is a strict SUPERSET of the eval - a zero on the superset implies a zero on the eval, so this is a stronger read, not a proxy",
+      "pool_rows": 118251,
+      "evidence": {
+        "surface_units_into_member": {
+          "n_query_units": 54683,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 13173,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "claim": {
+        "surface_units_into_member": {
+          "n_query_units": 55139,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 92304,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      }
+    }
+  },
+  "nonzero_readings": [
+    {
+      "path": "R20-H177_eval_B / evidence / surface_units_into_member / normalised_in_normalised_raw",
+      "count": 15
+    },
+    {
+      "path": "R20-H177_eval_B / evidence / surface_units_into_member / normalised_in_normalised_truncated",
+      "count": 15
+    },
+    {
+      "path": "R20-H177_eval_B / evidence / surface_units_into_member / any_form",
+      "count": 15
+    },
+    {
+      "path": "R20-H177_eval_B / evidence / member_units_into_surface / normalised_in_normalised_raw",
+      "count": 15
+    },
+    {
+      "path": "R20-H177_eval_B / evidence / member_units_into_surface / normalised_in_normalised_truncated",
+      "count": 15
+    },
+    {
+      "path": "R20-H177_eval_B / evidence / member_units_into_surface / any_form",
+      "count": 15
+    },
+    {
+      "path": "R20-H177_eval_B / document_id_channel / exact_table_id_in_member",
+      "count": 325
+    },
+    {
+      "path": "R20-H177_eval_B / document_id_channel / STEM_table_id_in_member",
+      "count": 325
+    },
+    {
+      "path": "R17-H143_evalset / evidence / surface_units_into_member / normalised_in_normalised_raw",
+      "count": 10
+    },
+    {
+      "path": "R17-H143_evalset / evidence / surface_units_into_member / normalised_in_normalised_truncated",
+      "count": 10
+    },
+    {
+      "path": "R17-H143_evalset / evidence / surface_units_into_member / any_form",
+      "count": 10
+    },
+    {
+      "path": "R17-H143_evalset / evidence / member_units_into_surface / normalised_in_normalised_raw",
+      "count": 10
+    },
+    {
+      "path": "R17-H143_evalset / evidence / member_units_into_surface / normalised_in_normalised_truncated",
+      "count": 10
+    },
+    {
+      "path": "R17-H143_evalset / evidence / member_units_into_surface / any_form",
+      "count": 10
+    },
+    {
+      "path": "antigaming_probe_sets / per_file / R14-H133_antigaming_set.parquet / STEM_table_id_in_member",
+      "count": 55
+    },
+    {
+      "path": "antigaming_probe_sets / per_file / R16-H142-T-d2_antigaming_set.parquet / STEM_table_id_in_member",
+      "count": 50
+    },
+    {
+      "path": "antigaming_probe_sets / per_file / R16-H142-T_antigaming_set.parquet / STEM_table_id_in_member",
+      "count": 51
+    },
+    {
+      "path": "antigaming_probe_sets / per_file / R17-H145_antigaming_set.parquet / STEM_table_id_in_member",
+      "count": 62
+    },
+    {
+      "path": "antigaming_probe_sets / per_file / R17-H146_antigaming_set.parquet / STEM_table_id_in_member",
+      "count": 57
+    },
+    {
+      "path": "antigaming_probe_sets / per_file / R18-H150-d2_antigaming_set.parquet / STEM_table_id_in_member",
+      "count": 52
+    },
+    {
+      "path": "antigaming_probe_sets / per_file / R18-H150_antigaming_set.parquet / STEM_table_id_in_member",
+      "count": 59
+    },
+    {
+      "path": "antigaming_probe_sets / per_file / R18-H152-d1_antigaming_set.parquet / STEM_table_id_in_member",
+      "count": 55
+    },
+    {
+      "path": "antigaming_probe_sets / per_file / R18-H152-d2_antigaming_set.parquet / STEM_table_id_in_member",
+      "count": 60
+    },
+    {
+      "path": "antigaming_probe_sets / per_file / R18-H155-d1_antigaming_set.parquet / STEM_table_id_in_member",
+      "count": 56
+    },
+    {
+      "path": "antigaming_probe_sets / per_file / R18-H155-d2_antigaming_set.parquet / STEM_table_id_in_member",
+      "count": 52
+    },
+    {
+      "path": "antigaming_probe_sets / per_file / R18-H156_antigaming_set.parquet / STEM_table_id_in_member",
+      "count": 52
+    },
+    {
+      "path": "antigaming_probe_sets / per_file / R19-H159_antigaming_set.parquet / STEM_table_id_in_member",
+      "count": 61
+    },
+    {
+      "path": "antigaming_probe_sets / per_file / R19-H160-soupB_antigaming_set.parquet / STEM_table_id_in_member",
+      "count": 54
+    }
+  ],
+  "all_string_forms_zero": false,
+  "elapsed_s": 24.1
+}

@@ -1,0 +1,117 @@
+{
+  "clause": "C7 + C8",
+  "c7": {
+    "declared_unit": "BOTH - rows AND pairs are declared in the builder, the manifest and this report",
+    "declared_rows": 30000,
+    "declared_pairs": 15000,
+    "declared_family_pairs": {
+      "difference": 5250,
+      "percentage": 5250,
+      "sum": 2250,
+      "product": 2250
+    },
+    "measured_rows": 30000,
+    "measured_pairs": 15000,
+    "measured_family_pairs": {
+      "percentage": 5250,
+      "difference": 5250,
+      "product": 2250,
+      "sum": 2250
+    },
+    "measured_family_rows": {
+      "sum": 4500,
+      "product": 4500,
+      "difference": 10500,
+      "percentage": 10500
+    },
+    "rows_match": true,
+    "pairs_match": true,
+    "families_match": true,
+    "manifest_declares_both": true,
+    "registration_note": "the member is NEW and is not yet named in any arm wrapper's LANES tuple; the declaration of record is the builder plus this report, and both units are stated in both"
+  },
+  "c8": {
+    "artifact": "experiments/grounding-semantic/R22-H187_num_derive_lane.parquet",
+    "blake2b_64": "f0c05ff077c95ec0",
+    "builder": "experiments/grounding-semantic/R22-H187_num_derive_lane.py, seed 2187",
+    "sources": {
+      "tabfact": {
+        "archive": "data/external/datasets/dataset-tabfact.zip",
+        "sidecar": "data/external/datasets/dataset-tabfact.md (tracked)",
+        "licence": "CC-BY-4.0 (declared in the tracked sidecar)",
+        "licence_declared_in_sidecar": true,
+        "split_read": "the *__train.parquet member ONLY",
+        "selection_predicate": "R17-H144_pairs.tabfact_tables: the *__train.parquet member, deduplicated on table_text; tables with >= 4 body rows of uniform width and >= 2 columns; then a label column (R17-H144_pairs.label_column) and at least one numeric column with a usable header must exist. Every table an evaluation surface names, every table matching an R17-H143 eval-set content fingerprint, and every table_id in a non-train split are dropped whole",
+        "retrieval_script": "scripts/fetch_grounding_datasets.py (tracked)",
+        "retrieval_date_declared_in_sidecar": false,
+        "retrieval_date_observed_from_archive_mtime": "2026-07-31T18:10:02",
+        "gap": "the tracked sidecar names the source, the licence and the fetch script but does not record a retrieval DATE; the date above is the archive's filesystem mtime, which is evidence but not a declaration. The same gap is recorded against quant_misbind's TabFact half"
+      }
+    },
+    "feverous_used": false,
+    "internal_structure": {
+      "rows": 30000,
+      "pairs": 15000,
+      "rows_per_pair": 2.0,
+      "pairs_with_exactly_two_rows": 15000,
+      "distinct_claims": 29940,
+      "distinct_evidence_chunks": 12376,
+      "distinct_documents": 5749,
+      "distinct_source_tables": 5749,
+      "distinct_columns": 1514,
+      "distinct_row_keys": 16936,
+      "distinct_claim_chunk_pairs": 30000,
+      "distinct_asserted_values": 5302,
+      "max_rows_per_chunk": 8,
+      "mean_rows_per_chunk": 2.424047,
+      "max_pairs_per_document": 4,
+      "mean_pairs_per_document": 2.609149,
+      "templates": {
+        "product:0": 1546,
+        "sum:0": 1538,
+        "sum:1": 1612,
+        "product:2": 1516,
+        "difference:1": 3472,
+        "product:1": 1438,
+        "sum:2": 1350,
+        "percentage:2": 3536,
+        "percentage:0": 3470,
+        "difference:2": 3500,
+        "percentage:1": 3494,
+        "difference:0": 3528
+      },
+      "serial_forms": {
+        "keyvalue": 2940,
+        "json_records": 1432,
+        "pipe": 4252,
+        "narrative": 8960,
+        "row_prose": 9212,
+        "markdown": 3204
+      },
+      "rows_by_source": {
+        "tabfact": 30000
+      },
+      "duplicate_claim_strings": 60,
+      "label_balance": {
+        "0": 15000,
+        "1": 15000
+      },
+      "result_digit_lengths": {
+        "2": 10328,
+        "3": 5048,
+        "4": 11712,
+        "5": 2044,
+        "6": 680,
+        "7": 188
+      }
+    },
+    "public_repository_check": {
+      "sources_present": [
+        "tabfact"
+      ],
+      "all_sources_public": true,
+      "method": "every row declares its source; the lane text is TabFact (Wikipedia tables) only"
+    }
+  },
+  "seconds": 0.3
+}

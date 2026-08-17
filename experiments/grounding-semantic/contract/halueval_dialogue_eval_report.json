@@ -1,0 +1,4607 @@
+{
+  "artifact": "halueval_dialogue_eval_report.json",
+  "surface": "R21-H181 - the HaluEval `dialogue` configuration built as a held-out evaluation surface",
+  "eval_parquet": "experiments/grounding-semantic/R21-H181_halueval_dialogue_eval.parquet",
+  "contract": "docs/experiments/dataset-contract.md (with amendments C-A1, C-A2)",
+  "compute": "CPU only; CUDA_VISIBLE_DEVICES forced empty before any import - GPU0/1/2 carry a training draw and an arena scoring pass",
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates.",
+  "generated": "2026-08-17 12:15:44",
+  "admissibility": {
+    "archive": "data/external/datasets/dataset-halueval.zip",
+    "configs_present": {
+      "dialogue": {
+        "rows": 10000,
+        "columns": [
+          "knowledge",
+          "dialogue_history",
+          "right_response",
+          "hallucinated_response"
+        ]
+      },
+      "general": {
+        "rows": 4507,
+        "columns": [
+          "ID",
+          "user_query",
+          "chatgpt_response",
+          "hallucination",
+          "hallucination_spans"
+        ]
+      },
+      "qa": {
+        "rows": 10000,
+        "columns": [
+          "knowledge",
+          "question",
+          "right_answer",
+          "hallucinated_answer"
+        ]
+      },
+      "summarization": {
+        "rows": 10000,
+        "columns": [
+          "document",
+          "right_summary",
+          "hallucinated_summary"
+        ]
+      }
+    },
+    "loaded_by_the_mix": [
+      "qa",
+      "summarization"
+    ],
+    "not_loaded": [
+      "dialogue",
+      "general"
+    ],
+    "general_excluded_because": "it ships no evidence column - ID / user_query / chatgpt_response / hallucination / hallucination_spans - so it is not a grounding task",
+    "loader_predicate": {
+      "loader": "R10-H108_lane.public_train()",
+      "configs_iterated_verbatim": [
+        [
+          "qa",
+          "knowledge",
+          "right_answer",
+          "hallucinated_answer"
+        ],
+        [
+          "summarization",
+          "document",
+          "right_summary",
+          "hallucinated_summary"
+        ]
+      ],
+      "split_filter": "none - the archive ships a single `data` split per config",
+      "row_filter": "none - unlike ragtruth_en (`context > 50 chars`) and psiloqa, the HaluEval branch applies no length or quality filter; every row of the two iterated configs enters the mix",
+      "config_string_mentions_in_loader": {
+        "qa": 1,
+        "summarization": 1,
+        "dialogue": 0,
+        "general": 0
+      },
+      "static_scan_for_dialogue_in_the_mix_assembly_chain": {
+        "R10-H108_lane.py": {
+          "halueval_dialogue_mentions": 0,
+          "halueval_general_mentions": 0
+        },
+        "R16-H142_G1_arm.py": {
+          "halueval_dialogue_mentions": 0,
+          "halueval_general_mentions": 0
+        },
+        "R18-H150_arm_run.py": {
+          "halueval_dialogue_mentions": 0,
+          "halueval_general_mentions": 0
+        },
+        "R20-H174_arm_run.py": {
+          "halueval_dialogue_mentions": 0,
+          "halueval_general_mentions": 0
+        },
+        "R17-H143_evalset_assessment.py": {
+          "halueval_dialogue_mentions": 0,
+          "halueval_general_mentions": 0
+        }
+      },
+      "reading": "the loader iterates exactly ('qa','knowledge','right_answer','hallucinated_answer') and ('summarization','document','right_summary','hallucinated_summary'); the strings 'dialogue' and 'general' do not appear in any mix-assembly loader"
+    }
+  },
+  "eval_census": {
+    "rows": 20000,
+    "pairs": 10000,
+    "positives": 10000,
+    "negatives": 10000,
+    "positive_rate": 0.5,
+    "distinct_claims": 19726,
+    "distinct_knowledge_blocks": 9192,
+    "distinct_dialogue_histories": 10000,
+    "pair_integrity": {
+      "pairs": 10000,
+      "malformed": 0,
+      "bar": "0 malformed",
+      "pass": true,
+      "examples": []
+    },
+    "knowledge_chars_mean": 111.3,
+    "knowledge_chars_max": 433,
+    "columns": [
+      "pair_id",
+      "label",
+      "claim",
+      "chunk",
+      "doc_id",
+      "source",
+      "label_unit",
+      "leg",
+      "dialogue_history",
+      "archive_row",
+      "response_chars",
+      "response_tokens",
+      "knowledge_chars",
+      "knowledge_tokens",
+      "dialogue_history_chars",
+      "n_windows",
+      "chunk_truncated_at_1500"
+    ],
+    "shape_matched": "the flat long form of R20-H177_eval_B.parquet - pair_id / label / claim / chunk / doc_id / source - which is also the shape R21-H180_ragtruth_eval.parquet took. Chosen because R20_baseline_legs.flatten() consumes it unmodified; the gold_full shape (R10-H108_lane.gold_full: claim + explicit chunk LIST grouped on `owner`) is the same long form with a grouping key and is reachable as [[chunk]] per row"
+  },
+  "B1_disjointness_from_the_trained_halves": {
+    "question": "does the held-out `dialogue` configuration share text, or share documents, with the `qa` and `summarization` halves that ARE in the training mix",
+    "string_channel_exact": {
+      "eval_knowledge_vs_qa_knowledge": {
+        "eval_units_distinct": 9192,
+        "other_units_distinct": 9936,
+        "channel_1_exact_raw": {
+          "eval_units_in_other": 0,
+          "other_units_in_eval": 0,
+          "clean": true
+        },
+        "channel_2_three_string_forms": {
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "clean": true
+        },
+        "form_pairings": {
+          "raw_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "raw_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          }
+        },
+        "eval_units_in_other_any_form": 0,
+        "other_units_in_eval_any_form_max": 0,
+        "eval_fraction": 0.0,
+        "clean": true
+      },
+      "eval_responses_vs_qa_knowledge": {
+        "eval_units_distinct": 19726,
+        "other_units_distinct": 9936,
+        "channel_1_exact_raw": {
+          "eval_units_in_other": 0,
+          "other_units_in_eval": 0,
+          "clean": true
+        },
+        "channel_2_three_string_forms": {
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "clean": true
+        },
+        "form_pairings": {
+          "raw_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "raw_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          }
+        },
+        "eval_units_in_other_any_form": 0,
+        "other_units_in_eval_any_form_max": 0,
+        "eval_fraction": 0.0,
+        "clean": true
+      },
+      "eval_knowledge_vs_summarization_document": {
+        "eval_units_distinct": 9192,
+        "other_units_distinct": 9998,
+        "channel_1_exact_raw": {
+          "eval_units_in_other": 0,
+          "other_units_in_eval": 0,
+          "clean": true
+        },
+        "channel_2_three_string_forms": {
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "clean": true
+        },
+        "form_pairings": {
+          "raw_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "raw_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          }
+        },
+        "eval_units_in_other_any_form": 0,
+        "other_units_in_eval_any_form_max": 0,
+        "eval_fraction": 0.0,
+        "clean": true
+      },
+      "eval_responses_vs_summarization_document": {
+        "eval_units_distinct": 19726,
+        "other_units_distinct": 9998,
+        "channel_1_exact_raw": {
+          "eval_units_in_other": 0,
+          "other_units_in_eval": 0,
+          "clean": true
+        },
+        "channel_2_three_string_forms": {
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "clean": true
+        },
+        "form_pairings": {
+          "raw_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "raw_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          }
+        },
+        "eval_units_in_other_any_form": 0,
+        "other_units_in_eval_any_form_max": 0,
+        "eval_fraction": 0.0,
+        "clean": true
+      },
+      "eval_knowledge_vs_qa_claims_both_legs": {
+        "eval_units_distinct": 9192,
+        "other_units_distinct": 17698,
+        "channel_1_exact_raw": {
+          "eval_units_in_other": 0,
+          "other_units_in_eval": 0,
+          "clean": true
+        },
+        "channel_2_three_string_forms": {
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "clean": true
+        },
+        "form_pairings": {
+          "raw_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "raw_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          }
+        },
+        "eval_units_in_other_any_form": 0,
+        "other_units_in_eval_any_form_max": 0,
+        "eval_fraction": 0.0,
+        "clean": true
+      },
+      "eval_responses_vs_qa_claims_both_legs": {
+        "eval_units_distinct": 19726,
+        "other_units_distinct": 17698,
+        "channel_1_exact_raw": {
+          "eval_units_in_other": 8,
+          "other_units_in_eval": 8,
+          "clean": false
+        },
+        "channel_2_three_string_forms": {
+          "eval_units_in_other_any_form": 14,
+          "other_units_in_eval_any_form_max": 12,
+          "clean": false
+        },
+        "form_pairings": {
+          "raw_in_mix_raw": {
+            "eval_units_in_mix": 8,
+            "mix_units_in_eval": 8
+          },
+          "raw_in_mix_truncated": {
+            "eval_units_in_mix": 8,
+            "mix_units_in_eval": 8
+          },
+          "truncated_in_mix_raw": {
+            "eval_units_in_mix": 8,
+            "mix_units_in_eval": 8
+          },
+          "truncated_in_mix_truncated": {
+            "eval_units_in_mix": 8,
+            "mix_units_in_eval": 8
+          },
+          "normalised_in_mix_normalised_raw": {
+            "eval_units_in_mix": 14,
+            "mix_units_in_eval": 12
+          },
+          "normalised_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 14,
+            "mix_units_in_eval": 12
+          },
+          "normalised_truncated_in_mix_normalised_raw": {
+            "eval_units_in_mix": 14,
+            "mix_units_in_eval": 12
+          },
+          "normalised_truncated_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 14,
+            "mix_units_in_eval": 12
+          }
+        },
+        "eval_units_in_other_any_form": 14,
+        "other_units_in_eval_any_form_max": 12,
+        "eval_fraction": 0.00070972,
+        "clean": false
+      },
+      "eval_knowledge_vs_summarization_claims_both_legs": {
+        "eval_units_distinct": 9192,
+        "other_units_distinct": 19964,
+        "channel_1_exact_raw": {
+          "eval_units_in_other": 0,
+          "other_units_in_eval": 0,
+          "clean": true
+        },
+        "channel_2_three_string_forms": {
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "clean": true
+        },
+        "form_pairings": {
+          "raw_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "raw_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          }
+        },
+        "eval_units_in_other_any_form": 0,
+        "other_units_in_eval_any_form_max": 0,
+        "eval_fraction": 0.0,
+        "clean": true
+      },
+      "eval_responses_vs_summarization_claims_both_legs": {
+        "eval_units_distinct": 19726,
+        "other_units_distinct": 19964,
+        "channel_1_exact_raw": {
+          "eval_units_in_other": 0,
+          "other_units_in_eval": 0,
+          "clean": true
+        },
+        "channel_2_three_string_forms": {
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "clean": true
+        },
+        "form_pairings": {
+          "raw_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "raw_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          }
+        },
+        "eval_units_in_other_any_form": 0,
+        "other_units_in_eval_any_form_max": 0,
+        "eval_fraction": 0.0,
+        "clean": true
+      }
+    },
+    "string_channel_8gram_subdocument": {
+      "eval_knowledge_into_qa_knowledge": {
+        "query_units": 9192,
+        "query_units_scorable_at_8grams": 7688,
+        "query_units_too_short_for_8grams": 1504,
+        "index_units": 10000,
+        "index_units_scorable_at_8grams": 10000,
+        "max_jaccard": 0.0769,
+        "units_at_jaccard_ge_0.30": 0,
+        "max_containment_single_unit": 0.5,
+        "max_containment_whole_index_union": 0.5,
+        "containment_single_unit": {
+          "n_ge_0.10": 26,
+          "n_ge_0.25": 6,
+          "n_ge_0.50": 1,
+          "n_ge_0.90": 0,
+          "n_ge_1.00": 0
+        },
+        "containment_whole_index_union": {
+          "n_ge_0.10": 26,
+          "n_ge_0.25": 6,
+          "n_ge_0.50": 1,
+          "n_ge_0.90": 0,
+          "n_ge_1.00": 0
+        },
+        "mean_containment_single_unit": 0.000698
+      },
+      "qa_knowledge_into_eval_knowledge": {
+        "query_units": 10000,
+        "query_units_scorable_at_8grams": 10000,
+        "query_units_too_short_for_8grams": 0,
+        "index_units": 9192,
+        "index_units_scorable_at_8grams": 7688,
+        "max_jaccard": 0.0769,
+        "units_at_jaccard_ge_0.30": 0,
+        "max_containment_single_unit": 0.1333,
+        "max_containment_whole_index_union": 0.1333,
+        "containment_single_unit": {
+          "n_ge_0.10": 2,
+          "n_ge_0.25": 0,
+          "n_ge_0.50": 0,
+          "n_ge_0.90": 0,
+          "n_ge_1.00": 0
+        },
+        "containment_whole_index_union": {
+          "n_ge_0.10": 2,
+          "n_ge_0.25": 0,
+          "n_ge_0.50": 0,
+          "n_ge_0.90": 0,
+          "n_ge_1.00": 0
+        },
+        "mean_containment_single_unit": 8e-05
+      },
+      "eval_knowledge_into_summarization_document": {
+        "query_units": 9192,
+        "query_units_scorable_at_8grams": 7688,
+        "query_units_too_short_for_8grams": 1504,
+        "index_units": 10000,
+        "index_units_scorable_at_8grams": 10000,
+        "max_jaccard": 0.0078,
+        "units_at_jaccard_ge_0.30": 0,
+        "max_containment_single_unit": 0.25,
+        "max_containment_whole_index_union": 0.25,
+        "containment_single_unit": {
+          "n_ge_0.10": 7,
+          "n_ge_0.25": 1,
+          "n_ge_0.50": 0,
+          "n_ge_0.90": 0,
+          "n_ge_1.00": 0
+        },
+        "containment_whole_index_union": {
+          "n_ge_0.10": 7,
+          "n_ge_0.25": 1,
+          "n_ge_0.50": 0,
+          "n_ge_0.90": 0,
+          "n_ge_1.00": 0
+        },
+        "mean_containment_single_unit": 0.000199
+      },
+      "summarization_document_into_eval_knowledge": {
+        "query_units": 10000,
+        "query_units_scorable_at_8grams": 10000,
+        "query_units_too_short_for_8grams": 0,
+        "index_units": 9192,
+        "index_units_scorable_at_8grams": 7688,
+        "max_jaccard": 0.0078,
+        "units_at_jaccard_ge_0.30": 0,
+        "max_containment_single_unit": 0.0081,
+        "max_containment_whole_index_union": 0.0081,
+        "containment_single_unit": {
+          "n_ge_0.10": 0,
+          "n_ge_0.25": 0,
+          "n_ge_0.50": 0,
+          "n_ge_0.90": 0,
+          "n_ge_1.00": 0
+        },
+        "containment_whole_index_union": {
+          "n_ge_0.10": 0,
+          "n_ge_0.25": 0,
+          "n_ge_0.50": 0,
+          "n_ge_0.90": 0,
+          "n_ge_1.00": 0
+        },
+        "mean_containment_single_unit": 2e-06
+      },
+      "eval_knowledge_into_qa_claims_both_legs": {
+        "query_units": 9192,
+        "query_units_scorable_at_8grams": 7688,
+        "query_units_too_short_for_8grams": 1504,
+        "index_units": 20000,
+        "index_units_scorable_at_8grams": 6749,
+        "max_jaccard": 0.0968,
+        "units_at_jaccard_ge_0.30": 0,
+        "max_containment_single_unit": 0.5,
+        "max_containment_whole_index_union": 0.5,
+        "containment_single_unit": {
+          "n_ge_0.10": 3,
+          "n_ge_0.25": 1,
+          "n_ge_0.50": 1,
+          "n_ge_0.90": 0,
+          "n_ge_1.00": 0
+        },
+        "containment_whole_index_union": {
+          "n_ge_0.10": 3,
+          "n_ge_0.25": 1,
+          "n_ge_0.50": 1,
+          "n_ge_0.90": 0,
+          "n_ge_1.00": 0
+        },
+        "mean_containment_single_unit": 9.8e-05
+      },
+      "qa_claims_both_legs_into_eval_knowledge": {
+        "query_units": 20000,
+        "query_units_scorable_at_8grams": 6749,
+        "query_units_too_short_for_8grams": 13251,
+        "index_units": 9192,
+        "index_units_scorable_at_8grams": 7688,
+        "max_jaccard": 0.0968,
+        "units_at_jaccard_ge_0.30": 0,
+        "max_containment_single_unit": 0.1071,
+        "max_containment_whole_index_union": 0.1071,
+        "containment_single_unit": {
+          "n_ge_0.10": 1,
+          "n_ge_0.25": 0,
+          "n_ge_0.50": 0,
+          "n_ge_0.90": 0,
+          "n_ge_1.00": 0
+        },
+        "containment_whole_index_union": {
+          "n_ge_0.10": 1,
+          "n_ge_0.25": 0,
+          "n_ge_0.50": 0,
+          "n_ge_0.90": 0,
+          "n_ge_1.00": 0
+        },
+        "mean_containment_single_unit": 8e-06
+      },
+      "eval_knowledge_into_summarization_claims_both_legs": {
+        "query_units": 9192,
+        "query_units_scorable_at_8grams": 7688,
+        "query_units_too_short_for_8grams": 1504,
+        "index_units": 20000,
+        "index_units_scorable_at_8grams": 20000,
+        "max_jaccard": 0.0,
+        "units_at_jaccard_ge_0.30": 0,
+        "max_containment_single_unit": 0.0,
+        "max_containment_whole_index_union": 0.0,
+        "containment_single_unit": {
+          "n_ge_0.10": 0,
+          "n_ge_0.25": 0,
+          "n_ge_0.50": 0,
+          "n_ge_0.90": 0,
+          "n_ge_1.00": 0
+        },
+        "containment_whole_index_union": {
+          "n_ge_0.10": 0,
+          "n_ge_0.25": 0,
+          "n_ge_0.50": 0,
+          "n_ge_0.90": 0,
+          "n_ge_1.00": 0
+        },
+        "mean_containment_single_unit": 0.0
+      },
+      "summarization_claims_both_legs_into_eval_knowledge": {
+        "query_units": 20000,
+        "query_units_scorable_at_8grams": 20000,
+        "query_units_too_short_for_8grams": 0,
+        "index_units": 9192,
+        "index_units_scorable_at_8grams": 7688,
+        "max_jaccard": 0.0,
+        "units_at_jaccard_ge_0.30": 0,
+        "max_containment_single_unit": 0.0,
+        "max_containment_whole_index_union": 0.0,
+        "containment_single_unit": {
+          "n_ge_0.10": 0,
+          "n_ge_0.25": 0,
+          "n_ge_0.50": 0,
+          "n_ge_0.90": 0,
+          "n_ge_1.00": 0
+        },
+        "containment_whole_index_union": {
+          "n_ge_0.10": 0,
+          "n_ge_0.25": 0,
+          "n_ge_0.50": 0,
+          "n_ge_0.90": 0,
+          "n_ge_1.00": 0
+        },
+        "mean_containment_single_unit": 0.0
+      },
+      "eval_responses_into_qa_claims": {
+        "query_units": 19726,
+        "query_units_scorable_at_8grams": 17564,
+        "query_units_too_short_for_8grams": 2162,
+        "index_units": 20000,
+        "index_units_scorable_at_8grams": 6749,
+        "max_jaccard": 0.0732,
+        "units_at_jaccard_ge_0.30": 0,
+        "max_containment_single_unit": 0.1875,
+        "max_containment_whole_index_union": 0.1875,
+        "containment_single_unit": {
+          "n_ge_0.10": 2,
+          "n_ge_0.25": 0,
+          "n_ge_0.50": 0,
+          "n_ge_0.90": 0,
+          "n_ge_1.00": 0
+        },
+        "containment_whole_index_union": {
+          "n_ge_0.10": 2,
+          "n_ge_0.25": 0,
+          "n_ge_0.50": 0,
+          "n_ge_0.90": 0,
+          "n_ge_1.00": 0
+        },
+        "mean_containment_single_unit": 4.9e-05
+      },
+      "eval_responses_into_summarization_claims": {
+        "query_units": 19726,
+        "query_units_scorable_at_8grams": 17564,
+        "query_units_too_short_for_8grams": 2162,
+        "index_units": 20000,
+        "index_units_scorable_at_8grams": 20000,
+        "max_jaccard": 0.0385,
+        "units_at_jaccard_ge_0.30": 0,
+        "max_containment_single_unit": 0.2222,
+        "max_containment_whole_index_union": 0.2222,
+        "containment_single_unit": {
+          "n_ge_0.10": 1,
+          "n_ge_0.25": 0,
+          "n_ge_0.50": 0,
+          "n_ge_0.90": 0,
+          "n_ge_1.00": 0
+        },
+        "containment_whole_index_union": {
+          "n_ge_0.10": 1,
+          "n_ge_0.25": 0,
+          "n_ge_0.50": 0,
+          "n_ge_0.90": 0,
+          "n_ge_1.00": 0
+        },
+        "mean_containment_single_unit": 1.8e-05
+      }
+    },
+    "document_channel": {
+      "provenance_identifier_columns_present_per_config": {
+        "dialogue": [],
+        "general": [
+          "ID"
+        ],
+        "qa": [],
+        "summarization": []
+      },
+      "reading_identifier_channel": "every HaluEval configuration ships zero provenance identifier columns, so there is no identifier channel to collide on - the same finding arena_surface_verify.mix_provenance_ids records for the two trained halves",
+      "text_derived_identifiers": {
+        "eval_dialogue_knowledge": {
+          "titles": 0,
+          "urls": 0
+        },
+        "qa_knowledge": {
+          "titles": 0,
+          "urls": 1
+        },
+        "summarization_document": {
+          "titles": 0,
+          "urls": 15
+        }
+      },
+      "text_derived_collisions": {
+        "qa_knowledge": {
+          "titles": 0,
+          "urls": 0
+        },
+        "summarization_document": {
+          "titles": 0,
+          "urls": 0
+        }
+      },
+      "whole_evidence_document_key": {
+        "qa_knowledge": {
+          "raw": 0,
+          "normalised": 0,
+          "stem": 0
+        },
+        "summarization_document": {
+          "raw": 0,
+          "normalised": 0,
+          "stem": 0
+        }
+      }
+    },
+    "legs_checked_separately": {
+      "positive_leg_distinct_responses": 9741,
+      "negative_leg_distinct_responses": 9989
+    },
+    "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+  },
+  "B2_disjointness_from_the_blind_arena": {
+    "arena": {
+      "subsets": [
+        "covidqa",
+        "delucionqa",
+        "emanual",
+        "expertqa",
+        "finqa",
+        "hagrid",
+        "hotpotqa",
+        "pubmedqa",
+        "tatqa",
+        "techqa"
+      ],
+      "responses": 2264,
+      "documents_distinct": 6784,
+      "construction": "arena_surface_verify.load_arena() - the R8-H77 frozen gate"
+    },
+    "string_channel_exact": {
+      "eval_knowledge_vs_arena_documents": {
+        "eval_units_distinct": 9192,
+        "other_units_distinct": 6784,
+        "channel_1_exact_raw": {
+          "eval_units_in_other": 0,
+          "other_units_in_eval": 0,
+          "clean": true
+        },
+        "channel_2_three_string_forms": {
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "clean": true
+        },
+        "form_pairings": {
+          "raw_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "raw_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          }
+        },
+        "eval_units_in_other_any_form": 0,
+        "other_units_in_eval_any_form_max": 0,
+        "eval_fraction": 0.0,
+        "clean": true
+      },
+      "eval_responses_vs_arena_documents": {
+        "eval_units_distinct": 19726,
+        "other_units_distinct": 6784,
+        "channel_1_exact_raw": {
+          "eval_units_in_other": 0,
+          "other_units_in_eval": 0,
+          "clean": true
+        },
+        "channel_2_three_string_forms": {
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "clean": true
+        },
+        "form_pairings": {
+          "raw_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "raw_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          }
+        },
+        "eval_units_in_other_any_form": 0,
+        "other_units_in_eval_any_form_max": 0,
+        "eval_fraction": 0.0,
+        "clean": true
+      },
+      "eval_knowledge_vs_arena_responses": {
+        "eval_units_distinct": 9192,
+        "other_units_distinct": 2260,
+        "channel_1_exact_raw": {
+          "eval_units_in_other": 0,
+          "other_units_in_eval": 0,
+          "clean": true
+        },
+        "channel_2_three_string_forms": {
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "clean": true
+        },
+        "form_pairings": {
+          "raw_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "raw_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          }
+        },
+        "eval_units_in_other_any_form": 0,
+        "other_units_in_eval_any_form_max": 0,
+        "eval_fraction": 0.0,
+        "clean": true
+      },
+      "eval_responses_vs_arena_responses": {
+        "eval_units_distinct": 19726,
+        "other_units_distinct": 2260,
+        "channel_1_exact_raw": {
+          "eval_units_in_other": 0,
+          "other_units_in_eval": 0,
+          "clean": true
+        },
+        "channel_2_three_string_forms": {
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "clean": true
+        },
+        "form_pairings": {
+          "raw_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "raw_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          }
+        },
+        "eval_units_in_other_any_form": 0,
+        "other_units_in_eval_any_form_max": 0,
+        "eval_fraction": 0.0,
+        "clean": true
+      },
+      "eval_knowledge_vs_arena_response_sentences": {
+        "eval_units_distinct": 9192,
+        "other_units_distinct": 10227,
+        "channel_1_exact_raw": {
+          "eval_units_in_other": 0,
+          "other_units_in_eval": 0,
+          "clean": true
+        },
+        "channel_2_three_string_forms": {
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "clean": true
+        },
+        "form_pairings": {
+          "raw_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "raw_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          }
+        },
+        "eval_units_in_other_any_form": 0,
+        "other_units_in_eval_any_form_max": 0,
+        "eval_fraction": 0.0,
+        "clean": true
+      },
+      "eval_responses_vs_arena_response_sentences": {
+        "eval_units_distinct": 19726,
+        "other_units_distinct": 10227,
+        "channel_1_exact_raw": {
+          "eval_units_in_other": 0,
+          "other_units_in_eval": 0,
+          "clean": true
+        },
+        "channel_2_three_string_forms": {
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "clean": true
+        },
+        "form_pairings": {
+          "raw_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "raw_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          }
+        },
+        "eval_units_in_other_any_form": 0,
+        "other_units_in_eval_any_form_max": 0,
+        "eval_fraction": 0.0,
+        "clean": true
+      }
+    },
+    "8gram_arena_documents_into_eval_knowledge": {
+      "instrument": "contract/arena_surface_verify.py `_index`/`_max_pair` over provenance_gate 8-gram hashes - the SAME instrument the arena audit used, at the same containment thresholds",
+      "arena_documents_scorable": 6721,
+      "arena_documents_too_short": 63,
+      "max_jaccard": 0.0,
+      "arena_documents_at_jaccard_ge_0.30": 0,
+      "max_containment_single_eval_chunk": 0.0,
+      "max_containment_whole_eval_union": 0.0,
+      "per_threshold": {
+        "containment_ge_0.10": {
+          "arena_documents_hit": 0,
+          "arena_responses_touched": 0,
+          "fraction_of_arena_responses": 0.0,
+          "per_subset": {
+            "covidqa": {
+              "responses": 245,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "delucionqa": {
+              "responses": 184,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "emanual": {
+              "responses": 132,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "expertqa": {
+              "responses": 203,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "finqa": {
+              "responses": 250,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "hagrid": {
+              "responses": 250,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "hotpotqa": {
+              "responses": 250,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "pubmedqa": {
+              "responses": 250,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "tatqa": {
+              "responses": 250,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "techqa": {
+              "responses": 250,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            }
+          }
+        },
+        "containment_ge_0.25": {
+          "arena_documents_hit": 0,
+          "arena_responses_touched": 0,
+          "fraction_of_arena_responses": 0.0,
+          "per_subset": {
+            "covidqa": {
+              "responses": 245,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "delucionqa": {
+              "responses": 184,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "emanual": {
+              "responses": 132,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "expertqa": {
+              "responses": 203,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "finqa": {
+              "responses": 250,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "hagrid": {
+              "responses": 250,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "hotpotqa": {
+              "responses": 250,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "pubmedqa": {
+              "responses": 250,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "tatqa": {
+              "responses": 250,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "techqa": {
+              "responses": 250,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            }
+          }
+        },
+        "containment_ge_0.50": {
+          "arena_documents_hit": 0,
+          "arena_responses_touched": 0,
+          "fraction_of_arena_responses": 0.0,
+          "per_subset": {
+            "covidqa": {
+              "responses": 245,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "delucionqa": {
+              "responses": 184,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "emanual": {
+              "responses": 132,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "expertqa": {
+              "responses": 203,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "finqa": {
+              "responses": 250,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "hagrid": {
+              "responses": 250,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "hotpotqa": {
+              "responses": 250,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "pubmedqa": {
+              "responses": 250,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "tatqa": {
+              "responses": 250,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "techqa": {
+              "responses": 250,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            }
+          }
+        },
+        "containment_ge_0.90": {
+          "arena_documents_hit": 0,
+          "arena_responses_touched": 0,
+          "fraction_of_arena_responses": 0.0,
+          "per_subset": {
+            "covidqa": {
+              "responses": 245,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "delucionqa": {
+              "responses": 184,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "emanual": {
+              "responses": 132,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "expertqa": {
+              "responses": 203,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "finqa": {
+              "responses": 250,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "hagrid": {
+              "responses": 250,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "hotpotqa": {
+              "responses": 250,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "pubmedqa": {
+              "responses": 250,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "tatqa": {
+              "responses": 250,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "techqa": {
+              "responses": 250,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            }
+          }
+        },
+        "containment_ge_1.00": {
+          "arena_documents_hit": 0,
+          "arena_responses_touched": 0,
+          "fraction_of_arena_responses": 0.0,
+          "per_subset": {
+            "covidqa": {
+              "responses": 245,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "delucionqa": {
+              "responses": 184,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "emanual": {
+              "responses": 132,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "expertqa": {
+              "responses": 203,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "finqa": {
+              "responses": 250,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "hagrid": {
+              "responses": 250,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "hotpotqa": {
+              "responses": 250,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "pubmedqa": {
+              "responses": 250,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "tatqa": {
+              "responses": 250,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            },
+            "techqa": {
+              "responses": 250,
+              "responses_touching_a_hit_document": 0,
+              "fraction_of_subset_responses": 0.0
+            }
+          }
+        }
+      },
+      "per_subset_max_containment": {
+        "covidqa": 0.0,
+        "delucionqa": 0.0,
+        "emanual": 0.0,
+        "expertqa": 0.0,
+        "finqa": 0.0,
+        "hagrid": 0.0,
+        "hotpotqa": 0.0,
+        "pubmedqa": 0.0,
+        "tatqa": 0.0,
+        "techqa": 0.0
+      }
+    },
+    "8gram_eval_knowledge_into_arena_documents": {
+      "query_units": 9192,
+      "query_units_scorable_at_8grams": 7688,
+      "query_units_too_short_for_8grams": 1504,
+      "index_units": 6784,
+      "index_units_scorable_at_8grams": 6721,
+      "max_jaccard": 0.0,
+      "units_at_jaccard_ge_0.30": 0,
+      "max_containment_single_unit": 0.0,
+      "max_containment_whole_index_union": 0.0,
+      "containment_single_unit": {
+        "n_ge_0.10": 0,
+        "n_ge_0.25": 0,
+        "n_ge_0.50": 0,
+        "n_ge_0.90": 0,
+        "n_ge_1.00": 0
+      },
+      "containment_whole_index_union": {
+        "n_ge_0.10": 0,
+        "n_ge_0.25": 0,
+        "n_ge_0.50": 0,
+        "n_ge_0.90": 0,
+        "n_ge_1.00": 0
+      },
+      "mean_containment_single_unit": 0.0
+    },
+    "8gram_eval_responses_into_arena_responses": {
+      "query_units": 19726,
+      "query_units_scorable_at_8grams": 17564,
+      "query_units_too_short_for_8grams": 2162,
+      "index_units": 2260,
+      "index_units_scorable_at_8grams": 2233,
+      "max_jaccard": 0.0323,
+      "units_at_jaccard_ge_0.30": 0,
+      "max_containment_single_unit": 0.0741,
+      "max_containment_whole_index_union": 0.0741,
+      "containment_single_unit": {
+        "n_ge_0.10": 0,
+        "n_ge_0.25": 0,
+        "n_ge_0.50": 0,
+        "n_ge_0.90": 0,
+        "n_ge_1.00": 0
+      },
+      "containment_whole_index_union": {
+        "n_ge_0.10": 0,
+        "n_ge_0.25": 0,
+        "n_ge_0.50": 0,
+        "n_ge_0.90": 0,
+        "n_ge_1.00": 0
+      },
+      "mean_containment_single_unit": 7e-06
+    },
+    "document_channel_vs_arena": {
+      "arena_identifier_families": {
+        "row_id": 1962,
+        "subset_row_id": 1972,
+        "document_title": 388,
+        "document_url": 558
+      },
+      "eval_text_derived_identifiers": {
+        "titles": 0,
+        "urls": 0
+      },
+      "collisions": {
+        "eval_titles_x_arena_document_titles": 0,
+        "eval_urls_x_arena_document_urls": 0,
+        "eval_knowledge_stems_x_arena_document_stems": 0
+      },
+      "note": "the eval carries no provenance identifier column, so the document channel is exercised through the arena instrument's own text-derived identifiers plus the normalised whole-document stem"
+    },
+    "why_this_is_the_sharp_one": "HaluEval's `qa` knowledge blocks are HotpotQA paragraphs, which is how 17 arena documents ended up byte-for-byte inside halueval training chunks (arena_surface_report.json: verbatim_per_mix_group = {halueval: 17}, all in the hotpotqa subset). If `dialogue`'s knowledge were Wikipedia-derived in the same way it would carry the same exposure, and an eval that overlaps the arena corrupts both surfaces"
+  },
+  "B2_disjointness_from_gold_full": {
+    "gold_full": {
+      "claims": 2752,
+      "distinct_chunks": 10228,
+      "loader": "R10-H108_lane.gold_full()"
+    },
+    "string_channel_exact": {
+      "eval_knowledge_vs_gold_full_chunks": {
+        "eval_units_distinct": 9192,
+        "other_units_distinct": 10228,
+        "channel_1_exact_raw": {
+          "eval_units_in_other": 0,
+          "other_units_in_eval": 0,
+          "clean": true
+        },
+        "channel_2_three_string_forms": {
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "clean": true
+        },
+        "form_pairings": {
+          "raw_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "raw_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          }
+        },
+        "eval_units_in_other_any_form": 0,
+        "other_units_in_eval_any_form_max": 0,
+        "eval_fraction": 0.0,
+        "clean": true
+      },
+      "eval_responses_vs_gold_full_claims": {
+        "eval_units_distinct": 19726,
+        "other_units_distinct": 2699,
+        "channel_1_exact_raw": {
+          "eval_units_in_other": 0,
+          "other_units_in_eval": 0,
+          "clean": true
+        },
+        "channel_2_three_string_forms": {
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "clean": true
+        },
+        "form_pairings": {
+          "raw_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "raw_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          }
+        },
+        "eval_units_in_other_any_form": 0,
+        "other_units_in_eval_any_form_max": 0,
+        "eval_fraction": 0.0,
+        "clean": true
+      }
+    },
+    "8gram_eval_knowledge_into_gold_full_chunks": {
+      "query_units": 9192,
+      "query_units_scorable_at_8grams": 7688,
+      "query_units_too_short_for_8grams": 1504,
+      "index_units": 10228,
+      "index_units_scorable_at_8grams": 10227,
+      "max_jaccard": 0.0,
+      "units_at_jaccard_ge_0.30": 0,
+      "max_containment_single_unit": 0.0,
+      "max_containment_whole_index_union": 0.0,
+      "containment_single_unit": {
+        "n_ge_0.10": 0,
+        "n_ge_0.25": 0,
+        "n_ge_0.50": 0,
+        "n_ge_0.90": 0,
+        "n_ge_1.00": 0
+      },
+      "containment_whole_index_union": {
+        "n_ge_0.10": 0,
+        "n_ge_0.25": 0,
+        "n_ge_0.50": 0,
+        "n_ge_0.90": 0,
+        "n_ge_1.00": 0
+      },
+      "mean_containment_single_unit": 0.0
+    },
+    "8gram_gold_full_chunks_into_eval_knowledge": {
+      "query_units": 10228,
+      "query_units_scorable_at_8grams": 10227,
+      "query_units_too_short_for_8grams": 1,
+      "index_units": 9192,
+      "index_units_scorable_at_8grams": 7688,
+      "max_jaccard": 0.0,
+      "units_at_jaccard_ge_0.30": 0,
+      "max_containment_single_unit": 0.0,
+      "max_containment_whole_index_union": 0.0,
+      "containment_single_unit": {
+        "n_ge_0.10": 0,
+        "n_ge_0.25": 0,
+        "n_ge_0.50": 0,
+        "n_ge_0.90": 0,
+        "n_ge_1.00": 0
+      },
+      "containment_whole_index_union": {
+        "n_ge_0.10": 0,
+        "n_ge_0.25": 0,
+        "n_ge_0.50": 0,
+        "n_ge_0.90": 0,
+        "n_ge_1.00": 0
+      },
+      "mean_containment_single_unit": 0.0
+    }
+  },
+  "B2_disjointness_from_other_mechanism_evals": {
+    "evals_checked": 17,
+    "worst_eval_units_shared_any_form": 0,
+    "per_eval": {
+      "antigaming_nearmiss_bindrow": {
+        "file": "R18-H150_antigaming_set.parquet",
+        "rows": 1600,
+        "claim_column": null,
+        "chunk_column": null
+      },
+      "antigaming_traced": {
+        "file": "R14-H133_antigaming_traced.parquet",
+        "rows": 2620,
+        "claim_column": "claim",
+        "chunk_column": "chunk",
+        "eval_knowledge_vs_their_chunks": {
+          "eval_units_distinct": 9192,
+          "other_units_distinct": 1076,
+          "channel_1_exact_raw": {
+            "eval_units_in_other": 0,
+            "other_units_in_eval": 0,
+            "clean": true
+          },
+          "channel_2_three_string_forms": {
+            "eval_units_in_other_any_form": 0,
+            "other_units_in_eval_any_form_max": 0,
+            "clean": true
+          },
+          "form_pairings": {
+            "raw_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "raw_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            }
+          },
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "eval_fraction": 0.0,
+          "clean": true
+        },
+        "eval_responses_vs_their_claims": {
+          "eval_units_distinct": 19726,
+          "other_units_distinct": 2616,
+          "channel_1_exact_raw": {
+            "eval_units_in_other": 0,
+            "other_units_in_eval": 0,
+            "clean": true
+          },
+          "channel_2_three_string_forms": {
+            "eval_units_in_other_any_form": 0,
+            "other_units_in_eval_any_form_max": 0,
+            "clean": true
+          },
+          "form_pairings": {
+            "raw_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "raw_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            }
+          },
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "eval_fraction": 0.0,
+          "clean": true
+        }
+      },
+      "findver": {
+        "file": "R19_findver_lane.parquet",
+        "rows": 2400,
+        "claim_column": "claim",
+        "chunk_column": "chunk",
+        "eval_knowledge_vs_their_chunks": {
+          "eval_units_distinct": 9192,
+          "other_units_distinct": 2370,
+          "channel_1_exact_raw": {
+            "eval_units_in_other": 0,
+            "other_units_in_eval": 0,
+            "clean": true
+          },
+          "channel_2_three_string_forms": {
+            "eval_units_in_other_any_form": 0,
+            "other_units_in_eval_any_form_max": 0,
+            "clean": true
+          },
+          "form_pairings": {
+            "raw_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "raw_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            }
+          },
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "eval_fraction": 0.0,
+          "clean": true
+        },
+        "eval_responses_vs_their_claims": {
+          "eval_units_distinct": 19726,
+          "other_units_distinct": 2400,
+          "channel_1_exact_raw": {
+            "eval_units_in_other": 0,
+            "other_units_in_eval": 0,
+            "clean": true
+          },
+          "channel_2_three_string_forms": {
+            "eval_units_in_other_any_form": 0,
+            "other_units_in_eval_any_form_max": 0,
+            "clean": true
+          },
+          "form_pairings": {
+            "raw_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "raw_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            }
+          },
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "eval_fraction": 0.0,
+          "clean": true
+        }
+      },
+      "eval_C": {
+        "file": "R20-H177_eval_C.parquet",
+        "rows": 1936,
+        "claim_column": "claim",
+        "chunk_column": "chunk",
+        "eval_knowledge_vs_their_chunks": {
+          "eval_units_distinct": 9192,
+          "other_units_distinct": 380,
+          "channel_1_exact_raw": {
+            "eval_units_in_other": 0,
+            "other_units_in_eval": 0,
+            "clean": true
+          },
+          "channel_2_three_string_forms": {
+            "eval_units_in_other_any_form": 0,
+            "other_units_in_eval_any_form_max": 0,
+            "clean": true
+          },
+          "form_pairings": {
+            "raw_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "raw_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            }
+          },
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "eval_fraction": 0.0,
+          "clean": true
+        },
+        "eval_responses_vs_their_claims": {
+          "eval_units_distinct": 19726,
+          "other_units_distinct": 1926,
+          "channel_1_exact_raw": {
+            "eval_units_in_other": 0,
+            "other_units_in_eval": 0,
+            "clean": true
+          },
+          "channel_2_three_string_forms": {
+            "eval_units_in_other_any_form": 0,
+            "other_units_in_eval_any_form_max": 0,
+            "clean": true
+          },
+          "form_pairings": {
+            "raw_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "raw_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            }
+          },
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "eval_fraction": 0.0,
+          "clean": true
+        }
+      },
+      "eval_B": {
+        "file": "R20-H177_eval_B.parquet",
+        "rows": 2000,
+        "claim_column": "claim",
+        "chunk_column": "chunk",
+        "eval_knowledge_vs_their_chunks": {
+          "eval_units_distinct": 9192,
+          "other_units_distinct": 736,
+          "channel_1_exact_raw": {
+            "eval_units_in_other": 0,
+            "other_units_in_eval": 0,
+            "clean": true
+          },
+          "channel_2_three_string_forms": {
+            "eval_units_in_other_any_form": 0,
+            "other_units_in_eval_any_form_max": 0,
+            "clean": true
+          },
+          "form_pairings": {
+            "raw_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "raw_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            }
+          },
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "eval_fraction": 0.0,
+          "clean": true
+        },
+        "eval_responses_vs_their_claims": {
+          "eval_units_distinct": 19726,
+          "other_units_distinct": 2000,
+          "channel_1_exact_raw": {
+            "eval_units_in_other": 0,
+            "other_units_in_eval": 0,
+            "clean": true
+          },
+          "channel_2_three_string_forms": {
+            "eval_units_in_other_any_form": 0,
+            "other_units_in_eval_any_form_max": 0,
+            "clean": true
+          },
+          "form_pairings": {
+            "raw_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "raw_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            }
+          },
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "eval_fraction": 0.0,
+          "clean": true
+        }
+      },
+      "h148_itemindex_probe": {
+        "file": "R17-H148_probe.parquet",
+        "rows": 1956,
+        "claim_column": "claim",
+        "chunk_column": "chunk",
+        "eval_knowledge_vs_their_chunks": {
+          "eval_units_distinct": 9192,
+          "other_units_distinct": 390,
+          "channel_1_exact_raw": {
+            "eval_units_in_other": 0,
+            "other_units_in_eval": 0,
+            "clean": true
+          },
+          "channel_2_three_string_forms": {
+            "eval_units_in_other_any_form": 0,
+            "other_units_in_eval_any_form_max": 0,
+            "clean": true
+          },
+          "form_pairings": {
+            "raw_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "raw_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            }
+          },
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "eval_fraction": 0.0,
+          "clean": true
+        },
+        "eval_responses_vs_their_claims": {
+          "eval_units_distinct": 19726,
+          "other_units_distinct": 1813,
+          "channel_1_exact_raw": {
+            "eval_units_in_other": 0,
+            "other_units_in_eval": 0,
+            "clean": true
+          },
+          "channel_2_three_string_forms": {
+            "eval_units_in_other_any_form": 0,
+            "other_units_in_eval_any_form_max": 0,
+            "clean": true
+          },
+          "form_pairings": {
+            "raw_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "raw_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            }
+          },
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "eval_fraction": 0.0,
+          "clean": true
+        }
+      },
+      "h149_roleswap_probe": {
+        "file": "R17-H149_probe.parquet",
+        "rows": 716,
+        "claim_column": "claim",
+        "chunk_column": "chunk",
+        "eval_knowledge_vs_their_chunks": {
+          "eval_units_distinct": 9192,
+          "other_units_distinct": 342,
+          "channel_1_exact_raw": {
+            "eval_units_in_other": 0,
+            "other_units_in_eval": 0,
+            "clean": true
+          },
+          "channel_2_three_string_forms": {
+            "eval_units_in_other_any_form": 0,
+            "other_units_in_eval_any_form_max": 0,
+            "clean": true
+          },
+          "form_pairings": {
+            "raw_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "raw_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            }
+          },
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "eval_fraction": 0.0,
+          "clean": true
+        },
+        "eval_responses_vs_their_claims": {
+          "eval_units_distinct": 19726,
+          "other_units_distinct": 714,
+          "channel_1_exact_raw": {
+            "eval_units_in_other": 0,
+            "other_units_in_eval": 0,
+            "clean": true
+          },
+          "channel_2_three_string_forms": {
+            "eval_units_in_other_any_form": 0,
+            "other_units_in_eval_any_form_max": 0,
+            "clean": true
+          },
+          "form_pairings": {
+            "raw_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "raw_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            }
+          },
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "eval_fraction": 0.0,
+          "clean": true
+        }
+      },
+      "h150_unitswap_probe": {
+        "file": "R18-H150_unitswap_probe.parquet",
+        "rows": 280,
+        "claim_column": "claim",
+        "chunk_column": "chunk",
+        "eval_knowledge_vs_their_chunks": {
+          "eval_units_distinct": 9192,
+          "other_units_distinct": 115,
+          "channel_1_exact_raw": {
+            "eval_units_in_other": 0,
+            "other_units_in_eval": 0,
+            "clean": true
+          },
+          "channel_2_three_string_forms": {
+            "eval_units_in_other_any_form": 0,
+            "other_units_in_eval_any_form_max": 0,
+            "clean": true
+          },
+          "form_pairings": {
+            "raw_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "raw_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            }
+          },
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "eval_fraction": 0.0,
+          "clean": true
+        },
+        "eval_responses_vs_their_claims": {
+          "eval_units_distinct": 19726,
+          "other_units_distinct": 278,
+          "channel_1_exact_raw": {
+            "eval_units_in_other": 0,
+            "other_units_in_eval": 0,
+            "clean": true
+          },
+          "channel_2_three_string_forms": {
+            "eval_units_in_other_any_form": 0,
+            "other_units_in_eval_any_form_max": 0,
+            "clean": true
+          },
+          "form_pairings": {
+            "raw_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "raw_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            }
+          },
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "eval_fraction": 0.0,
+          "clean": true
+        }
+      },
+      "r15_bindprobe": {
+        "file": "R15_L1_bindprobe_pairs.parquet",
+        "rows": 2400,
+        "claim_column": null,
+        "chunk_column": null
+      },
+      "r15_typeprobe": {
+        "file": "R15_P1_typeprobe_quads.parquet",
+        "rows": 4139,
+        "claim_column": null,
+        "chunk_column": null
+      },
+      "g0b_composed_probes": {
+        "file": "R20-G0b_composed_probes.parquet",
+        "rows": 1500,
+        "claim_column": "claim",
+        "chunk_column": null,
+        "eval_responses_vs_their_claims": {
+          "eval_units_distinct": 19726,
+          "other_units_distinct": 1499,
+          "channel_1_exact_raw": {
+            "eval_units_in_other": 0,
+            "other_units_in_eval": 0,
+            "clean": true
+          },
+          "channel_2_three_string_forms": {
+            "eval_units_in_other_any_form": 0,
+            "other_units_in_eval_any_form_max": 0,
+            "clean": true
+          },
+          "form_pairings": {
+            "raw_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "raw_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            }
+          },
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "eval_fraction": 0.0,
+          "clean": true
+        }
+      },
+      "h117_heldout_pairs": {
+        "file": "R11-H117_heldout_pairs.parquet",
+        "rows": 2000,
+        "claim_column": "claim",
+        "chunk_column": "chunk",
+        "eval_knowledge_vs_their_chunks": {
+          "eval_units_distinct": 9192,
+          "other_units_distinct": 1933,
+          "channel_1_exact_raw": {
+            "eval_units_in_other": 0,
+            "other_units_in_eval": 0,
+            "clean": true
+          },
+          "channel_2_three_string_forms": {
+            "eval_units_in_other_any_form": 0,
+            "other_units_in_eval_any_form_max": 0,
+            "clean": true
+          },
+          "form_pairings": {
+            "raw_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "raw_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            }
+          },
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "eval_fraction": 0.0,
+          "clean": true
+        },
+        "eval_responses_vs_their_claims": {
+          "eval_units_distinct": 19726,
+          "other_units_distinct": 2000,
+          "channel_1_exact_raw": {
+            "eval_units_in_other": 0,
+            "other_units_in_eval": 0,
+            "clean": true
+          },
+          "channel_2_three_string_forms": {
+            "eval_units_in_other_any_form": 0,
+            "other_units_in_eval_any_form_max": 0,
+            "clean": true
+          },
+          "form_pairings": {
+            "raw_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "raw_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            }
+          },
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "eval_fraction": 0.0,
+          "clean": true
+        }
+      },
+      "h175b_eval_clean": {
+        "file": "R20-H175b_qlane_eval_clean.parquet",
+        "rows": 88,
+        "claim_column": "claim",
+        "chunk_column": "chunk",
+        "eval_knowledge_vs_their_chunks": {
+          "eval_units_distinct": 9192,
+          "other_units_distinct": 22,
+          "channel_1_exact_raw": {
+            "eval_units_in_other": 0,
+            "other_units_in_eval": 0,
+            "clean": true
+          },
+          "channel_2_three_string_forms": {
+            "eval_units_in_other_any_form": 0,
+            "other_units_in_eval_any_form_max": 0,
+            "clean": true
+          },
+          "form_pairings": {
+            "raw_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "raw_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            }
+          },
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "eval_fraction": 0.0,
+          "clean": true
+        },
+        "eval_responses_vs_their_claims": {
+          "eval_units_distinct": 19726,
+          "other_units_distinct": 44,
+          "channel_1_exact_raw": {
+            "eval_units_in_other": 0,
+            "other_units_in_eval": 0,
+            "clean": true
+          },
+          "channel_2_three_string_forms": {
+            "eval_units_in_other_any_form": 0,
+            "other_units_in_eval_any_form_max": 0,
+            "clean": true
+          },
+          "form_pairings": {
+            "raw_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "raw_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            }
+          },
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "eval_fraction": 0.0,
+          "clean": true
+        }
+      },
+      "h175b_eval_clean_prefix": {
+        "file": "R20-H175b_qlane_eval_clean_prefix.parquet",
+        "rows": 32,
+        "claim_column": "claim",
+        "chunk_column": "chunk",
+        "eval_knowledge_vs_their_chunks": {
+          "eval_units_distinct": 9192,
+          "other_units_distinct": 8,
+          "channel_1_exact_raw": {
+            "eval_units_in_other": 0,
+            "other_units_in_eval": 0,
+            "clean": true
+          },
+          "channel_2_three_string_forms": {
+            "eval_units_in_other_any_form": 0,
+            "other_units_in_eval_any_form_max": 0,
+            "clean": true
+          },
+          "form_pairings": {
+            "raw_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "raw_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            }
+          },
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "eval_fraction": 0.0,
+          "clean": true
+        },
+        "eval_responses_vs_their_claims": {
+          "eval_units_distinct": 19726,
+          "other_units_distinct": 16,
+          "channel_1_exact_raw": {
+            "eval_units_in_other": 0,
+            "other_units_in_eval": 0,
+            "clean": true
+          },
+          "channel_2_three_string_forms": {
+            "eval_units_in_other_any_form": 0,
+            "other_units_in_eval_any_form_max": 0,
+            "clean": true
+          },
+          "form_pairings": {
+            "raw_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "raw_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            }
+          },
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "eval_fraction": 0.0,
+          "clean": true
+        }
+      },
+      "dr_h113_gate_judged": {
+        "file": "DR_H113_gate_judged.parquet",
+        "rows": 1505,
+        "claim_column": "claim",
+        "chunk_column": "chunk",
+        "eval_knowledge_vs_their_chunks": {
+          "eval_units_distinct": 9192,
+          "other_units_distinct": 1446,
+          "channel_1_exact_raw": {
+            "eval_units_in_other": 0,
+            "other_units_in_eval": 0,
+            "clean": true
+          },
+          "channel_2_three_string_forms": {
+            "eval_units_in_other_any_form": 0,
+            "other_units_in_eval_any_form_max": 0,
+            "clean": true
+          },
+          "form_pairings": {
+            "raw_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "raw_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            }
+          },
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "eval_fraction": 0.0,
+          "clean": true
+        },
+        "eval_responses_vs_their_claims": {
+          "eval_units_distinct": 19726,
+          "other_units_distinct": 1505,
+          "channel_1_exact_raw": {
+            "eval_units_in_other": 0,
+            "other_units_in_eval": 0,
+            "clean": true
+          },
+          "channel_2_three_string_forms": {
+            "eval_units_in_other_any_form": 0,
+            "other_units_in_eval_any_form_max": 0,
+            "clean": true
+          },
+          "form_pairings": {
+            "raw_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "raw_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            }
+          },
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "eval_fraction": 0.0,
+          "clean": true
+        }
+      },
+      "r12_h121_gateBC_rows": {
+        "file": "R12-H121_gateBC_rows.parquet",
+        "rows": 6786,
+        "claim_column": "claim",
+        "chunk_column": null,
+        "eval_responses_vs_their_claims": {
+          "eval_units_distinct": 19726,
+          "other_units_distinct": 2476,
+          "channel_1_exact_raw": {
+            "eval_units_in_other": 0,
+            "other_units_in_eval": 0,
+            "clean": true
+          },
+          "channel_2_three_string_forms": {
+            "eval_units_in_other_any_form": 0,
+            "other_units_in_eval_any_form_max": 0,
+            "clean": true
+          },
+          "form_pairings": {
+            "raw_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "raw_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            }
+          },
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "eval_fraction": 0.0,
+          "clean": true
+        }
+      },
+      "ragtruth_eval_R21_H180": {
+        "file": "R21-H180_ragtruth_eval.parquet",
+        "rows": 2700,
+        "claim_column": "claim",
+        "chunk_column": "chunk",
+        "eval_knowledge_vs_their_chunks": {
+          "eval_units_distinct": 9192,
+          "other_units_distinct": 450,
+          "channel_1_exact_raw": {
+            "eval_units_in_other": 0,
+            "other_units_in_eval": 0,
+            "clean": true
+          },
+          "channel_2_three_string_forms": {
+            "eval_units_in_other_any_form": 0,
+            "other_units_in_eval_any_form_max": 0,
+            "clean": true
+          },
+          "form_pairings": {
+            "raw_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "raw_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            }
+          },
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "eval_fraction": 0.0,
+          "clean": true
+        },
+        "eval_responses_vs_their_claims": {
+          "eval_units_distinct": 19726,
+          "other_units_distinct": 2674,
+          "channel_1_exact_raw": {
+            "eval_units_in_other": 0,
+            "other_units_in_eval": 0,
+            "clean": true
+          },
+          "channel_2_three_string_forms": {
+            "eval_units_in_other_any_form": 0,
+            "other_units_in_eval_any_form_max": 0,
+            "clean": true
+          },
+          "form_pairings": {
+            "raw_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "raw_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "truncated_in_mix_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_raw": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            },
+            "normalised_truncated_in_mix_normalised_truncated": {
+              "eval_units_in_mix": 0,
+              "mix_units_in_eval": 0
+            }
+          },
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "eval_fraction": 0.0,
+          "clean": true
+        }
+      }
+    }
+  },
+  "B3_claim_only_shortcut": {
+    "instrument": "R20_claimonly_sweep.fit_probe - TF-IDF char_wb(2,5) + word(1,2) of the CLAIM STRING ALONE into LogisticRegression(liblinear, C=4.0, tol=1e-7); AUROC on the held-out 30%. Reused, not rewritten",
+    "prior": "HaluEval's TRAINED halves read 0.9519 claim-only (contract/halueval_contract_report.json), carried redundantly across register, content and length. A sibling configuration from the same pipeline is assumed to inherit it until measured",
+    "pair_census": {
+      "evidence_keys": 9192,
+      "evidence_keys_with_both_labels": 9192,
+      "evidence_keys_with_both_labels_share": 1.0,
+      "claim_string_keys": 19726,
+      "claim_string_keys_with_both_labels": 4,
+      "claim_string_keys_with_both_labels_share": 0.0002,
+      "pair_structure": true,
+      "pair_id_keys": 10000,
+      "pair_id_keys_with_both_labels": 10000,
+      "pair_id_keys_with_both_labels_share": 1.0
+    },
+    "verdict_bearing_split": "doc_disjoint",
+    "verdict_bearing_reason": "pair structure is MEASURED in this member - both legs of a pair share the knowledge block, so the evidence key groups them and the evidence-disjoint split cannot put one twin in train and its twin in test. A stratified split would do exactly that and would measure the split rather than the member. The stratified number is carried as a diagnostic; the pair_id-disjoint number is an EXECUTOR-ADDED diagnostic reported separately per C5 and joins no registered conjunction",
+    "reading": {
+      "stratified": {
+        "auroc": 0.8673,
+        "leak_strength": 0.3673,
+        "equivalent_one_sided_auroc": 0.8673,
+        "band": "severe",
+        "direction": "aligned"
+      },
+      "doc_disjoint": {
+        "auroc": 0.8999,
+        "leak_strength": 0.3999,
+        "equivalent_one_sided_auroc": 0.8999,
+        "band": "severe",
+        "direction": "aligned"
+      },
+      "pair_disjoint": {
+        "auroc": 0.8961,
+        "leak_strength": 0.3961,
+        "equivalent_one_sided_auroc": 0.8961,
+        "band": "severe",
+        "direction": "aligned"
+      }
+    },
+    "leak_strength": 0.3999,
+    "equivalent_one_sided_auroc": 0.8999,
+    "band": "severe",
+    "direction": "aligned",
+    "bands": {
+      "clean": "< 0.05",
+      "mild": "0.05 - 0.15",
+      "leak": "0.15 - 0.30",
+      "severe": ">= 0.30"
+    },
+    "C5_registered_bars": {
+      "claim_only_below": 0.55,
+      "within_pair_below": 0.6
+    },
+    "claim_only_auroc_vs_C5_bar": {
+      "stratified": 0.8673425555555554,
+      "doc_disjoint": 0.8998737222222223,
+      "pair_disjoint": 0.8961402222222223
+    },
+    "within_pair_claim_only": {
+      "instrument": "R20-H174_lane_common.claim_only_probe (char_wb TF-IDF, 5 folds disjoint on the knowledge-block key) scored within-pair by lane_common.within_pair_accuracy",
+      "out_of_fold_auroc": 0.8905,
+      "within_pair_accuracy": {
+        "all": {
+          "acc": 0.9129,
+          "pairs": 10000
+        }
+      }
+    },
+    "label_shuffled_negative_control": {
+      "split": "doc_disjoint",
+      "rows": 20000,
+      "shuffled": {
+        "auroc": 0.4937,
+        "leak_strength": 0.0063,
+        "equivalent_one_sided_auroc": 0.5063,
+        "band": "clean",
+        "direction": "inverted"
+      },
+      "observed_leak_strength": 0.3999,
+      "reading": "with the labels permuted the same instrument on the same feature space must read leak_strength ~0. A non-zero reading would mean the probe manufactures signal and no observed number is evidence"
+    },
+    "length_channels": {
+      "response_char_length_auroc": 0.2784,
+      "response_token_count_auroc": 0.2959,
+      "response_char_length_reading": {
+        "auroc": 0.2784,
+        "leak_strength": 0.2216,
+        "equivalent_one_sided_auroc": 0.7216,
+        "band": "leak",
+        "direction": "inverted"
+      },
+      "response_token_count_reading": {
+        "auroc": 0.2959,
+        "leak_strength": 0.2041,
+        "equivalent_one_sided_auroc": 0.7041,
+        "band": "leak",
+        "direction": "inverted"
+      },
+      "positive_leg_mean_chars": 73.1,
+      "negative_leg_mean_chars": 113.2,
+      "positive_leg_mean_tokens": 14.0,
+      "negative_leg_mean_tokens": 20.8
+    },
+    "surface_parity": {
+      "auroc": {
+        "claim_char_length": 0.2784,
+        "claim_token_count": 0.2957,
+        "chunk_char_length": 0.5,
+        "claim_chunk_containment": 0.444,
+        "dialogue_history_char_length": 0.5
+      },
+      "report_only": [
+        "claim_chunk_containment"
+      ],
+      "bar": "each barred channel in [0.45, 0.55]",
+      "worst_deviation": 0.2216,
+      "pass": false
+    },
+    "single_channel_probes_degenerate_by_construction": {
+      "evidence_char_length_auroc": 0.5,
+      "dialogue_history_char_length_auroc": 0.5,
+      "reading": "both legs of a pair carry the SAME knowledge block and the SAME dialogue history, so any evidence-alone or history-alone channel is exactly 0.5 by construction. Recorded as a structural fact, not presented as a passing measurement"
+    },
+    "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+  },
+  "C1_label_commensurability": {
+    "head_declared": "the grounding scalar (`task_head`) - the single shipped support head; this surface enters no parallel head",
+    "predicate_the_label_encodes": "`right_response` is HaluEval's reference conversational reply to the dialogue history given the knowledge block; `hallucinated_response` is an LLM-written plausible reply carrying content the knowledge block does not support. The label is response faithfulness to the knowledge - a support predicate. The dialogue history is carried as a column but the (claim, chunk) score path does not read it, so the row the head sees is (response, knowledge block)",
+    "structural_test_C_A1": {
+      "negative_legs": 10000,
+      "positive_legs": 9999,
+      "negative_legs_identical_to_a_positive": 0,
+      "rate": 0.0,
+      "fires": false,
+      "reading": "both legs of a pair share the knowledge block and differ only in the response, so a collision would require the two responses to be the same string. Measured on the normalised form, which is strictly weaker than byte identity and cannot under-report"
+    },
+    "distributional_diagnostic": {
+      "instrument": "R20-H174_lane_common.containment - content-token containment of the claim in the evidence, the instrument the halueval contract report used",
+      "positive_leg": {
+        "n": 10000,
+        "mean": 0.1984,
+        "median": 0.1538,
+        "p10": 0.0,
+        "p90": 0.4706,
+        "frac_ge_0.90": 0.0061,
+        "frac_eq_1.00": 0.0047,
+        "frac_le_0.50": 0.9259
+      },
+      "negative_leg": {
+        "n": 10000,
+        "mean": 0.2127,
+        "median": 0.1923,
+        "p10": 0.0,
+        "p90": 0.4231,
+        "frac_ge_0.90": 0.0003,
+        "frac_eq_1.00": 0.0001,
+        "frac_le_0.50": 0.9575
+      },
+      "attested_rate_gap_at_0.90": 0.0058,
+      "mean_gap": -0.0143,
+      "test_2_strict_separation_C_A2": true,
+      "test_3_absolute_level_finding": "negative leg fully attested at 0.0001 and >= 0.90-attested at 0.0003",
+      "note": "the `within 0.10` band is STRUCK by amendment C-A2; the decisive tests are structural identity and strict separation, with the absolute level reported always"
+    }
+  },
+  "C6_memorisation_channel": {
+    "rows": 20000,
+    "rows_with_a_mix_claim": 0,
+    "coverage": 0.0,
+    "auroc": null,
+    "note": "no key coverage - the mix carries no claim over any of these passages; C6's eval-facing test is NOT-APPLICABLE here and no proxy is substituted (amendment C-A2)",
+    "key": "the knowledge block (normalised), the only field a pair shares",
+    "scoping": "C-A2: C6 binds features keyed on associations the TRAINING MIX supplies. Where the eval-facing test has zero key coverage the clause is NOT-APPLICABLE and no proxy is substituted"
+  },
+  "C2_exact_disjointness_from_the_assembled_mix": {
+    "mix": {
+      "assembly": "arena_surface_verify.assemble() - R10-H108_lane.public_train() read UNTRUNCATED through R16-H142_G1_arm.untruncated_evidence() plus the five R20-H174_arm_run.LANES; the portfolio mix, a strict superset of the flagship",
+      "portfolio_rows": 760618,
+      "groups": [
+        "attr_pool",
+        "frame_reject",
+        "halueval",
+        "path_bind",
+        "psiloqa",
+        "quant_misbind",
+        "quant_scale_unit",
+        "ragtruth_cn",
+        "ragtruth_de",
+        "ragtruth_en",
+        "ragtruth_es",
+        "ragtruth_fr",
+        "ragtruth_hu",
+        "ragtruth_it",
+        "ragtruth_pl",
+        "tabfact",
+        "vitaminc"
+      ],
+      "distinct_chunks": 386418,
+      "windows": 1215222,
+      "window_geometry_vs_banked_R20_H174_census": {
+        "clean_rows": 685670,
+        "clean_windows": 1033365,
+        "portfolio_rows": 760618,
+        "portfolio_windows": 1215222,
+        "portfolio_mean": 1.5977,
+        "portfolio_multi_share": 0.2094,
+        "flagship_mean": 1.4821,
+        "flagship_multi_rows": 137622
+      }
+    },
+    "per_channel": {
+      "eval_knowledge_vs_mix_claims": {
+        "eval_units_distinct": 9192,
+        "other_units_distinct": 540276,
+        "channel_1_exact_raw": {
+          "eval_units_in_other": 0,
+          "other_units_in_eval": 0,
+          "clean": true
+        },
+        "channel_2_three_string_forms": {
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "clean": true
+        },
+        "form_pairings": {
+          "raw_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "raw_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          }
+        },
+        "eval_units_in_other_any_form": 0,
+        "other_units_in_eval_any_form_max": 0,
+        "eval_fraction": 0.0,
+        "clean": true
+      },
+      "eval_responses_vs_mix_claims": {
+        "eval_units_distinct": 19726,
+        "other_units_distinct": 540276,
+        "channel_1_exact_raw": {
+          "eval_units_in_other": 9,
+          "other_units_in_eval": 9,
+          "clean": false
+        },
+        "channel_2_three_string_forms": {
+          "eval_units_in_other_any_form": 15,
+          "other_units_in_eval_any_form_max": 13,
+          "clean": false
+        },
+        "form_pairings": {
+          "raw_in_mix_raw": {
+            "eval_units_in_mix": 9,
+            "mix_units_in_eval": 9
+          },
+          "raw_in_mix_truncated": {
+            "eval_units_in_mix": 9,
+            "mix_units_in_eval": 9
+          },
+          "truncated_in_mix_raw": {
+            "eval_units_in_mix": 9,
+            "mix_units_in_eval": 9
+          },
+          "truncated_in_mix_truncated": {
+            "eval_units_in_mix": 9,
+            "mix_units_in_eval": 9
+          },
+          "normalised_in_mix_normalised_raw": {
+            "eval_units_in_mix": 15,
+            "mix_units_in_eval": 13
+          },
+          "normalised_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 15,
+            "mix_units_in_eval": 13
+          },
+          "normalised_truncated_in_mix_normalised_raw": {
+            "eval_units_in_mix": 15,
+            "mix_units_in_eval": 13
+          },
+          "normalised_truncated_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 15,
+            "mix_units_in_eval": 13
+          }
+        },
+        "eval_units_in_other_any_form": 15,
+        "other_units_in_eval_any_form_max": 13,
+        "eval_fraction": 0.00076042,
+        "clean": false
+      },
+      "eval_knowledge_vs_mix_evidence_raw_chunks": {
+        "eval_units_distinct": 9192,
+        "other_units_distinct": 386418,
+        "channel_1_exact_raw": {
+          "eval_units_in_other": 0,
+          "other_units_in_eval": 0,
+          "clean": true
+        },
+        "channel_2_three_string_forms": {
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "clean": true
+        },
+        "form_pairings": {
+          "raw_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "raw_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          }
+        },
+        "eval_units_in_other_any_form": 0,
+        "other_units_in_eval_any_form_max": 0,
+        "eval_fraction": 0.0,
+        "clean": true
+      },
+      "eval_responses_vs_mix_evidence_raw_chunks": {
+        "eval_units_distinct": 19726,
+        "other_units_distinct": 386418,
+        "channel_1_exact_raw": {
+          "eval_units_in_other": 0,
+          "other_units_in_eval": 0,
+          "clean": true
+        },
+        "channel_2_three_string_forms": {
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "clean": true
+        },
+        "form_pairings": {
+          "raw_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "raw_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          }
+        },
+        "eval_units_in_other_any_form": 0,
+        "other_units_in_eval_any_form_max": 0,
+        "eval_fraction": 0.0,
+        "clean": true
+      },
+      "eval_knowledge_vs_mix_evidence_windows": {
+        "eval_units_distinct": 9192,
+        "other_units_distinct": 708791,
+        "channel_1_exact_raw": {
+          "eval_units_in_other": 0,
+          "other_units_in_eval": 0,
+          "clean": true
+        },
+        "channel_2_three_string_forms": {
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "clean": true
+        },
+        "form_pairings": {
+          "raw_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "raw_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          }
+        },
+        "eval_units_in_other_any_form": 0,
+        "other_units_in_eval_any_form_max": 0,
+        "eval_fraction": 0.0,
+        "clean": true
+      },
+      "eval_responses_vs_mix_evidence_windows": {
+        "eval_units_distinct": 19726,
+        "other_units_distinct": 708791,
+        "channel_1_exact_raw": {
+          "eval_units_in_other": 0,
+          "other_units_in_eval": 0,
+          "clean": true
+        },
+        "channel_2_three_string_forms": {
+          "eval_units_in_other_any_form": 0,
+          "other_units_in_eval_any_form_max": 0,
+          "clean": true
+        },
+        "form_pairings": {
+          "raw_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "raw_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "truncated_in_mix_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_raw": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          },
+          "normalised_truncated_in_mix_normalised_truncated": {
+            "eval_units_in_mix": 0,
+            "mix_units_in_eval": 0
+          }
+        },
+        "eval_units_in_other_any_form": 0,
+        "other_units_in_eval_any_form_max": 0,
+        "eval_fraction": 0.0,
+        "clean": true
+      }
+    },
+    "worst_eval_units_in_mix_any_form": 15,
+    "worst_mix_units_in_eval_any_form": 13
+  },
+  "C4_contamination_census_vs_the_mix": {
+    "instrument": "provenance_gate primitives, 8-gram, Jaccard >= 0.3, bidirectional, per-corpus attribution - the banked R14-H136 ruling-2 form, driven through arena_surface_verify._index/_max_pair",
+    "kill_threshold": 0.02,
+    "eval_knowledge_units": 9192,
+    "eval_knowledge_units_scorable_at_8grams": 7688,
+    "eval_knowledge_units_too_short_for_8grams": 1504,
+    "coverage_of_short_units": "units under 8 normalised tokens carry no 8-gram and are covered by the exact-matching pass in C2_exact_disjointness_from_the_assembled_mix, which is exhaustive and length-blind",
+    "eval_units_at_jaccard_ge_0.30": 0,
+    "eval_fraction": 0.0,
+    "mix_units_at_jaccard_ge_0.30_vs_eval": 0,
+    "mix_fraction": 0.0,
+    "max_fraction": 0.0,
+    "verdict_vs_kill_bar": "PASS",
+    "best_jaccard": {
+      "max": 0.1351,
+      "p999": 0.0904,
+      "p99": 0.037,
+      "mean": 0.000863
+    },
+    "best_containment_single_mix_chunk": {
+      "max": 0.6667,
+      "p999": 0.4286,
+      "p99": 0.1144,
+      "mean": 0.003114,
+      "n_ge_0.10": 109,
+      "n_ge_0.25": 28,
+      "n_ge_0.50": 8,
+      "n_ge_0.90": 0,
+      "n_ge_1.00": 0
+    },
+    "containment_vs_whole_mix_union": {
+      "max": 0.6667,
+      "mean": 0.003177,
+      "n_ge_0.10": 113,
+      "n_ge_0.25": 28,
+      "n_ge_0.50": 8,
+      "n_ge_0.90": 0,
+      "n_ge_1.00": 0
+    },
+    "attribution_of_the_worst_eval_unit": {
+      "max_jaccard_group": "vitaminc",
+      "max_containment_group": "attr_pool"
+    },
+    "per_mix_group": {
+      "attr_pool": {
+        "mix_units": 17959,
+        "mix_units_scorable": 17959,
+        "eval_knowledge_at_jaccard_ge_0.30": 0,
+        "max_jaccard": 0.0103,
+        "mix_units_at_jaccard_ge_0.30_vs_eval": 0
+      },
+      "frame_reject": {
+        "mix_units": 3519,
+        "mix_units_scorable": 3519,
+        "eval_knowledge_at_jaccard_ge_0.30": 0,
+        "max_jaccard": 0.0541,
+        "mix_units_at_jaccard_ge_0.30_vs_eval": 0
+      },
+      "halueval": {
+        "mix_units": 19934,
+        "mix_units_scorable": 19934,
+        "eval_knowledge_at_jaccard_ge_0.30": 0,
+        "max_jaccard": 0.0769,
+        "mix_units_at_jaccard_ge_0.30_vs_eval": 0
+      },
+      "path_bind": {
+        "mix_units": 5000,
+        "mix_units_scorable": 5000,
+        "eval_knowledge_at_jaccard_ge_0.30": 0,
+        "max_jaccard": 0.0,
+        "mix_units_at_jaccard_ge_0.30_vs_eval": 0
+      },
+      "psiloqa": {
+        "mix_units": 25583,
+        "mix_units_scorable": 25550,
+        "eval_knowledge_at_jaccard_ge_0.30": 0,
+        "max_jaccard": 0.0297,
+        "mix_units_at_jaccard_ge_0.30_vs_eval": 0
+      },
+      "quant_misbind": {
+        "mix_units": 12889,
+        "mix_units_scorable": 12889,
+        "eval_knowledge_at_jaccard_ge_0.30": 0,
+        "max_jaccard": 0.0288,
+        "mix_units_at_jaccard_ge_0.30_vs_eval": 0
+      },
+      "quant_scale_unit": {
+        "mix_units": 2509,
+        "mix_units_scorable": 2509,
+        "eval_knowledge_at_jaccard_ge_0.30": 0,
+        "max_jaccard": 0.0,
+        "mix_units_at_jaccard_ge_0.30_vs_eval": 0
+      },
+      "ragtruth_cn": {
+        "mix_units": 14155,
+        "mix_units_scorable": 14155,
+        "eval_knowledge_at_jaccard_ge_0.30": 0,
+        "max_jaccard": 0.0,
+        "mix_units_at_jaccard_ge_0.30_vs_eval": 0
+      },
+      "ragtruth_de": {
+        "mix_units": 11540,
+        "mix_units_scorable": 11540,
+        "eval_knowledge_at_jaccard_ge_0.30": 0,
+        "max_jaccard": 0.0026,
+        "mix_units_at_jaccard_ge_0.30_vs_eval": 0
+      },
+      "ragtruth_en": {
+        "mix_units": 2514,
+        "mix_units_scorable": 2514,
+        "eval_knowledge_at_jaccard_ge_0.30": 0,
+        "max_jaccard": 0.0077,
+        "mix_units_at_jaccard_ge_0.30_vs_eval": 0
+      },
+      "ragtruth_es": {
+        "mix_units": 14647,
+        "mix_units_scorable": 14647,
+        "eval_knowledge_at_jaccard_ge_0.30": 0,
+        "max_jaccard": 0.0024,
+        "mix_units_at_jaccard_ge_0.30_vs_eval": 0
+      },
+      "ragtruth_fr": {
+        "mix_units": 13658,
+        "mix_units_scorable": 13658,
+        "eval_knowledge_at_jaccard_ge_0.30": 0,
+        "max_jaccard": 0.0023,
+        "mix_units_at_jaccard_ge_0.30_vs_eval": 0
+      },
+      "ragtruth_hu": {
+        "mix_units": 14371,
+        "mix_units_scorable": 14371,
+        "eval_knowledge_at_jaccard_ge_0.30": 0,
+        "max_jaccard": 0.0028,
+        "mix_units_at_jaccard_ge_0.30_vs_eval": 0
+      },
+      "ragtruth_it": {
+        "mix_units": 14808,
+        "mix_units_scorable": 14808,
+        "eval_knowledge_at_jaccard_ge_0.30": 0,
+        "max_jaccard": 0.0025,
+        "mix_units_at_jaccard_ge_0.30_vs_eval": 0
+      },
+      "ragtruth_pl": {
+        "mix_units": 14950,
+        "mix_units_scorable": 14950,
+        "eval_knowledge_at_jaccard_ge_0.30": 0,
+        "max_jaccard": 0.0027,
+        "mix_units_at_jaccard_ge_0.30_vs_eval": 0
+      },
+      "tabfact": {
+        "mix_units": 13173,
+        "mix_units_scorable": 13173,
+        "eval_knowledge_at_jaccard_ge_0.30": 0,
+        "max_jaccard": 0.0175,
+        "mix_units_at_jaccard_ge_0.30_vs_eval": 0
+      },
+      "vitaminc": {
+        "mix_units": 185217,
+        "mix_units_scorable": 182234,
+        "eval_knowledge_at_jaccard_ge_0.30": 0,
+        "max_jaccard": 0.1351,
+        "mix_units_at_jaccard_ge_0.30_vs_eval": 0
+      }
+    }
+  },
+  "C4_live_positive_controls": {
+    "spike_control": {
+      "kind": "synthetic spike - eval knowledge blocks against an index of themselves",
+      "n": 10,
+      "jaccards": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "detected_at_jaccard_ge_thr": 10,
+      "fires": true
+    },
+    "live_rechunk_control": {
+      "kind": "LIVE near-duplicate by construction - eval knowledge blocks whitespace-collapsed and case-folded, scored against an index of the ORIGINALS; the transformation that defeats exact matching",
+      "n": 10,
+      "jaccards": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "containments": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "exact_form_matches": 0,
+      "detected_at_jaccard_ge_thr": 10,
+      "fires": true
+    },
+    "live_cross_config_control": {
+      "kind": "LIVE positive control - HaluEval `qa` knowledge blocks, which the training mix carries VERBATIM, scored against a 60k-chunk sample of the mix with the same instrument used for the `dialogue` question",
+      "n_scored": 2000,
+      "detected_at_jaccard_ge_thr": 338,
+      "fraction": 0.169,
+      "max_jaccard": 1.0,
+      "median_jaccard": 0.0,
+      "units_at_containment_1.00": 306,
+      "fires": true
+    },
+    "negative_control": {
+      "kind": "NEGATIVE - eval knowledge blocks with tokens permuted; vocabulary preserved, every 8-gram destroyed",
+      "n": 10,
+      "jaccards": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "detected_at_jaccard_ge_thr": 0,
+      "silent": true
+    },
+    "all_fire_and_negative_silent": true
+  },
+  "clauses": {
+    "C1": {
+      "verdict": "PASS",
+      "binding_number": "structural collisions 0 of 10000 negative legs; strict separation 0.0003 < 0.0061",
+      "margin": 0.0058,
+      "finding_under_test_3": "negative leg fully attested at 0.0001 and >= 0.90-attested at 0.0003"
+    },
+    "C2": {
+      "verdict": "FAIL",
+      "binding_number": "worst count over every surface, every string form, both directions: trained halves 14, assembled mix 15, arena 0, gold_full 0, other mechanism evals 0",
+      "document_channel": {
+        "vs_trained_halves": {
+          "qa_knowledge": {
+            "raw": 0,
+            "normalised": 0,
+            "stem": 0
+          },
+          "summarization_document": {
+            "raw": 0,
+            "normalised": 0,
+            "stem": 0
+          }
+        },
+        "vs_arena": {
+          "eval_titles_x_arena_document_titles": 0,
+          "eval_urls_x_arena_document_urls": 0,
+          "eval_knowledge_stems_x_arena_document_stems": 0
+        }
+      },
+      "subdocument_channel": {
+        "arena_documents_at_containment_ge_0.10": 0,
+        "arena_responses_touched_at_containment_ge_0.10": 0,
+        "max_containment_of_an_arena_document_into_eval_knowledge": 0.0,
+        "max_containment_of_an_eval_block_into_the_whole_mix": 0.6667
+      },
+      "characterisation": "see C2_collision_characterisation - the non-zero is 15 distinct response strings of at most 18 characters (median 4.0), touching 17 of 20000 eval rows (0.00085). The EVIDENCE side reads 0 on every string form, every direction, the document channel and the 8-gram channel",
+      "arena_denominator_note": "eval-as-query. An arena document carries two orders of magnitude more 8-grams than a dialogue knowledge block, so arena-as-query cannot exceed roughly the size ratio no matter how complete the overlap, and its zero is weak evidence. Eval-as-query has the small denominator and would read 1.0 on a fully contained block; it reads 0.0, meaning NOT ONE 8-gram of ANY of the 7,688 scorable dialogue knowledge blocks appears in ANY arena document. That is the decisive number, and it is the reason this surface does not repeat the halueval-qa/hotpotqa exposure"
+    },
+    "C3": {
+      "verdict": "PASS",
+      "binding_number": "the archive ships ONE `data` split per configuration - there is no official split to trust or distrust. The axis that matters is the CONFIGURATION, and it is verified from the loader source: public_train() iterates exactly ('qa','knowledge','right_answer','hallucinated_answer') and ('summarization','document','right_summary','hallucinated_summary'), with no split filter and no row filter; the strings 'dialogue' and 'general' appear in no mix-assembly loader",
+      "empirical_converse": "and the converse is measured, not inferred: the held-out configuration shares 14 units with the two loaded ones under every string form in both directions"
+    },
+    "C4": {
+      "verdict": "PASS",
+      "binding_number": "max fraction 0.0 against the KILL bar 0.02 (forward 0.0, reverse 0.0); max Jaccard 0.1351",
+      "coverage": "7688 of 9192 knowledge blocks carry an 8-gram; the 1504 that do not are covered by the exhaustive exact-matching pass",
+      "live_positive_control": {
+        "spike_fires": true,
+        "live_rechunk_fires": true,
+        "live_cross_config_fires": true,
+        "live_cross_config_detection_fraction": 0.169,
+        "negative_silent": true,
+        "undiluted_cross_config_fraction": 1.0,
+        "undiluted_note": "see C4_live_positive_control_undiluted - the 0.169 figure beside it is a 60k-of-760k sampling dilution; scored against the halueval group's own chunks the control fires 9936/9936"
+      }
+    },
+    "C5": {
+      "verdict": "FAIL",
+      "binding_number": "claim-only leak strength 0.3999 (one-sided equivalent 0.8999) on the doc_disjoint split against the registered < 0.55; within-pair 0.9129 against < 0.60; surface parity worst channel claim_char_length at 0.2784 against [0.45, 0.55]",
+      "single_channel_probes": {
+        "evidence_char_length_auroc": 0.5,
+        "dialogue_history_char_length_auroc": 0.5,
+        "reading": "both legs of a pair carry the SAME knowledge block and the SAME dialogue history, so any evidence-alone or history-alone channel is exactly 0.5 by construction. Recorded as a structural fact, not presented as a passing measurement"
+      },
+      "executor_added_diagnostics_reported_separately": [
+        "pair_id-disjoint claim-only split",
+        "dialogue_history char-length channel in surface_parity"
+      ],
+      "negative_control": {
+        "auroc": 0.4937,
+        "leak_strength": 0.0063,
+        "equivalent_one_sided_auroc": 0.5063,
+        "band": "clean",
+        "direction": "inverted"
+      }
+    },
+    "C6": {
+      "verdict": "NOT-APPLICABLE",
+      "binding_number": "key coverage 0.0 (0 of 20000 rows); feature AUROC None",
+      "key": "the knowledge block (normalised), the only field a pair shares"
+    },
+    "C7": {
+      "verdict": "PASS",
+      "binding_number": "20000 rows over 10000 pairs, both reported everywhere; pair integrity malformed 0",
+      "registration_discrepancy": "the registration block declared '10,000 rows over 5,000 contrast pairs'. The archive's `dialogue` configuration holds 10,000 rows and each supplies TWO serving rows, so the built surface is 20,000 rows over 10,000 pairs - 2x the registered figure in BOTH units. This is exactly the unit confusion C7 exists to catch, and it is recorded, not adjudicated"
+    },
+    "C8": {
+      "verdict": "PASS",
+      "source": "pminervini/HaluEval, HuggingFace",
+      "licence": "MIT (data/external/datasets/dataset-halueval.md)",
+      "retrieval": "scripts/fetch_grounding_datasets.py; archive dataset-halueval.zip",
+      "selection_predicate": "ALL 10,000 rows of the `dialogue` configuration, both legs of every row (right_response label 1, hallucinated_response label 0). No split filter (the archive ships one `data` split per configuration), no row filter, no sampling",
+      "within_member_duplication": {
+        "rows": 20000,
+        "pairs": 10000,
+        "distinct_claims": 19726,
+        "distinct_knowledge_blocks": 9192,
+        "distinct_dialogue_histories": 10000
+      },
+      "public_repository": "no client or company name appears in this artifact or in the eval parquet"
+    }
+  },
+  "conforming": false,
+  "summary": {
+    "rows": 20000,
+    "pairs": 10000,
+    "positive_rate": 0.5,
+    "clause_verdicts": {
+      "C1": "PASS",
+      "C2": "FAIL",
+      "C3": "PASS",
+      "C4": "PASS",
+      "C5": "FAIL",
+      "C6": "NOT-APPLICABLE",
+      "C7": "PASS",
+      "C8": "PASS"
+    },
+    "failed_clauses": [
+      "C2",
+      "C5"
+    ],
+    "B1_worst_shared_units_vs_trained_halves": 14,
+    "B1_document_channel": {
+      "qa_knowledge": {
+        "raw": 0,
+        "normalised": 0,
+        "stem": 0
+      },
+      "summarization_document": {
+        "raw": 0,
+        "normalised": 0,
+        "stem": 0
+      }
+    },
+    "B2_worst_shared_units_vs_arena": 0,
+    "B2_arena_documents_at_8gram_containment_ge_0.10": 0,
+    "B2_arena_responses_touched_at_containment_ge_0.10": 0,
+    "B2_worst_shared_units_vs_gold_full": 0,
+    "B2_worst_shared_units_vs_other_mechanism_evals": 0,
+    "B3_claim_only_auroc_verdict_bearing": 0.8999,
+    "B3_claim_only_leak_strength": 0.3999,
+    "B3_claim_only_one_sided_equivalent": 0.8999,
+    "B3_label_shuffled_control_strength": 0.0063,
+    "B3_response_char_length_auroc": 0.2784,
+    "C4_max_fraction": 0.0,
+    "C4_verdict_vs_kill_bar": "PASS",
+    "controls_all_fire": true,
+    "note": "Numbers recorded, not adjudicated - the coordinator adjudicates.",
+    "C4_live_cross_config_control_undiluted_fraction": 1.0,
+    "C2_eval_rows_affected_by_claim_collisions": 17,
+    "C2_eval_rows_affected_fraction": 0.00085,
+    "C2_colliding_strings_all_under_40_chars": true,
+    "B2_eval_as_query_max_containment_into_arena": 0.0,
+    "C1_lexical_containment_auroc_as_a_scorer": 0.444,
+    "C1_containment_mean_gap_positive_minus_negative": -0.0143
+  },
+  "C2_collision_characterisation": {
+    "distinct_eval_response_strings_in_the_mix_any_form": 15,
+    "byte_exact": 9,
+    "normalisation_only": 6,
+    "eval_rows_affected": 17,
+    "eval_rows_affected_fraction": 0.00085,
+    "eval_pairs_affected": 16,
+    "positive_leg_rows": 14,
+    "negative_leg_rows": 3,
+    "colliding_string_chars": {
+      "max": 18,
+      "median": 4.0,
+      "min": 3
+    },
+    "all_under_40_chars": true,
+    "per_string": [
+      {
+        "text": "yes",
+        "chars": 3,
+        "tokens": 1,
+        "byte_exact": true,
+        "eval_rows": 3,
+        "legs": [
+          "right_response"
+        ],
+        "labels": [
+          1
+        ],
+        "mix_dann_groups": [
+          "halueval"
+        ]
+      },
+      {
+        "text": "1878",
+        "chars": 4,
+        "tokens": 1,
+        "byte_exact": true,
+        "eval_rows": 1,
+        "legs": [
+          "right_response"
+        ],
+        "labels": [
+          1
+        ],
+        "mix_dann_groups": [
+          "halueval"
+        ]
+      },
+      {
+        "text": "1996",
+        "chars": 4,
+        "tokens": 1,
+        "byte_exact": true,
+        "eval_rows": 1,
+        "legs": [
+          "right_response"
+        ],
+        "labels": [
+          1
+        ],
+        "mix_dann_groups": [
+          "halueval"
+        ]
+      },
+      {
+        "text": "2006",
+        "chars": 4,
+        "tokens": 1,
+        "byte_exact": true,
+        "eval_rows": 1,
+        "legs": [
+          "right_response"
+        ],
+        "labels": [
+          1
+        ],
+        "mix_dann_groups": [
+          "halueval"
+        ]
+      },
+      {
+        "text": "2007",
+        "chars": 4,
+        "tokens": 1,
+        "byte_exact": true,
+        "eval_rows": 1,
+        "legs": [
+          "hallucinated_response"
+        ],
+        "labels": [
+          0
+        ],
+        "mix_dann_groups": [
+          "halueval"
+        ]
+      },
+      {
+        "text": "2012",
+        "chars": 4,
+        "tokens": 1,
+        "byte_exact": true,
+        "eval_rows": 1,
+        "legs": [
+          "right_response"
+        ],
+        "labels": [
+          1
+        ],
+        "mix_dann_groups": [
+          "halueval"
+        ]
+      },
+      {
+        "text": "2014",
+        "chars": 4,
+        "tokens": 1,
+        "byte_exact": true,
+        "eval_rows": 1,
+        "legs": [
+          "right_response"
+        ],
+        "labels": [
+          1
+        ],
+        "mix_dann_groups": [
+          "halueval"
+        ]
+      },
+      {
+        "text": "Atlantic Records",
+        "chars": 16,
+        "tokens": 2,
+        "byte_exact": true,
+        "eval_rows": 1,
+        "legs": [
+          "hallucinated_response"
+        ],
+        "labels": [
+          0
+        ],
+        "mix_dann_groups": [
+          "psiloqa"
+        ]
+      },
+      {
+        "text": "Denzel Washington ",
+        "chars": 18,
+        "tokens": 2,
+        "byte_exact": false,
+        "eval_rows": 1,
+        "legs": [
+          "right_response"
+        ],
+        "labels": [
+          1
+        ],
+        "mix_dann_groups": [
+          "halueval"
+        ]
+      },
+      {
+        "text": "Drama",
+        "chars": 5,
+        "tokens": 1,
+        "byte_exact": false,
+        "eval_rows": 1,
+        "legs": [
+          "right_response"
+        ],
+        "labels": [
+          1
+        ],
+        "mix_dann_groups": [
+          "halueval"
+        ]
+      },
+      {
+        "text": "Science Fiction",
+        "chars": 15,
+        "tokens": 2,
+        "byte_exact": false,
+        "eval_rows": 1,
+        "legs": [
+          "right_response"
+        ],
+        "labels": [
+          1
+        ],
+        "mix_dann_groups": [
+          "halueval"
+        ]
+      },
+      {
+        "text": "Stephen King",
+        "chars": 12,
+        "tokens": 2,
+        "byte_exact": true,
+        "eval_rows": 1,
+        "legs": [
+          "hallucinated_response"
+        ],
+        "labels": [
+          0
+        ],
+        "mix_dann_groups": [
+          "halueval"
+        ]
+      },
+      {
+        "text": "Yes",
+        "chars": 3,
+        "tokens": 1,
+        "byte_exact": false,
+        "eval_rows": 1,
+        "legs": [
+          "right_response"
+        ],
+        "labels": [
+          1
+        ],
+        "mix_dann_groups": [
+          "halueval"
+        ]
+      },
+      {
+        "text": "Yes ",
+        "chars": 4,
+        "tokens": 1,
+        "byte_exact": false,
+        "eval_rows": 1,
+        "legs": [
+          "right_response"
+        ],
+        "labels": [
+          1
+        ],
+        "mix_dann_groups": [
+          "halueval"
+        ]
+      },
+      {
+        "text": "milan",
+        "chars": 5,
+        "tokens": 1,
+        "byte_exact": false,
+        "eval_rows": 1,
+        "legs": [
+          "right_response"
+        ],
+        "labels": [
+          1
+        ],
+        "mix_dann_groups": [
+          "halueval"
+        ]
+      }
+    ],
+    "reading": "these are the eval's CLAIM side against the mix's CLAIM side - the evidence side reads 0 on every form and every channel. A claim collision without an evidence collision cannot transfer a (claim, evidence) association; what it can do is let a model that memorised a short conversational phrase's training label carry it over. The consequence is bounded by eval_rows_affected",
+    "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+  },
+  "subdocument_tail_characterisation": {
+    "qa_knowledge": {
+      "eval_blocks_scorable": 7688,
+      "max_containment": 0.5,
+      "mean_containment": 0.000698,
+      "threshold_ladder": {
+        "n_ge_0.10": 26,
+        "n_ge_0.25": 6,
+        "n_ge_0.50": 1,
+        "n_ge_0.90": 0,
+        "n_ge_1.00": 0
+      },
+      "fraction_of_eval_blocks_at_ge_0.10": 0.003382,
+      "top_blocks": [
+        {
+          "containment": 0.5,
+          "chars": 67,
+          "ngrams": 6,
+          "text": "The Curious Incident of the Dog in the Night-Time has genre Mystery"
+        },
+        {
+          "containment": 0.3333,
+          "chars": 76,
+          "ngrams": 6,
+          "text": "The Tragedy of Othello, The Moor of Venice is written by William Shakespeare"
+        },
+        {
+          "containment": 0.2857,
+          "chars": 77,
+          "ngrams": 7,
+          "text": "Indiana Jones and the Kingdom of the Crystal Skull is written by George Lucas"
+        },
+        {
+          "containment": 0.2857,
+          "chars": 79,
+          "ngrams": 7,
+          "text": "Indiana Jones and the Kingdom of the Crystal Skull is written by Philip Kaufman"
+        },
+        {
+          "containment": 0.25,
+          "chars": 59,
+          "ngrams": 4,
+          "text": "Harry Potter and the Order of the Phoenix has genre Fantasy"
+        },
+        {
+          "containment": 0.25,
+          "chars": 65,
+          "ngrams": 4,
+          "text": "Star Wars: Episode I - The Phantom Menace is starring Liam Neeson"
+        },
+        {
+          "containment": 0.2353,
+          "chars": 271,
+          "ngrams": 34,
+          "text": "Harry Potter and the Philosopher's Stone is directed by Chris ColumbusChris Columbus directed Harry Potter and the Philosopher's Stone. Harry Potter and the Philosopher's Stone is written by J.K. Rowl"
+        },
+        {
+          "containment": 0.2,
+          "chars": 59,
+          "ngrams": 5,
+          "text": "Dawn of the Planet of the Apes is starring Kodi Smit-McPhee"
+        },
+        {
+          "containment": 0.2,
+          "chars": 67,
+          "ngrams": 5,
+          "text": "Harry Potter and the Philosopher's Stone is written by Steve Kloves"
+        },
+        {
+          "containment": 0.1875,
+          "chars": 237,
+          "ngrams": 32,
+          "text": "Slaughterhouse-Five, or The Children's Crusade: A Duty-Dance with Death is in language English. English has examples: Hidden Figures: The American Dream and the Untold Story of the Black Women Mathema"
+        }
+      ]
+    },
+    "summarization_document": {
+      "eval_blocks_scorable": 7688,
+      "max_containment": 0.25,
+      "mean_containment": 0.000199,
+      "threshold_ladder": {
+        "n_ge_0.10": 7,
+        "n_ge_0.25": 1,
+        "n_ge_0.50": 0,
+        "n_ge_0.90": 0,
+        "n_ge_1.00": 0
+      },
+      "fraction_of_eval_blocks_at_ge_0.10": 0.000911,
+      "top_blocks": [
+        {
+          "containment": 0.25,
+          "chars": 59,
+          "ngrams": 4,
+          "text": "Harry Potter and the Order of the Phoenix has genre Fantasy"
+        },
+        {
+          "containment": 0.2,
+          "chars": 72,
+          "ngrams": 5,
+          "text": "Star Wars: Episode III - Revenge of the Sith is starring Natalie Portman"
+        },
+        {
+          "containment": 0.1667,
+          "chars": 71,
+          "ngrams": 6,
+          "text": "Harry Potter and the Order of the Phoenix has genre Young-adult fiction"
+        },
+        {
+          "containment": 0.1667,
+          "chars": 72,
+          "ngrams": 6,
+          "text": "Star Wars: Episode II - Attack of the Clones is directed by George Lucas"
+        },
+        {
+          "containment": 0.1429,
+          "chars": 69,
+          "ngrams": 7,
+          "text": "Harry Potter and the Order of the Phoenix is written by J. K. Rowling"
+        },
+        {
+          "containment": 0.1429,
+          "chars": 68,
+          "ngrams": 7,
+          "text": "Harry Potter and the Order of the Phoenix is written by J.K. Rowling"
+        },
+        {
+          "containment": 0.1,
+          "chars": 104,
+          "ngrams": 10,
+          "text": "Star Wars: Episode III - Revenge of the Sith has genre Adventure. Adventure : `~Subject`: A Time to Kill"
+        },
+        {
+          "containment": 0.0769,
+          "chars": 128,
+          "ngrams": 13,
+          "text": "Star Wars: Episode III - Revenge of the Sith has genre Action. Action has examples: RiddickRiddick is starring Nolan Gerard Funk"
+        },
+        {
+          "containment": 0.0556,
+          "chars": 161,
+          "ngrams": 18,
+          "text": "Kelly Macdonald starred in Two Family HouseTwo Family House is starring Kelly Macdonald. Kelly Macdonald starred in Harry Potter and the Deathly Hallows \u2013 Part 2"
+        },
+        {
+          "containment": 0.0476,
+          "chars": 297,
+          "ngrams": 42,
+          "text": "Harry Potter and the Order of the Phoenix is written by J. K. RowlingJ. K. Rowling wrote Harry Potter and the Deathly Hallows \u2013 Part 2. Harry Potter and the Deathly Hallows \u2013 Part 2 is starring Michae"
+        }
+      ]
+    },
+    "reading": "a dialogue knowledge block carries a median of ~10 8-grams, so a single shared 8-gram already reads ~0.10 containment and two read ~0.20. The ladder is therefore a count of blocks sharing ONE OR TWO n-grams with the trained halves, not evidence of a shared document; the whole-block exact, normalised and stem keys all read 0, and the Jaccard gate reads 0 units at >= 0.30",
+    "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+  },
+  "C4_live_positive_control_undiluted": {
+    "kind": "LIVE positive control, undiluted - every distinct HaluEval `qa` knowledge block scored against the halueval DANN group's own chunk set inside the assembled mix, which carries those blocks verbatim. Same instrument, same thresholds as the `dialogue` question",
+    "n_scored": 9936,
+    "index_units": 19934,
+    "detected_at_jaccard_ge_0.30": 9936,
+    "detection_fraction": 1.0,
+    "median_jaccard": 1.0,
+    "min_jaccard": 1.0,
+    "units_at_containment_1.00": 9936,
+    "containment_fraction_at_1.00": 1.0,
+    "fires": true,
+    "supersedes": "C4_live_positive_controls.live_cross_config_control, which scored the same text against a 60,000-chunk RANDOM SAMPLE of the mix's 760,618 distinct chunks and therefore read 0.169 - a sampling dilution, not an instrument failure. This undiluted reading is the one that licenses the clean C4 verdict",
+    "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+  },
+  "B2_denominator_asymmetry": {
+    "instrument": "8-gram containment = |ngrams(query) INTERSECT ngrams(index)| / |ngrams(query)|",
+    "arena_document_8grams": {
+      "median": 93.0,
+      "p10": 22.0,
+      "p90": 387.0
+    },
+    "eval_knowledge_block_8grams": {
+      "median": 12.0,
+      "p10": 3.0,
+      "p90": 24.0
+    },
+    "arena_as_query_max_containment": 0.0,
+    "arena_as_query_structural_ceiling": 0.129032,
+    "eval_as_query_max_containment": 0.0,
+    "eval_as_query_max_containment_whole_arena_union": 0.0,
+    "which_direction_decides": "eval-as-query. An arena document carries two orders of magnitude more 8-grams than a dialogue knowledge block, so arena-as-query cannot exceed roughly the size ratio no matter how complete the overlap, and its zero is weak evidence. Eval-as-query has the small denominator and would read 1.0 on a fully contained block; it reads 0.0, meaning NOT ONE 8-gram of ANY of the 7,688 scorable dialogue knowledge blocks appears in ANY arena document. That is the decisive number, and it is the reason this surface does not repeat the halueval-qa/hotpotqa exposure",
+    "contrast_with_the_banked_arena_finding": "arena_surface_report.json records 17 arena documents byte-for-byte inside halueval training chunks, all hotpotqa, and 8-gram containment >= 0.10 reaching a large share of that subset. The mechanism was shared upstream provenance: HaluEval `qa` supplies HotpotQA wiki paragraphs as `knowledge`. `dialogue` supplies entity-relation triple strings averaging 111 characters instead, so the shared-provenance route does not exist for it - measured here at zero in both directions and on the document channel",
+    "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+  },
+  "containment_inversion_finding": {
+    "what": "content-token containment of the claim in the evidence separates the legs only at the extreme tail on this surface, and INVERTS in the mean",
+    "positive_leg_mean_containment": 0.1984,
+    "negative_leg_mean_containment": 0.2127,
+    "mean_gap_positive_minus_negative": -0.0143,
+    "attested_rate_gap_at_0.90": 0.0058,
+    "lexical_containment_auroc_as_a_scorer": 0.444,
+    "why": "a hallucinated conversational reply is LONGER (113.2 characters against 73.1) and names MORE of the knowledge block's entities while asserting a false relation between them. Token containment cannot see a wrong relation over right entities, so it reads the negative leg as slightly BETTER attested than the positive one",
+    "consequence_for_reading_a_score": "the campaign's lexical containment baseline scores BELOW chance here (0.4440). This surface therefore cannot be beaten by lexical overlap, which is what makes it a genuine out-of-domain relational probe - and equally, it means C1's distributional diagnostic passes on the tail alone and the absolute levels are low on BOTH legs",
+    "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+  }
+}

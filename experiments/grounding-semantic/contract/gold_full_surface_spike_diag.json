@@ -1,0 +1,344 @@
+{
+  "diagnostic": "C4 spike-control reproducibility on the claims channel",
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates.",
+  "cpu_only": true,
+  "gate_n": 8,
+  "mix_rows": 721210,
+  "group_by_order_deterministic_across_5_calls": false,
+  "distinct_orders_observed": 5,
+  "bucket_order_this_run": [
+    "quant_scale_unit",
+    "ragtruth_de",
+    "ragtruth_hu",
+    "ragtruth_es",
+    "ragtruth_fr",
+    "halueval",
+    "ragtruth_it",
+    "tabfact",
+    "quant_misbind",
+    "ragtruth_pl",
+    "ragtruth_cn",
+    "psiloqa",
+    "ragtruth_en",
+    "vitaminc"
+  ],
+  "per_bucket": {
+    "quant_scale_unit": {
+      "units": 5456,
+      "first_sorted_unit_tokens": 8,
+      "first_sorted_unit_scorable_at_n": true
+    },
+    "ragtruth_de": {
+      "units": 14887,
+      "first_sorted_unit_tokens": 129,
+      "first_sorted_unit_scorable_at_n": true
+    },
+    "ragtruth_hu": {
+      "units": 14881,
+      "first_sorted_unit_tokens": 102,
+      "first_sorted_unit_scorable_at_n": true
+    },
+    "ragtruth_es": {
+      "units": 14879,
+      "first_sorted_unit_tokens": 145,
+      "first_sorted_unit_scorable_at_n": true
+    },
+    "ragtruth_fr": {
+      "units": 14880,
+      "first_sorted_unit_tokens": 158,
+      "first_sorted_unit_scorable_at_n": true
+    },
+    "halueval": {
+      "units": 37662,
+      "first_sorted_unit_tokens": 0,
+      "first_sorted_unit_scorable_at_n": false
+    },
+    "ragtruth_it": {
+      "units": 14879,
+      "first_sorted_unit_tokens": 151,
+      "first_sorted_unit_scorable_at_n": true
+    },
+    "tabfact": {
+      "units": 92304,
+      "first_sorted_unit_tokens": 11,
+      "first_sorted_unit_scorable_at_n": true
+    },
+    "quant_misbind": {
+      "units": 29699,
+      "first_sorted_unit_tokens": 14,
+      "first_sorted_unit_scorable_at_n": true
+    },
+    "ragtruth_pl": {
+      "units": 14881,
+      "first_sorted_unit_tokens": 117,
+      "first_sorted_unit_scorable_at_n": true
+    },
+    "ragtruth_cn": {
+      "units": 14880,
+      "first_sorted_unit_tokens": 20,
+      "first_sorted_unit_scorable_at_n": true
+    },
+    "psiloqa": {
+      "units": 61468,
+      "first_sorted_unit_tokens": 13,
+      "first_sorted_unit_scorable_at_n": true
+    },
+    "ragtruth_en": {
+      "units": 14879,
+      "first_sorted_unit_tokens": 131,
+      "first_sorted_unit_scorable_at_n": true
+    },
+    "vitaminc": {
+      "units": 175905,
+      "first_sorted_unit_tokens": 13,
+      "first_sorted_unit_scorable_at_n": true
+    }
+  },
+  "buckets_with_unscorable_first_unit": [
+    "halueval"
+  ],
+  "implied_detected_total_by_ten_bucket_window": {
+    "0": {
+      "buckets": [
+        "quant_scale_unit",
+        "ragtruth_de",
+        "ragtruth_hu",
+        "ragtruth_es",
+        "ragtruth_fr",
+        "halueval",
+        "ragtruth_it",
+        "tabfact",
+        "quant_misbind",
+        "ragtruth_pl"
+      ],
+      "implied_detected_total": 9
+    },
+    "1": {
+      "buckets": [
+        "ragtruth_de",
+        "ragtruth_hu",
+        "ragtruth_es",
+        "ragtruth_fr",
+        "halueval",
+        "ragtruth_it",
+        "tabfact",
+        "quant_misbind",
+        "ragtruth_pl",
+        "ragtruth_cn"
+      ],
+      "implied_detected_total": 9
+    },
+    "2": {
+      "buckets": [
+        "ragtruth_hu",
+        "ragtruth_es",
+        "ragtruth_fr",
+        "halueval",
+        "ragtruth_it",
+        "tabfact",
+        "quant_misbind",
+        "ragtruth_pl",
+        "ragtruth_cn",
+        "psiloqa"
+      ],
+      "implied_detected_total": 9
+    },
+    "3": {
+      "buckets": [
+        "ragtruth_es",
+        "ragtruth_fr",
+        "halueval",
+        "ragtruth_it",
+        "tabfact",
+        "quant_misbind",
+        "ragtruth_pl",
+        "ragtruth_cn",
+        "psiloqa",
+        "ragtruth_en"
+      ],
+      "implied_detected_total": 9
+    },
+    "4": {
+      "buckets": [
+        "ragtruth_fr",
+        "halueval",
+        "ragtruth_it",
+        "tabfact",
+        "quant_misbind",
+        "ragtruth_pl",
+        "ragtruth_cn",
+        "psiloqa",
+        "ragtruth_en",
+        "vitaminc"
+      ],
+      "implied_detected_total": 9
+    },
+    "5": {
+      "buckets": [
+        "halueval",
+        "ragtruth_it",
+        "tabfact",
+        "quant_misbind",
+        "ragtruth_pl",
+        "ragtruth_cn",
+        "psiloqa",
+        "ragtruth_en",
+        "vitaminc",
+        "quant_scale_unit"
+      ],
+      "implied_detected_total": 9
+    },
+    "6": {
+      "buckets": [
+        "ragtruth_it",
+        "tabfact",
+        "quant_misbind",
+        "ragtruth_pl",
+        "ragtruth_cn",
+        "psiloqa",
+        "ragtruth_en",
+        "vitaminc",
+        "quant_scale_unit",
+        "ragtruth_de"
+      ],
+      "implied_detected_total": 10
+    },
+    "7": {
+      "buckets": [
+        "tabfact",
+        "quant_misbind",
+        "ragtruth_pl",
+        "ragtruth_cn",
+        "psiloqa",
+        "ragtruth_en",
+        "vitaminc",
+        "quant_scale_unit",
+        "ragtruth_de",
+        "ragtruth_hu"
+      ],
+      "implied_detected_total": 10
+    },
+    "8": {
+      "buckets": [
+        "quant_misbind",
+        "ragtruth_pl",
+        "ragtruth_cn",
+        "psiloqa",
+        "ragtruth_en",
+        "vitaminc",
+        "quant_scale_unit",
+        "ragtruth_de",
+        "ragtruth_hu",
+        "ragtruth_es"
+      ],
+      "implied_detected_total": 10
+    },
+    "9": {
+      "buckets": [
+        "ragtruth_pl",
+        "ragtruth_cn",
+        "psiloqa",
+        "ragtruth_en",
+        "vitaminc",
+        "quant_scale_unit",
+        "ragtruth_de",
+        "ragtruth_hu",
+        "ragtruth_es",
+        "ragtruth_fr"
+      ],
+      "implied_detected_total": 10
+    },
+    "10": {
+      "buckets": [
+        "ragtruth_cn",
+        "psiloqa",
+        "ragtruth_en",
+        "vitaminc",
+        "quant_scale_unit",
+        "ragtruth_de",
+        "ragtruth_hu",
+        "ragtruth_es",
+        "ragtruth_fr",
+        "halueval"
+      ],
+      "implied_detected_total": 9
+    },
+    "11": {
+      "buckets": [
+        "psiloqa",
+        "ragtruth_en",
+        "vitaminc",
+        "quant_scale_unit",
+        "ragtruth_de",
+        "ragtruth_hu",
+        "ragtruth_es",
+        "ragtruth_fr",
+        "halueval",
+        "ragtruth_it"
+      ],
+      "implied_detected_total": 9
+    },
+    "12": {
+      "buckets": [
+        "ragtruth_en",
+        "vitaminc",
+        "quant_scale_unit",
+        "ragtruth_de",
+        "ragtruth_hu",
+        "ragtruth_es",
+        "ragtruth_fr",
+        "halueval",
+        "ragtruth_it",
+        "tabfact"
+      ],
+      "implied_detected_total": 9
+    },
+    "13": {
+      "buckets": [
+        "vitaminc",
+        "quant_scale_unit",
+        "ragtruth_de",
+        "ragtruth_hu",
+        "ragtruth_es",
+        "ragtruth_fr",
+        "halueval",
+        "ragtruth_it",
+        "tabfact",
+        "quant_misbind"
+      ],
+      "implied_detected_total": 9
+    }
+  },
+  "implied_detected_total_range": [
+    9,
+    10
+  ],
+  "shipped_spike_control_this_run": {
+    "injected": 10,
+    "detected_total": 9,
+    "baseline_hits": 0,
+    "passes": false,
+    "candidate_units": 2000
+  },
+  "conforming_spike_control": {
+    "injected": 10,
+    "injected_token_counts": [
+      8,
+      129,
+      102,
+      145,
+      158,
+      21,
+      151,
+      11,
+      14,
+      117
+    ],
+    "detected_total": 10,
+    "baseline_hits": 0,
+    "passes": true,
+    "candidate_units": 2000,
+    "construction": "one unit per bucket, taking the first sorted claim that carries at least one n-gram at n=8 instead of the first sorted claim outright"
+  },
+  "finding": "The banked claims-channel spike control is a function of which ten of the fourteen DANN groups the dict happens to enumerate first, because the injected unit is each group's lexicographically smallest claim and some of those are shorter than the gate's n-gram order, so they cannot hit under any correct gate. It is the CONTROL that is order-dependent, not the gate: with injected units that carry at least one n-gram the gate detects every one of them. The evidence-channel spike reproduces 10/10 because window units are long."
+}

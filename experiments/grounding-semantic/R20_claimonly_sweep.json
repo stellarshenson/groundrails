@@ -1,0 +1,1053 @@
+{
+  "experiment": "R20 claim-only shortcut sweep",
+  "question": "how far does the HaluEval claim-only shortcut extend across the assembled mix, and does it transfer to the blind arena?",
+  "instrument": "claim-only probe: TF-IDF char_wb(2,5) + word(1,2) n-grams of the CLAIM STRING ALONE (evidence never seen), hstacked, into LogisticRegression(solver=liblinear, C=4.0, tol=1e-7, max_iter=3000); per-member read is a fixed-seed (0) stratified 70/30 split, AUROC on the held-out 30%. A document-disjoint 70/30 split (rows sharing an evidence chunk kept on one side) is carried beside it because a random split lets a pair's two legs straddle the split.",
+  "loaders": {
+    "mix": "R10-H108_lane.public_train() + R17-H146_lane.parquet (quant_misbind, 30,000) + R18-H150_scaleunit_lane.parquet (quant_scale_unit, 5,540) - the R18-H150_arm_run.py flagship assembly, 721,210 rows, 14 DANN groups. public_train is called with its own evidence truncation in place: R16-H142_G1_arm.untruncated_evidence lifts the cut on the EVIDENCE only, so claims, labels, tags and the row set are identical either way and this sweep reads no evidence.",
+    "arena": "R8-H77_unseen_arena.load_subsets() - the banked RAGBench loader used by R8-H92_decomposed_arena.py and R16-H142_G1_reads.py; archive data/external/datasets/dataset-ragbench.zip, 250/subset seed 0",
+    "gold_full": "R10-H108_lane.gold_full()",
+    "member_identity": "the DANN group tag public_train / the lane assembly assigns"
+  },
+  "reading_bars": {
+    "clean_below": 0.55,
+    "leak_at_or_above": 0.55,
+    "severe_at_or_above": 0.8
+  },
+  "surface_channels": "claim_char_length_auroc and claim_token_count_auroc are raw AUROC of the label against the unfitted statistic (token regex [^\\W\\d_]+|\\d+, unicode); 0.50 is no signal in either direction",
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates.",
+  "part1_per_member": {
+    "halueval": {
+      "rows": 40000,
+      "label_balance_positive": 0.5,
+      "claim_only_auroc": 0.9498,
+      "claim_only_auroc_doc_disjoint": 0.9565,
+      "claim_char_length_auroc": 0.3191,
+      "claim_token_count_auroc": 0.3206,
+      "n_evidence_keys": 19932,
+      "doc_disjoint_test_rows": 12000,
+      "pair_census": {
+        "evidence_keys": 19932,
+        "evidence_keys_with_both_labels": 19932,
+        "evidence_keys_with_both_labels_share": 1.0,
+        "claim_string_keys": 37662,
+        "claim_string_keys_with_both_labels": 46,
+        "claim_string_keys_with_both_labels_share": 0.0012,
+        "pair_structure": true
+      },
+      "verdict_read_v1_one_sided": "severe",
+      "reading": {
+        "stratified": {
+          "auroc": 0.9498,
+          "leak_strength": 0.4498,
+          "equivalent_one_sided_auroc": 0.9498,
+          "band": "severe",
+          "direction": "aligned"
+        },
+        "doc_disjoint": {
+          "auroc": 0.9565,
+          "leak_strength": 0.4565,
+          "equivalent_one_sided_auroc": 0.9565,
+          "band": "severe",
+          "direction": "aligned"
+        }
+      },
+      "has_pair_structure": true,
+      "verdict_bearing_split": "doc_disjoint",
+      "verdict_bearing_reason": "pair structure measured in this member (a positive and its negative share a key), so under the stratified split one twin sits in train and the other in test: the classifier confidently predicts the twin's label and is wrong every time, which drives AUROC below 0.5 and measures the SPLIT, not the member. The evidence-disjoint split decides; the stratified number is a diagnostic.",
+      "leak_strength": 0.4565,
+      "equivalent_one_sided_auroc": 0.9565,
+      "verdict_read": "severe",
+      "direction": "aligned",
+      "splits_agree_on_band": true
+    },
+    "psiloqa": {
+      "rows": 61712,
+      "label_balance_positive": 0.1092,
+      "claim_only_auroc": 0.7684,
+      "claim_only_auroc_doc_disjoint": 0.7612,
+      "claim_char_length_auroc": 0.451,
+      "claim_token_count_auroc": 0.4339,
+      "n_evidence_keys": 25583,
+      "doc_disjoint_test_rows": 18515,
+      "pair_census": {
+        "evidence_keys": 25583,
+        "evidence_keys_with_both_labels": 5101,
+        "evidence_keys_with_both_labels_share": 0.1994,
+        "claim_string_keys": 61468,
+        "claim_string_keys_with_both_labels": 32,
+        "claim_string_keys_with_both_labels_share": 0.0005,
+        "pair_structure": false
+      },
+      "verdict_read_v1_one_sided": "leak",
+      "reading": {
+        "stratified": {
+          "auroc": 0.7684,
+          "leak_strength": 0.2684,
+          "equivalent_one_sided_auroc": 0.7684,
+          "band": "leak",
+          "direction": "aligned"
+        },
+        "doc_disjoint": {
+          "auroc": 0.7612,
+          "leak_strength": 0.2612,
+          "equivalent_one_sided_auroc": 0.7612,
+          "band": "leak",
+          "direction": "aligned"
+        }
+      },
+      "has_pair_structure": false,
+      "verdict_bearing_split": "stratified",
+      "verdict_bearing_reason": "no pair structure measured - both splits are informative and are reported; the registered stratified split decides.",
+      "leak_strength": 0.2684,
+      "equivalent_one_sided_auroc": 0.7684,
+      "verdict_read": "leak",
+      "direction": "aligned",
+      "splits_agree_on_band": true
+    },
+    "quant_misbind": {
+      "rows": 30000,
+      "label_balance_positive": 0.5,
+      "claim_only_auroc": 0.1782,
+      "claim_only_auroc_doc_disjoint": 0.4965,
+      "claim_char_length_auroc": 0.5001,
+      "claim_token_count_auroc": 0.5,
+      "n_evidence_keys": 12889,
+      "doc_disjoint_test_rows": 9000,
+      "pair_census": {
+        "evidence_keys": 12889,
+        "evidence_keys_with_both_labels": 12889,
+        "evidence_keys_with_both_labels_share": 1.0,
+        "claim_string_keys": 29699,
+        "claim_string_keys_with_both_labels": 104,
+        "claim_string_keys_with_both_labels_share": 0.0035,
+        "pair_structure": true
+      },
+      "claim_only_auroc_pair_disjoint": 0.4845,
+      "pair_disjoint_key": "pair_id from R17-H146_lane.parquet - minimal pairs over near-identical claims",
+      "verdict_read_v1_one_sided": "clean",
+      "reading": {
+        "stratified": {
+          "auroc": 0.1782,
+          "leak_strength": 0.3218,
+          "equivalent_one_sided_auroc": 0.8218,
+          "band": "severe",
+          "direction": "inverted"
+        },
+        "doc_disjoint": {
+          "auroc": 0.4965,
+          "leak_strength": 0.0035,
+          "equivalent_one_sided_auroc": 0.5035,
+          "band": "clean",
+          "direction": "inverted"
+        },
+        "pair_disjoint": {
+          "auroc": 0.4845,
+          "leak_strength": 0.0155,
+          "equivalent_one_sided_auroc": 0.5155,
+          "band": "clean",
+          "direction": "inverted"
+        }
+      },
+      "has_pair_structure": true,
+      "verdict_bearing_split": "doc_disjoint",
+      "verdict_bearing_reason": "pair structure measured in this member (a positive and its negative share a key), so under the stratified split one twin sits in train and the other in test: the classifier confidently predicts the twin's label and is wrong every time, which drives AUROC below 0.5 and measures the SPLIT, not the member. The evidence-disjoint split decides; the stratified number is a diagnostic.",
+      "leak_strength": 0.0035,
+      "equivalent_one_sided_auroc": 0.5035,
+      "verdict_read": "clean",
+      "direction": "inverted",
+      "splits_agree_on_band": false,
+      "pair_disjoint_note": "executor-added diagnostic: the evidence-disjoint split does not separate THIS member's twins (its pair key is the claim, not the evidence), so the pair-disjoint number is the leak-safe one and is reported beside the coordinator-designated verdict-bearing doc-disjoint number."
+    },
+    "quant_scale_unit": {
+      "rows": 5540,
+      "label_balance_positive": 0.5,
+      "claim_only_auroc": 0.2261,
+      "claim_only_auroc_doc_disjoint": 0.6358,
+      "claim_char_length_auroc": 0.499,
+      "claim_token_count_auroc": 0.5002,
+      "n_evidence_keys": 2509,
+      "doc_disjoint_test_rows": 1662,
+      "pair_census": {
+        "evidence_keys": 2509,
+        "evidence_keys_with_both_labels": 2509,
+        "evidence_keys_with_both_labels_share": 1.0,
+        "claim_string_keys": 5456,
+        "claim_string_keys_with_both_labels": 0,
+        "claim_string_keys_with_both_labels_share": 0.0,
+        "pair_structure": true
+      },
+      "claim_only_auroc_pair_disjoint": 0.648,
+      "pair_disjoint_key": "pair_id from R18-H150_scaleunit_lane.parquet - minimal pairs",
+      "verdict_read_v1_one_sided": "clean",
+      "reading": {
+        "stratified": {
+          "auroc": 0.2261,
+          "leak_strength": 0.2739,
+          "equivalent_one_sided_auroc": 0.7739,
+          "band": "leak",
+          "direction": "inverted"
+        },
+        "doc_disjoint": {
+          "auroc": 0.6358,
+          "leak_strength": 0.1358,
+          "equivalent_one_sided_auroc": 0.6358,
+          "band": "mild",
+          "direction": "aligned"
+        },
+        "pair_disjoint": {
+          "auroc": 0.648,
+          "leak_strength": 0.148,
+          "equivalent_one_sided_auroc": 0.648,
+          "band": "mild",
+          "direction": "aligned"
+        }
+      },
+      "has_pair_structure": true,
+      "verdict_bearing_split": "doc_disjoint",
+      "verdict_bearing_reason": "pair structure measured in this member (a positive and its negative share a key), so under the stratified split one twin sits in train and the other in test: the classifier confidently predicts the twin's label and is wrong every time, which drives AUROC below 0.5 and measures the SPLIT, not the member. The evidence-disjoint split decides; the stratified number is a diagnostic.",
+      "leak_strength": 0.1358,
+      "equivalent_one_sided_auroc": 0.6358,
+      "verdict_read": "mild",
+      "direction": "aligned",
+      "splits_agree_on_band": false,
+      "pair_disjoint_note": "executor-added diagnostic: the evidence-disjoint split does not separate THIS member's twins (its pair key is the claim, not the evidence), so the pair-disjoint number is the leak-safe one and is reported beside the coordinator-designated verdict-bearing doc-disjoint number."
+    },
+    "ragtruth_cn": {
+      "rows": 15090,
+      "label_balance_positive": 0.5547,
+      "claim_only_auroc": 0.8164,
+      "claim_only_auroc_doc_disjoint": 0.7913,
+      "claim_char_length_auroc": 0.3401,
+      "claim_token_count_auroc": 0.3671,
+      "n_evidence_keys": 14150,
+      "doc_disjoint_test_rows": 4527,
+      "pair_census": {
+        "evidence_keys": 14150,
+        "evidence_keys_with_both_labels": 344,
+        "evidence_keys_with_both_labels_share": 0.0243,
+        "claim_string_keys": 14880,
+        "claim_string_keys_with_both_labels": 0,
+        "claim_string_keys_with_both_labels_share": 0.0,
+        "pair_structure": false
+      },
+      "verdict_read_v1_one_sided": "severe",
+      "reading": {
+        "stratified": {
+          "auroc": 0.8164,
+          "leak_strength": 0.3164,
+          "equivalent_one_sided_auroc": 0.8164,
+          "band": "severe",
+          "direction": "aligned"
+        },
+        "doc_disjoint": {
+          "auroc": 0.7913,
+          "leak_strength": 0.2913,
+          "equivalent_one_sided_auroc": 0.7913,
+          "band": "leak",
+          "direction": "aligned"
+        }
+      },
+      "has_pair_structure": false,
+      "verdict_bearing_split": "stratified",
+      "verdict_bearing_reason": "no pair structure measured - both splits are informative and are reported; the registered stratified split decides.",
+      "leak_strength": 0.3164,
+      "equivalent_one_sided_auroc": 0.8164,
+      "verdict_read": "severe",
+      "direction": "aligned",
+      "splits_agree_on_band": false
+    },
+    "ragtruth_de": {
+      "rows": 15090,
+      "label_balance_positive": 0.5546,
+      "claim_only_auroc": 0.8217,
+      "claim_only_auroc_doc_disjoint": 0.8074,
+      "claim_char_length_auroc": 0.3507,
+      "claim_token_count_auroc": 0.3573,
+      "n_evidence_keys": 10861,
+      "doc_disjoint_test_rows": 4527,
+      "pair_census": {
+        "evidence_keys": 10861,
+        "evidence_keys_with_both_labels": 929,
+        "evidence_keys_with_both_labels_share": 0.0855,
+        "claim_string_keys": 14887,
+        "claim_string_keys_with_both_labels": 0,
+        "claim_string_keys_with_both_labels_share": 0.0,
+        "pair_structure": false
+      },
+      "verdict_read_v1_one_sided": "severe",
+      "reading": {
+        "stratified": {
+          "auroc": 0.8217,
+          "leak_strength": 0.3217,
+          "equivalent_one_sided_auroc": 0.8217,
+          "band": "severe",
+          "direction": "aligned"
+        },
+        "doc_disjoint": {
+          "auroc": 0.8074,
+          "leak_strength": 0.3074,
+          "equivalent_one_sided_auroc": 0.8074,
+          "band": "severe",
+          "direction": "aligned"
+        }
+      },
+      "has_pair_structure": false,
+      "verdict_bearing_split": "stratified",
+      "verdict_bearing_reason": "no pair structure measured - both splits are informative and are reported; the registered stratified split decides.",
+      "leak_strength": 0.3217,
+      "equivalent_one_sided_auroc": 0.8217,
+      "verdict_read": "severe",
+      "direction": "aligned",
+      "splits_agree_on_band": true
+    },
+    "ragtruth_en": {
+      "rows": 15090,
+      "label_balance_positive": 0.5546,
+      "claim_only_auroc": 0.8257,
+      "claim_only_auroc_doc_disjoint": 0.8046,
+      "claim_char_length_auroc": 0.3414,
+      "claim_token_count_auroc": 0.3523,
+      "n_evidence_keys": 2514,
+      "doc_disjoint_test_rows": 4530,
+      "pair_census": {
+        "evidence_keys": 2514,
+        "evidence_keys_with_both_labels": 2241,
+        "evidence_keys_with_both_labels_share": 0.8914,
+        "claim_string_keys": 14879,
+        "claim_string_keys_with_both_labels": 0,
+        "claim_string_keys_with_both_labels_share": 0.0,
+        "pair_structure": true
+      },
+      "verdict_read_v1_one_sided": "severe",
+      "reading": {
+        "stratified": {
+          "auroc": 0.8257,
+          "leak_strength": 0.3257,
+          "equivalent_one_sided_auroc": 0.8257,
+          "band": "severe",
+          "direction": "aligned"
+        },
+        "doc_disjoint": {
+          "auroc": 0.8046,
+          "leak_strength": 0.3046,
+          "equivalent_one_sided_auroc": 0.8046,
+          "band": "severe",
+          "direction": "aligned"
+        }
+      },
+      "has_pair_structure": true,
+      "verdict_bearing_split": "doc_disjoint",
+      "verdict_bearing_reason": "pair structure measured in this member (a positive and its negative share a key), so under the stratified split one twin sits in train and the other in test: the classifier confidently predicts the twin's label and is wrong every time, which drives AUROC below 0.5 and measures the SPLIT, not the member. The evidence-disjoint split decides; the stratified number is a diagnostic.",
+      "leak_strength": 0.3046,
+      "equivalent_one_sided_auroc": 0.8046,
+      "verdict_read": "severe",
+      "direction": "aligned",
+      "splits_agree_on_band": true
+    },
+    "ragtruth_es": {
+      "rows": 15090,
+      "label_balance_positive": 0.5547,
+      "claim_only_auroc": 0.8203,
+      "claim_only_auroc_doc_disjoint": 0.8043,
+      "claim_char_length_auroc": 0.3469,
+      "claim_token_count_auroc": 0.3538,
+      "n_evidence_keys": 13835,
+      "doc_disjoint_test_rows": 4527,
+      "pair_census": {
+        "evidence_keys": 13835,
+        "evidence_keys_with_both_labels": 437,
+        "evidence_keys_with_both_labels_share": 0.0316,
+        "claim_string_keys": 14879,
+        "claim_string_keys_with_both_labels": 0,
+        "claim_string_keys_with_both_labels_share": 0.0,
+        "pair_structure": false
+      },
+      "verdict_read_v1_one_sided": "severe",
+      "reading": {
+        "stratified": {
+          "auroc": 0.8203,
+          "leak_strength": 0.3203,
+          "equivalent_one_sided_auroc": 0.8203,
+          "band": "severe",
+          "direction": "aligned"
+        },
+        "doc_disjoint": {
+          "auroc": 0.8043,
+          "leak_strength": 0.3043,
+          "equivalent_one_sided_auroc": 0.8043,
+          "band": "severe",
+          "direction": "aligned"
+        }
+      },
+      "has_pair_structure": false,
+      "verdict_bearing_split": "stratified",
+      "verdict_bearing_reason": "no pair structure measured - both splits are informative and are reported; the registered stratified split decides.",
+      "leak_strength": 0.3203,
+      "equivalent_one_sided_auroc": 0.8203,
+      "verdict_read": "severe",
+      "direction": "aligned",
+      "splits_agree_on_band": true
+    },
+    "ragtruth_fr": {
+      "rows": 15090,
+      "label_balance_positive": 0.5547,
+      "claim_only_auroc": 0.8223,
+      "claim_only_auroc_doc_disjoint": 0.8095,
+      "claim_char_length_auroc": 0.3489,
+      "claim_token_count_auroc": 0.354,
+      "n_evidence_keys": 12355,
+      "doc_disjoint_test_rows": 4527,
+      "pair_census": {
+        "evidence_keys": 12355,
+        "evidence_keys_with_both_labels": 862,
+        "evidence_keys_with_both_labels_share": 0.0698,
+        "claim_string_keys": 14880,
+        "claim_string_keys_with_both_labels": 0,
+        "claim_string_keys_with_both_labels_share": 0.0,
+        "pair_structure": false
+      },
+      "verdict_read_v1_one_sided": "severe",
+      "reading": {
+        "stratified": {
+          "auroc": 0.8223,
+          "leak_strength": 0.3223,
+          "equivalent_one_sided_auroc": 0.8223,
+          "band": "severe",
+          "direction": "aligned"
+        },
+        "doc_disjoint": {
+          "auroc": 0.8095,
+          "leak_strength": 0.3095,
+          "equivalent_one_sided_auroc": 0.8095,
+          "band": "severe",
+          "direction": "aligned"
+        }
+      },
+      "has_pair_structure": false,
+      "verdict_bearing_split": "stratified",
+      "verdict_bearing_reason": "no pair structure measured - both splits are informative and are reported; the registered stratified split decides.",
+      "leak_strength": 0.3223,
+      "equivalent_one_sided_auroc": 0.8223,
+      "verdict_read": "severe",
+      "direction": "aligned",
+      "splits_agree_on_band": true
+    },
+    "ragtruth_hu": {
+      "rows": 15090,
+      "label_balance_positive": 0.5547,
+      "claim_only_auroc": 0.828,
+      "claim_only_auroc_doc_disjoint": 0.8106,
+      "claim_char_length_auroc": 0.3487,
+      "claim_token_count_auroc": 0.3517,
+      "n_evidence_keys": 14286,
+      "doc_disjoint_test_rows": 4527,
+      "pair_census": {
+        "evidence_keys": 14286,
+        "evidence_keys_with_both_labels": 298,
+        "evidence_keys_with_both_labels_share": 0.0209,
+        "claim_string_keys": 14881,
+        "claim_string_keys_with_both_labels": 0,
+        "claim_string_keys_with_both_labels_share": 0.0,
+        "pair_structure": false
+      },
+      "verdict_read_v1_one_sided": "severe",
+      "reading": {
+        "stratified": {
+          "auroc": 0.828,
+          "leak_strength": 0.328,
+          "equivalent_one_sided_auroc": 0.828,
+          "band": "severe",
+          "direction": "aligned"
+        },
+        "doc_disjoint": {
+          "auroc": 0.8106,
+          "leak_strength": 0.3106,
+          "equivalent_one_sided_auroc": 0.8106,
+          "band": "severe",
+          "direction": "aligned"
+        }
+      },
+      "has_pair_structure": false,
+      "verdict_bearing_split": "stratified",
+      "verdict_bearing_reason": "no pair structure measured - both splits are informative and are reported; the registered stratified split decides.",
+      "leak_strength": 0.328,
+      "equivalent_one_sided_auroc": 0.828,
+      "verdict_read": "severe",
+      "direction": "aligned",
+      "splits_agree_on_band": true
+    },
+    "ragtruth_it": {
+      "rows": 15090,
+      "label_balance_positive": 0.5546,
+      "claim_only_auroc": 0.8162,
+      "claim_only_auroc_doc_disjoint": 0.8036,
+      "claim_char_length_auroc": 0.3516,
+      "claim_token_count_auroc": 0.3496,
+      "n_evidence_keys": 14397,
+      "doc_disjoint_test_rows": 4527,
+      "pair_census": {
+        "evidence_keys": 14397,
+        "evidence_keys_with_both_labels": 253,
+        "evidence_keys_with_both_labels_share": 0.0176,
+        "claim_string_keys": 14879,
+        "claim_string_keys_with_both_labels": 0,
+        "claim_string_keys_with_both_labels_share": 0.0,
+        "pair_structure": false
+      },
+      "verdict_read_v1_one_sided": "severe",
+      "reading": {
+        "stratified": {
+          "auroc": 0.8162,
+          "leak_strength": 0.3162,
+          "equivalent_one_sided_auroc": 0.8162,
+          "band": "severe",
+          "direction": "aligned"
+        },
+        "doc_disjoint": {
+          "auroc": 0.8036,
+          "leak_strength": 0.3036,
+          "equivalent_one_sided_auroc": 0.8036,
+          "band": "severe",
+          "direction": "aligned"
+        }
+      },
+      "has_pair_structure": false,
+      "verdict_bearing_split": "stratified",
+      "verdict_bearing_reason": "no pair structure measured - both splits are informative and are reported; the registered stratified split decides.",
+      "leak_strength": 0.3162,
+      "equivalent_one_sided_auroc": 0.8162,
+      "verdict_read": "severe",
+      "direction": "aligned",
+      "splits_agree_on_band": true
+    },
+    "ragtruth_pl": {
+      "rows": 15090,
+      "label_balance_positive": 0.5548,
+      "claim_only_auroc": 0.8085,
+      "claim_only_auroc_doc_disjoint": 0.8076,
+      "claim_char_length_auroc": 0.3478,
+      "claim_token_count_auroc": 0.3448,
+      "n_evidence_keys": 14846,
+      "doc_disjoint_test_rows": 4527,
+      "pair_census": {
+        "evidence_keys": 14846,
+        "evidence_keys_with_both_labels": 93,
+        "evidence_keys_with_both_labels_share": 0.0063,
+        "claim_string_keys": 14881,
+        "claim_string_keys_with_both_labels": 0,
+        "claim_string_keys_with_both_labels_share": 0.0,
+        "pair_structure": false
+      },
+      "verdict_read_v1_one_sided": "severe",
+      "reading": {
+        "stratified": {
+          "auroc": 0.8085,
+          "leak_strength": 0.3085,
+          "equivalent_one_sided_auroc": 0.8085,
+          "band": "severe",
+          "direction": "aligned"
+        },
+        "doc_disjoint": {
+          "auroc": 0.8076,
+          "leak_strength": 0.3076,
+          "equivalent_one_sided_auroc": 0.8076,
+          "band": "severe",
+          "direction": "aligned"
+        }
+      },
+      "has_pair_structure": false,
+      "verdict_bearing_split": "stratified",
+      "verdict_bearing_reason": "no pair structure measured - both splits are informative and are reported; the registered stratified split decides.",
+      "leak_strength": 0.3085,
+      "equivalent_one_sided_auroc": 0.8085,
+      "verdict_read": "severe",
+      "direction": "aligned",
+      "splits_agree_on_band": true
+    },
+    "tabfact": {
+      "rows": 92585,
+      "label_balance_positive": 0.5508,
+      "claim_only_auroc": 0.4659,
+      "claim_only_auroc_doc_disjoint": 0.5911,
+      "claim_char_length_auroc": 0.4909,
+      "claim_token_count_auroc": 0.4876,
+      "n_evidence_keys": 13109,
+      "doc_disjoint_test_rows": 27777,
+      "pair_census": {
+        "evidence_keys": 13109,
+        "evidence_keys_with_both_labels": 10973,
+        "evidence_keys_with_both_labels_share": 0.8371,
+        "claim_string_keys": 92304,
+        "claim_string_keys_with_both_labels": 51,
+        "claim_string_keys_with_both_labels_share": 0.0006,
+        "pair_structure": true
+      },
+      "verdict_read_v1_one_sided": "clean",
+      "reading": {
+        "stratified": {
+          "auroc": 0.4659,
+          "leak_strength": 0.0341,
+          "equivalent_one_sided_auroc": 0.5341,
+          "band": "clean",
+          "direction": "inverted"
+        },
+        "doc_disjoint": {
+          "auroc": 0.5911,
+          "leak_strength": 0.0911,
+          "equivalent_one_sided_auroc": 0.5911,
+          "band": "mild",
+          "direction": "aligned"
+        }
+      },
+      "has_pair_structure": true,
+      "verdict_bearing_split": "doc_disjoint",
+      "verdict_bearing_reason": "pair structure measured in this member (a positive and its negative share a key), so under the stratified split one twin sits in train and the other in test: the classifier confidently predicts the twin's label and is wrong every time, which drives AUROC below 0.5 and measures the SPLIT, not the member. The evidence-disjoint split decides; the stratified number is a diagnostic.",
+      "leak_strength": 0.0911,
+      "equivalent_one_sided_auroc": 0.5911,
+      "verdict_read": "mild",
+      "direction": "aligned",
+      "splits_agree_on_band": false
+    },
+    "vitaminc": {
+      "rows": 370653,
+      "label_balance_positive": 0.501,
+      "claim_only_auroc": 0.1548,
+      "claim_only_auroc_doc_disjoint": 0.2132,
+      "claim_char_length_auroc": 0.5009,
+      "claim_token_count_auroc": 0.5008,
+      "n_evidence_keys": 185200,
+      "doc_disjoint_test_rows": 111196,
+      "pair_census": {
+        "evidence_keys": 185200,
+        "evidence_keys_with_both_labels": 115257,
+        "evidence_keys_with_both_labels_share": 0.6223,
+        "claim_string_keys": 175905,
+        "claim_string_keys_with_both_labels": 174651,
+        "claim_string_keys_with_both_labels_share": 0.9929,
+        "pair_structure": true
+      },
+      "claim_only_auroc_pair_disjoint": 0.501,
+      "pair_disjoint_key": "claim string - VitaminC's contrastive twins share the claim and revise the evidence",
+      "verdict_read_v1_one_sided": "clean",
+      "reading": {
+        "stratified": {
+          "auroc": 0.1548,
+          "leak_strength": 0.3452,
+          "equivalent_one_sided_auroc": 0.8452,
+          "band": "severe",
+          "direction": "inverted"
+        },
+        "doc_disjoint": {
+          "auroc": 0.2132,
+          "leak_strength": 0.2868,
+          "equivalent_one_sided_auroc": 0.7868,
+          "band": "leak",
+          "direction": "inverted"
+        },
+        "pair_disjoint": {
+          "auroc": 0.501,
+          "leak_strength": 0.001,
+          "equivalent_one_sided_auroc": 0.501,
+          "band": "clean",
+          "direction": "aligned"
+        }
+      },
+      "has_pair_structure": true,
+      "verdict_bearing_split": "doc_disjoint",
+      "verdict_bearing_reason": "pair structure measured in this member (a positive and its negative share a key), so under the stratified split one twin sits in train and the other in test: the classifier confidently predicts the twin's label and is wrong every time, which drives AUROC below 0.5 and measures the SPLIT, not the member. The evidence-disjoint split decides; the stratified number is a diagnostic.",
+      "leak_strength": 0.2868,
+      "equivalent_one_sided_auroc": 0.7868,
+      "verdict_read": "leak",
+      "direction": "inverted",
+      "splits_agree_on_band": false,
+      "pair_disjoint_note": "executor-added diagnostic: the evidence-disjoint split does not separate THIS member's twins (its pair key is the claim, not the evidence), so the pair-disjoint number is the leak-safe one and is reported beside the coordinator-designated verdict-bearing doc-disjoint number."
+    }
+  },
+  "transfer_probes": {
+    "fit_on_halueval": {
+      "fit_rows": 40000,
+      "fit_on": "100% of the halueval member"
+    },
+    "fit_on_whole_mix": {
+      "fit_rows": 721210,
+      "fit_on": "100% of the assembled 721,210-row mix"
+    }
+  },
+  "part2_arena_transfer": {
+    "subsets": 10,
+    "responses": 2264,
+    "probes": {
+      "fit_on_halueval": {
+        "per_subset": {
+          "covidqa": {
+            "n": 245,
+            "label_balance_positive": 0.8408,
+            "claim_only_auroc": 0.4844,
+            "reading": {
+              "auroc": 0.4844,
+              "leak_strength": 0.0156,
+              "equivalent_one_sided_auroc": 0.5156,
+              "band": "clean",
+              "direction": "inverted"
+            }
+          },
+          "delucionqa": {
+            "n": 184,
+            "label_balance_positive": 0.9348,
+            "claim_only_auroc": 0.6027,
+            "reading": {
+              "auroc": 0.6027,
+              "leak_strength": 0.1027,
+              "equivalent_one_sided_auroc": 0.6027,
+              "band": "mild",
+              "direction": "aligned"
+            }
+          },
+          "emanual": {
+            "n": 132,
+            "label_balance_positive": 0.8939,
+            "claim_only_auroc": 0.5042,
+            "reading": {
+              "auroc": 0.5042,
+              "leak_strength": 0.0042,
+              "equivalent_one_sided_auroc": 0.5042,
+              "band": "clean",
+              "direction": "aligned"
+            }
+          },
+          "expertqa": {
+            "n": 203,
+            "label_balance_positive": 0.468,
+            "claim_only_auroc": 0.5439,
+            "reading": {
+              "auroc": 0.5439,
+              "leak_strength": 0.0439,
+              "equivalent_one_sided_auroc": 0.5439,
+              "band": "clean",
+              "direction": "aligned"
+            }
+          },
+          "finqa": {
+            "n": 250,
+            "label_balance_positive": 0.92,
+            "claim_only_auroc": 0.5785,
+            "reading": {
+              "auroc": 0.5785,
+              "leak_strength": 0.0785,
+              "equivalent_one_sided_auroc": 0.5785,
+              "band": "mild",
+              "direction": "aligned"
+            }
+          },
+          "hagrid": {
+            "n": 250,
+            "label_balance_positive": 0.848,
+            "claim_only_auroc": 0.5529,
+            "reading": {
+              "auroc": 0.5529,
+              "leak_strength": 0.0529,
+              "equivalent_one_sided_auroc": 0.5529,
+              "band": "mild",
+              "direction": "aligned"
+            }
+          },
+          "hotpotqa": {
+            "n": 250,
+            "label_balance_positive": 0.932,
+            "claim_only_auroc": 0.3848,
+            "reading": {
+              "auroc": 0.3848,
+              "leak_strength": 0.1152,
+              "equivalent_one_sided_auroc": 0.6152,
+              "band": "mild",
+              "direction": "inverted"
+            }
+          },
+          "pubmedqa": {
+            "n": 250,
+            "label_balance_positive": 0.692,
+            "claim_only_auroc": 0.5036,
+            "reading": {
+              "auroc": 0.5036,
+              "leak_strength": 0.0036,
+              "equivalent_one_sided_auroc": 0.5036,
+              "band": "clean",
+              "direction": "aligned"
+            }
+          },
+          "tatqa": {
+            "n": 250,
+            "label_balance_positive": 0.944,
+            "claim_only_auroc": 0.5466,
+            "reading": {
+              "auroc": 0.5466,
+              "leak_strength": 0.0466,
+              "equivalent_one_sided_auroc": 0.5466,
+              "band": "clean",
+              "direction": "aligned"
+            }
+          },
+          "techqa": {
+            "n": 250,
+            "label_balance_positive": 0.564,
+            "claim_only_auroc": 0.6492,
+            "reading": {
+              "auroc": 0.6492,
+              "leak_strength": 0.1492,
+              "equivalent_one_sided_auroc": 0.6492,
+              "band": "mild",
+              "direction": "aligned"
+            }
+          }
+        },
+        "arena_auroc_pooled": 0.6568,
+        "arena_auroc_subset_mean": 0.5351,
+        "reading_pooled": {
+          "auroc": 0.6568,
+          "leak_strength": 0.1568,
+          "equivalent_one_sided_auroc": 0.6568,
+          "band": "leak",
+          "direction": "aligned"
+        },
+        "subset_mean_leak_strength": 0.0612,
+        "subsets_at_or_above_mild": [
+          "delucionqa",
+          "finqa",
+          "hagrid",
+          "hotpotqa",
+          "techqa"
+        ],
+        "which_number_is_comparable": "arena_auroc_subset_mean. The arena's positive rate runs from 0.468 (expertqa) to 0.944 (tatqa), so arena_auroc_pooled rewards a probe merely for ranking one subset above another and overstates within-subset transfer; the campaign's arena mean is itself a mean of per-subset AUROCs, so the subset-mean is the like-for-like number and the pooled figure is carried as a diagnostic."
+      },
+      "fit_on_whole_mix": {
+        "per_subset": {
+          "covidqa": {
+            "n": 245,
+            "label_balance_positive": 0.8408,
+            "claim_only_auroc": 0.4694,
+            "reading": {
+              "auroc": 0.4694,
+              "leak_strength": 0.0306,
+              "equivalent_one_sided_auroc": 0.5306,
+              "band": "clean",
+              "direction": "inverted"
+            }
+          },
+          "delucionqa": {
+            "n": 184,
+            "label_balance_positive": 0.9348,
+            "claim_only_auroc": 0.5911,
+            "reading": {
+              "auroc": 0.5911,
+              "leak_strength": 0.0911,
+              "equivalent_one_sided_auroc": 0.5911,
+              "band": "mild",
+              "direction": "aligned"
+            }
+          },
+          "emanual": {
+            "n": 132,
+            "label_balance_positive": 0.8939,
+            "claim_only_auroc": 0.543,
+            "reading": {
+              "auroc": 0.543,
+              "leak_strength": 0.043,
+              "equivalent_one_sided_auroc": 0.543,
+              "band": "clean",
+              "direction": "aligned"
+            }
+          },
+          "expertqa": {
+            "n": 203,
+            "label_balance_positive": 0.468,
+            "claim_only_auroc": 0.6251,
+            "reading": {
+              "auroc": 0.6251,
+              "leak_strength": 0.1251,
+              "equivalent_one_sided_auroc": 0.6251,
+              "band": "mild",
+              "direction": "aligned"
+            }
+          },
+          "finqa": {
+            "n": 250,
+            "label_balance_positive": 0.92,
+            "claim_only_auroc": 0.5574,
+            "reading": {
+              "auroc": 0.5574,
+              "leak_strength": 0.0574,
+              "equivalent_one_sided_auroc": 0.5574,
+              "band": "mild",
+              "direction": "aligned"
+            }
+          },
+          "hagrid": {
+            "n": 250,
+            "label_balance_positive": 0.848,
+            "claim_only_auroc": 0.5719,
+            "reading": {
+              "auroc": 0.5719,
+              "leak_strength": 0.0719,
+              "equivalent_one_sided_auroc": 0.5719,
+              "band": "mild",
+              "direction": "aligned"
+            }
+          },
+          "hotpotqa": {
+            "n": 250,
+            "label_balance_positive": 0.932,
+            "claim_only_auroc": 0.59,
+            "reading": {
+              "auroc": 0.59,
+              "leak_strength": 0.09,
+              "equivalent_one_sided_auroc": 0.59,
+              "band": "mild",
+              "direction": "aligned"
+            }
+          },
+          "pubmedqa": {
+            "n": 250,
+            "label_balance_positive": 0.692,
+            "claim_only_auroc": 0.5302,
+            "reading": {
+              "auroc": 0.5302,
+              "leak_strength": 0.0302,
+              "equivalent_one_sided_auroc": 0.5302,
+              "band": "clean",
+              "direction": "aligned"
+            }
+          },
+          "tatqa": {
+            "n": 250,
+            "label_balance_positive": 0.944,
+            "claim_only_auroc": 0.5832,
+            "reading": {
+              "auroc": 0.5832,
+              "leak_strength": 0.0832,
+              "equivalent_one_sided_auroc": 0.5832,
+              "band": "mild",
+              "direction": "aligned"
+            }
+          },
+          "techqa": {
+            "n": 250,
+            "label_balance_positive": 0.564,
+            "claim_only_auroc": 0.6213,
+            "reading": {
+              "auroc": 0.6213,
+              "leak_strength": 0.1213,
+              "equivalent_one_sided_auroc": 0.6213,
+              "band": "mild",
+              "direction": "aligned"
+            }
+          }
+        },
+        "arena_auroc_pooled": 0.6294,
+        "arena_auroc_subset_mean": 0.5683,
+        "reading_pooled": {
+          "auroc": 0.6294,
+          "leak_strength": 0.1294,
+          "equivalent_one_sided_auroc": 0.6294,
+          "band": "mild",
+          "direction": "aligned"
+        },
+        "subset_mean_leak_strength": 0.0744,
+        "subsets_at_or_above_mild": [
+          "delucionqa",
+          "expertqa",
+          "finqa",
+          "hagrid",
+          "hotpotqa",
+          "tatqa",
+          "techqa"
+        ],
+        "which_number_is_comparable": "arena_auroc_subset_mean. The arena's positive rate runs from 0.468 (expertqa) to 0.944 (tatqa), so arena_auroc_pooled rewards a probe merely for ranking one subset above another and overstates within-subset transfer; the campaign's arena mean is itself a mean of per-subset AUROCs, so the subset-mean is the like-for-like number and the pooled figure is carried as a diagnostic."
+      }
+    }
+  },
+  "part3_gold_full": {
+    "rows": 2752,
+    "label_balance_positive": 0.7144,
+    "claim_char_length_auroc": 0.4817,
+    "claim_token_count_auroc": 0.4996,
+    "probes": {
+      "fit_on_halueval": {
+        "claim_only_auroc": 0.6139,
+        "reading": {
+          "auroc": 0.6139,
+          "leak_strength": 0.1139,
+          "equivalent_one_sided_auroc": 0.6139,
+          "band": "mild",
+          "direction": "aligned"
+        }
+      },
+      "fit_on_whole_mix": {
+        "claim_only_auroc": 0.4802,
+        "reading": {
+          "auroc": 0.4802,
+          "leak_strength": 0.0198,
+          "equivalent_one_sided_auroc": 0.5198,
+          "band": "clean",
+          "direction": "inverted"
+        }
+      }
+    },
+    "claim_char_length_reading": {
+      "auroc": 0.4817,
+      "leak_strength": 0.0183,
+      "equivalent_one_sided_auroc": 0.5183,
+      "band": "clean",
+      "direction": "inverted"
+    },
+    "claim_token_count_reading": {
+      "auroc": 0.4996,
+      "leak_strength": 0.0004,
+      "equivalent_one_sided_auroc": 0.5004,
+      "band": "clean",
+      "direction": "inverted"
+    }
+  },
+  "interpretation": "An arena claim-only AUROC near 0.50 means the shortcut does NOT transfer and the exposure is contained inside the member. Materially above 0.50 means the mix teaches a claim-shape prior that the arena rewards, and the flagship's 0.71218 arena mean is partly a shortcut.",
+  "negative_control_label_shuffled": {
+    "worst": {
+      "member": "halueval",
+      "split": "doc_disjoint",
+      "rows": 40000,
+      "observed_leak_strength": 0.4565,
+      "shuffled": {
+        "auroc": 0.4975,
+        "leak_strength": 0.0025,
+        "equivalent_one_sided_auroc": 0.5025,
+        "band": "clean",
+        "direction": "inverted"
+      }
+    },
+    "cleanest": {
+      "member": "quant_misbind",
+      "split": "doc_disjoint",
+      "rows": 30000,
+      "observed_leak_strength": 0.0035,
+      "shuffled": {
+        "auroc": 0.4945,
+        "leak_strength": 0.0055,
+        "equivalent_one_sided_auroc": 0.5055,
+        "band": "clean",
+        "direction": "inverted"
+      }
+    },
+    "reading": "the negative control: with the labels permuted the same instrument on the same feature space must read leak_strength ~0. A non-zero reading here would mean the probe manufactures signal from the feature space and no observed number is evidence."
+  },
+  "verdict_rule": {
+    "amended_by": "coordinator correction, applied in stage `amend`",
+    "leak_strength": "|AUROC - 0.5| - the test is TWO-SIDED; an inverted AUROC is signal, not cleanliness (0.155 inverts to 0.845)",
+    "equivalent_one_sided_auroc": "0.5 + leak_strength, so members are comparable",
+    "bands": {
+      "clean": "< 0.05",
+      "mild": "0.05 - 0.15",
+      "leak": "0.15 - 0.30",
+      "severe": ">= 0.30"
+    },
+    "split_selection": "verdict_bearing_split is doc_disjoint for any member with MEASURED pair structure (pair_census.pair_structure) and stratified otherwise; every member carries both numbers and the reason it was chosen, so a reader can see which number decided the verdict",
+    "superseded": "verdict_read_v1_one_sided - the first pass's one-sided rule (clean < 0.55, leak >= 0.55, severe >= 0.80), kept for audit"
+  }
+}

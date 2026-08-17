@@ -1,0 +1,44 @@
+{
+  "C6": {
+    "shared_fields": "truth_removed pairs share the CLAIM byte-identically (only the pool differs); unsupported_claim pairs share the POOLED CHUNK byte-identically (only the claim differs). Both are pair structures the clause names",
+    "test": "for each pair, look the claim up in the REST of the assembled training mix (685,670 clean rows + the four other loaded lanes, attr_pool excluded) and score the row by the label that association carries. Within-pair accuracy of that oracle is the memorisation channel: on a clean member it is undefined or at chance",
+    "mix_rows_searched": 739210,
+    "lane_rows_whose_claim_appears_elsewhere_in_the_mix": 15186,
+    "coverage_overall": 0.7094,
+    "per_source": {
+      "minicheck": {
+        "rows": 9410,
+        "rows_whose_claim_appears_elsewhere_in_the_mix": 3188,
+        "coverage": 0.3388,
+        "label_agrees_with_the_mix_association": 0.184
+      },
+      "vitaminc": {
+        "rows": 11998,
+        "rows_whose_claim_appears_elsewhere_in_the_mix": 11998,
+        "coverage": 1.0,
+        "label_agrees_with_the_mix_association": 0.9972
+      }
+    },
+    "distinct_lane_claims_found_in_group": {
+      "vitaminc": 6894,
+      "frame_reject": 605
+    },
+    "within_pair_oracle_accuracy": {
+      "truth_removed": {
+        "pairs": 7255,
+        "within_pair_accuracy_all_pairs": 0.5,
+        "pairs_with_both_claims_in_the_mix": 5178,
+        "coverage": 0.7137,
+        "within_pair_accuracy_on_covered_pairs": 0.5
+      },
+      "unsupported_claim": {
+        "pairs": 3449,
+        "within_pair_accuracy_all_pairs": 0.54,
+        "pairs_with_both_claims_in_the_mix": 2101,
+        "coverage": 0.6092,
+        "within_pair_accuracy_on_covered_pairs": 0.5005
+      }
+    },
+    "chance": 0.5
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "parent": {
+    "rows": 21408,
+    "claim_only_auroc_all": 0.5281,
+    "within_pair_by_family": {
+      "unsupported_claim": {
+        "acc": 0.5594,
+        "pairs": 3449
+      },
+      "truth_removed": {
+        "acc": 0.5,
+        "pairs": 7255
+      }
+    },
+    "within_pair_by_family_and_source": {
+      "unsupported_claim|minicheck": {
+        "acc": 0.6418,
+        "pairs": 1449
+      },
+      "truth_removed|vitaminc": {
+        "acc": 0.5,
+        "pairs": 3999
+      },
+      "unsupported_claim|vitaminc": {
+        "acc": 0.4998,
+        "pairs": 2000
+      },
+      "truth_removed|minicheck": {
+        "acc": 0.5,
+        "pairs": 3256
+      }
+    },
+    "reading": "the parent's registered within-pair claim-only figure is the per-FAMILY number; splitting it by source shows what the aggregate hides"
+  },
+  "conformed_v1": {
+    "rows": 6222,
+    "claim_only_auroc_all": 0.5335,
+    "within_pair_by_family": {
+      "unsupported_claim": {
+        "acc": 0.6209,
+        "pairs": 889
+      },
+      "truth_removed": {
+        "acc": 0.5,
+        "pairs": 2222
+      }
+    },
+    "within_pair_by_family_and_route": {
+      "truth_removed|d2c": {
+        "acc": 0.5,
+        "pairs": 1363
+      },
+      "unsupported_claim|c2d": {
+        "acc": 0.6542,
+        "pairs": 454
+      },
+      "unsupported_claim|d2c": {
+        "acc": 0.5862,
+        "pairs": 435
+      },
+      "truth_removed|c2d": {
+        "acc": 0.5,
+        "pairs": 859
+      }
+    },
+    "route_rows": {
+      "d2c": 3596,
+      "c2d": 2626
+    }
+  },
+  "route_restricted_rebuild_probe": {
+    "c2d": {
+      "rows": 908,
+      "claim_only_auroc": 0.6512,
+      "within_pair": {
+        "unsupported_claim": {
+          "acc": 0.6872,
+          "pairs": 454
+        }
+      }
+    },
+    "d2c": {
+      "rows": 870,
+      "claim_only_auroc": 0.6079,
+      "within_pair": {
+        "unsupported_claim": {
+          "acc": 0.5678,
+          "pairs": 435
+        }
+      }
+    }
+  },
+  "parent_minicheck_unsupported_claim_alone": {
+    "rows": 2898,
+    "claim_only_auroc": 0.6833,
+    "within_pair": {
+      "unsupported_claim": {
+        "acc": 0.6825,
+        "pairs": 1449
+      }
+    }
+  },
+  "parent_vitaminc_unsupported_claim_alone": {
+    "rows": 4000,
+    "claim_only_auroc": 0.5116,
+    "within_pair": {
+      "unsupported_claim": {
+        "acc": 0.5142,
+        "pairs": 2000
+      }
+    }
+  }
+}

@@ -1,0 +1,404 @@
+{
+  "member": "num_derive",
+  "experiment": "R22-H187 - the missing derivation-checking training member",
+  "builder": "experiments/grounding-semantic/R22-H187_num_derive_lane.py",
+  "seed": 2187,
+  "rows": 30000,
+  "pairs": 15000,
+  "unit_note": "BOTH units declared: 30,000 rows = 15,000 pairs",
+  "documents": 5749,
+  "pairs_per_document": 2.6091,
+  "couple_cap": 6,
+  "families": {
+    "sum": 2250,
+    "product": 2250,
+    "difference": 5250,
+    "percentage": 5250
+  },
+  "family_rows": {
+    "difference": 10500,
+    "product": 4500,
+    "sum": 4500,
+    "percentage": 10500
+  },
+  "family_shares_declared": {
+    "difference": 0.35,
+    "percentage": 0.35,
+    "sum": 0.15,
+    "product": 0.15
+  },
+  "family_shares_measured": {
+    "difference": 0.35,
+    "product": 0.15,
+    "sum": 0.15,
+    "percentage": 0.35
+  },
+  "directions": {
+    "sum:down": 2250,
+    "percentage:down": 5250,
+    "sum:up": 2250,
+    "difference:up": 5250,
+    "difference:down": 5250,
+    "product:up": 2250,
+    "percentage:up": 5250,
+    "product:down": 2250
+  },
+  "sources": {
+    "tabfact": {
+      "archive": "data/external/datasets/dataset-tabfact.zip",
+      "sidecar": "data/external/datasets/dataset-tabfact.md (tracked)",
+      "licence": "CC-BY-4.0 (from the tracked sidecar)",
+      "split": "the *__train.parquet member ONLY",
+      "selection_predicate": "R17-H144_pairs.tabfact_tables: deduplicated on table_text, >= 4 body rows of uniform width, >= 2 columns; then a label column and at least one numeric column with a usable header must exist",
+      "feverous_used": false,
+      "why_no_feverous": "quant_misbind is non-conforming on exactly its FEVEROUS half (C3 unmeasurable split axis on 33.7% of rows, C8 no licence / retrieval date / tracked source); this lane inherits none of it"
+    }
+  },
+  "exclusions": {
+    "evalset_rows": 1050,
+    "evalset_doc_ids": 536,
+    "content_fingerprints": 547,
+    "tables_dropped": {
+      "named_by_an_eval_surface": 325,
+      "eval_content_fingerprint": 2707,
+      "no_numeric_column": 2915,
+      "no_label_column": 1116,
+      "eval_doc_id": 1
+    },
+    "tabfact_table_ids_named_by_an_eval_surface": 1823,
+    "eval_surface_table_id_sources": {
+      "R20-H177_eval_B.parquet": 325,
+      "R20-H177_eval_C.parquet": 0,
+      "R17-H146_antigaming_set.parquet": 1168,
+      "R18-H150_antigaming_set.parquet": 1177,
+      "R19-H159_antigaming_set.parquet": 1174
+    },
+    "tabfact_non_train_table_ids": 3391,
+    "tabfact_split_sizes": {
+      "test": 1695,
+      "validation": 1696
+    },
+    "blocked_string_hashes": 287452,
+    "surfaces_enumerated": [
+      "arena_ragbench_10_subsets",
+      "gold_full",
+      "R17-H143_evalset",
+      "R20-H177_eval_B",
+      "R20-H177_eval_C",
+      "R20-H175b_qlane_eval",
+      "R20-H175b_qlane_eval_repaired",
+      "R20-H175b_qlane_eval_clean",
+      "R20-H175b_qlane_eval_clean_prefix",
+      "R17-H146_antigaming_set",
+      "R18-H150_antigaming_set",
+      "R19-H159_antigaming_set",
+      "vitaminc_holdout_superset"
+    ],
+    "construction_rejections": {
+      "construction_left_uncoupled_in_its_table": 19530,
+      "no_operand_draw": 25563,
+      "duplicate_construction": 10254,
+      "correct_result_present_in_evidence": 4558,
+      "operand_not_readable_as_numeral": 2168,
+      "operand_not_verbatim_in_chunk": 982,
+      "row_key_not_in_chunk": 111
+    }
+  },
+  "twin_construction": {
+    "method": "two constructions from the SAME TABLE and the same family, sharing a digit-surface signature (decimal places, integer digits, trailing zeros, sign), swap correct results: each asserts the other's. The negative leg's numeral multiset is therefore identical to the positive leg's, each couple contributes one twin above and one below its true value, and both appearances of a numeral share a document so they never straddle a fold of a document-disjoint probe",
+    "guards": "the borrowed numeral must differ from the host's correct result, be absent from the host's evidence, not equal either operand, and not equal any other plain arithmetic reading of the host's operand pair (sum, difference either way, product, mean, both ratios, both percentages)",
+    "rejected_designs": {
+      "pooled_draw_conditioned_on_direction": "claim-only probe 0.5761, FAIL",
+      "cross_document_swap": "claim-only probe 0.1923 - two-sided deviation 0.308 from a numeral memorised across folds"
+    },
+    "constructions_per_table_visit": 12,
+    "partner_scan": 60,
+    "couple_cap_ladder": [
+      1,
+      2,
+      3,
+      4,
+      6
+    ],
+    "pair_target": {
+      "difference": 5250,
+      "percentage": 5250,
+      "sum": 2250,
+      "product": 2250
+    },
+    "per_family": {
+      "difference": {
+        "couples_formed": 2625,
+        "couples_wanted": 2625,
+        "couples_used": 2625
+      },
+      "percentage": {
+        "couples_formed": 2625,
+        "couples_wanted": 2625,
+        "couples_used": 2625
+      },
+      "product": {
+        "couples_formed": 1125,
+        "couples_wanted": 1125,
+        "couples_used": 1125
+      },
+      "sum": {
+        "couples_formed": 1125,
+        "couples_wanted": 1125,
+        "couples_used": 1125
+      }
+    }
+  },
+  "diversity": {
+    "serial_forms": {
+      "pipe": 4252,
+      "narrative": 8960,
+      "keyvalue": 2940,
+      "json_records": 1432,
+      "markdown": 3204,
+      "row_prose": 9212
+    },
+    "templates": {
+      "percentage:0": 3470,
+      "product:2": 1516,
+      "difference:0": 3528,
+      "product:1": 1438,
+      "difference:1": 3472,
+      "sum:1": 1612,
+      "percentage:2": 3536,
+      "percentage:1": 3494,
+      "sum:2": 1350,
+      "product:0": 1546,
+      "difference:2": 3500,
+      "sum:0": 1538
+    },
+    "distinct_claims": 29940,
+    "distinct_chunks": 12376,
+    "distinct_columns": 1514,
+    "distinct_tables": 5749,
+    "result_digit_lengths": {
+      "2": 10328,
+      "3": 5048,
+      "4": 11712,
+      "5": 2044,
+      "6": 680,
+      "7": 188
+    }
+  },
+  "verify": {
+    "claim_only_converged_probe": {
+      "value": 0.507675,
+      "bar": "< 0.55",
+      "pass": true,
+      "scoring": "5-fold document-disjoint, out of fold, direction-stratified, liblinear tol 1e-7, char_wb 2-5 TF-IDF",
+      "documents": 5749,
+      "rows": 30000,
+      "two_sided_deviation_report_only": 0.007675,
+      "why_two_sided_is_reported": "the registered bar is one-sided, and a rejected corruption design of this lane read 0.1923 - a leak the one-sided bar would have passed"
+    },
+    "within_pair_claim_only": {
+      "per_family": {
+        "difference": {
+          "acc": 0.505524,
+          "pairs": 5250
+        },
+        "sum": {
+          "acc": 0.502667,
+          "pairs": 2250
+        },
+        "percentage": {
+          "acc": 0.531429,
+          "pairs": 5250
+        },
+        "product": {
+          "acc": 0.507556,
+          "pairs": 2250
+        }
+      },
+      "worst": 0.531429,
+      "bar": "< 0.60",
+      "pass": true,
+      "worst_two_sided_deviation_report_only": 0.031429
+    },
+    "surface_parity_channels": {
+      "character_length": {
+        "pooled": 0.5,
+        "per_family": {
+          "difference": 0.5,
+          "percentage": 0.5,
+          "product": 0.5,
+          "sum": 0.5
+        },
+        "worst_deviation_from_0.5": 0.0,
+        "in_band_0.45_0.55": true
+      },
+      "sentence_count": {
+        "pooled": 0.5,
+        "per_family": {
+          "difference": 0.5,
+          "percentage": 0.5,
+          "product": 0.5,
+          "sum": 0.5
+        },
+        "worst_deviation_from_0.5": 0.0,
+        "in_band_0.45_0.55": true
+      },
+      "numeric_token_count": {
+        "pooled": 0.5,
+        "per_family": {
+          "difference": 0.5,
+          "percentage": 0.5,
+          "product": 0.5,
+          "sum": 0.5
+        },
+        "worst_deviation_from_0.5": 0.0,
+        "in_band_0.45_0.55": true
+      },
+      "numeric_density_per_100_chars": {
+        "pooled": 0.5,
+        "per_family": {
+          "difference": 0.5,
+          "percentage": 0.5,
+          "product": 0.5,
+          "sum": 0.5
+        },
+        "worst_deviation_from_0.5": 0.0,
+        "in_band_0.45_0.55": true
+      },
+      "derivation_marker_count": {
+        "pooled": 0.5,
+        "per_family": {
+          "difference": 0.5,
+          "percentage": 0.5,
+          "product": 0.5,
+          "sum": 0.5
+        },
+        "worst_deviation_from_0.5": 0.0,
+        "in_band_0.45_0.55": true
+      },
+      "equals_count": {
+        "pooled": 0.5,
+        "per_family": {
+          "difference": 0.5,
+          "percentage": 0.5,
+          "product": 0.5,
+          "sum": 0.5
+        },
+        "worst_deviation_from_0.5": 0.0,
+        "in_band_0.45_0.55": true
+      },
+      "newline_count": {
+        "pooled": 0.5,
+        "per_family": {
+          "difference": 0.5,
+          "percentage": 0.5,
+          "product": 0.5,
+          "sum": 0.5
+        },
+        "worst_deviation_from_0.5": 0.0,
+        "in_band_0.45_0.55": true
+      },
+      "word_count": {
+        "pooled": 0.5,
+        "per_family": {
+          "difference": 0.5,
+          "percentage": 0.5,
+          "product": 0.5,
+          "sum": 0.5
+        },
+        "worst_deviation_from_0.5": 0.0,
+        "in_band_0.45_0.55": true
+      },
+      "digit_char_fraction": {
+        "pooled": 0.5,
+        "per_family": {
+          "difference": 0.5,
+          "percentage": 0.5,
+          "product": 0.5,
+          "sum": 0.5
+        },
+        "worst_deviation_from_0.5": 0.0,
+        "in_band_0.45_0.55": true
+      },
+      "chars_per_sentence": {
+        "pooled": 0.5,
+        "per_family": {
+          "difference": 0.5,
+          "percentage": 0.5,
+          "product": 0.5,
+          "sum": 0.5
+        },
+        "worst_deviation_from_0.5": 0.0,
+        "in_band_0.45_0.55": true
+      }
+    },
+    "surface_parity_worst": {
+      "channel": "chars_per_sentence",
+      "pooled": 0.5,
+      "worst_deviation_from_0.5": 0.0,
+      "bar": "in [0.45, 0.55] on every channel",
+      "pass": true
+    },
+    "digit_surface_parity": {
+      "pairs": 15000,
+      "identical_signature_rate": 1.0,
+      "identical_rendered_length_rate": 1.0,
+      "share_twin_above_true": 0.5,
+      "digit_count_auroc": 0.5,
+      "trailing_zero_auroc": 0.5,
+      "magnitude_decade_auroc": 0.5,
+      "value_magnitude_auroc": 0.5,
+      "bar": "signature identical on every pair, 50/50 above and below, digit-count / trailing-zero / decade AUROC in [0.45, 0.55]",
+      "pass": true
+    },
+    "single_channel_probes": {
+      "evidence_only": {
+        "within_pair_identical_chunk_share": 1.0,
+        "auroc": 0.5,
+        "reading": "the legs of a pair share the evidence byte-identically, so an evidence-only reader is exactly at chance within pair - measured, not assumed"
+      },
+      "question_only": {
+        "value": null,
+        "reading": "NOT COMPUTABLE - the lane carries no question field; the construction implies no question channel"
+      }
+    },
+    "arithmetic_rederivation": {
+      "method": "every row recomputed from its two stated operands, full population",
+      "positive_rows": 15000,
+      "positives_verified": 15000,
+      "negative_rows": 15000,
+      "negatives_refuted": 15000,
+      "errors": 0,
+      "error_kinds": {},
+      "bar": "0 errors",
+      "pass": true
+    },
+    "balance": {
+      "family_rows": {
+        "sum": 4500,
+        "product": 4500,
+        "percentage": 10500,
+        "difference": 10500
+      },
+      "direction_rows": {
+        "product:down": 2250,
+        "sum:up": 2250,
+        "difference:down": 5250,
+        "sum:down": 2250,
+        "percentage:up": 5250,
+        "difference:up": 5250,
+        "product:up": 2250,
+        "percentage:down": 5250
+      },
+      "direction_balance_exact_50_50_per_family": true
+    },
+    "all_registered_bars_pass": true,
+    "executor_added_probes_reported_separately": {
+      "note": "NOT part of the registered conjunction; reported so they cannot silently join it (C5 provenance)",
+      "leading_digit_auroc": 0.5,
+      "decimal_presence_auroc": 0.5,
+      "claim_token_count_auroc": 0.5,
+      "containment_auroc": 0.500292
+    }
+  }
+}

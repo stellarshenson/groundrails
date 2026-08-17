@@ -1,0 +1,35 @@
+{
+  "clause": "C1 - decisive tests as restated by amendments C-A1 and C-A2",
+  "test_1_structural": {
+    "definition": "a negative leg's (claim, evidence) identical to a positive leg's means the label cannot encode grounding",
+    "distinct_positive_claim_evidence_pairs": 9326,
+    "distinct_negative_claim_evidence_pairs": 9326,
+    "colliding_pairs": 0,
+    "negative_rows_affected": 0,
+    "share_of_rows": 0.0,
+    "fires": false,
+    "live_positive_control_reference": "fires on 8,986 of 8,986 pairs (100%) in the withdrawn poisoned R20-H175b_qlane"
+  },
+  "test_2_strict_separation": {
+    "instrument": "binding-level attestation, re-derived from the source tables for the full population - the instrument SENSITIVE to the predicate this lane corrupts (which cell the claim binds to)",
+    "negative_leg_high_attestation_rate": 0.0,
+    "positive_leg_high_attestation_rate": 1.0,
+    "strictly_below": true,
+    "margin": 1.0,
+    "predicate_blind_instrument_reported_separately": {
+      "instrument": "claim-to-evidence containment",
+      "negative_share_ge_0.90": 0.112588,
+      "positive_share_ge_0.90": 0.112803,
+      "negative_mean": 0.679865,
+      "positive_mean": 0.679734,
+      "reading": "C-A2: a predicate-blind instrument showing no separation is NOT evidence of incommensurability. Both legs assert a real cell of the same table, so containment cannot read the binding and is reported as a diagnostic only"
+    }
+  },
+  "test_3_absolute_level_reported": {
+    "negative_leg_binding_attested_rate": 0.0,
+    "negative_leg_containment_fully_attested_share": 0.103045,
+    "negative_leg_containment_share_ge_0.90": 0.112588,
+    "finding": "the negative leg's BINDING attestation is 0.0 - every negative asserts a binding the evidence contradicts. The containment reading is high on both legs because the asserted numeral is a real cell of the same table, which is the construction"
+  },
+  "seconds": 0.1
+}

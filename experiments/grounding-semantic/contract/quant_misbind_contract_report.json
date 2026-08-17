@@ -1,0 +1,865 @@
+{
+  "member": "quant_misbind",
+  "artifact": "experiments/grounding-semantic/R17-H146_lane.parquet",
+  "artifact_blake2b_64": "791663e1f62c9ae6",
+  "member_class": "constructed lane - a training member of the assembled mix, loaded as one DANN group by R18-H150_arm_run.LANES and the R20-H174 wrapper",
+  "contract": "docs/experiments/dataset-contract.md",
+  "verification_pass": "phase 1, per-member; CPU only; no GPU touched",
+  "conforming": false,
+  "C1": {
+    "verdict": "PASS",
+    "clause": "label commensurability",
+    "head_declared": "the grounding scalar (`task_head`), trained by pointwise / MIL max-over-windows BCE on the 0/1 label",
+    "label_predicate": "label 1 = the evidence states the asserted binding (row_key, column) -> value; label 0 = the evidence states a DIFFERENT value for that binding, and the asserted value is a real cell of a different row (misbound_row) or a different column of the same row (misbound_col). The predicate is support of the asserted proposition, which is the head's own predicate",
+    "label_origin": "construction (R17-H146_lane.py), not a dataset-supplied label",
+    "mandatory_test": {
+      "instrument": "containment(claim, evidence) = |distinct content tokens of the claim present in the evidence| / |distinct content tokens of the claim|, tokenizer [^\\W\\d_]+|\\d+ lowercased - the module used for the 0.9129 reading on the withdrawn R20-H175b contrast lane",
+      "negative_leg": {
+        "n": 15000,
+        "mean": 0.688766,
+        "std": 0.164881,
+        "min": 0.25,
+        "p10": 0.5,
+        "p25": 0.571429,
+        "median": 0.692308,
+        "p75": 0.777778,
+        "p90": 1.0,
+        "max": 1.0,
+        "share_ge_0.90": 0.119467,
+        "share_ge_0.95": 0.1086,
+        "share_fully_attested_eq_1.0": 0.1086,
+        "histogram_deciles": [
+          0,
+          0,
+          3,
+          281,
+          1176,
+          3290,
+          3864,
+          2880,
+          1714,
+          1792
+        ]
+      },
+      "positive_leg": {
+        "n": 15000,
+        "mean": 0.688639,
+        "std": 0.165059,
+        "min": 0.25,
+        "p10": 0.5,
+        "p25": 0.571429,
+        "median": 0.692308,
+        "p75": 0.777778,
+        "p90": 1.0,
+        "max": 1.0,
+        "share_ge_0.90": 0.119533,
+        "share_ge_0.95": 0.1086,
+        "share_fully_attested_eq_1.0": 0.1086,
+        "histogram_deciles": [
+          0,
+          0,
+          5,
+          280,
+          1185,
+          3300,
+          3855,
+          2865,
+          1717,
+          1793
+        ]
+      },
+      "bar": "REJECTED if negatives are >= 90% attested AND that reading is within 0.10 of the positives - a conjunction; both must hold",
+      "readings": {
+        "note": "C1's bar - 'negatives >= 90% attested at a rate within 0.10 of its positives is REJECTED' - is evaluated under all three readings the clause text admits. The rejection region requires BOTH conjuncts.",
+        "reading_A_mean_containment": {
+          "definition": "mean containment on the negative leg >= 0.90 AND |neg - pos| <= 0.10",
+          "negative": 0.688766,
+          "positive": 0.688639,
+          "delta": 0.000127,
+          "conjunct_1_negatives_ge_0.90": false,
+          "conjunct_2_within_0.10_of_positives": true,
+          "rejects": false,
+          "margin_below_0.90": 0.211234,
+          "reference_R20-H175b": 0.9129
+        },
+        "reading_B_share_attested_ge_0.90": {
+          "definition": "share of negatives with containment >= 0.90 must reach 0.90 AND be within 0.10 of the positive share",
+          "negative": 0.119467,
+          "positive": 0.119533,
+          "delta": 6.6e-05,
+          "conjunct_1_negatives_ge_0.90": false,
+          "conjunct_2_within_0.10_of_positives": true,
+          "rejects": false,
+          "margin_below_0.90": 0.780533,
+          "reference_R20-H175b": 0.723
+        },
+        "reading_C_share_fully_attested": {
+          "definition": "share of negatives at containment exactly 1.0",
+          "negative": 0.1086,
+          "positive": 0.1086,
+          "delta": 0.0,
+          "conjunct_1_negatives_ge_0.90": false,
+          "rejects": false,
+          "margin_below_0.90": 0.7914,
+          "reference_R20-H175b": 0.664
+        }
+      },
+      "binding_reading": "reading A (mean containment) is the one consistent with the R20-H175b provenance figure of 0.9129; it is the reading that comes closest to firing here",
+      "margin_to_rejection": {
+        "mean_containment": 0.211234,
+        "share_attested_ge_0.90": 0.780533,
+        "share_fully_attested": 0.7914
+      },
+      "rejects_under_any_reading": false
+    },
+    "honest_caveat": {
+      "containment_is_blind_on_this_construction": {
+        "auroc_containment_vs_label": 0.499809,
+        "within_pair_identical_containment_share": 0.943933,
+        "within_pair_mean_abs_difference": 0.001947,
+        "reading": "containment cannot separate the legs of this lane and is not expected to - the negative asserts a value the evidence prints, bound elsewhere. The discriminating measurement is the binding-level audit below."
+      },
+      "asserted_numeral_presence": {
+        "positive_leg_cited_value_verbatim_in_evidence": 1.0,
+        "negative_leg_cited_value_verbatim_in_evidence": 1.0,
+        "correct_value_verbatim_in_evidence_all_rows": 1.0,
+        "reading": "1.0 on both legs by construction - the negative's numeral is a real cell of the same table, so a numeral-presence test is also blind"
+      },
+      "consequence": "the clause's mechanical test has no discriminating power on a misbinding construction - both legs assert a numeral the evidence prints. The lane stays outside the rejection region only because its ABSOLUTE attestation level is far below 0.90, not because the test separates its legs",
+      "fully_attested_negatives": {
+        "count": 1629,
+        "of": 15000,
+        "reference_R20-H175b": "5,966 of 8,986 (66.4%)"
+      }
+    },
+    "discriminating_measurement": {
+      "why": "containment cannot decide this clause for this member, so the predicate is verified where it actually lives - the binding",
+      "method": "every row re-derived against its source table (TabFact train + the FEVEROUS working parquet), full population, not sampled",
+      "negatives_re_derived_as_genuinely_unattested_bindings": "15000 / 15000",
+      "negative_unattested_rate": 1.0,
+      "positives_re_derived_as_attested_bindings": "15000 / 15000",
+      "positive_attested_rate": 1.0,
+      "errors": 0,
+      "ambiguity_guard": {
+        "negatives_checked": 15000,
+        "asserted_value_also_answers_the_claimed_binding": 0,
+        "rate": 0.0,
+        "bar": "0 - a negative whose asserted value also legitimately answers the claimed binding would be mislabelled"
+      },
+      "status_of_the_prior_campaign_claim": "the canonical log's standing-rule block asserts 'the H146/H150 misbind lanes pass this test - their negatives are genuinely unsupported bindings' without a measurement. Measured here on the full 15,000-negative population: the assertion holds at binding level, and does NOT hold at token level, where the two legs are indistinguishable"
+    },
+    "per_family": {
+      "misbound_col": {
+        "rows": 9000,
+        "negative_mean": 0.690508,
+        "positive_mean": 0.690589,
+        "negative_share_ge_0.90": 0.113111,
+        "negative_share_fully_attested": 0.102444
+      },
+      "misbound_row": {
+        "rows": 21000,
+        "negative_mean": 0.688019,
+        "positive_mean": 0.687804,
+        "negative_share_ge_0.90": 0.12219,
+        "negative_share_fully_attested": 0.111238
+      }
+    },
+    "per_serial_form": {
+      "json_records": {
+        "rows": 1384,
+        "negative_mean": 0.578857,
+        "positive_mean": 0.578791,
+        "negative_share_ge_0.90": 0.007225,
+        "negative_share_fully_attested": 0.004335
+      },
+      "keyvalue": {
+        "rows": 2946,
+        "negative_mean": 0.584557,
+        "positive_mean": 0.584086,
+        "negative_share_ge_0.90": 0.01222,
+        "negative_share_fully_attested": 0.004752
+      },
+      "markdown": {
+        "rows": 2924,
+        "negative_mean": 0.579291,
+        "positive_mean": 0.579285,
+        "negative_share_ge_0.90": 0.01026,
+        "negative_share_fully_attested": 0.004104
+      },
+      "narrative": {
+        "rows": 8938,
+        "negative_mean": 0.721241,
+        "positive_mean": 0.721176,
+        "negative_share_ge_0.90": 0.180801,
+        "negative_share_fully_attested": 0.174759
+      },
+      "pipe": {
+        "rows": 4730,
+        "negative_mean": 0.57844,
+        "positive_mean": 0.578035,
+        "negative_share_ge_0.90": 0.013953,
+        "negative_share_fully_attested": 0.008034
+      },
+      "row_prose": {
+        "rows": 9078,
+        "negative_mean": 0.800111,
+        "positive_mean": 0.800133,
+        "negative_share_ge_0.90": 0.201146,
+        "negative_share_fully_attested": 0.179114
+      }
+    }
+  },
+  "C2": {
+    "verdict": "FAIL",
+    "clause": "disjointness from every evaluation surface",
+    "forms": [
+      "raw",
+      "truncated_1500",
+      "normalised_ws_casefold"
+    ],
+    "member_units": {
+      "distinct_claims": 29699,
+      "distinct_evidence_chunks": 12889,
+      "rows": 30000
+    },
+    "surfaces_measured": 13,
+    "surfaces_clean": [
+      "R17-H143_evalset",
+      "R20-H175b_qlane_eval",
+      "R20-H175b_qlane_eval_clean",
+      "R20-H175b_qlane_eval_clean_prefix",
+      "R20-H175b_qlane_eval_repaired",
+      "R20-H177_eval_C",
+      "arena_ragbench_10_subsets",
+      "gold_full",
+      "vitaminc_holdout_superset"
+    ],
+    "totals_per_form": {
+      "raw": 69,
+      "truncated_1500": 69,
+      "normalised_ws_casefold": 69
+    },
+    "all_forms_zero": false,
+    "failures": {
+      "R20-H177_eval_B": {
+        "kind": "EVIDENCE leak - byte-identical chunks",
+        "shared_evidence_strings_per_form": {
+          "raw": 19,
+          "truncated_1500": 19,
+          "normalised_ws_casefold": 19
+        },
+        "share_of_the_eval_s_distinct_passages": 0.0258,
+        "eval_rows_affected": 70,
+        "eval_pairs_affected": 35,
+        "eval_pairs_total": 1000,
+        "eval_pair_share": 0.035,
+        "member_rows_affected": 68,
+        "member_pairs_affected": 34,
+        "member_row_share": 0.002267,
+        "attribution": "all 19 belong to this member alone - the other four loaded lanes (quant_scale_unit, frame_reject, attr_pool, path_bind) share 0 chunks with eval_B",
+        "cross_check": "R20-H175b_eval_contamination_sweep.json records raw_in_mix_raw = 19 for eval_B; this pass reproduces that count and attributes it",
+        "consequence": "R20-H177 Lane B's registered PRIMARY (held-out mechanism eval >= 0.80 against a measured 0.5064 floor) is read on a set 3.50% of whose pairs sit on evidence this member trains on"
+      },
+      "anti_gaming_probe_sets": {
+        "kind": "CLAIM leak - byte-identical claim strings",
+        "surfaces": {
+          "R17-H146_antigaming_set": {
+            "shared_claims_all_three_forms": 18,
+            "surface_distinct_claims": 3185,
+            "eval_pairs_affected": 22,
+            "eval_pairs_total": 1601,
+            "bind_row_pairs_total": 601,
+            "share_of_bind_row_sub_read": 0.0366
+          },
+          "R18-H150_antigaming_set": {
+            "shared_claims_all_three_forms": 15,
+            "surface_distinct_claims": 3186,
+            "eval_pairs_affected": 14,
+            "eval_pairs_total": 1600,
+            "bind_row_pairs_total": 601,
+            "share_of_bind_row_sub_read": 0.0233
+          },
+          "R19-H159_antigaming_set": {
+            "shared_claims_all_three_forms": 17,
+            "surface_distinct_claims": 3186,
+            "eval_pairs_affected": 15,
+            "eval_pairs_total": 1601,
+            "bind_row_pairs_total": 601,
+            "share_of_bind_row_sub_read": 0.025
+          }
+        },
+        "all_collisions_are_bind_row": true,
+        "label_agreement_on_collisions": "20 of 29 collision instances agree; 9 carry the opposite label, which is correct - the eval item is a different table",
+        "item_level": "0 - no collision shares the table; the probe sets are built from TabFact test+validation with every train table_id removed, so evidence-level disjointness holds",
+        "root_cause": "R14-H133_antigaming.py line 57 hard-wires LANE = R14-H133_lane.parquet, so its verbatim-claim exclusion was applied against the H133 lane and never against this one. The banked record's shared_claim_strings_with_lane = 0 is a true statement about the H133 lane (10,914 documents / 7,290 tabfact tables - measured to match H133, not this member's 7,514 / 4,975)",
+        "evidence_direction": "NOT-APPLICABLE - the probe sets carry no evidence column at all"
+      }
+    },
+    "document_level_read_beyond_string_forms": {
+      "why": "string equality cannot see the same table serialized differently",
+      "id_level": {
+        "eval_surface": "R17-H143_evalset",
+        "eval_resolved_source_documents": 536,
+        "tabfact_stable_ids": 352,
+        "feverous_unstable_ids": 184,
+        "shared_with_member_tabfact": 0,
+        "shared_with_member_feverous": "0, but UNINTERPRETABLE - see C3"
+      },
+      "content_rule_read_and_why_it_is_not_evidence": {
+        "exhaustive_hits_on_shipped_tables": 942,
+        "share_of_shipped_tables": 0.125366,
+        "lane_rows_from_those_tables": 3762,
+        "instrument_validation": {
+          "recall_on_the_true_table": 0.9972,
+          "matches_on_356_ground_truth_fingerprints": 6058,
+          "of_which_the_fingerprint_s_own_table": 0,
+          "mean_wrong_tables_matched_per_fingerprint": 17.017,
+          "max_for_one_fingerprint": 333
+        },
+        "reading": "the rule detects the true table almost always (0.9972) and also fires on ~17 topically similar wrong tables per eval chunk. Its raw hit count on the shipped set is therefore NOT a contamination measurement and is reported here so it is not mistaken for one"
+      },
+      "build_heuristic_recall_against_its_own_rule": 0.694346
+    },
+    "binding_constraint": "19 byte-identical evidence chunks shared with R20-H177_eval_B and 18/15/17 byte-identical claim strings shared with the three anti-gaming probe sets - non-zero in all three string forms",
+    "fixable": "PIPELINE - dropping the 68 rows on shared evidence and the 23 rows carrying a shared claim removes 91 of 30,000 rows (0.303%) and costs 45 pairs of 15,000 (0.300%); alternatively the two eval surfaces are rebuilt against this member's actual claim and chunk sets. Neither touches a bar"
+  },
+  "C3": {
+    "verdict": "FAIL",
+    "clause": "split semantics verified, never assumed",
+    "member_type": "constructed lane - it has no split of its own; the axis that matters is which split of each SOURCE it reads and whether that split is document-disjoint from anything used for evaluation",
+    "rows_by_source": {
+      "tabfact": 19890,
+      "feverous": 10110
+    },
+    "documents_by_source": {
+      "feverous": 2539,
+      "tabfact": 4975
+    },
+    "tabfact_two_thirds": {
+      "verdict": "MEASURED CLEAN",
+      "axis": "the archive's own table_id",
+      "archive_splits": {
+        "test": 12839,
+        "train": 92585,
+        "validation": 12851
+      },
+      "measured_axis": {
+        "train_vs_test_shared_table_ids": 0,
+        "test_table_ids": 1695,
+        "train_vs_validation_shared_table_ids": 0,
+        "validation_table_ids": 1696,
+        "train_table_ids": 13182
+      },
+      "member_tables_in_a_non_train_split": {
+        "test": 0,
+        "validation": 0
+      },
+      "eval_source_tables_present_in_the_member": 0,
+      "reading": "TabFact's official split is table-disjoint when tested (0 shared table_ids train vs test, 0 train vs validation), the member reads train only, and none of its 4,975 tables appears in test or validation"
+    },
+    "feverous_one_third": {
+      "verdict": "NOT MEASURABLE FROM THE ARTIFACTS ON DISK",
+      "rows": 10110,
+      "row_share": 0.337,
+      "documents": 2539,
+      "source": "tmp/R14_H133_feverous.parquet - a single pool with no split column",
+      "identifier_defect": "R17-H144_pairs.evalset_documents records that the FEVEROUS ids are positional over a non-order-stable unique(); 0 of 95 sampled ids resolved to their own table. The lane's 10,110 FEVEROUS rows therefore carry an identifier that is stable only within the build process that wrote it",
+      "why_it_is_load_bearing": "a FEVEROUS-derived evaluation surface exists - 184 of R17-H143_evalset's 536 resolved source documents are FEVEROUS - so the axis is not a formality",
+      "instruments_tried_and_their_measured_limits": {
+        "build_content_rule": "recall 0.9972 on the true table, but 6,058 matches over 356 ground-truth fingerprints of which 0 are the true table - cannot decide identity",
+        "token_containment_identity_test": "true-table containment min 0.500, mean 0.917; best known-WRONG table reaches 1.000 - no separating threshold exists"
+      },
+      "what_does_hold": "content-level disjointness is measured directly and reads 0 in all three string forms against R17-H143_evalset (C2)"
+    },
+    "binding_constraint": "for 33.7% of the member's rows the split axis cannot be measured, and the identifier the member carries for them is not stable across rebuilds",
+    "fixable": "PIPELINE - re-key the FEVEROUS pool on a content hash so document identity survives a rebuild, then re-run the exclusion by id against every FEVEROUS-derived evaluation surface"
+  },
+  "C4": {
+    "verdict": "PASS",
+    "clause": "contamination census with a live positive control",
+    "instrument": "provenance_gate.py (R14-H136 ruling-2 form): 8-gram, Jaccard >= 0.3, bidirectional, WARN 0.005, KILL > 2% of the candidate side, all ten walled arena subsets",
+    "arena_units": 8645,
+    "evidence_gate": {
+      "units": 12889,
+      "verdict": "PASS",
+      "max_fraction": 0.0,
+      "candidate_to_arena": 0.0,
+      "arena_to_candidate": 0.0,
+      "best_jaccard": {
+        "max": 0.0751,
+        "p99": 0.0,
+        "mean": 0.0
+      },
+      "kill_bar": 0.02,
+      "margin": 0.02
+    },
+    "claim_gate": {
+      "units": 29699,
+      "verdict": "PASS",
+      "max_fraction": 0.0,
+      "candidate_to_arena": 0.0,
+      "arena_to_candidate": 0.0,
+      "best_jaccard": {
+        "max": 0.0,
+        "p99": 0.0,
+        "mean": 0.0
+      },
+      "kill_bar": 0.02,
+      "margin": 0.02
+    },
+    "spike_control": {
+      "injected": 10,
+      "detected_total": 10,
+      "baseline_hits": 0,
+      "passes": true,
+      "candidate_units": 2000
+    },
+    "live_positive_control": {
+      "construction": "real RAGBench arena documents (the reference side itself), degraded",
+      "tiers": {
+        "verbatim": {
+          "note": "identical arena text - the upper anchor",
+          "units": 250,
+          "detection_fraction": 1.0,
+          "units_with_hit": 250,
+          "best_jaccard": {
+            "max": 1.0,
+            "p99": 1.0,
+            "mean": 1.0
+          },
+          "verdict": "KILL"
+        },
+        "drop_2pct": {
+          "note": "2% of whitespace tokens deleted at random",
+          "units": 250,
+          "detection_fraction": 1.0,
+          "units_with_hit": 250,
+          "best_jaccard": {
+            "max": 1.0,
+            "p99": 1.0,
+            "mean": 0.7944
+          },
+          "verdict": "KILL"
+        },
+        "drop_5pct": {
+          "note": "5% of whitespace tokens deleted at random",
+          "units": 250,
+          "detection_fraction": 0.972,
+          "units_with_hit": 243,
+          "best_jaccard": {
+            "max": 1.0,
+            "p99": 1.0,
+            "mean": 0.5562
+          },
+          "verdict": "KILL"
+        },
+        "drop_10pct": {
+          "note": "10% of whitespace tokens deleted at random",
+          "units": 250,
+          "detection_fraction": 0.556,
+          "units_with_hit": 139,
+          "best_jaccard": {
+            "max": 0.7101,
+            "p99": 0.6332,
+            "mean": 0.3179
+          },
+          "verdict": "KILL"
+        },
+        "drop_5pct_cut_60pct": {
+          "note": "5% deleted then cut to 60% of length",
+          "units": 250,
+          "detection_fraction": 0.632,
+          "units_with_hit": 158,
+          "best_jaccard": {
+            "max": 0.5816,
+            "p99": 0.5602,
+            "mean": 0.3338
+          },
+          "verdict": "KILL"
+        },
+        "cut_50pct": {
+          "note": "first half of the document only",
+          "units": 250,
+          "detection_fraction": 0.992,
+          "units_with_hit": 248,
+          "best_jaccard": {
+            "max": 0.7915,
+            "p99": 0.7139,
+            "mean": 0.4693
+          },
+          "verdict": "KILL"
+        }
+      },
+      "fires": true,
+      "reading": "the gate fires on real near-duplicate text and its detection degrades with the damage applied, while the member itself reads 0.000 against the same reference side - so the member's clean verdict comes from a live instrument"
+    },
+    "coverage": {
+      "evidence_units_too_short_for_8gram": 0,
+      "claims_too_short_for_8gram": 7522,
+      "claim_short_share": 0.253275,
+      "exact_matching_of_the_short_units": {
+        "method": "normalised claim string sought verbatim inside the concatenated normalised arena document corpus",
+        "arena_documents": 8645,
+        "short_claims_found": 0,
+        "long_claims_found": 0
+      }
+    }
+  },
+  "C5": {
+    "verdict": "PASS",
+    "clause": "leak suite for constructed members",
+    "recomputed_from_the_parquet": true,
+    "registered_conjunction": {
+      "claim_only_converged_probe": {
+        "value": 0.504871,
+        "bar": "< 0.55",
+        "pass": true,
+        "scoring": "5-fold document-disjoint, out of fold, direction-stratified, liblinear tol 1e-7, char_wb 2-5 TF-IDF",
+        "documents": 7514,
+        "rows": 30000,
+        "recomputed": "from the parquet in this pass; not cited from the manifest"
+      },
+      "within_pair_claim_only": {
+        "per_family": {
+          "misbound_col": {
+            "acc": 0.514444,
+            "pairs": 4500
+          },
+          "misbound_row": {
+            "acc": 0.495857,
+            "pairs": 10500
+          }
+        },
+        "worst": 0.514444,
+        "bar": "< 0.60",
+        "pass": true
+      },
+      "single_channel_probes": {
+        "evidence_only": {
+          "within_pair_identical_chunk_share": 1.0,
+          "auroc": 0.5,
+          "reading": "the legs of a pair share the evidence byte-identically, so an evidence-only reader is exactly at chance within pair by construction - measured above, not assumed"
+        },
+        "question_only": {
+          "value": null,
+          "reading": "NOT COMPUTABLE - the lane carries no question field; the construction implies no question channel"
+        }
+      },
+      "surface_parity_channels": {
+        "trailing_zero": {
+          "pooled": 0.500505,
+          "per_family": {
+            "misbound_col": 0.497964,
+            "misbound_row": 0.501572
+          },
+          "worst_deviation_from_0.5": 0.002036,
+          "in_band_0.45_0.55": true
+        },
+        "digit_count": {
+          "pooled": 0.500488,
+          "per_family": {
+            "misbound_col": 0.501658,
+            "misbound_row": 0.500163
+          },
+          "worst_deviation_from_0.5": 0.001658,
+          "in_band_0.45_0.55": true
+        },
+        "claim_char_length": {
+          "pooled": 0.500113,
+          "per_family": {
+            "misbound_col": 0.500214,
+            "misbound_row": 0.500099
+          },
+          "worst_deviation_from_0.5": 0.000214,
+          "in_band_0.45_0.55": true
+        },
+        "leading_digit": {
+          "pooled": 0.500622,
+          "per_family": {
+            "misbound_col": 0.502442,
+            "misbound_row": 0.499384
+          },
+          "worst_deviation_from_0.5": 0.002442,
+          "in_band_0.45_0.55": true
+        },
+        "decimal_presence": {
+          "pooled": 0.500633,
+          "per_family": {
+            "misbound_col": 0.502111,
+            "misbound_row": 0.5
+          },
+          "worst_deviation_from_0.5": 0.002111,
+          "in_band_0.45_0.55": true
+        },
+        "value_magnitude": {
+          "pooled": 0.500217,
+          "per_family": {
+            "misbound_col": 0.499911,
+            "misbound_row": 0.50042
+          },
+          "worst_deviation_from_0.5": 0.00042,
+          "in_band_0.45_0.55": true
+        },
+        "claim_token_count": {
+          "pooled": 0.500016,
+          "per_family": {
+            "misbound_col": 0.500131,
+            "misbound_row": 0.500018
+          },
+          "worst_deviation_from_0.5": 0.000131,
+          "in_band_0.45_0.55": true
+        }
+      },
+      "balance": {
+        "family_rows": {
+          "misbound_row": 21000,
+          "misbound_col": 9000
+        },
+        "direction_rows": {
+          "misbound_col:down": 4500,
+          "misbound_col:up": 4500,
+          "misbound_row:down": 10500,
+          "misbound_row:up": 10500
+        },
+        "direction_balance_exact_50_50_per_family": true
+      },
+      "attestation_symmetry": {
+        "reading": "measured in the C1 stage - asserted numeral present verbatim on both legs at 1.0"
+      }
+    },
+    "all_registered_bars_pass": true,
+    "margins": {
+      "claim_only_probe": 0.045129,
+      "within_pair": 0.085556,
+      "worst_surface_channel_deviation": 0.002442,
+      "surface_channel_band": 0.05
+    },
+    "executor_added_probes_reported_separately": {
+      "note": "these are NOT part of the registered conjunction and do not join it",
+      "claim_token_count_auroc": {
+        "pooled": 0.500016,
+        "per_family": {
+          "misbound_col": 0.500131,
+          "misbound_row": 0.500018
+        },
+        "worst_deviation_from_0.5": 0.000131,
+        "in_band_0.45_0.55": true
+      },
+      "surface_parity_rate_per_family": {
+        "pooled": 0.506,
+        "per_family": {
+          "misbound_col": 0.101778,
+          "misbound_row": 0.679238
+        },
+        "reading": "this is the rate at which the construction achieved digit-surface parity between the two values, NOT a channel AUROC. It is reported because the per-family rates are far from 0.5 and could be mistaken for the C5 parity bar, which is a bar on channel AUROCs and is reported above"
+      }
+    }
+  },
+  "C6": {
+    "verdict": "PASS",
+    "clause": "no memorisation channel",
+    "pair_key": "yes - the two legs of a pair share the evidence chunk byte-identically, so the chunk is the pair key",
+    "mix_association": {
+      "mix_rows": 760618,
+      "mix_groups": 17,
+      "member_keys_shared_with_another_mix_member": 234,
+      "sharing_by_group": {
+        "tabfact": {
+          "rows": 92585,
+          "shared_evidence_raw": 0,
+          "shared_evidence_truncated_1500": 0,
+          "shared_evidence_normalised": 228,
+          "shared_claims_normalised": 0
+        },
+        "quant_scale_unit": {
+          "rows": 5540,
+          "shared_evidence_raw": 7,
+          "shared_evidence_truncated_1500": 7,
+          "shared_evidence_normalised": 7,
+          "shared_claims_normalised": 0
+        }
+      },
+      "coverage_rows": 926,
+      "coverage_share": 0.030867,
+      "auroc_vs_label": 0.5,
+      "bar": "undefined or at chance",
+      "reference_contaminated_case": "the withdrawn R20-H175b eval read 0.6230 on such a feature at 98% coverage"
+    },
+    "within_member_key_keyed_claim_overlap": {
+      "definition": "max Jaccard between this row's claim and any other claim sharing the same evidence chunk",
+      "auroc_vs_label": 0.5,
+      "coverage_rows": 30000,
+      "coverage_share": 1.0,
+      "bar": "undefined or at chance"
+    },
+    "reported_and_flagged": {
+      "leave_one_out_label_feature": {
+        "definition": "mean label of every other row sharing this row's evidence chunk (leave-one-out)",
+        "auroc_vs_label": 0.0,
+        "coverage_rows": 30000,
+        "coverage_share": 1.0,
+        "within_pair_accuracy": 0.0,
+        "bar": "undefined or at chance"
+      },
+      "why_it_is_not_a_channel": "with exact 1:1 pairing the leave-one-out value IS the twin's label, so the feature reads AUROC 0.0 on any perfectly paired member. It is an estimator artifact, not information a model has at inference: both legs share the key, so every key-keyed feature takes the same value on both and separates them at exactly 0.5"
+    }
+  },
+  "C7": {
+    "verdict": "PASS",
+    "clause": "declared units and volume",
+    "declared_unit": "BOTH - the registration states rows AND pairs",
+    "registered_in_R18-H150_arm_run.LANES": [
+      "(\"R17-H146_lane.parquet\", \"quant_misbind\", 30_000, 15_000,",
+      "     {\"misbound_row\": 21_000, \"misbound_col\": 9_000}),",
+      "    (\"R18-H150_scaleunit_lane.parquet\", \"quant_scale_unit\", 5_540, 2_770,"
+    ],
+    "registered_in_R20-H174_arm_run.LANES": [
+      "(\"R17-H146_lane.parquet\", \"quant_misbind\", 30_000, 15_000,",
+      "     {\"misbound_row\": 21_000, \"misbound_col\": 9_000}),",
+      "    (\"R18-H150_scaleunit_lane.parquet\", \"quant_scale_unit\", 5_540, 2_770,"
+    ],
+    "registered_rows": 30000,
+    "registered_pairs": 15000,
+    "registered_families": {
+      "misbound_row": 21000,
+      "misbound_col": 9000
+    },
+    "measured_rows": 30000,
+    "measured_pairs": 15000,
+    "measured_families": {
+      "misbound_row": 21000,
+      "misbound_col": 9000
+    },
+    "rows_match": true,
+    "pairs_match": true,
+    "families_match": true,
+    "note": "both arm wrappers hard-abort on any drift in rows, pairs or family counts before a card is touched (LANE ABORT guard)"
+  },
+  "C8": {
+    "verdict": "FAIL",
+    "clause": "provenance, licence and internal structure",
+    "tabfact_half": {
+      "status": "DOCUMENTED",
+      "rows": 19890,
+      "archive": "data/external/datasets/dataset-tabfact.zip",
+      "sidecar": "data/external/datasets/dataset-tabfact.md (tracked)",
+      "licence": "CC-BY-4.0 (from the tracked sidecar)",
+      "selection_predicate": "the *__train.parquet member of the archive, deduplicated on table_text; tables with >= 4 body rows of uniform width and >= 2 columns; a label column and at least one numeric column must exist",
+      "retrieval": "scripts/fetch_grounding_datasets.py (date not recorded in the sidecar)",
+      "gap": "retrieval date not recorded in the sidecar"
+    },
+    "feverous_half": {
+      "status": "UNDOCUMENTED",
+      "rows": 10110,
+      "row_share": 0.337,
+      "documents": 2539,
+      "archive": "tmp/R14_H133_feverous.parquet",
+      "sidecar": "NONE in data/external/datasets",
+      "licence": "NOT RECORDED anywhere in the repository",
+      "selection_predicate": "deduplicated on `evidence`; rows containing a [ROW] marker, parsed into >= 5 uniform-width rows of >= 3 cells",
+      "retrieval": "not recorded; the file is an R14-H133 working artifact mirrored from a community HuggingFace export (KingTechnician/feverous-label-evidence, per R10-H108_data.py) rather than an admitted corpus",
+      "campaign_status": "R20-H177_lane_common.feverous_available() records admitted=False for this exact file: 'an R14-H133 working file, not an admitted lane supply with its own provenance verdict'",
+      "repository_state": "tmp/ is gitignored (.gitignore line 246) and the file is untracked, so this third of the member cannot be rebuilt from the repository"
+    },
+    "internal_structure": {
+      "rows": 30000,
+      "pairs": 15000,
+      "rows_per_pair": 2.0,
+      "pairs_with_exactly_two_rows": 15000,
+      "distinct_claims": 29699,
+      "distinct_evidence_chunks": 12889,
+      "distinct_documents": 7514,
+      "distinct_columns": 2157,
+      "distinct_row_keys": 11412,
+      "distinct_claim_chunk_pairs": 30000,
+      "max_rows_per_chunk": 6,
+      "mean_rows_per_chunk": 2.327566,
+      "max_pairs_per_document": 2,
+      "mean_pairs_per_document": 1.996274,
+      "templates": {
+        "3": 5000,
+        "0": 5000,
+        "5": 5000,
+        "2": 5000,
+        "4": 5000,
+        "1": 5000
+      },
+      "serial_forms": {
+        "markdown": 2924,
+        "row_prose": 9078,
+        "json_records": 1384,
+        "keyvalue": 2946,
+        "pipe": 4730,
+        "narrative": 8938
+      },
+      "rows_by_source": {
+        "tabfact": 19890,
+        "feverous": 10110
+      },
+      "duplicate_claim_strings": 301,
+      "label_balance": {
+        "1": 15000,
+        "0": 15000
+      }
+    },
+    "public_repository_check": {
+      "client_or_company_name_in_lane_text": null,
+      "method": "see the scan in this stage's output below",
+      "sources_present": [
+        "feverous",
+        "tabfact"
+      ],
+      "all_sources_public": true,
+      "verdict": "CLEAN - both sources are public corpora; no client or company name appears in the member or in this report"
+    },
+    "binding_constraint": "no licence, no retrieval date and no tracked source for 33.7% of the member's rows; the campaign's own module records admitted=False for that exact file",
+    "fixable": "PIPELINE - re-fetch FEVEROUS from a citable release, write the tracked sidecar with licence and retrieval date, and rebuild the member's FEVEROUS half from it"
+  },
+  "summary": {
+    "pass": [
+      "C1",
+      "C4",
+      "C5",
+      "C6",
+      "C7"
+    ],
+    "fail": [
+      "C2",
+      "C3",
+      "C8"
+    ],
+    "not_applicable": [],
+    "conforming": false,
+    "fixable": "PIPELINE - every failure is a pipeline or artifact-management defect; none is a property of TabFact or FEVEROUS as corpora",
+    "consequence": "C1 - the clause that killed R20-H175b - holds: this member's labels are commensurable with the grounding head, verified at binding level on all 15,000 negatives rather than asserted. The failures do not corrupt training; two of them corrupt READS. R20-H177 Lane B's registered PRIMARY is read on a set 3.50% of whose pairs sit on evidence this member trains on, and the anti-gaming hold - read on every arm including the flagship pair - has 3.66% / 2.33% / 2.50% of its bind_row sub-read on claim strings this member trains on. The C3 and C8 failures are the same artifact: a third of the member comes from an untracked, unlicensed, unstably-keyed working file, so that third is neither reproducible nor provably disjoint from a FEVEROUS-derived evaluation surface."
+  },
+  "artifacts": [
+    "experiments/grounding-semantic/contract/quant_misbind_contract_report.json",
+    "experiments/grounding-semantic/contract/quant_misbind_c1_containment.json",
+    "experiments/grounding-semantic/contract/quant_misbind_c1_binding.json",
+    "experiments/grounding-semantic/contract/quant_misbind_c2_disjointness.json",
+    "experiments/grounding-semantic/contract/quant_misbind_c3_split.json",
+    "experiments/grounding-semantic/contract/quant_misbind_c3_doc_disjoint.json",
+    "experiments/grounding-semantic/contract/quant_misbind_c2c3_doc_exhaustive.json",
+    "experiments/grounding-semantic/contract/quant_misbind_c2c3_rule_validation.json",
+    "experiments/grounding-semantic/contract/quant_misbind_c4_census.json",
+    "experiments/grounding-semantic/contract/quant_misbind_c4_live_control.json",
+    "experiments/grounding-semantic/contract/quant_misbind_c5_leak.json",
+    "experiments/grounding-semantic/contract/quant_misbind_c6_memorisation.json",
+    "experiments/grounding-semantic/contract/quant_misbind_c6_mix_assoc.json",
+    "experiments/grounding-semantic/contract/quant_misbind_c78_units_provenance.json",
+    "experiments/grounding-semantic/contract/quant_misbind_verify.py",
+    "experiments/grounding-semantic/contract/quant_misbind_mix_assoc.py",
+    "experiments/grounding-semantic/contract/quant_misbind_live_control.py",
+    "experiments/grounding-semantic/contract/quant_misbind_doc_disjoint.py",
+    "experiments/grounding-semantic/contract/quant_misbind_doc_exhaustive.py",
+    "experiments/grounding-semantic/contract/quant_misbind_doc_validate.py",
+    "experiments/grounding-semantic/contract/quant_misbind_contract_report.py",
+    "logs/quant_misbind_contract.log",
+    "logs/quant_misbind_mix_assoc.log",
+    "logs/quant_misbind_live_control.log",
+    "logs/quant_misbind_doc_disjoint.log",
+    "logs/quant_misbind_doc_exhaustive.log",
+    "logs/quant_misbind_doc_validate.log"
+  ]
+}

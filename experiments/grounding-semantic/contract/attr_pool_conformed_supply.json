@@ -1,0 +1,53 @@
+{
+  "mix_rows_searched": 739210,
+  "mix_distinct_claims": 538510,
+  "surfaces": {
+    "arena_ragbench_10": {
+      "claims": 0,
+      "evidence": 8645
+    },
+    "gold_full": {
+      "claims": 2699,
+      "evidence": 10228
+    },
+    "eval_B_num_compare": {
+      "claims": 2000,
+      "evidence": 736
+    },
+    "eval_C_num_rolebind": {
+      "claims": 1926,
+      "evidence": 380
+    },
+    "qlane_eval": {
+      "claims": 1001,
+      "evidence": 487
+    },
+    "H143_evalset": {
+      "claims": 1048,
+      "evidence": 547
+    },
+    "H117_heldout_pairs": {
+      "claims": 2000,
+      "evidence": 1933
+    },
+    "vitaminc_holdout_pool_superset": {
+      "claims": 55139,
+      "evidence": 54683
+    }
+  },
+  "minicheck_documents_total": 6020,
+  "minicheck_claim_rows_total": 12434,
+  "claim_rows_rejected": {
+    "in_mix": 3160
+  },
+  "documents_rejected": {},
+  "eligible_documents": 6020,
+  "eligible_claim_rows": 9274,
+  "eligible_documents_carrying_a_supported_claim": 2236,
+  "eligible_documents_carrying_BOTH_a_supported_and_an_unsupported_claim": 991,
+  "pair_ceiling_truth_removed_at_TRUTH_CAP_2": 4472,
+  "pair_ceiling_unsupported_claim": 991,
+  "eligible_documents_whose_text_also_appears_in_the_mix": 1828,
+  "eligible_documents_appearing_in_the_mix_at_label_1": 1827,
+  "note": "a document appearing in the mix is NOT excluded - the clause-C6 test keys on the pair's claim, and every claim in the mix is excluded. The document-keyed variant is measured as an executor-added probe in the verifier and reported separately"
+}

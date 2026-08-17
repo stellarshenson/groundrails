@@ -1,0 +1,105 @@
+{
+  "clause": "C7 + C8",
+  "c7": {
+    "declared_unit": "BOTH - the registration states rows AND pairs",
+    "registered_in_R18-H150_arm_run.LANES": [
+      "(\"R17-H146_lane.parquet\", \"quant_misbind\", 30_000, 15_000,",
+      "     {\"misbound_row\": 21_000, \"misbound_col\": 9_000}),",
+      "    (\"R18-H150_scaleunit_lane.parquet\", \"quant_scale_unit\", 5_540, 2_770,"
+    ],
+    "registered_in_R20-H174_arm_run.LANES": [
+      "(\"R17-H146_lane.parquet\", \"quant_misbind\", 30_000, 15_000,",
+      "     {\"misbound_row\": 21_000, \"misbound_col\": 9_000}),",
+      "    (\"R18-H150_scaleunit_lane.parquet\", \"quant_scale_unit\", 5_540, 2_770,"
+    ],
+    "registered_rows": 30000,
+    "registered_pairs": 15000,
+    "registered_families": {
+      "misbound_row": 21000,
+      "misbound_col": 9000
+    },
+    "measured_rows": 30000,
+    "measured_pairs": 15000,
+    "measured_families": {
+      "misbound_row": 21000,
+      "misbound_col": 9000
+    },
+    "rows_match": true,
+    "pairs_match": true,
+    "families_match": true,
+    "note": "both arm wrappers hard-abort on any drift in rows, pairs or family counts before a card is touched (LANE ABORT guard)"
+  },
+  "c8": {
+    "artifact": "experiments/grounding-semantic/R17-H146_lane.parquet",
+    "blake2b_64": "791663e1f62c9ae6",
+    "builder": "experiments/grounding-semantic/R17-H146_lane.py, seed 1146",
+    "sources": {
+      "tabfact": {
+        "archive": "data/external/datasets/dataset-tabfact.zip",
+        "sidecar": "data/external/datasets/dataset-tabfact.md (tracked)",
+        "licence": "CC-BY-4.0 (from the tracked sidecar)",
+        "selection_predicate": "the *__train.parquet member of the archive, deduplicated on table_text; tables with >= 4 body rows of uniform width and >= 2 columns; a label column and at least one numeric column must exist",
+        "retrieval": "scripts/fetch_grounding_datasets.py (date not recorded in the sidecar)"
+      },
+      "feverous": {
+        "archive": "tmp/R14_H133_feverous.parquet",
+        "sidecar": "NONE in data/external/datasets",
+        "licence": "NOT RECORDED anywhere in the repository",
+        "selection_predicate": "deduplicated on `evidence`; rows containing a [ROW] marker, parsed into >= 5 uniform-width rows of >= 3 cells",
+        "retrieval": "not recorded; the file is an R14-H133 working artifact mirrored from a community HuggingFace export (KingTechnician/feverous-label-evidence, per R10-H108_data.py) rather than an admitted corpus",
+        "campaign_status": "R20-H177_lane_common.feverous_available() records admitted=False for this exact file: 'an R14-H133 working file, not an admitted lane supply with its own provenance verdict'"
+      }
+    },
+    "internal_structure": {
+      "rows": 30000,
+      "pairs": 15000,
+      "rows_per_pair": 2.0,
+      "pairs_with_exactly_two_rows": 15000,
+      "distinct_claims": 29699,
+      "distinct_evidence_chunks": 12889,
+      "distinct_documents": 7514,
+      "distinct_columns": 2157,
+      "distinct_row_keys": 11412,
+      "distinct_claim_chunk_pairs": 30000,
+      "max_rows_per_chunk": 6,
+      "mean_rows_per_chunk": 2.327566,
+      "max_pairs_per_document": 2,
+      "mean_pairs_per_document": 1.996274,
+      "templates": {
+        "3": 5000,
+        "0": 5000,
+        "5": 5000,
+        "2": 5000,
+        "4": 5000,
+        "1": 5000
+      },
+      "serial_forms": {
+        "markdown": 2924,
+        "row_prose": 9078,
+        "json_records": 1384,
+        "keyvalue": 2946,
+        "pipe": 4730,
+        "narrative": 8938
+      },
+      "rows_by_source": {
+        "tabfact": 19890,
+        "feverous": 10110
+      },
+      "duplicate_claim_strings": 301,
+      "label_balance": {
+        "1": 15000,
+        "0": 15000
+      }
+    },
+    "public_repository_check": {
+      "client_or_company_name_in_lane_text": null,
+      "method": "see the scan in this stage's output below",
+      "sources_present": [
+        "feverous",
+        "tabfact"
+      ],
+      "all_sources_public": true
+    }
+  },
+  "seconds": 0.7
+}

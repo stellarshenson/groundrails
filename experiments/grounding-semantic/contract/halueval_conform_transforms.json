@@ -1,0 +1,85 @@
+{
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates.",
+  "baseline": {
+    "claim_only_probe_auroc": 0.9519,
+    "negative_rows_fully_attested": 678,
+    "negative_rows": 20000
+  },
+  "variants": {
+    "first_20_word_tokens": {
+      "what": "the claim's first 20 word tokens - equalises the length channel at the top end",
+      "claim_only_probe_auroc": 0.9131,
+      "clears_bar_0.55": false,
+      "claim_char_length_auroc": 0.3564,
+      "label_integrity_cost": {
+        "negatives_newly_fully_attested_after_the_rewrite": 507,
+        "negatives_fully_attested_rate_before": 0.0339,
+        "negatives_fully_attested_rate_after": 0.0592,
+        "positive_mean_containment_after": 0.9131,
+        "negative_mean_containment_after": 0.7367,
+        "structural_C1_collisions_after": 0,
+        "claims_rewritten_to_empty": 2
+      }
+    },
+    "first_120_chars": {
+      "what": "the claim's first 120 characters",
+      "claim_only_probe_auroc": 0.9238,
+      "clears_bar_0.55": false,
+      "claim_char_length_auroc": 0.372,
+      "label_integrity_cost": {
+        "negatives_newly_fully_attested_after_the_rewrite": 216,
+        "negatives_fully_attested_rate_before": 0.0339,
+        "negatives_fully_attested_rate_after": 0.0441,
+        "positive_mean_containment_after": 0.9012,
+        "negative_mean_containment_after": 0.7247,
+        "structural_C1_collisions_after": 0,
+        "claims_rewritten_to_empty": 0
+      }
+    },
+    "first_sentence": {
+      "what": "the claim's first sentence only",
+      "claim_only_probe_auroc": 0.9361,
+      "clears_bar_0.55": false,
+      "claim_char_length_auroc": 0.2069,
+      "label_integrity_cost": {
+        "negatives_newly_fully_attested_after_the_rewrite": 625,
+        "negatives_fully_attested_rate_before": 0.0339,
+        "negatives_fully_attested_rate_after": 0.0651,
+        "positive_mean_containment_after": 0.9179,
+        "negative_mean_containment_after": 0.736,
+        "structural_C1_collisions_after": 27,
+        "claims_rewritten_to_empty": 0
+      }
+    },
+    "normalised_first_20_tokens": {
+      "what": "lowercased, punctuation stripped, first 20 tokens - the strongest register erasure that still leaves a readable claim",
+      "claim_only_probe_auroc": 0.9131,
+      "clears_bar_0.55": false,
+      "claim_char_length_auroc": 0.3564,
+      "label_integrity_cost": {
+        "negatives_newly_fully_attested_after_the_rewrite": 507,
+        "negatives_fully_attested_rate_before": 0.0339,
+        "negatives_fully_attested_rate_after": 0.0592,
+        "positive_mean_containment_after": 0.9131,
+        "negative_mean_containment_after": 0.7367,
+        "structural_C1_collisions_after": 0,
+        "claims_rewritten_to_empty": 2
+      }
+    },
+    "shape_only_content_masked": {
+      "what": "content masked (destroys the claim; measured as the floor of what register alone supplies)",
+      "claim_only_probe_auroc": 0.8972,
+      "clears_bar_0.55": false,
+      "claim_char_length_auroc": 0.318,
+      "label_integrity_cost": {
+        "negatives_newly_fully_attested_after_the_rewrite": 34,
+        "negatives_fully_attested_rate_before": 0.0339,
+        "negatives_fully_attested_rate_after": 0.0018,
+        "positive_mean_containment_after": 0.4643,
+        "negative_mean_containment_after": 0.6495,
+        "structural_C1_collisions_after": 170,
+        "claims_rewritten_to_empty": 0
+      }
+    }
+  }
+}

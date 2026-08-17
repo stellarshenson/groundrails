@@ -1,0 +1,50 @@
+{
+  "experiment": "R20-H177 eval_B rebuild - supply frontier",
+  "scope": "measurement only",
+  "member": {
+    "rows": 92585,
+    "distinct_table_id": 13182,
+    "distinct_table_id_stem": 12753,
+    "distinct_table_text_normalised": 13143
+  },
+  "tabfact_train": {
+    "usable_tables": 8816,
+    "distinct_ids": 8816,
+    "distinct_stems": 8541,
+    "ids_in_member": 8816,
+    "stems_in_member": 8541,
+    "stems_NOT_in_member": 0,
+    "eval_half_under_banked_split": 1052,
+    "eval_half_under_stem_split": 1027,
+    "clean_eval_supply_after_stem_exclusion": 0
+  },
+  "tabfact_test": {
+    "usable_tables": 1122,
+    "distinct_ids": 1122,
+    "distinct_stems": 1120,
+    "ids_in_member": 0,
+    "stems_in_member": 55,
+    "table_text_identical_to_a_member_table": 1,
+    "clean_after_stem_AND_text_exclusion": 1067,
+    "clean_eval_half_under_stem_split": 124
+  },
+  "tabfact_validation": {
+    "usable_tables": 1174,
+    "distinct_ids": 1174,
+    "distinct_stems": 1170,
+    "ids_in_member": 0,
+    "stems_in_member": 69,
+    "table_text_identical_to_a_member_table": 3,
+    "clean_after_stem_AND_text_exclusion": 1104,
+    "clean_eval_half_under_stem_split": 138
+  },
+  "edgar": {
+    "chunks": 34014,
+    "documents": 4297,
+    "eval_documents_under_banked_split": 507,
+    "eval_chunks_under_banked_split": 4106,
+    "note": "EDGAR doc ids carry no `1-`/`2-` prefix ambiguity, so the stem rule is the identity on this half and the banked split stands"
+  },
+  "elapsed_s": 2.1,
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+}

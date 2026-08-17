@@ -1,0 +1,31 @@
+{
+  "experiment": "R20-H175b BASELINE LEG - flagship read on the question-relevance contrast eval (measurement only, zero training)",
+  "registration": "docs/experiments/semantic-grounding-experiments.md, blocks 'R20-H175b QUESTION CONDITIONING' and 'R20-H175b STAGE 0 COMPLETE' (2026-08-16/17)",
+  "structural_note": "both rows of a pair carry the SAME claim and SAME evidence chunk; the label lives entirely in the question and the flagship has no question channel, so exactly 0.5000 is the CORRECT result. The read confirms the eval loads and scores through the standard path and fixes the floor at exactly chance rather than approximately chance",
+  "registered_prediction": "near-chance",
+  "arm_primary_after_training": ">= 0.80, read against the banked surface floor",
+  "banked_surface_floor": 0.5816,
+  "banked_surface_floor_provenance": "R20-H175b STAGE 0 COMPLETE, coordinator disposition 3 - carried through, NOT recomputed here",
+  "n_rows": 2002,
+  "per_draw": {
+    "h150d1": {
+      "checkpoint": "R18-H150-arm-draw1",
+      "auroc": 0.5,
+      "n_pairs": 1001,
+      "pairs_bit_identical": 1001,
+      "pairs_not_bit_identical": 0,
+      "max_abs_within_pair_delta": 0.0,
+      "mean_abs_within_pair_delta": 0.0
+    },
+    "h150d2": {
+      "checkpoint": "R18-H150-arm-draw2",
+      "auroc": 0.5,
+      "n_pairs": 1001,
+      "pairs_bit_identical": 1001,
+      "pairs_not_bit_identical": 0,
+      "max_abs_within_pair_delta": 0.0,
+      "mean_abs_within_pair_delta": 0.0
+    }
+  },
+  "timestamp": "2026-08-17 05:41:12"
+}

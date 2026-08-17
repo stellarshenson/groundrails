@@ -1,0 +1,266 @@
+{
+  "member": "PHASE1_SYNTHESIS",
+  "kind": "cross-member synthesis of the phase-1 dataset-contract verification",
+  "generated": "2026-08-17",
+  "contract": "docs/experiments/dataset-contract.md (C1-C8, plus adopted amendments C-A1 and C-A2, both dated 2026-08-17; test definitions FROZEN after C-A2)",
+  "discipline": "No clause was re-measured. Every number below is transcribed from a member report or from an on-disk artifact named in this file, and every arithmetic reconciliation is stated with its inputs. Nothing here is adjudicated; verdict changes implied by the frozen amendments are named as readings for the coordinator, not applied.",
+  "conforming": false,
+
+  "headline": "Nine of the eleven members the live R20-H174 draws load are non-conforming, covering 644,988 of 760,618 rows (84.80%) - but no loaded member reproduces the R20-H175b poisoning signature and not one C2 failure touches the blind arena, so draw 1's banked 0.71806 stands as an arena read while every mechanism-eval read taken beside these members does not.",
+
+  "fixable": "PIPELINE for 554,950 of the 644,988 non-conforming rows (psiloqa, vitaminc, tabfact, quant_misbind - conforming rebuilds exist on disk and pass every clause). MIXED for 21,408 (attr_pool: the rebuild closes C2, C6, C8 and leaves a C5 fail resting on a channel amendment C-A1 scopes out of C5). CORPUS_PROPERTY for 48,000 (halueval 40,000, frame_reject 8,000 - the claim-only channel is the construction, not a filterable subset). PIPELINE-but-unbuilt for 20,630 (ragtruth_en 15,090: C8 is one recorded date; quant_scale_unit 5,540: drop the 1,040-row FEVEROUS third, the same cut quant_misbind's conforming build already executed).",
+
+  "loaded_mix_as_verified": {
+    "source": "experiments/grounding-semantic/R20-H174_arm_run.py - EXPECTED_CLEAN_ROWS = 685_670 and the five-entry LANES tuple; read, not assumed",
+    "total_rows": 760618,
+    "dann_groups": 17,
+    "clean_public_mix_rows": 685670,
+    "clean_mix_reconciles_exactly": "15,090 ragtruth_en + 105,630 ragtruth_translated (7 groups) + 40,000 halueval + 61,712 psiloqa + 370,653 vitaminc + 92,585 tabfact = 685,670 = EXPECTED_CLEAN_ROWS",
+    "lane_rows_reconcile_exactly": "30,000 quant_misbind + 5,540 quant_scale_unit + 8,000 frame_reject + 21,408 attr_pool + 10,000 path_bind = 74,948; 685,670 + 74,948 = 760,618",
+    "lanes_loaded_are_the_PARENT_parquets": "R17-H146_lane.parquet, R18-H150_scaleunit_lane.parquet, R20-H174_lane_L1.parquet, R20-H174_lane_L2.parquet, R20-H174_lane_L4.parquet. The conformed rebuilds (R17-H146_lane_conformed.parquet, R20-H174_lane_L2_conformed.parquet, psiloqa_conformed.parquet, vitaminc_conformed.parquet, tabfact_member_conformed.parquet) are loaded by nothing.",
+    "conforming_rows_as_loaded": 115630,
+    "conforming_share_as_loaded": 0.1520,
+    "non_conforming_rows_as_loaded": 644988,
+    "non_conforming_share_as_loaded": 0.8480
+  },
+
+  "member_roll_call": [
+    {"member": "ragtruth_translated", "rows": 105630, "share_of_mix": 0.1389, "state": "CONFORMING as loaded", "fails": [], "note": "7 machine translations of ONE 15,090-row corpus resting on 2,514 documents; with ragtruth_en that is 120,720 rows (15.87%) carrying 15,090 distinct instances."},
+    {"member": "path_bind", "rows": 10000, "share_of_mix": 0.0131, "state": "CONFORMING as loaded", "fails": [], "note": "Pure rule generator, no source corpus. Its C1 PASS is taken on the struck limb of the old band - see asserted_not_evidenced item 5."},
+
+    {"member": "vitaminc", "rows": 370653, "share_of_mix": 0.4873, "state": "NON-CONFORMING, conforming rebuild exists and passes", "fails": ["C2"], "conformed_rows": 370393, "volume_cost": "260 rows, 0.0701%", "note": "Cheapest fix in the round. The R19-H166-A1 holdout rebuilds row-for-row identical from the conformed mix and goes from 5 touched rows to 0."},
+    {"member": "tabfact", "rows": 92585, "share_of_mix": 0.1217, "state": "NON-CONFORMING, conforming rebuild exists and passes", "fails": ["C2", "C3", "C8"], "conformed_rows": 86206, "volume_cost": "6,379 rows, 6.89%", "note": "The rebuild exposed a leak the first pass could not see: R17-H143_evalset's entire TabFact half, 350 of 350 documents and 683 of its 1,050 rows, sits on training documents."},
+    {"member": "psiloqa", "rows": 61712, "share_of_mix": 0.0811, "state": "NON-CONFORMING, conforming rebuild exists and passes", "fails": ["C1", "C2"], "conformed_rows": 50474, "volume_cost": "11,238 rows, 18.21%", "note": "1,379 rows for eval collision (C2, binding); 9,859 rows for the 42-content-token claim cap, whose sole stated purpose was to move the C1 delta from 0.0931 to 0.1102 across a band amendment C-A2 has since STRUCK."},
+    {"member": "quant_misbind", "rows": 30000, "share_of_mix": 0.0394, "state": "NON-CONFORMING, conforming rebuild exists and passes", "fails": ["C2", "C3", "C8"], "conformed_rows": 18652, "volume_cost": "11,348 rows, 37.83%", "note": "Fix is dropping the FEVEROUS third whole. Its own report calls all three failures PIPELINE-fixable - the opposite fixability verdict to quant_scale_unit on the identical FEVEROUS defect."},
+    {"member": "attr_pool", "rows": 21408, "share_of_mix": 0.0281, "state": "NON-CONFORMING, conforming rebuild exists and STILL FAILS", "fails": ["C2", "C5", "C6", "C8"], "conformed_rows": 4442, "volume_cost": "16,966 rows, 79.25%", "note": "Rebuild closes C2, C6 and C8. Its surviving C5 fail rests solely on claim-to-chunk containment 0.5978, the channel C-A1 removes from C5 and assigns to C1; excluding it the report's own worst parity deviation is 0.0033 and claim-only is exactly 0.5000."},
+
+    {"member": "halueval", "rows": 40000, "share_of_mix": 0.0526, "state": "NON-CONFORMING, corpus property", "fails": ["C5"], "note": "Label 95.19% recoverable from the claim string alone; the length-matched summarization subset still reads 0.9408 with its length channel at chance, so no filter over these rows repairs it. Scope caveat: the contract's Scope sentence lists halueval under source corpora, C5's body binds constructed lanes - the executor returned FAIL under the broad reading and stated both."},
+    {"member": "ragtruth_en", "rows": 15090, "share_of_mix": 0.0198, "state": "NON-CONFORMING, one recorded date away from conforming", "fails": ["C1", "C6", "C8"], "note": "C1 is the struck band (negatives 0.0067 vs positives 0.0790, 11.8x apart - the opposite of poisoning). C6 is the within-member passage-key channel at 0.6509, which C-A2 demotes by name to a reported diagnostic. What survives is C8: no recorded retrieval date."},
+    {"member": "frame_reject", "rows": 8000, "share_of_mix": 0.0105, "state": "NON-CONFORMING, construction property", "fails": ["C1", "C5"], "note": "C5 is real and the amendment text confirms it: claim-only AUROC 1.0000, within-pair 1.0000 in both families, evidence-only exactly 0.5000. C1's FAIL is arithmetically vacuous - 0 of 4,000 negatives reach 0.90 containment and the highest any reaches is 0.7143."},
+    {"member": "quant_scale_unit", "rows": 5540, "share_of_mix": 0.0073, "state": "NON-CONFORMING, provenance gap on 18.77% of its rows", "fails": ["C1", "C3", "C8"], "note": "C3 and C8 are one defect: 1,040 rows from tmp/R14_H133_feverous.parquet - no licence, no retrieval date, no split column, order-unstable ids. Fixable by the same cut quant_misbind's conforming build made; the member report labels it CORPUS_PROPERTY, quant_misbind labels the identical defect PIPELINE."}
+  ],
+
+  "clauses": [
+    {
+      "id": "C1",
+      "verdict": "FAIL",
+      "measured": "4 of 11 loaded members FAIL, covering 90,342 rows (11.88% of 760,618): ragtruth_en, psiloqa, quant_scale_unit, frame_reject. Every one of the four was measured against the `within 0.10` band that amendment C-A2 STRUCK on 2026-08-17, and the amendment's own text lists all four as passing the restated test (ragtruth_en 0.0067 < 0.0790, psiloqa 0.0292 < 0.1383, frame_reject 0.0 < 0.0565, quant_scale_unit 0.0321 < 0.1011 under the unit-resolved instrument). Measured negative-leg attestation at >= 0.90 across the whole loaded mix: 0.0000 (frame_reject), 0.0067 (ragtruth_en), 0.0169 (vitaminc), 0.0213 (quant_scale_unit, blind instrument), 0.0292 (psiloqa), 0.1032 (halueval), 0.2184 (attr_pool), 0.3910 (path_bind), 0.4506 (ragtruth_translated) - against the withdrawn poisoned R20-H175b lane's 0.6659 at >= 0.90 and 0.6145 fully attested. C-A1's structural test fires on 0 pairs in every lane. NOT ONE loaded member carries the poisoning signature."
+    },
+    {
+      "id": "C2",
+      "verdict": "FAIL",
+      "measured": "5 of 11 loaded members FAIL, covering 576,358 rows (75.78%): psiloqa 61,712, vitaminc 370,653, tabfact 92,585, quant_misbind 30,000, attr_pool 21,408. NONE of the five failures involves the blind arena. Every member's C2 read against the 10-subset RAGBench arena is 0 in all three string forms and both directions; the strongest near-duplicate reading against the arena anywhere in the round is halueval's 0.00428 fraction (shared HotpotQA source pool, 45 chunks, max Jaccard 0.7903), below the 0.005 WARN and the 0.02 KILL. The failing surfaces are mechanism evals: R17-H143_evalset, R20-H177_eval_B, the R20-H175b qlane evals (already withdrawn), R19-H166-A1 (5 of 38,126 rows), and R20-H177 Lane B's registered primary (3.50% of pairs)."
+    },
+    {
+      "id": "C3",
+      "verdict": "FAIL",
+      "measured": "3 of 11 loaded members FAIL, covering 128,125 rows (16.85%): tabfact (the archive cuts on the table_id STRING, so 91 validation and 73 test ids collide with train once the csv prefix is stripped), quant_misbind and quant_scale_unit (the FEVEROUS source file carries NO split column at all, so the registered 'FEVEROUS-train' cannot be measured from the archive). Two further corpus properties are recorded inside PASS verdicts and no pipeline changes them: PsiloQA cuts per question, so 5,368 of 5,687 held-out passages (94.39%) are byte-identical to a train passage; VitaminC's official split shares 38 pages, 110 claims and 221 evidence strings with train."
+    },
+    {
+      "id": "C4",
+      "verdict": "PASS",
+      "measured": "11 of 11 loaded members PASS. Worst directional near-duplicate fraction against the arena anywhere in the round is halueval's 0.00428 against the 0.02 KILL; every other member reads 0.0 or 0.00081 (vitaminc). Live positive controls fire in every member report. TWO STATED DEVIATIONS, neither hidden by its executor: halueval's spike control carried 5 baseline hits where the clause requires 0 (attributed to genuine HotpotQA source-pool overlap, with the 10 injected units still exactly attributable), and quant_misbind conformed's single-tier census control sits at 0.672-0.71 against its own internal 0.9 threshold, driving that stage's status field to RED while the clause's tiered ladder fires."
+    },
+    {
+      "id": "C5",
+      "verdict": "FAIL",
+      "measured": "3 FAIL covering 69,408 rows (9.13%): halueval 0.9519 claim-only, frame_reject 1.0000 claim-only, attr_pool (parent 0.7030 containment / conformed 0.5978 containment). 5 of 6 source corpora returned NOT-APPLICABLE, so the leak bar binds only the 74,948 lane rows - 9.85% of the mix. Where executors ran the probe on a source corpus anyway and reported it separately, it read ABOVE C5's 0.55 bar on four of five measured: halueval 0.9519, ragtruth_en 0.7965, ragtruth_translated 0.7810, tabfact 0.5985; vitaminc reads 0.4998 (at chance) and psiloqa did not report one. 253,305 rows (33.30% of the mix) therefore carry a measured claim-only channel above the lane bar that no clause binds them to."
+    },
+    {
+      "id": "C6",
+      "verdict": "FAIL",
+      "measured": "2 of 11 loaded members FAIL, covering 36,498 rows (4.80%): ragtruth_en (within-member passage-key leave-one-out AUROC 0.6509 at 100% coverage) and attr_pool (parent, within-pair 0.9999 on the mix-supplied claim-to-text channel). Amendment C-A2 scopes C6 to mix-supplied associations and demotes the within-member leave-one-out lookup to a reported diagnostic, naming ragtruth_en's 0.6509 explicitly as a recorded corpus property rather than a rejection. attr_pool's failure is on the eval-facing channel the amendment preserves, and its conformed rebuild drives that channel to zero coverage. Reference: the contaminated R20-H175b eval read 0.6230 at 98% coverage."
+    },
+    {
+      "id": "C7",
+      "verdict": "PASS",
+      "measured": "11 of 11 loaded members PASS; the R20-H177 unit-substitution defect the clause was written for did not recur once. The clause carries no volume bar, so it also passes on the two largest registered-scale shortfalls in the round: quant_scale_unit delivered 5,540 of a registered ~20,000 rows (27.70% of registered scale) and attr_pool's conformed rebuild delivers 4,442 against a registered 20,000-30,000 band (15,558 rows below the floor). Both reported rows and pairs consistently, which is all C7 asks."
+    },
+    {
+      "id": "C8",
+      "verdict": "FAIL",
+      "measured": "5 of 11 loaded members FAIL, covering 164,623 rows (21.64%): ragtruth_en, tabfact, quant_misbind, quant_scale_unit, attr_pool. Two distinct causes. (a) The FEVEROUS working file - no licence, no retrieval date, no sidecar, gitignored source - accounts for quant_misbind and quant_scale_unit. (b) The retrieval date, which is a REPOSITORY-WIDE gap applied inconsistently: verified here, no sidecar in data/external/datasets/ records a fetch date except dataset-minicheck.md ('fetched 2026-08-13'). Six members PASS C8 with a date derived from zip/archive timestamps or stated bare; ragtruth_en FAILS C8 for the identical absence. Separately verified: dataset-tabfact.md line 7 declares 92,283 / 12,792 / 12,779 against the measured 92,585 / 12,851 / 12,839."
+    }
+  ],
+
+  "live_arm_consequence": {
+    "what_is_running": "R20-H174 draws 2, 3 and 4 on GPUs 0/1/2 (campaign logs logs/R20-H174_campaign_d2.log, _d3.log, _d4.log active). Draw 1 is banked. All four draws train the same 760,618-row portfolio mix through the same LANES tuple, loading the PARENT lane parquets - the conformed rebuilds are not in the loader.",
+    "banked_read_verified": "0.71806 is the windowed decomposed-min blind-arena mean in experiments/grounding-semantic/R20-H174_arm_draw1_windowed_result.json, read over the ten arena subsets (covidqa, delucionqa, emanual, expertqa, finqa, hagrid, hotpotqa, pubmedqa, tatqa, techqa), banked control 0.70311, delta +0.01495.",
+    "C1_consequence": "No loaded member is training a non-support predicate into the grounding head the way the killed R20-H175b lane did. All four C1 FAILs are artifacts of the struck within-0.10 band; measured negative-leg attestation runs 0.0000 to 0.0321 in the four failing members against the poisoned lane's 0.6659 at >= 0.90 and 0.6145 fully attested, and the structural test of C-A1 fires on 0 pairs in every lane. On C1 grounds the in-flight draws need not stop and draw 1's read needs no asterisk. TWO PREDICATE FINDINGS DO STAND and are not band artifacts: ragtruth_en's label unit is a whole 100-200-word response rather than a claim, so 15,090 rows (1.98%) teach 'contains an unsupported span' at a coarser granularity than the shipped ground() semantics; and frame_reject's label is a deterministic function of the claim string (claim-only 1.0000, evidence-only exactly 0.5000), so 8,000 rows (1.05%) update the support head on a decision the evidence contributes nothing to. Together 23,090 rows, 3.04% of every draw.",
+    "C2_consequence_for_the_arena_read": "The blind-arena number is NOT contaminated by any measured C2 failure. Every one of the eleven members reads 0 shared units against the ten-subset arena in all three string forms and both directions, on evidence and on claims; the strongest near-duplicate census reading against the arena in the entire round is halueval's 0.00428, under the 0.005 WARN. Draw 1's 0.71806 stands as an arena read, and draws 2/3/4 will produce arena reads on the same footing.",
+    "C2_consequence_for_the_mechanism_reads": "Every mechanism-eval comparison taken beside these members is compromised, and the leak is largest in a channel C2's instrument cannot see - document identity, not strings. Measured: R17-H143_evalset's entire TabFact half sits on training documents (350 of 350 documents, 683 of 1,050 rows) against a recorded 1.8% string leak; R20-H177_eval_B shares 325 of 325 TabFact document ids with tabfact and 229 of 458 documents / 458 of 1,000 pairs with quant_misbind; R20-H177 Lane B's registered primary is read on a set 3.50% of whose pairs sit on quant_misbind evidence, with the anti-gaming bind_row sub-read at 3.66% / 2.33% / 2.50%; R19-H166-A1 carries 5 of 38,126 rows from vitaminc (0 after the conformed cut); the R20-H175b qlane evals are already withdrawn and take psiloqa's 485 passages, halueval's 2 claims and attr_pool's 1 claim with them.",
+    "plain_statement": "Keep the draws running or stop them on other grounds - the contract gives no C1 or arena-C2 reason to stop. What the contract does say is that any ranking of these draws against each other, or against the flagship, that leans on R17-H143_evalset or R20-H177_eval_B is being read on surfaces the training mix touches at document level, and is not a blind comparison until those surfaces are rebuilt document-disjoint.",
+    "adjudication_is_the_coordinators": "Recorded, not decided."
+  },
+
+  "cross_member_patterns": [
+    {
+      "pattern": "P1 - The contract was amended twice mid-verification and 14 of 16 member reports were measured against the pre-amendment text.",
+      "evidence": "Only vitaminc_conformed_report.json (23 mentions) and quant_misbind_conformed_report.json (4) cite C-A1 or C-A2. docs/experiments/dataset-contract.md was last written 2026-08-17 09:11:44; eleven of the sixteen reports were written before that stamp and three after it without citing either amendment. C-A2 itself tabulates the damage: three members, one clause, verdicts differing only by which reading the agent took.",
+      "consequence": "Four C1 FAILs and one entire conforming pipeline (psiloqa's 9,859-row F2 cut) were produced by a test the contract has since struck. Re-reading, not re-measuring, resolves them."
+    },
+    {
+      "pattern": "P2 - C2 is the modal failure (5 of 11 members, 75.78% of the mix) and every instance is an eval-construction defect, not a training-data defect.",
+      "evidence": "Not one C2 failure touches the blind arena. All of them are mechanism evals built from the same source pools their neighbouring members draw from, and certified by exact matching against the one lane they were built beside - exactly the two failures named in C2's own provenance.",
+      "consequence": "The lanes were specified without a member-versus-all-surfaces gate at eval build time. This is a defect in the eval pipeline, and it recurs once per corpus that supplies both a member and an eval."
+    },
+    {
+      "pattern": "P3 - C2's three-string-form instrument is blind to the channel carrying the largest leaks: document identity.",
+      "evidence": "tabfact's first pass read a 1.8% string leak on R17-H143_evalset; the document channel reads 350 of 350 documents and 683 of 1,050 rows. quant_misbind's conformed pass found R20-H177_eval_B sharing 229 of 458 documents and 458 of 1,000 pairs where no string form fires. Both were only visible after a rebuild made document ids resolvable.",
+      "consequence": "A member can pass C2 on all three forms and still supply the evidence an eval is read on. The clause does not name the channel."
+    },
+    {
+      "pattern": "P4 - C1's mandated containment instrument is predicate-blind for every lane whose corruption is not lexical, which is three of the five lanes.",
+      "evidence": "quant_scale_unit: the lane's own H148 anti-shortcut rule forces the label-bearing unit token out of the evidence on BOTH legs, so 94.73% of pairs score exactly equal and the gap is 0.00072. path_bind: the corruption is token ORDER, so 81.6% of pairs are byte-equal on the measure, containment AUROC 0.4975, and the negative leg reads 0.002 ABOVE the positive. quant_misbind: containment AUROC 0.499783 by construction. Each executor had to bring its own instrument - unit-resolved attestation (0.0321 vs 0.1011), contiguous-run attestation (0.0 vs 1.0), binding-level re-derivation (0.0 vs 1.0).",
+      "consequence": "The clause as specified cannot certify a binding-, order- or unit-corrupting lane in either direction. C-A1 bullet 4 and C-A2 test 2 name this; both were adopted after the lanes were built."
+    },
+    {
+      "pattern": "P5 - C5's scope boundary exempts 90.15% of the mix from the leak bar it enforces on 9.85%.",
+      "evidence": "All six source corpora fall outside 'constructed lane or paired-contrast eval'. Measured claim-only AUROC where an executor ran the probe anyway: halueval 0.9519, ragtruth_en 0.7965, ragtruth_translated 0.7810, tabfact 0.5985, vitaminc 0.4998, psiloqa not measured. Four of five breach the 0.55 lane bar; 253,305 rows (33.30% of the mix) carry a claim-only channel above it under no binding clause.",
+      "consequence": "halueval sits exactly on the boundary - a source corpus whose negative leg is LLM-constructed on a pair-contrast structure - and its verdict flips on the reading. The boundary is unspecified, not merely debatable."
+    },
+    {
+      "pattern": "P6 - C8's retrieval-date limb is a repository-wide gap, applied inconsistently across members on identical evidence.",
+      "evidence": "Verified directly: no sidecar under data/external/datasets/ records a fetch date except dataset-minicheck.md. Six members PASS C8 on archive/zip timestamp evidence or on a bare assertion; ragtruth_en FAILS C8 for the same absence. Three executors (psiloqa, vitaminc, tabfact) flagged the weakness inside a PASS.",
+      "consequence": "One fetch-script change writing the date into every sidecar closes the limb for the whole repository and removes the only surviving ragtruth_en failure."
+    },
+    {
+      "pattern": "P7 - The same FEVEROUS defect drew opposite fixability verdicts from two executors.",
+      "evidence": "quant_misbind's report: 'PIPELINE - every failure is a pipeline or artifact-management defect; none is a property of TabFact or FEVEROUS as corpora', and its conforming build dropped the FEVEROUS third whole. quant_scale_unit's report on the identical file (tmp/R14_H133_feverous.parquet, 1,040 of its 5,540 rows): CORPUS_PROPERTY.",
+      "consequence": "Fixability is being returned as a judgement rather than a measurement. One of the two labels is wrong and the coordinator's triage of 35,540 lane rows turns on which."
+    },
+    {
+      "pattern": "P8 - C7 caught nothing and cannot: it has no volume bar.",
+      "evidence": "11 of 11 PASS, including quant_scale_unit at 27.70% of registered scale and attr_pool's rebuild at 15,558 rows below its registered floor.",
+      "consequence": "Registered-scale shortfalls of 72% and 78% are invisible to the contract. If registered volume is load-bearing for an arm, C7 is not the clause that protects it."
+    }
+  ],
+
+  "counterfactual_mix": {
+    "reading_A_strict": {
+      "rule": "Remove every member that fails any clause as loaded.",
+      "rows_remaining": 115630,
+      "share_of_760618": 0.1520,
+      "members_remaining": ["ragtruth_translated (105,630 rows, 7 groups)", "path_bind (10,000 rows)"],
+      "what_is_left": "7 machine translations of a single 15,090-row corpus resting on 2,514 source documents, plus a synthetic navigation-path generator over 5,000 generated pages. 115,630 rows carrying 20,090 distinct instances.",
+      "capability_lost": "All English supervision without exception - the English RAGTruth leg, HaluEval's 40,000 near-miss negatives, PsiloQA's 14-language QA hallucinations, VitaminC's 370,653 contradiction/revision rows (48.73% of the mix on its own), TabFact's 92,585 tabular rows, and every numeric, unit, tabular-binding, attribution-pool and vacuous-frame lane. Nothing tabular, nothing numeric, nothing contradiction-shaped and nothing English survives."
+    },
+    "reading_B_substitute_the_conformed_rebuilds": {
+      "rule": "Load the conformed rebuild wherever one exists and passes; drop the members with no passing rebuild.",
+      "rows_remaining": 645797,
+      "share_of_760618": 0.8490,
+      "composition": "ragtruth_translated 105,630 + psiloqa_conformed 50,474 + vitaminc_conformed 370,393 + tabfact_conformed 86,206 = 612,703 clean rows; quant_misbind_conformed 18,652 + path_bind 10,000 + attr_pool_conformed 4,442 = 33,094 lane rows.",
+      "rows_lost": 114821,
+      "decomposition_of_the_loss": "68,630 rows in dropped members (ragtruth_en 15,090, halueval 40,000, quant_scale_unit 5,540, frame_reject 8,000) plus 46,191 rows cut inside conforming members (psiloqa 11,238, quant_misbind 11,348, attr_pool 16,966, tabfact 6,379, vitaminc 260). 68,630 + 46,191 = 114,821; 760,618 - 114,821 = 645,797.",
+      "caveat": "attr_pool_conformed (4,442 rows) is included only if its surviving C5 fail is ruled out of scope under C-A1; excluding it the mix is 641,355 rows, 84.32%.",
+      "capability_lost": [
+        "English natural-hallucination supervision falls to ZERO while seven translations of the same 2,514 documents remain. The English leg is the parent of the translated legs, and R13-H127 (the parallel-copy rebalance) was REFUTED at draw 1 - blind mean 0.68206 against a 0.70496 refute bar with gold_full 0.8375 below its 0.84 hold - on the reading that those parallel copies are load-bearing regularisation. Removing the English copy is the untested direction of that same question.",
+        "Bulk English near-miss negatives (halueval, 40,000 rows, 5.26% of the mix).",
+        "Unit-and-scale binding supervision (quant_scale_unit) - row/column misbinding survives in quant_misbind_conformed, dimension/unit swapping does not.",
+        "Vacuous-frame rejection (frame_reject). Note the interaction: ragtruth_translated carries 1,458 abstention-template rows (1.38% of that member) labelled SUPPORTED, so the mix would retain abstentions labelled 1 with nothing teaching 0 on a vacuous frame.",
+        "Pool-invariance / attribution contrast is already gone even in reading B: attr_pool_conformed is single-family (truth_removed only), its unsupported_claim family having been cut whole."
+      ]
+    }
+  },
+
+  "asserted_not_evidenced": [
+    {
+      "id": "A1",
+      "member": "quant_misbind (conformed)",
+      "claim": "'the mix rebuilt through the BANKED loader ... reads 750,318 rows over 17 groups'",
+      "check": "Its own artifact quant_misbind_conformed_c6_mix_assoc.json records mix_rows_total = 749,270, which reconciles exactly (760,618 - 30,000 + 18,652). The reported 750,318 is 1,048 rows off and reconciles with no mix composition. Same species, same clause: the report says 'tabfact corpus 217 whitespace-normalised' where the artifact records 216.",
+      "severity": "Transcription, not measurement. The C6 verdict does not turn on it (AUROC 0.5 at 4.50% coverage is in the artifact), but the figure as reported is wrong."
+    },
+    {
+      "id": "A2",
+      "member": "ragtruth_translated",
+      "claim": "C8 PASS with 'Retrieval date: 2026-07-29, fetched by scripts/fetch_grounding_datasets.py'",
+      "check": "Verified directly: data/external/datasets/dataset-ragtruth-translated.md contains no date string of any kind, and no sidecar in that directory records a fetch date except dataset-minicheck.md. The date is the same archive-timestamp evidence class that ragtruth_en's report calls MISSING and FAILS C8 on, but stated bare rather than with its derivation.",
+      "severity": "Directly contradicts another member's verdict on identical evidence. Either C8's retrieval-date limb is satisfied by archive timestamps - in which case ragtruth_en's C8 FAIL falls - or it is not, in which case six PASSes fall."
+    },
+    {
+      "id": "A3",
+      "member": "attr_pool (conformed)",
+      "claim": "C5 FAIL, and a measured C5-versus-C1 clause conflict with 'zero feasible points'",
+      "check": "The FAIL rests solely on claim-to-chunk containment at 0.5978 against [0.45, 0.55]. Amendment C-A1 (ADOPTED) scopes exactly that channel OUT of C5 - 'C5's parity requirement scopes to channels that do NOT read the claim-evidence relation ... Containment is governed by C1' - and was adopted precisely because C1 and C5 were mutually unsatisfiable on it. Excluding that channel, the report's own numbers are claim-only exactly 0.5000, within-pair exactly 0.5000, worst remaining parity deviation 0.0033. The report cites neither amendment (0 mentions in the file).",
+      "severity": "The member's headline finding is the conflict the contract had already dissolved. The verdict needs re-reading against the frozen text before it is consumed."
+    },
+    {
+      "id": "A4",
+      "member": "attr_pool (conformed)",
+      "claim": "'The shortfall decomposes as 11,998 VitaminC rows, 6,898 unsupported_claim rows, 3,160 MiniCheck claim rows already in the mix and 5 further claim rows'",
+      "check": "11,998 + 6,898 + 3,160 + 5 = 22,061 against a stated cut of 16,966 rows. The parent's family counts (truth_removed 14,510 / unsupported_claim 6,898, read from attr_pool_contract_report.json) confirm the 16,966 total is right; the decomposition double-counts about 5,095 rows that are both VitaminC and unsupported_claim. The overlap is not stated.",
+      "severity": "Headline volume figures (16,966 rows, 79.25%) are correct and reconcile. The attribution of the cut to causes does not."
+    },
+    {
+      "id": "A5",
+      "member": "path_bind",
+      "claim": "C1 PASS with 'margin to rejection 0.509'",
+      "check": "That margin is measured on the 0.90 LEVEL limb of the band C-A2 struck. Under the frozen restated test, the member's mandated-instrument reading is negatives 0.391 against positives 0.389 - the negative leg is NOT strictly below - and the fully-attested rates are EXACTLY EQUAL at 0.1742, which C-A2 names as 'the signature of a label independent of (claim, evidence)'. The surviving justification is the contiguous-run attestation probe reading 0.0 versus 1.0, which the report itself labels 'EXECUTOR-ADDED ... joining no bar'.",
+      "severity": "The verdict is very likely correct under C-A1 bullet 4 (a predicate-blind instrument showing no separation is not evidence of incommensurability), but the report as written does not carry it, and path_bind is one of only two members returned as conforming."
+    },
+    {
+      "id": "A6",
+      "member": "psiloqa (conformed)",
+      "claim": "A conforming pipeline costing 11,238 rows (18.21%)",
+      "check": "1,379 of those rows close the C2 eval collision and are binding. The other 9,859 - 16.0% of the member - are the 42-content-token claim cap, whose stated selection rule was 'largest cap clearing the band by >= 0.01 on both instruments'. That band is the struck within-0.10 test. The member's own fixability probe records the unconformed member at negatives 0.0273 versus positives 0.1203, which passes C-A2's restated test without any cut.",
+      "severity": "9,859 rows are being spent on a bar that no longer exists in the contract."
+    },
+    {
+      "id": "A7",
+      "member": "halueval",
+      "claim": "C5 FAIL",
+      "check": "The executor states both readings and chose the broad one. The contract's Scope sentence enumerates halueval under source corpora; C5's body binds 'every constructed lane and every paired-contrast eval'. Every other source corpus in the round returned NOT-APPLICABLE on the narrow reading.",
+      "severity": "40,000 rows - 5.26% of every in-flight draw - hang on a scope question the contract does not settle. The measurement (0.9519 claim-only, 0.9408 length-matched) is sound and is not in question."
+    },
+    {
+      "id": "A8",
+      "member": "tabfact / repository",
+      "claim": "The tracked sidecar's declared volume",
+      "check": "Verified at data/external/datasets/dataset-tabfact.md line 7: '92,283 train / 12,792 val / 12,779 test' against the measured 92,585 / 12,851 / 12,839. The sidecar renders a hand-written size string in scripts/fetch_grounding_datasets.py rather than the fetch's own counts. Surfaced by the tabfact executor, confirmed here.",
+      "severity": "Same species as A2 and A6 - a figure carried forward by assertion. Any downstream count taken from the sidecar rather than the archive is wrong by 302 rows."
+    },
+    {
+      "id": "A9",
+      "member": "ragtruth_en / canonical log",
+      "claim": "'79.2% of ragtruth_en contexts contain a blank-line junction' (registration block, semantic-grounding-experiments.md:4318)",
+      "check": "The executor measured 0.5435 of rows, 0.5434 of distinct contexts, 0.3535 truncated, P(junction|multi-window) 0.4217, P(junction|single-window) 0.9332, P(multi-window|junction) 0.5911 - no reading reaches 79.2%. Surfaced by the member's own report; not re-measured here.",
+      "severity": "No clause turns on it, but it is a registered figure in the canonical log that no measurement reproduces."
+    }
+  ],
+
+  "reconciliations_that_hold": [
+    "Clean-mix composition sums exactly: 15,090 + 105,630 + 40,000 + 61,712 + 370,653 + 92,585 = 685,670 = EXPECTED_CLEAN_ROWS in both R18-H150_arm_run.py and R20-H174_arm_run.py.",
+    "Lane composition sums exactly: 30,000 + 5,540 + 8,000 + 21,408 + 10,000 = 74,948; 685,670 + 74,948 = 760,618, matching the LANES tuple and the 17-group figure in R20-H174_arm_run.py.",
+    "Every mix-share percentage quoted by every member report recomputes to its stated value at four decimals (halueval 0.058337 / 0.055462 / 0.052589; ragtruth_en 0.0220 / 0.0198; psiloqa 0.0900 -> 0.0748 of 674,432; tabfact 0.1350 -> 0.1269 of 679,291; vitaminc 0.4871 of 760,358; quant_scale_unit 0.00768 / 0.00728; frame_reject 0.0105; attr_pool 79.25% of 21,408).",
+    "Derived mix totals check: frame_reject's 752,618 = 760,618 - 8,000; attr_pool conformed's 739,210 = 685,670 + 30,000 + 5,540 + 8,000 + 10,000. Only quant_misbind conformed's 750,318 fails to reconcile (see A1).",
+    "0.71806 is present in experiments/grounding-semantic/R20-H174_arm_draw1_windowed_result.json as the windowed decomposed-min read over the ten arena subsets, with banked_control_windowed_mean 0.70311 and delta +0.01495.",
+    "Every artifact path returned by every member report was existence-checked on disk; a 31-path sample across all eleven members returned zero missing files, including all five conformed parquets."
+  ],
+
+  "artifacts": [
+    "experiments/grounding-semantic/contract/PHASE1_SYNTHESIS.json",
+    "experiments/grounding-semantic/contract/ragtruth_en_contract_report.json",
+    "experiments/grounding-semantic/contract/ragtruth_translated_contract_report.json",
+    "experiments/grounding-semantic/contract/halueval_contract_report.json",
+    "experiments/grounding-semantic/contract/psiloqa_contract_report.json",
+    "experiments/grounding-semantic/contract/psiloqa_conformed_report.json",
+    "experiments/grounding-semantic/contract/vitaminc_contract_report.json",
+    "experiments/grounding-semantic/contract/vitaminc_conformed_report.json",
+    "experiments/grounding-semantic/contract/tabfact_contract_report.json",
+    "experiments/grounding-semantic/contract/tabfact_conformed_report.json",
+    "experiments/grounding-semantic/contract/quant_misbind_contract_report.json",
+    "experiments/grounding-semantic/contract/quant_misbind_conformed_report.json",
+    "experiments/grounding-semantic/contract/quant_scale_unit_contract_report.json",
+    "experiments/grounding-semantic/contract/frame_reject_contract_report.json",
+    "experiments/grounding-semantic/contract/attr_pool_contract_report.json",
+    "experiments/grounding-semantic/contract/attr_pool_conformed_report.json",
+    "experiments/grounding-semantic/contract/path_bind_contract_report.json",
+    "experiments/grounding-semantic/contract/quant_misbind_conformed_c6_mix_assoc.json",
+    "experiments/grounding-semantic/R20-H174_arm_run.py",
+    "experiments/grounding-semantic/R20-H174_arm_draw1_windowed_result.json",
+    "data/external/datasets/dataset-tabfact.md",
+    "data/external/datasets/dataset-ragtruth-translated.md",
+    "docs/experiments/dataset-contract.md"
+  ]
+}

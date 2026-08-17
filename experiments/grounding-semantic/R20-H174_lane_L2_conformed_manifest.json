@@ -1,0 +1,221 @@
+{
+  "experiment": "R20-H174 lane L2 CONFORMED - attr_pool rebuilt against docs/experiments/dataset-contract.md",
+  "registration": "docs/experiments/semantic-grounding-experiments.md, block 'R20-H174 HAGRID/EMANUAL PORTFOLIO ARM'",
+  "tag": "attr_pool",
+  "dann_group": "attr_pool",
+  "mix_loader": "drop-in for R18-H150_arm_run.make_build_mix - columns claim / chunk / label / pair_id / neg_family; chunk is read UNTRUNCATED and windowed 1500/750 by the loader, which is what turns a pool into a multi-window bag",
+  "seed": 2174,
+  "rows": 4442,
+  "pairs": 2221,
+  "label_balance": {
+    "label_1": 2221,
+    "label_0": 2221,
+    "positive_share": 0.5
+  },
+  "families": {
+    "truth_removed": 4442
+  },
+  "source_rows": {
+    "minicheck": 4442
+  },
+  "family_by_source": {
+    "minicheck:truth_removed": 4442
+  },
+  "sources": {
+    "minicheck": {
+      "dataset": "lytang/C2D-and-D2C-MiniCheck",
+      "archive": "data/external/datasets/dataset-minicheck.zip",
+      "licence": "MIT",
+      "wall": "R19_minicheck_gate.json - GREEN on the R14-H136 8-gram / Jaccard 0.3 wall against all ten walled arena corpora"
+    }
+  },
+  "isolation": "FAVA / PubHealth / FinDVer / AttributionBench are NOT read - the registration isolates this lane from the four H159 lanes diagnosed as the table-collapse collateral",
+  "pool": {
+    "distractor_min": 3,
+    "distractor_max": 7,
+    "bm25_topk": 40,
+    "containment_guard": 0.75,
+    "passage_max_chars": 1400,
+    "separator": "'\\n\\n'",
+    "mean_depth": 5.987,
+    "depth_distribution": {
+      "5": 864,
+      "4": 900,
+      "7": 888,
+      "6": 930,
+      "8": 860
+    }
+  },
+  "document_disjointness": {
+    "truth_cap": 2,
+    "distractor_cap": 12,
+    "documents_as_truth": 2222,
+    "documents_as_pool_member": 4475,
+    "documents_in_both_roles": 1734,
+    "note": "a document may appear as truth in one pair and as a distractor in another - never inside the pair whose truth it is, which is enforced by the retriever's exclude set and re-checked by pool_composition_audit",
+    "max_truth_uses": 1,
+    "max_distractor_uses": 12
+  },
+  "build_skips": {
+    "truth_removed_skipped": 12
+  },
+  "char_stats": {
+    "claim": {
+      "n": 4442,
+      "mean": 68.0,
+      "median": 60,
+      "p10": 33,
+      "p90": 107,
+      "min": 15,
+      "max": 377
+    },
+    "chunk": {
+      "n": 4442,
+      "mean": 5112.2,
+      "median": 5079,
+      "p10": 3330,
+      "p90": 6930,
+      "min": 2244,
+      "max": 8819
+    }
+  },
+  "diversity": {
+    "distinct_claims": 1460,
+    "distinct_chunks": 4442,
+    "distinct_truth_documents": 2221
+  },
+  "window_census": {
+    "windowing": "1500/750, final window flush to the end (byte-identical to R8-H101 / R16-H142)",
+    "rows": 4442,
+    "mean_windows": 6.3181,
+    "median_windows": 6,
+    "max_windows": 11,
+    "multi_window_rows": 4442,
+    "multi_window_share": 1.0
+  },
+  "verify": {
+    "pair_integrity": {
+      "pairs": 2221,
+      "malformed": 0,
+      "bar": "0 malformed",
+      "pass": true,
+      "examples": []
+    },
+    "pool_composition_audit": {
+      "pairs": 2221,
+      "errors": 0,
+      "bar": "0 errors",
+      "pass": true,
+      "examples": []
+    },
+    "pool_non_support": {
+      "negative_rows": 2221,
+      "max_claim_containment_in_any_pool_member": 0.7368,
+      "rows_over_guard": {},
+      "guard": 0.75,
+      "bar": "0 label-0 rows carry a pool member reaching the guard - no passage in a negative's pool may look like support",
+      "pass": true
+    },
+    "surface_parity": {
+      "auroc": {
+        "claim_char_length": 0.5,
+        "claim_token_count": 0.5,
+        "chunk_char_length": 0.5033,
+        "claim_chunk_containment": 0.5978
+      },
+      "report_only": [
+        "claim_chunk_containment"
+      ],
+      "bar": "each barred channel in [0.45, 0.55]",
+      "worst_deviation": 0.0033,
+      "pass": true
+    },
+    "claim_only_tfidf_auroc": {
+      "value": 0.5,
+      "bar": "< 0.55",
+      "pass": true,
+      "scoring": "5-fold document-disjoint, out of fold, liblinear tol 1e-7"
+    },
+    "within_pair_claim_only_accuracy": {
+      "per_family": {
+        "truth_removed": {
+          "acc": 0.5,
+          "pairs": 2221
+        }
+      },
+      "worst": 0.5,
+      "bar": "< 0.60",
+      "pass": true,
+      "note": "truth_removed is 0.5 by construction - the claim is identical on both legs; the informative cell is unsupported_claim"
+    },
+    "all_bars_pass": true
+  },
+  "conforming_pipeline": {
+    "parent_artifact": "experiments/grounding-semantic/R20-H174_lane_L2.parquet",
+    "parent_failures": [
+      "C2",
+      "C5",
+      "C6",
+      "C8"
+    ],
+    "change_1_source": "VitaminC DROPPED entirely. It is a mix member (DANN group `vitaminc`), so the mix pairs every lane VitaminC claim with the evidence sentence the lane's truth passage is built from - the C6 channel. Dropping it also removes the C8 gap (no VitaminC retrieval date exists in tracked provenance) and the C2 collision (a VitaminC claim)",
+    "change_2_claim_eligibility": "a MiniCheck claim is consumed only if its string appears NOWHERE in the assembled mix (raw and whitespace-collapsed case-folded) - this covers the 605 claims shared with the `frame_reject` lane - and collides with NO evaluation surface on any of the three contract string forms",
+    "change_3_document_eligibility": "a MiniCheck document is consumed only if it collides with no evaluation surface on any of the three forms. A claim or document too short for the C4 8-gram instrument to see is additionally required not to occur as an exact SUBSTRING of any surface text - the parent's coverage check found one such claim, the generic 'He won the gold medal.', inside a hotpotqa arena chunk",
+    "change_4_family": "the `unsupported_claim` family is DROPPED. On MiniCheck alone its within-pair claim-only probe reads 0.6418 in the parent lane and 0.6825 when the probe is retrained on that half, against a C5 bar of < 0.60; the parent passed the bar at 0.5594 only because its VitaminC half read 0.4998 and the two were averaged. Per-route restriction does not rescue it with margin (c2d 0.6872, d2c 0.5678). The surviving family, truth_removed, is the registered source_select teacher and holds the claim byte-identical across the legs, so claim-only probes are tied at exactly 0.5 by construction. Measured in attr_pool_conformed_diag.json",
+    "unchanged": "BM25Okapi top-40, containment guard 0.75, 3-7 distractors, TRUTH_CAP 2 / DIST_CAP 12, PASSAGE_MAX_CHARS 1400, separator '\\n\\n', seed 2174, both family semantics, the mix loader contract",
+    "eligibility_census": {
+      "mix_rows_searched": 739210,
+      "mix_distinct_claims": 538510,
+      "surfaces": {
+        "arena_ragbench_10": {
+          "claims": 0,
+          "evidence": 8645
+        },
+        "gold_full": {
+          "claims": 2699,
+          "evidence": 10228
+        },
+        "eval_B_num_compare": {
+          "claims": 2000,
+          "evidence": 736
+        },
+        "eval_C_num_rolebind": {
+          "claims": 1926,
+          "evidence": 380
+        },
+        "qlane_eval": {
+          "claims": 1001,
+          "evidence": 487
+        },
+        "H143_evalset": {
+          "claims": 1048,
+          "evidence": 547
+        },
+        "H117_heldout_pairs": {
+          "claims": 2000,
+          "evidence": 1933
+        },
+        "vitaminc_holdout_pool_superset": {
+          "claims": 55139,
+          "evidence": 54683
+        }
+      },
+      "minicheck_documents_total": 6020,
+      "minicheck_claim_rows_total": 12434,
+      "claim_rows_rejected": {
+        "in_mix": 3160,
+        "short_claim_occurs_inside_a_surface_text": 5
+      },
+      "documents_rejected": {},
+      "eligible_documents": 6020,
+      "eligible_claim_rows": 9269,
+      "eligible_documents_carrying_a_supported_claim": 2234,
+      "eligible_documents_carrying_BOTH_a_supported_and_an_unsupported_claim": 989,
+      "pair_ceiling_truth_removed_at_TRUTH_CAP_2": 4468,
+      "pair_ceiling_unsupported_claim": 989,
+      "eligible_documents_whose_text_also_appears_in_the_mix": 1828,
+      "eligible_documents_appearing_in_the_mix_at_label_1": 1827,
+      "note": "a document appearing in the mix is NOT excluded - the clause-C6 test keys on the pair's claim, and every claim in the mix is excluded. The document-keyed variant is measured as an executor-added probe in the verifier and reported separately"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "clause": "C6",
+  "member_shares_fields_across_pair": "yes - the two legs of a pair share the evidence chunk byte-identically, so the chunk is the pair key",
+  "feature_1_key_keyed_label_association": {
+    "definition": "mean label of every other row sharing this row's evidence chunk (leave-one-out)",
+    "auroc_vs_label": 0.0,
+    "coverage_rows": 18652,
+    "coverage_share": 1.0,
+    "within_pair_accuracy": 0.0,
+    "bar": "undefined or at chance"
+  },
+  "feature_2_key_keyed_claim_overlap": {
+    "definition": "max Jaccard between this row's claim and any other claim sharing the same evidence chunk",
+    "auroc_vs_label": 0.5,
+    "coverage_rows": 18652,
+    "coverage_share": 1.0,
+    "bar": "undefined or at chance"
+  },
+  "reference_contaminated_case": "the withdrawn R20-H175b eval read 0.6230 on such a feature at 98% coverage",
+  "seconds": 0.4
+}

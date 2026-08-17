@@ -1,0 +1,620 @@
+{
+ "task": "C-A1 structural C1 test re-run on every loaded member, plus a uniform predicate-blind attestation reading for C-A2 tests 2/3",
+ "contract": "docs/experiments/dataset-contract.md, amendments C-A1 and C-A2",
+ "compute": "CPU only, HF_HUB_OFFLINE=1",
+ "mix": {
+  "loader": "R10-H108_lane.public_train under R16-H142_G1_arm.untruncated_evidence + R20-H174_arm_run.LANES",
+  "clean_rows": 685670,
+  "mix_rows": 760618,
+  "measured_rows": 760618
+ },
+ "structural_test_definition": "C-A1 test 1 - a distinct (claim, evidence) pair that carries BOTH labels means no function of (claim, evidence) separates the legs, so the label cannot encode grounding. Counted per member; three string forms reported.",
+ "live_positive_control": {
+  "artifact": "R20-H175b_qlane.parquet",
+  "rows": 17972,
+  "structural_C1": {
+   "raw": {
+    "form": "raw",
+    "both_label_pairs": 8986,
+    "rows_covered": 17972,
+    "hash_level_pairs": 8986,
+    "verified_on_literal_strings": true
+   },
+   "evidence_truncated_1500": {
+    "form": "evidence_truncated_1500",
+    "both_label_pairs": 8986,
+    "rows_covered": 17972,
+    "hash_level_pairs": 8986,
+    "verified_on_literal_strings": true
+   },
+   "whitespace_collapsed_casefolded": {
+    "form": "whitespace_collapsed_casefolded",
+    "both_label_pairs": 8986,
+    "rows_covered": 17972,
+    "hash_level_pairs": 8986,
+    "verified_on_literal_strings": true
+   }
+  },
+  "uniform_containment_C1": {
+   "positive_leg": {
+    "n": 8986,
+    "mean": 0.815806,
+    "rate_ge_0.90": 0.665925,
+    "rate_eq_1.00": 0.614511
+   },
+   "negative_leg": {
+    "n": 8986,
+    "mean": 0.815806,
+    "rate_ge_0.90": 0.665925,
+    "rate_eq_1.00": 0.614511
+   },
+   "test2_neg_strictly_below_pos_at_ge_0.90": false,
+   "test2_neg_strictly_below_pos_at_eq_1.00": false,
+   "instrument": "R20-H174_lane_common.containment (banked ASCII [a-z0-9]+)",
+   "instrument_class": "predicate-BLIND baseline, uniform across members"
+  },
+  "expected_both_label_pairs": 8986,
+  "expected_rows_covered": 17972,
+  "control_fires_as_registered": true
+ },
+ "members": {
+  "attr_pool": {
+   "rows": 21408,
+   "dann_groups": [
+    "attr_pool"
+   ],
+   "label_1_rows": 10704,
+   "label_0_rows": 10704,
+   "structural_C1": {
+    "raw": {
+     "form": "raw",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    },
+    "evidence_truncated_1500": {
+     "form": "evidence_truncated_1500",
+     "both_label_pairs": 263,
+     "rows_covered": 558,
+     "hash_level_pairs": 263,
+     "verified_on_literal_strings": true
+    },
+    "whitespace_collapsed_casefolded": {
+     "form": "whitespace_collapsed_casefolded",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    }
+   },
+   "uniform_containment_C1": {
+    "positive_leg": {
+     "n": 10704,
+     "mean": 0.885011,
+     "rate_ge_0.90": 0.529895,
+     "rate_eq_1.00": 0.393591
+    },
+    "negative_leg": {
+     "n": 10704,
+     "mean": 0.784815,
+     "rate_ge_0.90": 0.22926,
+     "rate_eq_1.00": 0.143591
+    },
+    "test2_neg_strictly_below_pos_at_ge_0.90": true,
+    "test2_neg_strictly_below_pos_at_eq_1.00": true,
+    "instrument": "R20-H174_lane_common.containment (banked ASCII [a-z0-9]+)",
+    "instrument_class": "predicate-BLIND baseline, uniform across members"
+   },
+   "distinct_pairs_raw": 21408
+  },
+  "frame_reject": {
+   "rows": 8000,
+   "dann_groups": [
+    "frame_reject"
+   ],
+   "label_1_rows": 4000,
+   "label_0_rows": 4000,
+   "structural_C1": {
+    "raw": {
+     "form": "raw",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    },
+    "evidence_truncated_1500": {
+     "form": "evidence_truncated_1500",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    },
+    "whitespace_collapsed_casefolded": {
+     "form": "whitespace_collapsed_casefolded",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    }
+   },
+   "uniform_containment_C1": {
+    "positive_leg": {
+     "n": 4000,
+     "mean": 0.614291,
+     "rate_ge_0.90": 0.0565,
+     "rate_eq_1.00": 0.03525
+    },
+    "negative_leg": {
+     "n": 4000,
+     "mean": 0.200303,
+     "rate_ge_0.90": 0.0,
+     "rate_eq_1.00": 0.0
+    },
+    "test2_neg_strictly_below_pos_at_ge_0.90": true,
+    "test2_neg_strictly_below_pos_at_eq_1.00": true,
+    "instrument": "R20-H174_lane_common.containment (banked ASCII [a-z0-9]+)",
+    "instrument_class": "predicate-BLIND baseline, uniform across members"
+   },
+   "distinct_pairs_raw": 8000
+  },
+  "halueval": {
+   "rows": 40000,
+   "dann_groups": [
+    "halueval"
+   ],
+   "label_1_rows": 20000,
+   "label_0_rows": 20000,
+   "structural_C1": {
+    "raw": {
+     "form": "raw",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    },
+    "evidence_truncated_1500": {
+     "form": "evidence_truncated_1500",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    },
+    "whitespace_collapsed_casefolded": {
+     "form": "whitespace_collapsed_casefolded",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    }
+   },
+   "uniform_containment_C1": {
+    "positive_leg": {
+     "n": 20000,
+     "mean": 0.897937,
+     "rate_ge_0.90": 0.65915,
+     "rate_eq_1.00": 0.4884
+    },
+    "negative_leg": {
+     "n": 20000,
+     "mean": 0.7109,
+     "rate_ge_0.90": 0.10325,
+     "rate_eq_1.00": 0.0339
+    },
+    "test2_neg_strictly_below_pos_at_ge_0.90": true,
+    "test2_neg_strictly_below_pos_at_eq_1.00": true,
+    "instrument": "R20-H174_lane_common.containment (banked ASCII [a-z0-9]+)",
+    "instrument_class": "predicate-BLIND baseline, uniform across members"
+   },
+   "distinct_pairs_raw": 39978
+  },
+  "path_bind": {
+   "rows": 10000,
+   "dann_groups": [
+    "path_bind"
+   ],
+   "label_1_rows": 5000,
+   "label_0_rows": 5000,
+   "structural_C1": {
+    "raw": {
+     "form": "raw",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    },
+    "evidence_truncated_1500": {
+     "form": "evidence_truncated_1500",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    },
+    "whitespace_collapsed_casefolded": {
+     "form": "whitespace_collapsed_casefolded",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    }
+   },
+   "uniform_containment_C1": {
+    "positive_leg": {
+     "n": 5000,
+     "mean": 0.856757,
+     "rate_ge_0.90": 0.389,
+     "rate_eq_1.00": 0.1742
+    },
+    "negative_leg": {
+     "n": 5000,
+     "mean": 0.857556,
+     "rate_ge_0.90": 0.391,
+     "rate_eq_1.00": 0.1742
+    },
+    "test2_neg_strictly_below_pos_at_ge_0.90": false,
+    "test2_neg_strictly_below_pos_at_eq_1.00": false,
+    "instrument": "R20-H174_lane_common.containment (banked ASCII [a-z0-9]+)",
+    "instrument_class": "predicate-BLIND baseline, uniform across members"
+   },
+   "distinct_pairs_raw": 10000
+  },
+  "psiloqa": {
+   "rows": 61712,
+   "dann_groups": [
+    "psiloqa"
+   ],
+   "label_1_rows": 6739,
+   "label_0_rows": 54973,
+   "structural_C1": {
+    "raw": {
+     "form": "raw",
+     "both_label_pairs": 5,
+     "rows_covered": 10,
+     "hash_level_pairs": 5,
+     "verified_on_literal_strings": true
+    },
+    "evidence_truncated_1500": {
+     "form": "evidence_truncated_1500",
+     "both_label_pairs": 5,
+     "rows_covered": 10,
+     "hash_level_pairs": 5,
+     "verified_on_literal_strings": true
+    },
+    "whitespace_collapsed_casefolded": {
+     "form": "whitespace_collapsed_casefolded",
+     "both_label_pairs": 5,
+     "rows_covered": 10,
+     "hash_level_pairs": 5,
+     "verified_on_literal_strings": true
+    }
+   },
+   "uniform_containment_C1": {
+    "positive_leg": {
+     "n": 6739,
+     "mean": 0.406769,
+     "rate_ge_0.90": 0.120047,
+     "rate_eq_1.00": 0.093337
+    },
+    "negative_leg": {
+     "n": 54973,
+     "mean": 0.348755,
+     "rate_ge_0.90": 0.028669,
+     "rate_eq_1.00": 0.018573
+    },
+    "test2_neg_strictly_below_pos_at_ge_0.90": true,
+    "test2_neg_strictly_below_pos_at_eq_1.00": true,
+    "instrument": "R20-H174_lane_common.containment (banked ASCII [a-z0-9]+)",
+    "instrument_class": "predicate-BLIND baseline, uniform across members"
+   },
+   "distinct_pairs_raw": 61679
+  },
+  "quant_misbind": {
+   "rows": 30000,
+   "dann_groups": [
+    "quant_misbind"
+   ],
+   "label_1_rows": 15000,
+   "label_0_rows": 15000,
+   "structural_C1": {
+    "raw": {
+     "form": "raw",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    },
+    "evidence_truncated_1500": {
+     "form": "evidence_truncated_1500",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    },
+    "whitespace_collapsed_casefolded": {
+     "form": "whitespace_collapsed_casefolded",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    }
+   },
+   "uniform_containment_C1": {
+    "positive_leg": {
+     "n": 15000,
+     "mean": 0.687934,
+     "rate_ge_0.90": 0.119267,
+     "rate_eq_1.00": 0.1086
+    },
+    "negative_leg": {
+     "n": 15000,
+     "mean": 0.688069,
+     "rate_ge_0.90": 0.1192,
+     "rate_eq_1.00": 0.1086
+    },
+    "test2_neg_strictly_below_pos_at_ge_0.90": true,
+    "test2_neg_strictly_below_pos_at_eq_1.00": false,
+    "instrument": "R20-H174_lane_common.containment (banked ASCII [a-z0-9]+)",
+    "instrument_class": "predicate-BLIND baseline, uniform across members"
+   },
+   "distinct_pairs_raw": 30000
+  },
+  "quant_scale_unit": {
+   "rows": 5540,
+   "dann_groups": [
+    "quant_scale_unit"
+   ],
+   "label_1_rows": 2770,
+   "label_0_rows": 2770,
+   "structural_C1": {
+    "raw": {
+     "form": "raw",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    },
+    "evidence_truncated_1500": {
+     "form": "evidence_truncated_1500",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    },
+    "whitespace_collapsed_casefolded": {
+     "form": "whitespace_collapsed_casefolded",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    }
+   },
+   "uniform_containment_C1": {
+    "positive_leg": {
+     "n": 2770,
+     "mean": 0.582022,
+     "rate_ge_0.90": 0.013357,
+     "rate_eq_1.00": 0.0
+    },
+    "negative_leg": {
+     "n": 2770,
+     "mean": 0.581918,
+     "rate_ge_0.90": 0.012635,
+     "rate_eq_1.00": 0.0
+    },
+    "test2_neg_strictly_below_pos_at_ge_0.90": true,
+    "test2_neg_strictly_below_pos_at_eq_1.00": false,
+    "instrument": "R20-H174_lane_common.containment (banked ASCII [a-z0-9]+)",
+    "instrument_class": "predicate-BLIND baseline, uniform across members"
+   },
+   "distinct_pairs_raw": 5540
+  },
+  "ragtruth_en": {
+   "rows": 15090,
+   "dann_groups": [
+    "ragtruth_en"
+   ],
+   "label_1_rows": 8369,
+   "label_0_rows": 6721,
+   "structural_C1": {
+    "raw": {
+     "form": "raw",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    },
+    "evidence_truncated_1500": {
+     "form": "evidence_truncated_1500",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    },
+    "whitespace_collapsed_casefolded": {
+     "form": "whitespace_collapsed_casefolded",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    }
+   },
+   "uniform_containment_C1": {
+    "positive_leg": {
+     "n": 8369,
+     "mean": 0.688078,
+     "rate_ge_0.90": 0.078982,
+     "rate_eq_1.00": 0.005616
+    },
+    "negative_leg": {
+     "n": 6721,
+     "mean": 0.532832,
+     "rate_ge_0.90": 0.006695,
+     "rate_eq_1.00": 0.0
+    },
+    "test2_neg_strictly_below_pos_at_ge_0.90": true,
+    "test2_neg_strictly_below_pos_at_eq_1.00": true,
+    "instrument": "R20-H174_lane_common.containment (banked ASCII [a-z0-9]+)",
+    "instrument_class": "predicate-BLIND baseline, uniform across members"
+   },
+   "distinct_pairs_raw": 15029
+  },
+  "ragtruth_translated": {
+   "rows": 105630,
+   "dann_groups": [
+    "ragtruth_cn",
+    "ragtruth_de",
+    "ragtruth_es",
+    "ragtruth_fr",
+    "ragtruth_hu",
+    "ragtruth_it",
+    "ragtruth_pl"
+   ],
+   "label_1_rows": 58590,
+   "label_0_rows": 47040,
+   "structural_C1": {
+    "raw": {
+     "form": "raw",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    },
+    "evidence_truncated_1500": {
+     "form": "evidence_truncated_1500",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    },
+    "whitespace_collapsed_casefolded": {
+     "form": "whitespace_collapsed_casefolded",
+     "both_label_pairs": 0,
+     "rows_covered": 0,
+     "verified_on_literal_strings": true
+    }
+   },
+   "uniform_containment_C1": {
+    "positive_leg": {
+     "n": 58590,
+     "mean": 0.676145,
+     "rate_ge_0.90": 0.11531,
+     "rate_eq_1.00": 0.082847
+    },
+    "negative_leg": {
+     "n": 47040,
+     "mean": 0.550178,
+     "rate_ge_0.90": 0.074341,
+     "rate_eq_1.00": 0.0679
+    },
+    "test2_neg_strictly_below_pos_at_ge_0.90": true,
+    "test2_neg_strictly_below_pos_at_eq_1.00": true,
+    "instrument": "R20-H174_lane_common.containment (banked ASCII [a-z0-9]+)",
+    "instrument_class": "predicate-BLIND baseline, uniform across members"
+   },
+   "distinct_pairs_raw": 105613
+  },
+  "tabfact": {
+   "rows": 92585,
+   "dann_groups": [
+    "tabfact"
+   ],
+   "label_1_rows": 50994,
+   "label_0_rows": 41591,
+   "structural_C1": {
+    "raw": {
+     "form": "raw",
+     "both_label_pairs": 45,
+     "rows_covered": 90,
+     "hash_level_pairs": 45,
+     "verified_on_literal_strings": true
+    },
+    "evidence_truncated_1500": {
+     "form": "evidence_truncated_1500",
+     "both_label_pairs": 45,
+     "rows_covered": 90,
+     "hash_level_pairs": 45,
+     "verified_on_literal_strings": true
+    },
+    "whitespace_collapsed_casefolded": {
+     "form": "whitespace_collapsed_casefolded",
+     "both_label_pairs": 45,
+     "rows_covered": 90,
+     "hash_level_pairs": 45,
+     "verified_on_literal_strings": true
+    }
+   },
+   "uniform_containment_C1": {
+    "positive_leg": {
+     "n": 50994,
+     "mean": 0.513809,
+     "rate_ge_0.90": 0.00606,
+     "rate_eq_1.00": 0.001353
+    },
+    "negative_leg": {
+     "n": 41591,
+     "mean": 0.494365,
+     "rate_ge_0.90": 0.005121,
+     "rate_eq_1.00": 0.001034
+    },
+    "test2_neg_strictly_below_pos_at_ge_0.90": true,
+    "test2_neg_strictly_below_pos_at_eq_1.00": true,
+    "instrument": "R20-H174_lane_common.containment (banked ASCII [a-z0-9]+)",
+    "instrument_class": "predicate-BLIND baseline, uniform across members"
+   },
+   "distinct_pairs_raw": 92341
+  },
+  "vitaminc": {
+   "rows": 370653,
+   "dann_groups": [
+    "vitaminc"
+   ],
+   "label_1_rows": 185714,
+   "label_0_rows": 184939,
+   "structural_C1": {
+    "raw": {
+     "form": "raw",
+     "both_label_pairs": 115,
+     "rows_covered": 236,
+     "hash_level_pairs": 115,
+     "verified_on_literal_strings": true
+    },
+    "evidence_truncated_1500": {
+     "form": "evidence_truncated_1500",
+     "both_label_pairs": 128,
+     "rows_covered": 262,
+     "hash_level_pairs": 128,
+     "verified_on_literal_strings": true
+    },
+    "whitespace_collapsed_casefolded": {
+     "form": "whitespace_collapsed_casefolded",
+     "both_label_pairs": 118,
+     "rows_covered": 242,
+     "hash_level_pairs": 118,
+     "verified_on_literal_strings": true
+    }
+   },
+   "uniform_containment_C1": {
+    "positive_leg": {
+     "n": 185714,
+     "mean": 0.616053,
+     "rate_ge_0.90": 0.12215,
+     "rate_eq_1.00": 0.088184
+    },
+    "negative_leg": {
+     "n": 184939,
+     "mean": 0.477397,
+     "rate_ge_0.90": 0.016854,
+     "rate_eq_1.00": 0.005699
+    },
+    "test2_neg_strictly_below_pos_at_ge_0.90": true,
+    "test2_neg_strictly_below_pos_at_eq_1.00": true,
+    "instrument": "R20-H174_lane_common.containment (banked ASCII [a-z0-9]+)",
+    "instrument_class": "predicate-BLIND baseline, uniform across members"
+   },
+   "distinct_pairs_raw": 367549
+  }
+ },
+ "whole_mix_cross_member": {
+  "raw": {
+   "form": "raw",
+   "both_label_pairs": 165,
+   "rows_covered": 336,
+   "hash_level_pairs": 165,
+   "verified_on_literal_strings": true
+  },
+  "evidence_truncated_1500": {
+   "form": "evidence_truncated_1500",
+   "both_label_pairs": 441,
+   "rows_covered": 920,
+   "hash_level_pairs": 441,
+   "verified_on_literal_strings": true
+  },
+  "whitespace_collapsed_casefolded": {
+   "form": "whitespace_collapsed_casefolded",
+   "both_label_pairs": 168,
+   "rows_covered": 342,
+   "hash_level_pairs": 168,
+   "verified_on_literal_strings": true
+  }
+ },
+ "seconds": 86.8,
+ "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+}

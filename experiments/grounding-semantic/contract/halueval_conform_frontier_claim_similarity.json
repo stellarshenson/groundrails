@@ -1,0 +1,172 @@
+{
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates.",
+  "retentions": [
+    0.9,
+    0.75,
+    0.5,
+    0.25,
+    0.1
+  ],
+  "strategies": {
+    "claim_similarity": {
+      "what": "pairs ordered by content-token Jaccard BETWEEN the two claims, descending - minimal pairs kept first",
+      "levels": {
+        "retain_0.90": {
+          "rows": 36000,
+          "pairs": 18000,
+          "retention_rows": 0.9,
+          "claim_only_probe_auroc": 0.9482,
+          "within_pair_claim_only_accuracy": 0.9638,
+          "surface_parity_C_A1": {
+            "auroc": {
+              "claim_char_length": 0.3295,
+              "claim_token_count": 0.3311,
+              "chunk_char_length": 0.5,
+              "claim_chunk_containment": 0.8442
+            },
+            "report_only": [
+              "claim_chunk_containment"
+            ],
+            "worst_barred_deviation": 0.1705,
+            "pass": false
+          },
+          "half_composition": {
+            "qa": 16000,
+            "summarization": 20000
+          },
+          "clears_claim_only_bar_0.55": false,
+          "clears_within_pair_bar_0.60": false,
+          "per_half_auroc": {
+            "qa": 0.9612,
+            "summarization": 0.9461
+          },
+          "seconds": 99.4
+        },
+        "retain_0.75": {
+          "rows": 30000,
+          "pairs": 15000,
+          "retention_rows": 0.75,
+          "claim_only_probe_auroc": 0.9441,
+          "within_pair_claim_only_accuracy": 0.9636,
+          "surface_parity_C_A1": {
+            "auroc": {
+              "claim_char_length": 0.3366,
+              "claim_token_count": 0.339,
+              "chunk_char_length": 0.5,
+              "claim_chunk_containment": 0.8303
+            },
+            "report_only": [
+              "claim_chunk_containment"
+            ],
+            "worst_barred_deviation": 0.1634,
+            "pass": false
+          },
+          "half_composition": {
+            "summarization": 20000,
+            "qa": 10000
+          },
+          "clears_claim_only_bar_0.55": false,
+          "clears_within_pair_bar_0.60": false,
+          "per_half_auroc": {
+            "qa": 0.9376,
+            "summarization": 0.9552
+          },
+          "seconds": 81.9
+        },
+        "retain_0.50": {
+          "rows": 20000,
+          "pairs": 10000,
+          "retention_rows": 0.5,
+          "claim_only_probe_auroc": 0.9397,
+          "within_pair_claim_only_accuracy": 0.9527,
+          "surface_parity_C_A1": {
+            "auroc": {
+              "claim_char_length": 0.3167,
+              "claim_token_count": 0.3213,
+              "chunk_char_length": 0.5,
+              "claim_chunk_containment": 0.788
+            },
+            "report_only": [
+              "claim_chunk_containment"
+            ],
+            "worst_barred_deviation": 0.1833,
+            "pass": false
+          },
+          "half_composition": {
+            "qa": 2752,
+            "summarization": 17248
+          },
+          "clears_claim_only_bar_0.55": false,
+          "clears_within_pair_bar_0.60": false,
+          "per_half_auroc": {
+            "qa": 0.7476,
+            "summarization": 0.9644
+          },
+          "seconds": 62.6
+        },
+        "retain_0.25": {
+          "rows": 10000,
+          "pairs": 5000,
+          "retention_rows": 0.25,
+          "claim_only_probe_auroc": 0.9181,
+          "within_pair_claim_only_accuracy": 0.9444,
+          "surface_parity_C_A1": {
+            "auroc": {
+              "claim_char_length": 0.3496,
+              "claim_token_count": 0.3534,
+              "chunk_char_length": 0.5,
+              "claim_chunk_containment": 0.7832
+            },
+            "report_only": [
+              "claim_chunk_containment"
+            ],
+            "worst_barred_deviation": 0.1504,
+            "pass": false
+          },
+          "half_composition": {
+            "qa": 1254,
+            "summarization": 8746
+          },
+          "clears_claim_only_bar_0.55": false,
+          "clears_within_pair_bar_0.60": false,
+          "per_half_auroc": {
+            "qa": 0.6546,
+            "summarization": 0.9494
+          },
+          "seconds": 27.7
+        },
+        "retain_0.10": {
+          "rows": 4000,
+          "pairs": 2000,
+          "retention_rows": 0.1,
+          "claim_only_probe_auroc": 0.8661,
+          "within_pair_claim_only_accuracy": 0.9085,
+          "surface_parity_C_A1": {
+            "auroc": {
+              "claim_char_length": 0.3974,
+              "claim_token_count": 0.4003,
+              "chunk_char_length": 0.5,
+              "claim_chunk_containment": 0.7962
+            },
+            "report_only": [
+              "claim_chunk_containment"
+            ],
+            "worst_barred_deviation": 0.1026,
+            "pass": false
+          },
+          "half_composition": {
+            "qa": 720,
+            "summarization": 3280
+          },
+          "clears_claim_only_bar_0.55": false,
+          "clears_within_pair_bar_0.60": false,
+          "per_half_auroc": {
+            "qa": 0.625,
+            "summarization": 0.9158
+          },
+          "seconds": 10.3
+        }
+      }
+    }
+  }
+}

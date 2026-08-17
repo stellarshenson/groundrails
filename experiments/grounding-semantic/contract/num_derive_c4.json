@@ -1,0 +1,142 @@
+{
+  "clause": "C4",
+  "instrument": "provenance_gate.py (R14-H136 ruling-2 form): 8-gram, Jaccard >= 0.3, bidirectional, WARN 0.005, KILL > 2% of the candidate side, all ten walled arena subsets",
+  "arena_units": 8645,
+  "coverage": {
+    "evidence": {
+      "units": 12376,
+      "too_short_for_8gram": 0,
+      "share_too_short": 0.0,
+      "covered_by_exact_matching": 0
+    },
+    "claims": {
+      "units": 29940,
+      "too_short_for_8gram": 0,
+      "share_too_short": 0.0,
+      "covered_by_exact_matching": 0
+    },
+    "exact_matching_of_the_short_units": {
+      "method": "normalised claim string sought verbatim inside the concatenated normalised arena document corpus",
+      "arena_documents": 8645,
+      "short_claims_checked": 0,
+      "short_claims_found": 0,
+      "short_evidence_units": 0
+    }
+  },
+  "evidence_gate": {
+    "units": 12376,
+    "verdict": "PASS",
+    "max_fraction": 0.0,
+    "candidate_to_arena": 0.0,
+    "arena_to_candidate": 0.0,
+    "best_jaccard": {
+      "max": 0.0144,
+      "p99": 0.0,
+      "mean": 0.0
+    },
+    "kill_bar": 0.02,
+    "margin": 0.02
+  },
+  "claims_gate": {
+    "units": 29940,
+    "verdict": "PASS",
+    "max_fraction": 0.0,
+    "candidate_to_arena": 0.0,
+    "arena_to_candidate": 0.0,
+    "best_jaccard": {
+      "max": 0.0,
+      "p99": 0.0,
+      "mean": 0.0
+    },
+    "kill_bar": 0.02,
+    "margin": 0.02
+  },
+  "spike_control": {
+    "injected": 10,
+    "detected_total": 10,
+    "baseline_hits": 0,
+    "passes": true,
+    "candidate_units": 2000
+  },
+  "live_positive_control": {
+    "construction": "real RAGBench arena documents (the reference side itself), degraded - near-duplicate by construction, not byte-identical",
+    "tiers": {
+      "verbatim": {
+        "note": "identical arena text - the upper anchor",
+        "units": 250,
+        "detection_fraction": 1.0,
+        "units_with_hit": 250,
+        "best_jaccard": {
+          "max": 1.0,
+          "p99": 1.0,
+          "mean": 1.0
+        },
+        "verdict": "KILL"
+      },
+      "drop_2pct": {
+        "note": "2% of whitespace tokens deleted at random",
+        "units": 250,
+        "detection_fraction": 1.0,
+        "units_with_hit": 250,
+        "best_jaccard": {
+          "max": 1.0,
+          "p99": 1.0,
+          "mean": 0.7787
+        },
+        "verdict": "KILL"
+      },
+      "drop_5pct": {
+        "note": "5% of whitespace tokens deleted at random",
+        "units": 250,
+        "detection_fraction": 0.976,
+        "units_with_hit": 244,
+        "best_jaccard": {
+          "max": 1.0,
+          "p99": 0.9615,
+          "mean": 0.5499
+        },
+        "verdict": "KILL"
+      },
+      "drop_10pct": {
+        "note": "10% of whitespace tokens deleted at random",
+        "units": 250,
+        "detection_fraction": 0.584,
+        "units_with_hit": 146,
+        "best_jaccard": {
+          "max": 0.75,
+          "p99": 0.6512,
+          "mean": 0.3247
+        },
+        "verdict": "KILL"
+      },
+      "drop_5pct_cut_60pct": {
+        "note": "5% deleted then cut to 60% of length",
+        "units": 250,
+        "detection_fraction": 0.724,
+        "units_with_hit": 181,
+        "best_jaccard": {
+          "max": 0.6346,
+          "p99": 0.559,
+          "mean": 0.3521
+        },
+        "verdict": "KILL"
+      },
+      "cut_50pct": {
+        "note": "first half of the document only",
+        "units": 250,
+        "detection_fraction": 0.996,
+        "units_with_hit": 249,
+        "best_jaccard": {
+          "max": 0.9907,
+          "p99": 0.7342,
+          "mean": 0.4761
+        },
+        "verdict": "KILL"
+      }
+    },
+    "fires": true,
+    "reading": "the gate fires on real near-duplicate text and its detection degrades with the damage applied, while the member itself reads 0.000 against the same reference side - so the member's clean verdict comes from a live instrument"
+  },
+  "status": "GREEN",
+  "seconds": 19.1
+}

@@ -1,0 +1,138 @@
+{
+  "method": "exact string membership of the assembled R20-H175b mix chunk set - R10-H108_lane.public_train() with the evidence cut lifted, plus all three arm lanes - in raw, truncated and whitespace-collapsed case-folded forms",
+  "excluded": {
+    "gold_full": "different source; already audited by R20_goldfull_split_audit.py"
+  },
+  "mix_distinct_raw_chunks": 359960,
+  "results": {
+    "R20-H175b_qlane_eval.parquet": {
+      "parquet": "R20-H175b_qlane_eval.parquet",
+      "rows": 2002,
+      "evidence_column": "chunk",
+      "distinct_passages": 487,
+      "passages_in_the_mix": 485,
+      "share_in_the_mix": 0.9959,
+      "by_form": {
+        "raw_in_mix_raw": 485,
+        "raw_in_mix_truncated": 449,
+        "truncated_in_mix_raw": 449,
+        "truncated_in_mix_truncated": 485,
+        "normalised_in_mix_normalised_raw": 485,
+        "normalised_in_mix_normalised_truncated": 449
+      },
+      "sources": {
+        "psiloqa": 2002
+      },
+      "status": "CONTAMINATED"
+    },
+    "R20-H175b_qlane_eval_repaired.parquet": {
+      "parquet": "R20-H175b_qlane_eval_repaired.parquet",
+      "rows": 1678,
+      "evidence_column": "chunk",
+      "distinct_passages": 407,
+      "passages_in_the_mix": 406,
+      "share_in_the_mix": 0.9975,
+      "by_form": {
+        "raw_in_mix_raw": 406,
+        "raw_in_mix_truncated": 375,
+        "truncated_in_mix_raw": 375,
+        "truncated_in_mix_truncated": 406,
+        "normalised_in_mix_normalised_raw": 406,
+        "normalised_in_mix_normalised_truncated": 375
+      },
+      "sources": {
+        "psiloqa": 1678
+      },
+      "status": "CONTAMINATED"
+    },
+    "R20-H175b_qlane_eval_clean_prefix.parquet": {
+      "parquet": "R20-H175b_qlane_eval_clean_prefix.parquet",
+      "rows": 32,
+      "evidence_column": "chunk",
+      "distinct_passages": 8,
+      "passages_in_the_mix": 0,
+      "share_in_the_mix": 0.0,
+      "by_form": {
+        "raw_in_mix_raw": 0,
+        "raw_in_mix_truncated": 0,
+        "truncated_in_mix_raw": 0,
+        "truncated_in_mix_truncated": 0,
+        "normalised_in_mix_normalised_raw": 0,
+        "normalised_in_mix_normalised_truncated": 0
+      },
+      "sources": {
+        "psiloqa": 32
+      },
+      "status": "CLEAN"
+    },
+    "R20-H177_eval_B.parquet": {
+      "parquet": "R20-H177_eval_B.parquet",
+      "rows": 2000,
+      "evidence_column": "chunk",
+      "distinct_passages": 736,
+      "passages_in_the_mix": 33,
+      "share_in_the_mix": 0.0448,
+      "by_form": {
+        "raw_in_mix_raw": 19,
+        "raw_in_mix_truncated": 19,
+        "truncated_in_mix_raw": 19,
+        "truncated_in_mix_truncated": 19,
+        "normalised_in_mix_normalised_raw": 33,
+        "normalised_in_mix_normalised_truncated": 33
+      },
+      "sources": {
+        "tabfact": 1300,
+        "edgar": 700
+      },
+      "status": "CONTAMINATED"
+    },
+    "R20-H177_eval_C.parquet": {
+      "parquet": "R20-H177_eval_C.parquet",
+      "rows": 1936,
+      "evidence_column": "chunk",
+      "distinct_passages": 380,
+      "passages_in_the_mix": 0,
+      "share_in_the_mix": 0.0,
+      "by_form": {
+        "raw_in_mix_raw": 0,
+        "raw_in_mix_truncated": 0,
+        "truncated_in_mix_raw": 0,
+        "truncated_in_mix_truncated": 0,
+        "normalised_in_mix_normalised_raw": 0,
+        "normalised_in_mix_normalised_truncated": 0
+      },
+      "sources": {
+        "edgar": 1936
+      },
+      "status": "CLEAN"
+    },
+    "R17-H143_evalset.parquet": {
+      "parquet": "R17-H143_evalset.parquet",
+      "rows": 1050,
+      "evidence_column": "chunk",
+      "distinct_passages": 547,
+      "passages_in_the_mix": 10,
+      "share_in_the_mix": 0.0183,
+      "by_form": {
+        "raw_in_mix_raw": 0,
+        "raw_in_mix_truncated": 0,
+        "truncated_in_mix_raw": 0,
+        "truncated_in_mix_truncated": 0,
+        "normalised_in_mix_normalised_raw": 10,
+        "normalised_in_mix_normalised_truncated": 10
+      },
+      "sources": null,
+      "status": "CONTAMINATED"
+    }
+  },
+  "contaminated": [
+    "R17-H143_evalset.parquet",
+    "R20-H175b_qlane_eval.parquet",
+    "R20-H175b_qlane_eval_repaired.parquet",
+    "R20-H177_eval_B.parquet"
+  ],
+  "clean": [
+    "R20-H175b_qlane_eval_clean_prefix.parquet",
+    "R20-H177_eval_C.parquet"
+  ]
+}

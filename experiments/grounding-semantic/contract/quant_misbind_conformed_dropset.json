@@ -1,0 +1,292 @@
+{
+  "instrument": "quant_misbind_verify.eval_surfaces + the three C2 string forms",
+  "per_surface": {
+    "arena_ragbench_10_subsets": {
+      "note": "H77 arena sample: 250 items/subset seed 0, first 8 document chunks",
+      "forms": {
+        "raw": {
+          "claims": 0,
+          "evidence": 0
+        },
+        "truncated_1500": {
+          "claims": 0,
+          "evidence": 0
+        },
+        "normalised_ws_casefold": {
+          "claims": 0,
+          "evidence": 0
+        }
+      }
+    },
+    "gold_full": {
+      "note": "all (claim, chunk) rows of the gold teacher-pair table",
+      "forms": {
+        "raw": {
+          "claims": 0,
+          "evidence": 0
+        },
+        "truncated_1500": {
+          "claims": 0,
+          "evidence": 0
+        },
+        "normalised_ws_casefold": {
+          "claims": 0,
+          "evidence": 0
+        }
+      }
+    },
+    "R17-H143_evalset": {
+      "note": "the derivation eval this lane's sources were content-excluded against",
+      "forms": {
+        "raw": {
+          "claims": 0,
+          "evidence": 0
+        },
+        "truncated_1500": {
+          "claims": 0,
+          "evidence": 0
+        },
+        "normalised_ws_casefold": {
+          "claims": 0,
+          "evidence": 0
+        }
+      }
+    },
+    "R20-H177_eval_B": {
+      "note": "Lane B compare/direction mechanism eval",
+      "forms": {
+        "raw": {
+          "claims": 0,
+          "evidence": 19
+        },
+        "truncated_1500": {
+          "claims": 0,
+          "evidence": 19
+        },
+        "normalised_ws_casefold": {
+          "claims": 0,
+          "evidence": 19
+        }
+      }
+    },
+    "R20-H177_eval_C": {
+      "note": "Lane C role/sign/period mechanism eval",
+      "forms": {
+        "raw": {
+          "claims": 0,
+          "evidence": 0
+        },
+        "truncated_1500": {
+          "claims": 0,
+          "evidence": 0
+        },
+        "normalised_ws_casefold": {
+          "claims": 0,
+          "evidence": 0
+        }
+      }
+    },
+    "R20-H175b_qlane_eval": {
+      "note": "withdrawn contrast-lane eval (banked)",
+      "forms": {
+        "raw": {
+          "claims": 0,
+          "evidence": 0
+        },
+        "truncated_1500": {
+          "claims": 0,
+          "evidence": 0
+        },
+        "normalised_ws_casefold": {
+          "claims": 0,
+          "evidence": 0
+        }
+      }
+    },
+    "R20-H175b_qlane_eval_repaired": {
+      "note": "withdrawn contrast-lane eval (repaired)",
+      "forms": {
+        "raw": {
+          "claims": 0,
+          "evidence": 0
+        },
+        "truncated_1500": {
+          "claims": 0,
+          "evidence": 0
+        },
+        "normalised_ws_casefold": {
+          "claims": 0,
+          "evidence": 0
+        }
+      }
+    },
+    "R20-H175b_qlane_eval_clean": {
+      "note": "clean contrast-lane eval",
+      "forms": {
+        "raw": {
+          "claims": 0,
+          "evidence": 0
+        },
+        "truncated_1500": {
+          "claims": 0,
+          "evidence": 0
+        },
+        "normalised_ws_casefold": {
+          "claims": 0,
+          "evidence": 0
+        }
+      }
+    },
+    "R20-H175b_qlane_eval_clean_prefix": {
+      "note": "clean contrast-lane eval (prefix)",
+      "forms": {
+        "raw": {
+          "claims": 0,
+          "evidence": 0
+        },
+        "truncated_1500": {
+          "claims": 0,
+          "evidence": 0
+        },
+        "normalised_ws_casefold": {
+          "claims": 0,
+          "evidence": 0
+        }
+      }
+    },
+    "R17-H146_antigaming_set": {
+      "note": "anti-gaming paired probe set - claims only, the set carries no evidence column",
+      "forms": {
+        "raw": {
+          "claims": 18,
+          "evidence": 0
+        },
+        "truncated_1500": {
+          "claims": 18,
+          "evidence": 0
+        },
+        "normalised_ws_casefold": {
+          "claims": 18,
+          "evidence": 0
+        }
+      }
+    },
+    "R18-H150_antigaming_set": {
+      "note": "anti-gaming paired probe set - claims only, the set carries no evidence column",
+      "forms": {
+        "raw": {
+          "claims": 15,
+          "evidence": 0
+        },
+        "truncated_1500": {
+          "claims": 15,
+          "evidence": 0
+        },
+        "normalised_ws_casefold": {
+          "claims": 15,
+          "evidence": 0
+        }
+      }
+    },
+    "R19-H159_antigaming_set": {
+      "note": "anti-gaming paired probe set - claims only, the set carries no evidence column",
+      "forms": {
+        "raw": {
+          "claims": 17,
+          "evidence": 0
+        },
+        "truncated_1500": {
+          "claims": 17,
+          "evidence": 0
+        },
+        "normalised_ws_casefold": {
+          "claims": 17,
+          "evidence": 0
+        }
+      }
+    },
+    "vitaminc_holdout_superset": {
+      "note": "VitaminC test + validation in full - a SUPERSET of the filtered holdout the campaign evaluates on, so the disjointness read is stricter, not a proxy",
+      "forms": {
+        "raw": {
+          "claims": 0,
+          "evidence": 0
+        },
+        "truncated_1500": {
+          "claims": 0,
+          "evidence": 0
+        },
+        "normalised_ws_casefold": {
+          "claims": 0,
+          "evidence": 0
+        }
+      }
+    }
+  },
+  "colliding_claim_strings": [
+    "The against of scotland is 0.",
+    "The agricultural panel of total is 11.",
+    "The capacity of slavia is 5500.",
+    "The crowd of carlton is 12000.",
+    "The crowd of essendon is 15000.",
+    "The crowd of fitzroy is 10000.",
+    "The crowd of fitzroy is 11000.",
+    "The crowd of fitzroy is 14000.",
+    "The crowd of footscray is 12000.",
+    "The crowd of footscray is 18000.",
+    "The crowd of geelong is 11000.",
+    "The crowd of geelong is 14000.",
+    "The crowd of hawthorn is 10500.",
+    "The crowd of hawthorn is 11000.",
+    "The crowd of hawthorn is 12000.",
+    "The crowd of hawthorn is 13000.",
+    "The crowd of hawthorn is 15000.",
+    "The crowd of hawthorn is 19500.",
+    "The crowd of hawthorn is 6000.",
+    "The crowd of melbourne is 17000.",
+    "The crowd of north melbourne is 13000.",
+    "The crowd of north melbourne is 16000.",
+    "The crowd of north melbourne is 9000.",
+    "The crowd of richmond is 11000.",
+    "The crowd of richmond is 12000.",
+    "The crowd of richmond is 16000.",
+    "The crowd of richmond is 22500.",
+    "The crowd of south melbourne is 11000.",
+    "The crowd of south melbourne is 15000.",
+    "The crowd of south melbourne is 16000.",
+    "The crowd of st kilda is 15000.",
+    "The crowd of st kilda is 17000.",
+    "The first elected of georgia 9 is 1952.",
+    "The first elected of louisiana 4 is 1961.",
+    "The foundation of polytechnic university (japan) is 1961.",
+    "The laps of jason bright is 27.",
+    "The losses of montreal hockey club is 3.",
+    "The silver of venezuela (ven) is 0.",
+    "The tonnage of koningin juliana is 6682.",
+    "The year (s) won of sandy lyle is 1985.",
+    "The year (s) won of tom watson is 1982.",
+    "The year of live version (recorded in 2009) is 2003.",
+    "The year of live version (recorded in 2009) is 2009."
+  ],
+  "colliding_evidence_strings": [
+    "1926 vfl season. north melbourne has a home team score of 9.16 (70), a away team of south melbourne, a away team score of 15.16 (106), a venue of arden street oval, a crowd of 12000, a date of 28 august 1926. footscray has a home team score of 9.19 (73), a away team of hawthorn, a away team score of 11.14 (80), a venue of western oval, a crowd of 5000, a date of 28 august 1926. collingwood has a home team score of 8.16 (64), a away team of geelong, a away team score of 14.13 (97), a venue of victoria park, a crowd of 26550, a date of 28 august 1926. carlton has a home team score of 18.18 (126), a away team of fitzroy, a away team score of 15.14 (104), a venue of princes park, a crowd of 25000, a date of 28 august 1926. richmond has a home team score of 10.8 (68), a away team of melbourne, a away team score of 13.16 (94), a venue of punt road oval, a crowd of 15000, a date of 28 august 1926. st kilda has a home team score of 2.11 (23), a away team of essendon, a away team score of 14.11 (95), a venue of junction oval, a crowd of 13000, a date of 28 august 1926.",
+    "1929 vfl season. essendon has a home team score of 11.10 (76), a away team of melbourne, a away team score of 12.10 (82), a venue of windy hill, a crowd of 15000, a date of 29 june 1929. collingwood has a home team score of 20.19 (139), a away team of footscray, a away team score of 14.10 (94), a venue of victoria park, a crowd of 18000, a date of 29 june 1929. carlton has a home team score of 12.22 (94), a away team of st kilda, a away team score of 7.15 (57), a venue of princes park, a crowd of 32000, a date of 29 june 1929. richmond has a home team score of 19.15 (129), a away team of north melbourne, a away team score of 11.10 (76), a venue of punt road oval, a crowd of 11000, a date of 29 june 1929. south melbourne has a home team score of 10.13 (73), a away team of geelong, a away team score of 10.15 (75), a venue of lake oval, a crowd of 12000, a date of 29 june 1929. hawthorn has a home team score of 13.15 (93), a away team of fitzroy, a away team score of 8.10 (58), a venue of glenferrie oval, a crowd of 10000, a date of 29 june 1929.",
+    "1948 vfl season. geelong has a home team score of 15.17 (107), a away team of north melbourne, a away team score of 10.8 (68), a venue of kardinia park, a crowd of 17500, a date of 24 april 1948. carlton has a home team score of 8.10 (58), a away team of fitzroy, a away team score of 10.18 (78), a venue of princes park, a crowd of 32000, a date of 24 april 1948. st kilda has a home team score of 7.6 (48), a away team of melbourne, a away team score of 11.13 (79), a venue of junction oval, a crowd of 9000, a date of 24 april 1948. richmond has a home team score of 20.12 (132), a away team of footscray, a away team score of 8.9 (57), a venue of punt road oval, a crowd of 29000, a date of 24 april 1948. essendon has a home team score of 11.16 (82), a away team of hawthorn, a away team score of 8.11 (59), a venue of windy hill, a crowd of 16000, a date of 26 april 1948. collingwood has a home team score of 18.17 (125), a away team of south melbourne, a away team score of 10.12 (72), a venue of victoria park, a crowd of 47000, a date of 26 april 1948.",
+    "1971 vfl season\nhome team | home team score | away team | away team score | venue | crowd | date\nessendon | 13.18 (96) | north melbourne | 8.15 (63) | windy hill | 14864 | 5 june 1971\ncarlton | 13.12 (90) | fitzroy | 10.15 (75) | princes park | 24000 | 5 june 1971\nsouth melbourne | 9.6 (60) | st kilda | 18.23 (131) | lake oval | 16069 | 5 june 1971\nrichmond | 15.16 (106) | melbourne | 11.9 (75) | mcg | 48708 | 5 june 1971\nhawthorn | 15.17 (107) | collingwood | 7.13 (55) | glenferrie oval | 28450 | 5 june 1971\nfootscray | 19.10 (124) | geelong | 18.14 (122) | vfl park | 11673 | 5 june 1971",
+    "1977 vfl season. melbourne has a home team score of 10.12 (72), a away team of south melbourne, a away team score of 21.15 (141), a venue of mcg, a crowd of 22049, a date of 2 april 1977. hawthorn has a home team score of 13.14 (92), a away team of north melbourne, a away team score of 23.14 (152), a venue of princes park, a crowd of 20317, a date of 2 april 1977. fitzroy has a home team score of 21.17 (143), a away team of richmond, a away team score of 18.21 (129), a venue of junction oval, a crowd of 17740, a date of 2 april 1977. essendon has a home team score of 14.25 (109), a away team of st kilda, a away team score of 10.17 (77), a venue of windy hill, a crowd of 17265, a date of 2 april 1977. collingwood has a home team score of 19.16 (130), a away team of footscray, a away team score of 18.11 (119), a venue of victoria park, a crowd of 27377, a date of 2 april 1977. geelong has a home team score of 6.9 (45), a away team of carlton, a away team score of 17.21 (123), a venue of kardinia park, a crowd of 25317, a date of 2 april 1977.",
+    "1982 vfl season. essendon has a home team score of 19.19 (133), a away team of melbourne, a away team score of 12.13 (85), a venue of windy hill, a crowd of 22403, a date of 22 may 1982. collingwood has a home team score of 13.14 (92), a away team of hawthorn, a away team score of 17.12 (114), a venue of victoria park, a crowd of 24904, a date of 22 may 1982. carlton has a home team score of 27.23 (185), a away team of swans, a away team score of 12.11 (83), a venue of princes park, a crowd of 23954, a date of 22 may 1982. richmond has a home team score of 21.13 (139), a away team of footscray, a away team score of 14.14 (98), a venue of mcg, a crowd of 22493, a date of 22 may 1982. st kilda has a home team score of 16.19 (115), a away team of fitzroy, a away team score of 25.12 (162), a venue of moorabbin oval, a crowd of 15140, a date of 22 may 1982. geelong has a home team score of 15.19 (109), a away team of north melbourne, a away team score of 9.9 (63), a venue of vfl park, a crowd of 25237, a date of 22 may 1982.",
+    "2000 open championship. nick price has a country of zimbabwe, a year (s) won of 1994, a total of 146, a to par of + 2. bob charles has a country of new zealand, a year (s) won of 1963, a total of 147, a to par of + 3. john daly has a country of united states, a year (s) won of 1995, a total of 148, a to par of + 4. sandy lyle has a country of scotland, a year (s) won of 1985, a total of 149, a to par of + 7. jack nicklaus has a country of united states, a year (s) won of 1966 , 1970 , 1978, a total of 150, a to par of + 6. paul lawrie has a country of scotland, a year (s) won of 1999, a total of 153, a to par of + 9.",
+    "The following records are from 1963 vfl season. The home team score of geelong is 16.26 (122). Its away team is south melbourne. Its away team score is 9.9 (63). Its venue is kardinia park. The crowd of geelong is 33953. Its date is 20 april 1963. The home team score of st kilda is 13.5 (83). Its away team is melbourne. Its away team score is 9.11 (65). Its venue is junction oval. The crowd of st kilda is 31300. Its date is 20 april 1963. The home team score of north melbourne is 11.11 (77). Its away team is footscray. Its away team score is 5.10 (40). Its venue is arden street oval. The crowd of north melbourne is 21960. Its date is 20 april 1963. The home team score of hawthorn is 8.12 (60). Its away team is essendon. Its away team score is 13.7 (85). Its venue is glenferrie oval. The crowd of hawthorn is 30000. Its date is 20 april 1963. The home team score of richmond is 11.14 (80). Its away team is collingwood. Its away team score is 18.16 (124). Its venue is punt road oval. The crowd of richmond is 32200. Its date is 20 april 1963. The home team score of fitzroy is 10.12 (72). Its away team is carlton. Its away team score is 14.11 (95). Its venue is brunswick street oval. The crowd of fitzroy is 25167. Its date is 20 april 1963.",
+    "The following records are from 1971 vfl season. The home team score of north melbourne is 8.14 (62). Its away team is melbourne. Its away team score is 9.8 (62). Its venue is arden street oval. The crowd of north melbourne is 6522. Its date is 31 july 1971. The home team score of richmond is 16.12 (108). Its away team is hawthorn. Its away team score is 11.10 (76). Its venue is mcg. The crowd of richmond is 47951. Its date is 31 july 1971. The home team score of south melbourne is 13.8 (86). Its away team is essendon. Its away team score is 13.18 (96). Its venue is lake oval. The crowd of south melbourne is 7895. Its date is 31 july 1971. The home team score of geelong is 21.11 (137). Its away team is collingwood. Its away team score is 19.14 (128). Its venue is kardinia park. The crowd of geelong is 22000. Its date is 31 july 1971. The home team score of footscray is 11.10 (76). Its away team is carlton. Its away team score is 15.16 (106). Its venue is western oval. The crowd of footscray is 21670. Its date is 31 july 1971. The home team score of st kilda is 13.5 (83). Its away team is fitzroy. Its away team score is 9.10 (64). Its venue is vfl park. The crowd of st kilda is 14563. Its date is 31 july 1971.",
+    "The following records are from 1976 vfl season. The home team score of footscray is 20.14 (134). Its away team is south melbourne. Its away team score is 14.11 (95). Its venue is western oval. The crowd of footscray is 22580. Its date is 17 april 1976. The home team score of hawthorn is 25.22 (172). Its away team is collingwood. Its away team score is 12.12 (84). Its venue is princes park. The crowd of hawthorn is 23375. Its date is 17 april 1976. The home team score of carlton is 14.13 (97). Its away team is fitzroy. Its away team score is 6.12 (48). Its venue is vfl park. The crowd of carlton is 32648. Its date is 17 april 1976. The home team score of essendon is 15.8 (98). Its away team is melbourne. Its away team score is 20.13 (133). Its venue is windy hill. The crowd of essendon is 21167. Its date is 19 april 1976. The home team score of richmond is 14.18 (102). Its away team is north melbourne. Its away team score is 12.11 (83). Its venue is mcg. The crowd of richmond is 41413. Its date is 19 april 1976. The home team score of st kilda is 16.10 (106). Its away team is geelong. Its away team score is 12.14 (86). Its venue is moorabbin oval. The crowd of st kilda is 26931. Its date is 19 april 1976.",
+    "The following records are from 1993 - 94 manchester united f.c. season. The round of 9 january 1994 is round 3. Its opponents is sheffield united. Its h / a is a. Its result f - a is 1 - 0. The attendance of 9 january 1994 is 22019. The round of 30 january 1994 is round 4. Its opponents is norwich city. Its h / a is a. Its result f - a is 2 - 0. The attendance of 30 january 1994 is 21060. The round of 20 february 1994 is round 5. Its opponents is wimbledon. Its h / a is a. Its result f - a is 3 - 0. The attendance of 20 february 1994 is 27511. The round of 12 march 1994 is round 6. Its opponents is charlton athletic. Its h / a is h. Its result f - a is 3 - 1. The attendance of 12 march 1994 is 44347. The round of 13 april 1994 is semi - final replay. Its opponents is oldham athletic. Its h / a is n. Its result f - a is 4 - 1. The attendance of 13 april 1994 is 32311. The round of 14 may 1994 is final. Its opponents is chelsea. Its h / a is n. Its result f - a is 4 - 0. The attendance of 14 may 1994 is 79634.",
+    "The following records are from in ghost colours. The country of drowned in sound is uk. Its accolade is 50 best albums of the year. Its year is 2008. The rank of drowned in sound is 3. The country of the times is uk. Its accolade is 100 best albums of the year. Its year is 2008. The rank of the times is 2. The country of pitchfork media is usa. Its accolade is 50 best albums of the year. Its year is 2008. The rank of pitchfork media is 4. The country of pitchfork media is usa. Its accolade is the top 200 albums of the 2000s. Its year is 2009. The rank of pitchfork media is 61. The country of montreal mirror is canada. Its accolade is 50 best albums of the year. Its year is 2008.",
+    "The following records are from rowing at the 2008 summer olympics - men 's coxless four. The rank of james , williams , reed , triggs - hodge is 1. Its country is great britain. Its time is 5:54.77. Its notes is fa. The rank of ryan , marburg , mckenzie , hegerty is 2. Its country is australia. Its time is 5:56.20. Its notes is fa. The rank of despr\u00e3\u00a8s , rondeau , chardin , mortelette is 3. Its country is france. Its time is 5:56.73. Its notes is fa. The rank of meyer , dallinger , murray , bond is 4. Its country is new zealand. Its time is 5:57.31. Its notes is fb. The rank of banks , teti , lanzone , newlin is 5. Its country is united states. Its time is 5:57.52. Its notes is fb. The rank of folan , casey , devlin , o'neill is 6. Its country is ireland. Its time is 5:58.14. Its notes is fb.",
+    "bloodrock. bloodrock has a year of 1970, a format of 12lp, a label of capitol, a catalogno of st 435, a remark of 160 us. bloodrock 2 has a year of 1971, a format of 12lp, a label of capitol, a catalogno of st 491, a remark of 21 us. bloodrock 3 has a year of 1971, a format of 12lp, a label of capitol, a catalogno of st 765, a remark of 27 us. bloodrock usa has a year of 1972, a format of 12lp, a label of capitol, a catalogno of smas 645, a remark of 88 us. passage has a year of 1972, a format of 12lp, a label of capitol, a catalogno of sw 11109, a remark of 104 us. whirlwind tongues has a year of 1974, a format of 12lp, a label of capitol, a catalogno of smas 11259, a remark of did not chart.",
+    "denni avdi\u0107. 2006 - 07 has a club of if elfsborg, a country of sweden, a competition of allsvenskan, a apps of 19, a goals of 0. 2007 - 08 has a club of if elfsborg, a country of sweden, a competition of allsvenskan, a apps of 26, a goals of 4. 2009 - 10 has a club of if elfsborg, a country of sweden, a competition of allsvenskan, a apps of 29, a goals of 19. 2010 - 11 has a club of werder bremen, a country of germany, a competition of bundesliga, a apps of 7, a goals of 0. 2011 - 12 has a club of werder bremen ii, a country of germany, a competition of regionalliga nord, a apps of 12, a goals of 0. 2012 - 13 has a club of pec zwolle, a country of netherlands, a competition of eredivisie, a apps of 24, a goals of 8.",
+    "harimau muda b\n| year | league position | league | domestic cup | cup position |\n| --- | --- | --- | --- | --- |\n| 2007 - 08 | 8 / 13 | malaysia premier league | malaysia fa cup | round 1 |\n| 2009 | 1 / 13 (champions) | malaysia premier league | malaysia fa cup | quarter final |\n| 2010 | 5 / 12 | malaysia premier league | malaysia fa cup | round 1 |\n| 2011 | 10 / 12 | malaysia premier league | malaysia fa cup | round 2 |\n| 2012 | 8 / 12 | malaysia premier league | malaysia fa cup | did not qualify |\n| 2013 | ongoing | sleague | singapore cup | elimenated |",
+    "jordan romero. april 2006 has a summits of mount kilimanjaro, a country of tanzania, a continent of africa, a elevation ft of 19340, a elevation m of 5892. july 2007 has a summits of mount elbrus, a country of russia, a continent of europe, a elevation ft of 18510, a elevation m of 5642. december 2007 has a summits of mount aconcagua, a country of argentina, a continent of south america, a elevation ft of 22841, a elevation m of 6962. june 2008 has a summits of mount mckinley, a country of united states, a continent of north america, a elevation ft of 20320, a elevation m of 6194. september 2009 has a summits of mount carstensz pyramid, a country of indonesia, a continent of australia / oceania, a elevation ft of 16024, a elevation m of 4884. may 2010 has a summits of mount everest, a country of nepal - china, a continent of asia, a elevation ft of 29029, a elevation m of 8848.",
+    "juli inkster. 8 (70 + 73 + 69 + 68 = 280) has a year of 1984, a championship of nabisco dinah shore, a margin of victory of playoff 1, a runner (s) - up of pat bradley. 9 (69 + 68 + 75 + 67 = 279) has a year of 1984, a championship of du maurier classic, a margin of victory of 1 stroke, a runner (s) - up of ayako okamoto. 9 (66 + 69 + 73 + 71 = 279) has a year of 1989, a championship of nabisco dinah shore, a margin of victory of 5 strokes, a runner (s) - up of joanne carner , tammie green. 16 (68 + 66 + 69 + 65 = 268) has a year of 1999, a championship of mcdonald 's lpga championship, a margin of victory of 4 strokes, a runner (s) - up of liselotte neumann. 16 (65 + 69 + 67 + 71 = 272) has a year of 1999, a championship of us women 's open, a margin of victory of 5 strokes, a runner (s) - up of sherri turner. 3 (72 + 69 + 65 + 75 = 281) has a year of 2000, a championship of mcdonald 's lpga championship, a margin of victory of playoff 2, a runner (s) - up of stefania croce.",
+    "none. darley has a wins of 15, a byes of 2, a losses of 1, a draws of 0, a against of 1067. sunbury has a wins of 11, a byes of 2, a losses of 5, a draws of 0, a against of 1246. melton south has a wins of 9, a byes of 2, a losses of 7, a draws of 0, a against of 1286. lake wendouree has a wins of 8, a byes of 2, a losses of 8, a draws of 0, a against of 1186. redan has a wins of 7, a byes of 2, a losses of 9, a draws of 0, a against of 1261. sebastapol has a wins of 1, a byes of 2, a losses of 15, a draws of 0, a against of 1963."
+  ]
+}

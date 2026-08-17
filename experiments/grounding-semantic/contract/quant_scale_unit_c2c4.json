@@ -1,0 +1,869 @@
+{
+  "member": "quant_scale_unit",
+  "artifact": "/home/lab/workspace/private/ai-assistants/groundrails/experiments/grounding-semantic/R18-H150_scaleunit_lane.parquet",
+  "member_units": {
+    "rows": 5540,
+    "pairs": 2770,
+    "distinct_chunks": 2509,
+    "distinct_claims": 5456,
+    "documents": 410
+  },
+  "c2": {
+    "arena_10_subsets": {
+      "subsets": {
+        "covidqa": 980,
+        "delucionqa": 552,
+        "emanual": 396,
+        "expertqa": 759,
+        "finqa": 725,
+        "hagrid": 703,
+        "hotpotqa": 998,
+        "pubmedqa": 1250,
+        "tatqa": 1032,
+        "techqa": 1250
+      },
+      "evidence": {
+        "raw": {
+          "member_units": 2509,
+          "surface_units": 6784,
+          "shared_units": 0,
+          "member_to_surface_fraction": 0.0,
+          "surface_to_member_fraction": 0.0
+        },
+        "truncated_1500": {
+          "member_units": 2509,
+          "surface_units": 6778,
+          "shared_units": 0,
+          "member_to_surface_fraction": 0.0,
+          "surface_to_member_fraction": 0.0
+        },
+        "ws_collapsed_casefold": {
+          "member_units": 2509,
+          "surface_units": 6783,
+          "shared_units": 0,
+          "member_to_surface_fraction": 0.0,
+          "surface_to_member_fraction": 0.0
+        },
+        "max_shared_over_forms": 0
+      }
+    },
+    "gold_full": {
+      "gold_claims": 2752,
+      "gold_chunks": 123579,
+      "evidence": {
+        "raw": {
+          "member_units": 2509,
+          "surface_units": 10228,
+          "shared_units": 0,
+          "member_to_surface_fraction": 0.0,
+          "surface_to_member_fraction": 0.0
+        },
+        "truncated_1500": {
+          "member_units": 2509,
+          "surface_units": 10228,
+          "shared_units": 0,
+          "member_to_surface_fraction": 0.0,
+          "surface_to_member_fraction": 0.0
+        },
+        "ws_collapsed_casefold": {
+          "member_units": 2509,
+          "surface_units": 10227,
+          "shared_units": 0,
+          "member_to_surface_fraction": 0.0,
+          "surface_to_member_fraction": 0.0
+        },
+        "max_shared_over_forms": 0
+      },
+      "claims": {
+        "raw": {
+          "member_units": 5456,
+          "surface_units": 2699,
+          "shared_units": 0,
+          "member_to_surface_fraction": 0.0,
+          "surface_to_member_fraction": 0.0
+        },
+        "truncated_1500": {
+          "member_units": 5456,
+          "surface_units": 2699,
+          "shared_units": 0,
+          "member_to_surface_fraction": 0.0,
+          "surface_to_member_fraction": 0.0
+        },
+        "ws_collapsed_casefold": {
+          "member_units": 5454,
+          "surface_units": 2699,
+          "shared_units": 0,
+          "member_to_surface_fraction": 0.0,
+          "surface_to_member_fraction": 0.0
+        },
+        "max_shared_over_forms": 0
+      }
+    },
+    "mechanism_evals": {
+      "R17-H143_evalset": {
+        "rows": 1050,
+        "evidence": {
+          "raw": {
+            "member_units": 2509,
+            "surface_units": 547,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "truncated_1500": {
+            "member_units": 2509,
+            "surface_units": 547,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_units": 2509,
+            "surface_units": 547,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "max_shared_over_forms": 0
+        },
+        "claims": {
+          "raw": {
+            "member_units": 5456,
+            "surface_units": 1048,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "truncated_1500": {
+            "member_units": 5456,
+            "surface_units": 1048,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_units": 5454,
+            "surface_units": 1048,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "max_shared_over_forms": 0
+        }
+      },
+      "R18-H150_unitswap_probe": {
+        "rows": 280,
+        "evidence": {
+          "raw": {
+            "member_units": 2509,
+            "surface_units": 115,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "truncated_1500": {
+            "member_units": 2509,
+            "surface_units": 115,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_units": 2509,
+            "surface_units": 115,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "max_shared_over_forms": 0
+        },
+        "claims": {
+          "raw": {
+            "member_units": 5456,
+            "surface_units": 278,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "truncated_1500": {
+            "member_units": 5456,
+            "surface_units": 278,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_units": 5454,
+            "surface_units": 278,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "max_shared_over_forms": 0
+        }
+      },
+      "R17-H148_probe": {
+        "rows": 1956,
+        "evidence": {
+          "raw": {
+            "member_units": 2509,
+            "surface_units": 390,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "truncated_1500": {
+            "member_units": 2509,
+            "surface_units": 390,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_units": 2509,
+            "surface_units": 390,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "max_shared_over_forms": 0
+        },
+        "claims": {
+          "raw": {
+            "member_units": 5456,
+            "surface_units": 1813,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "truncated_1500": {
+            "member_units": 5456,
+            "surface_units": 1813,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_units": 5454,
+            "surface_units": 1813,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "max_shared_over_forms": 0
+        }
+      },
+      "R17-H149_probe": {
+        "rows": 716,
+        "evidence": {
+          "raw": {
+            "member_units": 2509,
+            "surface_units": 342,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "truncated_1500": {
+            "member_units": 2509,
+            "surface_units": 342,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_units": 2509,
+            "surface_units": 342,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "max_shared_over_forms": 0
+        },
+        "claims": {
+          "raw": {
+            "member_units": 5456,
+            "surface_units": 714,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "truncated_1500": {
+            "member_units": 5456,
+            "surface_units": 714,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_units": 5454,
+            "surface_units": 714,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "max_shared_over_forms": 0
+        }
+      },
+      "R20-H177_eval_B": {
+        "rows": 2000,
+        "evidence": {
+          "raw": {
+            "member_units": 2509,
+            "surface_units": 736,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "truncated_1500": {
+            "member_units": 2509,
+            "surface_units": 736,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_units": 2509,
+            "surface_units": 736,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "max_shared_over_forms": 0
+        },
+        "claims": {
+          "raw": {
+            "member_units": 5456,
+            "surface_units": 2000,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "truncated_1500": {
+            "member_units": 5456,
+            "surface_units": 2000,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_units": 5454,
+            "surface_units": 2000,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "max_shared_over_forms": 0
+        }
+      },
+      "R20-H177_eval_C": {
+        "rows": 1936,
+        "evidence": {
+          "raw": {
+            "member_units": 2509,
+            "surface_units": 380,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "truncated_1500": {
+            "member_units": 2509,
+            "surface_units": 380,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_units": 2509,
+            "surface_units": 380,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "max_shared_over_forms": 0
+        },
+        "claims": {
+          "raw": {
+            "member_units": 5456,
+            "surface_units": 1926,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "truncated_1500": {
+            "member_units": 5456,
+            "surface_units": 1926,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_units": 5454,
+            "surface_units": 1926,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "max_shared_over_forms": 0
+        }
+      },
+      "R20-H175b_qlane_eval": {
+        "rows": 2002,
+        "evidence": {
+          "raw": {
+            "member_units": 2509,
+            "surface_units": 487,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "truncated_1500": {
+            "member_units": 2509,
+            "surface_units": 487,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_units": 2509,
+            "surface_units": 487,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "max_shared_over_forms": 0
+        },
+        "claims": {
+          "raw": {
+            "member_units": 5456,
+            "surface_units": 1001,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "truncated_1500": {
+            "member_units": 5456,
+            "surface_units": 1001,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_units": 5454,
+            "surface_units": 1001,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "max_shared_over_forms": 0
+        }
+      },
+      "R20-H175b_qlane_eval_clean": {
+        "rows": 88,
+        "evidence": {
+          "raw": {
+            "member_units": 2509,
+            "surface_units": 22,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "truncated_1500": {
+            "member_units": 2509,
+            "surface_units": 22,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_units": 2509,
+            "surface_units": 22,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "max_shared_over_forms": 0
+        },
+        "claims": {
+          "raw": {
+            "member_units": 5456,
+            "surface_units": 44,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "truncated_1500": {
+            "member_units": 5456,
+            "surface_units": 44,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_units": 5454,
+            "surface_units": 44,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "max_shared_over_forms": 0
+        }
+      },
+      "R20-H175b_qlane_eval_repaired": {
+        "rows": 1678,
+        "evidence": {
+          "raw": {
+            "member_units": 2509,
+            "surface_units": 407,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "truncated_1500": {
+            "member_units": 2509,
+            "surface_units": 407,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_units": 2509,
+            "surface_units": 407,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "max_shared_over_forms": 0
+        },
+        "claims": {
+          "raw": {
+            "member_units": 5456,
+            "surface_units": 839,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "truncated_1500": {
+            "member_units": 5456,
+            "surface_units": 839,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "ws_collapsed_casefold": {
+            "member_units": 5454,
+            "surface_units": 839,
+            "shared_units": 0,
+            "member_to_surface_fraction": 0.0,
+            "surface_to_member_fraction": 0.0
+          },
+          "max_shared_over_forms": 0
+        }
+      }
+    },
+    "worst_shared_units_any_surface_any_form": 0,
+    "verdict": "PASS"
+  },
+  "c4": {
+    "gate_chunks": {
+      "instrument": "provenance_gate.py (R13 ruling 4)",
+      "mode": "jaccard",
+      "n": 8,
+      "jaccard_threshold": 0.3,
+      "thresholds": {
+        "warn": 0.005,
+        "kill": 0.02
+      },
+      "candidate": {
+        "label": "quant_scale_unit_chunks",
+        "n_units": 2509,
+        "n_units_scorable": 2509
+      },
+      "arena": {
+        "subsets": {
+          "covidqa": 980,
+          "delucionqa": 552,
+          "emanual": 396,
+          "expertqa": 759,
+          "finqa": 725,
+          "hagrid": 703,
+          "hotpotqa": 998,
+          "pubmedqa": 1250,
+          "tatqa": 1032,
+          "techqa": 1250
+        },
+        "n_units": 8645,
+        "n_units_scorable": 8555
+      },
+      "candidate_vs_arena": {
+        "n_units": 2509,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "covidqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "delucionqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "emanual": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "expertqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "finqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hagrid": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hotpotqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "pubmedqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "tatqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "techqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        },
+        "best_jaccard": {
+          "max": 0.0,
+          "p99": 0.0,
+          "mean": 0.0
+        }
+      },
+      "arena_vs_candidate": {
+        "n_units": 8645,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "quant_scale_unit_chunks": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        },
+        "best_jaccard": {
+          "max": 0.0,
+          "p99": 0.0,
+          "mean": 0.0
+        }
+      },
+      "max_fraction": 0.0,
+      "verdict": "PASS"
+    },
+    "spike_chunks": {
+      "injected": 10,
+      "detected_total": 10,
+      "baseline_hits": 0,
+      "passes": true,
+      "candidate_units": 2509
+    },
+    "gate_claims": {
+      "instrument": "provenance_gate.py (R13 ruling 4)",
+      "mode": "jaccard",
+      "n": 8,
+      "jaccard_threshold": 0.3,
+      "thresholds": {
+        "warn": 0.005,
+        "kill": 0.02
+      },
+      "candidate": {
+        "label": "quant_scale_unit_claims",
+        "n_units": 5456,
+        "n_units_scorable": 5206
+      },
+      "arena": {
+        "subsets": {
+          "covidqa": 980,
+          "delucionqa": 552,
+          "emanual": 396,
+          "expertqa": 759,
+          "finqa": 725,
+          "hagrid": 703,
+          "hotpotqa": 998,
+          "pubmedqa": 1250,
+          "tatqa": 1032,
+          "techqa": 1250
+        },
+        "n_units": 8645,
+        "n_units_scorable": 8555
+      },
+      "candidate_vs_arena": {
+        "n_units": 5456,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "covidqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "delucionqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "emanual": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "expertqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "finqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hagrid": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hotpotqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "pubmedqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "tatqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "techqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        },
+        "best_jaccard": {
+          "max": 0.0,
+          "p99": 0.0,
+          "mean": 0.0
+        }
+      },
+      "arena_vs_candidate": {
+        "n_units": 8645,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "quant_scale_unit_claims": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        },
+        "best_jaccard": {
+          "max": 0.0,
+          "p99": 0.0,
+          "mean": 0.0
+        }
+      },
+      "max_fraction": 0.0,
+      "verdict": "PASS"
+    },
+    "spike_claims": {
+      "injected": 10,
+      "detected_total": 10,
+      "baseline_hits": 0,
+      "passes": true,
+      "candidate_units": 5456
+    },
+    "coverage": {
+      "chunks": {
+        "n_units": 2509,
+        "n_units_too_short_for_8gram": 0,
+        "share_too_short": 0.0,
+        "exact_match_hits_among_short": 0
+      },
+      "claims": {
+        "n_units": 5456,
+        "n_units_too_short_for_8gram": 250,
+        "share_too_short": 0.045821,
+        "exact_match_hits_among_short": 0
+      }
+    },
+    "live_positive_control": {
+      "source": "R17-H145_scaleunit.parquet",
+      "rationale": "built from the same TabFact/FEVEROUS train tables by the same banked serializers - near-duplicate by construction",
+      "control_units": 2465,
+      "result": {
+        "instrument": "provenance_gate.py (R13 ruling 4)",
+        "mode": "jaccard",
+        "n": 8,
+        "jaccard_threshold": 0.3,
+        "thresholds": {
+          "warn": 0.005,
+          "kill": 0.02
+        },
+        "candidate": {
+          "label": "quant_scale_unit_chunks_LIVE",
+          "n_units": 2509,
+          "n_units_scorable": 2509
+        },
+        "arena": {
+          "subsets": {
+            "h145_scaleunit": 2465
+          },
+          "n_units": 2465,
+          "n_units_scorable": 2465
+        },
+        "candidate_vs_arena": {
+          "n_units": 2509,
+          "units_with_hit": 270,
+          "fraction": 0.107613,
+          "per_arena_subset": {
+            "h145_scaleunit": {
+              "units_with_hit": 270,
+              "fraction": 0.107613
+            }
+          },
+          "best_jaccard": {
+            "max": 1.0,
+            "p99": 1.0,
+            "mean": 0.0881
+          }
+        },
+        "arena_vs_candidate": {
+          "n_units": 2465,
+          "units_with_hit": 274,
+          "fraction": 0.111156,
+          "per_arena_subset": {
+            "quant_scale_unit_chunks_LIVE": {
+              "units_with_hit": 274,
+              "fraction": 0.111156
+            }
+          },
+          "best_jaccard": {
+            "max": 1.0,
+            "p99": 1.0,
+            "mean": 0.0846
+          }
+        },
+        "max_fraction": 0.111156,
+        "verdict": "KILL"
+      },
+      "fires": true,
+      "exact_shared_chunks_any_form": 33
+    },
+    "max_fraction_any_unit": 0.0,
+    "kill_threshold": 0.02,
+    "spike_passes": true,
+    "spike_baseline_hits": {
+      "chunks": 0,
+      "claims": 0
+    },
+    "verdict": "PASS"
+  }
+}

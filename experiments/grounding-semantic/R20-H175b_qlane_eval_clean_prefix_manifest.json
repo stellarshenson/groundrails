@@ -1,0 +1,403 @@
+{
+  "experiment": "R20-H175b - MIX-DISJOINT rebuild of the question-relevance held-out eval (qrel_contrast)",
+  "supersedes": "R20-H175b_qlane_eval.parquet",
+  "reason": "the banked eval was verified document-disjoint from the contrast lane only; 449 of its 487 passages are present in the training mix through the 61,712 PsiloQA rows public_train() carries, so a memorising model can score it without learning question relevance",
+  "registration": "docs/experiments/semantic-grounding-experiments.md, block 'R20-H175b QUESTION CONDITIONING (measurement only)', STAGE 0 - construction, guards and bars unchanged",
+  "tag": "qrel_contrast",
+  "dann_group": "qrel_contrast",
+  "parquet": "R20-H175b_qlane_eval_clean.parquet",
+  "seed_note": "fresh seed 3175; the banked build used 1175 (train lane) and 2175 (eval)",
+  "builder": "R20-H175b_qlane.py, imported and called - supply is the only thing this script changes",
+  "supply": {
+    "source": "s-nlp/PsiloQA, all three splits pooled, deduplicated on (wiki_passage, question)",
+    "cleanliness_criterion": "the passage must be absent from the ASSEMBLED MIX (raw, truncated and normalised forms), which is measured, not inferred from split membership",
+    "split_premise_refuted": "PsiloQA's splits are cut per question, not per document: 5,368 of 5,687 validation+test passages are byte-identical to a train passage the mix carries, so 'validation and test are clean by construction' is false",
+    "pooled_triples": 66098,
+    "pooled_passages": 26161,
+    "passages_rejected_as_in_mix": 25602,
+    "passages_absent_from_mix": 559,
+    "admitted_triples": 360,
+    "admitted_passages": 284,
+    "passages_with_two_or_more_questions": 55,
+    "split_contributions": {
+      "test": 98,
+      "validation": 110,
+      "train": 152
+    }
+  },
+  "requires_question_channel": true,
+  "loader_warning": "THIS EVAL IS ONLY VALID UNDER A QUESTION-CONDITIONED PRESENTATION. Both rows of a pair carry the same claim and the same chunk and differ ONLY in `question`; read without composing the question the two legs are identical inputs with opposite labels and the AUROC is 0.5 by construction.",
+  "mix_disjointness": {
+    "eval_passages": 8,
+    "found_in_mix_by_form": {
+      "eval_raw_in_mix_raw": 0,
+      "eval_raw_in_mix_truncated": 0,
+      "eval_truncated_in_mix_raw": 0,
+      "eval_truncated_in_mix_truncated": 0,
+      "eval_normalised_in_mix_normalised_raw": 0,
+      "eval_normalised_in_mix_normalised_truncated": 0
+    },
+    "eval_passages_found_in_the_mix": 0,
+    "mix_distinct_raw_chunks": 359960,
+    "mix_distinct_truncated_chunks": 356000,
+    "mix_rows_per_group": {
+      "ragtruth_en": 15090,
+      "ragtruth_de": 15090,
+      "ragtruth_fr": 15090,
+      "ragtruth_es": 15090,
+      "ragtruth_it": 15090,
+      "ragtruth_pl": 15090,
+      "ragtruth_hu": 15090,
+      "ragtruth_cn": 15090,
+      "halueval": 40000,
+      "psiloqa": 61712,
+      "vitaminc": 370653,
+      "tabfact": 92585,
+      "R17-H146_lane.parquet": 30000,
+      "R18-H150_scaleunit_lane.parquet": 5540,
+      "R20-H175b_qlane.parquet": 17972
+    },
+    "method": "exact string membership of the assembled mix chunk set - public_train() with the evidence cut lifted, plus all three arm lanes - in raw, truncated-to-1500 and whitespace-collapsed case-folded forms",
+    "bar": "0",
+    "pass": true
+  },
+  "lane_disjointness": {
+    "lane_parquet": "R20-H175b_qlane.parquet",
+    "lane_rows": 17972,
+    "shared_passages": 0,
+    "shared_documents": 0,
+    "shared_questions": 0,
+    "bar": "0 shared passages",
+    "pass": true
+  },
+  "clean_supply_ceiling": {
+    "clean_pool_passages": 54,
+    "clean_pool_pairs": 109,
+    "per_channel_auroc_over_the_whole_clean_pool": {
+      "claim_char_length": 0.5,
+      "claim_token_count": 0.5,
+      "chunk_char_length": 0.5,
+      "question_char_length": 0.5,
+      "question_token_count": 0.5,
+      "claim_chunk_containment": 0.5,
+      "question_chunk_containment": 0.5,
+      "question_claim_containment": 0.743,
+      "claim_question_containment": 0.7233,
+      "question_claim_overlap_tokens": 0.7047,
+      "question_claim_jaccard": 0.748,
+      "question_claim_idf_overlap": 0.7136
+    },
+    "worst_channel_over_the_whole_clean_pool": 0.248,
+    "largest_prefix_passing_exhaustive_scan": {
+      "trim_margin_0.04": {
+        "passages": 8,
+        "pairs": 16,
+        "worst_deviation": 0.0273
+      },
+      "registered_bar_0.05": {
+        "passages": 13,
+        "pairs": 26,
+        "worst_deviation": 0.0422
+      }
+    },
+    "reading": "the five question-x-claim lexical channels are what the overlap matching exists to flatten; on this pool it has no freedom to flatten them, and buying surface parity costs almost the entire pool"
+  },
+  "memorisation_feature": {
+    "construction": "max token overlap between the eval claim and any llm_answer the mix pairs with that leg's question over that same passage; AUROC against the label, no relevance channel involved",
+    "clean_eval": {
+      "passage_and_question": {
+        "rows": 32,
+        "rows_with_a_mix_answer": 0,
+        "coverage": 0.0,
+        "auroc": null,
+        "note": "the mix pairs no answer with any (passage, question) of this eval - the feature does not exist here"
+      },
+      "question_only": {
+        "rows": 32,
+        "rows_with_a_mix_answer": 0,
+        "coverage": 0.0,
+        "auroc": null,
+        "note": "the mix pairs no answer with any (passage, question) of this eval - the feature does not exist here"
+      }
+    },
+    "banked_contaminated_eval": {
+      "passage_and_question": {
+        "rows": 2002,
+        "rows_with_a_mix_answer": 1962,
+        "coverage": 0.98,
+        "jaccard": 0.6082,
+        "claim_into_answer_containment": 0.623,
+        "answer_into_claim_containment": 0.5981,
+        "shared_token_count": 0.5901,
+        "auroc": 0.623,
+        "strongest_variant": "claim_into_answer_containment"
+      },
+      "question_only": {
+        "rows": 2002,
+        "rows_with_a_mix_answer": 1962,
+        "coverage": 0.98,
+        "jaccard": 0.6082,
+        "claim_into_answer_containment": 0.623,
+        "answer_into_claim_containment": 0.5981,
+        "shared_token_count": 0.5901,
+        "auroc": 0.623,
+        "strongest_variant": "claim_into_answer_containment"
+      }
+    }
+  },
+  "rows": 32,
+  "pairs": 16,
+  "passages": 8,
+  "documents": 8,
+  "units": 8,
+  "seed": 3175,
+  "split": "eval_clean",
+  "pair_target": 10000,
+  "selection": {
+    "trimmed": true,
+    "passages_kept": 8,
+    "worst_deviation_kept": 0.0273,
+    "composite_probe_kept": null,
+    "worst_deviation_at_target": 0.248,
+    "composite_probe_at_target": null,
+    "passages_at_target": 54,
+    "criterion": "every barred channel within 0.04 of 0.5"
+  },
+  "label_balance": {
+    "label_1": 16,
+    "label_0": 16
+  },
+  "families": {
+    "qswap_same_passage": 32
+  },
+  "family_shares": {
+    "qswap_same_passage": 1.0
+  },
+  "languages": {
+    "fi": 16,
+    "en": 8,
+    "hi": 8
+  },
+  "language_shares": {
+    "fi": 0.5,
+    "en": 0.25,
+    "hi": 0.25
+  },
+  "unit_sizes": {
+    "2": 32
+  },
+  "diversity": {
+    "distinct_questions": 16,
+    "distinct_claims": 16,
+    "distinct_chunks": 8
+  },
+  "char_stats": {
+    "claim": {
+      "n": 32,
+      "mean": 36.8,
+      "median": 30,
+      "p10": 19,
+      "p90": 58,
+      "min": 16,
+      "max": 92
+    },
+    "chunk": {
+      "n": 32,
+      "mean": 590.4,
+      "median": 572,
+      "p10": 159,
+      "p90": 1046,
+      "min": 159,
+      "max": 1052
+    },
+    "question": {
+      "n": 32,
+      "mean": 51.4,
+      "median": 49,
+      "p10": 28,
+      "p90": 81,
+      "min": 19,
+      "max": 83
+    }
+  },
+  "window_census": {
+    "windowing": "1500/750, final window flush to the end (byte-identical to R8-H101 / R16-H142)",
+    "rows": 32,
+    "mean_windows": 1.0,
+    "median_windows": 1,
+    "max_windows": 1,
+    "multi_window_rows": 0,
+    "multi_window_share": 0.0
+  },
+  "verify": {
+    "pair_integrity": {
+      "pairs": 16,
+      "malformed": 0,
+      "bar": "0 malformed",
+      "pass": true,
+      "examples": []
+    },
+    "claim_only_tfidf_auroc": {
+      "value": 0.5,
+      "bar": "< 0.55",
+      "pass": true,
+      "scoring": "5-fold document-disjoint, out of fold, char_wb 2-5 TF-IDF, liblinear tol 1e-7",
+      "field": "claim",
+      "structural_note": "both rows of a pair carry the SAME claim, so this probe is 0.5 by construction; it is run because the bar is registered and because a build defect that broke the pairing would show here"
+    },
+    "within_pair_claim_only_accuracy": {
+      "per_family": {
+        "all": {
+          "acc": 0.5,
+          "pairs": 16
+        }
+      },
+      "worst": 0.5,
+      "bar": "< 0.60",
+      "pass": true
+    },
+    "question_only_tfidf_auroc": {
+      "value": 0.5,
+      "bar": "< 0.55",
+      "pass": true,
+      "scoring": "5-fold document-disjoint, out of fold, char_wb 2-5 TF-IDF, liblinear tol 1e-7",
+      "field": "question"
+    },
+    "evidence_only_tfidf_auroc": {
+      "value": 0.5,
+      "bar": "< 0.55",
+      "pass": true,
+      "scoring": "5-fold document-disjoint, out of fold, char_wb 2-5 TF-IDF, liblinear tol 1e-7",
+      "field": "chunk"
+    },
+    "question_plus_claim_bag_tfidf_auroc": {
+      "value": 0.5078,
+      "bar": "< 0.55",
+      "pass": true,
+      "scoring": "5-fold document-disjoint, out of fold, char_wb 2-5 TF-IDF, liblinear tol 1e-7",
+      "field": "question + claim"
+    },
+    "surface_parity": {
+      "auroc": {
+        "claim_char_length": 0.5,
+        "claim_token_count": 0.5,
+        "chunk_char_length": 0.5,
+        "question_char_length": 0.5,
+        "question_token_count": 0.5,
+        "claim_chunk_containment": 0.5,
+        "question_chunk_containment": 0.5,
+        "question_claim_containment": 0.5273,
+        "claim_question_containment": 0.5156,
+        "question_claim_overlap_tokens": 0.5156,
+        "question_claim_jaccard": 0.5215,
+        "question_claim_idf_overlap": 0.5156
+      },
+      "bar": "each channel in [0.45, 0.55]",
+      "worst_deviation": 0.0273,
+      "pass": true
+    },
+    "lexical_interaction_probe": {
+      "value": 0.4531,
+      "bar": "< 0.55",
+      "pass": true,
+      "features": [
+        "claim_char_length",
+        "claim_token_count",
+        "chunk_char_length",
+        "question_char_length",
+        "question_token_count",
+        "claim_chunk_containment",
+        "question_chunk_containment",
+        "question_claim_containment",
+        "claim_question_containment",
+        "question_claim_overlap_tokens",
+        "question_claim_jaccard",
+        "question_claim_idf_overlap",
+        "claim_char_length^2",
+        "claim_token_count^2",
+        "chunk_char_length^2",
+        "question_char_length^2",
+        "question_token_count^2",
+        "claim_chunk_containment^2",
+        "question_chunk_containment^2",
+        "question_claim_containment^2",
+        "claim_question_containment^2",
+        "question_claim_overlap_tokens^2",
+        "question_claim_jaccard^2",
+        "question_claim_idf_overlap^2"
+      ],
+      "scoring": "5-fold document-disjoint, out of fold, standardized, liblinear tol 1e-7"
+    },
+    "question_usage_balance": {
+      "distinct_questions": 16,
+      "usage_histogram": {
+        "true=1,wrong=1": 16
+      },
+      "questions_off_balance": 0,
+      "worst_deviation_from_half": 0.0,
+      "bar": "every question within 0.02 of a 50/50 true/wrong split",
+      "pass": true
+    },
+    "attestation_symmetry": {
+      "wrong_questions_from_a_foreign_passage": 0,
+      "question_chunk_containment_auroc": 0.5,
+      "bar": "0 foreign wrong questions; containment AUROC in [0.45, 0.55]",
+      "pass": true
+    },
+    "contrast_is_real": {
+      "pairs_with_equal_questions": 0,
+      "pairs_with_identical_rows": 0,
+      "negatives_whose_wrong_question_restates_the_claim": 0,
+      "bar": "0 on all three",
+      "pass": true
+    },
+    "positive_leg_grounding": {
+      "claim_chunk_containment": {
+        "mean": 0.9635,
+        "p10": 0.775,
+        "min": 0.6667
+      },
+      "rows_below_floor": 0,
+      "bar": "0 rows below the admission floor 0.5",
+      "pass": true
+    },
+    "all_bars_pass": true,
+    "registered_bars": [
+      "pair_integrity",
+      "claim_only_tfidf_auroc",
+      "within_pair_claim_only_accuracy",
+      "question_only_tfidf_auroc",
+      "evidence_only_tfidf_auroc",
+      "question_plus_claim_bag_tfidf_auroc",
+      "surface_parity",
+      "question_usage_balance",
+      "attestation_symmetry",
+      "contrast_is_real",
+      "positive_leg_grounding"
+    ],
+    "all_bars_pass_including_composite_probe": true
+  },
+  "census": {
+    "artifact": "qlane_eval_clean",
+    "status": "GREEN",
+    "json": "R20-H175b_qlane_eval_clean_census.json",
+    "instrument": "provenance_gate.py (R14-H136 ruling 2 form: 8-gram, Jaccard >= 0.3, bidirectional, KILL > 2%), thresholds read from R19_supply_gates.py",
+    "evidence_units": 8,
+    "claim_units": 16,
+    "question_units": 16,
+    "evidence_max_fraction": 0.0,
+    "evidence_verdict": "PASS",
+    "evidence_best_jaccard_max": 0.0,
+    "claim_max_fraction": 0.0,
+    "claim_verdict": "PASS",
+    "question_max_fraction": 0.0,
+    "question_verdict": "PASS",
+    "spike_control": {
+      "injected": 10,
+      "detected_total": 10,
+      "baseline_hits": 0,
+      "passes": true,
+      "candidate_units": 8
+    }
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "C1_vitaminc_unsupported_claim_negative_three_way": {
+    "rows": 2000,
+    "key": "(page, claim) against the VitaminC train split - the row the lane took the negative from",
+    "counts": {
+      "REFUTES|SUPPORTS": 1708,
+      "NOT ENOUGH INFO|SUPPORTS": 288,
+      "NOT ENOUGH INFO|REFUTES|SUPPORTS": 1,
+      "unmatched": 1,
+      "NOT ENOUGH INFO|REFUTES": 1,
+      "NOT ENOUGH INFO": 1
+    },
+    "mean_claim_to_pool_containment": {
+      "NOT ENOUGH INFO": 0.7692,
+      "NOT ENOUGH INFO|REFUTES": 0.8667,
+      "NOT ENOUGH INFO|REFUTES|SUPPORTS": 0.7143,
+      "NOT ENOUGH INFO|SUPPORTS": 0.7452,
+      "REFUTES|SUPPORTS": 0.8085,
+      "unmatched": 0.3333
+    },
+    "frac_ge_0.90": {
+      "NOT ENOUGH INFO": 0.0,
+      "NOT ENOUGH INFO|REFUTES": 0.0,
+      "NOT ENOUGH INFO|REFUTES|SUPPORTS": 0.0,
+      "NOT ENOUGH INFO|SUPPORTS": 0.2188,
+      "REFUTES|SUPPORTS": 0.2389,
+      "unmatched": 0.0
+    },
+    "reading": "REFUTES negatives are CONTRADICTED by the pool, not absent from it; under the shipped binary support predicate both REFUTES and NOT ENOUGH INFO are correctly 0, so the label stays commensurable - but the REFUTES share is the part of the negative leg that is lexically near-identical to a supported claim"
+  },
+  "C1_minicheck_unsupported_claim_negative": {
+    "rows": 1449,
+    "label_predicate": "MiniCheck ships a binary supported / not-supported label produced by a GPT-4 entailment filter; the negative document is generated to NOT support the claim. The predicate is support"
+  },
+  "C6_mean_label_oracle": {
+    "definition": "score each row by the MEAN label the rest of the assembled mix attaches to its exact claim string; within-pair accuracy of that score is the memorisation channel",
+    "auroc_row_level": 0.5143,
+    "rows_covered": 15186,
+    "coverage": 0.7094,
+    "within_pair": {
+      "unsupported_claim": {
+        "pairs": 3449,
+        "within_pair_accuracy_all_pairs": 0.54,
+        "pairs_with_both_claims_in_the_mix": 2101,
+        "within_pair_accuracy_on_covered_pairs": 0.5005
+      },
+      "truth_removed": {
+        "pairs": 7255,
+        "within_pair_accuracy_all_pairs": 0.5,
+        "pairs_with_both_claims_in_the_mix": 5178,
+        "within_pair_accuracy_on_covered_pairs": 0.5
+      }
+    },
+    "chance": 0.5
+  },
+  "C6_claim_evidence_association_oracle": {
+    "definition": "for each VitaminC-sourced row, does the pooled chunk CONTAIN, verbatim, an evidence string that the mix's own `vitaminc` member pairs with this exact claim - and at which label. This is a feature keyed purely on a training association, computable without reading the claim's meaning",
+    "scope": "VitaminC-sourced rows only (11,998 of 21,408); MiniCheck is not a mix member, so no such association exists for its rows",
+    "within_pair": {
+      "unsupported_claim": {
+        "pairs": 2000,
+        "within_pair_accuracy": 0.7955,
+        "positive_leg_fires": 1.0,
+        "negative_leg_fires": 0.409
+      },
+      "truth_removed": {
+        "pairs": 3999,
+        "within_pair_accuracy": 0.9999,
+        "positive_leg_fires": 0.9997,
+        "negative_leg_fires": 0.0
+      }
+    },
+    "chance": 0.5
+  },
+  "C8_duplication_detail": {
+    "claims_appearing_more_than_twice": 2448,
+    "of_those_carrying_a_single_label_across_the_lane": 34,
+    "rows_carried_by_single_label_repeated_claims": 152,
+    "share_of_lane_rows": 0.0071,
+    "max_claim_repeat": 39,
+    "note": "a claim repeated with one label only is directly memorisable within the member; a claim repeated with both labels is not",
+    "cross_lane_claim_sharing_inside_the_same_live_mix": {
+      "quant_misbind": {
+        "shared_distinct_claims": 0,
+        "attr_pool_rows_affected": 0
+      },
+      "quant_scale_unit": {
+        "shared_distinct_claims": 0,
+        "attr_pool_rows_affected": 0
+      },
+      "frame_reject": {
+        "shared_distinct_claims": 605,
+        "attr_pool_rows_affected": 3222
+      },
+      "path_bind": {
+        "shared_distinct_claims": 0,
+        "attr_pool_rows_affected": 0
+      }
+    }
+  }
+}

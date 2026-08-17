@@ -1,0 +1,59 @@
+{
+  "question": "the rebuilt eval's evidence and document channels read zero against every surface; do its CLAIM STRINGS collide with the training lane, and if so does the lane's label agree?",
+  "instrument": "exact claim-string join against R20-H177_lane_B.parquet, with the lane's label set and evidence set per claim",
+  "rebuilt": {
+    "surface": "R20-H177_eval_B_rebuilt.parquet",
+    "eval_rows": 2000,
+    "distinct_eval_claims": 2000,
+    "colliding_rows": 0,
+    "share_of_rows": 0.0,
+    "colliding_pairs": 0,
+    "pairs_with_BOTH_legs_colliding": 0,
+    "rows_whose_lane_label_agrees_with_the_eval_label": 0,
+    "rows_whose_lane_label_disagrees": 0,
+    "rows_sharing_the_lane_evidence_too": 0,
+    "by_family": {},
+    "examples": []
+  },
+  "original_for_comparison": {
+    "surface": "R20-H177_eval_B.parquet",
+    "eval_rows": 2000,
+    "distinct_eval_claims": 2000,
+    "colliding_rows": 2,
+    "share_of_rows": 0.001,
+    "colliding_pairs": 1,
+    "pairs_with_BOTH_legs_colliding": 1,
+    "rows_whose_lane_label_agrees_with_the_eval_label": 2,
+    "rows_whose_lane_label_disagrees": 0,
+    "rows_sharing_the_lane_evidence_too": 0,
+    "by_family": {
+      "cmp_extreme": 2
+    },
+    "examples": [
+      {
+        "pair_id": 373,
+        "eval_label": 1,
+        "neg_family": "cmp_extreme",
+        "lane_labels": [
+          1
+        ],
+        "label_agrees": true,
+        "same_evidence": false,
+        "claim": "hawthorn records the lowest crowd among the rows listed, at 10000."
+      },
+      {
+        "pair_id": 373,
+        "eval_label": 0,
+        "neg_family": "cmp_extreme",
+        "lane_labels": [
+          0
+        ],
+        "label_agrees": true,
+        "same_evidence": false,
+        "claim": "hawthorn records the highest crowd among the rows listed, at 10000."
+      }
+    ]
+  },
+  "mechanism": "the lane is template-generated: a claim is a fixed frame filled with a column name, two row labels and two cells, so two unrelated tables printing the same five strings emit the same sentence. The colliding claims carry DIFFERENT evidence (the evidence channel reads zero), so the collision is a claim-string channel, not a passage or document one",
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+}

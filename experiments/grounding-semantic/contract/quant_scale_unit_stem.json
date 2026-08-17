@@ -1,0 +1,48 @@
+{
+  "member": "quant_scale_unit",
+  "lane_documents": 410,
+  "lane_tabfact_documents": 319,
+  "lane_feverous_documents": 91,
+  "within_lane_tabfact_stem_collisions": 19,
+  "within_lane_collision_examples": {
+    "176529-2.html.csv": 2,
+    "18600760-15.html.csv": 2,
+    "18823880-10.html.csv": 2,
+    "14884844-2.html.csv": 2,
+    "16400024-1.html.csv": 2
+  },
+  "vs_sibling_surfaces": {
+    "R17-H143_evalset": {
+      "status": "no doc_id column"
+    },
+    "R18-H150_unitswap_probe": {
+      "their_documents": 42,
+      "their_tabfact_documents": 23,
+      "shared_doc_ids": 0,
+      "shared_tabfact_stems": 0,
+      "stems_shared_but_ids_not": 0
+    },
+    "R20-H177_eval_B": {
+      "their_documents": 458,
+      "their_tabfact_documents": 325,
+      "shared_doc_ids": 13,
+      "shared_tabfact_stems": 13,
+      "stems_shared_but_ids_not": 0
+    },
+    "R20-H177_eval_C": {
+      "their_documents": 213,
+      "their_tabfact_documents": 0,
+      "shared_doc_ids": 0,
+      "shared_tabfact_stems": 0,
+      "stems_shared_but_ids_not": 0
+    },
+    "R17-H148_probe": {
+      "their_documents": 100,
+      "their_tabfact_documents": 0,
+      "shared_doc_ids": 0,
+      "shared_tabfact_stems": 0,
+      "stems_shared_but_ids_not": 0
+    }
+  },
+  "worst_stems_shared_but_ids_not": 0
+}

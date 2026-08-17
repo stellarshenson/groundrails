@@ -1,0 +1,1431 @@
+{
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates.",
+  "C1_distributions": {
+    "instrument": "R20-H174_lane_common.containment (content-token containment of claim in evidence), banked",
+    "presentations": {
+      "untruncated": {
+        "all": {
+          "positive_leg": {
+            "n": 240,
+            "mean": 0.9857,
+            "median": 1.0,
+            "p10": 1.0,
+            "p90": 1.0,
+            "frac_ge_0.90": 0.9458,
+            "frac_eq_1.00": 0.9167,
+            "frac_ge_0.75": 0.9833,
+            "frac_le_0.50": 0.0042
+          },
+          "negative_leg": {
+            "n": 240,
+            "mean": 0.3739,
+            "median": 0.3333,
+            "p10": 0.0,
+            "p90": 1.0,
+            "frac_ge_0.90": 0.1667,
+            "frac_eq_1.00": 0.15,
+            "frac_ge_0.75": 0.25,
+            "frac_le_0.50": 0.6833
+          },
+          "attested_rate_gap_at_0.90": 0.7791,
+          "mean_gap": 0.6118,
+          "rejected_by_c1_bar": false
+        },
+        "qa": {
+          "positive_leg": {
+            "n": 220,
+            "mean": 1.0,
+            "median": 1.0,
+            "p10": 1.0,
+            "p90": 1.0,
+            "frac_ge_0.90": 1.0,
+            "frac_eq_1.00": 1.0,
+            "frac_ge_0.75": 1.0,
+            "frac_le_0.50": 0.0
+          },
+          "negative_leg": {
+            "n": 220,
+            "mean": 0.336,
+            "median": 0.0,
+            "p10": 0.0,
+            "p90": 1.0,
+            "frac_ge_0.90": 0.1636,
+            "frac_eq_1.00": 0.1636,
+            "frac_ge_0.75": 0.2136,
+            "frac_le_0.50": 0.7409
+          },
+          "attested_rate_gap_at_0.90": 0.8364,
+          "mean_gap": 0.664,
+          "rejected_by_c1_bar": false
+        },
+        "summarization": {
+          "positive_leg": {
+            "n": 20,
+            "mean": 0.8288,
+            "median": 0.8889,
+            "p10": 0.6856,
+            "p90": 0.9408,
+            "frac_ge_0.90": 0.35,
+            "frac_eq_1.00": 0.0,
+            "frac_ge_0.75": 0.8,
+            "frac_le_0.50": 0.05
+          },
+          "negative_leg": {
+            "n": 20,
+            "mean": 0.7907,
+            "median": 0.8246,
+            "p10": 0.6292,
+            "p90": 0.9258,
+            "frac_ge_0.90": 0.2,
+            "frac_eq_1.00": 0.0,
+            "frac_ge_0.75": 0.65,
+            "frac_le_0.50": 0.05
+          },
+          "attested_rate_gap_at_0.90": 0.15,
+          "mean_gap": 0.0381,
+          "rejected_by_c1_bar": false
+        }
+      },
+      "truncated_1500": {
+        "all": {
+          "positive_leg": {
+            "n": 240,
+            "mean": 0.98,
+            "median": 1.0,
+            "p10": 1.0,
+            "p90": 1.0,
+            "frac_ge_0.90": 0.9417,
+            "frac_eq_1.00": 0.9167,
+            "frac_ge_0.75": 0.9667,
+            "frac_le_0.50": 0.0083
+          },
+          "negative_leg": {
+            "n": 240,
+            "mean": 0.3635,
+            "median": 0.3333,
+            "p10": 0.0,
+            "p90": 1.0,
+            "frac_ge_0.90": 0.15,
+            "frac_eq_1.00": 0.15,
+            "frac_ge_0.75": 0.225,
+            "frac_le_0.50": 0.6833
+          },
+          "attested_rate_gap_at_0.90": 0.7917,
+          "mean_gap": 0.6165,
+          "rejected_by_c1_bar": false
+        },
+        "qa": {
+          "positive_leg": {
+            "n": 220,
+            "mean": 1.0,
+            "median": 1.0,
+            "p10": 1.0,
+            "p90": 1.0,
+            "frac_ge_0.90": 1.0,
+            "frac_eq_1.00": 1.0,
+            "frac_ge_0.75": 1.0,
+            "frac_le_0.50": 0.0
+          },
+          "negative_leg": {
+            "n": 220,
+            "mean": 0.336,
+            "median": 0.0,
+            "p10": 0.0,
+            "p90": 1.0,
+            "frac_ge_0.90": 0.1636,
+            "frac_eq_1.00": 0.1636,
+            "frac_ge_0.75": 0.2136,
+            "frac_le_0.50": 0.7409
+          },
+          "attested_rate_gap_at_0.90": 0.8364,
+          "mean_gap": 0.664,
+          "rejected_by_c1_bar": false
+        },
+        "summarization": {
+          "positive_leg": {
+            "n": 20,
+            "mean": 0.7595,
+            "median": 0.8305,
+            "p10": 0.5314,
+            "p90": 0.9365,
+            "frac_ge_0.90": 0.3,
+            "frac_eq_1.00": 0.0,
+            "frac_ge_0.75": 0.6,
+            "frac_le_0.50": 0.1
+          },
+          "negative_leg": {
+            "n": 20,
+            "mean": 0.6666,
+            "median": 0.6827,
+            "p10": 0.5283,
+            "p90": 0.8,
+            "frac_ge_0.90": 0.0,
+            "frac_eq_1.00": 0.0,
+            "frac_ge_0.75": 0.35,
+            "frac_le_0.50": 0.05
+          },
+          "attested_rate_gap_at_0.90": 0.3,
+          "mean_gap": 0.0929,
+          "rejected_by_c1_bar": false
+        }
+      }
+    }
+  },
+  "C1_amended": {
+    "test_1_structural": {
+      "what": "a negative leg whose (claim, evidence) is identical to a positive leg's - no function of (claim, evidence) can separate the legs, so the label cannot encode grounding",
+      "negative_rows_identical_to_a_positive_row": 0,
+      "negative_rows": 240,
+      "fraction": 0.0,
+      "fires": false
+    },
+    "test_2_strict_separation": {
+      "untruncated": {
+        "all": {
+          "positive_rate_ge_0.90": 0.9458,
+          "negative_rate_ge_0.90": 0.1667,
+          "negative_strictly_below_positive": true,
+          "ratio_pos_over_neg": 5.675,
+          "mean_containment_positive": 0.9857,
+          "mean_containment_negative": 0.3739
+        },
+        "qa": {
+          "positive_rate_ge_0.90": 1.0,
+          "negative_rate_ge_0.90": 0.1636,
+          "negative_strictly_below_positive": true,
+          "ratio_pos_over_neg": 6.111,
+          "mean_containment_positive": 1.0,
+          "mean_containment_negative": 0.336
+        },
+        "summarization": {
+          "positive_rate_ge_0.90": 0.35,
+          "negative_rate_ge_0.90": 0.2,
+          "negative_strictly_below_positive": true,
+          "ratio_pos_over_neg": 1.75,
+          "mean_containment_positive": 0.8288,
+          "mean_containment_negative": 0.7907
+        }
+      },
+      "truncated_1500": {
+        "all": {
+          "positive_rate_ge_0.90": 0.9417,
+          "negative_rate_ge_0.90": 0.15,
+          "negative_strictly_below_positive": true,
+          "ratio_pos_over_neg": 6.278,
+          "mean_containment_positive": 0.98,
+          "mean_containment_negative": 0.3635
+        },
+        "qa": {
+          "positive_rate_ge_0.90": 1.0,
+          "negative_rate_ge_0.90": 0.1636,
+          "negative_strictly_below_positive": true,
+          "ratio_pos_over_neg": 6.111,
+          "mean_containment_positive": 1.0,
+          "mean_containment_negative": 0.336
+        },
+        "summarization": {
+          "positive_rate_ge_0.90": 0.3,
+          "negative_rate_ge_0.90": 0.0,
+          "negative_strictly_below_positive": true,
+          "ratio_pos_over_neg": null,
+          "mean_containment_positive": 0.7595,
+          "mean_containment_negative": 0.6666
+        }
+      }
+    },
+    "test_3_absolute_levels": {
+      "untruncated": {
+        "all": {
+          "positive_fully_attested_rate": 0.9167,
+          "negative_fully_attested_rate": 0.15,
+          "negative_fully_attested_rows": 36,
+          "negative_rows": 240
+        },
+        "qa": {
+          "positive_fully_attested_rate": 1.0,
+          "negative_fully_attested_rate": 0.1636,
+          "negative_fully_attested_rows": 36,
+          "negative_rows": 220
+        },
+        "summarization": {
+          "positive_fully_attested_rate": 0.0,
+          "negative_fully_attested_rate": 0.0,
+          "negative_fully_attested_rows": 0,
+          "negative_rows": 20
+        }
+      },
+      "truncated_1500": {
+        "all": {
+          "positive_fully_attested_rate": 0.9167,
+          "negative_fully_attested_rate": 0.15,
+          "negative_fully_attested_rows": 36,
+          "negative_rows": 240
+        },
+        "qa": {
+          "positive_fully_attested_rate": 1.0,
+          "negative_fully_attested_rate": 0.1636,
+          "negative_fully_attested_rows": 36,
+          "negative_rows": 220
+        },
+        "summarization": {
+          "positive_fully_attested_rate": 0.0,
+          "negative_fully_attested_rate": 0.0,
+          "negative_fully_attested_rows": 0,
+          "negative_rows": 20
+        }
+      }
+    },
+    "instrument": "R20-H174_lane_common.containment - content-token containment of the claim in the evidence, the instrument sensitive to the support predicate this member's label encodes",
+    "passes_all_three_tests": true
+  },
+  "C1_supplement": {
+    "definitions": {
+      "verbatim": "whitespace-collapsed case-folded claim is an exact substring of the whitespace-collapsed case-folded evidence",
+      "fully_attested": "content-token containment == 1.0"
+    },
+    "all": {
+      "positive": {
+        "n": 240,
+        "verbatim_rate": 0.9167,
+        "verbatim_rows": 220,
+        "fully_attested_rows": 220,
+        "fully_attested_and_verbatim_rows": 220,
+        "claim_content_tokens_mean": 5.79,
+        "claim_content_tokens_median": 2.0,
+        "claims_with_le_2_content_tokens": 170
+      },
+      "negative": {
+        "n": 240,
+        "verbatim_rate": 0.1167,
+        "verbatim_rows": 28,
+        "fully_attested_rows": 36,
+        "fully_attested_and_verbatim_rows": 26,
+        "claim_content_tokens_mean": 7.37,
+        "claim_content_tokens_median": 2.0,
+        "claims_with_le_2_content_tokens": 164
+      },
+      "within_pair": {
+        "pairs": 240,
+        "neg_ge_pos": 0.175,
+        "neg_gt_pos": 0.025,
+        "mean_pair_gap_pos_minus_neg": 0.6119,
+        "pairs_with_fully_attested_negative": 36
+      }
+    },
+    "qa": {
+      "positive": {
+        "n": 220,
+        "verbatim_rate": 1.0,
+        "verbatim_rows": 220,
+        "fully_attested_rows": 220,
+        "fully_attested_and_verbatim_rows": 220,
+        "claim_content_tokens_mean": 2.03,
+        "claim_content_tokens_median": 2.0,
+        "claims_with_le_2_content_tokens": 170
+      },
+      "negative": {
+        "n": 220,
+        "verbatim_rate": 0.1273,
+        "verbatim_rows": 28,
+        "fully_attested_rows": 36,
+        "fully_attested_and_verbatim_rows": 26,
+        "claim_content_tokens_mean": 2.1,
+        "claim_content_tokens_median": 2.0,
+        "claims_with_le_2_content_tokens": 164
+      },
+      "within_pair": {
+        "pairs": 220,
+        "neg_ge_pos": 0.1636,
+        "neg_gt_pos": 0.0,
+        "mean_pair_gap_pos_minus_neg": 0.664,
+        "pairs_with_fully_attested_negative": 36
+      }
+    },
+    "summarization": {
+      "positive": {
+        "n": 20,
+        "verbatim_rate": 0.0,
+        "verbatim_rows": 0,
+        "fully_attested_rows": 0,
+        "fully_attested_and_verbatim_rows": 0,
+        "claim_content_tokens_mean": 47.15,
+        "claim_content_tokens_median": 43.5,
+        "claims_with_le_2_content_tokens": 0
+      },
+      "negative": {
+        "n": 20,
+        "verbatim_rate": 0.0,
+        "verbatim_rows": 0,
+        "fully_attested_rows": 0,
+        "fully_attested_and_verbatim_rows": 0,
+        "claim_content_tokens_mean": 65.25,
+        "claim_content_tokens_median": 66.0,
+        "claims_with_le_2_content_tokens": 0
+      },
+      "within_pair": {
+        "pairs": 20,
+        "neg_ge_pos": 0.3,
+        "neg_gt_pos": 0.3,
+        "mean_pair_gap_pos_minus_neg": 0.0382,
+        "pairs_with_fully_attested_negative": 0
+      }
+    },
+    "reference_R20_H175b_poisoned_lane": {
+      "containment_both_legs": 0.9129,
+      "negatives_fully_attested": 0.664,
+      "negatives_attested_ge_0.90": 0.723,
+      "source": "docs/experiments/semantic-grounding-experiments.md, R20-H175b WITHDRAWN block"
+    },
+    "fully_attested_negative_examples": [
+      {
+        "half": "qa",
+        "claim": "Shahrukh Khan",
+        "evidence_head": "Don 2 is the soundtrack album composed by the trio Shankar-Ehsaan-Loy to the film of the same name directed by Farhan Akhtar starring Shahrukh Khan, Priyanka Ch"
+      },
+      {
+        "half": "qa",
+        "claim": "Franklin Square",
+        "evidence_head": "H. Frank Carey High School is a public high school located in Franklin Square, New York serving students in the seventh through twelfth grades from the towns of"
+      },
+      {
+        "half": "qa",
+        "claim": "General Dalbir Singh",
+        "evidence_head": " He is responsible for operation and army related tasks. As of January 2017, the post was held by Sarath Chand succeeding Bipin Rawat. He assumed office on 31 D"
+      },
+      {
+        "half": "qa",
+        "claim": "John Goodman",
+        "evidence_head": "The Jungle Book 2 is a 2003 animated film produced by DisneyToon Studios and released by Walt Disney Pictures and Buena Vista Distribution. The film is a sequel"
+      },
+      {
+        "half": "qa",
+        "claim": "Northern France Battle",
+        "evidence_head": "HMS \"Calpe\" (pennant number L71) was a British Royal Navy Type II Hunt-class destroyer escort. Built as a result of the outbreak of World War II, \"Calpe\" escort"
+      },
+      {
+        "half": "qa",
+        "claim": "private financial assistance",
+        "evidence_head": "Henry C. McRae was an American football coach. He served as the head football coach at Hillsdale College in Hillsdale, Michigan for one season in 1904, compilin"
+      },
+      {
+        "half": "qa",
+        "claim": "Boeing F-22 Raptor",
+        "evidence_head": " The USAF is pursuing development and acquisition of a sixth-generation fighter through the F-X program to complement existing platforms in service such as the "
+      },
+      {
+        "half": "qa",
+        "claim": "The Castle of Buchan",
+        "evidence_head": " It was built by William Comyn, jure uxoris Earl of Buchan during the same period as the Castle of Rattray and was \"\"private chapel for the castle\"\" and its res"
+      }
+    ]
+  },
+  "C2": {
+    "member_units": {
+      "evidence_distinct": 239,
+      "claim_distinct": 458
+    },
+    "forms": [
+      "raw",
+      "truncated (1,500 chars)",
+      "whitespace-collapsed case-folded"
+    ],
+    "surfaces": {
+      "arena_ragbench_10": {
+        "evidence": {
+          "raw": {
+            "member_units": 239,
+            "surface_units": 6784,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 239,
+            "surface_units": 6778,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 239,
+            "surface_units": 6783,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "claim_vs_surface_evidence": {
+          "raw": {
+            "member_units": 458,
+            "surface_units": 6784,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 458,
+            "surface_units": 6778,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 458,
+            "surface_units": 6783,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "surface_unit": "RAGBench test documents, H77 arena sample (8645 chunks over 10 subsets)"
+      },
+      "gold_full": {
+        "evidence": {
+          "raw": {
+            "member_units": 239,
+            "surface_units": 10228,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 239,
+            "surface_units": 10228,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 239,
+            "surface_units": 10227,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "claim_vs_surface_claim": {
+          "raw": {
+            "member_units": 458,
+            "surface_units": 2699,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 458,
+            "surface_units": 2699,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 458,
+            "surface_units": 2699,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "surface_unit": "gold trace chunks (123579 rows)"
+      },
+      "R11-H117_heldout_pairs": {
+        "evidence": {
+          "raw": {
+            "member_units": 239,
+            "surface_units": 1933,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 239,
+            "surface_units": 1933,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 239,
+            "surface_units": 1933,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "claim_vs_surface_claim": {
+          "raw": {
+            "member_units": 458,
+            "surface_units": 2000,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 458,
+            "surface_units": 2000,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 458,
+            "surface_units": 2000,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "surface_unit": "R11-H117_heldout_pairs.parquet (2000 rows)"
+      },
+      "R17-H143_evalset": {
+        "evidence": {
+          "raw": {
+            "member_units": 239,
+            "surface_units": 547,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 239,
+            "surface_units": 547,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 239,
+            "surface_units": 547,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "claim_vs_surface_claim": {
+          "raw": {
+            "member_units": 458,
+            "surface_units": 1048,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 458,
+            "surface_units": 1048,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 458,
+            "surface_units": 1048,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "surface_unit": "R17-H143_evalset.parquet (1050 rows)"
+      },
+      "R20-H175b_qlane_eval": {
+        "evidence": {
+          "raw": {
+            "member_units": 239,
+            "surface_units": 487,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 239,
+            "surface_units": 487,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 239,
+            "surface_units": 487,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "claim_vs_surface_claim": {
+          "raw": {
+            "member_units": 458,
+            "surface_units": 1001,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 458,
+            "surface_units": 1001,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 458,
+            "surface_units": 1001,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "surface_unit": "R20-H175b_qlane_eval.parquet (2002 rows)"
+      },
+      "R20-H175b_qlane_eval_repaired": {
+        "evidence": {
+          "raw": {
+            "member_units": 239,
+            "surface_units": 407,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 239,
+            "surface_units": 407,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 239,
+            "surface_units": 407,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "claim_vs_surface_claim": {
+          "raw": {
+            "member_units": 458,
+            "surface_units": 839,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 458,
+            "surface_units": 839,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 458,
+            "surface_units": 839,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "surface_unit": "R20-H175b_qlane_eval_repaired.parquet (1678 rows)"
+      },
+      "R20-H175b_qlane_eval_clean": {
+        "evidence": {
+          "raw": {
+            "member_units": 239,
+            "surface_units": 22,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 239,
+            "surface_units": 22,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 239,
+            "surface_units": 22,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "claim_vs_surface_claim": {
+          "raw": {
+            "member_units": 458,
+            "surface_units": 44,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 458,
+            "surface_units": 44,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 458,
+            "surface_units": 44,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "surface_unit": "R20-H175b_qlane_eval_clean.parquet (88 rows)"
+      },
+      "R20-H177_eval_B": {
+        "evidence": {
+          "raw": {
+            "member_units": 239,
+            "surface_units": 736,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 239,
+            "surface_units": 736,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 239,
+            "surface_units": 736,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "claim_vs_surface_claim": {
+          "raw": {
+            "member_units": 458,
+            "surface_units": 2000,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 458,
+            "surface_units": 2000,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 458,
+            "surface_units": 2000,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "surface_unit": "R20-H177_eval_B.parquet (2000 rows)"
+      },
+      "R20-H177_eval_C": {
+        "evidence": {
+          "raw": {
+            "member_units": 239,
+            "surface_units": 380,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 239,
+            "surface_units": 380,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 239,
+            "surface_units": 380,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "claim_vs_surface_claim": {
+          "raw": {
+            "member_units": 458,
+            "surface_units": 1926,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 458,
+            "surface_units": 1926,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 458,
+            "surface_units": 1926,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "surface_unit": "R20-H177_eval_C.parquet (1936 rows)"
+      }
+    },
+    "worst_fraction_any_form_any_direction": 0.0,
+    "pass": true
+  },
+  "C3": {
+    "archive_splits": {
+      "dialogue": {
+        "rows": 10000,
+        "columns": [
+          "knowledge",
+          "dialogue_history",
+          "right_response",
+          "hallucinated_response"
+        ],
+        "split_files": 1,
+        "loaded_by_mix": false
+      },
+      "general": {
+        "rows": 4507,
+        "columns": [
+          "ID",
+          "user_query",
+          "chatgpt_response",
+          "hallucination",
+          "hallucination_spans"
+        ],
+        "split_files": 1,
+        "loaded_by_mix": false
+      },
+      "qa": {
+        "rows": 10000,
+        "columns": [
+          "knowledge",
+          "question",
+          "right_answer",
+          "hallucinated_answer"
+        ],
+        "split_files": 1,
+        "loaded_by_mix": true
+      },
+      "summarization": {
+        "rows": 10000,
+        "columns": [
+          "document",
+          "right_summary",
+          "hallucinated_summary"
+        ],
+        "split_files": 1,
+        "loaded_by_mix": true
+      }
+    },
+    "measured_split_axis": {
+      "qa": {
+        "rows": 10000,
+        "distinct_evidence": 9936,
+        "evidence_reuse_rows": 64,
+        "distinct_questions": 10000,
+        "evidence_blocks_with_2plus_rows": 63
+      },
+      "summarization": {
+        "rows": 10000,
+        "distinct_evidence": 9998,
+        "evidence_reuse_rows": 2,
+        "distinct_questions": null,
+        "evidence_blocks_with_2plus_rows": 2
+      }
+    },
+    "selection_predicate": "ALL rows of subsets `qa` and `summarization`; `dialogue` and `general` present in the archive and NOT loaded; no split filter, no row filter",
+    "member_is_also_an_evaluation_surface": false,
+    "evaluation_surface_check": "grep over experiments/grounding-semantic for `halueval`: every hit is a trainer or mix loader; no read/eval script loads it"
+  },
+  "C4": {
+    "instrument": "provenance_gate.py, R14-H136 ruling-2 form: 8-gram, Jaccard >= 0.3, bidirectional, KILL > 2%; thresholds read from R19_supply_gates.py",
+    "unit_definition": "deduplicated member evidence chunks; deduplicated claims",
+    "evidence_units": 239,
+    "claim_units": 458,
+    "unit_cap_applied": null,
+    "evidence_gate": {
+      "instrument": "provenance_gate.py (R13 ruling 4)",
+      "mode": "jaccard",
+      "n": 8,
+      "jaccard_threshold": 0.3,
+      "thresholds": {
+        "warn": 0.005,
+        "kill": 0.02
+      },
+      "candidate": {
+        "label": "halueval_evidence",
+        "n_units": 239,
+        "n_units_scorable": 239
+      },
+      "arena": {
+        "subsets": {
+          "covidqa": 980,
+          "delucionqa": 552,
+          "emanual": 396,
+          "expertqa": 759,
+          "finqa": 725,
+          "hagrid": 703,
+          "hotpotqa": 998,
+          "pubmedqa": 1250,
+          "tatqa": 1032,
+          "techqa": 1250
+        },
+        "n_units": 8645,
+        "n_units_scorable": 8555
+      },
+      "candidate_vs_arena": {
+        "n_units": 239,
+        "units_with_hit": 1,
+        "fraction": 0.004184,
+        "per_arena_subset": {
+          "covidqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "delucionqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "emanual": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "expertqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "finqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hagrid": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hotpotqa": {
+            "units_with_hit": 1,
+            "fraction": 0.004184
+          },
+          "pubmedqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "tatqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "techqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        },
+        "best_jaccard": {
+          "max": 0.3788,
+          "p99": 0.03,
+          "mean": 0.0024
+        }
+      },
+      "arena_vs_candidate": {
+        "n_units": 8645,
+        "units_with_hit": 1,
+        "fraction": 0.000116,
+        "per_arena_subset": {
+          "halueval_evidence": {
+            "units_with_hit": 1,
+            "fraction": 0.000116
+          }
+        },
+        "best_jaccard": {
+          "max": 0.3788,
+          "p99": 0.0,
+          "mean": 0.0001
+        }
+      },
+      "max_fraction": 0.004184,
+      "verdict": "PASS",
+      "hit_examples": [
+        {
+          "candidate_unit": 163,
+          "bucket": "hotpotqa",
+          "unit": 995,
+          "jaccard": 0.3788
+        }
+      ]
+    },
+    "claim_gate": {
+      "instrument": "provenance_gate.py (R13 ruling 4)",
+      "mode": "jaccard",
+      "n": 8,
+      "jaccard_threshold": 0.3,
+      "thresholds": {
+        "warn": 0.005,
+        "kill": 0.02
+      },
+      "candidate": {
+        "label": "halueval_claims",
+        "n_units": 458,
+        "n_units_scorable": 42
+      },
+      "arena": {
+        "subsets": {
+          "covidqa": 980,
+          "delucionqa": 552,
+          "emanual": 396,
+          "expertqa": 759,
+          "finqa": 725,
+          "hagrid": 703,
+          "hotpotqa": 998,
+          "pubmedqa": 1250,
+          "tatqa": 1032,
+          "techqa": 1250
+        },
+        "n_units": 8645,
+        "n_units_scorable": 8555
+      },
+      "candidate_vs_arena": {
+        "n_units": 458,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "covidqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "delucionqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "emanual": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "expertqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "finqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hagrid": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hotpotqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "pubmedqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "tatqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "techqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        },
+        "best_jaccard": {
+          "max": 0.0,
+          "p99": 0.0,
+          "mean": 0.0
+        }
+      },
+      "arena_vs_candidate": {
+        "n_units": 8645,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "halueval_claims": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        },
+        "best_jaccard": {
+          "max": 0.0,
+          "p99": 0.0,
+          "mean": 0.0
+        }
+      },
+      "max_fraction": 0.0,
+      "verdict": "PASS",
+      "hit_examples": []
+    },
+    "spike_control": {
+      "injected": 10,
+      "detected_total": 11,
+      "baseline_hits": 1,
+      "passes": true,
+      "candidate_units": 239
+    },
+    "live_positive_control": {
+      "construction": "10 arena documents thinned to 2 of every 3 sentences (genuine near-duplicates, not byte-identical, and not recoverable by the gate's own normalisation)",
+      "injected": 10,
+      "mean_retained_char_fraction": 0.7705,
+      "baseline_hits_without_injection": 1,
+      "hits_with_injection": 11,
+      "detected": 10,
+      "fires": true
+    },
+    "coverage": {
+      "evidence_units_below_8_tokens": 0,
+      "claim_units_below_8_tokens": 416,
+      "short_units_exact_match_against_arena": 0,
+      "note": "units too short for the n-gram instrument are covered by exact string matching against the arena documents"
+    },
+    "pass": true
+  },
+  "C5": {
+    "surface_parity": {
+      "all": {
+        "auroc": {
+          "claim_char_length": 0.4723,
+          "claim_token_count": 0.481,
+          "chunk_char_length": 0.5,
+          "claim_chunk_containment": 0.9141
+        },
+        "report_only": [],
+        "bar": "each barred channel in [0.45, 0.55]",
+        "worst_deviation": 0.4141,
+        "pass": false
+      },
+      "qa": {
+        "auroc": {
+          "claim_char_length": 0.4688,
+          "claim_token_count": 0.4791,
+          "chunk_char_length": 0.5,
+          "claim_chunk_containment": 0.9182
+        },
+        "report_only": [],
+        "bar": "each barred channel in [0.45, 0.55]",
+        "worst_deviation": 0.4182,
+        "pass": false
+      },
+      "summarization": {
+        "auroc": {
+          "claim_char_length": 0.2913,
+          "claim_token_count": 0.2875,
+          "chunk_char_length": 0.5,
+          "claim_chunk_containment": 0.6175
+        },
+        "report_only": [],
+        "bar": "each barred channel in [0.45, 0.55]",
+        "worst_deviation": 0.2125,
+        "pass": false
+      }
+    },
+    "applicability": "C5 governs CONSTRUCTED lanes and paired-contrast EVALS. halueval is a source corpus and is not an evaluation surface, so the registered C5 conjunction does not bind it. The probes below are EXECUTOR-ADDED and are reported separately; they join no registered bar.",
+    "claim_only_probe_auroc": 0.5395,
+    "claim_only_probe_per_half": {
+      "qa": 0.5441,
+      "summarization": 0.4725
+    },
+    "within_pair_claim_only_accuracy": {
+      "all": {
+        "acc": 0.5708,
+        "pairs": 240
+      }
+    },
+    "reference_bars_if_they_had_applied": {
+      "claim_only": 0.55,
+      "within_pair": 0.6
+    },
+    "instrument": "R20-H174_lane_common.claim_only_probe - out-of-fold char_wb TF-IDF 2-5 grams + liblinear C=4 tol 1e-7, folds disjoint on the pair key",
+    "surface_parity_under_C_A1": {
+      "all": {
+        "auroc": {
+          "claim_char_length": 0.4723,
+          "claim_token_count": 0.481,
+          "chunk_char_length": 0.5,
+          "claim_chunk_containment": 0.9141
+        },
+        "report_only": [
+          "claim_chunk_containment"
+        ],
+        "bar": "each barred channel in [0.45, 0.55]",
+        "worst_deviation": 0.0277,
+        "pass": true
+      },
+      "qa": {
+        "auroc": {
+          "claim_char_length": 0.4688,
+          "claim_token_count": 0.4791,
+          "chunk_char_length": 0.5,
+          "claim_chunk_containment": 0.9182
+        },
+        "report_only": [
+          "claim_chunk_containment"
+        ],
+        "bar": "each barred channel in [0.45, 0.55]",
+        "worst_deviation": 0.0312,
+        "pass": true
+      },
+      "summarization": {
+        "auroc": {
+          "claim_char_length": 0.2913,
+          "claim_token_count": 0.2875,
+          "chunk_char_length": 0.5,
+          "claim_chunk_containment": 0.6175
+        },
+        "report_only": [
+          "claim_chunk_containment"
+        ],
+        "bar": "each barred channel in [0.45, 0.55]",
+        "worst_deviation": 0.2125,
+        "pass": false
+      }
+    }
+  },
+  "C6": {
+    "test": "the member's two legs share the evidence field, so the association a memoriser could key on is (evidence -> claim); measured, not assumed",
+    "pairs": 240,
+    "pairs_with_byte_identical_evidence_on_both_legs": 240,
+    "evidence_only_auroc": 0.5,
+    "evidence_only_auroc_note": "exactly 0.5 BY MEASUREMENT when every pair's legs are byte-identical in evidence - the feature is constant within a pair",
+    "claims_carrying_both_labels": 6,
+    "rows_on_those_claims": 13,
+    "evidence_blocks_shared_by_2plus_pairs": 1,
+    "rows_on_shared_evidence": 4,
+    "positive_negative_claim_string_collisions": 6
+  },
+  "C7": {
+    "unit_declared_by_loader": "rows (the loader appends two rows per source record and tags both `halueval`)",
+    "rows": 480,
+    "pairs": 240,
+    "rows_per_pair": 2.0,
+    "per_half": {
+      "qa": {
+        "rows": 440,
+        "pairs": 220
+      },
+      "summarization": {
+        "rows": 40,
+        "pairs": 20
+      }
+    },
+    "share_of_assembled_mix_rows": {
+      "clean_public_685670": 0.0007,
+      "h150_flagship_721210": 0.000666,
+      "h174_portfolio_760618": 0.000631
+    },
+    "mix_rows_measured": 685670,
+    "registered_figure": "40,000 rows (R8-H90 registration, `HaluEval 40k`)",
+    "pass": false
+  },
+  "C8": {
+    "source": "HuggingFace `pminervini/HaluEval`",
+    "licence": "MIT",
+    "retrieval_date": [
+      "2026-07-29"
+    ],
+    "archive": "data/external/datasets/dataset-halueval.zip (gitignored); tracked sidecar data/external/datasets/dataset-halueval.md",
+    "fetcher": "scripts/fetch_grounding_datasets.py",
+    "selection_predicate": "subsets `qa` and `summarization`, ALL rows, no filter; two mix rows per source record (right_answer/right_summary -> label 1, hallucinated_answer/hallucinated_summary -> label 0); evidence = knowledge / document, truncated to CFG.chunk_max_chars in the incumbent read and untruncated then windowed 1500/750 in the H150/H174 arms",
+    "subsets_in_archive_not_loaded": [
+      "dialogue",
+      "general"
+    ],
+    "duplication": {
+      "rows": 480,
+      "distinct_claims": 458,
+      "distinct_evidence": 239,
+      "distinct_claim_evidence_pairs": 480,
+      "evidence_reuse_rows": 241,
+      "per_half": {
+        "qa": {
+          "rows": 440,
+          "pairs": 220,
+          "distinct_claims": 418,
+          "distinct_evidence": 219,
+          "evidence_chars_mean": 361.0,
+          "evidence_chars_p95": 630.3,
+          "evidence_chars_max": 834,
+          "evidence_over_1500_chars": 0,
+          "claim_chars_mean": 13.0,
+          "claim_chars_max": 53
+        },
+        "summarization": {
+          "rows": 40,
+          "pairs": 20,
+          "distinct_claims": 40,
+          "distinct_evidence": 20,
+          "evidence_chars_mean": 3447.1,
+          "evidence_chars_p95": 5617.1,
+          "evidence_chars_max": 5694,
+          "evidence_over_1500_chars": 38,
+          "claim_chars_mean": 325.6,
+          "claim_chars_max": 717
+        }
+      }
+    },
+    "geometry": {
+      "evidence_chars_mean": 618.2,
+      "evidence_chars_max": 5694,
+      "claim_chars_mean": 39.0,
+      "rows_with_evidence_over_1500_chars": 38
+    },
+    "public_repo_check": "no client or company name appears in this artifact or in the member's text fields as loaded"
+  }
+}

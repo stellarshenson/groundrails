@@ -1,0 +1,433 @@
+{
+  "arm": "R21-H179Q q2 - does the model actually use the evidence",
+  "licence": "MEASUREMENT ONLY - the branches on this number were fixed before it existed and are the coordinator's; this arm produces the number and nothing else",
+  "ablation": "the SAME six checkpoints and the SAME shipped windowed decomposed-min read, with the evidence permuted across items inside each subset by a fixed-seed derangement",
+  "seed": 179,
+  "context_not_a_comparator": "a claim-only probe that never reads evidence scores subset-mean 0.5683 on this arena (R20_claimonly_sweep.json, fit_on_whole_mix). That number says a shortcut is AVAILABLE; this arm measures whether this model TAKES it. The two are different instruments and are not differenced here.",
+  "k6_mean_true": 0.712179,
+  "k6_mean_ablated": 0.54426,
+  "k6_mean_delta": -0.167919,
+  "headline_reference": 0.71218,
+  "per_subset_k6": {
+    "covidqa": {
+      "true_k6": 0.758506,
+      "ablated_k6": 0.49693,
+      "delta": -0.261576
+    },
+    "delucionqa": {
+      "true_k6": 0.826712,
+      "ablated_k6": 0.515262,
+      "delta": -0.31145
+    },
+    "emanual": {
+      "true_k6": 0.678672,
+      "ablated_k6": 0.566788,
+      "delta": -0.111884
+    },
+    "expertqa": {
+      "true_k6": 0.763743,
+      "ablated_k6": 0.500731,
+      "delta": -0.263012
+    },
+    "finqa": {
+      "true_k6": 0.66192,
+      "ablated_k6": 0.659782,
+      "delta": -0.002138
+    },
+    "hagrid": {
+      "true_k6": 0.639316,
+      "ablated_k6": 0.505441,
+      "delta": -0.133875
+    },
+    "hotpotqa": {
+      "true_k6": 0.661702,
+      "ablated_k6": 0.530085,
+      "delta": -0.131617
+    },
+    "pubmedqa": {
+      "true_k6": 0.606899,
+      "ablated_k6": 0.526424,
+      "delta": -0.080475
+    },
+    "tatqa": {
+      "true_k6": 0.778652,
+      "ablated_k6": 0.605478,
+      "delta": -0.173174
+    },
+    "techqa": {
+      "true_k6": 0.745668,
+      "ablated_k6": 0.535678,
+      "delta": -0.20999
+    }
+  },
+  "per_draw": {
+    "d1": {
+      "checkpoint": "R18-H150-arm-draw1",
+      "per_subset": {
+        "covidqa": {
+          "true": 0.768484,
+          "ablated": 0.482201,
+          "delta": -0.286283
+        },
+        "delucionqa": {
+          "true": 0.800872,
+          "ablated": 0.498547,
+          "delta": -0.302325
+        },
+        "emanual": {
+          "true": 0.697337,
+          "ablated": 0.601695,
+          "delta": -0.095642
+        },
+        "expertqa": {
+          "true": 0.796881,
+          "ablated": 0.522515,
+          "delta": -0.274366
+        },
+        "finqa": {
+          "true": 0.651522,
+          "ablated": 0.644565,
+          "delta": -0.006957
+        },
+        "hagrid": {
+          "true": 0.642254,
+          "ablated": 0.515765,
+          "delta": -0.126489
+        },
+        "hotpotqa": {
+          "true": 0.676597,
+          "ablated": 0.557687,
+          "delta": -0.11891
+        },
+        "pubmedqa": {
+          "true": 0.589295,
+          "ablated": 0.536296,
+          "delta": -0.052999
+        },
+        "tatqa": {
+          "true": 0.784201,
+          "ablated": 0.541768,
+          "delta": -0.242433
+        },
+        "techqa": {
+          "true": 0.736092,
+          "ablated": 0.543171,
+          "delta": -0.192921
+        }
+      },
+      "mean_true": 0.714354,
+      "mean_ablated": 0.544421,
+      "mean_delta": -0.169933
+    },
+    "d2": {
+      "checkpoint": "R18-H150-arm-draw2",
+      "per_subset": {
+        "covidqa": {
+          "true": 0.74583,
+          "ablated": 0.481703,
+          "delta": -0.264127
+        },
+        "delucionqa": {
+          "true": 0.78876,
+          "ablated": 0.481589,
+          "delta": -0.307171
+        },
+        "emanual": {
+          "true": 0.658596,
+          "ablated": 0.602906,
+          "delta": -0.05569
+        },
+        "expertqa": {
+          "true": 0.782164,
+          "ablated": 0.505263,
+          "delta": -0.276901
+        },
+        "finqa": {
+          "true": 0.713478,
+          "ablated": 0.67413,
+          "delta": -0.039348
+        },
+        "hagrid": {
+          "true": 0.642502,
+          "ablated": 0.569265,
+          "delta": -0.073237
+        },
+        "hotpotqa": {
+          "true": 0.664731,
+          "ablated": 0.538248,
+          "delta": -0.126483
+        },
+        "pubmedqa": {
+          "true": 0.629758,
+          "ablated": 0.564372,
+          "delta": -0.065386
+        },
+        "tatqa": {
+          "true": 0.809322,
+          "ablated": 0.59322,
+          "delta": -0.216102
+        },
+        "techqa": {
+          "true": 0.730887,
+          "ablated": 0.479211,
+          "delta": -0.251676
+        }
+      },
+      "mean_true": 0.716603,
+      "mean_ablated": 0.548991,
+      "mean_delta": -0.167612
+    },
+    "d3": {
+      "checkpoint": "R19-H160-arm-draw3",
+      "per_subset": {
+        "covidqa": {
+          "true": 0.74583,
+          "ablated": 0.55178,
+          "delta": -0.19405
+        },
+        "delucionqa": {
+          "true": 0.879845,
+          "ablated": 0.619186,
+          "delta": -0.260659
+        },
+        "emanual": {
+          "true": 0.647094,
+          "ablated": 0.441889,
+          "delta": -0.205205
+        },
+        "expertqa": {
+          "true": 0.783138,
+          "ablated": 0.494834,
+          "delta": -0.288304
+        },
+        "finqa": {
+          "true": 0.686087,
+          "ablated": 0.673043,
+          "delta": -0.013044
+        },
+        "hagrid": {
+          "true": 0.60576,
+          "ablated": 0.479146,
+          "delta": -0.126614
+        },
+        "hotpotqa": {
+          "true": 0.675082,
+          "ablated": 0.600353,
+          "delta": -0.074729
+        },
+        "pubmedqa": {
+          "true": 0.616395,
+          "ablated": 0.493431,
+          "delta": -0.122964
+        },
+        "tatqa": {
+          "true": 0.724274,
+          "ablated": 0.587167,
+          "delta": -0.137107
+        },
+        "techqa": {
+          "true": 0.723469,
+          "ablated": 0.548246,
+          "delta": -0.175223
+        }
+      },
+      "mean_true": 0.708697,
+      "mean_ablated": 0.548907,
+      "mean_delta": -0.15979
+    },
+    "d4": {
+      "checkpoint": "R19-H160-arm-draw4",
+      "per_subset": {
+        "covidqa": {
+          "true": 0.764625,
+          "ablated": 0.5412,
+          "delta": -0.223425
+        },
+        "delucionqa": {
+          "true": 0.771802,
+          "ablated": 0.41376,
+          "delta": -0.358042
+        },
+        "emanual": {
+          "true": 0.714286,
+          "ablated": 0.521792,
+          "delta": -0.192494
+        },
+        "expertqa": {
+          "true": 0.739864,
+          "ablated": 0.489669,
+          "delta": -0.250195
+        },
+        "finqa": {
+          "true": 0.668696,
+          "ablated": 0.684348,
+          "delta": 0.015652
+        },
+        "hagrid": {
+          "true": 0.642378,
+          "ablated": 0.419191,
+          "delta": -0.223187
+        },
+        "hotpotqa": {
+          "true": 0.675587,
+          "ablated": 0.319364,
+          "delta": -0.356223
+        },
+        "pubmedqa": {
+          "true": 0.663614,
+          "ablated": 0.54613,
+          "delta": -0.117484
+        },
+        "tatqa": {
+          "true": 0.838983,
+          "ablated": 0.628632,
+          "delta": -0.210351
+        },
+        "techqa": {
+          "true": 0.756588,
+          "ablated": 0.557291,
+          "delta": -0.199297
+        }
+      },
+      "mean_true": 0.723642,
+      "mean_ablated": 0.512138,
+      "mean_delta": -0.211504
+    },
+    "d5": {
+      "checkpoint": "R20-H172-arm-draw5",
+      "per_subset": {
+        "covidqa": {
+          "true": 0.759149,
+          "ablated": 0.468509,
+          "delta": -0.29064
+        },
+        "delucionqa": {
+          "true": 0.891957,
+          "ablated": 0.479167,
+          "delta": -0.41279
+        },
+        "emanual": {
+          "true": 0.611985,
+          "ablated": 0.654964,
+          "delta": 0.042979
+        },
+        "expertqa": {
+          "true": 0.724756,
+          "ablated": 0.459454,
+          "delta": -0.265302
+        },
+        "finqa": {
+          "true": 0.638261,
+          "ablated": 0.618696,
+          "delta": -0.019565
+        },
+        "hagrid": {
+          "true": 0.654543,
+          "ablated": 0.524454,
+          "delta": -0.130089
+        },
+        "hotpotqa": {
+          "true": 0.678869,
+          "ablated": 0.595052,
+          "delta": -0.083817
+        },
+        "pubmedqa": {
+          "true": 0.566474,
+          "ablated": 0.494633,
+          "delta": -0.071841
+        },
+        "tatqa": {
+          "true": 0.725484,
+          "ablated": 0.644673,
+          "delta": -0.080811
+        },
+        "techqa": {
+          "true": 0.751838,
+          "ablated": 0.531785,
+          "delta": -0.220053
+        }
+      },
+      "mean_true": 0.700332,
+      "mean_ablated": 0.547139,
+      "mean_delta": -0.153193
+    },
+    "d6": {
+      "checkpoint": "R20-H172-arm-draw6",
+      "per_subset": {
+        "covidqa": {
+          "true": 0.767115,
+          "ablated": 0.456186,
+          "delta": -0.310929
+        },
+        "delucionqa": {
+          "true": 0.827035,
+          "ablated": 0.599322,
+          "delta": -0.227713
+        },
+        "emanual": {
+          "true": 0.742736,
+          "ablated": 0.577482,
+          "delta": -0.165254
+        },
+        "expertqa": {
+          "true": 0.755653,
+          "ablated": 0.532651,
+          "delta": -0.223002
+        },
+        "finqa": {
+          "true": 0.613478,
+          "ablated": 0.663913,
+          "delta": 0.050435
+        },
+        "hagrid": {
+          "true": 0.648461,
+          "ablated": 0.524826,
+          "delta": -0.123635
+        },
+        "hotpotqa": {
+          "true": 0.599344,
+          "ablated": 0.569806,
+          "delta": -0.029538
+        },
+        "pubmedqa": {
+          "true": 0.575858,
+          "ablated": 0.523684,
+          "delta": -0.052174
+        },
+        "tatqa": {
+          "true": 0.789649,
+          "ablated": 0.637409,
+          "delta": -0.15224
+        },
+        "techqa": {
+          "true": 0.775132,
+          "ablated": 0.554363,
+          "delta": -0.220769
+        }
+      },
+      "mean_true": 0.709446,
+      "mean_ablated": 0.563964,
+      "mean_delta": -0.145482
+    }
+  },
+  "artifacts": {
+    "ablated_scores": [
+      "R21-H179Q_ablated_scores_R18-H150-arm-draw1.npz",
+      "R21-H179Q_ablated_scores_R18-H150-arm-draw2.npz",
+      "R21-H179Q_ablated_scores_R19-H160-arm-draw3.npz",
+      "R21-H179Q_ablated_scores_R19-H160-arm-draw4.npz",
+      "R21-H179Q_ablated_scores_R20-H172-arm-draw5.npz",
+      "R21-H179Q_ablated_scores_R20-H172-arm-draw6.npz"
+    ],
+    "ablated_records": [
+      "R21-H179Q_ablated_d1.json",
+      "R21-H179Q_ablated_d2.json",
+      "R21-H179Q_ablated_d3.json",
+      "R21-H179Q_ablated_d4.json",
+      "R21-H179Q_ablated_d5.json",
+      "R21-H179Q_ablated_d6.json"
+    ]
+  },
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates.",
+  "written": "2026-08-17 16:15:53"
+}

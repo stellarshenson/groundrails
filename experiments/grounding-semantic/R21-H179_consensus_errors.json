@@ -1,0 +1,981 @@
+{
+  "arm": "R21-H179 blind-arena error autopsy, stage 1 (measurement)",
+  "registration": "docs/experiments/semantic-grounding-experiments.md, block 'R21-H179 BLIND-ARENA ERROR AUTOPSY'",
+  "licence": "MEASUREMENT ONLY - no bar, no promotion, no kill, no adjudication; stages 2 and 3 (annotation, clustering, mechanism) are owned by other agents",
+  "read": "shipped windowed decomposed-min arena read (R16-H142_G1_reads.py, reused unchanged), AUROC unit = the RESPONSE (min over H92 sentences of max over 1500/750 windows)",
+  "draws": {
+    "d1": {
+      "ckpt": "R18-H150-arm-draw1",
+      "banked": "R18-H150_arm_draw1_windowed_result.json",
+      "label": "H150 draw 1 (seed 1150, monolithic executor)"
+    },
+    "d2": {
+      "ckpt": "R18-H150-arm-draw2",
+      "banked": "R18-H150_arm_draw2_windowed_result.json",
+      "label": "H150 draw 2 (seed 2150, monolithic executor)"
+    },
+    "d3": {
+      "ckpt": "R19-H160-arm-draw3",
+      "banked": "R19-H160_arm_draw3_windowed_result.json",
+      "label": "H160 draw 3 (seed 3150, split-cotangent executor)"
+    },
+    "d4": {
+      "ckpt": "R19-H160-arm-draw4",
+      "banked": "R19-H160_arm_draw4_windowed_result.json",
+      "label": "H160 draw 4 (seed 4150, split-cotangent executor)"
+    },
+    "d5": {
+      "ckpt": "R20-H172-arm-draw5",
+      "banked": "R20-H172_arm_draw5_windowed_result.json",
+      "label": "H172 draw 5 (seed 5150, split-cotangent executor)"
+    },
+    "d6": {
+      "ckpt": "R20-H172-arm-draw6",
+      "banked": "R20-H172_arm_draw6_windowed_result.json",
+      "label": "H172 draw 6 (seed 6150, split-cotangent executor)"
+    }
+  },
+  "fidelity_control": {
+    "d1": {
+      "verdict": "PASS",
+      "worst_abs_delta": 4.578e-05,
+      "banked_mean": 0.71436,
+      "recomputed_mean": 0.714354
+    },
+    "d2": {
+      "verdict": "PASS",
+      "worst_abs_delta": 4.247e-05,
+      "banked_mean": 0.71661,
+      "recomputed_mean": 0.716603
+    },
+    "d3": {
+      "verdict": "PASS",
+      "worst_abs_delta": 4.496e-05,
+      "banked_mean": 0.7087,
+      "recomputed_mean": 0.708697
+    },
+    "d4": {
+      "verdict": "PASS",
+      "worst_abs_delta": 3.645e-05,
+      "banked_mean": 0.72365,
+      "recomputed_mean": 0.723642
+    },
+    "d5": {
+      "verdict": "PASS",
+      "worst_abs_delta": 4.862e-05,
+      "banked_mean": 0.70034,
+      "recomputed_mean": 0.700332
+    },
+    "d6": {
+      "verdict": "PASS",
+      "worst_abs_delta": 4.891e-05,
+      "banked_mean": 0.70944,
+      "recomputed_mean": 0.709446
+    }
+  },
+  "rank_loss_provenance": {
+    "source_file": "R18-H157_finqa_autopsy.py",
+    "rank_loss_sha256": "7057ed80a8330bd9",
+    "op_threshold_sha256": "2f1c16e7242a6d4d",
+    "rank_loss_source": "def rank_loss(y, s):\n    \"\"\"Per-item share of the AUROC's misordered pairs (ties count 0.5).\"\"\"\n    pos, neg = np.where(y == 1)[0], np.where(y == 0)[0]\n    per = np.zeros(len(y))\n    for i in pos:\n        per[i] = np.sum(s[neg] > s[i]) + 0.5 * np.sum(s[neg] == s[i])\n    for j in neg:\n        per[j] = np.sum(s[pos] < s[j]) + 0.5 * np.sum(s[pos] == s[j])\n    total = per[pos].sum()\n    return per / max(total, 1e-9) / 2.0",
+    "op_threshold_source": "def op_threshold(y, s):\n    \"\"\"Macro-F1-optimal threshold, in-sample (the R17-H147 stated choice:\n    it labels items correct/error; nothing is tuned on it).\"\"\"\n    grid = np.unique(np.quantile(s, np.linspace(0.02, 0.98, 97)))\n    return float(max(grid, key=lambda t: f1_score(y, (s >= t).astype(int), average=\"macro\")))",
+    "reuse": "R18-H157's rank-loss and operating-threshold formulations lifted verbatim from the banked autopsy, not re-invented"
+  },
+  "totals": {
+    "n_items": 2264,
+    "n_subsets": 10,
+    "draw_agreement_threshold_histogram": {
+      "0": 1386,
+      "1": 260,
+      "2": 161,
+      "3": 126,
+      "4": 99,
+      "5": 90,
+      "6": 142
+    },
+    "draw_agreement_rank_histogram": {
+      "0": 1323,
+      "1": 232,
+      "2": 188,
+      "3": 123,
+      "4": 125,
+      "5": 113,
+      "6": 160
+    },
+    "consensus_errors_threshold": 142,
+    "consensus_errors_rank": 160,
+    "top40_marked": 400
+  },
+  "per_subset": {
+    "covidqa": {
+      "n": 245,
+      "n_positive": 206,
+      "n_negative": 39,
+      "n_pairs": 8034,
+      "auc_per_draw": {
+        "d1": 0.7685,
+        "d2": 0.7458,
+        "d3": 0.7458,
+        "d4": 0.7646,
+        "d5": 0.7591,
+        "d6": 0.7671
+      },
+      "auc_k6_mean": 0.75851,
+      "deficit_k6_mean": 0.24149,
+      "draw_agreement_threshold": {
+        "definition": "error = prediction != label at each draw's in-sample macro-F1-optimal threshold (R18-H157 op_threshold, verbatim)",
+        "histogram_n_draws_wrong": {
+          "0": 166,
+          "1": 22,
+          "2": 11,
+          "3": 6,
+          "4": 9,
+          "5": 8,
+          "6": 23
+        },
+        "mean_draws_wrong": 1.1265,
+        "consensus_errors": 23,
+        "consensus_fn": 10,
+        "consensus_fp": 13,
+        "consensus_mass_share_of_deficit": 0.4156
+      },
+      "draw_agreement_rank": {
+        "definition": "threshold-free: a positive outranked by more than half the negatives, or a negative outranking more than half the positives",
+        "histogram_n_draws_wrong": {
+          "0": 174,
+          "1": 19,
+          "2": 9,
+          "3": 10,
+          "4": 8,
+          "5": 4,
+          "6": 21
+        },
+        "mean_draws_wrong": 1.0,
+        "consensus_errors": 21,
+        "consensus_fn": 18,
+        "consensus_fp": 3,
+        "consensus_mass_share_of_deficit": 0.2661
+      },
+      "rank_loss_mass": {
+        "formulation": "per-item AUROC-deficit contribution: each mis-ranked (positive, negative) pair carries 1/(n_pos*n_neg), split equally in the sense that each side's contributions sum to the FULL deficit (1 - AUC) - the same pair is counted once on each side",
+        "deficit_total_each_side": 0.24149,
+        "sides_carry_equal_total_mass_by_construction": "each mis-ranked pair is counted once on the positive side and once on the negative side, so fn_side.mass == fp_side.mass == (1 - AUC) ALWAYS. The direction information is in the per-item distribution - item counts and concentration - never in the two side totals",
+        "fn_side": {
+          "n_items": 206,
+          "mass": 0.24149,
+          "n_items_carrying_mass": 206,
+          "own_top40_n": 40,
+          "own_top40_share_of_side_mass": 0.5165
+        },
+        "fp_side": {
+          "n_items": 39,
+          "mass": 0.24149,
+          "n_items_carrying_mass": 39,
+          "own_top40_n": 39,
+          "own_top40_share_of_side_mass": 1.0
+        },
+        "top40": {
+          "n_marked": 40,
+          "share_of_total_mass": 0.5813,
+          "share_of_fn_side_mass": 0.2619,
+          "share_of_fp_side_mass": 0.9006,
+          "n_fn": 17,
+          "n_fp": 23,
+          "n_consensus_threshold": 23
+        }
+      }
+    },
+    "delucionqa": {
+      "n": 184,
+      "n_positive": 172,
+      "n_negative": 12,
+      "n_pairs": 2064,
+      "auc_per_draw": {
+        "d1": 0.8009,
+        "d2": 0.7888,
+        "d3": 0.8798,
+        "d4": 0.7718,
+        "d5": 0.892,
+        "d6": 0.827
+      },
+      "auc_k6_mean": 0.82671,
+      "deficit_k6_mean": 0.17329,
+      "draw_agreement_threshold": {
+        "definition": "error = prediction != label at each draw's in-sample macro-F1-optimal threshold (R18-H157 op_threshold, verbatim)",
+        "histogram_n_draws_wrong": {
+          "0": 145,
+          "1": 5,
+          "2": 11,
+          "3": 7,
+          "4": 7,
+          "5": 5,
+          "6": 4
+        },
+        "mean_draws_wrong": 0.6793,
+        "consensus_errors": 4,
+        "consensus_fn": 3,
+        "consensus_fp": 1,
+        "consensus_mass_share_of_deficit": 0.192
+      },
+      "draw_agreement_rank": {
+        "definition": "threshold-free: a positive outranked by more than half the negatives, or a negative outranking more than half the positives",
+        "histogram_n_draws_wrong": {
+          "0": 143,
+          "1": 14,
+          "2": 7,
+          "3": 3,
+          "4": 6,
+          "5": 6,
+          "6": 5
+        },
+        "mean_draws_wrong": 0.6576,
+        "consensus_errors": 5,
+        "consensus_fn": 5,
+        "consensus_fp": 0,
+        "consensus_mass_share_of_deficit": 0.0699
+      },
+      "rank_loss_mass": {
+        "formulation": "per-item AUROC-deficit contribution: each mis-ranked (positive, negative) pair carries 1/(n_pos*n_neg), split equally in the sense that each side's contributions sum to the FULL deficit (1 - AUC) - the same pair is counted once on each side",
+        "deficit_total_each_side": 0.17329,
+        "sides_carry_equal_total_mass_by_construction": "each mis-ranked pair is counted once on the positive side and once on the negative side, so fn_side.mass == fp_side.mass == (1 - AUC) ALWAYS. The direction information is in the per-item distribution - item counts and concentration - never in the two side totals",
+        "fn_side": {
+          "n_items": 172,
+          "mass": 0.17329,
+          "n_items_carrying_mass": 161,
+          "own_top40_n": 40,
+          "own_top40_share_of_side_mass": 0.6277
+        },
+        "fp_side": {
+          "n_items": 12,
+          "mass": 0.17329,
+          "n_items_carrying_mass": 12,
+          "own_top40_n": 12,
+          "own_top40_share_of_side_mass": 1.0
+        },
+        "top40": {
+          "n_marked": 40,
+          "share_of_total_mass": 0.7663,
+          "share_of_fn_side_mass": 0.5326,
+          "share_of_fp_side_mass": 1.0,
+          "n_fn": 28,
+          "n_fp": 12,
+          "n_consensus_threshold": 4
+        }
+      }
+    },
+    "emanual": {
+      "n": 132,
+      "n_positive": 118,
+      "n_negative": 14,
+      "n_pairs": 1652,
+      "auc_per_draw": {
+        "d1": 0.6973,
+        "d2": 0.6586,
+        "d3": 0.6471,
+        "d4": 0.7143,
+        "d5": 0.612,
+        "d6": 0.7427
+      },
+      "auc_k6_mean": 0.67867,
+      "deficit_k6_mean": 0.32133,
+      "draw_agreement_threshold": {
+        "definition": "error = prediction != label at each draw's in-sample macro-F1-optimal threshold (R18-H157 op_threshold, verbatim)",
+        "histogram_n_draws_wrong": {
+          "0": 98,
+          "1": 10,
+          "2": 9,
+          "3": 3,
+          "4": 1,
+          "5": 2,
+          "6": 9
+        },
+        "mean_draws_wrong": 0.7955,
+        "consensus_errors": 9,
+        "consensus_fn": 0,
+        "consensus_fp": 9,
+        "consensus_mass_share_of_deficit": 0.4334
+      },
+      "draw_agreement_rank": {
+        "definition": "threshold-free: a positive outranked by more than half the negatives, or a negative outranking more than half the positives",
+        "histogram_n_draws_wrong": {
+          "0": 66,
+          "1": 13,
+          "2": 11,
+          "3": 11,
+          "4": 7,
+          "5": 9,
+          "6": 15
+        },
+        "mean_draws_wrong": 1.75,
+        "consensus_errors": 15,
+        "consensus_fn": 13,
+        "consensus_fp": 2,
+        "consensus_mass_share_of_deficit": 0.2808
+      },
+      "rank_loss_mass": {
+        "formulation": "per-item AUROC-deficit contribution: each mis-ranked (positive, negative) pair carries 1/(n_pos*n_neg), split equally in the sense that each side's contributions sum to the FULL deficit (1 - AUC) - the same pair is counted once on each side",
+        "deficit_total_each_side": 0.32133,
+        "sides_carry_equal_total_mass_by_construction": "each mis-ranked pair is counted once on the positive side and once on the negative side, so fn_side.mass == fp_side.mass == (1 - AUC) ALWAYS. The direction information is in the per-item distribution - item counts and concentration - never in the two side totals",
+        "fn_side": {
+          "n_items": 118,
+          "mass": 0.32133,
+          "n_items_carrying_mass": 108,
+          "own_top40_n": 40,
+          "own_top40_share_of_side_mass": 0.6757
+        },
+        "fp_side": {
+          "n_items": 14,
+          "mass": 0.32133,
+          "n_items_carrying_mass": 14,
+          "own_top40_n": 14,
+          "own_top40_share_of_side_mass": 1.0
+        },
+        "top40": {
+          "n_marked": 40,
+          "share_of_total_mass": 0.7501,
+          "share_of_fn_side_mass": 0.5284,
+          "share_of_fp_side_mass": 0.9717,
+          "n_fn": 29,
+          "n_fp": 11,
+          "n_consensus_threshold": 9
+        }
+      }
+    },
+    "expertqa": {
+      "n": 203,
+      "n_positive": 95,
+      "n_negative": 108,
+      "n_pairs": 10260,
+      "auc_per_draw": {
+        "d1": 0.7969,
+        "d2": 0.7822,
+        "d3": 0.7831,
+        "d4": 0.7399,
+        "d5": 0.7248,
+        "d6": 0.7557
+      },
+      "auc_k6_mean": 0.76374,
+      "deficit_k6_mean": 0.23626,
+      "draw_agreement_threshold": {
+        "definition": "error = prediction != label at each draw's in-sample macro-F1-optimal threshold (R18-H157 op_threshold, verbatim)",
+        "histogram_n_draws_wrong": {
+          "0": 96,
+          "1": 31,
+          "2": 14,
+          "3": 12,
+          "4": 12,
+          "5": 19,
+          "6": 19
+        },
+        "mean_draws_wrong": 1.734,
+        "consensus_errors": 19,
+        "consensus_fn": 13,
+        "consensus_fp": 6,
+        "consensus_mass_share_of_deficit": 0.2636
+      },
+      "draw_agreement_rank": {
+        "definition": "threshold-free: a positive outranked by more than half the negatives, or a negative outranking more than half the positives",
+        "histogram_n_draws_wrong": {
+          "0": 129,
+          "1": 25,
+          "2": 15,
+          "3": 9,
+          "4": 13,
+          "5": 6,
+          "6": 6
+        },
+        "mean_draws_wrong": 0.9852,
+        "consensus_errors": 6,
+        "consensus_fn": 3,
+        "consensus_fp": 3,
+        "consensus_mass_share_of_deficit": 0.0969
+      },
+      "rank_loss_mass": {
+        "formulation": "per-item AUROC-deficit contribution: each mis-ranked (positive, negative) pair carries 1/(n_pos*n_neg), split equally in the sense that each side's contributions sum to the FULL deficit (1 - AUC) - the same pair is counted once on each side",
+        "deficit_total_each_side": 0.23626,
+        "sides_carry_equal_total_mass_by_construction": "each mis-ranked pair is counted once on the positive side and once on the negative side, so fn_side.mass == fp_side.mass == (1 - AUC) ALWAYS. The direction information is in the per-item distribution - item counts and concentration - never in the two side totals",
+        "fn_side": {
+          "n_items": 95,
+          "mass": 0.23626,
+          "n_items_carrying_mass": 90,
+          "own_top40_n": 40,
+          "own_top40_share_of_side_mass": 0.8133
+        },
+        "fp_side": {
+          "n_items": 108,
+          "mass": 0.23626,
+          "n_items_carrying_mass": 108,
+          "own_top40_n": 40,
+          "own_top40_share_of_side_mass": 0.6823
+        },
+        "top40": {
+          "n_marked": 40,
+          "share_of_total_mass": 0.4776,
+          "share_of_fn_side_mass": 0.5761,
+          "share_of_fp_side_mass": 0.379,
+          "n_fn": 23,
+          "n_fp": 17,
+          "n_consensus_threshold": 18
+        }
+      }
+    },
+    "finqa": {
+      "n": 250,
+      "n_positive": 230,
+      "n_negative": 20,
+      "n_pairs": 4600,
+      "auc_per_draw": {
+        "d1": 0.6515,
+        "d2": 0.7135,
+        "d3": 0.6861,
+        "d4": 0.6687,
+        "d5": 0.6383,
+        "d6": 0.6135
+      },
+      "auc_k6_mean": 0.66192,
+      "deficit_k6_mean": 0.33808,
+      "draw_agreement_threshold": {
+        "definition": "error = prediction != label at each draw's in-sample macro-F1-optimal threshold (R18-H157 op_threshold, verbatim)",
+        "histogram_n_draws_wrong": {
+          "0": 172,
+          "1": 30,
+          "2": 16,
+          "3": 12,
+          "4": 6,
+          "5": 3,
+          "6": 11
+        },
+        "mean_draws_wrong": 0.812,
+        "consensus_errors": 11,
+        "consensus_fn": 3,
+        "consensus_fp": 8,
+        "consensus_mass_share_of_deficit": 0.3553
+      },
+      "draw_agreement_rank": {
+        "definition": "threshold-free: a positive outranked by more than half the negatives, or a negative outranking more than half the positives",
+        "histogram_n_draws_wrong": {
+          "0": 124,
+          "1": 30,
+          "2": 27,
+          "3": 21,
+          "4": 18,
+          "5": 11,
+          "6": 19
+        },
+        "mean_draws_wrong": 1.552,
+        "consensus_errors": 19,
+        "consensus_fn": 16,
+        "consensus_fp": 3,
+        "consensus_mass_share_of_deficit": 0.2589
+      },
+      "rank_loss_mass": {
+        "formulation": "per-item AUROC-deficit contribution: each mis-ranked (positive, negative) pair carries 1/(n_pos*n_neg), split equally in the sense that each side's contributions sum to the FULL deficit (1 - AUC) - the same pair is counted once on each side",
+        "deficit_total_each_side": 0.33808,
+        "sides_carry_equal_total_mass_by_construction": "each mis-ranked pair is counted once on the positive side and once on the negative side, so fn_side.mass == fp_side.mass == (1 - AUC) ALWAYS. The direction information is in the per-item distribution - item counts and concentration - never in the two side totals",
+        "fn_side": {
+          "n_items": 230,
+          "mass": 0.33808,
+          "n_items_carrying_mass": 222,
+          "own_top40_n": 40,
+          "own_top40_share_of_side_mass": 0.3599
+        },
+        "fp_side": {
+          "n_items": 20,
+          "mass": 0.33808,
+          "n_items_carrying_mass": 20,
+          "own_top40_n": 20,
+          "own_top40_share_of_side_mass": 1.0
+        },
+        "top40": {
+          "n_marked": 40,
+          "share_of_total_mass": 0.6062,
+          "share_of_fn_side_mass": 0.2195,
+          "share_of_fp_side_mass": 0.9929,
+          "n_fn": 22,
+          "n_fp": 18,
+          "n_consensus_threshold": 11
+        }
+      }
+    },
+    "hagrid": {
+      "n": 250,
+      "n_positive": 212,
+      "n_negative": 38,
+      "n_pairs": 8056,
+      "auc_per_draw": {
+        "d1": 0.6423,
+        "d2": 0.6425,
+        "d3": 0.6058,
+        "d4": 0.6424,
+        "d5": 0.6545,
+        "d6": 0.6485
+      },
+      "auc_k6_mean": 0.63932,
+      "deficit_k6_mean": 0.36068,
+      "draw_agreement_threshold": {
+        "definition": "error = prediction != label at each draw's in-sample macro-F1-optimal threshold (R18-H157 op_threshold, verbatim)",
+        "histogram_n_draws_wrong": {
+          "0": 176,
+          "1": 21,
+          "2": 9,
+          "3": 9,
+          "4": 5,
+          "5": 3,
+          "6": 27
+        },
+        "mean_draws_wrong": 1.052,
+        "consensus_errors": 27,
+        "consensus_fn": 7,
+        "consensus_fp": 20,
+        "consensus_mass_share_of_deficit": 0.4888
+      },
+      "draw_agreement_rank": {
+        "definition": "threshold-free: a positive outranked by more than half the negatives, or a negative outranking more than half the positives",
+        "histogram_n_draws_wrong": {
+          "0": 155,
+          "1": 20,
+          "2": 13,
+          "3": 6,
+          "4": 7,
+          "5": 12,
+          "6": 37
+        },
+        "mean_draws_wrong": 1.496,
+        "consensus_errors": 37,
+        "consensus_fn": 24,
+        "consensus_fp": 13,
+        "consensus_mass_share_of_deficit": 0.4648
+      },
+      "rank_loss_mass": {
+        "formulation": "per-item AUROC-deficit contribution: each mis-ranked (positive, negative) pair carries 1/(n_pos*n_neg), split equally in the sense that each side's contributions sum to the FULL deficit (1 - AUC) - the same pair is counted once on each side",
+        "deficit_total_each_side": 0.36068,
+        "sides_carry_equal_total_mass_by_construction": "each mis-ranked pair is counted once on the positive side and once on the negative side, so fn_side.mass == fp_side.mass == (1 - AUC) ALWAYS. The direction information is in the per-item distribution - item counts and concentration - never in the two side totals",
+        "fn_side": {
+          "n_items": 212,
+          "mass": 0.36068,
+          "n_items_carrying_mass": 208,
+          "own_top40_n": 40,
+          "own_top40_share_of_side_mass": 0.3641
+        },
+        "fp_side": {
+          "n_items": 38,
+          "mass": 0.36068,
+          "n_items_carrying_mass": 38,
+          "own_top40_n": 38,
+          "own_top40_share_of_side_mass": 1.0
+        },
+        "top40": {
+          "n_marked": 40,
+          "share_of_total_mass": 0.5552,
+          "share_of_fn_side_mass": 0.1702,
+          "share_of_fp_side_mass": 0.9401,
+          "n_fn": 16,
+          "n_fp": 24,
+          "n_consensus_threshold": 27
+        }
+      }
+    },
+    "hotpotqa": {
+      "n": 250,
+      "n_positive": 233,
+      "n_negative": 17,
+      "n_pairs": 3961,
+      "auc_per_draw": {
+        "d1": 0.6766,
+        "d2": 0.6647,
+        "d3": 0.6751,
+        "d4": 0.6756,
+        "d5": 0.6789,
+        "d6": 0.5993
+      },
+      "auc_k6_mean": 0.6617,
+      "deficit_k6_mean": 0.3383,
+      "draw_agreement_threshold": {
+        "definition": "error = prediction != label at each draw's in-sample macro-F1-optimal threshold (R18-H157 op_threshold, verbatim)",
+        "histogram_n_draws_wrong": {
+          "0": 165,
+          "1": 32,
+          "2": 24,
+          "3": 11,
+          "4": 5,
+          "5": 7,
+          "6": 6
+        },
+        "mean_draws_wrong": 0.816,
+        "consensus_errors": 6,
+        "consensus_fn": 1,
+        "consensus_fp": 5,
+        "consensus_mass_share_of_deficit": 0.2735
+      },
+      "draw_agreement_rank": {
+        "definition": "threshold-free: a positive outranked by more than half the negatives, or a negative outranking more than half the positives",
+        "histogram_n_draws_wrong": {
+          "0": 115,
+          "1": 27,
+          "2": 29,
+          "3": 18,
+          "4": 21,
+          "5": 21,
+          "6": 19
+        },
+        "mean_draws_wrong": 1.768,
+        "consensus_errors": 19,
+        "consensus_fn": 17,
+        "consensus_fp": 2,
+        "consensus_mass_share_of_deficit": 0.2096
+      },
+      "rank_loss_mass": {
+        "formulation": "per-item AUROC-deficit contribution: each mis-ranked (positive, negative) pair carries 1/(n_pos*n_neg), split equally in the sense that each side's contributions sum to the FULL deficit (1 - AUC) - the same pair is counted once on each side",
+        "deficit_total_each_side": 0.3383,
+        "sides_carry_equal_total_mass_by_construction": "each mis-ranked pair is counted once on the positive side and once on the negative side, so fn_side.mass == fp_side.mass == (1 - AUC) ALWAYS. The direction information is in the per-item distribution - item counts and concentration - never in the two side totals",
+        "fn_side": {
+          "n_items": 233,
+          "mass": 0.3383,
+          "n_items_carrying_mass": 195,
+          "own_top40_n": 40,
+          "own_top40_share_of_side_mass": 0.3764
+        },
+        "fp_side": {
+          "n_items": 17,
+          "mass": 0.3383,
+          "n_items_carrying_mass": 17,
+          "own_top40_n": 17,
+          "own_top40_share_of_side_mass": 1.0
+        },
+        "top40": {
+          "n_marked": 40,
+          "share_of_total_mass": 0.617,
+          "share_of_fn_side_mass": 0.2341,
+          "share_of_fp_side_mass": 1.0,
+          "n_fn": 23,
+          "n_fp": 17,
+          "n_consensus_threshold": 6
+        }
+      }
+    },
+    "pubmedqa": {
+      "n": 250,
+      "n_positive": 173,
+      "n_negative": 77,
+      "n_pairs": 13321,
+      "auc_per_draw": {
+        "d1": 0.5893,
+        "d2": 0.6298,
+        "d3": 0.6164,
+        "d4": 0.6636,
+        "d5": 0.5665,
+        "d6": 0.5759
+      },
+      "auc_k6_mean": 0.6069,
+      "deficit_k6_mean": 0.3931,
+      "draw_agreement_threshold": {
+        "definition": "error = prediction != label at each draw's in-sample macro-F1-optimal threshold (R18-H157 op_threshold, verbatim)",
+        "histogram_n_draws_wrong": {
+          "0": 72,
+          "1": 44,
+          "2": 31,
+          "3": 35,
+          "4": 26,
+          "5": 24,
+          "6": 18
+        },
+        "mean_draws_wrong": 2.172,
+        "consensus_errors": 18,
+        "consensus_fn": 5,
+        "consensus_fp": 13,
+        "consensus_mass_share_of_deficit": 0.1927
+      },
+      "draw_agreement_rank": {
+        "definition": "threshold-free: a positive outranked by more than half the negatives, or a negative outranking more than half the positives",
+        "histogram_n_draws_wrong": {
+          "0": 80,
+          "1": 38,
+          "2": 38,
+          "3": 28,
+          "4": 22,
+          "5": 27,
+          "6": 17
+        },
+        "mean_draws_wrong": 2.092,
+        "consensus_errors": 17,
+        "consensus_fn": 11,
+        "consensus_fp": 6,
+        "consensus_mass_share_of_deficit": 0.1468
+      },
+      "rank_loss_mass": {
+        "formulation": "per-item AUROC-deficit contribution: each mis-ranked (positive, negative) pair carries 1/(n_pos*n_neg), split equally in the sense that each side's contributions sum to the FULL deficit (1 - AUC) - the same pair is counted once on each side",
+        "deficit_total_each_side": 0.3931,
+        "sides_carry_equal_total_mass_by_construction": "each mis-ranked pair is counted once on the positive side and once on the negative side, so fn_side.mass == fp_side.mass == (1 - AUC) ALWAYS. The direction information is in the per-item distribution - item counts and concentration - never in the two side totals",
+        "fn_side": {
+          "n_items": 173,
+          "mass": 0.3931,
+          "n_items_carrying_mass": 171,
+          "own_top40_n": 40,
+          "own_top40_share_of_side_mass": 0.4251
+        },
+        "fp_side": {
+          "n_items": 77,
+          "mass": 0.3931,
+          "n_items_carrying_mass": 77,
+          "own_top40_n": 40,
+          "own_top40_share_of_side_mass": 0.7362
+        },
+        "top40": {
+          "n_marked": 40,
+          "share_of_total_mass": 0.3712,
+          "share_of_fn_side_mass": 0.0654,
+          "share_of_fp_side_mass": 0.677,
+          "n_fn": 5,
+          "n_fp": 35,
+          "n_consensus_threshold": 17
+        }
+      }
+    },
+    "tatqa": {
+      "n": 250,
+      "n_positive": 236,
+      "n_negative": 14,
+      "n_pairs": 3304,
+      "auc_per_draw": {
+        "d1": 0.7842,
+        "d2": 0.8093,
+        "d3": 0.7243,
+        "d4": 0.839,
+        "d5": 0.7255,
+        "d6": 0.7896
+      },
+      "auc_k6_mean": 0.77865,
+      "deficit_k6_mean": 0.22135,
+      "draw_agreement_threshold": {
+        "definition": "error = prediction != label at each draw's in-sample macro-F1-optimal threshold (R18-H157 op_threshold, verbatim)",
+        "histogram_n_draws_wrong": {
+          "0": 186,
+          "1": 32,
+          "2": 8,
+          "3": 9,
+          "4": 7,
+          "5": 5,
+          "6": 3
+        },
+        "mean_draws_wrong": 0.584,
+        "consensus_errors": 3,
+        "consensus_fn": 1,
+        "consensus_fp": 2,
+        "consensus_mass_share_of_deficit": 0.1975
+      },
+      "draw_agreement_rank": {
+        "definition": "threshold-free: a positive outranked by more than half the negatives, or a negative outranking more than half the positives",
+        "histogram_n_draws_wrong": {
+          "0": 176,
+          "1": 17,
+          "2": 17,
+          "3": 12,
+          "4": 10,
+          "5": 11,
+          "6": 7
+        },
+        "mean_draws_wrong": 0.896,
+        "consensus_errors": 7,
+        "consensus_fn": 6,
+        "consensus_fp": 1,
+        "consensus_mass_share_of_deficit": 0.1617
+      },
+      "rank_loss_mass": {
+        "formulation": "per-item AUROC-deficit contribution: each mis-ranked (positive, negative) pair carries 1/(n_pos*n_neg), split equally in the sense that each side's contributions sum to the FULL deficit (1 - AUC) - the same pair is counted once on each side",
+        "deficit_total_each_side": 0.22135,
+        "sides_carry_equal_total_mass_by_construction": "each mis-ranked pair is counted once on the positive side and once on the negative side, so fn_side.mass == fp_side.mass == (1 - AUC) ALWAYS. The direction information is in the per-item distribution - item counts and concentration - never in the two side totals",
+        "fn_side": {
+          "n_items": 236,
+          "mass": 0.22135,
+          "n_items_carrying_mass": 224,
+          "own_top40_n": 40,
+          "own_top40_share_of_side_mass": 0.4938
+        },
+        "fp_side": {
+          "n_items": 14,
+          "mass": 0.22135,
+          "n_items_carrying_mass": 14,
+          "own_top40_n": 14,
+          "own_top40_share_of_side_mass": 1.0
+        },
+        "top40": {
+          "n_marked": 40,
+          "share_of_total_mass": 0.6797,
+          "share_of_fn_side_mass": 0.3699,
+          "share_of_fp_side_mass": 0.9895,
+          "n_fn": 27,
+          "n_fp": 13,
+          "n_consensus_threshold": 3
+        }
+      }
+    },
+    "techqa": {
+      "n": 250,
+      "n_positive": 141,
+      "n_negative": 109,
+      "n_pairs": 15369,
+      "auc_per_draw": {
+        "d1": 0.7361,
+        "d2": 0.7309,
+        "d3": 0.7235,
+        "d4": 0.7566,
+        "d5": 0.7518,
+        "d6": 0.7751
+      },
+      "auc_k6_mean": 0.74567,
+      "deficit_k6_mean": 0.25433,
+      "draw_agreement_threshold": {
+        "definition": "error = prediction != label at each draw's in-sample macro-F1-optimal threshold (R18-H157 op_threshold, verbatim)",
+        "histogram_n_draws_wrong": {
+          "0": 110,
+          "1": 33,
+          "2": 28,
+          "3": 22,
+          "4": 21,
+          "5": 14,
+          "6": 22
+        },
+        "mean_draws_wrong": 1.764,
+        "consensus_errors": 22,
+        "consensus_fn": 7,
+        "consensus_fp": 15,
+        "consensus_mass_share_of_deficit": 0.2626
+      },
+      "draw_agreement_rank": {
+        "definition": "threshold-free: a positive outranked by more than half the negatives, or a negative outranking more than half the positives",
+        "histogram_n_draws_wrong": {
+          "0": 161,
+          "1": 29,
+          "2": 22,
+          "3": 5,
+          "4": 13,
+          "5": 6,
+          "6": 14
+        },
+        "mean_draws_wrong": 1.016,
+        "consensus_errors": 14,
+        "consensus_fn": 3,
+        "consensus_fp": 11,
+        "consensus_mass_share_of_deficit": 0.1881
+      },
+      "rank_loss_mass": {
+        "formulation": "per-item AUROC-deficit contribution: each mis-ranked (positive, negative) pair carries 1/(n_pos*n_neg), split equally in the sense that each side's contributions sum to the FULL deficit (1 - AUC) - the same pair is counted once on each side",
+        "deficit_total_each_side": 0.25433,
+        "sides_carry_equal_total_mass_by_construction": "each mis-ranked pair is counted once on the positive side and once on the negative side, so fn_side.mass == fp_side.mass == (1 - AUC) ALWAYS. The direction information is in the per-item distribution - item counts and concentration - never in the two side totals",
+        "fn_side": {
+          "n_items": 141,
+          "mass": 0.25433,
+          "n_items_carrying_mass": 139,
+          "own_top40_n": 40,
+          "own_top40_share_of_side_mass": 0.5876
+        },
+        "fp_side": {
+          "n_items": 109,
+          "mass": 0.25433,
+          "n_items_carrying_mass": 109,
+          "own_top40_n": 40,
+          "own_top40_share_of_side_mass": 0.7217
+        },
+        "top40": {
+          "n_marked": 40,
+          "share_of_total_mass": 0.417,
+          "share_of_fn_side_mass": 0.3099,
+          "share_of_fp_side_mass": 0.5242,
+          "n_fn": 17,
+          "n_fp": 23,
+          "n_consensus_threshold": 21
+        }
+      }
+    }
+  },
+  "headroom_reported_separately": {
+    "why": "the registration requires error mass and headroom to the faithful-oracle ceiling to be reported SEPARATELY so the two are not confused",
+    "per_subset": {
+      "covidqa": {
+        "faithful_oracle_ceiling": 0.7549,
+        "ceiling_source": "R12_label_ceiling_result.json:o4_windows_strict_auc",
+        "auc_k6_mean": 0.75851,
+        "headroom_to_ceiling": -0.00361,
+        "deficit_to_1.0": 0.24149
+      },
+      "delucionqa": {
+        "faithful_oracle_ceiling": 0.6657,
+        "ceiling_source": "R12_label_ceiling_result.json:o4_windows_strict_auc",
+        "auc_k6_mean": 0.82671,
+        "headroom_to_ceiling": -0.16101,
+        "deficit_to_1.0": 0.17329
+      },
+      "emanual": {
+        "faithful_oracle_ceiling": 0.816,
+        "ceiling_source": "R12_label_ceiling_result.json:o4_windows_strict_auc",
+        "auc_k6_mean": 0.67867,
+        "headroom_to_ceiling": 0.13733,
+        "deficit_to_1.0": 0.32133
+      },
+      "expertqa": {
+        "faithful_oracle_ceiling": 0.692,
+        "ceiling_source": "R12_label_ceiling_result.json:o4_windows_strict_auc",
+        "auc_k6_mean": 0.76374,
+        "headroom_to_ceiling": -0.07174,
+        "deficit_to_1.0": 0.23626
+      },
+      "finqa": {
+        "faithful_oracle_ceiling": 0.7348,
+        "ceiling_source": "R12_label_ceiling_result.json:o4_windows_strict_auc",
+        "auc_k6_mean": 0.66192,
+        "headroom_to_ceiling": 0.07288,
+        "deficit_to_1.0": 0.33808
+      },
+      "hagrid": {
+        "faithful_oracle_ceiling": 0.7833,
+        "ceiling_source": "R12_label_ceiling_result.json:o4_windows_strict_auc",
+        "auc_k6_mean": 0.63932,
+        "headroom_to_ceiling": 0.14398,
+        "deficit_to_1.0": 0.36068
+      },
+      "hotpotqa": {
+        "faithful_oracle_ceiling": 0.5843,
+        "ceiling_source": "R12_label_ceiling_result.json:o4_windows_strict_auc",
+        "auc_k6_mean": 0.6617,
+        "headroom_to_ceiling": -0.0774,
+        "deficit_to_1.0": 0.3383
+      },
+      "pubmedqa": {
+        "faithful_oracle_ceiling": 0.7789,
+        "ceiling_source": "R12_label_ceiling_result.json:o4_windows_strict_auc",
+        "auc_k6_mean": 0.6069,
+        "headroom_to_ceiling": 0.172,
+        "deficit_to_1.0": 0.3931
+      },
+      "tatqa": {
+        "faithful_oracle_ceiling": 0.8823,
+        "ceiling_source": "R12_label_ceiling_result.json:o4_windows_strict_auc",
+        "auc_k6_mean": 0.77865,
+        "headroom_to_ceiling": 0.10365,
+        "deficit_to_1.0": 0.22135
+      },
+      "techqa": {
+        "faithful_oracle_ceiling": 0.8682,
+        "ceiling_source": "R12_label_ceiling_result.json:o4_windows_strict_auc",
+        "auc_k6_mean": 0.74567,
+        "headroom_to_ceiling": 0.12253,
+        "deficit_to_1.0": 0.25433
+      }
+    }
+  },
+  "artifacts": {
+    "items": "R21-H179_arena_items.parquet",
+    "per_item_scores": [
+      "R21-H179_arena_scores_R18-H150-arm-draw1.npz",
+      "R21-H179_arena_scores_R18-H150-arm-draw2.npz",
+      "R21-H179_arena_scores_R19-H160-arm-draw3.npz",
+      "R21-H179_arena_scores_R19-H160-arm-draw4.npz",
+      "R21-H179_arena_scores_R20-H172-arm-draw5.npz",
+      "R21-H179_arena_scores_R20-H172-arm-draw6.npz"
+    ],
+    "fidelity": "R21-H179_arena_scores_fidelity.json",
+    "consensus_parquet": "R21-H179_consensus_errors.parquet"
+  },
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates.",
+  "written": "2026-08-17 16:15:48"
+}

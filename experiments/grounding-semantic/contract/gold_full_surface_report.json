@@ -1,0 +1,1279 @@
+{
+  "surface": "gold_full",
+  "class": "evaluation surface - in-domain held-out hold (bar >= 0.84)",
+  "contract": "docs/experiments/dataset-contract.md (C1-C8), amendments C-A1 and C-A2 applied",
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates.",
+  "privacy": "PRIVATE surface. No verbatim claim, evidence or document text and no client or company name appears in this artifact. Counts, rates and blake2b-64/128 fingerprints only.",
+  "cpu_only": true,
+  "hf_hub_offline": true,
+  "assembly": {
+    "gold_loader": "R10-H108_lane.gold_full()",
+    "gold_source": "experiments/grounding-semantic/private-rag-forensics/R7-H51_teacher_pairs.parquet",
+    "gold_document_source": "experiments/grounding-semantic/private-rag-forensics/gold/golden_grounding_evidence_verified.parquet",
+    "mix_loader": "R10-H108_lane.public_train() under R16-H142_G1_arm.untruncated_evidence(), plus lane parquets",
+    "mix17_rows": 760618,
+    "mix17_lanes": "R20-H174_arm_run.LANES (5 lanes, 17 DANN groups)",
+    "mix14_rows": 721210,
+    "mix14_lanes": "R18-H150_arm_run.LANES (2 lanes, 14 DANN groups) - a strict tag-subset",
+    "mix_ambiguity_note": "The task brief names 721,210 rows AND R20-H174_arm_run.LANES; those are two different mixes (H150 lanes -> 721,210 / 14 groups, H174 lanes -> 760,618 / 17 groups). Both are measured here from one assembly and both are reported. The prior audit used the 14-group mix; the phase-1 member reports use the 17-group mix.",
+    "owner_alignment": {
+      "loader_view_and_parquet_view_have_identical_pair_multiset": true,
+      "owners": 2752,
+      "owners_with_one_claim_string": 2752,
+      "claim_string_matches_document_parquet_row": 2752,
+      "label_matches_document_parquet_row": 2752,
+      "aligned": true
+    }
+  },
+  "surface_census": {
+    "claims": 2752,
+    "pairs": 123579,
+    "unique_claim_strings": 2699,
+    "duplicate_claim_strings": 53,
+    "unique_chunks": 10228,
+    "unique_documents": 619,
+    "trace_ids": 639,
+    "user_ids": 66,
+    "label_base_rate": 0.7144,
+    "label_counts": {
+      "0": 786,
+      "1": 1966
+    },
+    "lang_counts": {
+      "de-DE": 13,
+      "en": 2117,
+      "es-ES": 113,
+      "fr-FR": 270,
+      "it-IT": 16,
+      "nb-NO": 149,
+      "nl-NL": 37,
+      "pt-PT": 22,
+      "sv-SE": 15
+    },
+    "chunks_per_claim": {
+      "min": 1,
+      "max": 535,
+      "mean": 44.91
+    },
+    "claims_per_document": {
+      "min": 1,
+      "max": 35,
+      "mean": 4.45
+    },
+    "document_chars": {
+      "min": 686,
+      "max": 681322,
+      "mean": 58546
+    },
+    "fingerprints_blake2b_128": {
+      "claims": "e6cefdc4fd38114eacbf54101e99af43",
+      "chunks": "22085679019b929b755db7feafab9de8",
+      "documents": "a7897828ddb386a2d5e4f7e546d66a9a"
+    }
+  },
+  "reproduction_of_prior_audit": {
+    "banked_artifact": "experiments/grounding-semantic/R20_goldfull_split_audit.json",
+    "banked_log": "logs/R20_goldfull_split_audit.log",
+    "mix_used": "14-group / 721,210 rows - the audit's own mix",
+    "checks": {
+      "gold_claims": {
+        "recomputed": 2752,
+        "banked": 2752,
+        "reproduces": true
+      },
+      "gold_pairs": {
+        "recomputed": 123579,
+        "banked": 123579,
+        "reproduces": true
+      },
+      "gold_unique_claim_strings": {
+        "recomputed": 2699,
+        "banked": 2699,
+        "reproduces": true
+      },
+      "gold_unique_chunks": {
+        "recomputed": 10228,
+        "banked": 10228,
+        "reproduces": true
+      },
+      "gold_label_base_rate": {
+        "recomputed": 0.7144,
+        "banked": 0.7144,
+        "reproduces": true
+      },
+      "mix_rows": {
+        "recomputed": 721210,
+        "banked": 721210,
+        "reproduces": true
+      },
+      "mix_unique_claims": {
+        "recomputed": 521519,
+        "banked": 521519,
+        "reproduces": true
+      },
+      "mix_unique_chunks": {
+        "recomputed": 359941,
+        "banked": 359941,
+        "reproduces": true
+      },
+      "mix_windows": {
+        "recomputed": 1068905,
+        "banked": 1068905,
+        "reproduces": true
+      },
+      "mix_unique_windows": {
+        "recomputed": 594250,
+        "banked": 594250,
+        "reproduces": true
+      },
+      "exact_claims_colliding": {
+        "recomputed": 0,
+        "banked": 0,
+        "reproduces": true
+      },
+      "exact_evidence_raw_colliding": {
+        "recomputed": 0,
+        "banked": 0,
+        "reproduces": true
+      },
+      "exact_evidence_windows_colliding": {
+        "recomputed": 0,
+        "banked": 0,
+        "reproduces": true
+      },
+      "exact_pairs_colliding": {
+        "recomputed": 0,
+        "banked": 0,
+        "reproduces": true
+      },
+      "id_substring_claim": {
+        "recomputed": 0,
+        "banked": 0,
+        "reproduces": true
+      },
+      "id_substring_chunk": {
+        "recomputed": 0,
+        "banked": 0,
+        "reproduces": true
+      },
+      "id_join_possible": {
+        "recomputed": false,
+        "banked": false,
+        "reproduces": true
+      },
+      "id_value_collisions": {
+        "recomputed": 0,
+        "banked": 0,
+        "reproduces": true
+      },
+      "census_claims_max_fraction": {
+        "recomputed": 0.0,
+        "banked": 0.0,
+        "reproduces": true
+      },
+      "census_claims_best_jaccard_max": {
+        "recomputed": 0.0185,
+        "banked": 0.0185,
+        "reproduces": true
+      },
+      "census_claims_verdict": {
+        "recomputed": "PASS",
+        "banked": "PASS",
+        "reproduces": true
+      },
+      "census_evidence_max_fraction": {
+        "recomputed": 0.0,
+        "banked": 0.0,
+        "reproduces": true
+      },
+      "census_evidence_best_jaccard_max": {
+        "recomputed": 0.007,
+        "banked": 0.007,
+        "reproduces": true
+      },
+      "census_evidence_verdict": {
+        "recomputed": "PASS",
+        "banked": "PASS",
+        "reproduces": true
+      },
+      "spike_claims_detected": {
+        "recomputed": 9,
+        "banked": 10,
+        "reproduces": false
+      },
+      "spike_evidence_detected": {
+        "recomputed": 10,
+        "banked": 10,
+        "reproduces": true
+      },
+      "live_control_max_fraction": {
+        "recomputed": 0.002258,
+        "banked": 0.002258,
+        "reproduces": true
+      },
+      "live_control_units_with_hit": {
+        "recomputed": 58,
+        "banked": 58,
+        "reproduces": true
+      },
+      "live_control_candidate_units": {
+        "recomputed": 25689,
+        "banked": 25689,
+        "reproduces": true
+      },
+      "live_control_best_jaccard_max": {
+        "recomputed": 1.0,
+        "banked": 1.0,
+        "reproduces": true
+      }
+    },
+    "all_reproduce": false,
+    "mismatches": [
+      "spike_claims_detected"
+    ],
+    "mismatch_explained": {
+      "check": "spike_claims_detected",
+      "recomputed": 9,
+      "banked": 10,
+      "cause_measured": "The banked claims-channel spike control is a function of which ten of the fourteen DANN groups the dict happens to enumerate first, because the injected unit is each group's lexicographically smallest claim and some of those are shorter than the gate's n-gram order, so they cannot hit under any correct gate. It is the CONTROL that is order-dependent, not the gate: with injected units that carry at least one n-gram the gate detects every one of them. The evidence-channel spike reproduces 10/10 because window units are long.",
+      "group_by_order_deterministic_across_5_calls": false,
+      "distinct_bucket_orders_in_5_calls": 5,
+      "bucket_with_unscorable_first_unit": [
+        "halueval"
+      ],
+      "halueval_first_sorted_claim_tokens_after_normalisation": 0,
+      "implied_detected_total_range": [
+        9,
+        10
+      ],
+      "shipped_control_this_run": {
+        "injected": 10,
+        "detected_total": 9,
+        "baseline_hits": 0,
+        "passes": false,
+        "candidate_units": 2000
+      },
+      "conforming_control": {
+        "injected": 10,
+        "injected_token_counts": [
+          8,
+          129,
+          102,
+          145,
+          158,
+          21,
+          151,
+          11,
+          14,
+          117
+        ],
+        "detected_total": 10,
+        "baseline_hits": 0,
+        "passes": true,
+        "candidate_units": 2000,
+        "construction": "one unit per bucket, taking the first sorted claim that carries at least one n-gram at n=8 instead of the first sorted claim outright"
+      },
+      "consequence": "the CONTROL is order-dependent, not the gate: fed injected units that carry at least one n-gram the gate detects 10 of 10 with 0 baseline hits. The audit's clean claims-channel number is unaffected; what does not reproduce is that channel's spike control, whose banked 10/10 was one of two values the shipped construction can return on this mix",
+      "artifact": "experiments/grounding-semantic/contract/gold_full_surface_spike_diag.json"
+    },
+    "headline_numbers_reproducing": 29,
+    "headline_numbers_checked": 30
+  },
+  "C4_census": {
+    "instrument": "provenance_gate.run_gate, R14-H136 ruling-2 form: 8-gram, Jaccard >= 0.3, bidirectional, KILL at 2%",
+    "claims_vs_mix14": {
+      "max_fraction": 0.0,
+      "verdict": "PASS",
+      "candidate_vs_arena": {
+        "n_units": 2699,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "ragtruth_cn": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "vitaminc": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "ragtruth_es": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "quant_scale_unit": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "ragtruth_en": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "psiloqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "ragtruth_pl": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "halueval": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "ragtruth_hu": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "ragtruth_it": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "ragtruth_fr": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "tabfact": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "ragtruth_de": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "quant_misbind": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        },
+        "best_jaccard": {
+          "max": 0.0185,
+          "p99": 0.0028,
+          "mean": 0.0001
+        }
+      },
+      "arena_vs_candidate": {
+        "n_units": 521540,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "repro_goldfull_claims": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        },
+        "best_jaccard": {
+          "max": 0.0185,
+          "p99": 0.0,
+          "mean": 0.0
+        }
+      }
+    },
+    "evidence_vs_mix14": {
+      "max_fraction": 0.0,
+      "verdict": "PASS",
+      "candidate_vs_arena": {
+        "n_units": 10228,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "halueval": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "quant_misbind": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "ragtruth_en": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "tabfact": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "psiloqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "ragtruth_it": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "ragtruth_es": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "ragtruth_pl": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "vitaminc": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "ragtruth_hu": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "quant_scale_unit": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "ragtruth_de": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "ragtruth_fr": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "ragtruth_cn": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        },
+        "best_jaccard": {
+          "max": 0.007,
+          "p99": 0.0,
+          "mean": 0.0
+        }
+      },
+      "arena_vs_candidate": {
+        "n_units": 596263,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "repro_goldfull_evidence": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        },
+        "best_jaccard": {
+          "max": 0.007,
+          "p99": 0.0,
+          "mean": 0.0
+        }
+      }
+    },
+    "spike_controls": {
+      "claims": {
+        "injected": 10,
+        "detected_total": 9,
+        "baseline_hits": 0,
+        "passes": false,
+        "candidate_units": 2000
+      },
+      "evidence": {
+        "injected": 10,
+        "detected_total": 10,
+        "baseline_hits": 0,
+        "passes": true,
+        "candidate_units": 2000
+      }
+    },
+    "live_positive_control": {
+      "candidate": "VitaminC official TEST split claims (public corpus), same instrument, same mix",
+      "candidate_units": 25689,
+      "units_with_hit": 58,
+      "max_fraction": 0.002258,
+      "best_jaccard": {
+        "max": 1.0,
+        "p99": 0.1562,
+        "mean": 0.0061
+      },
+      "fires": true
+    }
+  },
+  "C2": {
+    "forms": {
+      "raw": "the string as loaded",
+      "truncated_1500": "s[:CFG.chunk_max_chars] (1500)",
+      "ws_collapsed_casefold": "re.sub(r'\\s+', ' ', s).strip().casefold()"
+    },
+    "directions": "gold->mix (fraction of the surface inside the mix) and mix->gold (fraction of mix rows inside the surface)",
+    "channels": {
+      "claims": {
+        "raw": {
+          "gold_unique_units": 2699,
+          "mix17_unique_units": 540276,
+          "gold_to_mix17": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0,
+            "per_tag": {}
+          },
+          "gold_to_mix14": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0
+          },
+          "mix17_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          },
+          "mix14_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          }
+        },
+        "truncated_1500": {
+          "gold_unique_units": 2699,
+          "mix17_unique_units": 540276,
+          "gold_to_mix17": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0,
+            "per_tag": {}
+          },
+          "gold_to_mix14": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0
+          },
+          "mix17_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          },
+          "mix14_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          }
+        },
+        "ws_collapsed_casefold": {
+          "gold_unique_units": 2699,
+          "mix17_unique_units": 540121,
+          "gold_to_mix17": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0,
+            "per_tag": {}
+          },
+          "gold_to_mix14": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0
+          },
+          "mix17_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          },
+          "mix14_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          }
+        }
+      },
+      "evidence_vs_mix_chunks": {
+        "raw": {
+          "gold_unique_units": 10228,
+          "mix17_unique_units": 386418,
+          "gold_to_mix17": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0,
+            "per_tag": {}
+          },
+          "gold_to_mix14": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0
+          },
+          "mix17_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          },
+          "mix14_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          }
+        },
+        "truncated_1500": {
+          "gold_unique_units": 10228,
+          "mix17_unique_units": 381895,
+          "gold_to_mix17": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0,
+            "per_tag": {}
+          },
+          "gold_to_mix14": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0
+          },
+          "mix17_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          },
+          "mix14_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          }
+        },
+        "ws_collapsed_casefold": {
+          "gold_unique_units": 10227,
+          "mix17_unique_units": 385995,
+          "gold_to_mix17": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0,
+            "per_tag": {}
+          },
+          "gold_to_mix14": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0
+          },
+          "mix17_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          },
+          "mix14_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          }
+        }
+      },
+      "evidence_vs_mix_windows": {
+        "raw": {
+          "gold_unique_units": 10228,
+          "mix17_unique_units": 708791,
+          "gold_to_mix17": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0,
+            "per_tag": {}
+          },
+          "gold_to_mix14": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0
+          },
+          "mix17_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          },
+          "mix14_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          }
+        },
+        "truncated_1500": {
+          "gold_unique_units": 10228,
+          "mix17_unique_units": 708791,
+          "gold_to_mix17": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0,
+            "per_tag": {}
+          },
+          "gold_to_mix14": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0
+          },
+          "mix17_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          },
+          "mix14_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          }
+        },
+        "ws_collapsed_casefold": {
+          "gold_unique_units": 10227,
+          "mix17_unique_units": 708077,
+          "gold_to_mix17": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0,
+            "per_tag": {}
+          },
+          "gold_to_mix14": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0
+          },
+          "mix17_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          },
+          "mix14_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          }
+        }
+      },
+      "pairs": {
+        "raw": {
+          "gold_unique_units": 68027,
+          "mix17_unique_units": 757137,
+          "gold_to_mix17": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0,
+            "per_tag": {}
+          },
+          "gold_to_mix14": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0
+          },
+          "mix17_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          },
+          "mix14_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          }
+        },
+        "truncated_1500": {
+          "gold_unique_units": 68027,
+          "mix17_unique_units": 756682,
+          "gold_to_mix17": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0,
+            "per_tag": {}
+          },
+          "gold_to_mix14": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0
+          },
+          "mix17_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          },
+          "mix14_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          }
+        },
+        "ws_collapsed_casefold": {
+          "gold_unique_units": 68027,
+          "mix17_unique_units": 757085,
+          "gold_to_mix17": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0,
+            "per_tag": {}
+          },
+          "gold_to_mix14": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0
+          },
+          "mix17_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          },
+          "mix14_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          }
+        }
+      },
+      "documents_vs_mix_chunks": {
+        "raw": {
+          "gold_unique_units": 619,
+          "mix17_unique_units": 386418,
+          "gold_to_mix17": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0,
+            "per_tag": {}
+          },
+          "gold_to_mix14": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0
+          },
+          "mix17_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          },
+          "mix14_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          }
+        },
+        "truncated_1500": {
+          "gold_unique_units": 133,
+          "mix17_unique_units": 381895,
+          "gold_to_mix17": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0,
+            "per_tag": {}
+          },
+          "gold_to_mix14": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0
+          },
+          "mix17_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          },
+          "mix14_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          }
+        },
+        "ws_collapsed_casefold": {
+          "gold_unique_units": 618,
+          "mix17_unique_units": 385995,
+          "gold_to_mix17": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0,
+            "per_tag": {}
+          },
+          "gold_to_mix14": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0
+          },
+          "mix17_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          },
+          "mix14_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          }
+        }
+      },
+      "documents_vs_mix_windows": {
+        "raw": {
+          "gold_unique_units": 619,
+          "mix17_unique_units": 708791,
+          "gold_to_mix17": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0,
+            "per_tag": {}
+          },
+          "gold_to_mix14": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0
+          },
+          "mix17_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          },
+          "mix14_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          }
+        },
+        "truncated_1500": {
+          "gold_unique_units": 133,
+          "mix17_unique_units": 708791,
+          "gold_to_mix17": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0,
+            "per_tag": {}
+          },
+          "gold_to_mix14": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0
+          },
+          "mix17_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          },
+          "mix14_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          }
+        },
+        "ws_collapsed_casefold": {
+          "gold_unique_units": 618,
+          "mix17_unique_units": 708077,
+          "gold_to_mix17": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0,
+            "per_tag": {}
+          },
+          "gold_to_mix14": {
+            "colliding_gold_units": 0,
+            "colliding_gold_claims": 0,
+            "fraction_of_gold_claims": 0.0
+          },
+          "mix17_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          },
+          "mix14_to_gold": {
+            "colliding_mix_rows": 0,
+            "colliding_mix_units": 0,
+            "fraction_of_mix_rows": 0.0
+          }
+        }
+      }
+    },
+    "live_positive_control": {
+      "construction": "200 gold claim strings re-wrapped (whitespace runs replaced by ' \\n ' plus trailing spaces) and appended to a copy of the mix under tag POISON - the R20-H177 failure mode by construction",
+      "injected_units": 200,
+      "per_form": {
+        "raw": {
+          "colliding_gold_units": 0,
+          "per_tag": {}
+        },
+        "truncated_1500": {
+          "colliding_gold_units": 0,
+          "per_tag": {}
+        },
+        "ws_collapsed_casefold": {
+          "colliding_gold_units": 200,
+          "per_tag": {
+            "POISON": 200
+          }
+        }
+      },
+      "raw_form_blind": true,
+      "ws_form_fires": true
+    }
+  },
+  "document_channel": {
+    "instrument": "8-gram containment (provenance_gate normalization and hashing); Jaccard is not used because a 58k-char document against a 1.5k-char chunk cannot reach any Jaccard threshold even at full containment",
+    "gold_documents": 619,
+    "gold_document_ngrams": 1709084,
+    "mix_side": "unique untruncated mix chunks (a superset of the 1,500/750 windows: every window n-gram is a chunk n-gram except at token-split boundaries, so this direction upper-bounds the window presentation)",
+    "mix_unique_chunks_scanned": 386418,
+    "mix_chunk_into_gold_document": {
+      "n_scorable": 383402,
+      "max": 0.018349,
+      "p999": 0.0,
+      "p99": 0.0,
+      "mean": 0.0,
+      "units_ge_0.30": 0,
+      "units_ge_0.50": 0,
+      "units_eq_1.00": 0
+    },
+    "gold_document_into_mix": {
+      "n_docs": 619,
+      "max": 0.000246,
+      "p99": 0.0,
+      "mean": 1e-06,
+      "docs_ge_0.30": 0,
+      "docs_ge_0.05": 0
+    },
+    "live_positive_control_true_parent": {
+      "why": "the same instrument fed the genuine parent relation - gold chunks against the gold documents they were cut from",
+      "units": 10228,
+      "n_scorable": 10227,
+      "max": 1.0,
+      "p999": 1.0,
+      "p99": 1.0,
+      "mean": 0.973616,
+      "units_ge_0.30": 10224,
+      "units_ge_0.50": 10205,
+      "units_eq_1.00": 7672
+    },
+    "spike_control_rewrapped_documents": {
+      "injected": 10,
+      "detected_at_containment_1.0": 10,
+      "passes": true
+    }
+  },
+  "C3_split_axis": {
+    "question": "what axis is gold_full actually split on RELATIVE TO the training mix",
+    "candidate_axes_measured": {
+      "document": {
+        "gold_documents": 619,
+        "documents_colliding_with_mix_any_form": 0,
+        "max_ngram_containment_mix_chunk_into_gold_document": 0.018349,
+        "max_ngram_coverage_gold_document_by_mix": 0.000246
+      },
+      "claim": {
+        "colliding_gold_claims_any_form": 0,
+        "near_duplicate_max_jaccard_vs_mix": 0.0185
+      },
+      "evidence": {
+        "colliding_gold_chunks_any_form": 0,
+        "near_duplicate_max_jaccard_vs_mix": 0.007
+      },
+      "identifier": {
+        "id_join_possible": false,
+        "id_value_collisions": 0,
+        "gold_id_substring_hits_in_mix": {
+          "claim": 0,
+          "chunk": 0
+        }
+      }
+    },
+    "mix_member_provenance": {
+      "source_corpora": [
+        "ragtruth_en",
+        "ragtruth translated x7",
+        "halueval",
+        "psiloqa",
+        "vitaminc",
+        "tabfact"
+      ],
+      "constructed_lane_sources": {
+        "quant_misbind": [
+          "feverous",
+          "tabfact"
+        ],
+        "quant_scale_unit": [
+          "feverous",
+          "tabfact"
+        ],
+        "frame_reject": [
+          "minicheck",
+          "vitaminc"
+        ],
+        "attr_pool": [
+          "minicheck",
+          "vitaminc"
+        ],
+        "path_bind": [
+          "generator"
+        ]
+      },
+      "reading": "every mix member and every constructed lane draws from a public corpus (tabfact, feverous, vitaminc, minicheck, or a template generator); none draws from the private corpus gold_full is cut from"
+    },
+    "gold_internal_structure": {
+      "claims": 2752,
+      "documents": 619,
+      "traces": 639,
+      "users": 66,
+      "languages": 9,
+      "claims_share_a_document": 2133,
+      "note": "gold_full is consumed WHOLE by the in-domain suite, so it has no internal train/test cut of its own; the axis question is entirely about its relation to the mix"
+    }
+  },
+  "C6": {
+    "clause_test": "C6 is EVAL-FACING: for each pair, measure overlap between the eval claim and whatever the TRAINING MIX associates with that pair's key (C-A2). Computed here for every field gold_full and the mix could share",
+    "key_coverage": {
+      "evidence_raw": {
+        "gold_pairs": 123579,
+        "gold_pairs_with_key_in_mix": 0,
+        "coverage": 0.0,
+        "gold_distinct_keys": 10228,
+        "mix_distinct_keys": 386418,
+        "distinct_keys_shared": 0
+      },
+      "evidence_ws": {
+        "gold_pairs": 123579,
+        "gold_pairs_with_key_in_mix": 0,
+        "coverage": 0.0,
+        "gold_distinct_keys": 10227,
+        "mix_distinct_keys": 385995,
+        "distinct_keys_shared": 0
+      },
+      "document_raw": {
+        "gold_pairs": 123579,
+        "gold_pairs_with_key_in_mix": 0,
+        "coverage": 0.0,
+        "gold_distinct_keys": 619,
+        "mix_distinct_keys": 386418,
+        "distinct_keys_shared": 0
+      },
+      "document_ws": {
+        "gold_pairs": 123579,
+        "gold_pairs_with_key_in_mix": 0,
+        "coverage": 0.0,
+        "gold_distinct_keys": 618,
+        "mix_distinct_keys": 385995,
+        "distinct_keys_shared": 0
+      },
+      "claim_raw": {
+        "gold_pairs": 123579,
+        "gold_pairs_with_key_in_mix": 0,
+        "coverage": 0.0,
+        "gold_distinct_keys": 2699,
+        "mix_distinct_keys": 540276,
+        "distinct_keys_shared": 0
+      },
+      "claim_ws": {
+        "gold_pairs": 123579,
+        "gold_pairs_with_key_in_mix": 0,
+        "coverage": 0.0,
+        "gold_distinct_keys": 2699,
+        "mix_distinct_keys": 540121,
+        "distinct_keys_shared": 0
+      }
+    },
+    "identifier_keys": {
+      "available": false,
+      "reason": "gold_full carries {owner (row index), trace_id, user_id, lang} and no document / page / revision / corpus identifier; the mix members carry their own namespaces. Measured absence, no proxy substituted (C-A2).",
+      "id_value_collisions": 0
+    },
+    "measured_feature": {
+      "key": null,
+      "status": "NOT-APPLICABLE - zero key coverage on every shared field",
+      "reading": "C6's eval-facing feature is UNDEFINED: no gold pair's key exists in the training mix, so the mix associates nothing with any gold pair. Per C-A2 no proxy is substituted."
+    },
+    "live_positive_control": {
+      "construction": "2000 gold pairs sampled; a synthetic mix-supplied association is built keyed on the pair's evidence, mapping the POSITIVE legs to their own claim and the NEGATIVE legs to an unrelated gold claim - the attr_pool failure mode by construction. In memory only.",
+      "covered_pairs": 2000,
+      "coverage": 1.0,
+      "auroc_vs_gold_label": 0.9981,
+      "fires": true
+    },
+    "within_surface_diagnostic": {
+      "status": "EXECUTOR-REPORTED DIAGNOSTIC, not a C6 bar (C-A2: a within-member leave-one-out key lookup is a separately-reported diagnostic). It answers whether rows inside gold_full predict each other, not whether the training mix supplies the association.",
+      "channels": {
+        "evidence": {
+          "distinct_keys": 10228,
+          "rows": 123579,
+          "base_rate": 0.7118,
+          "majority_baseline": 0.7118,
+          "leave_one_out_key_lookup_accuracy": 0.8832,
+          "rows_in_label_pure_groups": 67855,
+          "fraction_rows_label_pure": 0.5491
+        },
+        "document": {
+          "distinct_keys": 619,
+          "rows": 123579,
+          "base_rate": 0.7118,
+          "majority_baseline": 0.7118,
+          "leave_one_out_key_lookup_accuracy": 0.9345,
+          "rows_in_label_pure_groups": 97995,
+          "fraction_rows_label_pure": 0.793
+        },
+        "claim": {
+          "distinct_keys": 2699,
+          "rows": 123579,
+          "base_rate": 0.7118,
+          "majority_baseline": 0.7118,
+          "leave_one_out_key_lookup_accuracy": 0.9997,
+          "rows_in_label_pure_groups": 123531,
+          "fraction_rows_label_pure": 0.9996
+        }
+      },
+      "caveats": {
+        "claim_key_is_tautological": "gold_full's label is carried per CLAIM, so a claim-keyed pair-level lookup recovers it by construction (0.9997) and measures nothing",
+        "document_key_is_the_informative_one": "the document-keyed reading is a genuine corpus property - see the document_clustering block, claim-level 0.9070 against a 0.7144 base rate, label ICC 0.7821",
+        "not_an_exploitable_channel": "the served input is (claim, evidence) text with no document identifier, so a model cannot key on it; the consequence is on the surface's effective sample size, not on leakage"
+      }
+    }
+  },
+  "measurements": {
+    "reproduction_all_match": false,
+    "reproduction_mismatches": [
+      "spike_claims_detected"
+    ],
+    "C2_worst_colliding_gold_units_any_channel_any_form": 0,
+    "C2_worst_colliding_mix_rows_any_channel_any_form": 0,
+    "C2_bar": "exactly zero on every form, both directions",
+    "C2_clears": true,
+    "C4_claims_max_fraction": 0.0,
+    "C4_evidence_max_fraction": 0.0,
+    "C4_bar": "KILL at 0.02, WARN at 0.005",
+    "C4_clears": true,
+    "document_channel_max_mix_chunk_containment": 0.018349,
+    "document_channel_max_gold_document_coverage": 0.000246,
+    "C6_max_key_coverage": 0.0,
+    "C6_bar": "a mix-supplied key association must not separate the classes; zero coverage makes the clause's feature undefined (C-A2)",
+    "positive_controls": {
+      "C4_spike_evidence": true,
+      "C4_live_vitaminc_test": true,
+      "C2_ws_form_fires_on_rewrapped_gold": true,
+      "document_channel_true_parent": 0.973616,
+      "document_channel_spike": true,
+      "C6_poisoned_association_auroc": 0.9981,
+      "C4_spike_claims_as_shipped": false,
+      "C4_spike_claims_conforming_construction": true,
+      "C4_spike_claims_note": "the shipped construction injects each group's lexicographically smallest claim; HaluEval's normalises to zero tokens and carries no 8-gram, so it cannot hit. With injected units that carry at least one n-gram the gate detects 10 of 10."
+    },
+    "gold_full_effective_sample_size": 744.8,
+    "gold_full_document_keyed_loo_accuracy_claim_level": 0.907
+  },
+  "artifacts": [
+    "experiments/grounding-semantic/contract/gold_full_surface.py",
+    "experiments/grounding-semantic/contract/gold_full_surface_report.json",
+    "experiments/grounding-semantic/contract/gold_full_surface_spike_diag.py",
+    "experiments/grounding-semantic/contract/gold_full_surface_spike_diag.json",
+    "experiments/grounding-semantic/contract/gold_full_surface_cluster.py",
+    "logs/gold_full_surface.log",
+    "logs/gold_full_surface_spike_diag.log",
+    "logs/gold_full_surface_cluster.log"
+  ],
+  "document_clustering": {
+    "diagnostic": "gold_full document clustering and its effect on the in-domain hold",
+    "note": "Numbers recorded, not adjudicated - the coordinator adjudicates.",
+    "cpu_only": true,
+    "claims": 2752,
+    "documents": 619,
+    "mean_claims_per_document": 4.4459,
+    "label_base_rate": 0.7144,
+    "claims_in_label_pure_documents": 2226,
+    "fraction_claims_in_label_pure_documents": 0.8089,
+    "document_keyed_leave_one_out_accuracy": 0.907,
+    "majority_baseline": 0.7144,
+    "lift_over_majority": 0.1926,
+    "label_icc_across_documents": 0.7821,
+    "design_effect": 3.695,
+    "effective_sample_size": 744.8,
+    "ci95_halfwidth_at_p_0.84": {
+      "nominal_n_2752": 0.0137,
+      "effective_n": 0.0263
+    },
+    "limitation": "the design effect is computed on the LABEL; no per-claim model correctness vector is banked for gold_full, so this bounds the inflation on a model read only to the extent errors follow the label"
+  },
+  "internal_structure": {
+    "rows_as_loaded": 123579,
+    "distinct_owner_chunk_pairs": 68434,
+    "repeated_rows_within_owner": 55145,
+    "fraction_rows_repeated_within_owner": 0.4462,
+    "distinct_claim_chunk_pairs": 68027,
+    "distinct_claim_strings": 2699,
+    "owners": 2752,
+    "claim_strings_under_more_than_one_owner": 48,
+    "owners_involved_in_a_shared_claim_string": 101,
+    "rows_on_shared_claim_strings": 3295,
+    "shared_claim_strings_carrying_both_labels": 1,
+    "documents": 619,
+    "distinct_1500_char_document_prefixes": 133,
+    "reading": "the surface is loaded as 123,579 (claim, chunk) rows but carries only 68434 distinct (owner, chunk) pairs, so 55145 rows are exact repeats inside a claim's own chunk list. The max-over-chunks read is unchanged in value by a repeated chunk; the redundancy is in the row count and the scoring cost, not in the score"
+  }
+}

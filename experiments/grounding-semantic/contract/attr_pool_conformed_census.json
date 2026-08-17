@@ -1,0 +1,130 @@
+{
+  "C4": {
+    "instrument": "provenance_gate.py, R14-H136 ruling-2 form: 8-gram, Jaccard >= 0.3, BIDIRECTIONAL, WARN 0.005 / KILL 0.02, per-arena-subset attribution. Re-run on the conformed text, not cited",
+    "evidence_gate": {
+      "unit": "atomic pool passages, deduplicated",
+      "n_units": 5026,
+      "n_units_scorable": 5026,
+      "max_fraction": 0.0,
+      "verdict": "PASS",
+      "candidate_vs_arena": {
+        "n_units": 5026,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "covidqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "delucionqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "emanual": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "expertqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "finqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hagrid": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hotpotqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "pubmedqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "tatqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "techqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        },
+        "best_jaccard": {
+          "max": 0.0052,
+          "p99": 0.0,
+          "mean": 0.0
+        }
+      },
+      "arena_vs_candidate": {
+        "n_units": 8645,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "attr_pool_conformed_evidence": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        },
+        "best_jaccard": {
+          "max": 0.0052,
+          "p99": 0.0,
+          "mean": 0.0
+        }
+      },
+      "hit_examples": []
+    },
+    "claim_gate": {
+      "n_units": 1460,
+      "n_units_scorable": 1159,
+      "max_fraction": 0.0,
+      "verdict": "PASS",
+      "best_jaccard": {
+        "max": 0.0,
+        "p99": 0.0,
+        "mean": 0.0
+      }
+    },
+    "kill_bar": 0.02,
+    "warn_bar": 0.005,
+    "worst_fraction_either_gate": 0.0,
+    "margin_below_kill": 0.02,
+    "spike_control": {
+      "injected": 10,
+      "detected_total": 10,
+      "baseline_hits": 0,
+      "passes": true,
+      "candidate_units": 2000
+    },
+    "live_positive_control": {
+      "design": "2,000 atomic pool passages of the conformed lane against the FULL MiniCheck document set (6155 documents) they were assembled from - near-duplicate BY CONSTRUCTION",
+      "fires_at_fraction": 0.996,
+      "best_jaccard": {
+        "max": 1.0,
+        "p99": 1.0,
+        "mean": 0.9866
+      },
+      "bar": "the gate must FIRE - a clean arena number from a gate that cannot fire is not evidence",
+      "pass": true
+    },
+    "live_negative_control": {
+      "design": "2,000 unrelated HaluEval knowledge passages against the same full source index",
+      "fires_at_fraction": 0.0,
+      "bar": "< 0.02",
+      "pass": true
+    },
+    "coverage": {
+      "definition": "a unit is unscorable when its normalized token count is below the 8-gram order; those units are covered by exact matching",
+      "passages_total": 5026,
+      "passages_too_short": 0,
+      "passages_too_short_exact_substring_hits_in_arena": 0,
+      "claims_total": 1460,
+      "claims_too_short": 301,
+      "claims_too_short_share": 0.206164,
+      "claims_too_short_exact_substring_hits_in_arena": 0
+    }
+  }
+}

@@ -1,0 +1,357 @@
+{
+  "arm": "R20-H175a concat-only trained-through - STAGE 1 AMENDMENT census",
+  "status": "MEASUREMENT ONLY - not adjudicated here; the coordinator adjudicates",
+  "windowing": "1500/750, final window flush to the end (byte-identical to R8-H101 / R16-H142)",
+  "separator": "'\\n\\n'",
+  "purpose": "the re-banked combined census the amendment requires before the arm's census_crosscheck may be repointed",
+  "train_side": {
+    "clean_mix_concat": {
+      "rows": 685670,
+      "mean_windows": 1.5071,
+      "median_windows": 1,
+      "max_windows": 40,
+      "total_windows": 1033365,
+      "multi_window_rows": 137622,
+      "multi_window_share": 0.2007
+    },
+    "clean_mix_per_doc": {
+      "rows": 685670,
+      "mean_windows": 1.5071,
+      "median_windows": 1,
+      "max_windows": 40,
+      "total_windows": 1033365,
+      "multi_window_rows": 137622,
+      "multi_window_share": 0.2007
+    },
+    "clean_mix_per_group_concat": {
+      "halueval": {
+        "rows": 40000,
+        "mean_windows": 2.839,
+        "median_windows": 1,
+        "max_windows": 15,
+        "total_windows": 113562,
+        "multi_window_rows": 18590,
+        "multi_window_share": 0.4647
+      },
+      "psiloqa": {
+        "rows": 61712,
+        "mean_windows": 1.0705,
+        "median_windows": 1,
+        "max_windows": 25,
+        "total_windows": 66060,
+        "multi_window_rows": 2705,
+        "multi_window_share": 0.0438
+      },
+      "ragtruth_cn": {
+        "rows": 15090,
+        "mean_windows": 1.58,
+        "median_windows": 1,
+        "max_windows": 11,
+        "total_windows": 23842,
+        "multi_window_rows": 5248,
+        "multi_window_share": 0.3478
+      },
+      "ragtruth_de": {
+        "rows": 15090,
+        "mean_windows": 3.3121,
+        "median_windows": 3,
+        "max_windows": 16,
+        "total_windows": 49979,
+        "multi_window_rows": 13291,
+        "multi_window_share": 0.8808
+      },
+      "ragtruth_en": {
+        "rows": 15090,
+        "mean_windows": 2.6871,
+        "median_windows": 2,
+        "max_windows": 14,
+        "total_windows": 40548,
+        "multi_window_rows": 11496,
+        "multi_window_share": 0.7618
+      },
+      "ragtruth_es": {
+        "rows": 15090,
+        "mean_windows": 3.3156,
+        "median_windows": 3,
+        "max_windows": 17,
+        "total_windows": 50033,
+        "multi_window_rows": 13345,
+        "multi_window_share": 0.8844
+      },
+      "ragtruth_fr": {
+        "rows": 15090,
+        "mean_windows": 3.44,
+        "median_windows": 3,
+        "max_windows": 16,
+        "total_windows": 51910,
+        "multi_window_rows": 13730,
+        "multi_window_share": 0.9099
+      },
+      "ragtruth_hu": {
+        "rows": 15090,
+        "mean_windows": 3.0038,
+        "median_windows": 3,
+        "max_windows": 40,
+        "total_windows": 45328,
+        "multi_window_rows": 12686,
+        "multi_window_share": 0.8407
+      },
+      "ragtruth_it": {
+        "rows": 15090,
+        "mean_windows": 3.3317,
+        "median_windows": 3,
+        "max_windows": 16,
+        "total_windows": 50276,
+        "multi_window_rows": 13208,
+        "multi_window_share": 0.8753
+      },
+      "ragtruth_pl": {
+        "rows": 15090,
+        "mean_windows": 3.0779,
+        "median_windows": 3,
+        "max_windows": 15,
+        "total_windows": 46445,
+        "multi_window_rows": 12766,
+        "multi_window_share": 0.846
+      },
+      "tabfact": {
+        "rows": 92585,
+        "mean_windows": 1.346,
+        "median_windows": 1,
+        "max_windows": 12,
+        "total_windows": 124616,
+        "multi_window_rows": 20469,
+        "multi_window_share": 0.2211
+      },
+      "vitaminc": {
+        "rows": 370653,
+        "mean_windows": 1.0003,
+        "median_windows": 1,
+        "max_windows": 5,
+        "total_windows": 370766,
+        "multi_window_rows": 88,
+        "multi_window_share": 0.0002
+      }
+    },
+    "lane_quant_misbind": {
+      "rows": 30000,
+      "mean_windows": 1.0,
+      "median_windows": 1,
+      "max_windows": 1,
+      "total_windows": 30000,
+      "multi_window_rows": 0,
+      "multi_window_share": 0.0
+    },
+    "lane_quant_scale_unit": {
+      "rows": 5540,
+      "mean_windows": 1.0,
+      "median_windows": 1,
+      "max_windows": 1,
+      "total_windows": 5540,
+      "multi_window_rows": 0,
+      "multi_window_share": 0.0
+    },
+    "combined": {
+      "rows": 721210,
+      "multi_window_rows": 137622,
+      "multi_window_share": 0.1908,
+      "mean_windows": 1.4821,
+      "total_windows": 1068905,
+      "max_windows": 40
+    },
+    "combined_per_doc": {
+      "rows": 721210,
+      "mean_windows": 1.4821,
+      "median_windows": 1,
+      "max_windows": 40,
+      "total_windows": 1068905,
+      "multi_window_rows": 137622,
+      "multi_window_share": 0.1908
+    },
+    "concatenation_is_identity_on_the_training_mix": true,
+    "why": "every training row carries exactly ONE evidence document, so the row's pool is a one-element list and SEP.join(pool) == pool[0]; the arm's presentation change has no purchase on the training mix"
+  },
+  "read_side": {
+    "arena_per_subset": {
+      "covidqa": {
+        "items": 245,
+        "mean_pool_docs": 4.0,
+        "windows_per_doc_presentation": 980,
+        "windows_concat_presentation": 652,
+        "ratio": 0.6653,
+        "windows_per_item_banked": 4.0,
+        "windows_per_item_concat": 2.661
+      },
+      "delucionqa": {
+        "items": 184,
+        "mean_pool_docs": 3.0,
+        "windows_per_doc_presentation": 984,
+        "windows_concat_presentation": 1012,
+        "ratio": 1.0285,
+        "windows_per_item_banked": 5.348,
+        "windows_per_item_concat": 5.5
+      },
+      "emanual": {
+        "items": 132,
+        "mean_pool_docs": 3.0,
+        "windows_per_doc_presentation": 530,
+        "windows_concat_presentation": 448,
+        "ratio": 0.8453,
+        "windows_per_item_banked": 4.015,
+        "windows_per_item_concat": 3.394
+      },
+      "expertqa": {
+        "items": 203,
+        "mean_pool_docs": 3.739,
+        "windows_per_doc_presentation": 2334,
+        "windows_concat_presentation": 2439,
+        "ratio": 1.045,
+        "windows_per_item_banked": 11.498,
+        "windows_per_item_concat": 12.015
+      },
+      "finqa": {
+        "items": 250,
+        "mean_pool_docs": 2.9,
+        "windows_per_doc_presentation": 1318,
+        "windows_concat_presentation": 1171,
+        "ratio": 0.8885,
+        "windows_per_item_banked": 5.272,
+        "windows_per_item_concat": 4.684
+      },
+      "hagrid": {
+        "items": 250,
+        "mean_pool_docs": 2.812,
+        "windows_per_doc_presentation": 744,
+        "windows_concat_presentation": 599,
+        "ratio": 0.8051,
+        "windows_per_item_banked": 2.976,
+        "windows_per_item_concat": 2.396
+      },
+      "hotpotqa": {
+        "items": 250,
+        "mean_pool_docs": 3.992,
+        "windows_per_doc_presentation": 1004,
+        "windows_concat_presentation": 529,
+        "ratio": 0.5269,
+        "windows_per_item_banked": 4.016,
+        "windows_per_item_concat": 2.116
+      },
+      "pubmedqa": {
+        "items": 250,
+        "mean_pool_docs": 5.0,
+        "windows_per_doc_presentation": 1250,
+        "windows_concat_presentation": 500,
+        "ratio": 0.4,
+        "windows_per_item_banked": 5.0,
+        "windows_per_item_concat": 2.0
+      },
+      "tatqa": {
+        "items": 250,
+        "mean_pool_docs": 4.128,
+        "windows_per_doc_presentation": 1040,
+        "windows_concat_presentation": 460,
+        "ratio": 0.4423,
+        "windows_per_item_banked": 4.16,
+        "windows_per_item_concat": 1.84
+      },
+      "techqa": {
+        "items": 250,
+        "mean_pool_docs": 5.0,
+        "windows_per_doc_presentation": 5624,
+        "windows_concat_presentation": 6083,
+        "ratio": 1.0816,
+        "windows_per_item_banked": 22.496,
+        "windows_per_item_concat": 24.332
+      }
+    },
+    "arena_total": {
+      "items": 2264,
+      "windows_per_doc_presentation": 15808,
+      "windows_concat_presentation": 13893,
+      "ratio": 0.8789,
+      "windows_per_item_banked": 6.982,
+      "windows_per_item_concat": 6.136
+    },
+    "gold_full": {
+      "items": 2752,
+      "windows_banked_score_claims": 123579,
+      "windows_concat_presentation": 214615,
+      "ratio": 1.7367,
+      "note": "the banked in-domain read truncates every chunk to CFG.chunk_max_chars and so scores exactly one window per chunk; the registration's +74% serving cost is this ratio"
+    },
+    "arena_banked_pair_ratio": {
+      "source": [
+        "R18-H150_arm_draw1_windowed_result.json",
+        "R19-H165_concat_arena_draw1_result.json"
+      ],
+      "per_subset": {
+        "covidqa": {
+          "banked_pairs": 1540,
+          "concat_pairs": 1032,
+          "ratio": 0.6701
+        },
+        "delucionqa": {
+          "banked_pairs": 5093,
+          "concat_pairs": 5390,
+          "ratio": 1.0583
+        },
+        "emanual": {
+          "banked_pairs": 2983,
+          "concat_pairs": 2617,
+          "ratio": 0.8773
+        },
+        "expertqa": {
+          "banked_pairs": 13949,
+          "concat_pairs": 14687,
+          "ratio": 1.0529
+        },
+        "finqa": {
+          "banked_pairs": 2918,
+          "concat_pairs": 2607,
+          "ratio": 0.8934
+        },
+        "hagrid": {
+          "banked_pairs": 1941,
+          "concat_pairs": 1584,
+          "ratio": 0.8161
+        },
+        "hotpotqa": {
+          "banked_pairs": 1177,
+          "concat_pairs": 619,
+          "ratio": 0.5259
+        },
+        "pubmedqa": {
+          "banked_pairs": 6570,
+          "concat_pairs": 2681,
+          "ratio": 0.4081
+        },
+        "tatqa": {
+          "banked_pairs": 1942,
+          "concat_pairs": 886,
+          "ratio": 0.4562
+        },
+        "techqa": {
+          "banked_pairs": 39058,
+          "concat_pairs": 42282,
+          "ratio": 1.0825
+        }
+      },
+      "banked_pairs": 77171,
+      "concat_pairs": 74385,
+      "ratio": 0.9639
+    }
+  },
+  "banked_h150_combined": {
+    "rows": 721210,
+    "multi_window_rows": 137622,
+    "multi_window_share": 0.1908,
+    "mean_windows": 1.4821
+  },
+  "delta_vs_h150": {
+    "rows": 0,
+    "mean_windows": 0.0,
+    "multi_window_share": 0.0
+  },
+  "finding": "the concatenated training census is IDENTICAL to the banked H150 census, row for row - `census_crosscheck` does NOT abort and no rebind is required. The amendment's premise that concatenation moves the training geometry does not hold: the 1.74x figure is a gold_full read-side artifact, and on the arena concatenation REDUCES pairs",
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+}

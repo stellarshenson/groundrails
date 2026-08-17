@@ -1,0 +1,149 @@
+{
+  "clause": "C6 (mix-association supplement)",
+  "mix_rows_total": 760618,
+  "mix_groups": [
+    "attr_pool",
+    "frame_reject",
+    "halueval",
+    "path_bind",
+    "psiloqa",
+    "quant_misbind",
+    "quant_scale_unit",
+    "ragtruth_cn",
+    "ragtruth_de",
+    "ragtruth_en",
+    "ragtruth_es",
+    "ragtruth_fr",
+    "ragtruth_hu",
+    "ragtruth_it",
+    "ragtruth_pl",
+    "tabfact",
+    "vitaminc"
+  ],
+  "member_rows": 30000,
+  "pair_key": "the evidence chunk - both legs of a pair carry it byte-identically",
+  "key_sharing_with_other_mix_members": {
+    "ragtruth_en": {
+      "rows": 15090,
+      "shared_evidence_raw": 0,
+      "shared_evidence_truncated_1500": 0,
+      "shared_evidence_normalised": 0,
+      "shared_claims_normalised": 0
+    },
+    "ragtruth_de": {
+      "rows": 15090,
+      "shared_evidence_raw": 0,
+      "shared_evidence_truncated_1500": 0,
+      "shared_evidence_normalised": 0,
+      "shared_claims_normalised": 0
+    },
+    "ragtruth_fr": {
+      "rows": 15090,
+      "shared_evidence_raw": 0,
+      "shared_evidence_truncated_1500": 0,
+      "shared_evidence_normalised": 0,
+      "shared_claims_normalised": 0
+    },
+    "ragtruth_es": {
+      "rows": 15090,
+      "shared_evidence_raw": 0,
+      "shared_evidence_truncated_1500": 0,
+      "shared_evidence_normalised": 0,
+      "shared_claims_normalised": 0
+    },
+    "ragtruth_it": {
+      "rows": 15090,
+      "shared_evidence_raw": 0,
+      "shared_evidence_truncated_1500": 0,
+      "shared_evidence_normalised": 0,
+      "shared_claims_normalised": 0
+    },
+    "ragtruth_pl": {
+      "rows": 15090,
+      "shared_evidence_raw": 0,
+      "shared_evidence_truncated_1500": 0,
+      "shared_evidence_normalised": 0,
+      "shared_claims_normalised": 0
+    },
+    "ragtruth_hu": {
+      "rows": 15090,
+      "shared_evidence_raw": 0,
+      "shared_evidence_truncated_1500": 0,
+      "shared_evidence_normalised": 0,
+      "shared_claims_normalised": 0
+    },
+    "ragtruth_cn": {
+      "rows": 15090,
+      "shared_evidence_raw": 0,
+      "shared_evidence_truncated_1500": 0,
+      "shared_evidence_normalised": 0,
+      "shared_claims_normalised": 0
+    },
+    "halueval": {
+      "rows": 40000,
+      "shared_evidence_raw": 0,
+      "shared_evidence_truncated_1500": 0,
+      "shared_evidence_normalised": 0,
+      "shared_claims_normalised": 0
+    },
+    "psiloqa": {
+      "rows": 61712,
+      "shared_evidence_raw": 0,
+      "shared_evidence_truncated_1500": 0,
+      "shared_evidence_normalised": 0,
+      "shared_claims_normalised": 0
+    },
+    "vitaminc": {
+      "rows": 370653,
+      "shared_evidence_raw": 0,
+      "shared_evidence_truncated_1500": 0,
+      "shared_evidence_normalised": 0,
+      "shared_claims_normalised": 0
+    },
+    "tabfact": {
+      "rows": 92585,
+      "shared_evidence_raw": 0,
+      "shared_evidence_truncated_1500": 0,
+      "shared_evidence_normalised": 228,
+      "shared_claims_normalised": 0
+    },
+    "quant_scale_unit": {
+      "rows": 5540,
+      "shared_evidence_raw": 7,
+      "shared_evidence_truncated_1500": 7,
+      "shared_evidence_normalised": 7,
+      "shared_claims_normalised": 0
+    },
+    "frame_reject": {
+      "rows": 8000,
+      "shared_evidence_raw": 0,
+      "shared_evidence_truncated_1500": 0,
+      "shared_evidence_normalised": 0,
+      "shared_claims_normalised": 0
+    },
+    "attr_pool": {
+      "rows": 21408,
+      "shared_evidence_raw": 0,
+      "shared_evidence_truncated_1500": 0,
+      "shared_evidence_normalised": 0,
+      "shared_claims_normalised": 0
+    },
+    "path_bind": {
+      "rows": 10000,
+      "shared_evidence_raw": 0,
+      "shared_evidence_truncated_1500": 0,
+      "shared_evidence_normalised": 0,
+      "shared_claims_normalised": 0
+    }
+  },
+  "keys_shared_with_any_other_member": 234,
+  "mix_keyed_label_association": {
+    "definition": "mean label the REST of the mix attaches to this row's evidence key (whitespace-normalised)",
+    "coverage_rows": 926,
+    "coverage_share": 0.030867,
+    "auroc_vs_label": 0.5,
+    "reading": "UNDEFINED when coverage is 0 - no other member of the mix carries this member's pair key, so there is no training association to memorise"
+  },
+  "within_pair_note": "any feature keyed on the pair key takes the SAME value on both legs, so its within-pair separation is exactly 0.5 regardless of the value it takes",
+  "seconds": 45.2
+}

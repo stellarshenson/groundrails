@@ -1,0 +1,329 @@
+{
+  "experiment": "R20-H177 eval_C attribution diagnostic - pre-H146 checkpoints on the held-out mechanism evals (measurement only, zero training)",
+  "registered_by": "coordinator ruling 2026-08-17, off the R20-H177 baseline leg (R20-H177_baseline_leg.json)",
+  "question": {
+    "a": "the flagship's eval_C 0.9085 comes from the R17-H146_lane 30,000-row quant_misbind group already in its mix",
+    "b": "any competent grounding checkpoint reads role/period misbind at ~0.9, so eval_C measures general grounding competence",
+    "separator": "a comparable-quality checkpoint trained WITHOUT the misbind lane: under (a) the pre-H146 read drops toward chance, under (b) it stays high"
+  },
+  "checkpoint_provenance": {
+    "h142twin_d1": {
+      "checkpoint": "R16-H142-G1-twin",
+      "n_dann_groups": 12,
+      "seed": 1142,
+      "has_quant_misbind_group": false,
+      "has_quant_scale_unit_group": false,
+      "groups": [
+        "halueval",
+        "psiloqa",
+        "ragtruth_cn",
+        "ragtruth_de",
+        "ragtruth_en",
+        "ragtruth_es",
+        "ragtruth_fr",
+        "ragtruth_hu",
+        "ragtruth_it",
+        "ragtruth_pl",
+        "tabfact",
+        "vitaminc"
+      ],
+      "banked_arena_mean": 0.72498
+    },
+    "h142twin_d2": {
+      "checkpoint": "R16-H142-T-draw2",
+      "n_dann_groups": 12,
+      "seed": 2142,
+      "has_quant_misbind_group": false,
+      "has_quant_scale_unit_group": false,
+      "groups": [
+        "halueval",
+        "psiloqa",
+        "ragtruth_cn",
+        "ragtruth_de",
+        "ragtruth_en",
+        "ragtruth_es",
+        "ragtruth_fr",
+        "ragtruth_hu",
+        "ragtruth_it",
+        "ragtruth_pl",
+        "tabfact",
+        "vitaminc"
+      ],
+      "banked_arena_mean": 0.70073
+    },
+    "h150d1": {
+      "checkpoint": "R18-H150-arm-draw1",
+      "n_dann_groups": 14,
+      "seed": 1150,
+      "has_quant_misbind_group": true,
+      "has_quant_scale_unit_group": true,
+      "groups": [
+        "halueval",
+        "psiloqa",
+        "quant_misbind",
+        "quant_scale_unit",
+        "ragtruth_cn",
+        "ragtruth_de",
+        "ragtruth_en",
+        "ragtruth_es",
+        "ragtruth_fr",
+        "ragtruth_hu",
+        "ragtruth_it",
+        "ragtruth_pl",
+        "tabfact",
+        "vitaminc"
+      ],
+      "banked_arena_mean": 0.71436
+    },
+    "h150d2": {
+      "checkpoint": "R18-H150-arm-draw2",
+      "n_dann_groups": 14,
+      "seed": 2150,
+      "has_quant_misbind_group": true,
+      "has_quant_scale_unit_group": true,
+      "groups": [
+        "halueval",
+        "psiloqa",
+        "quant_misbind",
+        "quant_scale_unit",
+        "ragtruth_cn",
+        "ragtruth_de",
+        "ragtruth_en",
+        "ragtruth_es",
+        "ragtruth_fr",
+        "ragtruth_hu",
+        "ragtruth_it",
+        "ragtruth_pl",
+        "tabfact",
+        "vitaminc"
+      ],
+      "banked_arena_mean": 0.71661
+    }
+  },
+  "symlink_note": "models/R16-H142-T-arm-draw1 is an untracked symlink to models/R16-H142-G1-twin (canonical log, R16-H142 T holds block); the real directories are used here",
+  "confound_noted": "neither mix contains EDGAR text and eval_C is 100% EDGAR prose - both sides are equally EDGAR-naive, so the misbind lane is the only differing ingredient bearing on this family",
+  "protocol": "untruncated evidence windowed 1500/750, claim scored vs every window, MAX over windows; frozen trunk + task head (R15_gate_common.load_ckpt/.score) - identical to the baseline leg",
+  "results": {
+    "eval_C": {
+      "n_rows": 1936,
+      "n_pairs": 968,
+      "n_docs": 213,
+      "pre_h146": {
+        "h142twin_d1": {
+          "checkpoint": "R16-H142-G1-twin",
+          "banked_arena_mean": 0.72498,
+          "auroc": 0.8097,
+          "by_neg_family": {
+            "period_swap": {
+              "n_rows": 604,
+              "auroc": 0.8983
+            },
+            "role_swap": {
+              "n_rows": 668,
+              "auroc": 0.9069
+            },
+            "sign_swap": {
+              "n_rows": 664,
+              "auroc": 0.615
+            }
+          }
+        },
+        "h142twin_d2": {
+          "checkpoint": "R16-H142-T-draw2",
+          "banked_arena_mean": 0.70073,
+          "auroc": 0.8601,
+          "by_neg_family": {
+            "period_swap": {
+              "n_rows": 604,
+              "auroc": 0.9126
+            },
+            "role_swap": {
+              "n_rows": 668,
+              "auroc": 0.9284
+            },
+            "sign_swap": {
+              "n_rows": 664,
+              "auroc": 0.719
+            }
+          }
+        }
+      },
+      "flagship_post_h146": {
+        "h150d1": {
+          "checkpoint": "R18-H150-arm-draw1",
+          "auroc": 0.9059,
+          "by_neg_family": {
+            "period_swap": {
+              "n_rows": 604,
+              "auroc": 0.9665
+            },
+            "role_swap": {
+              "n_rows": 668,
+              "auroc": 0.9691
+            },
+            "sign_swap": {
+              "n_rows": 664,
+              "auroc": 0.7293
+            }
+          }
+        },
+        "h150d2": {
+          "checkpoint": "R18-H150-arm-draw2",
+          "auroc": 0.9112,
+          "by_neg_family": {
+            "period_swap": {
+              "n_rows": 604,
+              "auroc": 0.9474
+            },
+            "role_swap": {
+              "n_rows": 668,
+              "auroc": 0.979
+            },
+            "sign_swap": {
+              "n_rows": 664,
+              "auroc": 0.7579
+            }
+          }
+        }
+      },
+      "flagship_two_draw_mean_auroc": 0.9085,
+      "pre_h146_two_draw_mean_auroc": 0.8349,
+      "delta_flagship_minus_pre_h146": 0.0736,
+      "per_family_side_by_side": {
+        "period_swap": {
+          "pre_h146_mean": 0.9054,
+          "flagship_mean": 0.9569
+        },
+        "role_swap": {
+          "pre_h146_mean": 0.9177,
+          "flagship_mean": 0.974
+        },
+        "sign_swap": {
+          "pre_h146_mean": 0.667,
+          "flagship_mean": 0.7436
+        }
+      }
+    },
+    "eval_B": {
+      "n_rows": 2000,
+      "n_pairs": 1000,
+      "n_docs": 458,
+      "pre_h146": {
+        "h142twin_d1": {
+          "checkpoint": "R16-H142-G1-twin",
+          "banked_arena_mean": 0.72498,
+          "auroc": 0.5091,
+          "by_neg_family": {
+            "cmp_amount": {
+              "n_rows": 668,
+              "auroc": 0.5093
+            },
+            "cmp_extreme": {
+              "n_rows": 400,
+              "auroc": 0.4979
+            },
+            "cmp_order": {
+              "n_rows": 900,
+              "auroc": 0.5136
+            },
+            "cmp_trend": {
+              "n_rows": 32,
+              "auroc": 0.668
+            }
+          }
+        },
+        "h142twin_d2": {
+          "checkpoint": "R16-H142-T-draw2",
+          "banked_arena_mean": 0.70073,
+          "auroc": 0.4994,
+          "by_neg_family": {
+            "cmp_amount": {
+              "n_rows": 668,
+              "auroc": 0.4997
+            },
+            "cmp_extreme": {
+              "n_rows": 400,
+              "auroc": 0.491
+            },
+            "cmp_order": {
+              "n_rows": 900,
+              "auroc": 0.4943
+            },
+            "cmp_trend": {
+              "n_rows": 32,
+              "auroc": 0.8281
+            }
+          }
+        }
+      },
+      "flagship_post_h146": {
+        "h150d1": {
+          "checkpoint": "R18-H150-arm-draw1",
+          "auroc": 0.509,
+          "by_neg_family": {
+            "cmp_amount": {
+              "n_rows": 668,
+              "auroc": 0.5044
+            },
+            "cmp_extreme": {
+              "n_rows": 400,
+              "auroc": 0.4811
+            },
+            "cmp_order": {
+              "n_rows": 900,
+              "auroc": 0.5214
+            },
+            "cmp_trend": {
+              "n_rows": 32,
+              "auroc": 0.8047
+            }
+          }
+        },
+        "h150d2": {
+          "checkpoint": "R18-H150-arm-draw2",
+          "auroc": 0.5038,
+          "by_neg_family": {
+            "cmp_amount": {
+              "n_rows": 668,
+              "auroc": 0.4982
+            },
+            "cmp_extreme": {
+              "n_rows": 400,
+              "auroc": 0.4746
+            },
+            "cmp_order": {
+              "n_rows": 900,
+              "auroc": 0.5038
+            },
+            "cmp_trend": {
+              "n_rows": 32,
+              "auroc": 0.7812
+            }
+          }
+        }
+      },
+      "flagship_two_draw_mean_auroc": 0.5064,
+      "pre_h146_two_draw_mean_auroc": 0.5042,
+      "delta_flagship_minus_pre_h146": 0.0022,
+      "per_family_side_by_side": {
+        "cmp_amount": {
+          "pre_h146_mean": 0.5045,
+          "flagship_mean": 0.5013
+        },
+        "cmp_extreme": {
+          "pre_h146_mean": 0.4945,
+          "flagship_mean": 0.4778
+        },
+        "cmp_order": {
+          "pre_h146_mean": 0.504,
+          "flagship_mean": 0.5126
+        },
+        "cmp_trend": {
+          "pre_h146_mean": 0.748,
+          "flagship_mean": 0.793
+        }
+      }
+    }
+  },
+  "timestamp": "2026-08-17 05:46:56"
+}

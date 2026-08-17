@@ -1,0 +1,624 @@
+{
+  "arm": "R21-H179Q q1 - is the arena headline inflated by contamination",
+  "licence": "MEASUREMENT ONLY - no bar, no promotion, no kill, no adjudication",
+  "question": "the arena headline is the UNWEIGHTED MEAN over ten subsets, so hotpotqa carries 10% of it. What does the headline read with the contamination-exposed responses removed?",
+  "read": "the banked per-item response scores of R21-H179 stage 1 - the shipped windowed decomposed-min read, AUROC unit = the RESPONSE. NOTHING is re-scored here; the subsets are re-aggregated over a subset of their own items",
+  "exposure_source": {
+    "verbatim": "arena_surface_report.json :: verbatim_substring_proof.documents[*].doc_blake2b_64 - the report's OWN 17 document ids, not re-derived; a response is exposed when one of its retained documents[:8] hashes into that set, the report's own attribution rule",
+    "containment": "the report banks only COUNTS at containment >= 0.10, so the per-document containment array is read from the checkpointed census the report was computed from, tmp/arena_surface/census.npz :: best_c|documents, indexed by the report's own sorted(set(documents)) ordering",
+    "control": "the rebuilt sets must reproduce the report's banked per-subset exposed-response counts EXACTLY or the run aborts"
+  },
+  "exposure_control": {
+    "verbatim_banked": {
+      "covidqa": 0,
+      "delucionqa": 0,
+      "emanual": 0,
+      "expertqa": 0,
+      "finqa": 0,
+      "hagrid": 0,
+      "hotpotqa": 16,
+      "pubmedqa": 0,
+      "tatqa": 0,
+      "techqa": 0
+    },
+    "verbatim_recomputed": {
+      "covidqa": 0,
+      "expertqa": 0,
+      "pubmedqa": 0,
+      "tatqa": 0,
+      "emanual": 0,
+      "hotpotqa": 16,
+      "delucionqa": 0,
+      "techqa": 0,
+      "hagrid": 0,
+      "finqa": 0
+    },
+    "containment_banked": {
+      "covidqa": 0,
+      "delucionqa": 0,
+      "emanual": 0,
+      "expertqa": 0,
+      "finqa": 0,
+      "hagrid": 15,
+      "hotpotqa": 102,
+      "pubmedqa": 0,
+      "tatqa": 0,
+      "techqa": 0
+    },
+    "containment_recomputed": {
+      "covidqa": 0,
+      "techqa": 0,
+      "emanual": 0,
+      "delucionqa": 0,
+      "hotpotqa": 102,
+      "pubmedqa": 0,
+      "hagrid": 15,
+      "expertqa": 0,
+      "tatqa": 0,
+      "finqa": 0
+    },
+    "verbatim_ok": true,
+    "containment_ok": true
+  },
+  "headline_reference": 0.71218,
+  "k6_mean": {
+    "all": 0.712179,
+    "drop_verbatim": 0.710073,
+    "drop_containment": 0.709427
+  },
+  "k6_delta_vs_all": {
+    "drop_verbatim": -0.002106,
+    "drop_containment": -0.002752
+  },
+  "k6_vs_headline": {
+    "banked_headline": 0.71218,
+    "recomputed_all": 0.712179,
+    "recomputed_minus_headline": -1e-06,
+    "drop_verbatim": 0.710073,
+    "drop_verbatim_minus_headline": -0.002107,
+    "drop_containment": 0.709427,
+    "drop_containment_minus_headline": -0.002753
+  },
+  "per_subset_k6": {
+    "covidqa": {
+      "all": 0.758506,
+      "drop_verbatim": 0.758506,
+      "drop_containment": 0.758506,
+      "delta_drop_verbatim": 0.0,
+      "delta_drop_containment": 0.0,
+      "n": 245,
+      "n_dropped_verbatim": 0,
+      "n_dropped_containment": 0
+    },
+    "delucionqa": {
+      "all": 0.826712,
+      "drop_verbatim": 0.826712,
+      "drop_containment": 0.826712,
+      "delta_drop_verbatim": 0.0,
+      "delta_drop_containment": 0.0,
+      "n": 184,
+      "n_dropped_verbatim": 0,
+      "n_dropped_containment": 0
+    },
+    "emanual": {
+      "all": 0.678672,
+      "drop_verbatim": 0.678672,
+      "drop_containment": 0.678672,
+      "delta_drop_verbatim": 0.0,
+      "delta_drop_containment": 0.0,
+      "n": 132,
+      "n_dropped_verbatim": 0,
+      "n_dropped_containment": 0
+    },
+    "expertqa": {
+      "all": 0.763743,
+      "drop_verbatim": 0.763743,
+      "drop_containment": 0.763743,
+      "delta_drop_verbatim": 0.0,
+      "delta_drop_containment": 0.0,
+      "n": 203,
+      "n_dropped_verbatim": 0,
+      "n_dropped_containment": 0
+    },
+    "finqa": {
+      "all": 0.66192,
+      "drop_verbatim": 0.66192,
+      "drop_containment": 0.66192,
+      "delta_drop_verbatim": 0.0,
+      "delta_drop_containment": 0.0,
+      "n": 250,
+      "n_dropped_verbatim": 0,
+      "n_dropped_containment": 0
+    },
+    "hagrid": {
+      "all": 0.639316,
+      "drop_verbatim": 0.639316,
+      "drop_containment": 0.63559,
+      "delta_drop_verbatim": 0.0,
+      "delta_drop_containment": -0.003726,
+      "n": 250,
+      "n_dropped_verbatim": 0,
+      "n_dropped_containment": 15
+    },
+    "hotpotqa": {
+      "all": 0.661702,
+      "drop_verbatim": 0.640639,
+      "drop_containment": 0.637911,
+      "delta_drop_verbatim": -0.021063,
+      "delta_drop_containment": -0.023791,
+      "n": 250,
+      "n_dropped_verbatim": 16,
+      "n_dropped_containment": 102
+    },
+    "pubmedqa": {
+      "all": 0.606899,
+      "drop_verbatim": 0.606899,
+      "drop_containment": 0.606899,
+      "delta_drop_verbatim": 0.0,
+      "delta_drop_containment": 0.0,
+      "n": 250,
+      "n_dropped_verbatim": 0,
+      "n_dropped_containment": 0
+    },
+    "tatqa": {
+      "all": 0.778652,
+      "drop_verbatim": 0.778652,
+      "drop_containment": 0.778652,
+      "delta_drop_verbatim": 0.0,
+      "delta_drop_containment": 0.0,
+      "n": 250,
+      "n_dropped_verbatim": 0,
+      "n_dropped_containment": 0
+    },
+    "techqa": {
+      "all": 0.745668,
+      "drop_verbatim": 0.745668,
+      "drop_containment": 0.745668,
+      "delta_drop_verbatim": 0.0,
+      "delta_drop_containment": 0.0,
+      "n": 250,
+      "n_dropped_verbatim": 0,
+      "n_dropped_containment": 0
+    }
+  },
+  "per_draw": {
+    "d1": {
+      "checkpoint": "R18-H150-arm-draw1",
+      "banked_mean": 0.71436,
+      "per_subset": {
+        "covidqa": {
+          "all": 0.768484,
+          "drop_verbatim": 0.768484,
+          "drop_containment": 0.768484
+        },
+        "delucionqa": {
+          "all": 0.800872,
+          "drop_verbatim": 0.800872,
+          "drop_containment": 0.800872
+        },
+        "emanual": {
+          "all": 0.697337,
+          "drop_verbatim": 0.697337,
+          "drop_containment": 0.697337
+        },
+        "expertqa": {
+          "all": 0.796881,
+          "drop_verbatim": 0.796881,
+          "drop_containment": 0.796881
+        },
+        "finqa": {
+          "all": 0.651522,
+          "drop_verbatim": 0.651522,
+          "drop_containment": 0.651522
+        },
+        "hagrid": {
+          "all": 0.642254,
+          "drop_verbatim": 0.642254,
+          "drop_containment": 0.638002
+        },
+        "hotpotqa": {
+          "all": 0.676597,
+          "drop_verbatim": 0.655519,
+          "drop_containment": 0.665493
+        },
+        "pubmedqa": {
+          "all": 0.589295,
+          "drop_verbatim": 0.589295,
+          "drop_containment": 0.589295
+        },
+        "tatqa": {
+          "all": 0.784201,
+          "drop_verbatim": 0.784201,
+          "drop_containment": 0.784201
+        },
+        "techqa": {
+          "all": 0.736092,
+          "drop_verbatim": 0.736092,
+          "drop_containment": 0.736092
+        }
+      },
+      "mean": {
+        "all": 0.714353,
+        "drop_verbatim": 0.712246,
+        "drop_containment": 0.712818
+      },
+      "delta_vs_all": {
+        "drop_verbatim": -0.002107,
+        "drop_containment": -0.001535
+      }
+    },
+    "d2": {
+      "checkpoint": "R18-H150-arm-draw2",
+      "banked_mean": 0.71661,
+      "per_subset": {
+        "covidqa": {
+          "all": 0.74583,
+          "drop_verbatim": 0.74583,
+          "drop_containment": 0.74583
+        },
+        "delucionqa": {
+          "all": 0.78876,
+          "drop_verbatim": 0.78876,
+          "drop_containment": 0.78876
+        },
+        "emanual": {
+          "all": 0.658596,
+          "drop_verbatim": 0.658596,
+          "drop_containment": 0.658596
+        },
+        "expertqa": {
+          "all": 0.782164,
+          "drop_verbatim": 0.782164,
+          "drop_containment": 0.782164
+        },
+        "finqa": {
+          "all": 0.713478,
+          "drop_verbatim": 0.713478,
+          "drop_containment": 0.713478
+        },
+        "hagrid": {
+          "all": 0.642502,
+          "drop_verbatim": 0.642502,
+          "drop_containment": 0.638138
+        },
+        "hotpotqa": {
+          "all": 0.664731,
+          "drop_verbatim": 0.660065,
+          "drop_containment": 0.690141
+        },
+        "pubmedqa": {
+          "all": 0.629758,
+          "drop_verbatim": 0.629758,
+          "drop_containment": 0.629758
+        },
+        "tatqa": {
+          "all": 0.809322,
+          "drop_verbatim": 0.809322,
+          "drop_containment": 0.809322
+        },
+        "techqa": {
+          "all": 0.730887,
+          "drop_verbatim": 0.730887,
+          "drop_containment": 0.730887
+        }
+      },
+      "mean": {
+        "all": 0.716603,
+        "drop_verbatim": 0.716136,
+        "drop_containment": 0.718707
+      },
+      "delta_vs_all": {
+        "drop_verbatim": -0.000467,
+        "drop_containment": 0.002104
+      }
+    },
+    "d3": {
+      "checkpoint": "R19-H160-arm-draw3",
+      "banked_mean": 0.7087,
+      "per_subset": {
+        "covidqa": {
+          "all": 0.74583,
+          "drop_verbatim": 0.74583,
+          "drop_containment": 0.74583
+        },
+        "delucionqa": {
+          "all": 0.879845,
+          "drop_verbatim": 0.879845,
+          "drop_containment": 0.879845
+        },
+        "emanual": {
+          "all": 0.647094,
+          "drop_verbatim": 0.647094,
+          "drop_containment": 0.647094
+        },
+        "expertqa": {
+          "all": 0.783138,
+          "drop_verbatim": 0.783138,
+          "drop_containment": 0.783138
+        },
+        "finqa": {
+          "all": 0.686087,
+          "drop_verbatim": 0.686087,
+          "drop_containment": 0.686087
+        },
+        "hagrid": {
+          "all": 0.60576,
+          "drop_verbatim": 0.60576,
+          "drop_containment": 0.601147
+        },
+        "hotpotqa": {
+          "all": 0.675082,
+          "drop_verbatim": 0.625325,
+          "drop_containment": 0.542254
+        },
+        "pubmedqa": {
+          "all": 0.616395,
+          "drop_verbatim": 0.616395,
+          "drop_containment": 0.616395
+        },
+        "tatqa": {
+          "all": 0.724274,
+          "drop_verbatim": 0.724274,
+          "drop_containment": 0.724274
+        },
+        "techqa": {
+          "all": 0.723469,
+          "drop_verbatim": 0.723469,
+          "drop_containment": 0.723469
+        }
+      },
+      "mean": {
+        "all": 0.708697,
+        "drop_verbatim": 0.703722,
+        "drop_containment": 0.694953
+      },
+      "delta_vs_all": {
+        "drop_verbatim": -0.004975,
+        "drop_containment": -0.013744
+      }
+    },
+    "d4": {
+      "checkpoint": "R19-H160-arm-draw4",
+      "banked_mean": 0.72365,
+      "per_subset": {
+        "covidqa": {
+          "all": 0.764625,
+          "drop_verbatim": 0.764625,
+          "drop_containment": 0.764625
+        },
+        "delucionqa": {
+          "all": 0.771802,
+          "drop_verbatim": 0.771802,
+          "drop_containment": 0.771802
+        },
+        "emanual": {
+          "all": 0.714286,
+          "drop_verbatim": 0.714286,
+          "drop_containment": 0.714286
+        },
+        "expertqa": {
+          "all": 0.739864,
+          "drop_verbatim": 0.739864,
+          "drop_containment": 0.739864
+        },
+        "finqa": {
+          "all": 0.668696,
+          "drop_verbatim": 0.668696,
+          "drop_containment": 0.668696
+        },
+        "hagrid": {
+          "all": 0.642378,
+          "drop_verbatim": 0.642378,
+          "drop_containment": 0.640732
+        },
+        "hotpotqa": {
+          "all": 0.675587,
+          "drop_verbatim": 0.656818,
+          "drop_containment": 0.755869
+        },
+        "pubmedqa": {
+          "all": 0.663614,
+          "drop_verbatim": 0.663614,
+          "drop_containment": 0.663614
+        },
+        "tatqa": {
+          "all": 0.838983,
+          "drop_verbatim": 0.838983,
+          "drop_containment": 0.838983
+        },
+        "techqa": {
+          "all": 0.756588,
+          "drop_verbatim": 0.756588,
+          "drop_containment": 0.756588
+        }
+      },
+      "mean": {
+        "all": 0.723642,
+        "drop_verbatim": 0.721765,
+        "drop_containment": 0.731506
+      },
+      "delta_vs_all": {
+        "drop_verbatim": -0.001877,
+        "drop_containment": 0.007864
+      }
+    },
+    "d5": {
+      "checkpoint": "R20-H172-arm-draw5",
+      "banked_mean": 0.70034,
+      "per_subset": {
+        "covidqa": {
+          "all": 0.759149,
+          "drop_verbatim": 0.759149,
+          "drop_containment": 0.759149
+        },
+        "delucionqa": {
+          "all": 0.891957,
+          "drop_verbatim": 0.891957,
+          "drop_containment": 0.891957
+        },
+        "emanual": {
+          "all": 0.611985,
+          "drop_verbatim": 0.611985,
+          "drop_containment": 0.611985
+        },
+        "expertqa": {
+          "all": 0.724756,
+          "drop_verbatim": 0.724756,
+          "drop_containment": 0.724756
+        },
+        "finqa": {
+          "all": 0.638261,
+          "drop_verbatim": 0.638261,
+          "drop_containment": 0.638261
+        },
+        "hagrid": {
+          "all": 0.654543,
+          "drop_verbatim": 0.654543,
+          "drop_containment": 0.649331
+        },
+        "hotpotqa": {
+          "all": 0.678869,
+          "drop_verbatim": 0.654221,
+          "drop_containment": 0.591549
+        },
+        "pubmedqa": {
+          "all": 0.566474,
+          "drop_verbatim": 0.566474,
+          "drop_containment": 0.566474
+        },
+        "tatqa": {
+          "all": 0.725484,
+          "drop_verbatim": 0.725484,
+          "drop_containment": 0.725484
+        },
+        "techqa": {
+          "all": 0.751838,
+          "drop_verbatim": 0.751838,
+          "drop_containment": 0.751838
+        }
+      },
+      "mean": {
+        "all": 0.700332,
+        "drop_verbatim": 0.697867,
+        "drop_containment": 0.691079
+      },
+      "delta_vs_all": {
+        "drop_verbatim": -0.002465,
+        "drop_containment": -0.009253
+      }
+    },
+    "d6": {
+      "checkpoint": "R20-H172-arm-draw6",
+      "banked_mean": 0.70944,
+      "per_subset": {
+        "covidqa": {
+          "all": 0.767115,
+          "drop_verbatim": 0.767115,
+          "drop_containment": 0.767115
+        },
+        "delucionqa": {
+          "all": 0.827035,
+          "drop_verbatim": 0.827035,
+          "drop_containment": 0.827035
+        },
+        "emanual": {
+          "all": 0.742736,
+          "drop_verbatim": 0.742736,
+          "drop_containment": 0.742736
+        },
+        "expertqa": {
+          "all": 0.755653,
+          "drop_verbatim": 0.755653,
+          "drop_containment": 0.755653
+        },
+        "finqa": {
+          "all": 0.613478,
+          "drop_verbatim": 0.613478,
+          "drop_containment": 0.613478
+        },
+        "hagrid": {
+          "all": 0.648461,
+          "drop_verbatim": 0.648461,
+          "drop_containment": 0.646192
+        },
+        "hotpotqa": {
+          "all": 0.599344,
+          "drop_verbatim": 0.591883,
+          "drop_containment": 0.58216
+        },
+        "pubmedqa": {
+          "all": 0.575858,
+          "drop_verbatim": 0.575858,
+          "drop_containment": 0.575858
+        },
+        "tatqa": {
+          "all": 0.789649,
+          "drop_verbatim": 0.789649,
+          "drop_containment": 0.789649
+        },
+        "techqa": {
+          "all": 0.775132,
+          "drop_verbatim": 0.775132,
+          "drop_containment": 0.775132
+        }
+      },
+      "mean": {
+        "all": 0.709446,
+        "drop_verbatim": 0.7087,
+        "drop_containment": 0.707501
+      },
+      "delta_vs_all": {
+        "drop_verbatim": -0.000746,
+        "drop_containment": -0.001945
+      }
+    }
+  },
+  "null_drop_control": {
+    "what": "executor-added DIAGNOSTIC: the same number of responses dropped at RANDOM from the same subsets, 20 seeds, so the observed delta can be read against the spread a null drop produces. Not a bar and not a verdict.",
+    "verbatim": {
+      "n_dropped_per_subset": {
+        "covidqa": 0,
+        "delucionqa": 0,
+        "emanual": 0,
+        "expertqa": 0,
+        "finqa": 0,
+        "hagrid": 0,
+        "hotpotqa": 16,
+        "pubmedqa": 0,
+        "tatqa": 0,
+        "techqa": 0
+      },
+      "seeds": 20,
+      "mean_delta": -5.6e-05,
+      "sd_delta": 0.000481,
+      "min_delta": -0.001029,
+      "max_delta": 0.00086,
+      "observed_delta": -0.002106
+    },
+    "containment": {
+      "n_dropped_per_subset": {
+        "covidqa": 0,
+        "delucionqa": 0,
+        "emanual": 0,
+        "expertqa": 0,
+        "finqa": 0,
+        "hagrid": 15,
+        "hotpotqa": 102,
+        "pubmedqa": 0,
+        "tatqa": 0,
+        "techqa": 0
+      },
+      "seeds": 20,
+      "mean_delta": -0.00041,
+      "sd_delta": 0.002212,
+      "min_delta": -0.005663,
+      "max_delta": 0.004127,
+      "observed_delta": -0.002752
+    }
+  },
+  "artifacts": {
+    "exposure_table": "R21-H179Q_exposed_responses.parquet"
+  },
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates.",
+  "written": "2026-08-17 16:15:52"
+}

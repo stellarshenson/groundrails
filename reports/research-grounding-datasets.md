@@ -145,3 +145,38 @@ Also flagged and parked: FACTS Grounding (licence unverified at source; Class B 
 - [HaluEval (arXiv 2305.11747)](https://arxiv.org/abs/2305.11747)
 - [PatronusAI/HaluBench](https://huggingface.co/datasets/PatronusAI/HaluBench) - CC-BY-NC-2.0
 - [WiCE (arXiv 2303.01432)](https://arxiv.org/abs/2303.01432)
+
+## Re-survey 2026-08-17 - corpora carrying computed-value claims
+
+A distinct question from the two earlier surveys, which asked what supplies grounding labels at all. This one asks what supplies a claim stating a value **computed** from evidence values - a difference, sum, product, ratio, percentage or ordering over figures the evidence provides - as opposed to a claim quoting a figure the evidence states.
+
+The question arose from a measurement: the training mix contains 35,540 rows of numeric lookup verification and zero rows of derivation checking, while the arena subset the flagship loses on fails almost entirely on wrong derivations over correct operands.
+
+### Headline
+
+**The signal is largely unfetchable.** Of nineteen corpora examined, one carries it fully labeled on both legs - EQUATE's AWPNLI split, at 361 pairs. The rest either supply derivation positives from which a negative must be constructed, or fail a licence, wall or shape filter. A campaign wanting this capability at volume builds it.
+
+### Admitted and fetched
+
+| corpus | licence (read at source) | size | derivation signal |
+|---|---|---|---|
+| EQUATE | MIT | 9,702 rows | both legs labeled; AWPNLI 353 of 356 pairs differ only in numeric tokens |
+| HiTab | Computational Use of Data Agreement v1.0 | 10,672 rows, 7,194 tables | 3,136 rows carry an aggregation operator, all 3,136 with a formula naming the operand cells |
+| NumGLUE | ODC-By 1.0 | 92,049 rows | Type_7 quantitative NLI, 9,452 rows both legs labeled |
+| DROP | CC-BY-SA-4.0 | 86,935 rows | 60,915 number-typed answers; positives only |
+| SciTab | MIT | 1,224 claims | cross-cell scientific result statements; supplies a not-enough-info leg |
+
+### Excluded, by filter
+
+- **Licence** - QuanTemp and QuanTemp++ (CC-BY-NC-4.0), TabMWP (CC-BY-NC-SA-4.0). All three carry strong derivation signal and all three are unusable commercially
+- **RAGBench wall** - MultiHiertt (FinTabNet, the S&P 500 population FinQA was built from), DocMath-Eval (three of four subsets reannotated from TAT-QA, FinQA and MultiHiertt by its own README), ConvFinQA (FinQA derivative)
+- **Shape** - ClaimDB (evidence is a live database; verification is SQL execution), FinanceMath (requires an external knowledge bank, so the evidence does not determine the answer), TSVer (evidence is numeric time series)
+- **Volume** - FinVerBench (105), TSVer (287)
+- **Redundant** - WikiTableQuestions, FeTaQA, HybridQA, InfoTabs, AIT-QA, all lookup-dominant against banked TabFact
+
+### The finding that matters for planning
+
+Derivation-checking data is scarce for a structural reason: benchmarks ship the correct answer, because they are built to test whether a system can compute it. A dataset that also ships a plausible WRONG answer over the same operands exists only where the task was posed as entailment, which is rare. HiTab is the exception worth building on - its formula annotations make a result-only corruption deterministic and leave the operands provably untouched.
+
+Full build verdict, gate results and the constraints binding any lane built from these five: `docs/experiments/semantic-dataset-enhancements.md`, section "R22 supply wave".
+

@@ -1,0 +1,27 @@
+{
+  "clause": "C1 (binding-level attestation - the discriminating measurement)",
+  "method": "every row re-derived against its source table (TabFact train + the FEVEROUS working parquet), full population, not sampled",
+  "negative_leg": {
+    "rows": 15000,
+    "verified": 15000,
+    "table_not_found": 0,
+    "errors": 0,
+    "error_kinds": {}
+  },
+  "positive_leg": {
+    "rows": 15000,
+    "verified": 15000,
+    "table_not_found": 0,
+    "errors": 0,
+    "error_kinds": {}
+  },
+  "negative_binding_unattested_rate": 1.0,
+  "positive_binding_attested_rate": 1.0,
+  "ambiguity_guard": {
+    "negatives_checked": 15000,
+    "asserted_value_also_answers_the_claimed_binding": 0,
+    "rate": 0.0,
+    "bar": "0 - a negative whose asserted value also legitimately answers the claimed binding would be mislabelled"
+  },
+  "seconds": 5.2
+}

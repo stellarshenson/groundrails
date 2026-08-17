@@ -1,0 +1,360 @@
+{
+  "C1": {
+    "head_declared": "grounding scalar (`task_head`) - the binary support head the shipped ground() consumes; DANN group `attr_pool`",
+    "label_predicate": "label 1 = the claim's supporting passage is PRESENT in the pooled chunk; label 0 = no passage in the pool supports the claim. truth_removed (14,510 rows) removes the true passage and holds the claim byte-identical; unsupported_claim (6,898 rows) holds the pool byte-identical and swaps the claim for a corpus-labelled non-supported one. Both encode SUPPORT, not relevance",
+    "corpus_label_inheritance": "the unsupported_claim negative inherits its label from the source corpus: MiniCheck shipped label 0, or VitaminC label != SUPPORTS (REFUTES or NOT ENOUGH INFO collapsed to 0). Both source predicates are support-predicates, so the inheritance is commensurable in KIND; the REFUTES component is measured separately below because a minimal revision negative is lexically near-identical to its positive",
+    "containment_definition": "fraction of the claim's content tokens ([a-z0-9]+, lowercased) present in the evidence - R20-H174_lane_common.containment, the campaign's banked lexical feature",
+    "claim_to_full_pool": {
+      "positive_leg": {
+        "n": 10704,
+        "mean": 0.885,
+        "median": 0.9048,
+        "p10": 0.7143,
+        "p90": 1.0,
+        "frac_ge_0.90": 0.5299,
+        "frac_eq_1.00": 0.3936,
+        "frac_ge_0.75": 0.8722
+      },
+      "negative_leg": {
+        "n": 10704,
+        "mean": 0.7848,
+        "median": 0.8,
+        "p10": 0.6,
+        "p90": 1.0,
+        "frac_ge_0.90": 0.2293,
+        "frac_eq_1.00": 0.1436,
+        "frac_ge_0.75": 0.6566
+      }
+    },
+    "claim_to_best_single_passage": {
+      "positive_leg": {
+        "n": 10704,
+        "mean": 0.7344,
+        "median": 0.7143,
+        "p10": 0.5556,
+        "p90": 1.0,
+        "frac_ge_0.90": 0.157,
+        "frac_eq_1.00": 0.1098,
+        "frac_ge_0.75": 0.4345
+      },
+      "negative_leg": {
+        "n": 10704,
+        "mean": 0.5943,
+        "median": 0.6154,
+        "p10": 0.4545,
+        "p90": 0.7143,
+        "frac_ge_0.90": 0.0,
+        "frac_eq_1.00": 0.0,
+        "frac_ge_0.75": 0.0
+      }
+    },
+    "auroc_containment_full_pool": 0.703,
+    "auroc_containment_best_passage": 0.7706,
+    "mandatory_bar": {
+      "statement": "a member whose negatives are >= 90% attested at a rate within 0.10 of its positives is REJECTED for the grounding head",
+      "attested_rate_positive_leg": 0.5299,
+      "attested_rate_negative_leg": 0.2293,
+      "gap": 0.3006,
+      "bar": "gap > 0.10 to pass",
+      "margin_above_bar": 0.2006,
+      "pass": true
+    },
+    "mandatory_bar_best_passage_reading": {
+      "attested_rate_positive_leg": 0.157,
+      "attested_rate_negative_leg": 0.0,
+      "gap": 0.157,
+      "pass": true
+    },
+    "per_family": {
+      "truth_removed": {
+        "positive_leg": {
+          "n": 7255,
+          "mean": 0.8915,
+          "median": 0.9167,
+          "p10": 0.7143,
+          "p90": 1.0,
+          "frac_ge_0.90": 0.557,
+          "frac_eq_1.00": 0.4244,
+          "frac_ge_0.75": 0.8791
+        },
+        "negative_leg": {
+          "n": 7255,
+          "mean": 0.8037,
+          "median": 0.8125,
+          "p10": 0.6224,
+          "p90": 1.0,
+          "frac_ge_0.90": 0.2619,
+          "frac_eq_1.00": 0.1748,
+          "frac_ge_0.75": 0.6998
+        },
+        "gap_frac_ge_0.90": 0.2951,
+        "auroc_containment": 0.6889
+      },
+      "unsupported_claim": {
+        "positive_leg": {
+          "n": 3449,
+          "mean": 0.8713,
+          "median": 0.8889,
+          "p10": 0.7,
+          "p90": 1.0,
+          "frac_ge_0.90": 0.4729,
+          "frac_eq_1.00": 0.3288,
+          "frac_ge_0.75": 0.8576
+        },
+        "negative_leg": {
+          "n": 3449,
+          "mean": 0.7452,
+          "median": 0.7647,
+          "p10": 0.5325,
+          "p90": 0.9286,
+          "frac_ge_0.90": 0.1606,
+          "frac_eq_1.00": 0.078,
+          "frac_ge_0.75": 0.5657
+        },
+        "gap_frac_ge_0.90": 0.3123,
+        "auroc_containment": 0.7372
+      }
+    },
+    "per_source": {
+      "minicheck": {
+        "positive_leg": {
+          "n": 4705,
+          "mean": 0.8289,
+          "median": 0.8462,
+          "p10": 0.6364,
+          "p90": 1.0,
+          "frac_ge_0.90": 0.3243,
+          "frac_eq_1.00": 0.2234,
+          "frac_ge_0.75": 0.7681
+        },
+        "negative_leg": {
+          "n": 4705,
+          "mean": 0.7495,
+          "median": 0.7647,
+          "p10": 0.55,
+          "p90": 1.0,
+          "frac_ge_0.90": 0.163,
+          "frac_eq_1.00": 0.1078,
+          "frac_ge_0.75": 0.5641
+        },
+        "auroc_containment": 0.6483
+      },
+      "vitaminc": {
+        "positive_leg": {
+          "n": 5999,
+          "mean": 0.929,
+          "median": 1.0,
+          "p10": 0.8,
+          "p90": 1.0,
+          "frac_ge_0.90": 0.6911,
+          "frac_eq_1.00": 0.5271,
+          "frac_ge_0.75": 0.9538
+        },
+        "negative_leg": {
+          "n": 5999,
+          "mean": 0.8125,
+          "median": 0.8235,
+          "p10": 0.6364,
+          "p90": 1.0,
+          "frac_ge_0.90": 0.2812,
+          "frac_eq_1.00": 0.1717,
+          "frac_ge_0.75": 0.7291
+        },
+        "auroc_containment": 0.7611
+      }
+    },
+    "vitaminc_negative_three_way": {
+      "counts": {
+        "MIXED/REFUTES|SUPPORTS": 4262,
+        "MIXED/NOT ENOUGH INFO|SUPPORTS": 1690,
+        "MIXED/NOT ENOUGH INFO|REFUTES|SUPPORTS": 11,
+        "MIXED/NOT ENOUGH INFO|REFUTES": 1,
+        "NEI": 1,
+        "MIXED/SUPPORTS": 34
+      },
+      "mean_containment_by_class": {
+        "MIXED/NOT ENOUGH INFO|REFUTES": 0.8667,
+        "MIXED/NOT ENOUGH INFO|REFUTES|SUPPORTS": 0.8478,
+        "MIXED/NOT ENOUGH INFO|SUPPORTS": 0.7936,
+        "MIXED/REFUTES|SUPPORTS": 0.8202,
+        "MIXED/SUPPORTS": 0.7748,
+        "NEI": 0.7692
+      },
+      "frac_ge_0.90_by_class": {
+        "MIXED/NOT ENOUGH INFO|REFUTES": 0.0,
+        "MIXED/NOT ENOUGH INFO|REFUTES|SUPPORTS": 0.3636,
+        "MIXED/NOT ENOUGH INFO|SUPPORTS": 0.2473,
+        "MIXED/REFUTES|SUPPORTS": 0.2959,
+        "MIXED/SUPPORTS": 0.1176,
+        "NEI": 0.0
+      },
+      "note": "REFUTES negatives are contradicted, not merely unsupported; both collapse to 0 under the shipped support predicate"
+    }
+  },
+  "C5": {
+    "registered_conjunction": {
+      "claim_only_converged_probe": {
+        "value": 0.5281,
+        "bar": "< 0.55",
+        "margin": 0.0219,
+        "pass": true
+      },
+      "within_pair_claim_only": {
+        "per_family": {
+          "truth_removed": {
+            "acc": 0.5,
+            "pairs": 7255
+          },
+          "unsupported_claim": {
+            "acc": 0.5594,
+            "pairs": 3449
+          }
+        },
+        "worst": 0.5594,
+        "bar": "< 0.60",
+        "margin": 0.0406,
+        "pass": true
+      },
+      "surface_parity_every_computable_channel": {
+        "auroc": {
+          "claim_char_length": 0.4765,
+          "claim_token_count": 0.4773,
+          "chunk_char_length": 0.5112,
+          "claim_chunk_containment": 0.703
+        },
+        "bar": "each channel in [0.45, 0.55]",
+        "worst_channel": "claim_chunk_containment",
+        "worst_deviation": 0.203,
+        "pass_all_channels": false,
+        "pass_excluding_containment": true,
+        "lane_exemption": "the builder declared claim_chunk_containment report_only; the contract text grants no exemption"
+      },
+      "balance": {
+        "family_rows": {
+          "unsupported_claim": 6898,
+          "truth_removed": 14510
+        },
+        "family_share": {
+          "unsupported_claim": 0.322216,
+          "truth_removed": 0.677784
+        },
+        "source_rows": {
+          "minicheck": 9410,
+          "vitaminc": 11998
+        },
+        "label_balance": {
+          "label_1": 10704,
+          "label_0": 10704
+        },
+        "pool_depth_positive_mean": 5.9709,
+        "pool_depth_negative_mean": 5.9709,
+        "truth_relative_position_in_pool_mean": 0.4987,
+        "truth_relative_position_in_pool_sd": 0.3466,
+        "truth_relative_position_bar": "0.5 +- 0.05 (uniform placement)",
+        "truth_relative_position_pass": true
+      },
+      "attestation_symmetry": {
+        "definition": "positive-leg minus negative-leg mean claim->pool containment; a lane teaching support must be ASYMMETRIC here, and C1 requires it",
+        "positive_mean": 0.885,
+        "negative_mean": 0.7848,
+        "delta": 0.1002
+      }
+    },
+    "executor_added_probes_reported_separately": {
+      "chunk_only_tfidf_auroc": {
+        "value": 0.5264,
+        "spec": "word 1-2gram TF-IDF, min_df 3, max_features 200k, liblinear C=4 tol 1e-7, 5 folds disjoint on doc_id",
+        "note": "char_wb 2-5gram (the registered claim-probe spec) is intractable on 104 MB of pooled text; the substitution is declared, not silent. NOT part of the registered conjunction"
+      },
+      "within_pair_chunk_only": {
+        "unsupported_claim": {
+          "acc": 0.5,
+          "pairs": 3449
+        },
+        "truth_removed": {
+          "acc": 0.5758,
+          "pairs": 7255
+        }
+      },
+      "single_channel_at_chance_where_construction_implies": {
+        "unsupported_claim_chunk_only": "byte-identical chunk across the legs, so any chunk-only score is tied - within-pair 0.5 exactly",
+        "truth_removed_claim_only": "byte-identical claim across the legs, so any claim-only score is tied - within-pair 0.5 exactly",
+        "question_only": "NOT APPLICABLE - the lane carries no question field; the mix loader consumes (claim, chunk) only"
+      }
+    }
+  },
+  "C7": {
+    "registered_unit": "rows",
+    "registered_text": "L2 attr_pool (~20-30k rows, BM25-distractor construction over MiniCheck + VitaminC, document-disjoint, ISOLATED from the H159 lanes that caused the collapse)",
+    "registered_band_rows": [
+      20000,
+      30000
+    ],
+    "built_rows": 21408,
+    "built_pairs": 10704,
+    "both_reported_in_manifest": true,
+    "both_reported_in_loader_assertion": "R18-H150_arm_run.LANES pins ('R20-H174_lane_L2.parquet', 'attr_pool', 21408, 10704, {...}) - rows AND pairs AND per-family counts, hard-abort on drift",
+    "in_band": true,
+    "margin_rows_above_floor": 1408,
+    "builders_internal_pair_target": 12000,
+    "pair_shortfall_vs_internal_target": 0.108,
+    "shortfall_disclosed": "recorded in the canonical log as deviation 1 of the R20-H174 STAGE 0 COMPLETE block, in ROWS (21,408 vs ~24k midpoint), and accepted"
+  },
+  "C8": {
+    "sources": {
+      "minicheck": {
+        "dataset": "lytang/C2D-and-D2C-MiniCheck",
+        "archive": "data/external/datasets/dataset-minicheck.zip",
+        "licence": "MIT",
+        "wall": "R19_minicheck_gate.json - GREEN on the R14-H136 8-gram / Jaccard 0.3 wall against all ten walled arena corpora"
+      },
+      "vitaminc": {
+        "dataset": "tals/vitaminc",
+        "archive": "data/external/datasets/dataset-vitaminc.zip",
+        "licence": "CC-BY-SA-3.0",
+        "wall": "banked clean-mix corpus (DANN group `vitaminc`), gated on admission; the lane census re-runs the wall on the new text"
+      }
+    },
+    "licences": {
+      "minicheck": "MIT",
+      "vitaminc": "CC-BY-SA-3.0"
+    },
+    "retrieval_date": {
+      "minicheck": "2026-08-13 (sidecar dataset-minicheck.md, 'fetched 2026-08-13: 14395 rows (c2d: 7076, d2c: 7319)')",
+      "vitaminc": "ABSENT from the sidecar dataset-vitaminc.md - no fetch date is recorded anywhere in the tracked provenance"
+    },
+    "selection_predicate": {
+      "minicheck": "BOTH shipped parquets (c2d + d2c) concatenated - the whole archive, no split held back - then filtered to documents <= 1400 chars (PASSAGE_MAX_CHARS); doc_id = index in the sorted deduplicated document list",
+      "vitaminc": "tals__vitaminc__train.parquet ONLY; test and validation left untouched (R19-H166 A1 reserves held-out VitaminC as the contradiction instrument). label = 1 iff label == 'SUPPORTS'",
+      "construction": "BM25Okapi over each corpus's own passages, top-40 candidate window, distractor rejected if claim containment >= 0.75, 3-7 distractors, TRUTH_CAP 2 / DIST_CAP 12, seed 2174"
+    },
+    "within_member_duplication": {
+      "rows": 21408,
+      "pairs": 10704,
+      "distinct_claims": 9245,
+      "distinct_pooled_chunks": 17959,
+      "atomic_pool_passage_slots": 128473,
+      "distinct_atomic_pool_passages": 25003,
+      "atomic_passage_reuse_mean": 5.1383,
+      "distinct_truth_documents": 7344,
+      "claim_repeat_max": 39,
+      "claims_appearing_more_than_twice": 2448,
+      "claims_with_single_label_across_lane": 3296,
+      "claims_with_single_label_share": 0.356517,
+      "document_role_overlap": {
+        "truth_cap": 2,
+        "distractor_cap": 12,
+        "documents_as_truth": 7346,
+        "documents_as_pool_member": 18809,
+        "documents_in_both_roles": 5694,
+        "note": "a document may appear as truth in one pair and as a distractor in another - never inside the pair whose truth it is, which is enforced by the retriever's exclude set and re-checked by pool_composition_audit",
+        "max_truth_uses": 2,
+        "max_distractor_uses": 12
+      }
+    },
+    "public_repository": {
+      "check": "the lane parquet, manifest, census and this report carry no client or company name; sources are public corpora (MiniCheck MIT, VitaminC CC-BY-SA-3.0) and every artifact path is inside the public repository",
+      "note": "gold_full is read from a private submodule for the C2 disjointness count only; no text from it is reproduced here"
+    }
+  }
+}

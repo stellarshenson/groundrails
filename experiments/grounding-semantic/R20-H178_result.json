@@ -1,0 +1,753 @@
+{
+  "arm": "R20-H178 LEXICAL-LATE-FUSION",
+  "scoping": "amendment A1 - SYSTEM read (cross-encoder + lexical tier). `system_mean` never substitutes for, updates or is averaged into the model arena mean.",
+  "checkpoints": {
+    "draw1": "/home/lab/workspace/private/ai-assistants/groundrails/models/R18-H150-arm-draw1",
+    "draw2": "/home/lab/workspace/private/ai-assistants/groundrails/models/R18-H150-arm-draw2"
+  },
+  "model_score_source": {
+    "draw1": "R19-H161_pairs_h150d1.parquet",
+    "draw2": "R19-H161_pairs_h150d2.parquet"
+  },
+  "fusion": "(1-w)*sigmoid(logit) + w*tok_containment at the (sentence, window) pair grain",
+  "aggregation": "arena: max over windows per sentence, then MIN over sentences; in-domain: max over the claim's chunks",
+  "sanity_gate_a_w0_reproduces_banked_arena": {
+    "tol": 0.0001,
+    "per_draw": {
+      "draw1": {
+        "per_subset": {
+          "covidqa": {
+            "reproduced": 0.768484,
+            "banked": 0.7685,
+            "abs_delta": 1.6e-05,
+            "pass": true
+          },
+          "delucionqa": {
+            "reproduced": 0.800872,
+            "banked": 0.8009,
+            "abs_delta": 2.8e-05,
+            "pass": true
+          },
+          "emanual": {
+            "reproduced": 0.697337,
+            "banked": 0.6973,
+            "abs_delta": 3.7e-05,
+            "pass": true
+          },
+          "expertqa": {
+            "reproduced": 0.796881,
+            "banked": 0.7969,
+            "abs_delta": 1.9e-05,
+            "pass": true
+          },
+          "finqa": {
+            "reproduced": 0.651522,
+            "banked": 0.6515,
+            "abs_delta": 2.2e-05,
+            "pass": true
+          },
+          "hagrid": {
+            "reproduced": 0.642254,
+            "banked": 0.6423,
+            "abs_delta": 4.6e-05,
+            "pass": true
+          },
+          "hotpotqa": {
+            "reproduced": 0.676597,
+            "banked": 0.6766,
+            "abs_delta": 3e-06,
+            "pass": true
+          },
+          "pubmedqa": {
+            "reproduced": 0.589295,
+            "banked": 0.5893,
+            "abs_delta": 5e-06,
+            "pass": true
+          },
+          "tatqa": {
+            "reproduced": 0.784201,
+            "banked": 0.7842,
+            "abs_delta": 1e-06,
+            "pass": true
+          },
+          "techqa": {
+            "reproduced": 0.736092,
+            "banked": 0.7361,
+            "abs_delta": 8e-06,
+            "pass": true
+          }
+        },
+        "reproduced_mean": 0.71435,
+        "banked_mean": 0.71436,
+        "worst_abs_delta": 4.6e-05,
+        "pass": true
+      },
+      "draw2": {
+        "per_subset": {
+          "covidqa": {
+            "reproduced": 0.74583,
+            "banked": 0.7458,
+            "abs_delta": 3e-05,
+            "pass": true
+          },
+          "delucionqa": {
+            "reproduced": 0.78876,
+            "banked": 0.7888,
+            "abs_delta": 4e-05,
+            "pass": true
+          },
+          "emanual": {
+            "reproduced": 0.658596,
+            "banked": 0.6586,
+            "abs_delta": 4e-06,
+            "pass": true
+          },
+          "expertqa": {
+            "reproduced": 0.782164,
+            "banked": 0.7822,
+            "abs_delta": 3.6e-05,
+            "pass": true
+          },
+          "finqa": {
+            "reproduced": 0.713478,
+            "banked": 0.7135,
+            "abs_delta": 2.2e-05,
+            "pass": true
+          },
+          "hagrid": {
+            "reproduced": 0.642502,
+            "banked": 0.6425,
+            "abs_delta": 2e-06,
+            "pass": true
+          },
+          "hotpotqa": {
+            "reproduced": 0.664731,
+            "banked": 0.6647,
+            "abs_delta": 3.1e-05,
+            "pass": true
+          },
+          "pubmedqa": {
+            "reproduced": 0.629758,
+            "banked": 0.6298,
+            "abs_delta": 4.2e-05,
+            "pass": true
+          },
+          "tatqa": {
+            "reproduced": 0.809322,
+            "banked": 0.8093,
+            "abs_delta": 2.2e-05,
+            "pass": true
+          },
+          "techqa": {
+            "reproduced": 0.730887,
+            "banked": 0.7309,
+            "abs_delta": 1.3e-05,
+            "pass": true
+          }
+        },
+        "reproduced_mean": 0.7166,
+        "banked_mean": 0.71661,
+        "worst_abs_delta": 4.2e-05,
+        "pass": true
+      }
+    },
+    "worst_abs_delta_both_draws": 4.6e-05,
+    "pass": true
+  },
+  "sanity_gate_b_lexical_reproduces_banked_containment": {
+    "tol": 0.001,
+    "per_draw": {
+      "draw1": {
+        "per_subset": {
+          "emanual": {
+            "reproduced": 0.776332,
+            "banked": 0.77633,
+            "abs_delta": 2e-06,
+            "pass": true
+          },
+          "delucionqa": {
+            "reproduced": 0.588905,
+            "banked": 0.58891,
+            "abs_delta": 5e-06,
+            "pass": true
+          }
+        },
+        "pass": true
+      },
+      "draw2": {
+        "per_subset": {
+          "emanual": {
+            "reproduced": 0.776332,
+            "banked": 0.77633,
+            "abs_delta": 2e-06,
+            "pass": true
+          },
+          "delucionqa": {
+            "reproduced": 0.588905,
+            "banked": 0.58891,
+            "abs_delta": 5e-06,
+            "pass": true
+          }
+        },
+        "pass": true
+      }
+    },
+    "pass": true,
+    "note": "token containment is checkpoint-independent, so both draws read the same value; both are checked because both parquets are used"
+  },
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates.",
+  "w_grid": [
+    0.05,
+    0.1,
+    0.15,
+    0.2,
+    0.25,
+    0.3,
+    0.35,
+    0.4,
+    0.45,
+    0.5
+  ],
+  "holds": {
+    "gold_full_min": 0.84,
+    "nonen_min": 0.82,
+    "required_on": "both draws at the selected w"
+  },
+  "gold_full_sweep": [
+    {
+      "w": 0.0,
+      "per_draw": {
+        "draw1": {
+          "gold_full": 0.86591,
+          "nonen": 0.84432,
+          "per_lang": {
+            "de": 0.8463,
+            "fr": 0.8366,
+            "es": 0.8352,
+            "it": 0.8456,
+            "pl": 0.8401,
+            "hu": 0.8336,
+            "cn": 0.8727
+          }
+        },
+        "draw2": {
+          "gold_full": 0.86443,
+          "nonen": 0.84414,
+          "per_lang": {
+            "de": 0.8469,
+            "fr": 0.8327,
+            "es": 0.8535,
+            "it": 0.8468,
+            "pl": 0.8354,
+            "hu": 0.8235,
+            "cn": 0.8702
+          }
+        }
+      },
+      "gold_full_mean_both_draws": 0.86517,
+      "holds_pass": true
+    },
+    {
+      "w": 0.05,
+      "per_draw": {
+        "draw1": {
+          "gold_full": 0.86955,
+          "nonen": 0.84516,
+          "per_lang": {
+            "de": 0.8478,
+            "fr": 0.8379,
+            "es": 0.8361,
+            "it": 0.8466,
+            "pl": 0.842,
+            "hu": 0.8347,
+            "cn": 0.8711
+          }
+        },
+        "draw2": {
+          "gold_full": 0.86867,
+          "nonen": 0.84506,
+          "per_lang": {
+            "de": 0.8487,
+            "fr": 0.8342,
+            "es": 0.8547,
+            "it": 0.8478,
+            "pl": 0.837,
+            "hu": 0.8255,
+            "cn": 0.8676
+          }
+        }
+      },
+      "gold_full_mean_both_draws": 0.86911,
+      "holds_pass": true
+    },
+    {
+      "w": 0.1,
+      "per_draw": {
+        "draw1": {
+          "gold_full": 0.87286,
+          "nonen": 0.84545,
+          "per_lang": {
+            "de": 0.849,
+            "fr": 0.8395,
+            "es": 0.8364,
+            "it": 0.8476,
+            "pl": 0.8434,
+            "hu": 0.8355,
+            "cn": 0.8667
+          }
+        },
+        "draw2": {
+          "gold_full": 0.87265,
+          "nonen": 0.84495,
+          "per_lang": {
+            "de": 0.8501,
+            "fr": 0.8352,
+            "es": 0.8553,
+            "it": 0.8482,
+            "pl": 0.8377,
+            "hu": 0.8272,
+            "cn": 0.861
+          }
+        }
+      },
+      "gold_full_mean_both_draws": 0.87275,
+      "holds_pass": true
+    },
+    {
+      "w": 0.15,
+      "per_draw": {
+        "draw1": {
+          "gold_full": 0.87599,
+          "nonen": 0.84549,
+          "per_lang": {
+            "de": 0.8499,
+            "fr": 0.8408,
+            "es": 0.8374,
+            "it": 0.8483,
+            "pl": 0.8447,
+            "hu": 0.8365,
+            "cn": 0.8608
+          }
+        },
+        "draw2": {
+          "gold_full": 0.87639,
+          "nonen": 0.84469,
+          "per_lang": {
+            "de": 0.8513,
+            "fr": 0.836,
+            "es": 0.8557,
+            "it": 0.8485,
+            "pl": 0.8391,
+            "hu": 0.8282,
+            "cn": 0.8539
+          }
+        }
+      },
+      "gold_full_mean_both_draws": 0.87619,
+      "holds_pass": true
+    },
+    {
+      "w": 0.2,
+      "per_draw": {
+        "draw1": {
+          "gold_full": 0.87844,
+          "nonen": 0.84492,
+          "per_lang": {
+            "de": 0.8507,
+            "fr": 0.8414,
+            "es": 0.8381,
+            "it": 0.8488,
+            "pl": 0.8458,
+            "hu": 0.8373,
+            "cn": 0.8525
+          }
+        },
+        "draw2": {
+          "gold_full": 0.87951,
+          "nonen": 0.84401,
+          "per_lang": {
+            "de": 0.852,
+            "fr": 0.8367,
+            "es": 0.8555,
+            "it": 0.8487,
+            "pl": 0.8399,
+            "hu": 0.8291,
+            "cn": 0.8462
+          }
+        }
+      },
+      "gold_full_mean_both_draws": 0.87898,
+      "holds_pass": true
+    },
+    {
+      "w": 0.25,
+      "per_draw": {
+        "draw1": {
+          "gold_full": 0.88044,
+          "nonen": 0.84387,
+          "per_lang": {
+            "de": 0.8512,
+            "fr": 0.8418,
+            "es": 0.8387,
+            "it": 0.8497,
+            "pl": 0.8463,
+            "hu": 0.8376,
+            "cn": 0.8416
+          }
+        },
+        "draw2": {
+          "gold_full": 0.88242,
+          "nonen": 0.84327,
+          "per_lang": {
+            "de": 0.853,
+            "fr": 0.8372,
+            "es": 0.8553,
+            "it": 0.8492,
+            "pl": 0.8404,
+            "hu": 0.8295,
+            "cn": 0.8383
+          }
+        }
+      },
+      "gold_full_mean_both_draws": 0.88143,
+      "holds_pass": true
+    },
+    {
+      "w": 0.3,
+      "per_draw": {
+        "draw1": {
+          "gold_full": 0.88136,
+          "nonen": 0.84273,
+          "per_lang": {
+            "de": 0.8512,
+            "fr": 0.8422,
+            "es": 0.8391,
+            "it": 0.85,
+            "pl": 0.8468,
+            "hu": 0.8381,
+            "cn": 0.8316
+          }
+        },
+        "draw2": {
+          "gold_full": 0.8843,
+          "nonen": 0.84195,
+          "per_lang": {
+            "de": 0.8526,
+            "fr": 0.8381,
+            "es": 0.855,
+            "it": 0.8494,
+            "pl": 0.8407,
+            "hu": 0.83,
+            "cn": 0.8279
+          }
+        }
+      },
+      "gold_full_mean_both_draws": 0.88283,
+      "holds_pass": true
+    },
+    {
+      "w": 0.35,
+      "per_draw": {
+        "draw1": {
+          "gold_full": 0.88097,
+          "nonen": 0.84109,
+          "per_lang": {
+            "de": 0.8511,
+            "fr": 0.8425,
+            "es": 0.8395,
+            "it": 0.8503,
+            "pl": 0.8469,
+            "hu": 0.8381,
+            "cn": 0.8192
+          }
+        },
+        "draw2": {
+          "gold_full": 0.88508,
+          "nonen": 0.84005,
+          "per_lang": {
+            "de": 0.8524,
+            "fr": 0.8379,
+            "es": 0.8542,
+            "it": 0.8486,
+            "pl": 0.8406,
+            "hu": 0.83,
+            "cn": 0.8167
+          }
+        }
+      },
+      "gold_full_mean_both_draws": 0.88302,
+      "holds_pass": true
+    },
+    {
+      "w": 0.4,
+      "per_draw": {
+        "draw1": {
+          "gold_full": 0.8797,
+          "nonen": 0.83861,
+          "per_lang": {
+            "de": 0.8504,
+            "fr": 0.8424,
+            "es": 0.8395,
+            "it": 0.8507,
+            "pl": 0.8463,
+            "hu": 0.8376,
+            "cn": 0.8034
+          }
+        },
+        "draw2": {
+          "gold_full": 0.8847,
+          "nonen": 0.83745,
+          "per_lang": {
+            "de": 0.8517,
+            "fr": 0.8379,
+            "es": 0.8529,
+            "it": 0.8482,
+            "pl": 0.8417,
+            "hu": 0.8303,
+            "cn": 0.7994
+          }
+        }
+      },
+      "gold_full_mean_both_draws": 0.8822,
+      "holds_pass": true
+    },
+    {
+      "w": 0.45,
+      "per_draw": {
+        "draw1": {
+          "gold_full": 0.87674,
+          "nonen": 0.83445,
+          "per_lang": {
+            "de": 0.8502,
+            "fr": 0.8424,
+            "es": 0.8394,
+            "it": 0.851,
+            "pl": 0.8455,
+            "hu": 0.8365,
+            "cn": 0.7763
+          }
+        },
+        "draw2": {
+          "gold_full": 0.88292,
+          "nonen": 0.83281,
+          "per_lang": {
+            "de": 0.8506,
+            "fr": 0.8373,
+            "es": 0.8517,
+            "it": 0.8476,
+            "pl": 0.8415,
+            "hu": 0.8303,
+            "cn": 0.7707
+          }
+        }
+      },
+      "gold_full_mean_both_draws": 0.87983,
+      "holds_pass": true
+    },
+    {
+      "w": 0.5,
+      "per_draw": {
+        "draw1": {
+          "gold_full": 0.87202,
+          "nonen": 0.82707,
+          "per_lang": {
+            "de": 0.8483,
+            "fr": 0.842,
+            "es": 0.8393,
+            "it": 0.8497,
+            "pl": 0.844,
+            "hu": 0.8363,
+            "cn": 0.73
+          }
+        },
+        "draw2": {
+          "gold_full": 0.87942,
+          "nonen": 0.82566,
+          "per_lang": {
+            "de": 0.849,
+            "fr": 0.8363,
+            "es": 0.8494,
+            "it": 0.8462,
+            "pl": 0.8403,
+            "hu": 0.8304,
+            "cn": 0.728
+          }
+        }
+      },
+      "gold_full_mean_both_draws": 0.87572,
+      "holds_pass": true
+    }
+  ],
+  "w_unconstrained_argmax": 0.35,
+  "w_selected": 0.35,
+  "w_selection_rule": "argmax of the two-draw mean gold_full AUROC over the registered grid, restricted to the w that hold gold_full >= 0.84 and non-EN >= 0.82 on BOTH draws. The arena was not consulted at any w. Unconstrained argmax recorded alongside.",
+  "holds_at_w_selected": {
+    "draw1": {
+      "gold_full": 0.88097,
+      "nonen": 0.84109,
+      "per_lang": {
+        "de": 0.8511,
+        "fr": 0.8425,
+        "es": 0.8395,
+        "it": 0.8503,
+        "pl": 0.8469,
+        "hu": 0.8381,
+        "cn": 0.8192
+      },
+      "pass": true
+    },
+    "draw2": {
+      "gold_full": 0.88508,
+      "nonen": 0.84005,
+      "per_lang": {
+        "de": 0.8524,
+        "fr": 0.8379,
+        "es": 0.8542,
+        "it": 0.8486,
+        "pl": 0.8406,
+        "hu": 0.83,
+        "cn": 0.8167
+      },
+      "pass": true
+    }
+  },
+  "per_subset": {
+    "draw1": {
+      "covidqa": {
+        "plain_w0": 0.76848,
+        "fused": 0.75902,
+        "delta": -0.00946
+      },
+      "delucionqa": {
+        "plain_w0": 0.80087,
+        "fused": 0.75388,
+        "delta": -0.047
+      },
+      "emanual": {
+        "plain_w0": 0.69734,
+        "fused": 0.75424,
+        "delta": 0.0569
+      },
+      "expertqa": {
+        "plain_w0": 0.79688,
+        "fused": 0.82807,
+        "delta": 0.03119
+      },
+      "finqa": {
+        "plain_w0": 0.65152,
+        "fused": 0.61674,
+        "delta": -0.03478
+      },
+      "hagrid": {
+        "plain_w0": 0.64225,
+        "fused": 0.67093,
+        "delta": 0.02867
+      },
+      "hotpotqa": {
+        "plain_w0": 0.6766,
+        "fused": 0.59101,
+        "delta": -0.08558
+      },
+      "pubmedqa": {
+        "plain_w0": 0.5893,
+        "fused": 0.61767,
+        "delta": 0.02838
+      },
+      "tatqa": {
+        "plain_w0": 0.7842,
+        "fused": 0.77482,
+        "delta": -0.00938
+      },
+      "techqa": {
+        "plain_w0": 0.73609,
+        "fused": 0.79023,
+        "delta": 0.05413
+      }
+    },
+    "draw2": {
+      "covidqa": {
+        "plain_w0": 0.74583,
+        "fused": 0.74434,
+        "delta": -0.00149
+      },
+      "delucionqa": {
+        "plain_w0": 0.78876,
+        "fused": 0.74079,
+        "delta": -0.04797
+      },
+      "emanual": {
+        "plain_w0": 0.6586,
+        "fused": 0.69794,
+        "delta": 0.03935
+      },
+      "expertqa": {
+        "plain_w0": 0.78216,
+        "fused": 0.80458,
+        "delta": 0.02242
+      },
+      "finqa": {
+        "plain_w0": 0.71348,
+        "fused": 0.68152,
+        "delta": -0.03196
+      },
+      "hagrid": {
+        "plain_w0": 0.6425,
+        "fused": 0.65852,
+        "delta": 0.01601
+      },
+      "hotpotqa": {
+        "plain_w0": 0.66473,
+        "fused": 0.56425,
+        "delta": -0.10048
+      },
+      "pubmedqa": {
+        "plain_w0": 0.62976,
+        "fused": 0.62721,
+        "delta": -0.00255
+      },
+      "tatqa": {
+        "plain_w0": 0.80932,
+        "fused": 0.7839,
+        "delta": -0.02542
+      },
+      "techqa": {
+        "plain_w0": 0.73089,
+        "fused": 0.76934,
+        "delta": 0.03845
+      }
+    }
+  },
+  "plain_mean": {
+    "draw1": 0.71435,
+    "draw2": 0.7166
+  },
+  "system_mean": {
+    "draw1": 0.71566,
+    "draw2": 0.70724,
+    "pair_mean": 0.71145
+  },
+  "plain_pair_mean": 0.71548,
+  "delta": {
+    "draw1": 0.00131,
+    "draw2": -0.00936
+  },
+  "delta_pair_mean": -0.00403,
+  "worst_subset_delta": {
+    "draw1": {
+      "subset": "hotpotqa",
+      "delta": -0.08558
+    },
+    "draw2": {
+      "subset": "hotpotqa",
+      "delta": -0.10048
+    }
+  },
+  "verdict": "EXPLORATORY",
+  "verdict_basis": {
+    "delta_draw1": 0.00131,
+    "delta_draw2": -0.00936,
+    "worst_subset_delta_either_draw": -0.10048,
+    "pass_rule": "delta >= +0.005 on BOTH draws AND no subset below -0.01 on either",
+    "kill_rule": "delta <= 0 on both draws"
+  }
+}

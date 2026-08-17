@@ -1,0 +1,224 @@
+{
+  "gold": {
+    "auc": 0.8922,
+    "f1": 0.7857,
+    "n": 717
+  },
+  "gold_full": {
+    "auc": 0.9027,
+    "f1": 0.7849,
+    "n": 2752
+  },
+  "ragtruth_en": {
+    "auc": 0.801,
+    "f1": 0.7216,
+    "n": 600
+  },
+  "ragtruth_nonen": {
+    "auc": 0.8444,
+    "per_lang": {
+      "de": 0.8423,
+      "fr": 0.8399,
+      "es": 0.8455,
+      "it": 0.8453,
+      "pl": 0.8373,
+      "hu": 0.8344,
+      "cn": 0.8661
+    }
+  },
+  "run": "twin",
+  "draw": 1,
+  "arm": "h174_portfolio_draw1",
+  "executor": "split-cotangent",
+  "split": {
+    "pass_a_chunk": 32,
+    "pass_b_chunk": 8,
+    "equivalence_proof": "R19-H160_exec_equivalence.json"
+  },
+  "experiment": "R20-H174 hagrid/emanual portfolio arm draw 1 - the R18-H150 flagship recipe verbatim plus the L1/L2/L4 stage-0 lanes",
+  "adapter_active": false,
+  "seed": 1174,
+  "params_M": 307.9,
+  "lr": 1e-05,
+  "lambda_max": 0.02,
+  "mix": "clean public mix (R10-H108.public_train) + R17-H146 misbind 30,000 + R18-H150 unit_swap 5,540 + R20-H174 L1 frame_reject 8,000 + L2 attr_pool 21,408 + L4 path_bind 10,000",
+  "clean_rows": 685670,
+  "lane_rows": {
+    "quant_misbind": 30000,
+    "quant_scale_unit": 5540,
+    "frame_reject": 8000,
+    "attr_pool": 21408,
+    "path_bind": 10000
+  },
+  "evidence": "UNTRUNCATED, windowed 1500/750",
+  "objective": "MIL max-over-window BCE per row + per-pair domain CE",
+  "precision": "bf16 autocast on the trunk encode, fp32 heads/loss, fp32 for both reads",
+  "regularizers": null,
+  "mix_rows": 760618,
+  "dann_groups": 17,
+  "group_counts": {
+    "attr_pool": 21408,
+    "frame_reject": 8000,
+    "halueval": 40000,
+    "path_bind": 10000,
+    "psiloqa": 61712,
+    "quant_misbind": 30000,
+    "quant_scale_unit": 5540,
+    "ragtruth_cn": 15090,
+    "ragtruth_de": 15090,
+    "ragtruth_en": 15090,
+    "ragtruth_es": 15090,
+    "ragtruth_fr": 15090,
+    "ragtruth_hu": 15090,
+    "ragtruth_it": 15090,
+    "ragtruth_pl": 15090,
+    "tabfact": 92585,
+    "vitaminc": 370653
+  },
+  "window_census": {
+    "mean_windows_per_row": 1.5977,
+    "median_windows_per_row": 1,
+    "p90_windows_per_row": 3,
+    "max_windows_per_row": 40,
+    "rows_with_multi_window_set": 159247,
+    "multi_window_share": 0.2094,
+    "total_pairs": 1215222,
+    "histogram_clipped_at_10": {
+      "1": 601371,
+      "2": 51703,
+      "3": 43615,
+      "4": 20906,
+      "5": 13419,
+      "6": 9399,
+      "7": 7103,
+      "8": 5316,
+      "9": 3335,
+      "10": 4451
+    },
+    "per_group": {
+      "attr_pool": {
+        "rows": 21408,
+        "mean_windows": 5.981,
+        "max_windows": 13
+      },
+      "frame_reject": {
+        "rows": 8000,
+        "mean_windows": 1.034,
+        "max_windows": 3
+      },
+      "halueval": {
+        "rows": 40000,
+        "mean_windows": 2.839,
+        "max_windows": 15
+      },
+      "path_bind": {
+        "rows": 10000,
+        "mean_windows": 1.0,
+        "max_windows": 1
+      },
+      "psiloqa": {
+        "rows": 61712,
+        "mean_windows": 1.07,
+        "max_windows": 25
+      },
+      "quant_misbind": {
+        "rows": 30000,
+        "mean_windows": 1.0,
+        "max_windows": 1
+      },
+      "quant_scale_unit": {
+        "rows": 5540,
+        "mean_windows": 1.0,
+        "max_windows": 1
+      },
+      "ragtruth_cn": {
+        "rows": 15090,
+        "mean_windows": 1.58,
+        "max_windows": 11
+      },
+      "ragtruth_de": {
+        "rows": 15090,
+        "mean_windows": 3.312,
+        "max_windows": 16
+      },
+      "ragtruth_en": {
+        "rows": 15090,
+        "mean_windows": 2.687,
+        "max_windows": 14
+      },
+      "ragtruth_es": {
+        "rows": 15090,
+        "mean_windows": 3.316,
+        "max_windows": 17
+      },
+      "ragtruth_fr": {
+        "rows": 15090,
+        "mean_windows": 3.44,
+        "max_windows": 16
+      },
+      "ragtruth_hu": {
+        "rows": 15090,
+        "mean_windows": 3.004,
+        "max_windows": 40
+      },
+      "ragtruth_it": {
+        "rows": 15090,
+        "mean_windows": 3.332,
+        "max_windows": 16
+      },
+      "ragtruth_pl": {
+        "rows": 15090,
+        "mean_windows": 3.078,
+        "max_windows": 15
+      },
+      "tabfact": {
+        "rows": 92585,
+        "mean_windows": 1.346,
+        "max_windows": 12
+      },
+      "vitaminc": {
+        "rows": 370653,
+        "mean_windows": 1.0,
+        "max_windows": 5
+      }
+    }
+  },
+  "n_steps": 15900,
+  "sets_per_batch": 48,
+  "pairs_per_batch": 96,
+  "init_fingerprint": "2b86c651032042c1e5d009c1854c46e5",
+  "init_fingerprint_scope": "trunk+task_head",
+  "perm_fingerprint": "ded543769d14f9e3",
+  "bars": {
+    "pubmedqa_primary_min": 0.6495,
+    "pubmedqa_kill_below": 0.6279,
+    "hotpotqa_min": 0.638,
+    "tatqa_min": 0.674,
+    "arena_mean_min": 0.70311,
+    "gold_full_min": 0.8414,
+    "ragtruth_nonen_min": 0.82
+  },
+  "seed_sd": {
+    "pubmedqa": 0.0216,
+    "hotpotqa": 0.0144,
+    "tatqa": 0.029
+  },
+  "control": {
+    "pubmedqa": 0.6063,
+    "hotpotqa": 0.6668,
+    "tatqa": 0.732,
+    "arena_mean": 0.70311
+  },
+  "bars_note": "the bars/control blocks are the banked G1 twin's; H174's registered bars, mechanism gates and table guard are adjudicated by the coordinator",
+  "train_seconds": 20502.4,
+  "checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/R20-H174-arm-draw1",
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates.",
+  "lane_groups": [
+    "quant_misbind",
+    "quant_scale_unit",
+    "frame_reject",
+    "attr_pool",
+    "path_bind"
+  ],
+  "window_census_source": "R20-H174_window_census.json"
+}

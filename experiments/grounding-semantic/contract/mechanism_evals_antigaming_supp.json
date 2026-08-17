@@ -1,0 +1,166 @@
+{
+  "artifact": "mechanism_evals_antigaming_supp.json",
+  "scope": "supplement to contract/mechanism_evals_report.json - the anti-gaming instrument's cross-arm comparability",
+  "reference_set": "R18-H150_antigaming_set.parquet",
+  "per_file": {
+    "R14-H133_antigaming_set.parquet": {
+      "rows": 1601,
+      "nearmiss_rows": 1000,
+      "bind_row_rows": 601,
+      "distinct_tables": 1171,
+      "shared_items_with_flagship": 1007,
+      "jaccard_with_flagship_all": 0.459,
+      "jaccard_with_flagship_nearmiss": 1.0,
+      "jaccard_with_flagship_bind_row": 0.0059
+    },
+    "R16-H142-T-d2_antigaming_set.parquet": {
+      "rows": 1600,
+      "nearmiss_rows": 1000,
+      "bind_row_rows": 600,
+      "distinct_tables": 1186,
+      "shared_items_with_flagship": 1005,
+      "jaccard_with_flagship_all": 0.4579,
+      "jaccard_with_flagship_nearmiss": 1.0,
+      "jaccard_with_flagship_bind_row": 0.0042
+    },
+    "R16-H142-T_antigaming_set.parquet": {
+      "rows": 1600,
+      "nearmiss_rows": 1000,
+      "bind_row_rows": 600,
+      "distinct_tables": 1177,
+      "shared_items_with_flagship": 1005,
+      "jaccard_with_flagship_all": 0.4579,
+      "jaccard_with_flagship_nearmiss": 1.0,
+      "jaccard_with_flagship_bind_row": 0.0042
+    },
+    "R17-H145_antigaming_set.parquet": {
+      "rows": 1600,
+      "nearmiss_rows": 1000,
+      "bind_row_rows": 600,
+      "distinct_tables": 1184,
+      "shared_items_with_flagship": 1002,
+      "jaccard_with_flagship_all": 0.4559,
+      "jaccard_with_flagship_nearmiss": 1.0,
+      "jaccard_with_flagship_bind_row": 0.0017
+    },
+    "R17-H146_antigaming_set.parquet": {
+      "rows": 1601,
+      "nearmiss_rows": 1000,
+      "bind_row_rows": 601,
+      "distinct_tables": 1168,
+      "shared_items_with_flagship": 1006,
+      "jaccard_with_flagship_all": 0.4583,
+      "jaccard_with_flagship_nearmiss": 1.0,
+      "jaccard_with_flagship_bind_row": 0.005
+    },
+    "R18-H150-d2_antigaming_set.parquet": {
+      "rows": 1600,
+      "nearmiss_rows": 1000,
+      "bind_row_rows": 600,
+      "distinct_tables": 1170,
+      "shared_items_with_flagship": 1015,
+      "jaccard_with_flagship_all": 0.4645,
+      "jaccard_with_flagship_nearmiss": 1.0,
+      "jaccard_with_flagship_bind_row": 0.0127
+    },
+    "R18-H150_antigaming_set.parquet": {
+      "rows": 1600,
+      "nearmiss_rows": 1000,
+      "bind_row_rows": 600,
+      "distinct_tables": 1177,
+      "shared_items_with_flagship": 1600,
+      "jaccard_with_flagship_all": 1.0,
+      "jaccard_with_flagship_nearmiss": 1.0,
+      "jaccard_with_flagship_bind_row": 1.0
+    },
+    "R18-H152-d1_antigaming_set.parquet": {
+      "rows": 1600,
+      "nearmiss_rows": 1000,
+      "bind_row_rows": 600,
+      "distinct_tables": 1174,
+      "shared_items_with_flagship": 1005,
+      "jaccard_with_flagship_all": 0.4579,
+      "jaccard_with_flagship_nearmiss": 1.0,
+      "jaccard_with_flagship_bind_row": 0.0042
+    },
+    "R18-H152-d2_antigaming_set.parquet": {
+      "rows": 1601,
+      "nearmiss_rows": 1000,
+      "bind_row_rows": 601,
+      "distinct_tables": 1178,
+      "shared_items_with_flagship": 1006,
+      "jaccard_with_flagship_all": 0.4583,
+      "jaccard_with_flagship_nearmiss": 1.0,
+      "jaccard_with_flagship_bind_row": 0.005
+    },
+    "R18-H155-d1_antigaming_set.parquet": {
+      "rows": 1600,
+      "nearmiss_rows": 1000,
+      "bind_row_rows": 600,
+      "distinct_tables": 1185,
+      "shared_items_with_flagship": 1007,
+      "jaccard_with_flagship_all": 0.4592,
+      "jaccard_with_flagship_nearmiss": 1.0,
+      "jaccard_with_flagship_bind_row": 0.0059
+    },
+    "R18-H155-d2_antigaming_set.parquet": {
+      "rows": 1600,
+      "nearmiss_rows": 1000,
+      "bind_row_rows": 600,
+      "distinct_tables": 1191,
+      "shared_items_with_flagship": 1003,
+      "jaccard_with_flagship_all": 0.4565,
+      "jaccard_with_flagship_nearmiss": 1.0,
+      "jaccard_with_flagship_bind_row": 0.0025
+    },
+    "R18-H156_antigaming_set.parquet": {
+      "rows": 1600,
+      "nearmiss_rows": 1000,
+      "bind_row_rows": 600,
+      "distinct_tables": 1173,
+      "shared_items_with_flagship": 1008,
+      "jaccard_with_flagship_all": 0.4599,
+      "jaccard_with_flagship_nearmiss": 1.0,
+      "jaccard_with_flagship_bind_row": 0.0067
+    },
+    "R19-H159_antigaming_set.parquet": {
+      "rows": 1601,
+      "nearmiss_rows": 1000,
+      "bind_row_rows": 601,
+      "distinct_tables": 1174,
+      "shared_items_with_flagship": 1004,
+      "jaccard_with_flagship_all": 0.457,
+      "jaccard_with_flagship_nearmiss": 1.0,
+      "jaccard_with_flagship_bind_row": 0.0033
+    },
+    "R19-H160-soupB_antigaming_set.parquet": {
+      "rows": 1600,
+      "nearmiss_rows": 1000,
+      "bind_row_rows": 600,
+      "distinct_tables": 1185,
+      "shared_items_with_flagship": 1006,
+      "jaccard_with_flagship_all": 0.4585,
+      "jaccard_with_flagship_nearmiss": 1.0,
+      "jaccard_with_flagship_bind_row": 0.005
+    }
+  },
+  "supply_determinism": {
+    "function": "R15_gate_common.held_tabfact() - the supply both anti-gaming arms and the R15 probe bank draw from",
+    "runs": 3,
+    "rows_each": [
+      3391,
+      3391,
+      3391
+    ],
+    "membership_identical_across_runs": true,
+    "ORDER_identical_across_runs": false,
+    "first_divergence": {
+      "position": 0,
+      "run1": "2-1723582-9.html.csv",
+      "run2": "2-1102696-1.html.csv"
+    },
+    "mechanism": "the function ends in `unique(subset=['table_id'], keep='first')`. Polars does not preserve row order through `unique` unless `maintain_order=True` is passed, so the seeded `rng.permutation(len(tbls))` in `R14-H133_antigaming.build_bindrow` indexes a differently ordered list on each run and selects different tables. The seed is constant; the SUPPLY ORDER is not",
+    "reading": "membership identical with order unstable means the sets are drawn from the same pool by a stable seed over an unstable ordering - the instrument re-rolls itself per run"
+  },
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+}

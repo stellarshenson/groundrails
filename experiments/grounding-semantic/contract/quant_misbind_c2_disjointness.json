@@ -1,0 +1,439 @@
+{
+  "clause": "C2",
+  "member_units": {
+    "distinct_claims": 29699,
+    "distinct_evidence_chunks": 12889,
+    "rows": 30000
+  },
+  "forms": [
+    "raw",
+    "truncated_1500",
+    "normalised_ws_casefold"
+  ],
+  "direction_note": "set intersection is symmetric, so the member-side and surface-side counts of matched units are reported separately and are equal by construction of the test; a non-zero in either direction fails the clause",
+  "surfaces": {
+    "arena_ragbench_10_subsets": {
+      "note": "H77 arena sample: 250 items/subset seed 0, first 8 document chunks",
+      "surface_claims": 2260,
+      "surface_evidence_units": 6784,
+      "forms": {
+        "raw": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 0,
+          "member_claims_matched": 0,
+          "surface_claims_matched": 0
+        },
+        "truncated_1500": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 0,
+          "member_claims_matched": 0,
+          "surface_claims_matched": 0
+        },
+        "normalised_ws_casefold": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 0,
+          "member_claims_matched": 0,
+          "surface_claims_matched": 0
+        }
+      },
+      "clean": true
+    },
+    "gold_full": {
+      "note": "all (claim, chunk) rows of the gold teacher-pair table",
+      "surface_claims": 2699,
+      "surface_evidence_units": 10228,
+      "forms": {
+        "raw": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 0,
+          "member_claims_matched": 0,
+          "surface_claims_matched": 0
+        },
+        "truncated_1500": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 0,
+          "member_claims_matched": 0,
+          "surface_claims_matched": 0
+        },
+        "normalised_ws_casefold": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 0,
+          "member_claims_matched": 0,
+          "surface_claims_matched": 0
+        }
+      },
+      "clean": true
+    },
+    "R17-H143_evalset": {
+      "note": "the derivation eval this lane's sources were content-excluded against",
+      "surface_claims": 1048,
+      "surface_evidence_units": 547,
+      "forms": {
+        "raw": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 0,
+          "member_claims_matched": 0,
+          "surface_claims_matched": 0
+        },
+        "truncated_1500": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 0,
+          "member_claims_matched": 0,
+          "surface_claims_matched": 0
+        },
+        "normalised_ws_casefold": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 0,
+          "member_claims_matched": 0,
+          "surface_claims_matched": 0
+        }
+      },
+      "clean": true
+    },
+    "R20-H177_eval_B": {
+      "note": "Lane B compare/direction mechanism eval",
+      "surface_claims": 2000,
+      "surface_evidence_units": 736,
+      "forms": {
+        "raw": {
+          "evidence_shared_strings": 19,
+          "member_evidence_units_matched": 19,
+          "surface_evidence_units_matched": 19,
+          "claims_shared_strings": 0,
+          "member_claims_matched": 0,
+          "surface_claims_matched": 0
+        },
+        "truncated_1500": {
+          "evidence_shared_strings": 19,
+          "member_evidence_units_matched": 19,
+          "surface_evidence_units_matched": 19,
+          "claims_shared_strings": 0,
+          "member_claims_matched": 0,
+          "surface_claims_matched": 0
+        },
+        "normalised_ws_casefold": {
+          "evidence_shared_strings": 19,
+          "member_evidence_units_matched": 19,
+          "surface_evidence_units_matched": 19,
+          "claims_shared_strings": 0,
+          "member_claims_matched": 0,
+          "surface_claims_matched": 0
+        }
+      },
+      "clean": false
+    },
+    "R20-H177_eval_C": {
+      "note": "Lane C role/sign/period mechanism eval",
+      "surface_claims": 1926,
+      "surface_evidence_units": 380,
+      "forms": {
+        "raw": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 0,
+          "member_claims_matched": 0,
+          "surface_claims_matched": 0
+        },
+        "truncated_1500": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 0,
+          "member_claims_matched": 0,
+          "surface_claims_matched": 0
+        },
+        "normalised_ws_casefold": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 0,
+          "member_claims_matched": 0,
+          "surface_claims_matched": 0
+        }
+      },
+      "clean": true
+    },
+    "R20-H175b_qlane_eval": {
+      "note": "withdrawn contrast-lane eval (banked)",
+      "surface_claims": 1001,
+      "surface_evidence_units": 487,
+      "forms": {
+        "raw": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 0,
+          "member_claims_matched": 0,
+          "surface_claims_matched": 0
+        },
+        "truncated_1500": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 0,
+          "member_claims_matched": 0,
+          "surface_claims_matched": 0
+        },
+        "normalised_ws_casefold": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 0,
+          "member_claims_matched": 0,
+          "surface_claims_matched": 0
+        }
+      },
+      "clean": true
+    },
+    "R20-H175b_qlane_eval_repaired": {
+      "note": "withdrawn contrast-lane eval (repaired)",
+      "surface_claims": 839,
+      "surface_evidence_units": 407,
+      "forms": {
+        "raw": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 0,
+          "member_claims_matched": 0,
+          "surface_claims_matched": 0
+        },
+        "truncated_1500": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 0,
+          "member_claims_matched": 0,
+          "surface_claims_matched": 0
+        },
+        "normalised_ws_casefold": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 0,
+          "member_claims_matched": 0,
+          "surface_claims_matched": 0
+        }
+      },
+      "clean": true
+    },
+    "R20-H175b_qlane_eval_clean": {
+      "note": "clean contrast-lane eval",
+      "surface_claims": 44,
+      "surface_evidence_units": 22,
+      "forms": {
+        "raw": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 0,
+          "member_claims_matched": 0,
+          "surface_claims_matched": 0
+        },
+        "truncated_1500": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 0,
+          "member_claims_matched": 0,
+          "surface_claims_matched": 0
+        },
+        "normalised_ws_casefold": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 0,
+          "member_claims_matched": 0,
+          "surface_claims_matched": 0
+        }
+      },
+      "clean": true
+    },
+    "R20-H175b_qlane_eval_clean_prefix": {
+      "note": "clean contrast-lane eval (prefix)",
+      "surface_claims": 16,
+      "surface_evidence_units": 8,
+      "forms": {
+        "raw": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 0,
+          "member_claims_matched": 0,
+          "surface_claims_matched": 0
+        },
+        "truncated_1500": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 0,
+          "member_claims_matched": 0,
+          "surface_claims_matched": 0
+        },
+        "normalised_ws_casefold": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 0,
+          "member_claims_matched": 0,
+          "surface_claims_matched": 0
+        }
+      },
+      "clean": true
+    },
+    "R17-H146_antigaming_set": {
+      "note": "anti-gaming paired probe set - claims only, the set carries no evidence column",
+      "surface_claims": 3185,
+      "surface_evidence_units": 0,
+      "forms": {
+        "raw": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 18,
+          "member_claims_matched": 18,
+          "surface_claims_matched": 18
+        },
+        "truncated_1500": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 18,
+          "member_claims_matched": 18,
+          "surface_claims_matched": 18
+        },
+        "normalised_ws_casefold": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 18,
+          "member_claims_matched": 18,
+          "surface_claims_matched": 18
+        }
+      },
+      "clean": false
+    },
+    "R18-H150_antigaming_set": {
+      "note": "anti-gaming paired probe set - claims only, the set carries no evidence column",
+      "surface_claims": 3186,
+      "surface_evidence_units": 0,
+      "forms": {
+        "raw": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 15,
+          "member_claims_matched": 15,
+          "surface_claims_matched": 15
+        },
+        "truncated_1500": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 15,
+          "member_claims_matched": 15,
+          "surface_claims_matched": 15
+        },
+        "normalised_ws_casefold": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 15,
+          "member_claims_matched": 15,
+          "surface_claims_matched": 15
+        }
+      },
+      "clean": false
+    },
+    "R19-H159_antigaming_set": {
+      "note": "anti-gaming paired probe set - claims only, the set carries no evidence column",
+      "surface_claims": 3186,
+      "surface_evidence_units": 0,
+      "forms": {
+        "raw": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 17,
+          "member_claims_matched": 17,
+          "surface_claims_matched": 17
+        },
+        "truncated_1500": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 17,
+          "member_claims_matched": 17,
+          "surface_claims_matched": 17
+        },
+        "normalised_ws_casefold": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 17,
+          "member_claims_matched": 17,
+          "surface_claims_matched": 17
+        }
+      },
+      "clean": false
+    },
+    "vitaminc_holdout_superset": {
+      "note": "VitaminC test + validation in full - a SUPERSET of the filtered holdout the campaign evaluates on, so the disjointness read is stricter, not a proxy",
+      "surface_claims": 55139,
+      "surface_evidence_units": 54683,
+      "forms": {
+        "raw": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 0,
+          "member_claims_matched": 0,
+          "surface_claims_matched": 0
+        },
+        "truncated_1500": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 0,
+          "member_claims_matched": 0,
+          "surface_claims_matched": 0
+        },
+        "normalised_ws_casefold": {
+          "evidence_shared_strings": 0,
+          "member_evidence_units_matched": 0,
+          "surface_evidence_units_matched": 0,
+          "claims_shared_strings": 0,
+          "member_claims_matched": 0,
+          "surface_claims_matched": 0
+        }
+      },
+      "clean": true
+    }
+  },
+  "totals_per_form": {
+    "raw": 69,
+    "truncated_1500": 69,
+    "normalised_ws_casefold": 69
+  },
+  "all_forms_zero": false,
+  "seconds": 10.7
+}

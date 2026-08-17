@@ -1,0 +1,59 @@
+{
+  "control": "read-path reproduction of banked per-draw arena reads",
+  "bar": 0.0001,
+  "bar_note": "<= 1e-4 per subset; the banked reads round AUROC to 4 decimals, so 1e-4 is one unit in the last recorded digit",
+  "draws": {
+    "R19-H160-arm-draw3": {
+      "label": "H160 draw 3 (seed 3150, split-cotangent executor)",
+      "banked_source": "R19-H160_arm_draw3_windowed_result.json",
+      "banked_checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/R19-H160-arm-draw3",
+      "banked_mean": 0.7087,
+      "reread_mean": 0.7087,
+      "mean_delta": 0.0,
+      "per_subset_delta": {
+        "covidqa": 0.0,
+        "delucionqa": 0.0,
+        "emanual": 0.0,
+        "expertqa": 0.0,
+        "finqa": 0.0,
+        "hagrid": 0.0,
+        "hotpotqa": 0.0,
+        "pubmedqa": 0.0,
+        "tatqa": 0.0,
+        "techqa": 0.0
+      },
+      "worst_subset": "covidqa",
+      "worst_abs_delta": 0.0,
+      "reread_result": "R20-H173_control_R19-H160-arm-draw3_windowed_result.json",
+      "passes": true
+    },
+    "R19-H160-arm-draw4": {
+      "label": "H160 draw 4 (seed 4150, split-cotangent executor)",
+      "banked_source": "R19-H160_arm_draw4_windowed_result.json",
+      "banked_checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/R19-H160-arm-draw4",
+      "banked_mean": 0.72365,
+      "reread_mean": 0.72365,
+      "mean_delta": 0.0,
+      "per_subset_delta": {
+        "covidqa": 0.0,
+        "delucionqa": 0.0,
+        "emanual": 0.0,
+        "expertqa": 0.0,
+        "finqa": 0.0,
+        "hagrid": 0.0,
+        "hotpotqa": 0.0,
+        "pubmedqa": 0.0,
+        "tatqa": 0.0,
+        "techqa": 0.0
+      },
+      "worst_subset": "covidqa",
+      "worst_abs_delta": 0.0,
+      "reread_result": "R20-H173_control_R19-H160-arm-draw4_windowed_result.json",
+      "passes": true
+    }
+  },
+  "worst_abs_per_subset_delta": 0.0,
+  "verdict": "PASS",
+  "identity_note": "reproducing the banked per-subset AUROC from the checkpoint on disk is the identity proof that these weights are the ones behind the banked reads",
+  "written": "2026-08-17 01:45:48"
+}

@@ -1,0 +1,67 @@
+{
+  "live_positive_control_full_index": {
+    "design": "1,000 VitaminC-derived + 1,000 MiniCheck-derived atomic pool passages of this lane against the FULL source corpora they were assembled from (185217 VitaminC train evidence sentences, 6155 MiniCheck documents) - near-duplicate BY CONSTRUCTION",
+    "candidate_units": 2000,
+    "fires_at_fraction": 0.741,
+    "per_source_bucket": {
+      "vitaminc_train_evidence": {
+        "units_with_hit": 485,
+        "fraction": 0.2425
+      },
+      "minicheck_docs": {
+        "units_with_hit": 997,
+        "fraction": 0.4985
+      }
+    },
+    "best_jaccard": {
+      "max": 1.0,
+      "p99": 1.0,
+      "mean": 0.672
+    },
+    "vitaminc_half_alone": 0.485,
+    "minicheck_half_alone": 0.997,
+    "bar": "the gate must FIRE on text near-duplicate by construction",
+    "pass": true,
+    "contrast_with_the_arena_reading": "arena candidate_vs_arena fraction 0.00004 on the same instrument and the same lane text"
+  },
+  "live_negative_control_full_index": {
+    "design": "2,000 unrelated HaluEval knowledge passages against the same full source index - a saturated instrument would fire here too",
+    "fires_at_fraction": 0.0,
+    "bar": "< 0.02",
+    "pass": true
+  },
+  "c2_leak_confirmation": {
+    "surface": "vitaminc_holdout - the R19-H166 amendment A1 contradiction mechanism eval, built by R20_baseline_legs.vitaminc_holdout",
+    "holdout_rows_after_key_filter_and_label_filter": 38126,
+    "colliding_claims_surviving_into_the_eval": 1,
+    "detail": [
+      {
+        "holdout_claim_chars": 39,
+        "lane_claim_chars": 39,
+        "raw_strings_equal": false,
+        "wsfold_strings_equal": true,
+        "edit_description": "differs by letter case only",
+        "holdout_rows": 1,
+        "holdout_labels": [
+          "REFUTES"
+        ],
+        "holdout_splits": [
+          "test"
+        ],
+        "lane_rows": 2,
+        "lane_labels": [
+          1,
+          0
+        ],
+        "lane_families": [
+          "truth_removed"
+        ],
+        "lane_pair_ids": [
+          10471
+        ]
+      }
+    ],
+    "why_the_banked_filter_misses_it": "the holdout construction drops a candidate whose claim string occurs in VitaminC train, using RAW string equality. The colliding pair differs by one letter's case, so raw equality does not fire and the row is kept. The step-4 filter against the assembled flagship mix is also raw, and that mix does not contain attr_pool at all",
+    "form_that_detects_it": "whitespace-collapsed case-folded - contract C2 string form 3, the form its provenance note was written for"
+  }
+}

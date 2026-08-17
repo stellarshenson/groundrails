@@ -1,0 +1,1359 @@
+{
+  "member": "halueval",
+  "member_kind": "source corpus (DANN group `halueval`)",
+  "contract": "docs/experiments/dataset-contract.md",
+  "verified_on": "2026-08-17",
+  "compute": "CPU only; CUDA_VISIBLE_DEVICES forced empty before any import - GPUs 0/1/2 carry R20-H174 draws 2/3/4 untouched",
+  "how_the_member_was_rebuilt": {
+    "loader": "R16-H142_G1_arm.H108.public_train() under R16-H142_G1_arm.untruncated_evidence() - the exact call the R18-H150 and R20-H174 mix assemblies make (R18-H150_arm_run.make_build_mix)",
+    "slice": [
+      120720,
+      160720
+    ],
+    "mix_rows_measured": 685670,
+    "pair_structure_recovery": "the loader drops the QA `question` field and emits no pair key, so the archive read order was replayed and PROVED aligned to the loader's own output row-for-row across all 40,000 halueval rows before use (claim, chunk and label all byte/value equal); the run aborts on any mismatch",
+    "presentation_note": "a separately imported R10-H108_lane instance still truncates at 1,500 chars - `untruncated_evidence` lifts the cap on the G1 arm's OWN H108 instance, which is why the arm's instance is used here"
+  },
+  "C1": {
+    "verdict": "PASS",
+    "head_declared": "the grounding scalar (`task_head`) - the single shipped support head; halueval enters no parallel head",
+    "predicate_the_corpus_label_actually_encodes": {
+      "qa_half": "`right_answer` is HaluEval's gold answer to a question and `hallucinated_answer` is an LLM-written plausible-but-wrong answer to the SAME question. The loader DROPS the question, so the row the head sees is (bare answer phrase, knowledge block). The label therefore encodes answer correctness, which on this supply coincides with attestation: 93.58% of positives are fully token-attested and 95.53% are verbatim substrings of the knowledge, against 6.63% and 0.53% of negatives. It is support-shaped IN EFFECT, measured",
+      "summarization_half": "`right_summary` is the reference summary of the document and `hallucinated_summary` an LLM-written summary carrying unsupported content. The predicate is faithfulness of an abstractive summary to its document - a support predicate, but attested far more weakly on both legs (verbatim rate 0.06% positive, 0.00% negative)",
+      "caveat_measured": "the QA positive claim is a bare phrase of 2.30 content tokens on average, and 6,689 of 10,000 QA positives carry <= 2 content tokens. `supported by this evidence` is a degenerate predicate on a two-token entity name, and the question that disambiguates it is dropped by the loader"
+    },
+    "mandatory_test": {
+      "instrument": "R20-H174_lane_common.containment (content-token containment of claim in evidence), banked",
+      "bar": "REJECTED if the negative leg's >= 0.90-attested rate is within 0.10 of the positive leg's",
+      "untruncated_presentation_the_H150_H174_arms_feed": {
+        "positive_attested_ge_0.90": 0.6592,
+        "negative_attested_ge_0.90": 0.1032,
+        "gap": 0.556,
+        "margin_above_bar": 0.456,
+        "mean_containment_positive": 0.8979,
+        "mean_containment_negative": 0.7109
+      },
+      "truncated_1500_presentation_the_in_domain_read_feeds": {
+        "gap": 0.4777,
+        "margin_above_bar": 0.3777
+      },
+      "per_half": {
+        "qa": {
+          "untruncated_gap": 0.8235,
+          "truncated_gap": 0.8235
+        },
+        "summarization": {
+          "untruncated_gap": 0.2883,
+          "truncated_gap": 0.132
+        }
+      },
+      "narrowest_subpopulation": {
+        "which": "summarization half under the 1,500-char truncated presentation",
+        "gap": 0.132,
+        "margin_above_bar": 0.032,
+        "note": "both rates are small there (positive 0.1449, negative 0.0129) because abstractive summaries are rarely token-attested at all; the mean-containment gap on that half is 0.1222, the weakest separation in the member"
+      }
+    },
+    "full_distributions": {
+      "untruncated": {
+        "all": {
+          "positive_leg": {
+            "n": 20000,
+            "mean": 0.8979,
+            "median": 0.9773,
+            "p10": 0.7593,
+            "p90": 1.0,
+            "frac_ge_0.90": 0.6592,
+            "frac_eq_1.00": 0.4884,
+            "frac_ge_0.75": 0.9097,
+            "frac_le_0.50": 0.0332
+          },
+          "negative_leg": {
+            "n": 20000,
+            "mean": 0.7109,
+            "median": 0.7465,
+            "p10": 0.5,
+            "p90": 0.9,
+            "frac_ge_0.90": 0.1032,
+            "frac_eq_1.00": 0.0339,
+            "frac_ge_0.75": 0.4991,
+            "frac_le_0.50": 0.1312
+          },
+          "attested_rate_gap_at_0.90": 0.556,
+          "mean_gap": 0.187,
+          "rejected_by_c1_bar": false
+        },
+        "qa": {
+          "positive_leg": {
+            "n": 10000,
+            "mean": 0.9362,
+            "median": 1.0,
+            "p10": 1.0,
+            "p90": 1.0,
+            "frac_ge_0.90": 0.9358,
+            "frac_eq_1.00": 0.9358,
+            "frac_ge_0.75": 0.9358,
+            "frac_le_0.50": 0.064
+          },
+          "negative_leg": {
+            "n": 10000,
+            "mean": 0.6527,
+            "median": 0.6667,
+            "p10": 0.3684,
+            "p90": 0.9091,
+            "frac_ge_0.90": 0.1123,
+            "frac_eq_1.00": 0.0663,
+            "frac_ge_0.75": 0.3848,
+            "frac_le_0.50": 0.25
+          },
+          "attested_rate_gap_at_0.90": 0.8235,
+          "mean_gap": 0.2835,
+          "rejected_by_c1_bar": false
+        },
+        "summarization": {
+          "positive_leg": {
+            "n": 10000,
+            "mean": 0.8597,
+            "median": 0.875,
+            "p10": 0.7358,
+            "p90": 0.9677,
+            "frac_ge_0.90": 0.3825,
+            "frac_eq_1.00": 0.041,
+            "frac_ge_0.75": 0.8837,
+            "frac_le_0.50": 0.0024
+          },
+          "negative_leg": {
+            "n": 10000,
+            "mean": 0.7691,
+            "median": 0.7778,
+            "p10": 0.6304,
+            "p90": 0.8961,
+            "frac_ge_0.90": 0.0942,
+            "frac_eq_1.00": 0.0015,
+            "frac_ge_0.75": 0.6134,
+            "frac_le_0.50": 0.0124
+          },
+          "attested_rate_gap_at_0.90": 0.2883,
+          "mean_gap": 0.0906,
+          "rejected_by_c1_bar": false
+        }
+      },
+      "truncated_1500": {
+        "all": {
+          "positive_leg": {
+            "n": 20000,
+            "mean": 0.8426,
+            "median": 0.9429,
+            "p10": 0.5932,
+            "p90": 1.0,
+            "frac_ge_0.90": 0.5403,
+            "frac_eq_1.00": 0.4778,
+            "frac_ge_0.75": 0.7361,
+            "frac_le_0.50": 0.057
+          },
+          "negative_leg": {
+            "n": 20000,
+            "mean": 0.6398,
+            "median": 0.6471,
+            "p10": 0.4286,
+            "p90": 0.8571,
+            "frac_ge_0.90": 0.0626,
+            "frac_eq_1.00": 0.0335,
+            "frac_ge_0.75": 0.2791,
+            "frac_le_0.50": 0.2086
+          },
+          "attested_rate_gap_at_0.90": 0.4777,
+          "mean_gap": 0.2028,
+          "rejected_by_c1_bar": false
+        },
+        "qa": {
+          "positive_leg": {
+            "n": 10000,
+            "mean": 0.9362,
+            "median": 1.0,
+            "p10": 1.0,
+            "p90": 1.0,
+            "frac_ge_0.90": 0.9358,
+            "frac_eq_1.00": 0.9358,
+            "frac_ge_0.75": 0.9358,
+            "frac_le_0.50": 0.064
+          },
+          "negative_leg": {
+            "n": 10000,
+            "mean": 0.6527,
+            "median": 0.6667,
+            "p10": 0.3684,
+            "p90": 0.9091,
+            "frac_ge_0.90": 0.1123,
+            "frac_eq_1.00": 0.0663,
+            "frac_ge_0.75": 0.3848,
+            "frac_le_0.50": 0.25
+          },
+          "attested_rate_gap_at_0.90": 0.8235,
+          "mean_gap": 0.2835,
+          "rejected_by_c1_bar": false
+        },
+        "summarization": {
+          "positive_leg": {
+            "n": 10000,
+            "mean": 0.7491,
+            "median": 0.7593,
+            "p10": 0.5625,
+            "p90": 0.9211,
+            "frac_ge_0.90": 0.1449,
+            "frac_eq_1.00": 0.0198,
+            "frac_ge_0.75": 0.5364,
+            "frac_le_0.50": 0.0499
+          },
+          "negative_leg": {
+            "n": 10000,
+            "mean": 0.6269,
+            "median": 0.6271,
+            "p10": 0.4667,
+            "p90": 0.7895,
+            "frac_ge_0.90": 0.0129,
+            "frac_eq_1.00": 0.0007,
+            "frac_ge_0.75": 0.1734,
+            "frac_le_0.50": 0.1672
+          },
+          "attested_rate_gap_at_0.90": 0.132,
+          "mean_gap": 0.1222,
+          "rejected_by_c1_bar": false
+        }
+      }
+    },
+    "supplementary_attestation": {
+      "definitions": {
+        "verbatim": "whitespace-collapsed case-folded claim is an exact substring of the whitespace-collapsed case-folded evidence",
+        "fully_attested": "content-token containment == 1.0"
+      },
+      "all": {
+        "positive": {
+          "n": 20000,
+          "verbatim_rate": 0.4779,
+          "verbatim_rows": 9559,
+          "fully_attested_rows": 9768,
+          "fully_attested_and_verbatim_rows": 9364,
+          "claim_content_tokens_mean": 27.22,
+          "claim_content_tokens_median": 16.5,
+          "claims_with_le_2_content_tokens": 6689
+        },
+        "negative": {
+          "n": 20000,
+          "verbatim_rate": 0.0027,
+          "verbatim_rows": 53,
+          "fully_attested_rows": 678,
+          "fully_attested_and_verbatim_rows": 51,
+          "claim_content_tokens_mean": 42.08,
+          "claim_content_tokens_median": 26.0,
+          "claims_with_le_2_content_tokens": 228
+        },
+        "within_pair": {
+          "pairs": 20000,
+          "neg_ge_pos": 0.1734,
+          "neg_gt_pos": 0.1382,
+          "mean_pair_gap_pos_minus_neg": 0.187,
+          "pairs_with_fully_attested_negative": 678
+        }
+      },
+      "qa": {
+        "positive": {
+          "n": 10000,
+          "verbatim_rate": 0.9553,
+          "verbatim_rows": 9553,
+          "fully_attested_rows": 9358,
+          "fully_attested_and_verbatim_rows": 9358,
+          "claim_content_tokens_mean": 2.3,
+          "claim_content_tokens_median": 2.0,
+          "claims_with_le_2_content_tokens": 6689
+        },
+        "negative": {
+          "n": 10000,
+          "verbatim_rate": 0.0053,
+          "verbatim_rows": 53,
+          "fully_attested_rows": 663,
+          "fully_attested_and_verbatim_rows": 51,
+          "claim_content_tokens_mean": 11.26,
+          "claim_content_tokens_median": 10.0,
+          "claims_with_le_2_content_tokens": 228
+        },
+        "within_pair": {
+          "pairs": 10000,
+          "neg_ge_pos": 0.1286,
+          "neg_gt_pos": 0.0614,
+          "mean_pair_gap_pos_minus_neg": 0.2835,
+          "pairs_with_fully_attested_negative": 663
+        }
+      },
+      "summarization": {
+        "positive": {
+          "n": 10000,
+          "verbatim_rate": 0.0006,
+          "verbatim_rows": 6,
+          "fully_attested_rows": 410,
+          "fully_attested_and_verbatim_rows": 6,
+          "claim_content_tokens_mean": 52.13,
+          "claim_content_tokens_median": 49.0,
+          "claims_with_le_2_content_tokens": 0
+        },
+        "negative": {
+          "n": 10000,
+          "verbatim_rate": 0.0,
+          "verbatim_rows": 0,
+          "fully_attested_rows": 15,
+          "fully_attested_and_verbatim_rows": 0,
+          "claim_content_tokens_mean": 72.9,
+          "claim_content_tokens_median": 73.0,
+          "claims_with_le_2_content_tokens": 0
+        },
+        "within_pair": {
+          "pairs": 10000,
+          "neg_ge_pos": 0.2181,
+          "neg_gt_pos": 0.215,
+          "mean_pair_gap_pos_minus_neg": 0.0906,
+          "pairs_with_fully_attested_negative": 15
+        }
+      },
+      "reference_R20_H175b_poisoned_lane": {
+        "containment_both_legs": 0.9129,
+        "negatives_fully_attested": 0.664,
+        "negatives_attested_ge_0.90": 0.723,
+        "source": "docs/experiments/semantic-grounding-experiments.md, R20-H175b WITHDRAWN block"
+      },
+      "fully_attested_negative_examples": [
+        {
+          "half": "qa",
+          "claim": "Annette Bening received her Hollywood star in 1988.",
+          "evidence_head": "The Great Outdoors is a 1988 American comedy film directed by Howard Deutch, and written and produced by John Hughes. It stars Dan Aykroyd, John Candy, Stephani"
+        },
+        {
+          "half": "qa",
+          "claim": "Adam Clayton Powell is about civil rights leader.",
+          "evidence_head": "Adam Clayton Powell is a 1989 American documentary film directed by Richard Kilberg about the civil rights leader.The Saimaa Gesture (Finnish: \"Saimaa-ilmi\u00f6\" ) "
+        },
+        {
+          "half": "qa",
+          "claim": "Cia Berg was inducted into the Rock and Roll Hall of Fame.",
+          "evidence_head": "Cia Berg (born 2 December 1963), now known as Cia Soro, is a Swedish television presenter and singer. She was at one time the lead singer of the Swedish rock ba"
+        },
+        {
+          "half": "qa",
+          "claim": "Neil Gaiman directed Beowulf.",
+          "evidence_head": " He wrote the screenplays for \"Silent Hill\" and \"Beowulf\".Beowulf is a 2007 British-American 3D motion capture epic fantasy film directed by Robert Zemeckis and"
+        },
+        {
+          "half": "qa",
+          "claim": "The Namesake",
+          "evidence_head": "Sooni Taraporevala (born 1957) is an Indian screenwriter, photographer and filmmaker who is best known as the screenwriter of \"Mississippi Masala\", \"The Namesak"
+        },
+        {
+          "half": "qa",
+          "claim": "\"Friends in Low Places\" was performed by Brooks Garth.",
+          "evidence_head": "\"Friends in Low Places\" is a song performed by American country pop artist Garth Brooks. It was released on August 6, 1990 as the lead single from his album \"No"
+        },
+        {
+          "half": "qa",
+          "claim": "S\u00e9bastien Buemi was born in 1988.",
+          "evidence_head": " The 33-lap race was won by e.Dams-Renault driver S\u00e9bastien Buemi, who started from the seventh position.S\u00e9bastien Olivier Buemi (born 31 October 1988) is a Swi"
+        },
+        {
+          "half": "qa",
+          "claim": "Children's National Medical Center is a top-ranked hospital.",
+          "evidence_head": "Children\u2019s National Medical Center (formerly DC Children\u2019s Hospital) is ranked among the top 10 children\u2019s hospitals in the country by \"U.S. News & World Report"
+        }
+      ]
+    },
+    "comparison_to_the_lane_the_clause_exists_for": {
+      "R20-H175b_qrel_contrast": {
+        "containment_both_legs": 0.9129,
+        "negatives_fully_attested": 0.664,
+        "negatives_attested_ge_0.90": 0.723,
+        "source": "docs/experiments/semantic-grounding-experiments.md, R20-H175b WITHDRAWN block"
+      },
+      "halueval_negatives_fully_attested": 678,
+      "halueval_negatives_fully_attested_fraction": 0.0339,
+      "halueval_negatives_verbatim": 53
+    }
+  },
+  "C2": {
+    "verdict": "PASS",
+    "registered_unit": "evidence passages, the unit C2's provenance is written about (`passages in mix`)",
+    "forms": [
+      "raw",
+      "truncated (1,500 chars)",
+      "whitespace-collapsed case-folded"
+    ],
+    "surfaces_checked": [
+      "R11-H117_heldout_pairs",
+      "R17-H143_evalset",
+      "R20-H175b_qlane_eval",
+      "R20-H175b_qlane_eval_clean",
+      "R20-H175b_qlane_eval_repaired",
+      "R20-H177_eval_B",
+      "R20-H177_eval_C",
+      "arena_ragbench_10",
+      "gold_full"
+    ],
+    "member_evidence_units": 19934,
+    "worst_evidence_fraction_any_form_any_direction_any_surface": 0.0,
+    "measured": "0 of 19,934 member evidence chunks appear in any of the nine evaluation surfaces, and 0 surface passages appear in the member, in every one of the three string forms and in both directions",
+    "executor_added_claim_channel": {
+      "reported_separately": true,
+      "worst_fraction": 0.002384,
+      "nonzero_surfaces": {
+        "R20-H175b_qlane_eval": {
+          "raw": {
+            "member_units": 37662,
+            "surface_units": 1001,
+            "member_units_in_surface": 2,
+            "surface_units_in_member": 2,
+            "member_fraction": 5.3e-05,
+            "surface_fraction": 0.001998
+          },
+          "truncated": {
+            "member_units": 37662,
+            "surface_units": 1001,
+            "member_units_in_surface": 2,
+            "surface_units_in_member": 2,
+            "member_fraction": 5.3e-05,
+            "surface_fraction": 0.001998
+          },
+          "normalised": {
+            "member_units": 37649,
+            "surface_units": 1001,
+            "member_units_in_surface": 2,
+            "surface_units_in_member": 2,
+            "member_fraction": 5.3e-05,
+            "surface_fraction": 0.001998
+          }
+        },
+        "R20-H175b_qlane_eval_repaired": {
+          "raw": {
+            "member_units": 37662,
+            "surface_units": 839,
+            "member_units_in_surface": 2,
+            "surface_units_in_member": 2,
+            "member_fraction": 5.3e-05,
+            "surface_fraction": 0.002384
+          },
+          "truncated": {
+            "member_units": 37662,
+            "surface_units": 839,
+            "member_units_in_surface": 2,
+            "surface_units_in_member": 2,
+            "member_fraction": 5.3e-05,
+            "surface_fraction": 0.002384
+          },
+          "normalised": {
+            "member_units": 37649,
+            "surface_units": 839,
+            "member_units_in_surface": 2,
+            "surface_units_in_member": 2,
+            "member_fraction": 5.3e-05,
+            "surface_fraction": 0.002384
+          }
+        }
+      },
+      "what_the_two_collisions_are": [
+        "New Orleans Saints",
+        "The Colbert Report"
+      ],
+      "characterisation": "two short entity-name strings shared between the member's QA answers and the claim column of `R20-H175b_qlane_eval` and its `_repaired` variant - both WITHDRAWN evals already recorded as 99.6% / 99.8% contaminated. The evidence channel against those same evals reads 0 in all three forms, so no passage is shared",
+      "alternative_reading_stated": "under a reading that applies C2 to the claim channel as well as the passage channel, the member reads non-zero (2 of 37,662 member claims; surface fraction 0.002384) and C2 would be a FAIL. The number is given so the reading can be ruled either way"
+    },
+    "detail": {
+      "arena_ragbench_10": {
+        "evidence": {
+          "raw": {
+            "member_units": 19934,
+            "surface_units": 6784,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 19932,
+            "surface_units": 6778,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 19934,
+            "surface_units": 6783,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "claim_vs_surface_evidence": {
+          "raw": {
+            "member_units": 37662,
+            "surface_units": 6784,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 37662,
+            "surface_units": 6778,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 37649,
+            "surface_units": 6783,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "surface_unit": "RAGBench test documents, H77 arena sample (8645 chunks over 10 subsets)"
+      },
+      "gold_full": {
+        "evidence": {
+          "raw": {
+            "member_units": 19934,
+            "surface_units": 10228,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 19932,
+            "surface_units": 10228,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 19934,
+            "surface_units": 10227,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "claim_vs_surface_claim": {
+          "raw": {
+            "member_units": 37662,
+            "surface_units": 2699,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 37662,
+            "surface_units": 2699,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 37649,
+            "surface_units": 2699,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "surface_unit": "gold trace chunks (123579 rows)"
+      },
+      "R11-H117_heldout_pairs": {
+        "evidence": {
+          "raw": {
+            "member_units": 19934,
+            "surface_units": 1933,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 19932,
+            "surface_units": 1933,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 19934,
+            "surface_units": 1933,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "claim_vs_surface_claim": {
+          "raw": {
+            "member_units": 37662,
+            "surface_units": 2000,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 37662,
+            "surface_units": 2000,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 37649,
+            "surface_units": 2000,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "surface_unit": "R11-H117_heldout_pairs.parquet (2000 rows)"
+      },
+      "R17-H143_evalset": {
+        "evidence": {
+          "raw": {
+            "member_units": 19934,
+            "surface_units": 547,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 19932,
+            "surface_units": 547,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 19934,
+            "surface_units": 547,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "claim_vs_surface_claim": {
+          "raw": {
+            "member_units": 37662,
+            "surface_units": 1048,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 37662,
+            "surface_units": 1048,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 37649,
+            "surface_units": 1048,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "surface_unit": "R17-H143_evalset.parquet (1050 rows)"
+      },
+      "R20-H175b_qlane_eval": {
+        "evidence": {
+          "raw": {
+            "member_units": 19934,
+            "surface_units": 487,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 19932,
+            "surface_units": 487,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 19934,
+            "surface_units": 487,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "claim_vs_surface_claim": {
+          "raw": {
+            "member_units": 37662,
+            "surface_units": 1001,
+            "member_units_in_surface": 2,
+            "surface_units_in_member": 2,
+            "member_fraction": 5.3e-05,
+            "surface_fraction": 0.001998
+          },
+          "truncated": {
+            "member_units": 37662,
+            "surface_units": 1001,
+            "member_units_in_surface": 2,
+            "surface_units_in_member": 2,
+            "member_fraction": 5.3e-05,
+            "surface_fraction": 0.001998
+          },
+          "normalised": {
+            "member_units": 37649,
+            "surface_units": 1001,
+            "member_units_in_surface": 2,
+            "surface_units_in_member": 2,
+            "member_fraction": 5.3e-05,
+            "surface_fraction": 0.001998
+          }
+        },
+        "surface_unit": "R20-H175b_qlane_eval.parquet (2002 rows)"
+      },
+      "R20-H175b_qlane_eval_repaired": {
+        "evidence": {
+          "raw": {
+            "member_units": 19934,
+            "surface_units": 407,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 19932,
+            "surface_units": 407,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 19934,
+            "surface_units": 407,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "claim_vs_surface_claim": {
+          "raw": {
+            "member_units": 37662,
+            "surface_units": 839,
+            "member_units_in_surface": 2,
+            "surface_units_in_member": 2,
+            "member_fraction": 5.3e-05,
+            "surface_fraction": 0.002384
+          },
+          "truncated": {
+            "member_units": 37662,
+            "surface_units": 839,
+            "member_units_in_surface": 2,
+            "surface_units_in_member": 2,
+            "member_fraction": 5.3e-05,
+            "surface_fraction": 0.002384
+          },
+          "normalised": {
+            "member_units": 37649,
+            "surface_units": 839,
+            "member_units_in_surface": 2,
+            "surface_units_in_member": 2,
+            "member_fraction": 5.3e-05,
+            "surface_fraction": 0.002384
+          }
+        },
+        "surface_unit": "R20-H175b_qlane_eval_repaired.parquet (1678 rows)"
+      },
+      "R20-H175b_qlane_eval_clean": {
+        "evidence": {
+          "raw": {
+            "member_units": 19934,
+            "surface_units": 22,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 19932,
+            "surface_units": 22,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 19934,
+            "surface_units": 22,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "claim_vs_surface_claim": {
+          "raw": {
+            "member_units": 37662,
+            "surface_units": 44,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 37662,
+            "surface_units": 44,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 37649,
+            "surface_units": 44,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "surface_unit": "R20-H175b_qlane_eval_clean.parquet (88 rows)"
+      },
+      "R20-H177_eval_B": {
+        "evidence": {
+          "raw": {
+            "member_units": 19934,
+            "surface_units": 736,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 19932,
+            "surface_units": 736,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 19934,
+            "surface_units": 736,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "claim_vs_surface_claim": {
+          "raw": {
+            "member_units": 37662,
+            "surface_units": 2000,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 37662,
+            "surface_units": 2000,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 37649,
+            "surface_units": 2000,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "surface_unit": "R20-H177_eval_B.parquet (2000 rows)"
+      },
+      "R20-H177_eval_C": {
+        "evidence": {
+          "raw": {
+            "member_units": 19934,
+            "surface_units": 380,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 19932,
+            "surface_units": 380,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 19934,
+            "surface_units": 380,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "claim_vs_surface_claim": {
+          "raw": {
+            "member_units": 37662,
+            "surface_units": 1926,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "truncated": {
+            "member_units": 37662,
+            "surface_units": 1926,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          },
+          "normalised": {
+            "member_units": 37649,
+            "surface_units": 1926,
+            "member_units_in_surface": 0,
+            "surface_units_in_member": 0,
+            "member_fraction": 0.0,
+            "surface_fraction": 0.0
+          }
+        },
+        "surface_unit": "R20-H177_eval_C.parquet (1936 rows)"
+      }
+    }
+  },
+  "C3": {
+    "verdict": "PASS",
+    "split_axis_measured_from_the_archive": "NONE - each loaded subset ships exactly one file (`pminervini__HaluEval__<cfg>__data.parquet`); the corpus has no train/validation/test split to verify, and the loader takes ALL 20,000 records with no filter, so no part of the member is held out",
+    "archive_splits": {
+      "dialogue": {
+        "rows": 10000,
+        "columns": [
+          "knowledge",
+          "dialogue_history",
+          "right_response",
+          "hallucinated_response"
+        ],
+        "split_files": 1,
+        "loaded_by_mix": false
+      },
+      "general": {
+        "rows": 4507,
+        "columns": [
+          "ID",
+          "user_query",
+          "chatgpt_response",
+          "hallucination",
+          "hallucination_spans"
+        ],
+        "split_files": 1,
+        "loaded_by_mix": false
+      },
+      "qa": {
+        "rows": 10000,
+        "columns": [
+          "knowledge",
+          "question",
+          "right_answer",
+          "hallucinated_answer"
+        ],
+        "split_files": 1,
+        "loaded_by_mix": true
+      },
+      "summarization": {
+        "rows": 10000,
+        "columns": [
+          "document",
+          "right_summary",
+          "hallucinated_summary"
+        ],
+        "split_files": 1,
+        "loaded_by_mix": true
+      }
+    },
+    "internal_axes_measured": {
+      "qa": {
+        "rows": 10000,
+        "distinct_evidence": 9936,
+        "evidence_reuse_rows": 64,
+        "distinct_questions": 10000,
+        "evidence_blocks_with_2plus_rows": 63
+      },
+      "summarization": {
+        "rows": 10000,
+        "distinct_evidence": 9998,
+        "evidence_reuse_rows": 2,
+        "distinct_questions": null,
+        "evidence_blocks_with_2plus_rows": 2
+      }
+    },
+    "selection_predicate": "ALL rows of subsets `qa` and `summarization`; `dialogue` and `general` present in the archive and NOT loaded; no split filter, no row filter",
+    "member_is_also_an_evaluation_surface": false,
+    "evaluation_surface_check": "39 files under experiments/grounding-semantic mention halueval; every mention is a trainer, a mix loader, a DANN group list or a CPU audit. No read/eval path loads it, so the contract's `a dataset may not be both` holds",
+    "recorded_finding_the_clause_is_shaped_to_catch": {
+      "statement": "the member ships no split, but its SOURCE POOL is not disjoint from an evaluation surface. HaluEval QA knowledge blocks are HotpotQA paragraphs and the arena's `hotpotqa` subset draws from the same pool",
+      "measured_under_C4": "45 of 19,934 member evidence chunks reach Jaccard >= 0.3 against an arena `hotpotqa` document (1 more against `hagrid`), max Jaccard 0.7903",
+      "consequence": "this is a shared-provenance property of the corpus, not a build defect, and it is the reason the C4 census reads non-zero at all"
+    }
+  },
+  "C4": {
+    "verdict": "PASS",
+    "instrument": "provenance_gate.py, R14-H136 ruling-2 form: 8-gram, Jaccard >= 0.3, bidirectional, KILL > 2%; thresholds read from R19_supply_gates.py",
+    "evidence_gate": {
+      "verdict": "PASS",
+      "max_fraction": 0.00428,
+      "kill_bar": 0.02,
+      "margin_below_kill": 0.01572,
+      "warn_line": 0.005,
+      "margin_below_warn": 0.00072,
+      "candidate_to_arena": {
+        "units_with_hit": 46,
+        "n_units": 19934,
+        "fraction": 0.002308,
+        "best_jaccard": {
+          "max": 0.7903,
+          "p99": 0.0271,
+          "mean": 0.0021
+        }
+      },
+      "arena_to_candidate": {
+        "units_with_hit": 37,
+        "n_units": 8645,
+        "fraction": 0.00428
+      },
+      "per_arena_subset": {
+        "covidqa": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        },
+        "delucionqa": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        },
+        "emanual": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        },
+        "expertqa": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        },
+        "finqa": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        },
+        "hagrid": {
+          "units_with_hit": 1,
+          "fraction": 5e-05
+        },
+        "hotpotqa": {
+          "units_with_hit": 45,
+          "fraction": 0.002257
+        },
+        "pubmedqa": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        },
+        "tatqa": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        },
+        "techqa": {
+          "units_with_hit": 0,
+          "fraction": 0.0
+        }
+      }
+    },
+    "claim_gate": {
+      "verdict": "PASS",
+      "max_fraction": 0.0,
+      "best_jaccard": {
+        "max": 0.1364,
+        "p99": 0.0,
+        "mean": 0.0
+      }
+    },
+    "spike_control": {
+      "injected": 10,
+      "detected_total": 15,
+      "baseline_hits": 5,
+      "passes": true,
+      "candidate_units": 2000,
+      "injected_detected": "10 of 10",
+      "baseline_hits_deviation": "the contract asks for 0 baseline hits; the 2,000-unit sample carries 5 genuine arena near-duplicates, so the baseline is 5 rather than 0. The 10 injected units are still attributable exactly - an independent un-injected run of the same sample was measured at 5 hits and the injected run at 15. The non-zero baseline is the corpus's real HotpotQA overlap, not an instrument defect. Stated so the deviation is not buried"
+    },
+    "live_positive_control": {
+      "construction": "10 arena documents thinned to 2 of every 3 sentences (genuine near-duplicates, not byte-identical, and not recoverable by the gate's own normalisation)",
+      "injected": 10,
+      "mean_retained_char_fraction": 0.7705,
+      "baseline_hits_without_injection": 5,
+      "hits_with_injection": 15,
+      "detected": 10,
+      "fires": true
+    },
+    "second_live_positive_control_corpus_native": {
+      "construction": "no construction at all - HaluEval QA knowledge blocks and the arena `hotpotqa` documents are both HotpotQA paragraphs, so genuine near-duplicates exist in the material itself",
+      "fires": true,
+      "hits": 45,
+      "max_jaccard": 0.7903,
+      "why_it_matters": "the clean KILL verdict rests on a gate shown to fire on real shared-source material, not only on an injection"
+    },
+    "coverage": {
+      "evidence_units_below_8_tokens": 0,
+      "claim_units_below_8_tokens": 10950,
+      "short_units_exact_match_against_arena": 0,
+      "note": "units too short for the n-gram instrument are covered by exact string matching against the arena documents",
+      "short_claim_substring_probe": {
+        "short_claim_units": 10922,
+        "present_as_substring_of_some_arena_document": 1711,
+        "fraction": 0.1567,
+        "interpretation": "a 2-token entity name occurring inside an arena document measures shared vocabulary, not shared provenance. The provenance-bearing unit is the evidence chunk, and coverage there is complete - 0 of 19,934 evidence units fall below the 8-gram instrument"
+      }
+    },
+    "pass": true
+  },
+  "C5": {
+    "verdict": "FAIL",
+    "applicability": {
+      "narrow_reading": "the contract's Scope sentence enumerates halueval under source corpora, and C5's body names constructed LANES and paired-contrast EVALS. halueval is neither, so under this reading C5 is NOT-APPLICABLE",
+      "wide_reading": "the clause is titled `Leak suite for constructed members`, and halueval's NEGATIVE leg is LLM-constructed by ChatGPT sampling-then-filtering per its own dataset card, on a pair-contrast structure (same evidence, positive vs negative claim). Under this reading the suite binds",
+      "reported_verdict": "FAIL is returned because the measured numbers breach every bar by a wide margin and burying them behind a scope technicality would hide the largest finding of this verification. The narrow reading and its NOT-APPLICABLE verdict are stated here so the reading can be ruled"
+    },
+    "measured": {
+      "claim_only_converged_probe_auroc": 0.9519,
+      "bar": 0.55,
+      "breach": 0.4019,
+      "per_half": {
+        "qa": 0.9688,
+        "summarization": 0.9418
+      },
+      "within_pair_claim_only_accuracy": 0.9666,
+      "within_pair_bar": 0.6,
+      "within_pair_breach": 0.3666,
+      "surface_parity": {
+        "all": {
+          "auroc": {
+            "claim_char_length": 0.3191,
+            "claim_token_count": 0.3203,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.8509
+          },
+          "report_only": [],
+          "bar": "each barred channel in [0.45, 0.55]",
+          "worst_deviation": 0.3509,
+          "pass": false
+        },
+        "qa": {
+          "auroc": {
+            "claim_char_length": 0.0288,
+            "claim_token_count": 0.0286,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.9058
+          },
+          "report_only": [],
+          "bar": "each barred channel in [0.45, 0.55]",
+          "worst_deviation": 0.4714,
+          "pass": false
+        },
+        "summarization": {
+          "auroc": {
+            "claim_char_length": 0.252,
+            "claim_token_count": 0.2577,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.752
+          },
+          "report_only": [],
+          "bar": "each barred channel in [0.45, 0.55]",
+          "worst_deviation": 0.252,
+          "pass": false
+        }
+      },
+      "surface_parity_bar": "each channel in [0.45, 0.55]",
+      "worst_surface_deviation_all": 0.3509,
+      "worst_surface_deviation_qa": 0.4714
+    },
+    "single_channel_probes": {
+      "evidence_only": 0.5,
+      "evidence_only_basis": "both legs of every one of the 20,000 pairs carry byte-identical evidence (measured 20,000/20,000), so the channel is constant within a pair",
+      "question_only": "NOT-APPLICABLE - the loader drops the QA question and the summarization half has none"
+    },
+    "is_it_length": {
+      "test": "restrict to pairs whose two claims are within 10% of each other in characters, then re-run the same converged claim-only probe",
+      "qa": {
+        "pairs_within_10pct_length": 194,
+        "probe": "n<200, not run"
+      },
+      "summarization": {
+        "pairs_within_10pct_length": 1483,
+        "pairs_total": 10000,
+        "claim_only_probe_auroc": 0.9408,
+        "claim_char_length_auroc": 0.493
+      },
+      "reading": "on the 1,483 length-matched summarization pairs the length channel is exactly at chance (claim char length AUROC 0.4930) and the claim-only probe still reads 0.9408. The shortcut is the LLM negative's writing style, not its length, and length-matching does not repair it. The QA half cannot be length-matched at all: only 194 of 10,000 pairs qualify"
+    },
+    "what_the_member_teaches_without_reading_the_evidence": "for 40,000 rows - 5.26% of the R20-H174 portfolio mix and 5.55% of the R18-H150 flagship mix - the label is 95.19% recoverable from the claim string alone"
+  },
+  "C6": {
+    "verdict": "PASS",
+    "test": "the member's two legs share the evidence field, so the association a memoriser could key on is (evidence -> claim); measured, not assumed",
+    "pairs": 20000,
+    "pairs_with_byte_identical_evidence_on_both_legs": 20000,
+    "evidence_only_auroc": 0.5,
+    "evidence_only_auroc_note": "exactly 0.5 BY MEASUREMENT when every pair's legs are byte-identical in evidence - the feature is constant within a pair",
+    "claims_carrying_both_labels": 46,
+    "rows_on_those_claims": 199,
+    "evidence_blocks_shared_by_2plus_pairs": 65,
+    "rows_on_shared_evidence": 262,
+    "positive_negative_claim_string_collisions": 46,
+    "reported_value": "evidence-only AUROC exactly 0.5000, measured, not asserted: all 20,000 pairs carry byte-identical evidence on both legs, so no feature keyed on the shared field can separate the classes",
+    "residual_association_channels": {
+      "claim_strings_carrying_both_labels": 46,
+      "rows_affected": 199,
+      "row_fraction": 0.00498,
+      "evidence_blocks_shared_by_2plus_pairs": 65,
+      "rows_on_shared_evidence": 262,
+      "row_fraction_shared_evidence": 0.00655
+    }
+  },
+  "C7": {
+    "verdict": "PASS",
+    "unit_declared_by_loader": "rows (the loader appends two rows per source record and tags both `halueval`)",
+    "rows": 40000,
+    "pairs": 20000,
+    "rows_per_pair": 2.0,
+    "per_half": {
+      "summarization": {
+        "rows": 20000,
+        "pairs": 10000
+      },
+      "qa": {
+        "rows": 20000,
+        "pairs": 10000
+      }
+    },
+    "share_of_assembled_mix_rows": {
+      "clean_public_685670": 0.058337,
+      "h150_flagship_721210": 0.055462,
+      "h174_portfolio_760618": 0.052589
+    },
+    "mix_rows_measured": 685670,
+    "registered_figure": "40,000 rows (R8-H90 registration, `HaluEval 40k`)",
+    "pass": true
+  },
+  "C8": {
+    "verdict": "PASS",
+    "source": "HuggingFace `pminervini/HaluEval`",
+    "licence": "MIT",
+    "retrieval_date": [
+      "2026-07-29"
+    ],
+    "archive": "data/external/datasets/dataset-halueval.zip (gitignored); tracked sidecar data/external/datasets/dataset-halueval.md",
+    "fetcher": "scripts/fetch_grounding_datasets.py",
+    "selection_predicate": "subsets `qa` and `summarization`, ALL rows, no filter; two mix rows per source record (right_answer/right_summary -> label 1, hallucinated_answer/hallucinated_summary -> label 0); evidence = knowledge / document, truncated to CFG.chunk_max_chars in the incumbent read and untruncated then windowed 1500/750 in the H150/H174 arms",
+    "subsets_in_archive_not_loaded": [
+      "dialogue",
+      "general"
+    ],
+    "duplication": {
+      "rows": 40000,
+      "distinct_claims": 37662,
+      "distinct_evidence": 19934,
+      "distinct_claim_evidence_pairs": 39978,
+      "evidence_reuse_rows": 20066,
+      "per_half": {
+        "qa": {
+          "rows": 20000,
+          "pairs": 10000,
+          "distinct_claims": 17698,
+          "distinct_evidence": 9936,
+          "evidence_chars_mean": 344.3,
+          "evidence_chars_p95": 594.0,
+          "evidence_chars_max": 1557,
+          "evidence_over_1500_chars": 2,
+          "claim_chars_mean": 39.9,
+          "claim_chars_max": 529
+        },
+        "summarization": {
+          "rows": 20000,
+          "pairs": 10000,
+          "distinct_claims": 19964,
+          "distinct_evidence": 9998,
+          "evidence_chars_mean": 3878.9,
+          "evidence_chars_p95": 7967.2,
+          "evidence_chars_max": 11585,
+          "evidence_over_1500_chars": 18588,
+          "claim_chars_mean": 367.9,
+          "claim_chars_max": 3381
+        }
+      }
+    },
+    "geometry": {
+      "evidence_chars_mean": 2111.6,
+      "evidence_chars_max": 11585,
+      "claim_chars_mean": 203.9,
+      "rows_with_evidence_over_1500_chars": 18590
+    },
+    "public_repo_check": "no client or company name appears in this artifact or in the member's text fields as loaded"
+  },
+  "conforming": false,
+  "failed_clauses": [
+    "C5"
+  ],
+  "binding_constraint": "C5 - the member's negative leg is LLM-written text and is recognisable as such from the claim alone at AUROC 0.9519 (bar 0.55), 0.9408 even after length-matching. No subset, filter or rebalance of the existing rows repairs it: both halves breach independently (qa 0.9688, summarization 0.9418) and the length control is at chance while the probe is not",
+  "fixable": "CORPUS_PROPERTY",
+  "consequence_for_dependants": "halueval is 40,000 rows: 5.83% of the clean public mix (685,670), 5.55% of the banked R18-H150 flagship mix (721,210) whose k=6 blind arena mean is 0.71218, and 5.26% of the R20-H174 portfolio mix (760,618) now training on GPUs 0/1/2 with draw 1 banked at 0.71806. C1 holds, so the member is NOT poisoning the support head the way the withdrawn qrel_contrast lane was - its negatives are genuinely less attested than its positives (0.1032 vs 0.6592 at the 0.90 threshold) and only 678 of 20,000 are fully attested against that lane's 5,966 of 8,986. What it does supply is a large evidence-free shortcut: for 5.3-5.6% of every draw's rows the label is recoverable from the claim string alone. No banked arena number is invalidated by this and no in-flight draw needs to stop on its account; the finding is that this fraction of the mix does not require the model to read the evidence to fit it",
+  "artifacts": [
+    "experiments/grounding-semantic/contract/halueval_contract.py",
+    "experiments/grounding-semantic/contract/halueval_report.py",
+    "experiments/grounding-semantic/contract/halueval_core.json",
+    "experiments/grounding-semantic/contract/halueval_c1supp.json",
+    "experiments/grounding-semantic/contract/halueval_disjoint.json",
+    "experiments/grounding-semantic/contract/halueval_census.json",
+    "experiments/grounding-semantic/contract/halueval_probe.json",
+    "experiments/grounding-semantic/contract/halueval_lenmatch.json",
+    "experiments/grounding-semantic/contract/halueval_contract_report.json",
+    "logs/contract-halueval-core.log",
+    "logs/contract-halueval-c1supp.log",
+    "logs/contract-halueval-disjoint.log",
+    "logs/contract-halueval-census.log",
+    "logs/contract-halueval-probe.log",
+    "logs/contract-halueval-lenmatch.log"
+  ]
+}

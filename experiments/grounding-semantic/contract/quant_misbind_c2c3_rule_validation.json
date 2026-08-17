@@ -1,0 +1,57 @@
+{
+  "purpose": "false-positive rate of the build's content decision rule, measured against known ground truth",
+  "ground_truth": "TabFact-sourced eval fingerprints, whose true source table id is the corpus's own stable table_id",
+  "fingerprints_total": 547,
+  "fingerprints_with_stable_ground_truth": 356,
+  "matches_on_those_fingerprints": 6058,
+  "true_positives_same_table": 0,
+  "false_positives_different_table": 6058,
+  "precision": 0.0,
+  "matches_decided_on_fewer_than_three_long_strings": 0,
+  "mean_matches_per_fingerprint": 17.017,
+  "max_matches_for_one_fingerprint": 333,
+  "false_positive_examples": [
+    {
+      "eval_true_table": "tabfact:1-27462199-1.html.csv",
+      "matched_table": "tabfact:1-20098479-1.html.csv",
+      "long_strings_in_table": 73,
+      "long_strings_matched": 4,
+      "numeral_overlap": 0.64,
+      "eval_numerals": 25
+    },
+    {
+      "eval_true_table": "tabfact:1-27462199-1.html.csv",
+      "matched_table": "tabfact:1-20967430-3.html.csv",
+      "long_strings_in_table": 50,
+      "long_strings_matched": 4,
+      "numeral_overlap": 0.6,
+      "eval_numerals": 25
+    },
+    {
+      "eval_true_table": "tabfact:1-27462199-1.html.csv",
+      "matched_table": "tabfact:1-2226817-4.html.csv",
+      "long_strings_in_table": 65,
+      "long_strings_matched": 4,
+      "numeral_overlap": 0.6,
+      "eval_numerals": 25
+    },
+    {
+      "eval_true_table": "tabfact:1-27462199-1.html.csv",
+      "matched_table": "tabfact:1-16581695-3.html.csv",
+      "long_strings_in_table": 40,
+      "long_strings_matched": 4,
+      "numeral_overlap": 0.64,
+      "eval_numerals": 25
+    },
+    {
+      "eval_true_table": "tabfact:1-27462199-1.html.csv",
+      "matched_table": "tabfact:2-11238597-4.html.csv",
+      "long_strings_in_table": 56,
+      "long_strings_matched": 3,
+      "numeral_overlap": 0.6,
+      "eval_numerals": 25
+    }
+  ],
+  "reading": "a rule that matches many tables per eval chunk and almost never the chunk's own table is a similarity heuristic, not a contamination detector; its raw hit count cannot be read as document overlap",
+  "seconds": 10.9
+}

@@ -1,0 +1,2813 @@
+{
+  "artifact": "mechanism_evals_inventory.json",
+  "scope": "the enumeration behind contract/mechanism_evals_report.json - every top-level parquet in experiments/grounding-semantic/, classified, so the pass's scope is auditable rather than asserted",
+  "files_enumerated": 151,
+  "class_counts": {
+    "SCORE_DUMP": 59,
+    "VERIFIED": 29,
+    "SUPPLY_OR_INTERMEDIATE": 28,
+    "TRAINING_MEMBER_OR_LANE": 30,
+    "OWNED_BY_ANOTHER_AGENT": 4,
+    "ARENA": 1
+  },
+  "UNCLASSIFIED": [],
+  "inventory": [
+    {
+      "file": "DR_H112_gate_judge_sample.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "seed",
+        "c0",
+        "c1",
+        "span",
+        "ltype",
+        "source",
+        "arm",
+        "decoded_span",
+        "corrupted",
+        "n_span_tok",
+        "degen",
+        "exact_repro",
+        "evasion",
+        "filler"
+      ]
+    },
+    {
+      "file": "DR_H112_gate_judged.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "seed",
+        "c0",
+        "c1",
+        "span",
+        "ltype",
+        "source",
+        "arm",
+        "decoded_span",
+        "corrupted",
+        "n_span_tok",
+        "degen",
+        "exact_repro",
+        "evasion",
+        "filler"
+      ]
+    },
+    {
+      "file": "DR_H112_gate_samples.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "seed",
+        "c0",
+        "c1",
+        "span",
+        "ltype",
+        "source",
+        "arm",
+        "decoded_span",
+        "corrupted",
+        "n_span_tok",
+        "degen",
+        "exact_repro",
+        "evasion",
+        "filler"
+      ]
+    },
+    {
+      "file": "DR_H113_gate_judged.parquet",
+      "class": "VERIFIED",
+      "reason": "dr_h113_gate_judged",
+      "columns": [
+        "seed",
+        "chunk",
+        "tag",
+        "op",
+        "claim",
+        "span_start",
+        "span_end",
+        "old",
+        "new",
+        "nll",
+        "fluent",
+        "delta",
+        "severity",
+        "changed"
+      ]
+    },
+    {
+      "file": "DR_H113_gate_samples.parquet",
+      "class": "SUPPLY_OR_INTERMEDIATE",
+      "reason": "a pool or intermediate a builder draws from; not itself read as an instrument",
+      "columns": [
+        "seed",
+        "chunk",
+        "tag",
+        "op",
+        "claim",
+        "span_start",
+        "span_end",
+        "old",
+        "new",
+        "nll",
+        "fluent"
+      ]
+    },
+    {
+      "file": "DR_H113_veto_measurement.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "op",
+        "claim",
+        "nli_fwd"
+      ]
+    },
+    {
+      "file": "DR_H114_gate_results.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "seed",
+        "c0",
+        "c1",
+        "span",
+        "ltype",
+        "source",
+        "decoded_span",
+        "corrupted",
+        "n_span_tok",
+        "recon",
+        "degen",
+        "hit_eos",
+        "nli_fwd"
+      ]
+    },
+    {
+      "file": "DR_H115_gate_results.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "seed",
+        "c0",
+        "c1",
+        "true_span",
+        "ltype",
+        "source",
+        "arm",
+        "p",
+        "cell",
+        "n_span_tok",
+        "decoded_span",
+        "corrupted",
+        "drift",
+        "degen"
+      ]
+    },
+    {
+      "file": "DR_H116_subgate_docs.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "doc_id",
+        "register",
+        "n_tok",
+        "n_sent",
+        "k_drawn",
+        "n_spans",
+        "splice_intact",
+        "doc_degen",
+        "doc_clean",
+        "doc_corrupt"
+      ]
+    },
+    {
+      "file": "DR_H116_subgate_spans.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "doc_id",
+        "register",
+        "sent_index",
+        "sent_start",
+        "sent_end",
+        "seed",
+        "claim",
+        "span_start",
+        "span_end",
+        "orig_span",
+        "new_span",
+        "locus_type",
+        "source",
+        "degen"
+      ]
+    },
+    {
+      "file": "DR_judged.parquet",
+      "class": "SUPPLY_OR_INTERMEDIATE",
+      "reason": "a pool or intermediate a builder draws from; not itself read as an instrument",
+      "columns": [
+        "jidx",
+        "engine",
+        "seed_id",
+        "tag",
+        "register",
+        "seed",
+        "chunk",
+        "claim",
+        "span_start",
+        "span_end",
+        "orig_span_start",
+        "orig_span_end",
+        "orig_span",
+        "new_span"
+      ]
+    },
+    {
+      "file": "DR_lane.parquet",
+      "class": "TRAINING_MEMBER_OR_LANE",
+      "reason": "phase-1 scope - a member of the training mix or a lane, verified by its own contract agent",
+      "columns": [
+        "seed_id",
+        "engine",
+        "long_form",
+        "seed",
+        "chunk",
+        "claim",
+        "delta",
+        "severity",
+        "nli_fwd",
+        "nli_bwd",
+        "pair_id",
+        "role",
+        "text",
+        "label"
+      ]
+    },
+    {
+      "file": "DR_pilot_longform.FAILED.parquet",
+      "class": "SUPPLY_OR_INTERMEDIATE",
+      "reason": "a pool or intermediate a builder draws from; not itself read as an instrument",
+      "columns": [
+        "engine",
+        "seed_id",
+        "tag",
+        "register",
+        "seed",
+        "chunk",
+        "claim",
+        "span_start",
+        "span_end",
+        "orig_span_start",
+        "orig_span_end",
+        "orig_span",
+        "new_span",
+        "locus_type"
+      ]
+    },
+    {
+      "file": "DR_pilot_longform.attempt1.parquet",
+      "class": "SUPPLY_OR_INTERMEDIATE",
+      "reason": "a pool or intermediate a builder draws from; not itself read as an instrument",
+      "columns": [
+        "engine",
+        "seed_id",
+        "tag",
+        "register",
+        "seed",
+        "chunk",
+        "claim",
+        "span_start",
+        "span_end",
+        "orig_span_start",
+        "orig_span_end",
+        "orig_span",
+        "new_span",
+        "locus_type"
+      ]
+    },
+    {
+      "file": "DR_pilot_longform.parquet",
+      "class": "SUPPLY_OR_INTERMEDIATE",
+      "reason": "a pool or intermediate a builder draws from; not itself read as an instrument",
+      "columns": [
+        "engine",
+        "seed_id",
+        "tag",
+        "register",
+        "seed",
+        "chunk",
+        "claim",
+        "span_start",
+        "span_end",
+        "orig_span_start",
+        "orig_span_end",
+        "orig_span",
+        "new_span",
+        "locus_type"
+      ]
+    },
+    {
+      "file": "DR_pilot_raw.parquet",
+      "class": "SUPPLY_OR_INTERMEDIATE",
+      "reason": "a pool or intermediate a builder draws from; not itself read as an instrument",
+      "columns": [
+        "engine",
+        "seed_id",
+        "tag",
+        "register",
+        "seed",
+        "chunk",
+        "claim",
+        "span_start",
+        "span_end",
+        "orig_span_start",
+        "orig_span_end",
+        "orig_span",
+        "new_span",
+        "locus_type"
+      ]
+    },
+    {
+      "file": "R10-H108_pairs.parquet",
+      "class": "TRAINING_MEMBER_OR_LANE",
+      "reason": "phase-1 scope - a member of the training mix or a lane, verified by its own contract agent",
+      "columns": [
+        "claim",
+        "chunk",
+        "label",
+        "tag"
+      ]
+    },
+    {
+      "file": "R10-H111_judge_validation.parquet",
+      "class": "SUPPLY_OR_INTERMEDIATE",
+      "reason": "a pool or intermediate a builder draws from; not itself read as an instrument",
+      "columns": [
+        "claim",
+        "chunk",
+        "label",
+        "tag",
+        "seed",
+        "p",
+        "nll",
+        "distinct3",
+        "maxrun",
+        "charrun",
+        "symdens",
+        "nli_fwd",
+        "nli_bwd",
+        "delta"
+      ]
+    },
+    {
+      "file": "R10-H111_pairs_final.parquet",
+      "class": "TRAINING_MEMBER_OR_LANE",
+      "reason": "phase-1 scope - a member of the training mix or a lane, verified by its own contract agent",
+      "columns": [
+        "claim",
+        "chunk",
+        "label",
+        "tag",
+        "seed",
+        "p",
+        "nll",
+        "distinct3",
+        "maxrun",
+        "charrun",
+        "symdens",
+        "nli_fwd",
+        "nli_bwd",
+        "delta"
+      ]
+    },
+    {
+      "file": "R10-H111_stage0b_recons.parquet",
+      "class": "SUPPLY_OR_INTERMEDIATE",
+      "reason": "a pool or intermediate a builder draws from; not itself read as an instrument",
+      "columns": [
+        "seed",
+        "register",
+        "p",
+        "reconstruction",
+        "nll",
+        "distinct3",
+        "maxrun",
+        "nli_fwd",
+        "nli_bwd",
+        "verdict"
+      ]
+    },
+    {
+      "file": "R10-H111_stage1_judged.parquet",
+      "class": "TRAINING_MEMBER_OR_LANE",
+      "reason": "phase-1 scope - a member of the training mix or a lane, verified by its own contract agent",
+      "columns": [
+        "claim",
+        "chunk",
+        "label",
+        "tag",
+        "seed",
+        "p",
+        "nll",
+        "distinct3",
+        "maxrun",
+        "charrun",
+        "symdens",
+        "nli_fwd",
+        "nli_bwd",
+        "delta"
+      ]
+    },
+    {
+      "file": "R10-H111_stage1_pairs.parquet",
+      "class": "TRAINING_MEMBER_OR_LANE",
+      "reason": "phase-1 scope - a member of the training mix or a lane, verified by its own contract agent",
+      "columns": [
+        "claim",
+        "chunk",
+        "label",
+        "tag",
+        "seed",
+        "p",
+        "nll",
+        "distinct3",
+        "maxrun",
+        "charrun",
+        "symdens",
+        "nli_fwd",
+        "nli_bwd"
+      ]
+    },
+    {
+      "file": "R11-H117_heldout_pairs.parquet",
+      "class": "VERIFIED",
+      "reason": "h117_heldout_pairs",
+      "columns": [
+        "seed_id",
+        "engine",
+        "long_form",
+        "delta",
+        "severity",
+        "seed",
+        "chunk",
+        "claim",
+        "verbatim"
+      ]
+    },
+    {
+      "file": "R12-H121_gateA_lex.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "subset",
+        "resp_idx",
+        "sent_idx",
+        "label",
+        "resp_label",
+        "win_idx",
+        "doc_idx",
+        "win_in_doc",
+        "n_win_in_doc",
+        "char_offset",
+        "doc_len",
+        "score",
+        "lex_support_free"
+      ]
+    },
+    {
+      "file": "R12-H121_gateA_scores.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "subset",
+        "resp_idx",
+        "sent_idx",
+        "label",
+        "resp_label",
+        "win_idx",
+        "doc_idx",
+        "win_in_doc",
+        "n_win_in_doc",
+        "char_offset",
+        "doc_len",
+        "score",
+        "sent_text",
+        "win_text"
+      ]
+    },
+    {
+      "file": "R12-H121_gateBC_rows.parquet",
+      "class": "VERIFIED",
+      "reason": "r12_h121_gateBC_rows",
+      "columns": [
+        "source",
+        "claim",
+        "window",
+        "doc_len",
+        "p_lex",
+        "p_pos",
+        "share_numeral",
+        "share_4gram",
+        "flag_entity",
+        "flag_charoverlap",
+        "flag_contentrecall",
+        "shared_caps",
+        "partial_ratio",
+        "content_recall"
+      ]
+    },
+    {
+      "file": "R12-H121_gateB_eyeball_sample.parquet",
+      "class": "SUPPLY_OR_INTERMEDIATE",
+      "reason": "a pool or intermediate a builder draws from; not itself read as an instrument",
+      "columns": [
+        "claim",
+        "window",
+        "source",
+        "filter_setting",
+        "auto_purity_flags",
+        "shared_caps",
+        "partial_ratio",
+        "content_recall",
+        "p_lex"
+      ]
+    },
+    {
+      "file": "R13-H125_composites_h108d1.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "subset",
+        "resp_idx",
+        "sent_idx",
+        "win_a",
+        "win_b",
+        "is_top2",
+        "comp_score"
+      ]
+    },
+    {
+      "file": "R13-H128_lane.parquet",
+      "class": "TRAINING_MEMBER_OR_LANE",
+      "reason": "phase-1 scope - a member of the training mix or a lane, verified by its own contract agent",
+      "columns": [
+        "claim",
+        "chunk",
+        "label",
+        "tag"
+      ]
+    },
+    {
+      "file": "R13-H128_sample_pairs.parquet",
+      "class": "SUPPLY_OR_INTERMEDIATE",
+      "reason": "a pool or intermediate a builder draws from; not itself read as an instrument",
+      "columns": [
+        "pair_id",
+        "wice_id",
+        "split",
+        "label",
+        "claim_title",
+        "claim",
+        "positive_evidence",
+        "negative_evidence",
+        "negative_type",
+        "n_evidence_sentences",
+        "deleted_sentence",
+        "swapped_in_sentence",
+        "swap_jaccard"
+      ]
+    },
+    {
+      "file": "R13-H129_gate_sample.parquet",
+      "class": "SUPPLY_OR_INTERMEDIATE",
+      "reason": "a pool or intermediate a builder draws from; not itself read as an instrument",
+      "columns": [
+        "row_id",
+        "key_hash",
+        "label",
+        "tag",
+        "p_d1",
+        "p_d2",
+        "abs_diff"
+      ]
+    },
+    {
+      "file": "R13-H129_teacher_targets.parquet",
+      "class": "TRAINING_MEMBER_OR_LANE",
+      "reason": "phase-1 scope - a member of the training mix or a lane, verified by its own contract agent",
+      "columns": [
+        "row_id",
+        "key_hash",
+        "label",
+        "p_d1",
+        "p_d2",
+        "p_teacher"
+      ]
+    },
+    {
+      "file": "R13_dump_h105d1.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "subset",
+        "resp_idx",
+        "sent_idx",
+        "label",
+        "resp_label",
+        "win_idx",
+        "doc_idx",
+        "win_in_doc",
+        "n_win_in_doc",
+        "char_offset",
+        "doc_len",
+        "score",
+        "sent_text",
+        "win_text"
+      ]
+    },
+    {
+      "file": "R13_dump_h105d2.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "subset",
+        "resp_idx",
+        "sent_idx",
+        "label",
+        "resp_label",
+        "win_idx",
+        "doc_idx",
+        "win_in_doc",
+        "n_win_in_doc",
+        "char_offset",
+        "doc_len",
+        "score",
+        "sent_text",
+        "win_text"
+      ]
+    },
+    {
+      "file": "R13_dump_h108d1.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "subset",
+        "resp_idx",
+        "sent_idx",
+        "label",
+        "resp_label",
+        "win_idx",
+        "doc_idx",
+        "win_in_doc",
+        "n_win_in_doc",
+        "char_offset",
+        "doc_len",
+        "score",
+        "sent_text",
+        "win_text"
+      ]
+    },
+    {
+      "file": "R13_dump_h108d2.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "subset",
+        "resp_idx",
+        "sent_idx",
+        "label",
+        "resp_label",
+        "win_idx",
+        "doc_idx",
+        "win_in_doc",
+        "n_win_in_doc",
+        "char_offset",
+        "doc_len",
+        "score",
+        "sent_text",
+        "win_text"
+      ]
+    },
+    {
+      "file": "R14-H133_antigaming_set.parquet",
+      "class": "VERIFIED",
+      "reason": "a per-arm build of the anti-gaming instrument; content compared against the reference set in mechanism_evals_antigaming_supp.json",
+      "columns": [
+        "kind",
+        "family",
+        "table_id",
+        "claim_pos",
+        "claim_neg",
+        "pos__R14_H133_arm_draw2",
+        "neg__R14_H133_arm_draw2",
+        "pos__R9_H105_mmbert_dann_clean",
+        "neg__R9_H105_mmbert_dann_clean"
+      ]
+    },
+    {
+      "file": "R14-H133_antigaming_traced.parquet",
+      "class": "VERIFIED",
+      "reason": "antigaming_traced",
+      "columns": [
+        "claim",
+        "chunk",
+        "label",
+        "tag",
+        "pair_id",
+        "kind",
+        "family",
+        "table_id",
+        "trace",
+        "claim_untraced",
+        "asserted_value",
+        "table_value"
+      ]
+    },
+    {
+      "file": "R14-H133_antigaming_traced_scores.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "pair_id",
+        "kind",
+        "family",
+        "label",
+        "table_id",
+        "score__R14_H133_arm_draw1",
+        "score__R9_H105_mmbert_dann_clean"
+      ]
+    },
+    {
+      "file": "R14-H133_lane.parquet",
+      "class": "TRAINING_MEMBER_OR_LANE",
+      "reason": "phase-1 scope - a member of the training mix or a lane, verified by its own contract agent",
+      "columns": [
+        "claim",
+        "chunk",
+        "label",
+        "tag",
+        "pair_id",
+        "block",
+        "asserted_value",
+        "arm",
+        "pair_shape",
+        "serial_form",
+        "doc_id",
+        "source",
+        "column",
+        "column_b"
+      ]
+    },
+    {
+      "file": "R14-H133_lane.v1-DEFECTIVE.parquet",
+      "class": "TRAINING_MEMBER_OR_LANE",
+      "reason": "phase-1 scope - a member of the training mix or a lane, verified by its own contract agent",
+      "columns": [
+        "claim",
+        "chunk",
+        "label",
+        "tag",
+        "pair_id",
+        "block",
+        "asserted_value",
+        "claim_template",
+        "arm",
+        "serial_form",
+        "doc_id",
+        "source",
+        "column",
+        "column_b"
+      ]
+    },
+    {
+      "file": "R14-H133_lane.v2-SUPERSEDED.parquet",
+      "class": "TRAINING_MEMBER_OR_LANE",
+      "reason": "phase-1 scope - a member of the training mix or a lane, verified by its own contract agent",
+      "columns": [
+        "claim",
+        "chunk",
+        "label",
+        "tag",
+        "pair_id",
+        "block",
+        "asserted_value",
+        "claim_template",
+        "arm",
+        "serial_form",
+        "doc_id",
+        "source",
+        "column",
+        "column_b"
+      ]
+    },
+    {
+      "file": "R14-H133_probe_scores.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "dtype",
+        "table_id",
+        "b__R14_H133_arm_draw2",
+        "c__R14_H133_arm_draw2",
+        "b__R9_H105_mmbert_dann_clean",
+        "c__R9_H105_mmbert_dann_clean"
+      ]
+    },
+    {
+      "file": "R14_E3_truncated_matrix.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "config",
+        "family",
+        "era",
+        "lane",
+        "covidqa",
+        "delucionqa",
+        "emanual",
+        "expertqa",
+        "finqa",
+        "hagrid",
+        "hotpotqa",
+        "pubmedqa",
+        "tatqa",
+        "techqa"
+      ]
+    },
+    {
+      "file": "R14_E3_windowed_matrix.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "config",
+        "family",
+        "era",
+        "lane",
+        "covidqa",
+        "delucionqa",
+        "emanual",
+        "expertqa",
+        "finqa",
+        "hagrid",
+        "hotpotqa",
+        "pubmedqa",
+        "tatqa",
+        "techqa"
+      ]
+    },
+    {
+      "file": "R14_H130_dump_drc1.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "subset",
+        "resp_idx",
+        "sent_idx",
+        "label",
+        "resp_label",
+        "win_idx",
+        "doc_idx",
+        "win_in_doc",
+        "n_win_in_doc",
+        "char_offset",
+        "doc_len",
+        "score",
+        "sent_text",
+        "win_text"
+      ]
+    },
+    {
+      "file": "R14_H130_dump_drc2.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "subset",
+        "resp_idx",
+        "sent_idx",
+        "label",
+        "resp_label",
+        "win_idx",
+        "doc_idx",
+        "win_in_doc",
+        "n_win_in_doc",
+        "char_offset",
+        "doc_len",
+        "score",
+        "sent_text",
+        "win_text"
+      ]
+    },
+    {
+      "file": "R14_H130_dump_mgn1.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "subset",
+        "resp_idx",
+        "sent_idx",
+        "label",
+        "resp_label",
+        "win_idx",
+        "doc_idx",
+        "win_in_doc",
+        "n_win_in_doc",
+        "char_offset",
+        "doc_len",
+        "score",
+        "sent_text",
+        "win_text"
+      ]
+    },
+    {
+      "file": "R14_H133_triples.parquet",
+      "class": "SUPPLY_OR_INTERMEDIATE",
+      "reason": "a pool or intermediate a builder draws from; not itself read as an instrument",
+      "columns": [
+        "table_id",
+        "column",
+        "claim_a",
+        "claim_b",
+        "claim_c",
+        "v_correct",
+        "v_wrong",
+        "score_a",
+        "score_b",
+        "score_c"
+      ]
+    },
+    {
+      "file": "R15_L1_bindprobe_pairs.parquet",
+      "class": "VERIFIED",
+      "reason": "r15_bindprobe",
+      "columns": [
+        "arm",
+        "table_id",
+        "column",
+        "claim_pos",
+        "claim_neg",
+        "v_pos",
+        "v_neg",
+        "both_present",
+        "score_pos",
+        "score_neg"
+      ]
+    },
+    {
+      "file": "R15_L1_bindprobe_pairs_R10-H108-lane-draw1.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "arm",
+        "table_id",
+        "column",
+        "claim_pos",
+        "claim_neg",
+        "v_pos",
+        "v_neg",
+        "both_present",
+        "score_pos",
+        "score_neg"
+      ]
+    },
+    {
+      "file": "R15_P1_typeprobe_quads.parquet",
+      "class": "VERIFIED",
+      "reason": "r15_typeprobe",
+      "columns": [
+        "dtype",
+        "table_id",
+        "column",
+        "claim_a",
+        "claim_b",
+        "claim_c",
+        "claim_d",
+        "v_b",
+        "v_c",
+        "v_d",
+        "score_a",
+        "score_b",
+        "score_c",
+        "score_d"
+      ]
+    },
+    {
+      "file": "R15_P1_typeprobe_topup_quads.parquet",
+      "class": "VERIFIED",
+      "reason": "r15_typeprobe (concatenated)",
+      "columns": [
+        "dtype",
+        "table_id",
+        "column",
+        "claim_a",
+        "claim_b",
+        "claim_c",
+        "claim_d",
+        "v_b",
+        "v_c",
+        "v_d",
+        "score_a",
+        "score_b",
+        "score_c",
+        "score_d"
+      ]
+    },
+    {
+      "file": "R15_P4_family_scores.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "table_id",
+        "family",
+        "claim_ok",
+        "claim_bad",
+        "v_ok",
+        "v_bad",
+        "score_ok",
+        "score_bad"
+      ]
+    },
+    {
+      "file": "R15_gate_B1_scores.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "dtype",
+        "table_id",
+        "v_b",
+        "v_c",
+        "b__R9_H105_draw2",
+        "c__R9_H105_draw2",
+        "b__R10_H108_lane_draw1",
+        "c__R10_H108_lane_draw1"
+      ]
+    },
+    {
+      "file": "R15_gate_B2_absent_flags.parquet",
+      "class": "SUPPLY_OR_INTERMEDIATE",
+      "reason": "a pool or intermediate a builder draws from; not itself read as an instrument",
+      "columns": [
+        "claim",
+        "chunk",
+        "label",
+        "tag",
+        "has_num",
+        "absent"
+      ]
+    },
+    {
+      "file": "R15_gate_B2_sample.parquet",
+      "class": "SUPPLY_OR_INTERMEDIATE",
+      "reason": "a pool or intermediate a builder draws from; not itself read as an instrument",
+      "columns": [
+        "idx",
+        "label",
+        "tag",
+        "has_num",
+        "absent",
+        "score",
+        "arm"
+      ]
+    },
+    {
+      "file": "R15_gate_B4_pairs.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "table_id",
+        "column",
+        "alt_column",
+        "claim_pos",
+        "claim_neg",
+        "v_pos",
+        "v_neg",
+        "digits_pos",
+        "digits_neg",
+        "pos__R9_H105_mmbert_dann_clean",
+        "neg__R9_H105_mmbert_dann_clean",
+        "pos__R10_H108_lane_draw1",
+        "neg__R10_H108_lane_draw1"
+      ]
+    },
+    {
+      "file": "R15_gate_B5_scores.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "table_id",
+        "v_correct",
+        "v_wrong",
+        "pair_tokens_b",
+        "a__R9_H105_mmbert_dann_clean",
+        "b__R9_H105_mmbert_dann_clean",
+        "c__R9_H105_mmbert_dann_clean",
+        "a__R9_H105_draw2",
+        "b__R9_H105_draw2",
+        "c__R9_H105_draw2",
+        "a__R10_H108_lane_draw1",
+        "b__R10_H108_lane_draw1",
+        "c__R10_H108_lane_draw1",
+        "a__R10_H108_lane_draw2"
+      ]
+    },
+    {
+      "file": "R15_gate_B5arm8_candidates.parquet",
+      "class": "SUPPLY_OR_INTERMEDIATE",
+      "reason": "a pool or intermediate a builder draws from; not itself read as an instrument",
+      "columns": [
+        "source",
+        "row_id",
+        "label_raw",
+        "claim_pos",
+        "claim_neg",
+        "evidence",
+        "op",
+        "a",
+        "b",
+        "v_correct",
+        "v_wrong",
+        "a_neg",
+        "b_neg"
+      ]
+    },
+    {
+      "file": "R15_gate_B5arm8_judged.parquet",
+      "class": "SUPPLY_OR_INTERMEDIATE",
+      "reason": "a pool or intermediate a builder draws from; not itself read as an instrument",
+      "columns": [
+        "i",
+        "source",
+        "row_id",
+        "label_raw",
+        "claim_pos",
+        "claim_neg",
+        "evidence",
+        "op",
+        "a",
+        "b",
+        "v_correct",
+        "v_wrong",
+        "a_neg",
+        "b_neg"
+      ]
+    },
+    {
+      "file": "R15_gate_B5arm8_scored.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "source",
+        "row_id",
+        "label_raw",
+        "claim_pos",
+        "claim_neg",
+        "op",
+        "a",
+        "b",
+        "v_correct",
+        "v_wrong",
+        "a_neg",
+        "b_neg",
+        "judge_verdict",
+        "verified"
+      ]
+    },
+    {
+      "file": "R15_gate_B6_pairs.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "arm",
+        "table_id",
+        "column",
+        "claim",
+        "origin",
+        "v_asserted",
+        "cell_orig",
+        "cell_repl",
+        "table_has_total_row",
+        "score_pos",
+        "score_neg"
+      ]
+    },
+    {
+      "file": "R16-H142-T-d2_antigaming_set.parquet",
+      "class": "VERIFIED",
+      "reason": "a per-arm build of the anti-gaming instrument; content compared against the reference set in mechanism_evals_antigaming_supp.json",
+      "columns": [
+        "kind",
+        "family",
+        "table_id",
+        "claim_pos",
+        "claim_neg",
+        "pos__R16_H142_T_d2_arm_draw2",
+        "neg__R16_H142_T_d2_arm_draw2",
+        "pos__R9_H105_mmbert_dann_clean",
+        "neg__R9_H105_mmbert_dann_clean"
+      ]
+    },
+    {
+      "file": "R16-H142-T_antigaming_set.parquet",
+      "class": "VERIFIED",
+      "reason": "a per-arm build of the anti-gaming instrument; content compared against the reference set in mechanism_evals_antigaming_supp.json",
+      "columns": [
+        "kind",
+        "family",
+        "table_id",
+        "claim_pos",
+        "claim_neg",
+        "pos__R16_H142_T_arm_draw1",
+        "neg__R16_H142_T_arm_draw1",
+        "pos__R9_H105_mmbert_dann_clean",
+        "neg__R9_H105_mmbert_dann_clean"
+      ]
+    },
+    {
+      "file": "R17-H143_evalset.parquet",
+      "class": "OWNED_BY_ANOTHER_AGENT",
+      "reason": "being assessed by another agent",
+      "columns": [
+        "pair_id",
+        "claim",
+        "chunk",
+        "label",
+        "neg_family",
+        "tag",
+        "claim_form",
+        "operand_a",
+        "operand_b",
+        "control"
+      ]
+    },
+    {
+      "file": "R17-H143_evalset_source.parquet",
+      "class": "TRAINING_MEMBER_OR_LANE",
+      "reason": "phase-1 scope - a member of the training mix or a lane, verified by its own contract agent",
+      "columns": [
+        "claim",
+        "chunk",
+        "label",
+        "tag",
+        "pair_id",
+        "block",
+        "asserted_value",
+        "claim_template",
+        "arm",
+        "serial_form",
+        "doc_id",
+        "source",
+        "column",
+        "column_b"
+      ]
+    },
+    {
+      "file": "R17-H143_scores.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "model",
+        "pair_id",
+        "label",
+        "control",
+        "neg_family",
+        "claim_form",
+        "margin",
+        "margin_floored",
+        "verdict",
+        "free_verdict",
+        "parse_fail",
+        "forced_answer",
+        "answer_text",
+        "gen_text"
+      ]
+    },
+    {
+      "file": "R17-H144_ctrlval.parquet",
+      "class": "SUPPLY_OR_INTERMEDIATE",
+      "reason": "a pool or intermediate a builder draws from; not itself read as an instrument",
+      "columns": [
+        "pair_id",
+        "label",
+        "claim",
+        "verdict",
+        "think",
+        "chunk",
+        "doc_id",
+        "source",
+        "neg_family",
+        "tag",
+        "claim_form",
+        "serial_form",
+        "column",
+        "key_a"
+      ]
+    },
+    {
+      "file": "R17-H144_lookup.parquet",
+      "class": "SUPPLY_OR_INTERMEDIATE",
+      "reason": "a pool or intermediate a builder draws from; not itself read as an instrument",
+      "columns": [
+        "pair_id",
+        "label",
+        "claim",
+        "verdict",
+        "think",
+        "chunk",
+        "doc_id",
+        "source",
+        "neg_family",
+        "tag",
+        "claim_form",
+        "serial_form",
+        "column",
+        "key_a"
+      ]
+    },
+    {
+      "file": "R17-H144_pairs.parquet",
+      "class": "TRAINING_MEMBER_OR_LANE",
+      "reason": "phase-1 scope - a member of the training mix or a lane, verified by its own contract agent",
+      "columns": [
+        "pair_id",
+        "claim",
+        "chunk",
+        "label",
+        "neg_family",
+        "doc_id",
+        "source",
+        "tag",
+        "block",
+        "asserted_value",
+        "claim_template",
+        "dtype",
+        "claim_form",
+        "arm"
+      ]
+    },
+    {
+      "file": "R17-H144_selector_scores.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "model",
+        "pair_id",
+        "label",
+        "control",
+        "neg_family",
+        "claim_form",
+        "margin",
+        "margin_floored",
+        "verdict",
+        "free_verdict",
+        "parse_fail",
+        "forced_answer",
+        "answer_text",
+        "gen_text"
+      ]
+    },
+    {
+      "file": "R17-H144_student_c2_scores.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "model",
+        "pair_id",
+        "label",
+        "control",
+        "neg_family",
+        "claim_form",
+        "margin",
+        "margin_floored",
+        "verdict",
+        "free_verdict",
+        "parse_fail",
+        "forced_answer",
+        "answer_text",
+        "gen_text"
+      ]
+    },
+    {
+      "file": "R17-H144_student_scores.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "model",
+        "pair_id",
+        "label",
+        "control",
+        "neg_family",
+        "claim_form",
+        "margin",
+        "margin_floored",
+        "verdict",
+        "free_verdict",
+        "parse_fail",
+        "forced_answer",
+        "answer_text",
+        "gen_text"
+      ]
+    },
+    {
+      "file": "R17-H144_traces.parquet",
+      "class": "SUPPLY_OR_INTERMEDIATE",
+      "reason": "a pool or intermediate a builder draws from; not itself read as an instrument",
+      "columns": [
+        "pair_id",
+        "label",
+        "neg_family",
+        "doc_id",
+        "dtype",
+        "think",
+        "think_closed",
+        "n_think_tokens",
+        "n_gen_tokens",
+        "verdict",
+        "free_verdict",
+        "parse_fail",
+        "accepted"
+      ]
+    },
+    {
+      "file": "R17-H145_antigaming_set.parquet",
+      "class": "VERIFIED",
+      "reason": "a per-arm build of the anti-gaming instrument; content compared against the reference set in mechanism_evals_antigaming_supp.json",
+      "columns": [
+        "kind",
+        "family",
+        "table_id",
+        "claim_pos",
+        "claim_neg",
+        "pos__R17_H145_arm_draw1",
+        "neg__R17_H145_arm_draw1",
+        "pos__R9_H105_mmbert_dann_clean",
+        "neg__R9_H105_mmbert_dann_clean"
+      ]
+    },
+    {
+      "file": "R17-H145_probe_scores.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "dtype",
+        "table_id",
+        "b__R17_H145_arm_draw1",
+        "c__R17_H145_arm_draw1",
+        "b__R9_H105_mmbert_dann_clean",
+        "c__R9_H105_mmbert_dann_clean"
+      ]
+    },
+    {
+      "file": "R17-H145_scaleunit.parquet",
+      "class": "TRAINING_MEMBER_OR_LANE",
+      "reason": "phase-1 scope - a member of the training mix or a lane, verified by its own contract agent",
+      "columns": [
+        "pair_id",
+        "claim",
+        "chunk",
+        "label",
+        "swap_family",
+        "direction",
+        "doc_id",
+        "source",
+        "value",
+        "unit_pos",
+        "unit_neg",
+        "dimension",
+        "tag",
+        "block"
+      ]
+    },
+    {
+      "file": "R17-H146_antigaming_set.parquet",
+      "class": "VERIFIED",
+      "reason": "a per-arm build of the anti-gaming instrument; content compared against the reference set in mechanism_evals_antigaming_supp.json",
+      "columns": [
+        "kind",
+        "family",
+        "table_id",
+        "claim_pos",
+        "claim_neg",
+        "pos__R17_H146_arm_draw1",
+        "neg__R17_H146_arm_draw1",
+        "pos__R9_H105_mmbert_dann_clean",
+        "neg__R9_H105_mmbert_dann_clean"
+      ]
+    },
+    {
+      "file": "R17-H146_lane.parquet",
+      "class": "TRAINING_MEMBER_OR_LANE",
+      "reason": "phase-1 scope - a member of the training mix or a lane, verified by its own contract agent",
+      "columns": [
+        "pair_id",
+        "label",
+        "claim",
+        "cited_value",
+        "chunk",
+        "neg_family",
+        "direction",
+        "doc_id",
+        "source",
+        "column",
+        "column_index",
+        "row_key",
+        "row_index",
+        "correct_value"
+      ]
+    },
+    {
+      "file": "R17-H146_lane_conformed.parquet",
+      "class": "TRAINING_MEMBER_OR_LANE",
+      "reason": "phase-1 scope - a member of the training mix or a lane, verified by its own contract agent",
+      "columns": [
+        "pair_id",
+        "label",
+        "claim",
+        "cited_value",
+        "chunk",
+        "neg_family",
+        "direction",
+        "doc_id",
+        "source",
+        "column",
+        "column_index",
+        "row_key",
+        "row_index",
+        "correct_value"
+      ]
+    },
+    {
+      "file": "R17-H146_probe_scores.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "dtype",
+        "table_id",
+        "b__R17_H146_arm_draw1",
+        "c__R17_H146_arm_draw1",
+        "b__R9_H105_mmbert_dann_clean",
+        "c__R9_H105_mmbert_dann_clean"
+      ]
+    },
+    {
+      "file": "R17-H147_item_scores.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "subset",
+        "checkpoint",
+        "item",
+        "label",
+        "score",
+        "max_sent_score",
+        "sent_score_spread",
+        "min_sent_idx",
+        "min_sent_rel_pos",
+        "min_sent_is_discourse",
+        "min_sent_lex_overlap",
+        "min_sent_chars",
+        "min_sent_argmax_doc",
+        "n_distinct_argmax_docs"
+      ]
+    },
+    {
+      "file": "R17-H148_blocks.parquet",
+      "class": "SUPPLY_OR_INTERMEDIATE",
+      "reason": "a pool or intermediate a builder draws from; not itself read as an instrument",
+      "columns": [
+        "corpus",
+        "doc_id",
+        "page",
+        "heading",
+        "item_numbers",
+        "item_texts",
+        "n_items"
+      ]
+    },
+    {
+      "file": "R17-H148_probe.parquet",
+      "class": "VERIFIED",
+      "reason": "h148_itemindex_probe",
+      "columns": [
+        "pair_id",
+        "label",
+        "claim",
+        "surface_parity",
+        "asserted_value",
+        "chunk",
+        "neg_family",
+        "direction",
+        "item_index",
+        "cited_item_index",
+        "correct_value",
+        "cited_value",
+        "doc_id",
+        "corpus"
+      ]
+    },
+    {
+      "file": "R17-H149_audit_sample.parquet",
+      "class": "SUPPLY_OR_INTERMEDIATE",
+      "reason": "a pool or intermediate a builder draws from; not itself read as an instrument",
+      "columns": [
+        "pair_id",
+        "neg_family",
+        "corpus",
+        "source_sent",
+        "positive",
+        "negative"
+      ]
+    },
+    {
+      "file": "R17-H149_passages.parquet",
+      "class": "SUPPLY_OR_INTERMEDIATE",
+      "reason": "a pool or intermediate a builder draws from; not itself read as an instrument",
+      "columns": [
+        "corpus",
+        "doc_id",
+        "passage_id",
+        "title",
+        "text",
+        "n_sent"
+      ]
+    },
+    {
+      "file": "R17-H149_probe.parquet",
+      "class": "VERIFIED",
+      "reason": "h149_roleswap_probe",
+      "columns": [
+        "pair_id",
+        "label",
+        "claim",
+        "chunk",
+        "fold_doc",
+        "neg_family",
+        "direction",
+        "corpus",
+        "doc_id",
+        "passage_id",
+        "source_sent",
+        "lemma",
+        "subst_from",
+        "subst_to"
+      ]
+    },
+    {
+      "file": "R18-H150-d2_antigaming_set.parquet",
+      "class": "VERIFIED",
+      "reason": "a per-arm build of the anti-gaming instrument; content compared against the reference set in mechanism_evals_antigaming_supp.json",
+      "columns": [
+        "kind",
+        "family",
+        "table_id",
+        "claim_pos",
+        "claim_neg",
+        "pos__R18_H150_d2_arm_draw2",
+        "neg__R18_H150_d2_arm_draw2",
+        "pos__R9_H105_mmbert_dann_clean",
+        "neg__R9_H105_mmbert_dann_clean"
+      ]
+    },
+    {
+      "file": "R18-H150-d2_probe_scores.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "dtype",
+        "table_id",
+        "b__R18_H150_d2_arm_draw2",
+        "c__R18_H150_d2_arm_draw2",
+        "b__R9_H105_mmbert_dann_clean",
+        "c__R9_H105_mmbert_dann_clean"
+      ]
+    },
+    {
+      "file": "R18-H150_antigaming_set.parquet",
+      "class": "VERIFIED",
+      "reason": "antigaming_nearmiss_bindrow (the reference set; the other 13 per-arm files are compared against it in mechanism_evals_antigaming_supp.json)",
+      "columns": [
+        "kind",
+        "family",
+        "table_id",
+        "claim_pos",
+        "claim_neg",
+        "pos__R18_H150_arm_draw1",
+        "neg__R18_H150_arm_draw1",
+        "pos__R9_H105_mmbert_dann_clean",
+        "neg__R9_H105_mmbert_dann_clean"
+      ]
+    },
+    {
+      "file": "R18-H150_edgar_admitted.parquet",
+      "class": "SUPPLY_OR_INTERMEDIATE",
+      "reason": "a pool or intermediate a builder draws from; not itself read as an instrument",
+      "columns": [
+        "doc_id",
+        "cik",
+        "year",
+        "shard",
+        "window_index",
+        "chunk",
+        "n_magnitude_words",
+        "magnitude_words",
+        "has_pp",
+        "has_pct",
+        "has_scale_caption"
+      ]
+    },
+    {
+      "file": "R18-H150_edgar_chunks.parquet",
+      "class": "SUPPLY_OR_INTERMEDIATE",
+      "reason": "a pool or intermediate a builder draws from; not itself read as an instrument",
+      "columns": [
+        "doc_id",
+        "cik",
+        "year",
+        "shard",
+        "window_index",
+        "chunk",
+        "n_magnitude_words",
+        "magnitude_words",
+        "has_pp",
+        "has_pct",
+        "has_scale_caption"
+      ]
+    },
+    {
+      "file": "R18-H150_probe_scores.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "dtype",
+        "table_id",
+        "b__R18_H150_arm_draw1",
+        "c__R18_H150_arm_draw1",
+        "b__R9_H105_mmbert_dann_clean",
+        "c__R9_H105_mmbert_dann_clean"
+      ]
+    },
+    {
+      "file": "R18-H150_scaleunit_lane.parquet",
+      "class": "TRAINING_MEMBER_OR_LANE",
+      "reason": "phase-1 scope - a member of the training mix or a lane, verified by its own contract agent",
+      "columns": [
+        "pair_id",
+        "label",
+        "claim",
+        "cited_unit",
+        "chunk",
+        "doc_id",
+        "source",
+        "column",
+        "column_index",
+        "row_key",
+        "row_index",
+        "cited_value",
+        "correct_unit",
+        "wrong_unit"
+      ]
+    },
+    {
+      "file": "R18-H150_unitswap_probe.parquet",
+      "class": "VERIFIED",
+      "reason": "h150_unitswap_probe",
+      "columns": [
+        "pair_id",
+        "label",
+        "claim",
+        "cited_unit",
+        "chunk",
+        "doc_id",
+        "source",
+        "column",
+        "column_index",
+        "row_key",
+        "row_index",
+        "cited_value",
+        "correct_unit",
+        "wrong_unit"
+      ]
+    },
+    {
+      "file": "R18-H151_scores_1142.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "subset",
+        "item_id",
+        "sentence_id",
+        "window_id",
+        "score",
+        "label",
+        "n_windows_in_sentence",
+        "checkpoint_seed"
+      ]
+    },
+    {
+      "file": "R18-H151_scores_2142.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "subset",
+        "item_id",
+        "sentence_id",
+        "window_id",
+        "score",
+        "label",
+        "n_windows_in_sentence",
+        "checkpoint_seed"
+      ]
+    },
+    {
+      "file": "R18-H152-d1_antigaming_set.parquet",
+      "class": "VERIFIED",
+      "reason": "a per-arm build of the anti-gaming instrument; content compared against the reference set in mechanism_evals_antigaming_supp.json",
+      "columns": [
+        "kind",
+        "family",
+        "table_id",
+        "claim_pos",
+        "claim_neg",
+        "pos__R18_H152_d1_arm_draw1",
+        "neg__R18_H152_d1_arm_draw1",
+        "pos__R9_H105_mmbert_dann_clean",
+        "neg__R9_H105_mmbert_dann_clean"
+      ]
+    },
+    {
+      "file": "R18-H152-d2_antigaming_set.parquet",
+      "class": "VERIFIED",
+      "reason": "a per-arm build of the anti-gaming instrument; content compared against the reference set in mechanism_evals_antigaming_supp.json",
+      "columns": [
+        "kind",
+        "family",
+        "table_id",
+        "claim_pos",
+        "claim_neg",
+        "pos__R18_H152_d2_arm_draw2",
+        "neg__R18_H152_d2_arm_draw2",
+        "pos__R9_H105_mmbert_dann_clean",
+        "neg__R9_H105_mmbert_dann_clean"
+      ]
+    },
+    {
+      "file": "R18-H155-d1_antigaming_set.parquet",
+      "class": "VERIFIED",
+      "reason": "a per-arm build of the anti-gaming instrument; content compared against the reference set in mechanism_evals_antigaming_supp.json",
+      "columns": [
+        "kind",
+        "family",
+        "table_id",
+        "claim_pos",
+        "claim_neg",
+        "pos__R18_H155_d1_arm_draw1",
+        "neg__R18_H155_d1_arm_draw1",
+        "pos__R9_H105_mmbert_dann_clean",
+        "neg__R9_H105_mmbert_dann_clean"
+      ]
+    },
+    {
+      "file": "R18-H155-d2_antigaming_set.parquet",
+      "class": "VERIFIED",
+      "reason": "a per-arm build of the anti-gaming instrument; content compared against the reference set in mechanism_evals_antigaming_supp.json",
+      "columns": [
+        "kind",
+        "family",
+        "table_id",
+        "claim_pos",
+        "claim_neg",
+        "pos__R18_H155_d2_arm_draw2",
+        "neg__R18_H155_d2_arm_draw2",
+        "pos__R9_H105_mmbert_dann_clean",
+        "neg__R9_H105_mmbert_dann_clean"
+      ]
+    },
+    {
+      "file": "R18-H156_antigaming_set.parquet",
+      "class": "VERIFIED",
+      "reason": "a per-arm build of the anti-gaming instrument; content compared against the reference set in mechanism_evals_antigaming_supp.json",
+      "columns": [
+        "kind",
+        "family",
+        "table_id",
+        "claim_pos",
+        "claim_neg",
+        "pos__R18_H156_arm_draw1",
+        "neg__R18_H156_arm_draw1",
+        "pos__R9_H105_mmbert_dann_clean",
+        "neg__R9_H105_mmbert_dann_clean"
+      ]
+    },
+    {
+      "file": "R18-H156_probe_scores.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "dtype",
+        "table_id",
+        "b__R18_H156_arm_draw1",
+        "c__R18_H156_arm_draw1",
+        "b__R9_H105_mmbert_dann_clean",
+        "c__R9_H105_mmbert_dann_clean"
+      ]
+    },
+    {
+      "file": "R18-H157_finqa_items.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "draw",
+        "item",
+        "label",
+        "sent_idx",
+        "sentence",
+        "score",
+        "is_sinking",
+        "argmax_doc",
+        "argmax_win",
+        "argmax_win_char0",
+        "argmax_win_char1",
+        "argmax_window_text",
+        "response_score",
+        "n_sent_item"
+      ]
+    },
+    {
+      "file": "R18-H157_finqa_items_draw1.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "draw",
+        "item",
+        "label",
+        "sent_idx",
+        "sentence",
+        "score",
+        "is_sinking",
+        "argmax_doc",
+        "argmax_win",
+        "argmax_win_char0",
+        "argmax_win_char1",
+        "argmax_window_text",
+        "response_score",
+        "n_sent_item"
+      ]
+    },
+    {
+      "file": "R18-H157_finqa_items_draw2.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "draw",
+        "item",
+        "label",
+        "sent_idx",
+        "sentence",
+        "score",
+        "is_sinking",
+        "argmax_doc",
+        "argmax_win",
+        "argmax_win_char0",
+        "argmax_win_char1",
+        "argmax_window_text",
+        "response_score",
+        "n_sent_item"
+      ]
+    },
+    {
+      "file": "R19-H159_antigaming_set.parquet",
+      "class": "VERIFIED",
+      "reason": "a per-arm build of the anti-gaming instrument; content compared against the reference set in mechanism_evals_antigaming_supp.json",
+      "columns": [
+        "kind",
+        "family",
+        "table_id",
+        "claim_pos",
+        "claim_neg",
+        "pos__R19_H159_arm_draw1",
+        "neg__R19_H159_arm_draw1",
+        "pos__R9_H105_mmbert_dann_clean",
+        "neg__R9_H105_mmbert_dann_clean"
+      ]
+    },
+    {
+      "file": "R19-H159_probe_scores.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "dtype",
+        "table_id",
+        "b__R19_H159_arm_draw1",
+        "c__R19_H159_arm_draw1",
+        "b__R9_H105_mmbert_dann_clean",
+        "c__R9_H105_mmbert_dann_clean"
+      ]
+    },
+    {
+      "file": "R19-H160-soupB_antigaming_set.parquet",
+      "class": "VERIFIED",
+      "reason": "a per-arm build of the anti-gaming instrument; content compared against the reference set in mechanism_evals_antigaming_supp.json",
+      "columns": [
+        "kind",
+        "family",
+        "table_id",
+        "claim_pos",
+        "claim_neg",
+        "pos__R19_H160_soupB_arm_draw1",
+        "neg__R19_H160_soupB_arm_draw1",
+        "pos__R9_H105_mmbert_dann_clean",
+        "neg__R9_H105_mmbert_dann_clean"
+      ]
+    },
+    {
+      "file": "R19-H160-soupB_probe_scores.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "dtype",
+        "table_id",
+        "b__R19_H160_soupB_arm_draw1",
+        "c__R19_H160_soupB_arm_draw1",
+        "b__R9_H105_mmbert_dann_clean",
+        "c__R9_H105_mmbert_dann_clean"
+      ]
+    },
+    {
+      "file": "R19-H161_L2_items.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "checkpoint",
+        "subset",
+        "item",
+        "label",
+        "error_type",
+        "score",
+        "threshold",
+        "rule_class",
+        "final_class",
+        "near_copy_verbatim",
+        "max_common_ngram",
+        "tok_containment",
+        "tok_jaccard",
+        "support_fit"
+      ]
+    },
+    {
+      "file": "R19-H161_L3_sample.parquet",
+      "class": "SUPPLY_OR_INTERMEDIATE",
+      "reason": "a pool or intermediate a builder draws from; not itself read as an instrument",
+      "columns": [
+        "row_id",
+        "group",
+        "register",
+        "rank_in_group",
+        "label",
+        "n_windows",
+        "win_idx",
+        "sentence",
+        "window"
+      ]
+    },
+    {
+      "file": "R19-H161_features.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "subset",
+        "item_id",
+        "label",
+        "n_sent_item",
+        "sent_idx",
+        "n_win_sent",
+        "doc_idx",
+        "win_idx",
+        "tok_jaccard",
+        "tok_containment",
+        "num_containment",
+        "max_common_ngram",
+        "n_num_sent",
+        "char_len_sent"
+      ]
+    },
+    {
+      "file": "R19-H161_pairs_h150d1.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "subset",
+        "item_id",
+        "label",
+        "n_sent_item",
+        "sent_idx",
+        "n_win_sent",
+        "doc_idx",
+        "win_idx",
+        "logit",
+        "is_argmax",
+        "sent_score",
+        "item_score",
+        "is_sinking",
+        "tok_jaccard"
+      ]
+    },
+    {
+      "file": "R19-H161_pairs_h150d2.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "subset",
+        "item_id",
+        "label",
+        "n_sent_item",
+        "sent_idx",
+        "n_win_sent",
+        "doc_idx",
+        "win_idx",
+        "logit",
+        "is_argmax",
+        "sent_score",
+        "item_score",
+        "is_sinking",
+        "tok_jaccard"
+      ]
+    },
+    {
+      "file": "R19-H161_pairs_h159d1.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "subset",
+        "item_id",
+        "label",
+        "n_sent_item",
+        "sent_idx",
+        "n_win_sent",
+        "doc_idx",
+        "win_idx",
+        "logit",
+        "is_argmax",
+        "sent_score",
+        "item_score",
+        "is_sinking",
+        "tok_jaccard"
+      ]
+    },
+    {
+      "file": "R19-H162_hotpotqa_families.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "item_id",
+        "sent_idx",
+        "label",
+        "sent",
+        "hop_class",
+        "cont_top1",
+        "cont_union2",
+        "smax",
+        "n_anchors",
+        "docs_needed",
+        "argmax_on_best_doc",
+        "win_margin",
+        "family",
+        "has_compare_marker"
+      ]
+    },
+    {
+      "file": "R19-H162_hotpotqa_sentences.parquet",
+      "class": "SUPPLY_OR_INTERMEDIATE",
+      "reason": "a pool or intermediate a builder draws from; not itself read as an instrument",
+      "columns": [
+        "item_id",
+        "sent_idx",
+        "label",
+        "sent",
+        "n_docs",
+        "n_anchors",
+        "n_matched_anchors",
+        "docs_needed",
+        "cover_docs",
+        "best_doc",
+        "cont_top1",
+        "cont_top2",
+        "cont_union2",
+        "cont_gain2"
+      ]
+    },
+    {
+      "file": "R19-H162_procedural_errors.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "subset",
+        "item_id",
+        "label",
+        "item_score",
+        "threshold",
+        "error_kind",
+        "sink_sent_idx",
+        "sink_score",
+        "sink_n_win",
+        "sink_tok_containment",
+        "sink_num_containment",
+        "sink_sent_text",
+        "sink_argmax_window"
+      ]
+    },
+    {
+      "file": "R19-H162_procedural_geometry.parquet",
+      "class": "SUPPLY_OR_INTERMEDIATE",
+      "reason": "a pool or intermediate a builder draws from; not itself read as an instrument",
+      "columns": [
+        "subset",
+        "item_id",
+        "sent_idx",
+        "sent_text"
+      ]
+    },
+    {
+      "file": "R19-H162_pubmedqa_sent_h150d1.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "item_id",
+        "sent_idx",
+        "label",
+        "n_sent_item",
+        "sent_score",
+        "item_score",
+        "is_sinking",
+        "doc_idx",
+        "tok_containment",
+        "tok_jaccard",
+        "num_containment",
+        "max_common_ngram",
+        "is_meta",
+        "is_absence"
+      ]
+    },
+    {
+      "file": "R19-H162_pubmedqa_sentlabel.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "item_id",
+        "sent_idx",
+        "sentence",
+        "ann_key",
+        "align_sim",
+        "sent_unsupported",
+        "explanation",
+        "containment",
+        "label",
+        "sent_score",
+        "tok_containment",
+        "cls"
+      ]
+    },
+    {
+      "file": "R19-H162_pubmedqa_sents.parquet",
+      "class": "SUPPLY_OR_INTERMEDIATE",
+      "reason": "a pool or intermediate a builder draws from; not itself read as an instrument",
+      "columns": [
+        "item",
+        "label",
+        "sent_idx",
+        "n_sent_item",
+        "sentence",
+        "n_chars",
+        "n_nums",
+        "n_nums_absent",
+        "has_pval",
+        "has_ci",
+        "has_hedge",
+        "has_neg",
+        "has_compar",
+        "has_causal"
+      ]
+    },
+    {
+      "file": "R19-H163_instrument_audit.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "probe_file",
+        "arena_file",
+        "checkpoint",
+        "scale_unit_arm",
+        "verbatim_mean_arm",
+        "auroc_a_vs_b_arm",
+        "bind_col_arm",
+        "compare_arm",
+        "bind_row_arm",
+        "tier1_difference",
+        "tier1_ratio",
+        "tier1_pct_change",
+        "tier1_sum",
+        "mean"
+      ]
+    },
+    {
+      "file": "R19_attributionbench_lane.parquet",
+      "class": "TRAINING_MEMBER_OR_LANE",
+      "reason": "phase-1 scope - a member of the training mix or a lane, verified by its own contract agent",
+      "columns": [
+        "pair_id",
+        "claim",
+        "chunk",
+        "label",
+        "doc_id",
+        "source",
+        "tag",
+        "src_dataset",
+        "question",
+        "ab_id",
+        "n_references"
+      ]
+    },
+    {
+      "file": "R19_factscore_lane.parquet",
+      "class": "TRAINING_MEMBER_OR_LANE",
+      "reason": "phase-1 scope - a member of the training mix or a lane, verified by its own contract agent",
+      "columns": [
+        "pair_id",
+        "claim",
+        "chunk",
+        "label",
+        "doc_id",
+        "source",
+        "tag",
+        "sentence",
+        "sentence_is_relevant",
+        "wiki_oldid",
+        "wiki_rev_timestamp"
+      ]
+    },
+    {
+      "file": "R19_fava_lane.parquet",
+      "class": "TRAINING_MEMBER_OR_LANE",
+      "reason": "phase-1 scope - a member of the training mix or a lane, verified by its own contract agent",
+      "columns": [
+        "pair_id",
+        "claim",
+        "chunk",
+        "label",
+        "doc_id",
+        "source",
+        "tag",
+        "n_spans",
+        "error_types",
+        "spans_json",
+        "completion_tagged",
+        "reconstruction_matches_draft"
+      ]
+    },
+    {
+      "file": "R19_findver_lane.parquet",
+      "class": "VERIFIED",
+      "reason": "findver",
+      "columns": [
+        "pair_id",
+        "claim",
+        "chunk",
+        "label",
+        "doc_id",
+        "source",
+        "tag",
+        "example_id",
+        "subset",
+        "explanation",
+        "context_ids",
+        "all_contexts_resolved"
+      ]
+    },
+    {
+      "file": "R19_minicheck_lane.parquet",
+      "class": "TRAINING_MEMBER_OR_LANE",
+      "reason": "phase-1 scope - a member of the training mix or a lane, verified by its own contract agent",
+      "columns": [
+        "pair_id",
+        "claim",
+        "chunk",
+        "label",
+        "doc_id",
+        "source",
+        "tag"
+      ]
+    },
+    {
+      "file": "R19_pubhealth_lane.parquet",
+      "class": "TRAINING_MEMBER_OR_LANE",
+      "reason": "phase-1 scope - a member of the training mix or a lane, verified by its own contract agent",
+      "columns": [
+        "pair_id",
+        "claim",
+        "chunk",
+        "label",
+        "doc_id",
+        "source",
+        "tag",
+        "verdict",
+        "explanation",
+        "fact_checkers",
+        "subjects",
+        "date_published"
+      ]
+    },
+    {
+      "file": "R20-G0b_composed_probes.parquet",
+      "class": "VERIFIED",
+      "reason": "g0b_composed_probes",
+      "columns": [
+        "pair_id",
+        "family",
+        "leg",
+        "label",
+        "claim",
+        "doc_a",
+        "doc_b",
+        "table_id_a",
+        "table_id_b",
+        "join_key",
+        "score"
+      ]
+    },
+    {
+      "file": "R20-H174_lane_L1.parquet",
+      "class": "TRAINING_MEMBER_OR_LANE",
+      "reason": "phase-1 scope - a member of the training mix or a lane, verified by its own contract agent",
+      "columns": [
+        "pair_id",
+        "label",
+        "claim",
+        "chunk",
+        "doc_id",
+        "source",
+        "tag",
+        "framed",
+        "neg_family",
+        "pos_family",
+        "frame_head",
+        "frame_prefix",
+        "genuine_claim"
+      ]
+    },
+    {
+      "file": "R20-H174_lane_L2.parquet",
+      "class": "TRAINING_MEMBER_OR_LANE",
+      "reason": "phase-1 scope - a member of the training mix or a lane, verified by its own contract agent",
+      "columns": [
+        "pair_id",
+        "label",
+        "claim",
+        "chunk",
+        "truth_in_pool",
+        "pool_doc_ids",
+        "tag",
+        "neg_family",
+        "source",
+        "doc_id",
+        "pool_depth",
+        "distractors",
+        "swap_doc_id"
+      ]
+    },
+    {
+      "file": "R20-H174_lane_L2_conformed.parquet",
+      "class": "TRAINING_MEMBER_OR_LANE",
+      "reason": "phase-1 scope - a member of the training mix or a lane, verified by its own contract agent",
+      "columns": [
+        "pair_id",
+        "label",
+        "claim",
+        "chunk",
+        "truth_in_pool",
+        "pool_doc_ids",
+        "tag",
+        "neg_family",
+        "source",
+        "doc_id",
+        "pool_depth",
+        "distractors",
+        "swap_doc_id"
+      ]
+    },
+    {
+      "file": "R20-H174_lane_L4.parquet",
+      "class": "TRAINING_MEMBER_OR_LANE",
+      "reason": "phase-1 scope - a member of the training mix or a lane, verified by its own contract agent",
+      "columns": [
+        "pair_id",
+        "label",
+        "claim",
+        "chunk",
+        "doc_id",
+        "source",
+        "tag",
+        "neg_family",
+        "depth",
+        "swap_index",
+        "template_id",
+        "true_path",
+        "wrong_path",
+        "value"
+      ]
+    },
+    {
+      "file": "R20-H174_pairs_h174d1.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "subset",
+        "item_id",
+        "label",
+        "n_sent_item",
+        "sent_idx",
+        "n_win_sent",
+        "doc_idx",
+        "win_idx",
+        "logit",
+        "is_argmax",
+        "sent_score",
+        "item_score",
+        "is_sinking",
+        "tok_jaccard"
+      ]
+    },
+    {
+      "file": "R20-H175b_qlane.parquet",
+      "class": "TRAINING_MEMBER_OR_LANE",
+      "reason": "phase-1 scope - a member of the training mix or a lane, verified by its own contract agent",
+      "columns": [
+        "pair_id",
+        "label",
+        "question",
+        "chunk",
+        "claim",
+        "doc_id",
+        "lang",
+        "source",
+        "tag",
+        "neg_family",
+        "unit_id",
+        "unit_size",
+        "true_word",
+        "flip_word"
+      ]
+    },
+    {
+      "file": "R20-H175b_qlane_eval.parquet",
+      "class": "OWNED_BY_ANOTHER_AGENT",
+      "reason": "the withdrawn contaminated eval; used here READ-ONLY as live positive control 3",
+      "columns": [
+        "pair_id",
+        "label",
+        "question",
+        "chunk",
+        "claim",
+        "doc_id",
+        "lang",
+        "source",
+        "tag",
+        "neg_family",
+        "unit_id",
+        "unit_size",
+        "true_word",
+        "flip_word"
+      ]
+    },
+    {
+      "file": "R20-H175b_qlane_eval_clean.parquet",
+      "class": "VERIFIED",
+      "reason": "h175b_eval_clean",
+      "columns": [
+        "pair_id",
+        "label",
+        "question",
+        "chunk",
+        "claim",
+        "doc_id",
+        "lang",
+        "source",
+        "tag",
+        "neg_family",
+        "unit_id",
+        "unit_size",
+        "true_word",
+        "flip_word"
+      ]
+    },
+    {
+      "file": "R20-H175b_qlane_eval_clean_prefix.parquet",
+      "class": "VERIFIED",
+      "reason": "h175b_eval_clean_prefix",
+      "columns": [
+        "pair_id",
+        "label",
+        "question",
+        "chunk",
+        "claim",
+        "doc_id",
+        "lang",
+        "source",
+        "tag",
+        "neg_family",
+        "unit_id",
+        "unit_size",
+        "true_word",
+        "flip_word"
+      ]
+    },
+    {
+      "file": "R20-H175b_qlane_eval_repaired.parquet",
+      "class": "TRAINING_MEMBER_OR_LANE",
+      "reason": "phase-1 scope - a member of the training mix or a lane, verified by its own contract agent",
+      "columns": [
+        "pair_id",
+        "label",
+        "question",
+        "chunk",
+        "claim",
+        "doc_id",
+        "lang",
+        "source",
+        "tag",
+        "neg_family",
+        "unit_id",
+        "unit_size",
+        "true_word",
+        "flip_word"
+      ]
+    },
+    {
+      "file": "R20-H175b_qlane_repaired.parquet",
+      "class": "TRAINING_MEMBER_OR_LANE",
+      "reason": "phase-1 scope - a member of the training mix or a lane, verified by its own contract agent",
+      "columns": [
+        "pair_id",
+        "label",
+        "question",
+        "chunk",
+        "claim",
+        "doc_id",
+        "lang",
+        "source",
+        "tag",
+        "neg_family",
+        "unit_id",
+        "unit_size",
+        "true_word",
+        "flip_word"
+      ]
+    },
+    {
+      "file": "R20-H177_eval_B.parquet",
+      "class": "OWNED_BY_ANOTHER_AGENT",
+      "reason": "being rebuilt by another agent; used here READ-ONLY as live positive control 4 for the document channel",
+      "columns": [
+        "pair_id",
+        "label",
+        "claim",
+        "chunk",
+        "doc_id",
+        "source",
+        "serial_form",
+        "asserted_values",
+        "neg_family",
+        "tag",
+        "true_word",
+        "flip_word",
+        "template_id",
+        "word_pair"
+      ]
+    },
+    {
+      "file": "R20-H177_eval_B_rebuilt.parquet",
+      "class": "OWNED_BY_ANOTHER_AGENT",
+      "reason": "the rebuild in progress, owned by that agent",
+      "columns": [
+        "pair_id",
+        "label",
+        "claim",
+        "chunk",
+        "doc_id",
+        "source",
+        "serial_form",
+        "asserted_values",
+        "neg_family",
+        "tag",
+        "true_word",
+        "flip_word",
+        "template_id",
+        "word_pair"
+      ]
+    },
+    {
+      "file": "R20-H177_eval_C.parquet",
+      "class": "VERIFIED",
+      "reason": "eval_C",
+      "columns": [
+        "pair_id",
+        "label",
+        "claim",
+        "chunk",
+        "doc_id",
+        "source",
+        "tag",
+        "neg_family",
+        "true_word",
+        "flip_word",
+        "template_id",
+        "subject",
+        "counterpart",
+        "asserted_values"
+      ]
+    },
+    {
+      "file": "R20-H177_lane_B.parquet",
+      "class": "TRAINING_MEMBER_OR_LANE",
+      "reason": "phase-1 scope - a member of the training mix or a lane, verified by its own contract agent",
+      "columns": [
+        "pair_id",
+        "label",
+        "claim",
+        "chunk",
+        "doc_id",
+        "source",
+        "serial_form",
+        "asserted_values",
+        "neg_family",
+        "tag",
+        "true_word",
+        "flip_word",
+        "template_id",
+        "word_pair"
+      ]
+    },
+    {
+      "file": "R20-H177_lane_C.parquet",
+      "class": "TRAINING_MEMBER_OR_LANE",
+      "reason": "phase-1 scope - a member of the training mix or a lane, verified by its own contract agent",
+      "columns": [
+        "pair_id",
+        "label",
+        "claim",
+        "chunk",
+        "doc_id",
+        "source",
+        "tag",
+        "neg_family",
+        "true_word",
+        "flip_word",
+        "template_id",
+        "subject",
+        "counterpart",
+        "asserted_values"
+      ]
+    },
+    {
+      "file": "R20-H178_indomain_draw1.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "eval",
+        "item_id",
+        "label",
+        "logit",
+        "containment"
+      ]
+    },
+    {
+      "file": "R20-H178_indomain_draw2.parquet",
+      "class": "SCORE_DUMP",
+      "reason": "carries no (claim, evidence) pair - a model reading OF an instrument rather than an instrument",
+      "columns": [
+        "eval",
+        "item_id",
+        "label",
+        "logit",
+        "containment"
+      ]
+    },
+    {
+      "file": "R21-H179_arena_items.parquet",
+      "class": "ARENA",
+      "reason": "the blind arena, excluded by the task",
+      "columns": [
+        "subset",
+        "item",
+        "row_id",
+        "label",
+        "question",
+        "response",
+        "n_sent",
+        "sentences",
+        "n_docs",
+        "documents",
+        "annotation_json"
+      ]
+    }
+  ],
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+}

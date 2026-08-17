@@ -1,0 +1,896 @@
+{
+  "audit": "R20 gold_full vs training-mix split audit",
+  "question": "is the in-domain held-out set gold_full disjoint from the assembled training mix?",
+  "instrument": {
+    "exact": "polars set / join equality on claim, evidence and (claim, evidence)",
+    "near_duplicate": "provenance_gate.run_gate, R14-H136 ruling-2 form: 8-gram, Jaccard >= 0.3, bidirectional, KILL at 2%, spike control; the TRAINING MIX replaces the arena side so the per-bucket breakdown attributes hits to a DANN group",
+    "thresholds_read_from": "R19_supply_gates.py"
+  },
+  "sides": {
+    "gold_full": {
+      "loader": "R10-H108_lane.gold_full()",
+      "source": "experiments/grounding-semantic/private-rag-forensics/R7-H51_teacher_pairs.parquet",
+      "claims": 2752,
+      "pairs": 123579,
+      "unique_claim_strings": 2699,
+      "unique_chunks": 10228,
+      "label_base_rate": 0.7144,
+      "served_unit_chars": 1500,
+      "max_gold_chunk_chars": 1500
+    },
+    "training_mix": {
+      "loader": "R16-H142_G1_arm.untruncated_evidence() + R10-H108_lane.public_train() + R18-H150_arm_run.LANES",
+      "rows": 721210,
+      "expected_rows": 721210,
+      "reproduces_expected": true,
+      "clean_rows": 685670,
+      "groups": [
+        "halueval",
+        "psiloqa",
+        "quant_misbind",
+        "quant_scale_unit",
+        "ragtruth_cn",
+        "ragtruth_de",
+        "ragtruth_en",
+        "ragtruth_es",
+        "ragtruth_fr",
+        "ragtruth_hu",
+        "ragtruth_it",
+        "ragtruth_pl",
+        "tabfact",
+        "vitaminc"
+      ],
+      "rows_per_group": {
+        "halueval": 40000,
+        "psiloqa": 61712,
+        "quant_misbind": 30000,
+        "quant_scale_unit": 5540,
+        "ragtruth_cn": 15090,
+        "ragtruth_de": 15090,
+        "ragtruth_en": 15090,
+        "ragtruth_es": 15090,
+        "ragtruth_fr": 15090,
+        "ragtruth_hu": 15090,
+        "ragtruth_it": 15090,
+        "ragtruth_pl": 15090,
+        "tabfact": 92585,
+        "vitaminc": 370653
+      },
+      "unique_claim_strings": 521519,
+      "unique_chunks": 359941,
+      "windows": 1068905,
+      "unique_windows": 594250
+    }
+  },
+  "exact_match": {
+    "claims": {
+      "gold_unique_claim_strings": 2699,
+      "gold_claims": 2752,
+      "colliding_unique_claim_strings": 0,
+      "colliding_gold_claims": 0,
+      "fraction_of_gold_claims": 0.0,
+      "per_corpus": {}
+    },
+    "evidence_vs_raw_chunks": {
+      "gold_unique_chunks": 10228,
+      "gold_rows": 123579,
+      "colliding_unique_chunks": 0,
+      "colliding_gold_rows": 0,
+      "colliding_gold_claims": 0,
+      "fraction_of_gold_claims": 0.0,
+      "fraction_of_gold_unique_chunks": 0.0,
+      "per_corpus": {}
+    },
+    "evidence_vs_windows": {
+      "mix_unique_windows": 594250,
+      "colliding_unique_chunks": 0,
+      "colliding_gold_claims": 0,
+      "fraction_of_gold_claims": 0.0,
+      "fraction_of_gold_unique_chunks": 0.0,
+      "per_corpus": {}
+    },
+    "pairs": {
+      "gold_pairs": 123579,
+      "colliding_gold_pairs": 0,
+      "colliding_gold_claims": 0,
+      "fraction_of_gold_pairs": 0.0,
+      "fraction_of_gold_claims": 0.0,
+      "per_corpus": {}
+    }
+  },
+  "provenance": {
+    "gold_identifier_fields": {
+      "R7-H51_teacher_pairs.parquet": [
+        "owner",
+        "claim",
+        "chunk",
+        "rerank",
+        "entail",
+        "neutral",
+        "contradiction",
+        "label",
+        "lang"
+      ],
+      "golden_grounding_evidence_verified.parquet": [
+        "owner",
+        "claim",
+        "source_text",
+        "label",
+        "lang",
+        "user_id",
+        "trace_id",
+        "owner (row index)"
+      ]
+    },
+    "gold_identifier_cardinality": {
+      "trace_id": 639,
+      "user_id": 65,
+      "owner": 2752,
+      "gold_full_claims": 2752
+    },
+    "training_identifier_fields": {
+      "ragtruth_en": {
+        "wandb__RAGTruth-processed__train.parquet": [
+          "id",
+          "query",
+          "context",
+          "output",
+          "task_type",
+          "quality",
+          "model",
+          "temperature",
+          "hallucination_labels",
+          "hallucination_labels_processed",
+          "input_str"
+        ]
+      },
+      "ragtruth_translated": {
+        "KRLabsOrg__ragtruth-cn-translated__train.parquet": [
+          "prompt",
+          "answer",
+          "labels",
+          "task_type",
+          "dataset",
+          "language"
+        ],
+        "KRLabsOrg__ragtruth-de-translated__train.parquet": [
+          "prompt",
+          "answer",
+          "labels",
+          "task_type",
+          "dataset",
+          "language"
+        ],
+        "KRLabsOrg__ragtruth-es-translated__train.parquet": [
+          "prompt",
+          "answer",
+          "labels",
+          "task_type",
+          "dataset",
+          "language"
+        ],
+        "KRLabsOrg__ragtruth-fr-translated__train.parquet": [
+          "prompt",
+          "answer",
+          "labels",
+          "task_type",
+          "dataset",
+          "language"
+        ],
+        "KRLabsOrg__ragtruth-hu-translated__train.parquet": [
+          "prompt",
+          "answer",
+          "labels",
+          "task_type",
+          "dataset",
+          "language"
+        ],
+        "KRLabsOrg__ragtruth-it-translated__train.parquet": [
+          "prompt",
+          "answer",
+          "labels",
+          "task_type",
+          "dataset",
+          "language"
+        ],
+        "KRLabsOrg__ragtruth-pl-translated__train.parquet": [
+          "prompt",
+          "answer",
+          "labels",
+          "task_type",
+          "dataset",
+          "language"
+        ]
+      },
+      "halueval": {
+        "pminervini__HaluEval__dialogue__data.parquet": [
+          "knowledge",
+          "dialogue_history",
+          "right_response",
+          "hallucinated_response"
+        ],
+        "pminervini__HaluEval__general__data.parquet": [
+          "ID",
+          "user_query",
+          "chatgpt_response",
+          "hallucination",
+          "hallucination_spans"
+        ],
+        "pminervini__HaluEval__qa__data.parquet": [
+          "knowledge",
+          "question",
+          "right_answer",
+          "hallucinated_answer"
+        ],
+        "pminervini__HaluEval__summarization__data.parquet": [
+          "document",
+          "right_summary",
+          "hallucinated_summary"
+        ]
+      },
+      "psiloqa": {
+        "s-nlp__PsiloQA__train.parquet": [
+          "id",
+          "lang",
+          "wiki_title",
+          "wiki_url",
+          "llm_checkpoint",
+          "wiki_passage",
+          "question",
+          "golden_answer",
+          "llm_answer",
+          "annotated_span",
+          "complexity",
+          "labels"
+        ]
+      },
+      "vitaminc": {
+        "tals__vitaminc__train.parquet": [
+          "unique_id",
+          "case_id",
+          "wiki_revision_id",
+          "label",
+          "claim",
+          "evidence",
+          "page",
+          "revision_type",
+          "FEVER_id",
+          "big_bench_canary"
+        ]
+      },
+      "tabfact": {
+        "wenhuchen__Table-Fact-Checking__tabfact__train.parquet": [
+          "table_id",
+          "table_caption",
+          "table_text",
+          "statement",
+          "label"
+        ]
+      },
+      "quant_misbind": [
+        "pair_id",
+        "label",
+        "claim",
+        "cited_value",
+        "chunk",
+        "neg_family",
+        "direction",
+        "doc_id",
+        "source",
+        "column",
+        "column_index",
+        "row_key",
+        "row_index",
+        "correct_value",
+        "misbound_column",
+        "misbound_column_index",
+        "misbound_row_key",
+        "misbound_row_index",
+        "surface_parity",
+        "serial_form",
+        "template_id"
+      ],
+      "quant_scale_unit": [
+        "pair_id",
+        "label",
+        "claim",
+        "cited_unit",
+        "chunk",
+        "doc_id",
+        "source",
+        "column",
+        "column_index",
+        "row_key",
+        "row_index",
+        "cited_value",
+        "correct_unit",
+        "wrong_unit",
+        "dimension",
+        "neg_family",
+        "swap_family",
+        "direction",
+        "unit_carrier",
+        "distractor_in_chunk",
+        "surface_parity",
+        "serial_form",
+        "template_id",
+        "tag"
+      ]
+    },
+    "training_identifier_value_sets": {
+      "halueval.ID": 4506,
+      "psiloqa.id": 63792,
+      "psiloqa.wiki_title": 25836,
+      "psiloqa.wiki_url": 25844,
+      "quant_misbind.doc_id": 7514,
+      "quant_misbind.row_key": 11412,
+      "quant_misbind.source": 2,
+      "quant_scale_unit.doc_id": 410,
+      "quant_scale_unit.row_key": 2201,
+      "quant_scale_unit.source": 2,
+      "ragtruth_en.id": 15090,
+      "tabfact.table_id": 13182,
+      "vitaminc.FEVER_id": 25752,
+      "vitaminc.case_id": 112426,
+      "vitaminc.page": 22198,
+      "vitaminc.unique_id": 370653,
+      "vitaminc.wiki_revision_id": 74415
+    },
+    "id_join_possible": false,
+    "id_join_note": "gold_full carries {owner (row index), trace_id, user_id, lang} and NO document / page / revision / corpus identifier. The training corpora carry their own namespaces (ragtruth id, psiloqa id+wiki_title+wiki_url, vitaminc unique_id/case_id/wiki_revision_id/page/FEVER_id, tabfact table_id, lane doc_id). The two namespaces do not intersect by construction, so a provenance JOIN - the channel that caught VitaminC - CANNOT be computed for gold_full. Reported as a measured absence, not substituted with a proxy. What IS executable is the value-set intersection below and the substring scan for gold trace/user ids in mix text.",
+    "id_value_collisions": {},
+    "id_substring_scan": {
+      "needles": 704,
+      "mix_rows_containing_a_gold_id": {
+        "claim": 0,
+        "chunk": 0
+      }
+    }
+  },
+  "near_duplicate": {
+    "claims": {
+      "result": {
+        "instrument": "provenance_gate.py (R13 ruling 4)",
+        "mode": "jaccard",
+        "n": 8,
+        "jaccard_threshold": 0.3,
+        "thresholds": {
+          "warn": 0.005,
+          "kill": 0.02
+        },
+        "candidate": {
+          "label": "goldfull_claims",
+          "n_units": 2699,
+          "n_units_scorable": 2436
+        },
+        "arena": {
+          "subsets": {
+            "quant_misbind": 29699,
+            "ragtruth_en": 14879,
+            "ragtruth_fr": 14880,
+            "ragtruth_hu": 14881,
+            "vitaminc": 175905,
+            "ragtruth_de": 14887,
+            "ragtruth_es": 14879,
+            "ragtruth_cn": 14880,
+            "quant_scale_unit": 5456,
+            "ragtruth_it": 14879,
+            "ragtruth_pl": 14881,
+            "psiloqa": 61468,
+            "tabfact": 92304,
+            "halueval": 37662
+          },
+          "n_units": 521540,
+          "n_units_scorable": 443739
+        },
+        "candidate_vs_arena": {
+          "n_units": 2699,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "per_arena_subset": {
+            "quant_misbind": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "ragtruth_en": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "ragtruth_fr": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "ragtruth_hu": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "vitaminc": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "ragtruth_de": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "ragtruth_es": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "ragtruth_cn": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "quant_scale_unit": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "ragtruth_it": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "ragtruth_pl": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "psiloqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "tabfact": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "halueval": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            }
+          },
+          "best_jaccard": {
+            "max": 0.0185,
+            "p99": 0.0028,
+            "mean": 0.0001
+          }
+        },
+        "arena_vs_candidate": {
+          "n_units": 521540,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "per_arena_subset": {
+            "goldfull_claims": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            }
+          },
+          "best_jaccard": {
+            "max": 0.0185,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "max_fraction": 0.0,
+        "verdict": "PASS",
+        "hit_examples": []
+      },
+      "seconds": 27.8,
+      "spike_control": {
+        "injected": 10,
+        "detected_total": 10,
+        "baseline_hits": 0,
+        "passes": true,
+        "candidate_units": 2000
+      }
+    },
+    "evidence": {
+      "result": {
+        "instrument": "provenance_gate.py (R13 ruling 4)",
+        "mode": "jaccard",
+        "n": 8,
+        "jaccard_threshold": 0.3,
+        "thresholds": {
+          "warn": 0.005,
+          "kill": 0.02
+        },
+        "candidate": {
+          "label": "goldfull_evidence",
+          "n_units": 10228,
+          "n_units_scorable": 10227
+        },
+        "arena": {
+          "subsets": {
+            "ragtruth_it": 49132,
+            "psiloqa": 27437,
+            "tabfact": 17712,
+            "quant_misbind": 12889,
+            "ragtruth_en": 6757,
+            "quant_scale_unit": 2509,
+            "halueval": 56643,
+            "ragtruth_fr": 46304,
+            "ragtruth_pl": 45462,
+            "ragtruth_hu": 41412,
+            "ragtruth_de": 37826,
+            "vitaminc": 185280,
+            "ragtruth_cn": 18786,
+            "ragtruth_es": 48114
+          },
+          "n_units": 596263,
+          "n_units_scorable": 593242
+        },
+        "candidate_vs_arena": {
+          "n_units": 10228,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "per_arena_subset": {
+            "ragtruth_it": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "psiloqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "tabfact": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "quant_misbind": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "ragtruth_en": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "quant_scale_unit": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "halueval": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "ragtruth_fr": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "ragtruth_pl": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "ragtruth_hu": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "ragtruth_de": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "vitaminc": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "ragtruth_cn": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "ragtruth_es": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            }
+          },
+          "best_jaccard": {
+            "max": 0.007,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "arena_vs_candidate": {
+          "n_units": 596263,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "per_arena_subset": {
+            "goldfull_evidence": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            }
+          },
+          "best_jaccard": {
+            "max": 0.007,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "max_fraction": 0.0,
+        "verdict": "PASS",
+        "hit_examples": []
+      },
+      "seconds": 110.3,
+      "spike_control": {
+        "injected": 10,
+        "detected_total": 10,
+        "baseline_hits": 0,
+        "passes": true,
+        "candidate_units": 2000
+      }
+    }
+  },
+  "summary": {
+    "exact_worst_fraction_of_gold_claims": 0.0,
+    "near_duplicate_claims_max_fraction": 0.0,
+    "near_duplicate_claims_verdict": "PASS",
+    "near_duplicate_evidence_max_fraction": 0.0,
+    "near_duplicate_evidence_verdict": "PASS",
+    "spike_controls_pass": true,
+    "provenance_id_join_possible": false,
+    "provenance_id_value_collisions": 0,
+    "real_overlap_control_max_fraction": 0.002258,
+    "real_overlap_control_verdict": "PASS"
+  },
+  "positive_controls": {
+    "why": "the audit returned zero on every channel; these controls establish that the instrument fires on genuine overlap at mix scale, and that the finding which motivated the audit reproduces",
+    "real_overlap_control": {
+      "candidate": "VitaminC official TEST split, deduplicated claims",
+      "candidate_units": 25689,
+      "result": {
+        "instrument": "provenance_gate.py (R13 ruling 4)",
+        "mode": "jaccard",
+        "n": 8,
+        "jaccard_threshold": 0.3,
+        "thresholds": {
+          "warn": 0.005,
+          "kill": 0.02
+        },
+        "candidate": {
+          "label": "vitaminc_test_claims",
+          "n_units": 25689,
+          "n_units_scorable": 19829
+        },
+        "arena": {
+          "subsets": {
+            "quant_scale_unit": 5456,
+            "ragtruth_de": 14887,
+            "ragtruth_es": 14879,
+            "vitaminc": 175905,
+            "ragtruth_pl": 14881,
+            "ragtruth_hu": 14881,
+            "halueval": 37662,
+            "tabfact": 92304,
+            "ragtruth_cn": 14880,
+            "quant_misbind": 29699,
+            "psiloqa": 61468,
+            "ragtruth_fr": 14880,
+            "ragtruth_it": 14879,
+            "ragtruth_en": 14879
+          },
+          "n_units": 521540,
+          "n_units_scorable": 443739
+        },
+        "candidate_vs_arena": {
+          "n_units": 25689,
+          "units_with_hit": 58,
+          "fraction": 0.002258,
+          "per_arena_subset": {
+            "quant_scale_unit": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "ragtruth_de": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "ragtruth_es": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "vitaminc": {
+              "units_with_hit": 57,
+              "fraction": 0.002219
+            },
+            "ragtruth_pl": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "ragtruth_hu": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "halueval": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "tabfact": {
+              "units_with_hit": 1,
+              "fraction": 3.9e-05
+            },
+            "ragtruth_cn": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "quant_misbind": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "psiloqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "ragtruth_fr": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "ragtruth_it": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "ragtruth_en": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            }
+          },
+          "best_jaccard": {
+            "max": 1.0,
+            "p99": 0.1562,
+            "mean": 0.0061
+          }
+        },
+        "arena_vs_candidate": {
+          "n_units": 521540,
+          "units_with_hit": 68,
+          "fraction": 0.00013,
+          "per_arena_subset": {
+            "vitaminc_test_claims": {
+              "units_with_hit": 68,
+              "fraction": 0.00013
+            }
+          },
+          "best_jaccard": {
+            "max": 1.0,
+            "p99": 0.0,
+            "mean": 0.0006
+          }
+        },
+        "max_fraction": 0.002258,
+        "verdict": "PASS",
+        "hit_examples": [
+          {
+            "candidate_unit": 1530,
+            "bucket": "vitaminc",
+            "unit": 10261,
+            "jaccard": 1.0
+          },
+          {
+            "candidate_unit": 2008,
+            "bucket": "vitaminc",
+            "unit": 143641,
+            "jaccard": 0.375
+          },
+          {
+            "candidate_unit": 2009,
+            "bucket": "vitaminc",
+            "unit": 143642,
+            "jaccard": 0.375
+          },
+          {
+            "candidate_unit": 3310,
+            "bucket": "vitaminc",
+            "unit": 22925,
+            "jaccard": 0.4545
+          },
+          {
+            "candidate_unit": 3523,
+            "bucket": "vitaminc",
+            "unit": 64980,
+            "jaccard": 0.3333
+          },
+          {
+            "candidate_unit": 5113,
+            "bucket": "vitaminc",
+            "unit": 10261,
+            "jaccard": 0.75
+          },
+          {
+            "candidate_unit": 6595,
+            "bucket": "vitaminc",
+            "unit": 47877,
+            "jaccard": 0.6667
+          },
+          {
+            "candidate_unit": 6604,
+            "bucket": "vitaminc",
+            "unit": 47900,
+            "jaccard": 0.6667
+          },
+          {
+            "candidate_unit": 6620,
+            "bucket": "vitaminc",
+            "unit": 47989,
+            "jaccard": 0.6
+          },
+          {
+            "candidate_unit": 7327,
+            "bucket": "vitaminc",
+            "unit": 14997,
+            "jaccard": 0.5
+          }
+        ]
+      },
+      "seconds": 26.1,
+      "reference_gold_full_claims_max_fraction": 0.0
+    },
+    "vitaminc_official_split_premise": {
+      "train_rows": 370653,
+      "splits": {
+        "test": {
+          "rows": 55197,
+          "claim": {
+            "distinct_values_shared_with_train": 23,
+            "rows_colliding_with_train": 74
+          },
+          "evidence": {
+            "distinct_values_shared_with_train": 36,
+            "rows_colliding_with_train": 81
+          },
+          "page": {
+            "distinct_values_shared_with_train": 22,
+            "rows_colliding_with_train": 558
+          },
+          "wiki_revision_id": {
+            "distinct_values_shared_with_train": 3,
+            "rows_colliding_with_train": 20724
+          },
+          "unique_id": {
+            "distinct_values_shared_with_train": 0,
+            "rows_colliding_with_train": 0
+          },
+          "case_id": {
+            "distinct_values_shared_with_train": 0,
+            "rows_colliding_with_train": 0
+          }
+        },
+        "validation": {
+          "rows": 63054,
+          "claim": {
+            "distinct_values_shared_with_train": 15,
+            "rows_colliding_with_train": 36
+          },
+          "evidence": {
+            "distinct_values_shared_with_train": 58,
+            "rows_colliding_with_train": 140
+          },
+          "page": {
+            "distinct_values_shared_with_train": 17,
+            "rows_colliding_with_train": 656
+          },
+          "wiki_revision_id": {
+            "distinct_values_shared_with_train": 1,
+            "rows_colliding_with_train": 20764
+          },
+          "unique_id": {
+            "distinct_values_shared_with_train": 0,
+            "rows_colliding_with_train": 0
+          },
+          "case_id": {
+            "distinct_values_shared_with_train": 0,
+            "rows_colliding_with_train": 0
+          }
+        }
+      },
+      "test_plus_validation_rows_colliding_with_train": {
+        "claim": 110,
+        "evidence": 221,
+        "page": 1214,
+        "wiki_revision_id": 41488,
+        "unique_id": 0,
+        "case_id": 0
+      },
+      "wiki_revision_id_detail": {
+        "distinct_shared_values": [
+          "",
+          "840392663",
+          "858690447"
+        ],
+        "rows_with_empty_revision_id_in_test_plus_validation": 41480,
+        "note": "the combined revision-id figure is carried by the EMPTY-STRING sentinel; excluding it leaves only the genuinely shared revision ids listed above"
+      }
+    }
+  }
+}

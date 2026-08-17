@@ -1,0 +1,65 @@
+{
+  "status": "EXECUTOR-ADDED, NON-GATING - C5 itself is NOT-APPLICABLE to a source corpus with no construction. These probes do not join any registered conjunction.",
+  "folds": "GroupKFold(5) on the source document, so the ~6 responses of one document never straddle a fold",
+  "per_language": {
+    "de": {
+      "rows": 15090,
+      "claim_only_auroc": 0.7771,
+      "evidence_only_auroc": 0.6915,
+      "claim_length_auroc": 0.3507,
+      "evidence_length_auroc": 0.4523
+    },
+    "fr": {
+      "rows": 15090,
+      "claim_only_auroc": 0.7777,
+      "evidence_only_auroc": 0.6891,
+      "claim_length_auroc": 0.3489,
+      "evidence_length_auroc": 0.4494
+    },
+    "es": {
+      "rows": 15090,
+      "claim_only_auroc": 0.7799,
+      "evidence_only_auroc": 0.6919,
+      "claim_length_auroc": 0.3469,
+      "evidence_length_auroc": 0.4383
+    },
+    "it": {
+      "rows": 15090,
+      "claim_only_auroc": 0.7789,
+      "evidence_only_auroc": 0.6914,
+      "claim_length_auroc": 0.3516,
+      "evidence_length_auroc": 0.4347
+    },
+    "pl": {
+      "rows": 15090,
+      "claim_only_auroc": 0.7821,
+      "evidence_only_auroc": 0.6909,
+      "claim_length_auroc": 0.3478,
+      "evidence_length_auroc": 0.4299
+    },
+    "hu": {
+      "rows": 15090,
+      "claim_only_auroc": 0.7797,
+      "evidence_only_auroc": 0.694,
+      "claim_length_auroc": 0.3487,
+      "evidence_length_auroc": 0.4323
+    },
+    "cn": {
+      "rows": 15090,
+      "claim_only_auroc": 0.7916,
+      "evidence_only_auroc": 0.6915,
+      "claim_length_auroc": 0.3401,
+      "evidence_length_auroc": 0.3371
+    }
+  },
+  "pooled_summary": {
+    "claim_only_auroc_max": 0.7916,
+    "claim_only_auroc_mean": 0.781,
+    "evidence_only_auroc_max": 0.694,
+    "claim_length_auroc_max_abs_dev_from_0.5": 0.1599,
+    "reference_bars_if_C5_applied": {
+      "claim_only": "< 0.55",
+      "surface_parity": "0.45-0.55"
+    }
+  }
+}

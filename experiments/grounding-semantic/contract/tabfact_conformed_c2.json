@@ -1,0 +1,1007 @@
+{
+  "member": "tabfact_conformed",
+  "clause": "C2 - disjointness from every evaluation surface",
+  "method": "three string forms (raw / truncated 1500 / whitespace-collapsed case-folded) crossed six ways, both directions, on EVIDENCE and CLAIM units; plus the document-id channel on every surface that exposes or can resolve a TabFact table id; plus a content read",
+  "member_profile": {
+    "rows": 86206,
+    "distinct_evidence_untruncated": 12248,
+    "distinct_claims": 85996,
+    "distinct_table_id": 12257,
+    "distinct_table_id_stem": 11882
+  },
+  "surfaces": {
+    "arena_ragbench_10_subsets": {
+      "kind": "blind arena - the 10 RAGBench subsets, banked H77 sample (250 rows/subset seed 0, first 8 document chunks)",
+      "subsets": {
+        "covidqa": 980,
+        "delucionqa": 552,
+        "emanual": 396,
+        "expertqa": 759,
+        "finqa": 725,
+        "hagrid": 703,
+        "hotpotqa": 998,
+        "pubmedqa": 1250,
+        "tatqa": 1032,
+        "techqa": 1250
+      },
+      "evidence": {
+        "surface_units_into_member": {
+          "n_query_units": 6784,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 12248,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "claim_vs_arena_response": {
+        "surface_units_into_member": {
+          "n_query_units": 2260,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 85996,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "document_id_channel": "the arena parquet exposes no table id - no document-level join is computable; the n-gram census under C4 covers that direction"
+    },
+    "gold_full": {
+      "kind": "the held-out gold test surface (R10-H108_lane.gold_full)",
+      "claims": 2752,
+      "chunks": 123579,
+      "evidence": {
+        "surface_units_into_member": {
+          "n_query_units": 10228,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 12248,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "claim": {
+        "surface_units_into_member": {
+          "n_query_units": 2699,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 85996,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "document_id_channel": "gold_full is assembled from R10-H108_pairs.parquet and carries no TabFact document id - not computable"
+    },
+    "R20-H177_eval_B": {
+      "kind": "held-out mechanism eval",
+      "rows": 2000,
+      "evidence": {
+        "surface_units_into_member": {
+          "n_query_units": 736,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 12248,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "claim": {
+        "surface_units_into_member": {
+          "n_query_units": 2000,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 85996,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "document_id_channel": {
+        "surface_tabfact_doc_ids": 325,
+        "exact_table_id_in_member": 0,
+        "STEM_table_id_in_member": 0
+      }
+    },
+    "R20-H177_eval_C": {
+      "kind": "held-out mechanism eval",
+      "rows": 1936,
+      "evidence": {
+        "surface_units_into_member": {
+          "n_query_units": 380,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 12248,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "claim": {
+        "surface_units_into_member": {
+          "n_query_units": 1926,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 85996,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "document_id_channel": {
+        "surface_tabfact_doc_ids": 0,
+        "exact_table_id_in_member": 0,
+        "STEM_table_id_in_member": 0
+      }
+    },
+    "R17-H143_evalset": {
+      "kind": "held-out mechanism eval",
+      "rows": 1050,
+      "evidence": {
+        "surface_units_into_member": {
+          "n_query_units": 547,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 12248,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "claim": {
+        "surface_units_into_member": {
+          "n_query_units": 1048,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 85996,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "document_id_channel": {
+        "recovered_via": "join of the evalset's distinct passages to R17-H143_evalset_source.parquet, which carries doc_id",
+        "surface_tabfact_passages": 356,
+        "surface_tabfact_documents_stems": 350,
+        "STEM_table_id_in_member": 0
+      }
+    },
+    "R20-H175b_qlane_eval": {
+      "kind": "held-out mechanism eval",
+      "rows": 2002,
+      "evidence": {
+        "surface_units_into_member": {
+          "n_query_units": 487,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 12248,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "claim": {
+        "surface_units_into_member": {
+          "n_query_units": 1001,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 85996,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "document_id_channel": {
+        "surface_tabfact_doc_ids": 0,
+        "exact_table_id_in_member": 0,
+        "STEM_table_id_in_member": 0
+      }
+    },
+    "R20-H175b_qlane_eval_repaired": {
+      "kind": "held-out mechanism eval",
+      "rows": 1678,
+      "evidence": {
+        "surface_units_into_member": {
+          "n_query_units": 407,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 12248,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "claim": {
+        "surface_units_into_member": {
+          "n_query_units": 839,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 85996,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "document_id_channel": {
+        "surface_tabfact_doc_ids": 0,
+        "exact_table_id_in_member": 0,
+        "STEM_table_id_in_member": 0
+      }
+    },
+    "R20-H175b_qlane_eval_clean": {
+      "kind": "held-out mechanism eval",
+      "rows": 88,
+      "evidence": {
+        "surface_units_into_member": {
+          "n_query_units": 22,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 12248,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "claim": {
+        "surface_units_into_member": {
+          "n_query_units": 44,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 85996,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "document_id_channel": {
+        "surface_tabfact_doc_ids": 0,
+        "exact_table_id_in_member": 0,
+        "STEM_table_id_in_member": 0
+      }
+    },
+    "R20-H175b_qlane_eval_clean_prefix": {
+      "kind": "held-out mechanism eval",
+      "rows": 32,
+      "evidence": {
+        "surface_units_into_member": {
+          "n_query_units": 8,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 12248,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "claim": {
+        "surface_units_into_member": {
+          "n_query_units": 16,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 85996,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "document_id_channel": {
+        "surface_tabfact_doc_ids": 0,
+        "exact_table_id_in_member": 0,
+        "STEM_table_id_in_member": 0
+      }
+    },
+    "R19_findver_lane": {
+      "kind": "held-out mechanism eval",
+      "rows": 2400,
+      "evidence": {
+        "surface_units_into_member": {
+          "n_query_units": 2370,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 12248,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "claim": {
+        "surface_units_into_member": {
+          "n_query_units": 2400,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 85996,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "document_id_channel": {
+        "surface_tabfact_doc_ids": 0,
+        "exact_table_id_in_member": 0,
+        "STEM_table_id_in_member": 0
+      }
+    },
+    "antigaming_probe_sets": {
+      "kind": "held-out anti-gaming probe sets, built from TabFact test+validation (R14-H133 construction)",
+      "per_file": {
+        "R14-H133_antigaming_set.parquet": {
+          "rows": 1601,
+          "distinct_table_id": 1171,
+          "exact_table_id_in_member": 0,
+          "STEM_table_id_in_member": 0,
+          "claim": {
+            "surface_units_into_member": {
+              "n_query_units": 3187,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            },
+            "member_units_into_surface": {
+              "n_query_units": 85996,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            }
+          }
+        },
+        "R16-H142-T-d2_antigaming_set.parquet": {
+          "rows": 1600,
+          "distinct_table_id": 1186,
+          "exact_table_id_in_member": 0,
+          "STEM_table_id_in_member": 0,
+          "claim": {
+            "surface_units_into_member": {
+              "n_query_units": 3191,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            },
+            "member_units_into_surface": {
+              "n_query_units": 85996,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            }
+          }
+        },
+        "R16-H142-T_antigaming_set.parquet": {
+          "rows": 1600,
+          "distinct_table_id": 1177,
+          "exact_table_id_in_member": 0,
+          "STEM_table_id_in_member": 0,
+          "claim": {
+            "surface_units_into_member": {
+              "n_query_units": 3181,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            },
+            "member_units_into_surface": {
+              "n_query_units": 85996,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            }
+          }
+        },
+        "R17-H145_antigaming_set.parquet": {
+          "rows": 1600,
+          "distinct_table_id": 1184,
+          "exact_table_id_in_member": 0,
+          "STEM_table_id_in_member": 0,
+          "claim": {
+            "surface_units_into_member": {
+              "n_query_units": 3183,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            },
+            "member_units_into_surface": {
+              "n_query_units": 85996,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            }
+          }
+        },
+        "R17-H146_antigaming_set.parquet": {
+          "rows": 1601,
+          "distinct_table_id": 1168,
+          "exact_table_id_in_member": 0,
+          "STEM_table_id_in_member": 0,
+          "claim": {
+            "surface_units_into_member": {
+              "n_query_units": 3185,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            },
+            "member_units_into_surface": {
+              "n_query_units": 85996,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            }
+          }
+        },
+        "R18-H150-d2_antigaming_set.parquet": {
+          "rows": 1600,
+          "distinct_table_id": 1170,
+          "exact_table_id_in_member": 0,
+          "STEM_table_id_in_member": 0,
+          "claim": {
+            "surface_units_into_member": {
+              "n_query_units": 3179,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            },
+            "member_units_into_surface": {
+              "n_query_units": 85996,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            }
+          }
+        },
+        "R18-H150_antigaming_set.parquet": {
+          "rows": 1600,
+          "distinct_table_id": 1177,
+          "exact_table_id_in_member": 0,
+          "STEM_table_id_in_member": 0,
+          "claim": {
+            "surface_units_into_member": {
+              "n_query_units": 3186,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            },
+            "member_units_into_surface": {
+              "n_query_units": 85996,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            }
+          }
+        },
+        "R18-H152-d1_antigaming_set.parquet": {
+          "rows": 1600,
+          "distinct_table_id": 1174,
+          "exact_table_id_in_member": 0,
+          "STEM_table_id_in_member": 0,
+          "claim": {
+            "surface_units_into_member": {
+              "n_query_units": 3190,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            },
+            "member_units_into_surface": {
+              "n_query_units": 85996,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            }
+          }
+        },
+        "R18-H152-d2_antigaming_set.parquet": {
+          "rows": 1601,
+          "distinct_table_id": 1178,
+          "exact_table_id_in_member": 0,
+          "STEM_table_id_in_member": 0,
+          "claim": {
+            "surface_units_into_member": {
+              "n_query_units": 3186,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            },
+            "member_units_into_surface": {
+              "n_query_units": 85996,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            }
+          }
+        },
+        "R18-H155-d1_antigaming_set.parquet": {
+          "rows": 1600,
+          "distinct_table_id": 1185,
+          "exact_table_id_in_member": 0,
+          "STEM_table_id_in_member": 0,
+          "claim": {
+            "surface_units_into_member": {
+              "n_query_units": 3188,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            },
+            "member_units_into_surface": {
+              "n_query_units": 85996,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            }
+          }
+        },
+        "R18-H155-d2_antigaming_set.parquet": {
+          "rows": 1600,
+          "distinct_table_id": 1191,
+          "exact_table_id_in_member": 0,
+          "STEM_table_id_in_member": 0,
+          "claim": {
+            "surface_units_into_member": {
+              "n_query_units": 3184,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            },
+            "member_units_into_surface": {
+              "n_query_units": 85996,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            }
+          }
+        },
+        "R18-H156_antigaming_set.parquet": {
+          "rows": 1600,
+          "distinct_table_id": 1173,
+          "exact_table_id_in_member": 0,
+          "STEM_table_id_in_member": 0,
+          "claim": {
+            "surface_units_into_member": {
+              "n_query_units": 3190,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            },
+            "member_units_into_surface": {
+              "n_query_units": 85996,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            }
+          }
+        },
+        "R19-H159_antigaming_set.parquet": {
+          "rows": 1601,
+          "distinct_table_id": 1174,
+          "exact_table_id_in_member": 0,
+          "STEM_table_id_in_member": 0,
+          "claim": {
+            "surface_units_into_member": {
+              "n_query_units": 3186,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            },
+            "member_units_into_surface": {
+              "n_query_units": 85996,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            }
+          }
+        },
+        "R19-H160-soupB_antigaming_set.parquet": {
+          "rows": 1600,
+          "distinct_table_id": 1185,
+          "exact_table_id_in_member": 0,
+          "STEM_table_id_in_member": 0,
+          "claim": {
+            "surface_units_into_member": {
+              "n_query_units": 3187,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            },
+            "member_units_into_surface": {
+              "n_query_units": 85996,
+              "raw_in_raw": 0,
+              "raw_in_truncated": 0,
+              "truncated_in_raw": 0,
+              "truncated_in_truncated": 0,
+              "normalised_in_normalised_raw": 0,
+              "normalised_in_normalised_truncated": 0,
+              "any_form": 0
+            }
+          }
+        }
+      }
+    },
+    "vitaminc_holdout_SUPERSET": {
+      "kind": "VitaminC test+validation - a strict SUPERSET of the `vitaminc_holdout` eval, so a zero here implies a zero there",
+      "pool_rows": 118251,
+      "evidence": {
+        "surface_units_into_member": {
+          "n_query_units": 54683,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 12248,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      },
+      "claim": {
+        "surface_units_into_member": {
+          "n_query_units": 55139,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        },
+        "member_units_into_surface": {
+          "n_query_units": 85996,
+          "raw_in_raw": 0,
+          "raw_in_truncated": 0,
+          "truncated_in_raw": 0,
+          "truncated_in_truncated": 0,
+          "normalised_in_normalised_raw": 0,
+          "normalised_in_normalised_truncated": 0,
+          "any_form": 0
+        }
+      }
+    }
+  },
+  "content_read_vs_eval_side_tabfact_tables": {
+    "instrument": "banked provenance_gate primitives, 8-gram, best Jaccard per member table against any single eval-side TabFact table",
+    "eval_side_tables": 4264,
+    "member_tables_scored": 12257,
+    "tables_at_jaccard_ge_0.3": 0,
+    "max": 0.29,
+    "p99": 0.1017,
+    "mean": 0.0163
+  },
+  "nonzero_readings": [],
+  "all_string_forms_zero": true,
+  "all_document_channels_zero": true,
+  "elapsed_s": 25.8
+}

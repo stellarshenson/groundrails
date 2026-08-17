@@ -1,0 +1,12 @@
+{
+  "qa": {
+    "pairs_within_10pct_length": 194,
+    "probe": "n<200, not run"
+  },
+  "summarization": {
+    "pairs_within_10pct_length": 1483,
+    "pairs_total": 10000,
+    "claim_only_probe_auroc": 0.9408,
+    "claim_char_length_auroc": 0.493
+  }
+}

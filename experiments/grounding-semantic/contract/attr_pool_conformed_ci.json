@@ -1,0 +1,30 @@
+{
+  "resampling": "4000 bootstrap resamples over the 2221 PAIRS (the two legs of a pair are not independent, so the pair is the unit)",
+  "C1_attestation_gap_full_pool": {
+    "point": 0.1108,
+    "bar": "> 0.10 under the gap reading",
+    "mean": 0.1106,
+    "p2.5": 0.095,
+    "p97.5": 0.127,
+    "sd": 0.0081,
+    "share_of_resamples_above_the_bar": 0.9
+  },
+  "C1_attestation_gap_best_single_passage": {
+    "point": 0.0581,
+    "mean": 0.058,
+    "p2.5": 0.0486,
+    "p97.5": 0.068,
+    "sd": 0.005,
+    "share_of_resamples_above_the_bar": 0.0
+  },
+  "C5_containment_channel_auroc": {
+    "point": 0.5978,
+    "ceiling": 0.55,
+    "mean": 0.5978,
+    "p2.5": 0.5884,
+    "p97.5": 0.6072,
+    "sd": 0.0048,
+    "share_of_resamples_inside_the_C5_band": 0.0
+  },
+  "reading": "a bar cleared by less than its own sampling spread is a pass that would not survive a redraw; a bar missed by more than its spread is a fail that would"
+}

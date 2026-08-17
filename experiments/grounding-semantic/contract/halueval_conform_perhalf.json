@@ -1,0 +1,1586 @@
+{
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates.",
+  "what": "largest subset clearing every leg of C5 pooled AND on both halves, with each half at or above 400 rows so a per-half reading is a reading",
+  "bars": {
+    "claim_only": 0.55,
+    "within_pair": 0.6,
+    "surface_parity_barred_channels": [
+      0.45,
+      0.55
+    ],
+    "minimum_rows_per_half": 400
+  },
+  "levels": {
+    "per_half_peel_shape_margin@0.005": {
+      "rows": 200,
+      "half_composition": {
+        "summarization": 100,
+        "qa": 100
+      },
+      "skipped": "a half is below the minimum"
+    },
+    "per_half_peel_shape_margin@0.010": {
+      "rows": 400,
+      "half_composition": {
+        "summarization": 200,
+        "qa": 200
+      },
+      "skipped": "a half is below the minimum"
+    },
+    "per_half_peel_shape_margin@0.015": {
+      "rows": 600,
+      "half_composition": {
+        "summarization": 300,
+        "qa": 300
+      },
+      "skipped": "a half is below the minimum"
+    },
+    "per_half_peel_shape_margin@0.020": {
+      "strategy": "per_half_peel_shape_margin",
+      "retention_pairs_per_half": 0.02,
+      "rows": 800,
+      "pairs": 400,
+      "retention_of_member_rows": 0.02,
+      "half_composition": {
+        "summarization": 400,
+        "qa": 400
+      },
+      "surface_parity": {
+        "all": {
+          "auroc": {
+            "claim_char_length": 0.4441,
+            "claim_token_count": 0.4463,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.8775
+          },
+          "worst_barred_deviation": 0.0559,
+          "pass": false
+        },
+        "qa": {
+          "auroc": {
+            "claim_char_length": 0.4786,
+            "claim_token_count": 0.4885,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.925
+          },
+          "worst_barred_deviation": 0.0214,
+          "pass": true
+        },
+        "summarization": {
+          "auroc": {
+            "claim_char_length": 0.2976,
+            "claim_token_count": 0.2966,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.7382
+          },
+          "worst_barred_deviation": 0.2034,
+          "pass": false
+        }
+      },
+      "clears_surface_parity_pooled_and_both_halves": false,
+      "clears_every_leg_of_C5": false
+    },
+    "per_half_peel_shape_margin@0.030": {
+      "strategy": "per_half_peel_shape_margin",
+      "retention_pairs_per_half": 0.03,
+      "rows": 1200,
+      "pairs": 600,
+      "retention_of_member_rows": 0.03,
+      "half_composition": {
+        "qa": 600,
+        "summarization": 600
+      },
+      "surface_parity": {
+        "all": {
+          "auroc": {
+            "claim_char_length": 0.4252,
+            "claim_token_count": 0.4293,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.8708
+          },
+          "worst_barred_deviation": 0.0748,
+          "pass": false
+        },
+        "qa": {
+          "auroc": {
+            "claim_char_length": 0.3933,
+            "claim_token_count": 0.409,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.9234
+          },
+          "worst_barred_deviation": 0.1067,
+          "pass": false
+        },
+        "summarization": {
+          "auroc": {
+            "claim_char_length": 0.3089,
+            "claim_token_count": 0.3098,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.7378
+          },
+          "worst_barred_deviation": 0.1911,
+          "pass": false
+        }
+      },
+      "clears_surface_parity_pooled_and_both_halves": false,
+      "clears_every_leg_of_C5": false
+    },
+    "per_half_peel_shape_margin@0.040": {
+      "strategy": "per_half_peel_shape_margin",
+      "retention_pairs_per_half": 0.04,
+      "rows": 1600,
+      "pairs": 800,
+      "retention_of_member_rows": 0.04,
+      "half_composition": {
+        "qa": 800,
+        "summarization": 800
+      },
+      "surface_parity": {
+        "all": {
+          "auroc": {
+            "claim_char_length": 0.4079,
+            "claim_token_count": 0.4131,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.8651
+          },
+          "worst_barred_deviation": 0.0921,
+          "pass": false
+        },
+        "qa": {
+          "auroc": {
+            "claim_char_length": 0.3355,
+            "claim_token_count": 0.3557,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.9215
+          },
+          "worst_barred_deviation": 0.1645,
+          "pass": false
+        },
+        "summarization": {
+          "auroc": {
+            "claim_char_length": 0.2976,
+            "claim_token_count": 0.2989,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.7375
+          },
+          "worst_barred_deviation": 0.2024,
+          "pass": false
+        }
+      },
+      "clears_surface_parity_pooled_and_both_halves": false,
+      "clears_every_leg_of_C5": false
+    },
+    "per_half_peel_shape_margin@0.060": {
+      "strategy": "per_half_peel_shape_margin",
+      "retention_pairs_per_half": 0.06,
+      "rows": 2400,
+      "pairs": 1200,
+      "retention_of_member_rows": 0.06,
+      "half_composition": {
+        "summarization": 1200,
+        "qa": 1200
+      },
+      "surface_parity": {
+        "all": {
+          "auroc": {
+            "claim_char_length": 0.3928,
+            "claim_token_count": 0.3979,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.8639
+          },
+          "worst_barred_deviation": 0.1072,
+          "pass": false
+        },
+        "qa": {
+          "auroc": {
+            "claim_char_length": 0.2725,
+            "claim_token_count": 0.2915,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.9321
+          },
+          "worst_barred_deviation": 0.2275,
+          "pass": false
+        },
+        "summarization": {
+          "auroc": {
+            "claim_char_length": 0.3012,
+            "claim_token_count": 0.3028,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.7315
+          },
+          "worst_barred_deviation": 0.1988,
+          "pass": false
+        }
+      },
+      "clears_surface_parity_pooled_and_both_halves": false,
+      "clears_every_leg_of_C5": false
+    },
+    "per_half_peel_shape_margin@0.080": {
+      "strategy": "per_half_peel_shape_margin",
+      "retention_pairs_per_half": 0.08,
+      "rows": 3200,
+      "pairs": 1600,
+      "retention_of_member_rows": 0.08,
+      "half_composition": {
+        "qa": 1600,
+        "summarization": 1600
+      },
+      "surface_parity": {
+        "all": {
+          "auroc": {
+            "claim_char_length": 0.3783,
+            "claim_token_count": 0.3829,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.8619
+          },
+          "worst_barred_deviation": 0.1217,
+          "pass": false
+        },
+        "qa": {
+          "auroc": {
+            "claim_char_length": 0.2216,
+            "claim_token_count": 0.2374,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.932
+          },
+          "worst_barred_deviation": 0.2784,
+          "pass": false
+        },
+        "summarization": {
+          "auroc": {
+            "claim_char_length": 0.2945,
+            "claim_token_count": 0.2974,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.7336
+          },
+          "worst_barred_deviation": 0.2055,
+          "pass": false
+        }
+      },
+      "clears_surface_parity_pooled_and_both_halves": false,
+      "clears_every_leg_of_C5": false
+    },
+    "per_half_peel_shape_margin@0.100": {
+      "strategy": "per_half_peel_shape_margin",
+      "retention_pairs_per_half": 0.1,
+      "rows": 4000,
+      "pairs": 2000,
+      "retention_of_member_rows": 0.1,
+      "half_composition": {
+        "qa": 2000,
+        "summarization": 2000
+      },
+      "surface_parity": {
+        "all": {
+          "auroc": {
+            "claim_char_length": 0.3706,
+            "claim_token_count": 0.3744,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.8648
+          },
+          "worst_barred_deviation": 0.1294,
+          "pass": false
+        },
+        "qa": {
+          "auroc": {
+            "claim_char_length": 0.1851,
+            "claim_token_count": 0.1981,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.9329
+          },
+          "worst_barred_deviation": 0.3149,
+          "pass": false
+        },
+        "summarization": {
+          "auroc": {
+            "claim_char_length": 0.3003,
+            "claim_token_count": 0.3031,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.7437
+          },
+          "worst_barred_deviation": 0.1997,
+          "pass": false
+        }
+      },
+      "clears_surface_parity_pooled_and_both_halves": false,
+      "clears_every_leg_of_C5": false
+    },
+    "per_half_peel_shape_margin@0.150": {
+      "strategy": "per_half_peel_shape_margin",
+      "retention_pairs_per_half": 0.15,
+      "rows": 6000,
+      "pairs": 3000,
+      "retention_of_member_rows": 0.15,
+      "half_composition": {
+        "summarization": 3000,
+        "qa": 3000
+      },
+      "surface_parity": {
+        "all": {
+          "auroc": {
+            "claim_char_length": 0.3565,
+            "claim_token_count": 0.3595,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.8661
+          },
+          "worst_barred_deviation": 0.1435,
+          "pass": false
+        },
+        "qa": {
+          "auroc": {
+            "claim_char_length": 0.1384,
+            "claim_token_count": 0.1484,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.9337
+          },
+          "worst_barred_deviation": 0.3616,
+          "pass": false
+        },
+        "summarization": {
+          "auroc": {
+            "claim_char_length": 0.2907,
+            "claim_token_count": 0.2931,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.7499
+          },
+          "worst_barred_deviation": 0.2093,
+          "pass": false
+        }
+      },
+      "clears_surface_parity_pooled_and_both_halves": false,
+      "clears_every_leg_of_C5": false
+    },
+    "per_half_peel_shape_margin@0.200": {
+      "strategy": "per_half_peel_shape_margin",
+      "retention_pairs_per_half": 0.2,
+      "rows": 8000,
+      "pairs": 4000,
+      "retention_of_member_rows": 0.2,
+      "half_composition": {
+        "qa": 4000,
+        "summarization": 4000
+      },
+      "surface_parity": {
+        "all": {
+          "auroc": {
+            "claim_char_length": 0.3508,
+            "claim_token_count": 0.3529,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.867
+          },
+          "worst_barred_deviation": 0.1492,
+          "pass": false
+        },
+        "qa": {
+          "auroc": {
+            "claim_char_length": 0.1107,
+            "claim_token_count": 0.1172,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.9321
+          },
+          "worst_barred_deviation": 0.3893,
+          "pass": false
+        },
+        "summarization": {
+          "auroc": {
+            "claim_char_length": 0.2956,
+            "claim_token_count": 0.2981,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.7533
+          },
+          "worst_barred_deviation": 0.2044,
+          "pass": false
+        }
+      },
+      "clears_surface_parity_pooled_and_both_halves": false,
+      "clears_every_leg_of_C5": false
+    },
+    "per_half_peel_probe_margin@0.005": {
+      "rows": 200,
+      "half_composition": {
+        "summarization": 100,
+        "qa": 100
+      },
+      "skipped": "a half is below the minimum"
+    },
+    "per_half_peel_probe_margin@0.010": {
+      "rows": 400,
+      "half_composition": {
+        "qa": 200,
+        "summarization": 200
+      },
+      "skipped": "a half is below the minimum"
+    },
+    "per_half_peel_probe_margin@0.015": {
+      "rows": 600,
+      "half_composition": {
+        "qa": 300,
+        "summarization": 300
+      },
+      "skipped": "a half is below the minimum"
+    },
+    "per_half_peel_probe_margin@0.020": {
+      "strategy": "per_half_peel_probe_margin",
+      "retention_pairs_per_half": 0.02,
+      "rows": 800,
+      "pairs": 400,
+      "retention_of_member_rows": 0.02,
+      "half_composition": {
+        "qa": 400,
+        "summarization": 400
+      },
+      "surface_parity": {
+        "all": {
+          "auroc": {
+            "claim_char_length": 0.4058,
+            "claim_token_count": 0.4049,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.8506
+          },
+          "worst_barred_deviation": 0.0951,
+          "pass": false
+        },
+        "qa": {
+          "auroc": {
+            "claim_char_length": 0.2752,
+            "claim_token_count": 0.2741,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.92
+          },
+          "worst_barred_deviation": 0.2259,
+          "pass": false
+        },
+        "summarization": {
+          "auroc": {
+            "claim_char_length": 0.3467,
+            "claim_token_count": 0.3448,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.7104
+          },
+          "worst_barred_deviation": 0.1552,
+          "pass": false
+        }
+      },
+      "clears_surface_parity_pooled_and_both_halves": false,
+      "clears_every_leg_of_C5": false
+    },
+    "per_half_peel_probe_margin@0.030": {
+      "strategy": "per_half_peel_probe_margin",
+      "retention_pairs_per_half": 0.03,
+      "rows": 1200,
+      "pairs": 600,
+      "retention_of_member_rows": 0.03,
+      "half_composition": {
+        "qa": 600,
+        "summarization": 600
+      },
+      "surface_parity": {
+        "all": {
+          "auroc": {
+            "claim_char_length": 0.4009,
+            "claim_token_count": 0.4006,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.8596
+          },
+          "worst_barred_deviation": 0.0994,
+          "pass": false
+        },
+        "qa": {
+          "auroc": {
+            "claim_char_length": 0.2625,
+            "claim_token_count": 0.2628,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.9267
+          },
+          "worst_barred_deviation": 0.2375,
+          "pass": false
+        },
+        "summarization": {
+          "auroc": {
+            "claim_char_length": 0.3379,
+            "claim_token_count": 0.3368,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.7176
+          },
+          "worst_barred_deviation": 0.1632,
+          "pass": false
+        }
+      },
+      "clears_surface_parity_pooled_and_both_halves": false,
+      "clears_every_leg_of_C5": false
+    },
+    "per_half_peel_probe_margin@0.040": {
+      "strategy": "per_half_peel_probe_margin",
+      "retention_pairs_per_half": 0.04,
+      "rows": 1600,
+      "pairs": 800,
+      "retention_of_member_rows": 0.04,
+      "half_composition": {
+        "summarization": 800,
+        "qa": 800
+      },
+      "surface_parity": {
+        "all": {
+          "auroc": {
+            "claim_char_length": 0.3993,
+            "claim_token_count": 0.3989,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.8629
+          },
+          "worst_barred_deviation": 0.1011,
+          "pass": false
+        },
+        "qa": {
+          "auroc": {
+            "claim_char_length": 0.2509,
+            "claim_token_count": 0.25,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.9275
+          },
+          "worst_barred_deviation": 0.25,
+          "pass": false
+        },
+        "summarization": {
+          "auroc": {
+            "claim_char_length": 0.3438,
+            "claim_token_count": 0.3438,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.726
+          },
+          "worst_barred_deviation": 0.1562,
+          "pass": false
+        }
+      },
+      "clears_surface_parity_pooled_and_both_halves": false,
+      "clears_every_leg_of_C5": false
+    },
+    "per_half_peel_probe_margin@0.060": {
+      "strategy": "per_half_peel_probe_margin",
+      "retention_pairs_per_half": 0.06,
+      "rows": 2400,
+      "pairs": 1200,
+      "retention_of_member_rows": 0.06,
+      "half_composition": {
+        "qa": 1200,
+        "summarization": 1200
+      },
+      "surface_parity": {
+        "all": {
+          "auroc": {
+            "claim_char_length": 0.3945,
+            "claim_token_count": 0.3944,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.852
+          },
+          "worst_barred_deviation": 0.1056,
+          "pass": false
+        },
+        "qa": {
+          "auroc": {
+            "claim_char_length": 0.2371,
+            "claim_token_count": 0.2381,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.9232
+          },
+          "worst_barred_deviation": 0.2629,
+          "pass": false
+        },
+        "summarization": {
+          "auroc": {
+            "claim_char_length": 0.3396,
+            "claim_token_count": 0.3385,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.7057
+          },
+          "worst_barred_deviation": 0.1615,
+          "pass": false
+        }
+      },
+      "clears_surface_parity_pooled_and_both_halves": false,
+      "clears_every_leg_of_C5": false
+    },
+    "per_half_peel_probe_margin@0.080": {
+      "strategy": "per_half_peel_probe_margin",
+      "retention_pairs_per_half": 0.08,
+      "rows": 3200,
+      "pairs": 1600,
+      "retention_of_member_rows": 0.08,
+      "half_composition": {
+        "summarization": 1600,
+        "qa": 1600
+      },
+      "surface_parity": {
+        "all": {
+          "auroc": {
+            "claim_char_length": 0.3874,
+            "claim_token_count": 0.3876,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.854
+          },
+          "worst_barred_deviation": 0.1126,
+          "pass": false
+        },
+        "qa": {
+          "auroc": {
+            "claim_char_length": 0.2173,
+            "claim_token_count": 0.2194,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.9255
+          },
+          "worst_barred_deviation": 0.2827,
+          "pass": false
+        },
+        "summarization": {
+          "auroc": {
+            "claim_char_length": 0.3315,
+            "claim_token_count": 0.3304,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.71
+          },
+          "worst_barred_deviation": 0.1696,
+          "pass": false
+        }
+      },
+      "clears_surface_parity_pooled_and_both_halves": false,
+      "clears_every_leg_of_C5": false
+    },
+    "per_half_peel_probe_margin@0.100": {
+      "strategy": "per_half_peel_probe_margin",
+      "retention_pairs_per_half": 0.1,
+      "rows": 4000,
+      "pairs": 2000,
+      "retention_of_member_rows": 0.1,
+      "half_composition": {
+        "qa": 2000,
+        "summarization": 2000
+      },
+      "surface_parity": {
+        "all": {
+          "auroc": {
+            "claim_char_length": 0.3839,
+            "claim_token_count": 0.3846,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.854
+          },
+          "worst_barred_deviation": 0.1161,
+          "pass": false
+        },
+        "qa": {
+          "auroc": {
+            "claim_char_length": 0.1949,
+            "claim_token_count": 0.1967,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.9277
+          },
+          "worst_barred_deviation": 0.3051,
+          "pass": false
+        },
+        "summarization": {
+          "auroc": {
+            "claim_char_length": 0.3405,
+            "claim_token_count": 0.3416,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.7099
+          },
+          "worst_barred_deviation": 0.1595,
+          "pass": false
+        }
+      },
+      "clears_surface_parity_pooled_and_both_halves": false,
+      "clears_every_leg_of_C5": false
+    },
+    "per_half_peel_probe_margin@0.150": {
+      "strategy": "per_half_peel_probe_margin",
+      "retention_pairs_per_half": 0.15,
+      "rows": 6000,
+      "pairs": 3000,
+      "retention_of_member_rows": 0.15,
+      "half_composition": {
+        "summarization": 3000,
+        "qa": 3000
+      },
+      "surface_parity": {
+        "all": {
+          "auroc": {
+            "claim_char_length": 0.3715,
+            "claim_token_count": 0.3719,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.8545
+          },
+          "worst_barred_deviation": 0.1285,
+          "pass": false
+        },
+        "qa": {
+          "auroc": {
+            "claim_char_length": 0.1587,
+            "claim_token_count": 0.1594,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.9354
+          },
+          "worst_barred_deviation": 0.3413,
+          "pass": false
+        },
+        "summarization": {
+          "auroc": {
+            "claim_char_length": 0.3276,
+            "claim_token_count": 0.3289,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.6982
+          },
+          "worst_barred_deviation": 0.1724,
+          "pass": false
+        }
+      },
+      "clears_surface_parity_pooled_and_both_halves": false,
+      "clears_every_leg_of_C5": false
+    },
+    "per_half_peel_probe_margin@0.200": {
+      "strategy": "per_half_peel_probe_margin",
+      "retention_pairs_per_half": 0.2,
+      "rows": 8000,
+      "pairs": 4000,
+      "retention_of_member_rows": 0.2,
+      "half_composition": {
+        "summarization": 4000,
+        "qa": 4000
+      },
+      "surface_parity": {
+        "all": {
+          "auroc": {
+            "claim_char_length": 0.3634,
+            "claim_token_count": 0.3634,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.8546
+          },
+          "worst_barred_deviation": 0.1366,
+          "pass": false
+        },
+        "qa": {
+          "auroc": {
+            "claim_char_length": 0.1309,
+            "claim_token_count": 0.131,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.9376
+          },
+          "worst_barred_deviation": 0.3691,
+          "pass": false
+        },
+        "summarization": {
+          "auroc": {
+            "claim_char_length": 0.3232,
+            "claim_token_count": 0.3234,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.7012
+          },
+          "worst_barred_deviation": 0.1768,
+          "pass": false
+        }
+      },
+      "clears_surface_parity_pooled_and_both_halves": false,
+      "clears_every_leg_of_C5": false
+    },
+    "per_half_length_matched@0.005": {
+      "rows": 200,
+      "half_composition": {
+        "qa": 100,
+        "summarization": 100
+      },
+      "skipped": "a half is below the minimum"
+    },
+    "per_half_length_matched@0.010": {
+      "rows": 400,
+      "half_composition": {
+        "qa": 200,
+        "summarization": 200
+      },
+      "skipped": "a half is below the minimum"
+    },
+    "per_half_length_matched@0.015": {
+      "rows": 600,
+      "half_composition": {
+        "qa": 300,
+        "summarization": 300
+      },
+      "skipped": "a half is below the minimum"
+    },
+    "per_half_length_matched@0.020": {
+      "strategy": "per_half_length_matched",
+      "retention_pairs_per_half": 0.02,
+      "rows": 800,
+      "pairs": 400,
+      "retention_of_member_rows": 0.02,
+      "half_composition": {
+        "summarization": 400,
+        "qa": 400
+      },
+      "surface_parity": {
+        "all": {
+          "auroc": {
+            "claim_char_length": 0.4993,
+            "claim_token_count": 0.4935,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.86
+          },
+          "worst_barred_deviation": 0.0065,
+          "pass": true
+        },
+        "qa": {
+          "auroc": {
+            "claim_char_length": 0.4978,
+            "claim_token_count": 0.4694,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.92
+          },
+          "worst_barred_deviation": 0.0306,
+          "pass": true
+        },
+        "summarization": {
+          "auroc": {
+            "claim_char_length": 0.4994,
+            "claim_token_count": 0.5046,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.7366
+          },
+          "worst_barred_deviation": 0.0046,
+          "pass": true
+        }
+      },
+      "clears_surface_parity_pooled_and_both_halves": true,
+      "claim_only_auroc_seeds": [
+        0.7352,
+        0.7449,
+        0.7275,
+        0.7294,
+        0.759
+      ],
+      "claim_only_auroc_max": 0.759,
+      "within_pair_max": 0.7825,
+      "clears_claim_only_all_seeds": false,
+      "clears_within_pair_all_seeds": false,
+      "clears_every_leg_of_C5": false
+    },
+    "per_half_length_matched@0.030": {
+      "strategy": "per_half_length_matched",
+      "retention_pairs_per_half": 0.03,
+      "rows": 1200,
+      "pairs": 600,
+      "retention_of_member_rows": 0.03,
+      "half_composition": {
+        "qa": 600,
+        "summarization": 600
+      },
+      "surface_parity": {
+        "all": {
+          "auroc": {
+            "claim_char_length": 0.4989,
+            "claim_token_count": 0.4929,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.8644
+          },
+          "worst_barred_deviation": 0.0071,
+          "pass": true
+        },
+        "qa": {
+          "auroc": {
+            "claim_char_length": 0.4959,
+            "claim_token_count": 0.4648,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.9167
+          },
+          "worst_barred_deviation": 0.0352,
+          "pass": true
+        },
+        "summarization": {
+          "auroc": {
+            "claim_char_length": 0.4998,
+            "claim_token_count": 0.507,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.7527
+          },
+          "worst_barred_deviation": 0.007,
+          "pass": true
+        }
+      },
+      "clears_surface_parity_pooled_and_both_halves": true,
+      "claim_only_auroc_seeds": [
+        0.749,
+        0.7629,
+        0.7591,
+        0.7649,
+        0.7586
+      ],
+      "claim_only_auroc_max": 0.7649,
+      "within_pair_max": 0.7983,
+      "clears_claim_only_all_seeds": false,
+      "clears_within_pair_all_seeds": false,
+      "clears_every_leg_of_C5": false
+    },
+    "per_half_length_matched@0.040": {
+      "strategy": "per_half_length_matched",
+      "retention_pairs_per_half": 0.04,
+      "rows": 1600,
+      "pairs": 800,
+      "retention_of_member_rows": 0.04,
+      "half_composition": {
+        "qa": 800,
+        "summarization": 800
+      },
+      "surface_parity": {
+        "all": {
+          "auroc": {
+            "claim_char_length": 0.4956,
+            "claim_token_count": 0.4896,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.8659
+          },
+          "worst_barred_deviation": 0.0104,
+          "pass": true
+        },
+        "qa": {
+          "auroc": {
+            "claim_char_length": 0.4834,
+            "claim_token_count": 0.4548,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.9163
+          },
+          "worst_barred_deviation": 0.0452,
+          "pass": true
+        },
+        "summarization": {
+          "auroc": {
+            "claim_char_length": 0.4988,
+            "claim_token_count": 0.5034,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.759
+          },
+          "worst_barred_deviation": 0.0034,
+          "pass": true
+        }
+      },
+      "clears_surface_parity_pooled_and_both_halves": true,
+      "claim_only_auroc_seeds": [
+        0.7741,
+        0.7699,
+        0.7707,
+        0.7813,
+        0.7831
+      ],
+      "claim_only_auroc_max": 0.7831,
+      "within_pair_max": 0.8087,
+      "clears_claim_only_all_seeds": false,
+      "clears_within_pair_all_seeds": false,
+      "clears_every_leg_of_C5": false
+    },
+    "per_half_length_matched@0.060": {
+      "strategy": "per_half_length_matched",
+      "retention_pairs_per_half": 0.06,
+      "rows": 2400,
+      "pairs": 1200,
+      "retention_of_member_rows": 0.06,
+      "half_composition": {
+        "summarization": 1200,
+        "qa": 1200
+      },
+      "surface_parity": {
+        "all": {
+          "auroc": {
+            "claim_char_length": 0.4862,
+            "claim_token_count": 0.4798,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.8695
+          },
+          "worst_barred_deviation": 0.0202,
+          "pass": true
+        },
+        "qa": {
+          "auroc": {
+            "claim_char_length": 0.4477,
+            "claim_token_count": 0.4184,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.9208
+          },
+          "worst_barred_deviation": 0.0816,
+          "pass": false
+        },
+        "summarization": {
+          "auroc": {
+            "claim_char_length": 0.4973,
+            "claim_token_count": 0.5007,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.7618
+          },
+          "worst_barred_deviation": 0.0027,
+          "pass": true
+        }
+      },
+      "clears_surface_parity_pooled_and_both_halves": false,
+      "clears_every_leg_of_C5": false
+    },
+    "per_half_length_matched@0.080": {
+      "strategy": "per_half_length_matched",
+      "retention_pairs_per_half": 0.08,
+      "rows": 3200,
+      "pairs": 1600,
+      "retention_of_member_rows": 0.08,
+      "half_composition": {
+        "qa": 1600,
+        "summarization": 1600
+      },
+      "surface_parity": {
+        "all": {
+          "auroc": {
+            "claim_char_length": 0.4769,
+            "claim_token_count": 0.4697,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.8623
+          },
+          "worst_barred_deviation": 0.0303,
+          "pass": true
+        },
+        "qa": {
+          "auroc": {
+            "claim_char_length": 0.4096,
+            "claim_token_count": 0.3786,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.9219
+          },
+          "worst_barred_deviation": 0.1214,
+          "pass": false
+        },
+        "summarization": {
+          "auroc": {
+            "claim_char_length": 0.498,
+            "claim_token_count": 0.5003,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.7425
+          },
+          "worst_barred_deviation": 0.002,
+          "pass": true
+        }
+      },
+      "clears_surface_parity_pooled_and_both_halves": false,
+      "clears_every_leg_of_C5": false
+    },
+    "per_half_length_matched@0.100": {
+      "strategy": "per_half_length_matched",
+      "retention_pairs_per_half": 0.1,
+      "rows": 4000,
+      "pairs": 2000,
+      "retention_of_member_rows": 0.1,
+      "half_composition": {
+        "summarization": 2000,
+        "qa": 2000
+      },
+      "surface_parity": {
+        "all": {
+          "auroc": {
+            "claim_char_length": 0.466,
+            "claim_token_count": 0.4597,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.8626
+          },
+          "worst_barred_deviation": 0.0403,
+          "pass": true
+        },
+        "qa": {
+          "auroc": {
+            "claim_char_length": 0.3669,
+            "claim_token_count": 0.3385,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.9233
+          },
+          "worst_barred_deviation": 0.1615,
+          "pass": false
+        },
+        "summarization": {
+          "auroc": {
+            "claim_char_length": 0.497,
+            "claim_token_count": 0.5001,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.7437
+          },
+          "worst_barred_deviation": 0.003,
+          "pass": true
+        }
+      },
+      "clears_surface_parity_pooled_and_both_halves": false,
+      "clears_every_leg_of_C5": false
+    },
+    "per_half_length_matched@0.150": {
+      "strategy": "per_half_length_matched",
+      "retention_pairs_per_half": 0.15,
+      "rows": 6000,
+      "pairs": 3000,
+      "retention_of_member_rows": 0.15,
+      "half_composition": {
+        "summarization": 3000,
+        "qa": 3000
+      },
+      "surface_parity": {
+        "all": {
+          "auroc": {
+            "claim_char_length": 0.4437,
+            "claim_token_count": 0.4391,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.8658
+          },
+          "worst_barred_deviation": 0.0609,
+          "pass": false
+        },
+        "qa": {
+          "auroc": {
+            "claim_char_length": 0.2819,
+            "claim_token_count": 0.2584,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.9315
+          },
+          "worst_barred_deviation": 0.2416,
+          "pass": false
+        },
+        "summarization": {
+          "auroc": {
+            "claim_char_length": 0.4929,
+            "claim_token_count": 0.4981,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.7446
+          },
+          "worst_barred_deviation": 0.0071,
+          "pass": true
+        }
+      },
+      "clears_surface_parity_pooled_and_both_halves": false,
+      "clears_every_leg_of_C5": false
+    },
+    "per_half_length_matched@0.200": {
+      "strategy": "per_half_length_matched",
+      "retention_pairs_per_half": 0.2,
+      "rows": 8000,
+      "pairs": 4000,
+      "retention_of_member_rows": 0.2,
+      "half_composition": {
+        "summarization": 4000,
+        "qa": 4000
+      },
+      "surface_parity": {
+        "all": {
+          "auroc": {
+            "claim_char_length": 0.4276,
+            "claim_token_count": 0.4244,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.8632
+          },
+          "worst_barred_deviation": 0.0756,
+          "pass": false
+        },
+        "qa": {
+          "auroc": {
+            "claim_char_length": 0.2235,
+            "claim_token_count": 0.2041,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.9321
+          },
+          "worst_barred_deviation": 0.2959,
+          "pass": false
+        },
+        "summarization": {
+          "auroc": {
+            "claim_char_length": 0.4869,
+            "claim_token_count": 0.4934,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.7436
+          },
+          "worst_barred_deviation": 0.0131,
+          "pass": true
+        }
+      },
+      "clears_surface_parity_pooled_and_both_halves": false,
+      "clears_every_leg_of_C5": false
+    },
+    "per_half_length_matched_then_shape_peel@0.005": {
+      "rows": 200,
+      "half_composition": {
+        "qa": 100,
+        "summarization": 100
+      },
+      "skipped": "a half is below the minimum"
+    },
+    "per_half_length_matched_then_shape_peel@0.010": {
+      "rows": 400,
+      "half_composition": {
+        "summarization": 200,
+        "qa": 200
+      },
+      "skipped": "a half is below the minimum"
+    },
+    "per_half_length_matched_then_shape_peel@0.015": {
+      "rows": 600,
+      "half_composition": {
+        "summarization": 300,
+        "qa": 300
+      },
+      "skipped": "a half is below the minimum"
+    },
+    "per_half_length_matched_then_shape_peel@0.020": {
+      "strategy": "per_half_length_matched_then_shape_peel",
+      "retention_pairs_per_half": 0.02,
+      "rows": 800,
+      "pairs": 400,
+      "retention_of_member_rows": 0.02,
+      "half_composition": {
+        "summarization": 400,
+        "qa": 400
+      },
+      "surface_parity": {
+        "all": {
+          "auroc": {
+            "claim_char_length": 0.4781,
+            "claim_token_count": 0.4815,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.8729
+          },
+          "worst_barred_deviation": 0.0219,
+          "pass": true
+        },
+        "qa": {
+          "auroc": {
+            "claim_char_length": 0.4786,
+            "claim_token_count": 0.4885,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.925
+          },
+          "worst_barred_deviation": 0.0214,
+          "pass": true
+        },
+        "summarization": {
+          "auroc": {
+            "claim_char_length": 0.434,
+            "claim_token_count": 0.4375,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.7195
+          },
+          "worst_barred_deviation": 0.066,
+          "pass": false
+        }
+      },
+      "clears_surface_parity_pooled_and_both_halves": false,
+      "clears_every_leg_of_C5": false
+    },
+    "per_half_length_matched_then_shape_peel@0.030": {
+      "strategy": "per_half_length_matched_then_shape_peel",
+      "retention_pairs_per_half": 0.03,
+      "rows": 1200,
+      "pairs": 600,
+      "retention_of_member_rows": 0.03,
+      "half_composition": {
+        "summarization": 600,
+        "qa": 600
+      },
+      "surface_parity": {
+        "all": {
+          "auroc": {
+            "claim_char_length": 0.4637,
+            "claim_token_count": 0.468,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.8606
+          },
+          "worst_barred_deviation": 0.0363,
+          "pass": true
+        },
+        "qa": {
+          "auroc": {
+            "claim_char_length": 0.4125,
+            "claim_token_count": 0.4261,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.925
+          },
+          "worst_barred_deviation": 0.0875,
+          "pass": false
+        },
+        "summarization": {
+          "auroc": {
+            "claim_char_length": 0.4423,
+            "claim_token_count": 0.4458,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.7011
+          },
+          "worst_barred_deviation": 0.0577,
+          "pass": false
+        }
+      },
+      "clears_surface_parity_pooled_and_both_halves": false,
+      "clears_every_leg_of_C5": false
+    },
+    "per_half_length_matched_then_shape_peel@0.040": {
+      "strategy": "per_half_length_matched_then_shape_peel",
+      "retention_pairs_per_half": 0.04,
+      "rows": 1600,
+      "pairs": 800,
+      "retention_of_member_rows": 0.04,
+      "half_composition": {
+        "qa": 800,
+        "summarization": 800
+      },
+      "surface_parity": {
+        "all": {
+          "auroc": {
+            "claim_char_length": 0.4512,
+            "claim_token_count": 0.4555,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.8544
+          },
+          "worst_barred_deviation": 0.0488,
+          "pass": true
+        },
+        "qa": {
+          "auroc": {
+            "claim_char_length": 0.3699,
+            "claim_token_count": 0.3835,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.9237
+          },
+          "worst_barred_deviation": 0.1301,
+          "pass": false
+        },
+        "summarization": {
+          "auroc": {
+            "claim_char_length": 0.4348,
+            "claim_token_count": 0.4385,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.702
+          },
+          "worst_barred_deviation": 0.0652,
+          "pass": false
+        }
+      },
+      "clears_surface_parity_pooled_and_both_halves": false,
+      "clears_every_leg_of_C5": false
+    },
+    "per_half_length_matched_then_shape_peel@0.060": {
+      "strategy": "per_half_length_matched_then_shape_peel",
+      "retention_pairs_per_half": 0.06,
+      "rows": 2400,
+      "pairs": 1200,
+      "retention_of_member_rows": 0.06,
+      "half_composition": {
+        "summarization": 1200,
+        "qa": 1200
+      },
+      "surface_parity": {
+        "all": {
+          "auroc": {
+            "claim_char_length": 0.4355,
+            "claim_token_count": 0.4395,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.866
+          },
+          "worst_barred_deviation": 0.0645,
+          "pass": false
+        },
+        "qa": {
+          "auroc": {
+            "claim_char_length": 0.3021,
+            "claim_token_count": 0.3149,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.9392
+          },
+          "worst_barred_deviation": 0.1979,
+          "pass": false
+        },
+        "summarization": {
+          "auroc": {
+            "claim_char_length": 0.4398,
+            "claim_token_count": 0.4428,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.7244
+          },
+          "worst_barred_deviation": 0.0602,
+          "pass": false
+        }
+      },
+      "clears_surface_parity_pooled_and_both_halves": false,
+      "clears_every_leg_of_C5": false
+    },
+    "per_half_length_matched_then_shape_peel@0.080": {
+      "strategy": "per_half_length_matched_then_shape_peel",
+      "retention_pairs_per_half": 0.08,
+      "rows": 3200,
+      "pairs": 1600,
+      "retention_of_member_rows": 0.08,
+      "half_composition": {
+        "summarization": 1600,
+        "qa": 1600
+      },
+      "surface_parity": {
+        "all": {
+          "auroc": {
+            "claim_char_length": 0.4231,
+            "claim_token_count": 0.4258,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.8677
+          },
+          "worst_barred_deviation": 0.0769,
+          "pass": false
+        },
+        "qa": {
+          "auroc": {
+            "claim_char_length": 0.2527,
+            "claim_token_count": 0.2624,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.9404
+          },
+          "worst_barred_deviation": 0.2473,
+          "pass": false
+        },
+        "summarization": {
+          "auroc": {
+            "claim_char_length": 0.4395,
+            "claim_token_count": 0.4407,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.7351
+          },
+          "worst_barred_deviation": 0.0605,
+          "pass": false
+        }
+      },
+      "clears_surface_parity_pooled_and_both_halves": false,
+      "clears_every_leg_of_C5": false
+    },
+    "per_half_length_matched_then_shape_peel@0.100": {
+      "strategy": "per_half_length_matched_then_shape_peel",
+      "retention_pairs_per_half": 0.1,
+      "rows": 4000,
+      "pairs": 2000,
+      "retention_of_member_rows": 0.1,
+      "half_composition": {
+        "qa": 2000,
+        "summarization": 2000
+      },
+      "surface_parity": {
+        "all": {
+          "auroc": {
+            "claim_char_length": 0.416,
+            "claim_token_count": 0.419,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.872
+          },
+          "worst_barred_deviation": 0.084,
+          "pass": false
+        },
+        "qa": {
+          "auroc": {
+            "claim_char_length": 0.2262,
+            "claim_token_count": 0.2351,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.9418
+          },
+          "worst_barred_deviation": 0.2738,
+          "pass": false
+        },
+        "summarization": {
+          "auroc": {
+            "claim_char_length": 0.4379,
+            "claim_token_count": 0.4408,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.7489
+          },
+          "worst_barred_deviation": 0.0621,
+          "pass": false
+        }
+      },
+      "clears_surface_parity_pooled_and_both_halves": false,
+      "clears_every_leg_of_C5": false
+    },
+    "per_half_length_matched_then_shape_peel@0.150": {
+      "strategy": "per_half_length_matched_then_shape_peel",
+      "retention_pairs_per_half": 0.15,
+      "rows": 6000,
+      "pairs": 3000,
+      "retention_of_member_rows": 0.15,
+      "half_composition": {
+        "qa": 3000,
+        "summarization": 3000
+      },
+      "surface_parity": {
+        "all": {
+          "auroc": {
+            "claim_char_length": 0.404,
+            "claim_token_count": 0.4055,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.8744
+          },
+          "worst_barred_deviation": 0.096,
+          "pass": false
+        },
+        "qa": {
+          "auroc": {
+            "claim_char_length": 0.1796,
+            "claim_token_count": 0.1833,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.9498
+          },
+          "worst_barred_deviation": 0.3204,
+          "pass": false
+        },
+        "summarization": {
+          "auroc": {
+            "claim_char_length": 0.4364,
+            "claim_token_count": 0.4386,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.7459
+          },
+          "worst_barred_deviation": 0.0636,
+          "pass": false
+        }
+      },
+      "clears_surface_parity_pooled_and_both_halves": false,
+      "clears_every_leg_of_C5": false
+    },
+    "per_half_length_matched_then_shape_peel@0.200": {
+      "strategy": "per_half_length_matched_then_shape_peel",
+      "retention_pairs_per_half": 0.2,
+      "rows": 8000,
+      "pairs": 4000,
+      "retention_of_member_rows": 0.2,
+      "half_composition": {
+        "qa": 4000,
+        "summarization": 4000
+      },
+      "surface_parity": {
+        "all": {
+          "auroc": {
+            "claim_char_length": 0.3969,
+            "claim_token_count": 0.398,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.8762
+          },
+          "worst_barred_deviation": 0.1031,
+          "pass": false
+        },
+        "qa": {
+          "auroc": {
+            "claim_char_length": 0.1507,
+            "claim_token_count": 0.1531,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.9496
+          },
+          "worst_barred_deviation": 0.3493,
+          "pass": false
+        },
+        "summarization": {
+          "auroc": {
+            "claim_char_length": 0.437,
+            "claim_token_count": 0.4389,
+            "chunk_char_length": 0.5,
+            "claim_chunk_containment": 0.7537
+          },
+          "worst_barred_deviation": 0.063,
+          "pass": false
+        }
+      },
+      "clears_surface_parity_pooled_and_both_halves": false,
+      "clears_every_leg_of_C5": false
+    }
+  },
+  "largest_subset_clearing_every_leg": null,
+  "subsets_clearing_every_leg": 0
+}

@@ -1,0 +1,187 @@
+{
+  "experiment": "R20-H175b intervention proof - the question channel is real on the built mix",
+  "composition": "'<question[:256]> [SEP] <claim>' on the claim side; bare claim where no question exists",
+  "separator": " [SEP] ",
+  "question_max_chars": 256,
+  "mix_rows": 739182,
+  "composed_inputs_changed": 114774,
+  "coverage": {
+    "mix_rows": 739182,
+    "rows_with_question": 114774,
+    "coverage": 0.1553,
+    "per_group": {
+      "halueval": {
+        "rows": 40000,
+        "with_question": 20000,
+        "coverage": 0.5
+      },
+      "psiloqa": {
+        "rows": 61712,
+        "with_question": 61712,
+        "coverage": 1.0
+      },
+      "qrel_contrast": {
+        "rows": 17972,
+        "with_question": 17972,
+        "coverage": 1.0
+      },
+      "quant_misbind": {
+        "rows": 30000,
+        "with_question": 0,
+        "coverage": 0.0
+      },
+      "quant_scale_unit": {
+        "rows": 5540,
+        "with_question": 0,
+        "coverage": 0.0
+      },
+      "ragtruth_cn": {
+        "rows": 15090,
+        "with_question": 0,
+        "coverage": 0.0
+      },
+      "ragtruth_de": {
+        "rows": 15090,
+        "with_question": 0,
+        "coverage": 0.0
+      },
+      "ragtruth_en": {
+        "rows": 15090,
+        "with_question": 15090,
+        "coverage": 1.0
+      },
+      "ragtruth_es": {
+        "rows": 15090,
+        "with_question": 0,
+        "coverage": 0.0
+      },
+      "ragtruth_fr": {
+        "rows": 15090,
+        "with_question": 0,
+        "coverage": 0.0
+      },
+      "ragtruth_hu": {
+        "rows": 15090,
+        "with_question": 0,
+        "coverage": 0.0
+      },
+      "ragtruth_it": {
+        "rows": 15090,
+        "with_question": 0,
+        "coverage": 0.0
+      },
+      "ragtruth_pl": {
+        "rows": 15090,
+        "with_question": 0,
+        "coverage": 0.0
+      },
+      "tabfact": {
+        "rows": 92585,
+        "with_question": 0,
+        "coverage": 0.0
+      },
+      "vitaminc": {
+        "rows": 370653,
+        "with_question": 0,
+        "coverage": 0.0
+      }
+    }
+  },
+  "per_source_segments": [
+    {
+      "source": "ragtruth_en",
+      "start": 0,
+      "rows": 15090,
+      "with_question": 15090
+    },
+    {
+      "source": "ragtruth_de",
+      "start": 15090,
+      "rows": 15090,
+      "with_question": 0
+    },
+    {
+      "source": "ragtruth_fr",
+      "start": 30180,
+      "rows": 15090,
+      "with_question": 0
+    },
+    {
+      "source": "ragtruth_es",
+      "start": 45270,
+      "rows": 15090,
+      "with_question": 0
+    },
+    {
+      "source": "ragtruth_it",
+      "start": 60360,
+      "rows": 15090,
+      "with_question": 0
+    },
+    {
+      "source": "ragtruth_pl",
+      "start": 75450,
+      "rows": 15090,
+      "with_question": 0
+    },
+    {
+      "source": "ragtruth_hu",
+      "start": 90540,
+      "rows": 15090,
+      "with_question": 0
+    },
+    {
+      "source": "ragtruth_cn",
+      "start": 105630,
+      "rows": 15090,
+      "with_question": 0
+    },
+    {
+      "source": "halueval_qa",
+      "start": 120720,
+      "rows": 20000,
+      "with_question": 20000
+    },
+    {
+      "source": "halueval_summarization",
+      "start": 140720,
+      "rows": 20000,
+      "with_question": 0
+    },
+    {
+      "source": "psiloqa",
+      "start": 160720,
+      "rows": 61712,
+      "with_question": 61712
+    },
+    {
+      "source": "vitaminc",
+      "start": 222432,
+      "rows": 370653,
+      "with_question": 0
+    },
+    {
+      "source": "tabfact",
+      "start": 593085,
+      "rows": 92585,
+      "with_question": 0
+    }
+  ],
+  "qlane_loader_assertion": {
+    "lane_rows": 17972,
+    "with_question": 17972,
+    "coverage": 1.0,
+    "first_row": 721210,
+    "last_row": 739181
+  },
+  "qlane_paired_leg_check": {
+    "pairs": 8986,
+    "pairs_string_identical": 0,
+    "pairs_token_checked": 400,
+    "pairs_token_identical": 0,
+    "mean_token_len_leg_a": 180.2
+  },
+  "draw": 1,
+  "seed": 1175,
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+}

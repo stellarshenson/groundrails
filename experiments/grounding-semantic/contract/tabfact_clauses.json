@@ -1,0 +1,258 @@
+{
+  "member": "tabfact",
+  "load": {
+    "member": "tabfact",
+    "loader": "R10-H108_lane.public_train() under R16-H142_G1_arm.untruncated_evidence(), rows tagged `tabfact`",
+    "archive": "dataset-tabfact.zip :: wenhuchen__Table-Fact-Checking__tabfact__train.parquet",
+    "selection_predicate": "train split only; filter statement.str.len_chars() > 10",
+    "chunk_construction": "f'{table_caption}\\n{table_text}'.replace('\\r\\n','\\n').replace('#',' | ')[:chunk_max_chars]",
+    "chunk_max_chars": 1500,
+    "clean_mix_rows": 685670,
+    "member_rows": 92585,
+    "archive_train_rows": 92585,
+    "rows_dropped_by_filter": 0,
+    "member_share_of_clean_mix": 0.135029,
+    "elapsed_s": 7.7
+  },
+  "C1": {
+    "head_declared": "the grounding scalar (`task_head` of the DANN student) - the same head every other mix member trains",
+    "label_predicate_measured": "TabFact ships a human ENTAILED / REFUTED annotation of the STATEMENT against ITS OWN table (ICLR 2020). The label is a support predicate: 1 = the table entails the statement, 0 = the table refutes it. It is not relevance, not answerability, not question-claim match. Positives and negatives share the same table by construction, so the contrast is carried entirely by the statement's content",
+    "predicate_is_support": true,
+    "untruncated_evidence": {
+      "instrument": "R20-H175b_qlane.containment(claim, chunk) - share of the claim's content tokens present in the evidence",
+      "positive_leg": {
+        "n": 50994,
+        "mean": 0.5177,
+        "median": 0.5385,
+        "p10": 0.2727,
+        "p25": 0.4,
+        "p75": 0.6429,
+        "p90": 0.7333,
+        "share_fully_attested_eq_1.0": 0.0014,
+        "share_ge_0.9": 0.0063,
+        "share_ge_0.8": 0.047
+      },
+      "negative_leg": {
+        "n": 41591,
+        "mean": 0.498,
+        "median": 0.5,
+        "p10": 0.25,
+        "p25": 0.375,
+        "p75": 0.625,
+        "p90": 0.7222,
+        "share_fully_attested_eq_1.0": 0.0011,
+        "share_ge_0.9": 0.0053,
+        "share_ge_0.8": 0.0403
+      },
+      "delta_mean_neg_minus_pos": -0.0197,
+      "abs_delta_mean": 0.0197,
+      "delta_fully_attested_share": -0.0003,
+      "bar_primary_mean_containment": {
+        "reading": "negatives attested at >= 0.90 mean containment AND |mean_neg - mean_pos| <= 0.10 -> REJECTED for the grounding head",
+        "neg_mean": 0.498,
+        "pos_mean": 0.5177,
+        "neg_ge_0.90": false,
+        "abs_delta_le_0.10": true,
+        "rejected": false,
+        "margin_to_0.90_bar": 0.402
+      },
+      "bar_secondary_full_attestation_share": {
+        "reading": "share of the leg fully attested (containment == 1.0); the H175b poisoned lane read 0.664 on its negative leg",
+        "neg_share": 0.0011,
+        "pos_share": 0.0014,
+        "neg_ge_0.90": false,
+        "abs_delta_le_0.10": true,
+        "rejected": false
+      }
+    },
+    "truncated_evidence_1500": {
+      "instrument": "R20-H175b_qlane.containment(claim, chunk) - share of the claim's content tokens present in the evidence",
+      "positive_leg": {
+        "n": 50994,
+        "mean": 0.5036,
+        "median": 0.5,
+        "p10": 0.25,
+        "p25": 0.375,
+        "p75": 0.6364,
+        "p90": 0.7273,
+        "share_fully_attested_eq_1.0": 0.0011,
+        "share_ge_0.9": 0.005,
+        "share_ge_0.8": 0.0408
+      },
+      "negative_leg": {
+        "n": 41591,
+        "mean": 0.4839,
+        "median": 0.5,
+        "p10": 0.25,
+        "p25": 0.3636,
+        "p75": 0.6154,
+        "p90": 0.7143,
+        "share_fully_attested_eq_1.0": 0.0006,
+        "share_ge_0.9": 0.004,
+        "share_ge_0.8": 0.0339
+      },
+      "delta_mean_neg_minus_pos": -0.0198,
+      "abs_delta_mean": 0.0198,
+      "delta_fully_attested_share": -0.0005,
+      "bar_primary_mean_containment": {
+        "reading": "negatives attested at >= 0.90 mean containment AND |mean_neg - mean_pos| <= 0.10 -> REJECTED for the grounding head",
+        "neg_mean": 0.4839,
+        "pos_mean": 0.5036,
+        "neg_ge_0.90": false,
+        "abs_delta_le_0.10": true,
+        "rejected": false,
+        "margin_to_0.90_bar": 0.4161
+      },
+      "bar_secondary_full_attestation_share": {
+        "reading": "share of the leg fully attested (containment == 1.0); the H175b poisoned lane read 0.664 on its negative leg",
+        "neg_share": 0.0006,
+        "pos_share": 0.0011,
+        "neg_ge_0.90": false,
+        "abs_delta_le_0.10": true,
+        "rejected": false
+      }
+    },
+    "reference_poisoned_lane_R20_H175b": {
+      "containment_both_legs": 0.9129,
+      "negative_leg_fully_attested_share": 0.664,
+      "why_it_failed": "passage and claim held FIXED, label flipped on question relevance - both legs identical in grounding"
+    }
+  },
+  "C3": {
+    "split_axis_measured": "the archive cuts on the table_id STRING, not on the underlying document. Validation and test share 0 and 0 table_id VALUES with train. But TabFact serialises one Wikipedia table under both a `1-` and a `2-` csv id, and after stripping that prefix 91 of 1696 validation ids (0.0538) and 73 of 1695 test ids (0.0431) collide with a train id. Part of that collision is genuine document re-use: 2 validation and 1 test serialised tables are BYTE-IDENTICAL to a train table, rising to 18 and 14 under the 1,500-char cut the R10-H108 recipe applies; 8 validation rows and 7 test rows carry a statement string that also occurs in train. Statements are grouped under their table, so the cut is per document ID and per claim within it - but NOT per document",
+    "member_uses": "train split ONLY - `next(x for x in namelist if x.endswith('__train.parquet'))` in R10-H108_lane.public_train",
+    "train": {
+      "rows": 92585,
+      "distinct_table_id": 13182,
+      "distinct_table_id_stem": 12753,
+      "claims_per_table": {
+        "mean": 7.024,
+        "median": 7,
+        "min": 1,
+        "max": 27
+      }
+    },
+    "held_out_splits": {
+      "validation": {
+        "rows": 12851,
+        "distinct_table_id": 1696,
+        "table_id_shared_with_train": 0,
+        "table_id_share": 0.0,
+        "table_id_STEM_shared_with_train": 91,
+        "table_id_stem_share": 0.053783,
+        "statement_rows_shared_with_train": 8,
+        "distinct_serialised_evidence": 1696,
+        "evidence_raw_in_train_raw": 2,
+        "evidence_truncated_in_train_truncated": 18,
+        "evidence_normalised_in_train_normalised_raw": 2,
+        "evidence_normalised_in_train_normalised_truncated": 18
+      },
+      "test": {
+        "rows": 12839,
+        "distinct_table_id": 1695,
+        "table_id_shared_with_train": 0,
+        "table_id_share": 0.0,
+        "table_id_STEM_shared_with_train": 73,
+        "table_id_stem_share": 0.043119,
+        "statement_rows_shared_with_train": 7,
+        "distinct_serialised_evidence": 1695,
+        "evidence_raw_in_train_raw": 1,
+        "evidence_truncated_in_train_truncated": 14,
+        "evidence_normalised_in_train_normalised_raw": 1,
+        "evidence_normalised_in_train_normalised_truncated": 14
+      }
+    },
+    "note": "TabFact's validation and test splits are NOT used as evaluation surfaces by any banked arm; this clause tests the archive's own split claim, which is what C3 asks for. Their use as the C4 LIVE positive control is reported under C4"
+  },
+  "C6": {
+    "adaptation_stated": "C6 is written for an eval scored against a training mix. `tabfact` is a TRAINING member, so its rows share the EVIDENCE field (one table carries several statements) and the table is the key. The clause's PRESCRIBED instrument - overlap between the eval claim and whatever the training mix associates with that pair's key - is computable against exactly one surface, R20-H177_eval_B's TabFact half, and is reported below as (c). (a) and (b) are EXECUTOR-ADDED internal features, reported separately and carrying no clause verdict",
+    "prescribed_instrument": "c_cross_surface_R20_H177_eval_B_tabfact_half",
+    "a_table_key_label_leakage_EXECUTOR_ADDED": {
+      "feature": "leave-one-out mean label of the other statements over the same table_id",
+      "auroc": 0.2416,
+      "chance": 0.5,
+      "abs_deviation_from_chance": 0.2584
+    },
+    "b_nearest_other_claim_label_EXECUTOR_ADDED": {
+      "feature": "label of the most Jaccard-similar OTHER statement over the same table_id",
+      "auroc": 0.2465,
+      "rows_with_a_sibling": 92011,
+      "mean_nearest_sibling_jaccard": 0.5441,
+      "chance": 0.5,
+      "abs_deviation_from_chance": 0.2535
+    },
+    "c_cross_surface_R20_H177_eval_B_tabfact_half": {
+      "feature": "for each eval_B tabfact row, the max token-Jaccard between the eval claim and any claim the `tabfact` member carries over the SAME table (stem-matched table_id), and the label the member attached to that best-matching claim",
+      "eval_rows": 1300,
+      "rows_with_a_member_claim_over_the_same_table": 1300,
+      "coverage": 1.0,
+      "max_jaccard_auroc": 0.503,
+      "nearest_member_claim_label_auroc": 0.5,
+      "mean_max_jaccard": 0.1699
+    }
+  },
+  "C7": {
+    "unit_declared": "ROWS. One archive row = one (statement, serialised table) pair, so for this member rows and (claim, evidence) pairs are the same count. There is no positive/negative twin key in the archive - TabFact does not ship a pair id",
+    "rows": 92585,
+    "claim_evidence_pairs": 92585,
+    "distinct_claim_evidence_pairs": 92341,
+    "duplicate_claim_evidence_rows": 244,
+    "distinct_documents_tables": 13182,
+    "positives": 50994,
+    "negatives": 41591,
+    "positive_share": 0.5508,
+    "share_of_the_clean_mix_685670_rows": 0.135029,
+    "registered_vs_measured": {
+      "brief_registered_rows": 92585,
+      "measured_rows": 92585,
+      "delta": 0,
+      "tracked_sidecar_declares": "92,283 train / 12,792 val / 12,779 test"
+    }
+  },
+  "C8": {
+    "source": "wenhuchen/Table-Fact-Checking (GitHub); the HF dataset `wenhu/tab_fact` is script-only, so the archive was fetched from the GitHub release. Archive member `wenhuchen__Table-Fact-Checking__tabfact__train.parquet`",
+    "licence": "CC-BY-4.0 (tracked sidecar data/external/datasets/dataset-tabfact.md)",
+    "retrieval": "archive dataset-tabfact.zip, fetched by scripts/fetch_grounding_datasets.py; archive mtime recorded below",
+    "selection_predicate": "train split only; filter statement.str.len_chars() > 10",
+    "chunk_construction": "f'{table_caption}\\n{table_text}'.replace('\\r\\n','\\n').replace('#',' | ')[:chunk_max_chars]",
+    "internal_structure": {
+      "rows": 92585,
+      "distinct_claims": 92304,
+      "rows_on_a_repeated_claim": 555,
+      "claims_carrying_BOTH_labels": 51,
+      "distinct_evidence_untruncated": 13173,
+      "distinct_evidence_truncated_1500": 13109,
+      "distinct_table_id": 13182,
+      "distinct_table_id_stem": 12753,
+      "rows_per_table": {
+        "mean": 7.024,
+        "median": 7,
+        "min": 1,
+        "max": 27
+      },
+      "per_table_positive_share": {
+        "mean": 0.5743,
+        "tables_all_positive": 1857,
+        "tables_all_negative": 322,
+        "tables_mixed": 11003
+      },
+      "evidence_length_chars_untruncated": {
+        "mean": 1113.6,
+        "max": 9330,
+        "rows_over_1500": 20469,
+        "share_over_1500": 0.2211
+      }
+    },
+    "public_repository": "no client or company name appears in this artifact or in any file this verification wrote",
+    "archive_mtime": "2026-07-31 18:10:02"
+  },
+  "supplementary_not_a_clause": {
+    "status": "EXECUTOR-ADDED - reported separately from every registered bar; no clause verdict uses it",
+    "probe": "claim-only TF-IDF(1-2gram) + logistic regression, tables disjoint between fit and held-out",
+    "fit_rows": 74185,
+    "heldout_rows": 18400,
+    "heldout_auroc": 0.6031,
+    "reading": "a claim-only read materially above 0.5 means the statement carries label evidence without the table"
+  },
+  "elapsed_s": 27.2
+}

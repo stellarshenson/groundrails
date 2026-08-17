@@ -1,0 +1,435 @@
+{
+  "written": "2026-08-17T14:33:07+00:00",
+  "subset": "finqa",
+  "items": 250,
+  "labels": {
+    "positive": 230,
+    "negative": 20
+  },
+  "bootstrap": {
+    "draws": 2000,
+    "seed": 184,
+    "unit": "item, with replacement"
+  },
+  "H183": {
+    "question": "which RESPONSE-ONLY feature carries the ablated 0.66",
+    "registered_features": [
+      {
+        "feature": "derivation_marker_count",
+        "auroc": 0.64728,
+        "auroc_raw_for_positive": 0.64728,
+        "direction": "pos",
+        "ci95": [
+          0.53199,
+          0.76575
+        ],
+        "boot_draws_used": 2000,
+        "mean_pos": 3.9913,
+        "mean_neg": 2.15,
+        "registered": true
+      },
+      {
+        "feature": "numeric_density_per_100c",
+        "auroc": 0.63587,
+        "auroc_raw_for_positive": 0.63587,
+        "direction": "pos",
+        "ci95": [
+          0.49462,
+          0.76774
+        ],
+        "boot_draws_used": 2000,
+        "mean_pos": 2.84373,
+        "mean_neg": 2.29854,
+        "registered": true
+      },
+      {
+        "feature": "numeric_token_count",
+        "auroc": 0.63152,
+        "auroc_raw_for_positive": 0.63152,
+        "direction": "pos",
+        "ci95": [
+          0.4887,
+          0.75909
+        ],
+        "boot_draws_used": 2000,
+        "mean_pos": 12.52609,
+        "mean_neg": 9.15,
+        "registered": true
+      },
+      {
+        "feature": "derivation_marker_present",
+        "auroc": 0.61848,
+        "auroc_raw_for_positive": 0.61848,
+        "direction": "pos",
+        "ci95": [
+          0.5082,
+          0.73479
+        ],
+        "boot_draws_used": 2000,
+        "mean_pos": 0.78696,
+        "mean_neg": 0.55,
+        "registered": true
+      },
+      {
+        "feature": "currency_symbol_count",
+        "auroc": 0.59598,
+        "auroc_raw_for_positive": 0.59598,
+        "direction": "pos",
+        "ci95": [
+          0.46423,
+          0.72201
+        ],
+        "boot_draws_used": 2000,
+        "mean_pos": 4.13478,
+        "mean_neg": 2.95,
+        "registered": true
+      },
+      {
+        "feature": "char_len",
+        "auroc": 0.58783,
+        "auroc_raw_for_positive": 0.58783,
+        "direction": "pos",
+        "ci95": [
+          0.44006,
+          0.72828
+        ],
+        "boot_draws_used": 2000,
+        "mean_pos": 452.67391,
+        "mean_neg": 383.95,
+        "registered": true
+      },
+      {
+        "feature": "sent_count",
+        "auroc": 0.56641,
+        "auroc_raw_for_positive": 0.43359,
+        "direction": "neg",
+        "ci95": [
+          0.4275,
+          0.70594
+        ],
+        "boot_draws_used": 2000,
+        "mean_pos": 2.23043,
+        "mean_neg": 2.5,
+        "registered": true
+      },
+      {
+        "feature": "hedge_count",
+        "auroc": 0.52326,
+        "auroc_raw_for_positive": 0.52326,
+        "direction": "pos",
+        "ci95": [
+          0.4138,
+          0.61761
+        ],
+        "boot_draws_used": 2000,
+        "mean_pos": 0.38696,
+        "mean_neg": 0.3,
+        "registered": true
+      },
+      {
+        "feature": "max_digit_run",
+        "auroc": 0.51783,
+        "auroc_raw_for_positive": 0.48217,
+        "direction": "neg",
+        "ci95": [
+          0.38136,
+          0.64955
+        ],
+        "boot_draws_used": 2000,
+        "mean_pos": 4.57826,
+        "mean_neg": 4.7,
+        "registered": true
+      }
+    ],
+    "executor_added_features": [
+      {
+        "feature": "x_mean_sentence_chars",
+        "auroc": 0.69652,
+        "auroc_raw_for_positive": 0.69652,
+        "direction": "pos",
+        "ci95": [
+          0.58122,
+          0.79876
+        ],
+        "boot_draws_used": 2000,
+        "mean_pos": 235.53812,
+        "mean_neg": 151.84083,
+        "registered": false
+      },
+      {
+        "feature": "x_equals_sign_count",
+        "auroc": 0.67826,
+        "auroc_raw_for_positive": 0.67826,
+        "direction": "pos",
+        "ci95": [
+          0.56051,
+          0.78332
+        ],
+        "boot_draws_used": 2000,
+        "mean_pos": 1.85652,
+        "mean_neg": 0.95,
+        "registered": false
+      },
+      {
+        "feature": "x_newline_count",
+        "auroc": 0.63304,
+        "auroc_raw_for_positive": 0.63304,
+        "direction": "pos",
+        "ci95": [
+          0.51065,
+          0.74392
+        ],
+        "boot_draws_used": 2000,
+        "mean_pos": 7.57391,
+        "mean_neg": 4.75,
+        "registered": false
+      },
+      {
+        "feature": "x_word_count",
+        "auroc": 0.60457,
+        "auroc_raw_for_positive": 0.60457,
+        "direction": "pos",
+        "ci95": [
+          0.45466,
+          0.7469
+        ],
+        "boot_draws_used": 2000,
+        "mean_pos": 74.82609,
+        "mean_neg": 61.5,
+        "registered": false
+      },
+      {
+        "feature": "x_digit_char_fraction",
+        "auroc": 0.60359,
+        "auroc_raw_for_positive": 0.60359,
+        "direction": "pos",
+        "ci95": [
+          0.48084,
+          0.72444
+        ],
+        "boot_draws_used": 2000,
+        "mean_pos": 0.10804,
+        "mean_neg": 0.09229,
+        "registered": false
+      },
+      {
+        "feature": "x_type_token_ratio",
+        "auroc": 0.59207,
+        "auroc_raw_for_positive": 0.40793,
+        "direction": "neg",
+        "ci95": [
+          0.44145,
+          0.74173
+        ],
+        "boot_draws_used": 2000,
+        "mean_pos": 0.59768,
+        "mean_neg": 0.67946,
+        "registered": false
+      },
+      {
+        "feature": "x_distinct_numeric_count",
+        "auroc": 0.5662,
+        "auroc_raw_for_positive": 0.5662,
+        "direction": "pos",
+        "ci95": [
+          0.41369,
+          0.71362
+        ],
+        "boot_draws_used": 2000,
+        "mean_pos": 5.8087,
+        "mean_neg": 4.95,
+        "registered": false
+      },
+      {
+        "feature": "x_percent_sign_count",
+        "auroc": 0.54772,
+        "auroc_raw_for_positive": 0.54772,
+        "direction": "pos",
+        "ci95": [
+          0.41071,
+          0.67043
+        ],
+        "boot_draws_used": 2000,
+        "mean_pos": 1.24783,
+        "mean_neg": 1.25,
+        "registered": false
+      },
+      {
+        "feature": "x_abstain_marker_count",
+        "auroc": 0.52283,
+        "auroc_raw_for_positive": 0.47717,
+        "direction": "neg",
+        "ci95": [
+          0.49362,
+          0.58335
+        ],
+        "boot_draws_used": 2000,
+        "mean_pos": 0.00435,
+        "mean_neg": 0.05,
+        "registered": false
+      },
+      {
+        "feature": "x_max_numeric_log10",
+        "auroc": 0.5188,
+        "auroc_raw_for_positive": 0.4812,
+        "direction": "neg",
+        "ci95": [
+          0.3655,
+          0.67087
+        ],
+        "boot_draws_used": 2000,
+        "mean_pos": 3.93054,
+        "mean_neg": 4.16397,
+        "registered": false
+      }
+    ],
+    "at_or_above_0_60": [
+      "x_mean_sentence_chars",
+      "x_equals_sign_count",
+      "derivation_marker_count",
+      "numeric_density_per_100c",
+      "x_newline_count",
+      "numeric_token_count",
+      "derivation_marker_present",
+      "x_word_count",
+      "x_digit_char_fraction"
+    ]
+  },
+  "H184": {
+    "question": "is deterministic number attribution informative on finqa",
+    "numeric_token_definition": ">= 2 digits after comma-stripping",
+    "raw_normalisation": "commas removed from both the response token and the concatenated evidence; substring containment",
+    "scale_aware_normalisation": "both sides parsed to float values, not strings. Response side: comma stripping, currency marks dropped, parenthesised and leading-minus negatives resolved to a signed value, a trailing scale word (thousand/million/billion/trillion within 18 chars) applied as a multiplier, and a percent form admitted as value/100. Evidence side: the same, plus a document-level scale header ('in thousands' / 'in millions' / 'in billions') applied as a multiplier to every number in that document, so a table stated in millions matches a response that spells the unit out. Both sides also carry the x100 variant so a ratio written as 0.045 matches a response's 4.5%. A response number counts as attributed when any of its variants is within 0.2% relative tolerance of any evidence variant - the tolerance absorbs restatement rounding ($911.51 billion against a 911507 millions table cell). Leading zeros and trailing decimals resolve through float parsing.",
+    "bands": {
+      ">=0.66": "evidence channel informative",
+      "0.55-0.66": "partial",
+      "<0.55": "attribution uninformative on finqa"
+    },
+    "raw_containment": {
+      "feature": "attribution_raw_containment",
+      "auroc": 0.6313,
+      "auroc_raw_for_positive": 0.6313,
+      "direction": "pos",
+      "ci95": [
+        0.46533,
+        0.77732
+      ],
+      "boot_draws_used": 2000,
+      "mean_pos": 0.79446,
+      "mean_neg": 0.6307
+    },
+    "scale_aware": {
+      "feature": "attribution_scale_aware",
+      "auroc": 0.55446,
+      "auroc_raw_for_positive": 0.55446,
+      "direction": "pos",
+      "ci95": [
+        0.39554,
+        0.71577
+      ],
+      "boot_draws_used": 2000,
+      "mean_pos": 0.74314,
+      "mean_neg": 0.62852
+    },
+    "sensitivity": {
+      "raw_containment_digit_boundary": {
+        "feature": "attribution_raw_boundary",
+        "auroc": 0.6125,
+        "auroc_raw_for_positive": 0.6125,
+        "direction": "pos",
+        "ci95": [
+          0.4442,
+          0.76385
+        ],
+        "boot_draws_used": 2000,
+        "mean_pos": 0.78102,
+        "mean_neg": 0.6307
+      },
+      "scale_aware_tight_no_x100": {
+        "feature": "attribution_scale_aware_tight",
+        "auroc": 0.54337,
+        "auroc_raw_for_positive": 0.54337,
+        "direction": "pos",
+        "ci95": [
+          0.38412,
+          0.70623
+        ],
+        "boot_draws_used": 2000,
+        "mean_pos": 0.7336,
+        "mean_neg": 0.62852
+      },
+      "scale_aware_tight_zero_tolerance": {
+        "feature": "attribution_scale_aware_tight_exact",
+        "auroc": 0.56359,
+        "auroc_raw_for_positive": 0.56359,
+        "direction": "pos",
+        "ci95": [
+          0.39711,
+          0.7233
+        ],
+        "boot_draws_used": 2000,
+        "mean_pos": 0.72987,
+        "mean_neg": 0.61852
+      },
+      "exact_value_no_scale_no_tolerance": {
+        "feature": "attribution_exact_value",
+        "auroc": 0.55565,
+        "auroc_raw_for_positive": 0.55565,
+        "direction": "pos",
+        "ci95": [
+          0.38921,
+          0.71495
+        ],
+        "boot_draws_used": 2000,
+        "mean_pos": 0.72422,
+        "mean_neg": 0.61852
+      },
+      "scale_aware_tight_excluding_bare_years": {
+        "feature": "attribution_scale_aware_tight_no_years",
+        "auroc": 0.53717,
+        "auroc_raw_for_positive": 0.53717,
+        "direction": "pos",
+        "ci95": [
+          0.38145,
+          0.68253
+        ],
+        "boot_draws_used": 2000,
+        "mean_pos": 0.60703,
+        "mean_neg": 0.54895
+      }
+    },
+    "response_numeric_tokens": {
+      "mean": 12.256,
+      "items_with_no_numeric_token": 2,
+      "bare_year_tokens_1900_2099": 1085,
+      "bare_year_share_of_tokens": 0.3541
+    }
+  },
+  "H185": {
+    "question": "does the 1500/750 serving window split a cited number from its label",
+    "windowing_implementation": "groundrails.dataset.shape.windows with the default Presentation (window_chars=1500, stride_chars=750); offsets recomputed with identical geometry and asserted byte-equal to the library output on every document read",
+    "anchor_definition": "table cell -> its row's first cell (the row label), and separately the whole header row (the column label); prose -> the start of the containing sentence. A binding is SPLIT when no single window holds both the number's position and the whole anchor span",
+    "items": 250,
+    "items_with_a_located_cited_number": 246,
+    "split_binding_fraction_union": 0.0,
+    "split_binding_fraction_row_label": 0.0,
+    "split_binding_fraction_column_header": 0.0,
+    "token_occurrences_checked": 3200,
+    "token_split_row_label": 0,
+    "token_split_column_header": 0,
+    "documents_total": 725,
+    "documents_over_1500_chars": 242,
+    "documents_over_1500_chars_fraction": 0.3338,
+    "exposure": {
+      "note": "a binding can only split inside a document that produces more than one window; these count how much of the corpus was actually at risk, so a zero can be told apart from an untestable zero",
+      "token_occurrences_in_multi_window_docs": 1678,
+      "items_with_a_cited_number_in_a_multi_window_doc": 188,
+      "table_documents": 250,
+      "table_documents_over_1500_chars": 0,
+      "widest_token_to_header_row_gap_chars": 1174
+    },
+    "bar": 0.25,
+    "verdict_union": "EXCLUDED",
+    "verdict_row_label_only": "EXCLUDED"
+  }
+}

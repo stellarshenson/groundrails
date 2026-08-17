@@ -1,0 +1,355 @@
+{
+  "rows": 2000,
+  "pairs": 1000,
+  "documents": 465,
+  "seed": 2177,
+  "split": "eval",
+  "label_balance": {
+    "label_1": 1000,
+    "label_0": 1000
+  },
+  "families": {
+    "cmp_order": 900,
+    "cmp_extreme": 400,
+    "cmp_amount": 668,
+    "cmp_trend": 32
+  },
+  "family_shares": {
+    "cmp_amount": 0.334,
+    "cmp_order": 0.45,
+    "cmp_trend": 0.016,
+    "cmp_extreme": 0.2
+  },
+  "cells_filled": {
+    "cmp_amount:greater": 84,
+    "cmp_amount:higher": 83,
+    "cmp_amount:less": 84,
+    "cmp_amount:lower": 83,
+    "cmp_extreme:highest": 100,
+    "cmp_extreme:lowest": 100,
+    "cmp_order:greater": 113,
+    "cmp_order:higher": 112,
+    "cmp_order:less": 113,
+    "cmp_order:lower": 112,
+    "cmp_trend:decreased": 8,
+    "cmp_trend:increased": 8
+  },
+  "cell_targets": {
+    "cmp_amount:greater": 84,
+    "cmp_amount:higher": 83,
+    "cmp_amount:less": 84,
+    "cmp_amount:lower": 83,
+    "cmp_extreme:highest": 100,
+    "cmp_extreme:lowest": 100,
+    "cmp_order:greater": 113,
+    "cmp_order:higher": 112,
+    "cmp_order:less": 113,
+    "cmp_order:lower": 112,
+    "cmp_trend:decreased": 8,
+    "cmp_trend:increased": 8
+  },
+  "source_rows": {
+    "tabfact": 1300,
+    "edgar": 700
+  },
+  "serial_forms": {
+    "prose": 700,
+    "keyvalue": 144,
+    "markdown": 152,
+    "row_prose": 368,
+    "narrative": 388,
+    "pipe": 180,
+    "json_records": 68
+  },
+  "templates": {
+    "1": 1034,
+    "0": 966
+  },
+  "diversity": {
+    "distinct_claims": 2000,
+    "distinct_chunks": 727,
+    "distinct_subjects": 819
+  },
+  "char_stats": {
+    "claim": {
+      "n": 2000,
+      "mean": 87.0,
+      "median": 84,
+      "p10": 63,
+      "p90": 115,
+      "min": 42,
+      "max": 174
+    },
+    "chunk": {
+      "n": 2000,
+      "mean": 1050.9,
+      "median": 1011,
+      "p10": 532,
+      "p90": 1497,
+      "min": 278,
+      "max": 1500
+    }
+  },
+  "window_census": {
+    "windowing": "1500/750, final window flush to the end (byte-identical to R8-H101 / R16-H142)",
+    "rows": 2000,
+    "mean_windows": 1.0,
+    "median_windows": 1,
+    "max_windows": 1,
+    "multi_window_rows": 0,
+    "multi_window_share": 0.0
+  },
+  "tabfact_admission": {
+    "supply": "TabFact TEST + VALIDATION (the train half is 100% inside the `tabfact` mix member - measured, see R20-H177_evalB_rebuild_supply.json)",
+    "per_split": {
+      "test": {
+        "candidate_tables": 1695,
+        "admitted": 731,
+        "dropped": {
+          "carry_R17H143_eval_content": 412,
+          "evalset_doc_id": 0,
+          "member_id": 0,
+          "member_stem": 45,
+          "member_text_raw": 0,
+          "member_text_truncated": 0,
+          "no_label_or_numeric_column": 507
+        }
+      },
+      "validation": {
+        "candidate_tables": 1696,
+        "admitted": 791,
+        "dropped": {
+          "carry_R17H143_eval_content": 373,
+          "evalset_doc_id": 0,
+          "member_id": 0,
+          "member_stem": 70,
+          "member_text_raw": 0,
+          "member_text_truncated": 0,
+          "no_label_or_numeric_column": 462
+        }
+      }
+    },
+    "evalset_rows": 1050,
+    "method": "R17-H144 content-based R17-H143_evalset exclusion, enforced; then the mix-member exclusion by table id, by id STEM, and by whitespace-normalised serialised text in both the raw and the 1,500-cut form",
+    "admitted": 1522
+  },
+  "verify": {
+    "pair_integrity": {
+      "pairs": 1000,
+      "malformed": 0,
+      "bar": "0 malformed",
+      "pass": true,
+      "examples": []
+    },
+    "claim_only_tfidf_auroc": {
+      "value": 0.4873,
+      "bar": "< 0.55",
+      "pass": true,
+      "scoring": "5-fold document-disjoint, out of fold, relation-stratified, liblinear tol 1e-7",
+      "documents": 465,
+      "rows": 2000
+    },
+    "within_pair_claim_only_accuracy": {
+      "per_family": {
+        "cmp_trend": {
+          "acc": 0.3125,
+          "pairs": 16
+        },
+        "cmp_extreme": {
+          "acc": 0.485,
+          "pairs": 200
+        },
+        "cmp_amount": {
+          "acc": 0.5,
+          "pairs": 334
+        },
+        "cmp_order": {
+          "acc": 0.4933,
+          "pairs": 450
+        }
+      },
+      "worst": 0.5,
+      "bar": "< 0.60",
+      "pass": true
+    },
+    "surface_parity": {
+      "auroc": {
+        "claim_char_length": 0.5001,
+        "claim_token_count": 0.5,
+        "chunk_char_length": 0.5,
+        "claim_chunk_containment": 0.5
+      },
+      "report_only": [],
+      "bar": "each barred channel in [0.45, 0.55]",
+      "worst_deviation": 0.0001,
+      "pass": true
+    },
+    "direction_word_balance": {
+      "per_word": {
+        "decreased": {
+          "as_positive": 8,
+          "as_negative": 8,
+          "positive_share": 0.5,
+          "pairs": 16
+        },
+        "greater": {
+          "as_positive": 197,
+          "as_negative": 197,
+          "positive_share": 0.5,
+          "pairs": 394
+        },
+        "higher": {
+          "as_positive": 195,
+          "as_negative": 195,
+          "positive_share": 0.5,
+          "pairs": 390
+        },
+        "highest": {
+          "as_positive": 100,
+          "as_negative": 100,
+          "positive_share": 0.5,
+          "pairs": 200
+        },
+        "increased": {
+          "as_positive": 8,
+          "as_negative": 8,
+          "positive_share": 0.5,
+          "pairs": 16
+        },
+        "less": {
+          "as_positive": 197,
+          "as_negative": 197,
+          "positive_share": 0.5,
+          "pairs": 394
+        },
+        "lower": {
+          "as_positive": 195,
+          "as_negative": 195,
+          "positive_share": 0.5,
+          "pairs": 390
+        },
+        "lowest": {
+          "as_positive": 100,
+          "as_negative": 100,
+          "positive_share": 0.5,
+          "pairs": 200
+        }
+      },
+      "worst_deviation_from_half": 0.0,
+      "bar": "every word within 0.02 of a 50/50 positive/negative split",
+      "pass": true
+    },
+    "attestation_symmetry": {
+      "negatives": 1000,
+      "asymmetric_attestation_rows": 0,
+      "required_both_attested_families": [
+        "cmp_trend"
+      ],
+      "rows_missing_required_attestation": 0,
+      "per_family": {
+        "cmp_trend": {
+          "negatives": 16,
+          "corrupted_word_attested_rate": 1.0
+        },
+        "cmp_order": {
+          "negatives": 450,
+          "corrupted_word_attested_rate": 0.0
+        },
+        "cmp_extreme": {
+          "negatives": 200,
+          "corrupted_word_attested_rate": 0.0
+        },
+        "cmp_amount": {
+          "negatives": 334,
+          "corrupted_word_attested_rate": 0.0659
+        }
+      },
+      "bar": "0 asymmetric rows; 0 missing rows on the prose-corruption families",
+      "pass": true,
+      "examples": []
+    },
+    "value_presence_edgar": {
+      "rows_checked": 700,
+      "asserted_values_not_verbatim": 0,
+      "bar": "0 - every asserted amount is printed in its chunk",
+      "pass": true,
+      "examples": []
+    },
+    "value_presence_tabfact": {
+      "rows_checked": 1300,
+      "rows_with_absent_value": 0,
+      "instrument": "R17-H144 canon_set / present_numbers (banked)",
+      "bar": "0 - every asserted cell is readable in the serialised chunk",
+      "pass": true,
+      "examples": []
+    },
+    "operand_channel_parity": {
+      "digit_count_auroc": 0.5,
+      "trailing_zero_auroc": 0.5,
+      "leading_digit_auroc": 0.5,
+      "bar": "0.5 exactly - the twin asserts the SAME operands",
+      "pass": true
+    },
+    "all_bars_pass": true
+  },
+  "experiment": "R20-H177 eval_B REBUILD - held-out mechanism eval for lane B, rebuilt on supply disjoint from the training mix",
+  "scope": "measurement and building only - no adjudication, no bar changed",
+  "replaces": {
+    "parquet": "R20-H177_eval_B.parquet",
+    "defects": [
+      "passage channel: 33 of 736 passages in the flagship mix (19 byte-identical), 126 rows / 63 pairs",
+      "document channel: 325 of 325 TabFact documents in the `tabfact` mix member, 1,300 of 2,000 rows (65%)",
+      "split key: blake2b over the doc_id STRING, which TabFact's `1-`/`2-` csv prefixes make two ids for one table"
+    ]
+  },
+  "construction": "imported verbatim from R20-H177_lane_B.py - BUILDERS, assemble, verify, emit, EVAL_TARGETS, SEED_EVAL; only the TabFact supply and the split rule differ",
+  "split_rule": {
+    "tabfact": "CORPUS HALF - lane B is TabFact TRAIN, this eval is TabFact TEST+VALIDATION; strictly stronger than the blake2b hash it replaces, which keyed on a doc_id string that names one table under two prefixes",
+    "tabfact_exclusion": "table id, id STEM, and whitespace-normalised serialised text (raw and 1,500-cut) against the `tabfact` mix member",
+    "edgar": "the banked blake2b(doc_id) % 1000 < 120 rule, unchanged - EDGAR ids carry no prefix ambiguity",
+    "claim_wall": "a candidate is rejected if its claim, under EITHER relation word and EITHER template of its frame, is a string lane B or the training mix already carries - the lane is template-generated, so two unrelated documents printing the same column name, row labels and cells emit the same sentence"
+  },
+  "claim_wall_rejections": {
+    "cmp_extreme": 10,
+    "cmp_order": 1,
+    "cmp_amount": 5
+  },
+  "supply_frontier": "R20-H177_evalB_rebuild_supply.json - 0 of 8,541 TabFact TRAIN table stems survive the member exclusion, so a train-half rebuild has no TabFact supply at all",
+  "reproducibility": {
+    "requires": "PYTHONHASHSEED=0",
+    "finding": "the banked `R17-H144_pairs.excluded_tables` ranks a chunk's numerals by `sorted(..., key=len(index[v]))` over a FROZENSET, so ties are broken by the set's iteration order, which Python salts per process. Two runs of the identical code excluded 373 and 372 validation tables. The build is deterministic only with the hash seed pinned; the banked parquet is the record either way",
+    "scope": "a property of banked code that lane B and R17-H146 also run - recorded, not repaired here"
+  },
+  "sources": {
+    "edgar": {
+      "dataset": "EDGAR restricted 10-K/10-Q MD&A slice, admitted",
+      "artifact": "R18-H150_edgar_admitted.parquet (34,014 chunks, 4,297 filings)",
+      "licence": "Apache-2.0 pipeline over public EDGAR filings; data/external/datasets/dataset-edgar-restricted.md - raw EDGAR outside the restricted slice stays banned",
+      "wall": "provenance gate GREEN on admission (R18-H150); this lane re-runs the R14-H136 8-gram census on the built pairings"
+    },
+    "tabfact": {
+      "dataset": "TabFact TRAIN tables (public)",
+      "artifact": "data/external/datasets/dataset-tabfact.zip, read through R17-H144_pairs.tabfact_tables()",
+      "licence": "CC-BY-4.0 (banked supply, rode in R14-H133 / R17-H144 / R17-H146)",
+      "wall": "banked GREEN; the lane census re-runs the wall on the new serialisations"
+    }
+  },
+  "walled_never_opened": [
+    "finqa (RAGBench arena parent) - source corpus WALLED, not read by this lane",
+    "tatqa (RAGBench arena parent) - source corpus WALLED, not read by this lane",
+    "hotpotqa train - never opened",
+    "hover - never opened"
+  ],
+  "parquet": "R20-H177_eval_B_rebuilt.parquet",
+  "disjointness_from_lane_B": {
+    "shared_doc_ids": 0,
+    "shared_doc_id_STEMS": 0,
+    "shared_chunks": 0,
+    "lane_documents": 6365,
+    "eval_documents": 465,
+    "bar": "0 on every channel",
+    "pass_": true
+  },
+  "elapsed_s": 36.2,
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+}

@@ -1,0 +1,107 @@
+{
+  "member": "tabfact_conformed",
+  "built_from": "the banked member, rebuilt through R10-H108_lane.public_train() under R16-H142_G1_arm.untruncated_evidence() and asserted row-for-row against the archive; the conformed member is a strict ROW SUBSET - no chunk text is rewritten",
+  "archive": "dataset-tabfact.zip :: wenhuchen__Table-Fact-Checking__tabfact__train.parquet",
+  "archive_train_rows": 92585,
+  "selection_predicate": "train split only; filter statement.str.len_chars() > 10; then the document / string / content / contradiction cuts recorded under `cuts`",
+  "chunk_construction": "f'{table_caption}\\n{table_text}'.replace('\\r\\n','\\n').replace('#',' | ')[:chunk_max_chars]",
+  "chunk_max_chars": 1500,
+  "cuts": {
+    "X1_tabfact_heldout_splits": {
+      "clause": "C3 (and C2 via the anti-gaming sets)",
+      "rule": "drop every member table whose table_id STEM occurs in TabFact validation or test",
+      "stems_in_the_surface": 3377,
+      "stems_hit_in_member": 164
+    },
+    "X2_R20-H177_eval_B_tabfact_half": {
+      "clause": "C2",
+      "rule": "drop every member table whose STEM is a doc_id eval_B draws on",
+      "surface_tabfact_doc_ids": 325,
+      "stems_in_the_surface": 325,
+      "stems_hit_in_member": 325
+    },
+    "X3_R17-H143_evalset_tabfact_half": {
+      "clause": "C2",
+      "rule": "same document rule; the evalset's doc_ids are recovered by joining its 547 distinct passages to R17-H143_evalset_source",
+      "evalset_distinct_passages_resolved": 547,
+      "surface_tabfact_doc_ids": 352,
+      "stems_in_the_surface": 350,
+      "stems_hit_in_member": 350
+    },
+    "X4_antigaming_probe_sets": {
+      "clause": "C2",
+      "rule": "drop every member table whose STEM occurs in any of the 14 banked anti-gaming sets",
+      "files": 14,
+      "stems_in_the_union": 1738,
+      "stems_hit_in_member": 84,
+      "stems_already_covered_by_X1": true,
+      "per_file_distinct_stems": {
+        "R14-H133_antigaming_set.parquet": 1171,
+        "R16-H142-T-d2_antigaming_set.parquet": 1182,
+        "R16-H142-T_antigaming_set.parquet": 1174,
+        "R17-H145_antigaming_set.parquet": 1182,
+        "R17-H146_antigaming_set.parquet": 1168,
+        "R18-H150-d2_antigaming_set.parquet": 1168,
+        "R18-H150_antigaming_set.parquet": 1173,
+        "R18-H152-d1_antigaming_set.parquet": 1171,
+        "R18-H152-d2_antigaming_set.parquet": 1178,
+        "R18-H155-d1_antigaming_set.parquet": 1182,
+        "R18-H155-d2_antigaming_set.parquet": 1188,
+        "R18-H156_antigaming_set.parquet": 1170,
+        "R19-H159_antigaming_set.parquet": 1172,
+        "R19-H160-soupB_antigaming_set.parquet": 1183
+      }
+    },
+    "S_string_residual": {
+      "clause": "C2",
+      "rule": "drop any surviving member table whose evidence equals an eval passage in any of the three forms (raw / truncated 1500 / whitespace-collapsed case-folded), either direction",
+      "eval_passages_compared": 4455,
+      "member_stems_hit": 0
+    },
+    "N_content_residual": {
+      "clause": "C2 / C3",
+      "rule": "drop any surviving member table at 8-gram Jaccard >= 0.3 against any TabFact table an evaluation surface draws on (banked R14-H136 gate primitives, unchanged)",
+      "eval_side_tables": 4264,
+      "rounds": [
+        {
+          "round": 1,
+          "member_tables_scored": 12306,
+          "documents_at_jaccard_ge_0.3": 43,
+          "max_jaccard": 0.9852,
+          "p99_jaccard": 0.124,
+          "mean_jaccard": 0.0189
+        },
+        {
+          "round": 2,
+          "member_tables_scored": 12257,
+          "documents_at_jaccard_ge_0.3": 0,
+          "max_jaccard": 0.29,
+          "p99_jaccard": 0.1017,
+          "mean_jaccard": 0.0163
+        }
+      ]
+    },
+    "D_contradictory_supervision": {
+      "clause": "C8",
+      "rule": "drop every row of a (claim, document) group carrying BOTH labels - the document key is the STEM, so the `1-`/`2-` twin of one table counts as one document",
+      "claim_document_groups_dropped": 44,
+      "rows_dropped": 88
+    }
+  },
+  "volume": {
+    "banked_member_rows": 92585,
+    "banked_member_tables": 13182,
+    "banked_member_documents_stems": 12753,
+    "conformed_rows": 86206,
+    "conformed_tables": 12257,
+    "conformed_documents_stems": 11882,
+    "rows_dropped": 6379,
+    "row_cost_share": 0.068899,
+    "documents_dropped": 871,
+    "clean_mix_rows_before": 685670,
+    "clean_mix_rows_after": 679291,
+    "member_share_before": 0.135029,
+    "member_share_after": 0.126906
+  },
+  "elapsed_s": 16.2
+}

@@ -1,0 +1,234 @@
+{
+  "arm": "R21-H179Q ablate - the arena read with the evidence permuted",
+  "licence": "MEASUREMENT ONLY - nothing is adjudicated here",
+  "draw": "d2",
+  "checkpoint": "R18-H150-arm-draw2",
+  "label": "H150 draw 2 (seed 2150, monolithic executor)",
+  "ablation": "the evidence document list is permuted ACROSS ITEMS inside each subset by a fixed-seed derangement; claims, sentences, labels and the read itself are untouched, so every surface statistic of the evidence side is preserved and only the claim-evidence relation is destroyed",
+  "seed": 179,
+  "permutation_sha256_16": "8c6fc384c626685a",
+  "permutation_banked_in": "R21-H179Q_ablated_scores_R18-H150-arm-draw2.npz",
+  "ablation_control": {
+    "assertion": "ZERO items retain their original evidence text after the shuffle - the run aborts otherwise",
+    "items_retaining_original_evidence": 0,
+    "items_retaining_original_evidence_per_subset": {
+      "covidqa": 0,
+      "delucionqa": 0,
+      "emanual": 0,
+      "expertqa": 0,
+      "finqa": 0,
+      "hagrid": 0,
+      "hotpotqa": 0,
+      "pubmedqa": 0,
+      "tatqa": 0,
+      "techqa": 0
+    },
+    "n_items": 2264,
+    "rejection_is_on_text_not_index": "a derangement alone only guarantees no item keeps its own POSITION; a subset holding two responses with identical document lists could still hand an item its own evidence back, so candidate permutations are rejected on the evidence TEXT",
+    "draws_until_accepted_per_subset": {
+      "covidqa": 1,
+      "delucionqa": 15,
+      "emanual": 20,
+      "expertqa": 2,
+      "finqa": 3,
+      "hagrid": 4,
+      "hotpotqa": 2,
+      "pubmedqa": 1,
+      "tatqa": 2,
+      "techqa": 11
+    },
+    "verdict": "PASS"
+  },
+  "ablated_mean": 0.54899,
+  "ablated_per_subset": {
+    "covidqa": 0.4817,
+    "delucionqa": 0.4816,
+    "emanual": 0.6029,
+    "expertqa": 0.5053,
+    "finqa": 0.6741,
+    "hagrid": 0.5693,
+    "hotpotqa": 0.5382,
+    "pubmedqa": 0.5644,
+    "tatqa": 0.5932,
+    "techqa": 0.4792
+  },
+  "harness_control": {
+    "tolerance": 0.0001,
+    "worst_abs_delta": 4.792e-05,
+    "per_subset": {
+      "covidqa": {
+        "ablated_auc": 0.4817,
+        "recomputed_auc": 0.481703,
+        "abs_delta": 2.76e-06,
+        "fingerprint": {
+          "n": 245,
+          "n_sent": 385,
+          "n_pairs": 1540
+        },
+        "read_fingerprint": {
+          "n": 245,
+          "n_sent": 385,
+          "n_pairs": 1540
+        },
+        "fingerprint_ok": true,
+        "passes": true
+      },
+      "delucionqa": {
+        "ablated_auc": 0.4816,
+        "recomputed_auc": 0.481589,
+        "abs_delta": 1.085e-05,
+        "fingerprint": {
+          "n": 184,
+          "n_sent": 929,
+          "n_pairs": 4823
+        },
+        "read_fingerprint": {
+          "n": 184,
+          "n_sent": 929,
+          "n_pairs": 4823
+        },
+        "fingerprint_ok": true,
+        "passes": true
+      },
+      "emanual": {
+        "ablated_auc": 0.6029,
+        "recomputed_auc": 0.602906,
+        "abs_delta": 5.57e-06,
+        "fingerprint": {
+          "n": 132,
+          "n_sent": 748,
+          "n_pairs": 3085
+        },
+        "read_fingerprint": {
+          "n": 132,
+          "n_sent": 748,
+          "n_pairs": 3085
+        },
+        "fingerprint_ok": true,
+        "passes": true
+      },
+      "expertqa": {
+        "ablated_auc": 0.5053,
+        "recomputed_auc": 0.505263,
+        "abs_delta": 3.684e-05,
+        "fingerprint": {
+          "n": 203,
+          "n_sent": 1303,
+          "n_pairs": 15494
+        },
+        "read_fingerprint": {
+          "n": 203,
+          "n_sent": 1303,
+          "n_pairs": 15494
+        },
+        "fingerprint_ok": true,
+        "passes": true
+      },
+      "finqa": {
+        "ablated_auc": 0.6741,
+        "recomputed_auc": 0.67413,
+        "abs_delta": 3.043e-05,
+        "fingerprint": {
+          "n": 250,
+          "n_sent": 563,
+          "n_pairs": 2963
+        },
+        "read_fingerprint": {
+          "n": 250,
+          "n_sent": 563,
+          "n_pairs": 2963
+        },
+        "fingerprint_ok": true,
+        "passes": true
+      },
+      "hagrid": {
+        "ablated_auc": 0.5693,
+        "recomputed_auc": 0.569265,
+        "abs_delta": 3.486e-05,
+        "fingerprint": {
+          "n": 250,
+          "n_sent": 537,
+          "n_pairs": 1747
+        },
+        "read_fingerprint": {
+          "n": 250,
+          "n_sent": 537,
+          "n_pairs": 1747
+        },
+        "fingerprint_ok": true,
+        "passes": true
+      },
+      "hotpotqa": {
+        "ablated_auc": 0.5382,
+        "recomputed_auc": 0.538248,
+        "abs_delta": 4.792e-05,
+        "fingerprint": {
+          "n": 250,
+          "n_sent": 293,
+          "n_pairs": 1178
+        },
+        "read_fingerprint": {
+          "n": 250,
+          "n_sent": 293,
+          "n_pairs": 1178
+        },
+        "fingerprint_ok": true,
+        "passes": true
+      },
+      "pubmedqa": {
+        "ablated_auc": 0.5644,
+        "recomputed_auc": 0.564372,
+        "abs_delta": 2.796e-05,
+        "fingerprint": {
+          "n": 250,
+          "n_sent": 1314,
+          "n_pairs": 6570
+        },
+        "read_fingerprint": {
+          "n": 250,
+          "n_sent": 1314,
+          "n_pairs": 6570
+        },
+        "fingerprint_ok": true,
+        "passes": true
+      },
+      "tatqa": {
+        "ablated_auc": 0.5932,
+        "recomputed_auc": 0.59322,
+        "abs_delta": 2.034e-05,
+        "fingerprint": {
+          "n": 250,
+          "n_sent": 468,
+          "n_pairs": 1915
+        },
+        "read_fingerprint": {
+          "n": 250,
+          "n_sent": 468,
+          "n_pairs": 1915
+        },
+        "fingerprint_ok": true,
+        "passes": true
+      },
+      "techqa": {
+        "ablated_auc": 0.4792,
+        "recomputed_auc": 0.479211,
+        "abs_delta": 1.14e-05,
+        "fingerprint": {
+          "n": 250,
+          "n_sent": 1737,
+          "n_pairs": 38981
+        },
+        "read_fingerprint": {
+          "n": 250,
+          "n_sent": 1737,
+          "n_pairs": 38981
+        },
+        "fingerprint_ok": true,
+        "passes": true
+      }
+    },
+    "verdict": "PASS"
+  },
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates.",
+  "written": "2026-08-17 13:19:05"
+}

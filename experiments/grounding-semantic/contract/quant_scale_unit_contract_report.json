@@ -1,0 +1,1926 @@
+{
+  "member": "quant_scale_unit",
+  "kind": "constructed lane",
+  "artifact": "experiments/grounding-semantic/R18-H150_scaleunit_lane.parquet",
+  "dann_group": "quant_scale_unit",
+  "rows": 5540,
+  "pairs": 2770,
+  "family": "unit_swap",
+  "contract": "docs/experiments/dataset-contract.md",
+  "rebuild_path": "R10-H108_lane.public_train() + R18-H150_arm_run.LANES (721,210-row mix reproduced exactly, 14 DANN groups); the same member is carried by R20-H174_arm_run.LANES at the same 5,540 rows / 2,770 pairs in a 760,618-row mix",
+  "compute": "CPU only; CUDA_VISIBLE_DEVICES forced empty before every import; no GPU queried or touched",
+  "conforming": false,
+  "clauses": {
+    "C1": {
+      "clause": "label commensurability",
+      "verdict": "FAIL",
+      "declared_head": "the grounding scalar (`task_head`), the same head every other member of the 721,210-row mix trains",
+      "declared_label_predicate": "label 1 = the claim states, for the named (row_key, column) cell, the value AND the unit the evidence gives; label 0 = the claim states the same numeral under a DIFFERENT unit of the same physical dimension. The numeral never moves between legs. The predicate is SUPPORT: the negative is false with respect to the evidence",
+      "mandatory_test": "claim-to-evidence containment, negative leg against positive leg, measured with the R20-H175b precedent instrument that produced the banked qrel_contrast numbers (tokens `[^\\W\\d_]+|\\d+`, lowercased, no stopword removal; containment = |claim n chunk| / |claim|)",
+      "measured": {
+        "instrument_I1_R20-H175b_precedent": {
+          "positive_leg": {
+            "n": 2770,
+            "mean": 0.593761,
+            "median": 0.583333,
+            "p10": 0.428571,
+            "p25": 0.5,
+            "p75": 0.666667,
+            "p90": 0.777778,
+            "min": 0.3,
+            "max": 0.928571,
+            "rate_eq_1_00": 0.0,
+            "rate_ge_0_95": 0.0,
+            "rate_ge_0_90": 0.022022
+          },
+          "negative_leg": {
+            "n": 2770,
+            "mean": 0.593647,
+            "median": 0.583333,
+            "p10": 0.428571,
+            "p25": 0.5,
+            "p75": 0.666667,
+            "p90": 0.777778,
+            "min": 0.3,
+            "max": 0.928571,
+            "rate_eq_1_00": 0.0,
+            "rate_ge_0_95": 0.0,
+            "rate_ge_0_90": 0.0213
+          },
+          "mean_gap_neg_minus_pos": -0.000114,
+          "rate_ge_0_90_gap": -0.000722,
+          "abs_rate_ge_0_90_gap": 0.000722
+        },
+        "instrument_I2_R19-H161_frozen_content": {
+          "positive_rate_ge_0_90": 0.00361,
+          "negative_rate_ge_0_90": 0.00361,
+          "abs_rate_ge_0_90_gap": 0.0,
+          "mean_gap_neg_minus_pos": -0.000157
+        },
+        "instrument_I3_unit_resolved": {
+          "definition": "I1 after mapping the claim's spelled-out unit phrase onto the abbreviation key the evidence uses, from the lane's own banked UNITS table",
+          "positive_leg": {
+            "n": 2770,
+            "mean": 0.703292,
+            "median": 0.7,
+            "p10": 0.545455,
+            "p25": 0.6,
+            "p75": 0.777778,
+            "p90": 0.9,
+            "min": 0.3,
+            "max": 1.0,
+            "rate_eq_1_00": 0.083032,
+            "rate_ge_0_95": 0.083032,
+            "rate_ge_0_90": 0.101083
+          },
+          "negative_leg": {
+            "n": 2770,
+            "mean": 0.615587,
+            "median": 0.6,
+            "p10": 0.444444,
+            "p25": 0.5,
+            "p75": 0.7,
+            "p90": 0.818182,
+            "min": 0.3,
+            "max": 1.0,
+            "rate_eq_1_00": 0.006137,
+            "rate_ge_0_95": 0.006137,
+            "rate_ge_0_90": 0.03213
+          },
+          "mean_gap_neg_minus_pos": -0.087705,
+          "abs_rate_ge_0_90_gap": 0.068953
+        },
+        "within_pair_containment_identity": {
+          "pairs": 2770,
+          "mean_abs_diff": 0.00316334,
+          "max_abs_diff": 0.10714286,
+          "pairs_exactly_equal": 2624,
+          "share_exactly_equal": 0.947292,
+          "instrument": "I1_R20-H175b_precedent"
+        },
+        "unit_surface_attestation": {
+          "definition": "the lane's banked SURFACE regex for the CLAIMED unit matches anywhere in the chunk (abbreviation OR spelled out)",
+          "positive_leg_claimed_unit_attested": 0.966787,
+          "negative_leg_claimed_unit_attested": 0.097473,
+          "gap_neg_minus_pos": -0.869314,
+          "negative_leg_correct_unit_attested": 0.966787,
+          "auroc_note": "a presence test separating the legs is the H148 shortcut; it is REPORTED here, not a bar"
+        },
+        "h148_literal_presence_rederived": {
+          "positive_leg_rate": 0.0,
+          "negative_leg_rate": 0.0,
+          "banked_verify_claim": {
+            "positive_leg_rate": 0.0,
+            "negative_leg_rate": 0.0
+          },
+          "definition": "claim unit phrase, or any content token distinguishing it from its twin's phrase, readable in the chunk"
+        },
+        "cited_value_verbatim_in_chunk": {
+          "positive_leg": 1.0,
+          "negative_leg": 1.0,
+          "note": "digits never move between legs by construction"
+        },
+        "per_swap_family": {
+          "cm<->m": {
+            "pairs": 238,
+            "pos_mean": 0.590169,
+            "neg_mean": 0.590169,
+            "pos_rate_ge_0_90": 0.008403,
+            "neg_rate_ge_0_90": 0.008403,
+            "abs_rate_gap": 0.0,
+            "pos_rate_eq_1": 0.0,
+            "neg_rate_eq_1": 0.0
+          },
+          "gb<->mb": {
+            "pairs": 148,
+            "pos_mean": 0.616413,
+            "neg_mean": 0.616413,
+            "pos_rate_ge_0_90": 0.033784,
+            "neg_rate_ge_0_90": 0.033784,
+            "abs_rate_gap": 0.0,
+            "pos_rate_eq_1": 0.0,
+            "neg_rate_eq_1": 0.0
+          },
+          "ghz<->mhz": {
+            "pairs": 132,
+            "pos_mean": 0.688441,
+            "neg_mean": 0.688441,
+            "pos_rate_ge_0_90": 0.068182,
+            "neg_rate_ge_0_90": 0.068182,
+            "abs_rate_gap": 0.0,
+            "pos_rate_eq_1": 0.0,
+            "neg_rate_eq_1": 0.0
+          },
+          "ha<->km2": {
+            "pairs": 146,
+            "pos_mean": 0.591613,
+            "neg_mean": 0.589462,
+            "pos_rate_ge_0_90": 0.013699,
+            "neg_rate_ge_0_90": 0.0,
+            "abs_rate_gap": 0.013699,
+            "pos_rate_eq_1": 0.0,
+            "neg_rate_eq_1": 0.0
+          },
+          "kb<->mb": {
+            "pairs": 106,
+            "pos_mean": 0.635333,
+            "neg_mean": 0.635333,
+            "pos_rate_ge_0_90": 0.056604,
+            "neg_rate_ge_0_90": 0.056604,
+            "abs_rate_gap": 0.0,
+            "pos_rate_eq_1": 0.0,
+            "neg_rate_eq_1": 0.0
+          },
+          "kg<->lb": {
+            "pairs": 144,
+            "pos_mean": 0.591175,
+            "neg_mean": 0.591175,
+            "pos_rate_ge_0_90": 0.020833,
+            "neg_rate_ge_0_90": 0.020833,
+            "abs_rate_gap": 0.0,
+            "pos_rate_eq_1": 0.0,
+            "neg_rate_eq_1": 0.0
+          },
+          "khz<->mhz": {
+            "pairs": 152,
+            "pos_mean": 0.629302,
+            "neg_mean": 0.629302,
+            "pos_rate_ge_0_90": 0.032895,
+            "neg_rate_ge_0_90": 0.032895,
+            "abs_rate_gap": 0.0,
+            "pos_rate_eq_1": 0.0,
+            "neg_rate_eq_1": 0.0
+          },
+          "km2<->sqmi": {
+            "pairs": 568,
+            "pos_mean": 0.559666,
+            "neg_mean": 0.559666,
+            "pos_rate_ge_0_90": 0.005282,
+            "neg_rate_ge_0_90": 0.005282,
+            "abs_rate_gap": 0.0,
+            "pos_rate_eq_1": 0.0,
+            "neg_rate_eq_1": 0.0
+          },
+          "km<->m": {
+            "pairs": 782,
+            "pos_mean": 0.600558,
+            "neg_mean": 0.600558,
+            "pos_rate_ge_0_90": 0.02046,
+            "neg_rate_ge_0_90": 0.02046,
+            "abs_rate_gap": 0.0,
+            "pos_rate_eq_1": 0.0,
+            "neg_rate_eq_1": 0.0
+          },
+          "km<->mm": {
+            "pairs": 198,
+            "pos_mean": 0.60338,
+            "neg_mean": 0.60338,
+            "pos_rate_ge_0_90": 0.050505,
+            "neg_rate_ge_0_90": 0.050505,
+            "abs_rate_gap": 0.0,
+            "pos_rate_eq_1": 0.0,
+            "neg_rate_eq_1": 0.0
+          },
+          "kmh<->mph": {
+            "pairs": 156,
+            "pos_mean": 0.517012,
+            "neg_mean": 0.517012,
+            "pos_rate_ge_0_90": 0.0,
+            "neg_rate_ge_0_90": 0.0,
+            "abs_rate_gap": 0.0,
+            "pos_rate_eq_1": 0.0,
+            "neg_rate_eq_1": 0.0
+          }
+        },
+        "worst_family_abs_rate_gap": 0.013699,
+        "families_with_gap_above_0_10": [],
+        "distractor_in_chunk_strata": {
+          "True": {
+            "instrument": "I1_R20-H175b_precedent",
+            "positive_leg": {
+              "n": 270,
+              "mean": 0.610443,
+              "median": 0.6,
+              "p10": 0.444444,
+              "p25": 0.5,
+              "p75": 0.7,
+              "p90": 0.8,
+              "min": 0.3,
+              "max": 0.909091,
+              "rate_eq_1_00": 0.0,
+              "rate_ge_0_95": 0.0,
+              "rate_ge_0_90": 0.014815
+            },
+            "negative_leg": {
+              "n": 270,
+              "mean": 0.610443,
+              "median": 0.6,
+              "p10": 0.444444,
+              "p25": 0.5,
+              "p75": 0.7,
+              "p90": 0.8,
+              "min": 0.3,
+              "max": 0.909091,
+              "rate_eq_1_00": 0.0,
+              "rate_ge_0_95": 0.0,
+              "rate_ge_0_90": 0.014815
+            },
+            "mean_gap_neg_minus_pos": 0.0,
+            "rate_ge_0_90_gap_neg_minus_pos": 0.0,
+            "abs_rate_ge_0_90_gap": 0.0,
+            "rate_eq_1_00_gap_neg_minus_pos": 0.0,
+            "contract_bar_triggered_literal": true,
+            "rows": 540
+          },
+          "False": {
+            "instrument": "I1_R20-H175b_precedent",
+            "positive_leg": {
+              "n": 2500,
+              "mean": 0.591959,
+              "median": 0.571429,
+              "p10": 0.428571,
+              "p25": 0.5,
+              "p75": 0.666667,
+              "p90": 0.777778,
+              "min": 0.3,
+              "max": 0.928571,
+              "rate_eq_1_00": 0.0,
+              "rate_ge_0_95": 0.0,
+              "rate_ge_0_90": 0.0228
+            },
+            "negative_leg": {
+              "n": 2500,
+              "mean": 0.591833,
+              "median": 0.571429,
+              "p10": 0.428571,
+              "p25": 0.5,
+              "p75": 0.666667,
+              "p90": 0.777778,
+              "min": 0.3,
+              "max": 0.928571,
+              "rate_eq_1_00": 0.0,
+              "rate_ge_0_95": 0.0,
+              "rate_ge_0_90": 0.022
+            },
+            "mean_gap_neg_minus_pos": -0.000126,
+            "rate_ge_0_90_gap_neg_minus_pos": -0.0008,
+            "abs_rate_ge_0_90_gap": 0.0008,
+            "rate_eq_1_00_gap_neg_minus_pos": 0.0,
+            "contract_bar_triggered_literal": true,
+            "rows": 5000
+          }
+        }
+      },
+      "bar": "a member whose negatives are >= 90% attested at a rate within 0.10 of its positives is REJECTED for the grounding head",
+      "bar_applied": {
+        "negative_rate_ge_0_90": 0.0213,
+        "positive_rate_ge_0_90": 0.022022,
+        "absolute_gap": 0.000722,
+        "bar_gap": 0.1,
+        "margin": 0.099278,
+        "triggered": true
+      },
+      "why_it_fails": "The two legs of a pair differ in ONE token - the unit word - and the lane's own H148 anti-shortcut rule requires that token to be absent from the evidence on BOTH legs (re-derived here: literal-presence 0.0 / 0.0). The mandated lexical instrument therefore reads the two legs identically: 2,624 of 2,770 pairs (94.73%) score EXACTLY equal, pooled means differ by 0.000114, and the >= 0.90 attestation rates differ by 0.00072 against a 0.10 bar. Every one of the 11 swap families is inside the bar; the worst is 0.0137.",
+      "how_this_differs_from_the_clause_provenance": "R20-H175b's qrel_contrast lane failed by having its negatives ATTESTED: 66.4% at containment exactly 1.0, 72.3% at >= 0.90, both legs at mean 0.9129. This member fails the same bar from the opposite side: 0 of 2,770 negatives AND 0 of 2,770 positives reach containment 1.0, and only 2.13% / 2.20% reach 0.90. The bar as written triggers on the GAP alone and does not condition on the negative leg being attested, so a member whose negatives are almost never attested trips it whenever its positives are not attested either. Both readings are reported; the clause is applied as written and not relaxed.",
+      "evidence_that_the_label_predicate_is_support": "The claimed unit is attested in the evidence for 96.68% of positives and 9.75% of negatives (gap 0.8693), measured with the lane's own banked SURFACE regex vocabulary. The residual 9.75% is exactly the 270-pair in-chunk distractor stratum (270/2,770 = 0.0975), where the corrupted unit is deliberately attested but bound to a DIFFERENT column. Under the unit-resolved instrument the legs separate - positive mean 0.7033 vs negative 0.6156, fully-attested 8.30% vs 0.61% - but the >= 0.90 rate gap is still 0.0690, inside the 0.10 bar.",
+      "binding_constraint": "The C1 instrument is lexical containment; the token this member's label turns on is required by the H148 anti-shortcut rule to be lexically absent from the evidence. Widening the gap to clear 0.10 requires the positive's unit token present in the evidence and the negative's absent - the adjacent-string channel the H148 rule closes, and the R17-H145 construction this lane was built to replace (measured worse: 0.8402 vs 0.8673).",
+      "fixable": "CORPUS_PROPERTY"
+    },
+    "C2": {
+      "clause": "disjointness from every evaluation surface",
+      "verdict": "PASS",
+      "measured": {
+        "forms": [
+          "raw",
+          "truncated to 1500 chars",
+          "whitespace-collapsed case-folded"
+        ],
+        "directions": "both (member -> surface and surface -> member)",
+        "member_units": {
+          "rows": 5540,
+          "pairs": 2770,
+          "distinct_chunks": 2509,
+          "distinct_claims": 5456,
+          "documents": 410
+        },
+        "arena_10_subsets": {
+          "subsets": {
+            "covidqa": 980,
+            "delucionqa": 552,
+            "emanual": 396,
+            "expertqa": 759,
+            "finqa": 725,
+            "hagrid": 703,
+            "hotpotqa": 998,
+            "pubmedqa": 1250,
+            "tatqa": 1032,
+            "techqa": 1250
+          },
+          "evidence": {
+            "raw": {
+              "member_units": 2509,
+              "surface_units": 6784,
+              "shared_units": 0,
+              "member_to_surface_fraction": 0.0,
+              "surface_to_member_fraction": 0.0
+            },
+            "truncated_1500": {
+              "member_units": 2509,
+              "surface_units": 6778,
+              "shared_units": 0,
+              "member_to_surface_fraction": 0.0,
+              "surface_to_member_fraction": 0.0
+            },
+            "ws_collapsed_casefold": {
+              "member_units": 2509,
+              "surface_units": 6783,
+              "shared_units": 0,
+              "member_to_surface_fraction": 0.0,
+              "surface_to_member_fraction": 0.0
+            },
+            "max_shared_over_forms": 0
+          }
+        },
+        "gold_full": {
+          "gold_claims": 2752,
+          "gold_chunks": 123579,
+          "evidence": {
+            "raw": {
+              "member_units": 2509,
+              "surface_units": 10228,
+              "shared_units": 0,
+              "member_to_surface_fraction": 0.0,
+              "surface_to_member_fraction": 0.0
+            },
+            "truncated_1500": {
+              "member_units": 2509,
+              "surface_units": 10228,
+              "shared_units": 0,
+              "member_to_surface_fraction": 0.0,
+              "surface_to_member_fraction": 0.0
+            },
+            "ws_collapsed_casefold": {
+              "member_units": 2509,
+              "surface_units": 10227,
+              "shared_units": 0,
+              "member_to_surface_fraction": 0.0,
+              "surface_to_member_fraction": 0.0
+            },
+            "max_shared_over_forms": 0
+          },
+          "claims": {
+            "raw": {
+              "member_units": 5456,
+              "surface_units": 2699,
+              "shared_units": 0,
+              "member_to_surface_fraction": 0.0,
+              "surface_to_member_fraction": 0.0
+            },
+            "truncated_1500": {
+              "member_units": 5456,
+              "surface_units": 2699,
+              "shared_units": 0,
+              "member_to_surface_fraction": 0.0,
+              "surface_to_member_fraction": 0.0
+            },
+            "ws_collapsed_casefold": {
+              "member_units": 5454,
+              "surface_units": 2699,
+              "shared_units": 0,
+              "member_to_surface_fraction": 0.0,
+              "surface_to_member_fraction": 0.0
+            },
+            "max_shared_over_forms": 0
+          }
+        },
+        "mechanism_evals": {
+          "R17-H143_evalset": {
+            "rows": 1050,
+            "evidence": {
+              "raw": {
+                "member_units": 2509,
+                "surface_units": 547,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "truncated_1500": {
+                "member_units": 2509,
+                "surface_units": 547,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "ws_collapsed_casefold": {
+                "member_units": 2509,
+                "surface_units": 547,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "max_shared_over_forms": 0
+            },
+            "claims": {
+              "raw": {
+                "member_units": 5456,
+                "surface_units": 1048,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "truncated_1500": {
+                "member_units": 5456,
+                "surface_units": 1048,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "ws_collapsed_casefold": {
+                "member_units": 5454,
+                "surface_units": 1048,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "max_shared_over_forms": 0
+            }
+          },
+          "R18-H150_unitswap_probe": {
+            "rows": 280,
+            "evidence": {
+              "raw": {
+                "member_units": 2509,
+                "surface_units": 115,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "truncated_1500": {
+                "member_units": 2509,
+                "surface_units": 115,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "ws_collapsed_casefold": {
+                "member_units": 2509,
+                "surface_units": 115,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "max_shared_over_forms": 0
+            },
+            "claims": {
+              "raw": {
+                "member_units": 5456,
+                "surface_units": 278,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "truncated_1500": {
+                "member_units": 5456,
+                "surface_units": 278,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "ws_collapsed_casefold": {
+                "member_units": 5454,
+                "surface_units": 278,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "max_shared_over_forms": 0
+            }
+          },
+          "R17-H148_probe": {
+            "rows": 1956,
+            "evidence": {
+              "raw": {
+                "member_units": 2509,
+                "surface_units": 390,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "truncated_1500": {
+                "member_units": 2509,
+                "surface_units": 390,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "ws_collapsed_casefold": {
+                "member_units": 2509,
+                "surface_units": 390,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "max_shared_over_forms": 0
+            },
+            "claims": {
+              "raw": {
+                "member_units": 5456,
+                "surface_units": 1813,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "truncated_1500": {
+                "member_units": 5456,
+                "surface_units": 1813,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "ws_collapsed_casefold": {
+                "member_units": 5454,
+                "surface_units": 1813,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "max_shared_over_forms": 0
+            }
+          },
+          "R17-H149_probe": {
+            "rows": 716,
+            "evidence": {
+              "raw": {
+                "member_units": 2509,
+                "surface_units": 342,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "truncated_1500": {
+                "member_units": 2509,
+                "surface_units": 342,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "ws_collapsed_casefold": {
+                "member_units": 2509,
+                "surface_units": 342,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "max_shared_over_forms": 0
+            },
+            "claims": {
+              "raw": {
+                "member_units": 5456,
+                "surface_units": 714,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "truncated_1500": {
+                "member_units": 5456,
+                "surface_units": 714,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "ws_collapsed_casefold": {
+                "member_units": 5454,
+                "surface_units": 714,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "max_shared_over_forms": 0
+            }
+          },
+          "R20-H177_eval_B": {
+            "rows": 2000,
+            "evidence": {
+              "raw": {
+                "member_units": 2509,
+                "surface_units": 736,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "truncated_1500": {
+                "member_units": 2509,
+                "surface_units": 736,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "ws_collapsed_casefold": {
+                "member_units": 2509,
+                "surface_units": 736,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "max_shared_over_forms": 0
+            },
+            "claims": {
+              "raw": {
+                "member_units": 5456,
+                "surface_units": 2000,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "truncated_1500": {
+                "member_units": 5456,
+                "surface_units": 2000,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "ws_collapsed_casefold": {
+                "member_units": 5454,
+                "surface_units": 2000,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "max_shared_over_forms": 0
+            }
+          },
+          "R20-H177_eval_C": {
+            "rows": 1936,
+            "evidence": {
+              "raw": {
+                "member_units": 2509,
+                "surface_units": 380,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "truncated_1500": {
+                "member_units": 2509,
+                "surface_units": 380,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "ws_collapsed_casefold": {
+                "member_units": 2509,
+                "surface_units": 380,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "max_shared_over_forms": 0
+            },
+            "claims": {
+              "raw": {
+                "member_units": 5456,
+                "surface_units": 1926,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "truncated_1500": {
+                "member_units": 5456,
+                "surface_units": 1926,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "ws_collapsed_casefold": {
+                "member_units": 5454,
+                "surface_units": 1926,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "max_shared_over_forms": 0
+            }
+          },
+          "R20-H175b_qlane_eval": {
+            "rows": 2002,
+            "evidence": {
+              "raw": {
+                "member_units": 2509,
+                "surface_units": 487,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "truncated_1500": {
+                "member_units": 2509,
+                "surface_units": 487,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "ws_collapsed_casefold": {
+                "member_units": 2509,
+                "surface_units": 487,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "max_shared_over_forms": 0
+            },
+            "claims": {
+              "raw": {
+                "member_units": 5456,
+                "surface_units": 1001,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "truncated_1500": {
+                "member_units": 5456,
+                "surface_units": 1001,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "ws_collapsed_casefold": {
+                "member_units": 5454,
+                "surface_units": 1001,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "max_shared_over_forms": 0
+            }
+          },
+          "R20-H175b_qlane_eval_clean": {
+            "rows": 88,
+            "evidence": {
+              "raw": {
+                "member_units": 2509,
+                "surface_units": 22,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "truncated_1500": {
+                "member_units": 2509,
+                "surface_units": 22,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "ws_collapsed_casefold": {
+                "member_units": 2509,
+                "surface_units": 22,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "max_shared_over_forms": 0
+            },
+            "claims": {
+              "raw": {
+                "member_units": 5456,
+                "surface_units": 44,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "truncated_1500": {
+                "member_units": 5456,
+                "surface_units": 44,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "ws_collapsed_casefold": {
+                "member_units": 5454,
+                "surface_units": 44,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "max_shared_over_forms": 0
+            }
+          },
+          "R20-H175b_qlane_eval_repaired": {
+            "rows": 1678,
+            "evidence": {
+              "raw": {
+                "member_units": 2509,
+                "surface_units": 407,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "truncated_1500": {
+                "member_units": 2509,
+                "surface_units": 407,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "ws_collapsed_casefold": {
+                "member_units": 2509,
+                "surface_units": 407,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "max_shared_over_forms": 0
+            },
+            "claims": {
+              "raw": {
+                "member_units": 5456,
+                "surface_units": 839,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "truncated_1500": {
+                "member_units": 5456,
+                "surface_units": 839,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "ws_collapsed_casefold": {
+                "member_units": 5454,
+                "surface_units": 839,
+                "shared_units": 0,
+                "member_to_surface_fraction": 0.0,
+                "surface_to_member_fraction": 0.0
+              },
+              "max_shared_over_forms": 0
+            }
+          }
+        },
+        "worst_shared_units_any_surface_any_form": 0
+      },
+      "bar": "all forms read zero on every surface",
+      "margin": "0 shared units against 12 surfaces (10-subset arena, gold_full, 9 mechanism eval parquets) x 3 forms x 2 unit types (evidence, claims); the bar is zero and the reading is zero, so the margin is exact rather than numeric",
+      "supplementary_near_duplicate_sweep": {
+        "note": "EXECUTOR-ADDED, beyond the clause. C2 tests exact forms; the stem-collision finding made the near-duplicate question live. Instrument: provenance_gate.py n=8, Jaccard >= 0.3, bidirectional.",
+        "per_surface": {
+          "R17-H143_evalset": {
+            "surface_distinct_chunks": 547,
+            "lane_to_surface_fraction": 0.0,
+            "surface_to_lane_fraction": 0.0,
+            "max_fraction": 0.0,
+            "verdict": "PASS",
+            "lane_best_jaccard": {
+              "max": 0.0688,
+              "p99": 0.0292,
+              "mean": 0.0014
+            }
+          },
+          "R18-H150_unitswap_probe": {
+            "surface_distinct_chunks": 115,
+            "lane_to_surface_fraction": 0.000399,
+            "surface_to_lane_fraction": 0.008696,
+            "max_fraction": 0.008696,
+            "verdict": "WARN",
+            "lane_best_jaccard": {
+              "max": 0.4039,
+              "p99": 0.0081,
+              "mean": 0.0004
+            },
+            "shared_doc_ids": 0
+          },
+          "R20-H177_eval_B": {
+            "surface_distinct_chunks": 736,
+            "lane_to_surface_fraction": 0.001196,
+            "surface_to_lane_fraction": 0.001359,
+            "max_fraction": 0.001359,
+            "verdict": "PASS",
+            "lane_best_jaccard": {
+              "max": 0.3694,
+              "p99": 0.0361,
+              "mean": 0.0027
+            },
+            "shared_doc_ids": 13,
+            "shared_document_stratum": {
+              "lane_chunks": 139,
+              "surface_chunks": 23,
+              "lane_to_surface_fraction": 0.021583,
+              "surface_to_lane_fraction": 0.043478,
+              "max_fraction": 0.043478,
+              "lane_best_jaccard": {
+                "max": 0.3694,
+                "p99": 0.3373,
+                "mean": 0.0301
+              }
+            }
+          },
+          "R20-H177_eval_C": {
+            "surface_distinct_chunks": 380,
+            "lane_to_surface_fraction": 0.0,
+            "surface_to_lane_fraction": 0.0,
+            "max_fraction": 0.0,
+            "verdict": "PASS",
+            "lane_best_jaccard": {
+              "max": 0.0,
+              "p99": 0.0,
+              "mean": 0.0
+            },
+            "shared_doc_ids": 0
+          },
+          "R17-H148_probe": {
+            "surface_distinct_chunks": 390,
+            "lane_to_surface_fraction": 0.0,
+            "surface_to_lane_fraction": 0.0,
+            "max_fraction": 0.0,
+            "verdict": "PASS",
+            "lane_best_jaccard": {
+              "max": 0.0,
+              "p99": 0.0,
+              "mean": 0.0
+            },
+            "shared_doc_ids": 0
+          },
+          "R17-H149_probe": {
+            "surface_distinct_chunks": 342,
+            "lane_to_surface_fraction": 0.0,
+            "surface_to_lane_fraction": 0.0,
+            "max_fraction": 0.0,
+            "verdict": "PASS",
+            "lane_best_jaccard": {
+              "max": 0.0,
+              "p99": 0.0,
+              "mean": 0.0
+            },
+            "shared_doc_ids": 0
+          }
+        },
+        "worst_pooled_fraction": 0.008696,
+        "worst_shared_document_stratum_fraction": 0.043478,
+        "findings": [
+          "R18-H150_unitswap_probe (this member's own held-out mechanism eval): 1 of 115 probe chunks reaches Jaccard >= 0.3 against a lane chunk (0.87%, gate WARN band, below the 2% KILL); lane max Jaccard 0.4039; 0 shared doc_ids",
+          "R20-H177_eval_B: 13 shared TabFact doc_ids at 0 shared passages in all three exact forms; inside that shared-document stratum the gate reads 4.35% surface->lane (above 2% applied to the stratum) and 0.14% pooled over the whole eval (below)"
+        ]
+      }
+    },
+    "C3": {
+      "clause": "split semantics are verified, never assumed",
+      "verdict": "FAIL",
+      "measured": {
+        "tabfact_split_axis_measured_from_archive": {
+          "train": {
+            "rows": 92585,
+            "distinct_table_id": 13182,
+            "distinct_table_text": 13143
+          },
+          "validation": {
+            "rows": 12851,
+            "distinct_table_id": 1696,
+            "distinct_table_text": 1696,
+            "table_ids_shared_with_train": 0,
+            "table_texts_shared_with_train": 8,
+            "share_of_split_tables_also_in_train": 0.0
+          },
+          "test": {
+            "rows": 12839,
+            "distinct_table_id": 1695,
+            "distinct_table_text": 1695,
+            "table_ids_shared_with_train": 0,
+            "table_texts_shared_with_train": 5,
+            "share_of_split_tables_also_in_train": 0.0
+          },
+          "measured_split_axis": "per TABLE"
+        },
+        "lane_tabfact_documents": {
+          "distinct_doc_ids": 319,
+          "in_tabfact_validation_table_ids": 0,
+          "in_tabfact_test_table_ids": 0,
+          "note": "the lane's selection predicate is the TRAIN split only; a non-zero count here means TabFact's official split does not separate tables and the same table carries statements on both sides of its own split boundary"
+        },
+        "tabfact_content_level_leak": {
+          "lane_tabfact_documents": 319,
+          "lane_table_texts_resolved": 319,
+          "lane_tables_byte_identical_to_a_validation_table": 0,
+          "lane_tables_byte_identical_to_a_test_table": 0
+        },
+        "feverous": {
+          "path": "/home/lab/workspace/private/ai-assistants/groundrails/tmp/R14_H133_feverous.parquet",
+          "exists": true,
+          "rows": 49903,
+          "columns": [
+            "id",
+            "claim",
+            "label",
+            "evidence",
+            "challenge"
+          ],
+          "has_split_column": false,
+          "campaign_ruling": "R20-H177 coordinator disposition 2: FEVEROUS non-admission ACCEPTED - the on-disk file is an R14-H133 working artifact without its own provenance verdict",
+          "doc_id_stability": "R17-H144 recorded the v2 lane's `feverous:{i}` ids as order-unstable across rebuilds; this lane inherits the same id scheme"
+        },
+        "lane_declared_split_axis": "DOCUMENT, enforced on CONTENT fingerprints rather than ids (R17-H144 method) - the id scheme is not stable for FEVEROUS",
+        "lane_cut_against_sibling_surfaces": {
+          "R17-H143_evalset": {
+            "rows": 1050,
+            "their_documents": null,
+            "shared_doc_ids": "no doc_id column",
+            "shared_chunks_raw": 0,
+            "shared_chunks_ws_collapsed": 0
+          },
+          "R18-H150_unitswap_probe": {
+            "rows": 280,
+            "their_documents": 42,
+            "shared_doc_ids": 0,
+            "shared_chunks_raw": 0,
+            "shared_chunks_ws_collapsed": 0,
+            "split_values": {
+              "probe": 280
+            }
+          },
+          "R20-H177_eval_B": {
+            "rows": 2000,
+            "their_documents": 458,
+            "shared_doc_ids": 13,
+            "shared_chunks_raw": 0,
+            "shared_chunks_ws_collapsed": 0
+          },
+          "R20-H177_eval_C": {
+            "rows": 1936,
+            "their_documents": 213,
+            "shared_doc_ids": 0,
+            "shared_chunks_raw": 0,
+            "shared_chunks_ws_collapsed": 0
+          },
+          "R17-H148_probe": {
+            "rows": 1956,
+            "their_documents": 100,
+            "shared_doc_ids": 0,
+            "shared_chunks_raw": 0,
+            "shared_chunks_ws_collapsed": 0
+          }
+        },
+        "tabfact_document_id_stem_collisions": {
+          "member": "quant_scale_unit",
+          "lane_documents": 410,
+          "lane_tabfact_documents": 319,
+          "lane_feverous_documents": 91,
+          "within_lane_tabfact_stem_collisions": 19,
+          "within_lane_collision_examples": {
+            "176529-2.html.csv": 2,
+            "18600760-15.html.csv": 2,
+            "18823880-10.html.csv": 2,
+            "14884844-2.html.csv": 2,
+            "16400024-1.html.csv": 2
+          },
+          "vs_sibling_surfaces": {
+            "R17-H143_evalset": {
+              "status": "no doc_id column"
+            },
+            "R18-H150_unitswap_probe": {
+              "their_documents": 42,
+              "their_tabfact_documents": 23,
+              "shared_doc_ids": 0,
+              "shared_tabfact_stems": 0,
+              "stems_shared_but_ids_not": 0
+            },
+            "R20-H177_eval_B": {
+              "their_documents": 458,
+              "their_tabfact_documents": 325,
+              "shared_doc_ids": 13,
+              "shared_tabfact_stems": 13,
+              "stems_shared_but_ids_not": 0
+            },
+            "R20-H177_eval_C": {
+              "their_documents": 213,
+              "their_tabfact_documents": 0,
+              "shared_doc_ids": 0,
+              "shared_tabfact_stems": 0,
+              "stems_shared_but_ids_not": 0
+            },
+            "R17-H148_probe": {
+              "their_documents": 100,
+              "their_tabfact_documents": 0,
+              "shared_doc_ids": 0,
+              "shared_tabfact_stems": 0,
+              "stems_shared_but_ids_not": 0
+            }
+          },
+          "worst_stems_shared_but_ids_not": 0
+        },
+        "eval_exclusion_rederived": {
+          "candidate_tables": 23423,
+          "tables_carrying_eval_content": 3516,
+          "dropped": 3556,
+          "admitted": 16738,
+          "lane_documents_resolved": 410,
+          "lane_documents": 410
+        }
+      },
+      "what_passes": "TabFact's official split is measured to cut per TABLE - 0 of 1,696 validation and 0 of 1,695 test table_ids appear in train - and 8 validation plus 5 test tables are byte-identical to a train table under a different id. None of the member's 319 TabFact tables is one of those: 0 byte-identical to a validation or test table. The member's own document cut re-derives exactly - 23,423 candidate tables, 3,516 carrying eval content, 16,738 admitted, all 410 lane documents resolved, 0 shared documents and 0 shared chunks with the R17-H143 eval set.",
+      "what_fails": "The FEVEROUS half - 1,040 of 5,540 rows, 18.77% - has NO measurable split. `tmp/R14_H133_feverous.parquet` carries columns [id, claim, label, evidence, challenge] and no split column at all, so the registration's 'FEVEROUS-train' cannot be measured from the archive. C3 requires the axis measured from the archive, not read from a card; for this source there is nothing to measure.",
+      "additional_finding": "19 within-lane TabFact document-id stem collisions: TabFact's `1-`/`2-` csv-id prefixes render one serialised table under two doc_ids, so 19 of the member's 319 TabFact 'documents' are two ids for one table stem. The member's per-document pair cap and its fold-disjointness accounting treat those as distinct documents. The member is nevertheless passage-clean against every surface (C2 = 0), and 0 stems are shared with a surface without the id also being shared.",
+      "bar": "state the split axis a corpus actually cuts on, measured from the archive; test it",
+      "margin": "1,040 of 5,540 rows (18.77%) have no measurable split axis; the bar admits no shortfall",
+      "fixable": "PIPELINE"
+    },
+    "C4": {
+      "clause": "contamination census with a live positive control",
+      "verdict": "PASS",
+      "measured": {
+        "instrument": "provenance_gate.py (banked R14-H136 form): 8-gram, Jaccard >= 0.3, bidirectional, WARN 0.5%, KILL 2%, per-arena-subset attribution",
+        "chunks": {
+          "candidate_units": {
+            "label": "quant_scale_unit_chunks",
+            "n_units": 2509,
+            "n_units_scorable": 2509
+          },
+          "arena": {
+            "subsets": {
+              "covidqa": 980,
+              "delucionqa": 552,
+              "emanual": 396,
+              "expertqa": 759,
+              "finqa": 725,
+              "hagrid": 703,
+              "hotpotqa": 998,
+              "pubmedqa": 1250,
+              "tatqa": 1032,
+              "techqa": 1250
+            },
+            "n_units": 8645,
+            "n_units_scorable": 8555
+          },
+          "candidate_vs_arena": {
+            "n_units": 2509,
+            "units_with_hit": 0,
+            "fraction": 0.0,
+            "per_arena_subset": {
+              "covidqa": {
+                "units_with_hit": 0,
+                "fraction": 0.0
+              },
+              "delucionqa": {
+                "units_with_hit": 0,
+                "fraction": 0.0
+              },
+              "emanual": {
+                "units_with_hit": 0,
+                "fraction": 0.0
+              },
+              "expertqa": {
+                "units_with_hit": 0,
+                "fraction": 0.0
+              },
+              "finqa": {
+                "units_with_hit": 0,
+                "fraction": 0.0
+              },
+              "hagrid": {
+                "units_with_hit": 0,
+                "fraction": 0.0
+              },
+              "hotpotqa": {
+                "units_with_hit": 0,
+                "fraction": 0.0
+              },
+              "pubmedqa": {
+                "units_with_hit": 0,
+                "fraction": 0.0
+              },
+              "tatqa": {
+                "units_with_hit": 0,
+                "fraction": 0.0
+              },
+              "techqa": {
+                "units_with_hit": 0,
+                "fraction": 0.0
+              }
+            },
+            "best_jaccard": {
+              "max": 0.0,
+              "p99": 0.0,
+              "mean": 0.0
+            }
+          },
+          "arena_vs_candidate": {
+            "n_units": 8645,
+            "units_with_hit": 0,
+            "fraction": 0.0,
+            "per_arena_subset": {
+              "quant_scale_unit_chunks": {
+                "units_with_hit": 0,
+                "fraction": 0.0
+              }
+            },
+            "best_jaccard": {
+              "max": 0.0,
+              "p99": 0.0,
+              "mean": 0.0
+            }
+          },
+          "max_fraction": 0.0,
+          "verdict": "PASS"
+        },
+        "claims": {
+          "candidate_units": {
+            "label": "quant_scale_unit_claims",
+            "n_units": 5456,
+            "n_units_scorable": 5206
+          },
+          "max_fraction": 0.0,
+          "best_jaccard": {
+            "max": 0.0,
+            "p99": 0.0,
+            "mean": 0.0
+          },
+          "verdict": "PASS"
+        },
+        "spike_control": {
+          "chunks": {
+            "injected": 10,
+            "detected_total": 10,
+            "baseline_hits": 0,
+            "passes": true,
+            "candidate_units": 2509
+          },
+          "claims": {
+            "injected": 10,
+            "detected_total": 10,
+            "baseline_hits": 0,
+            "passes": true,
+            "candidate_units": 5456
+          }
+        },
+        "live_positive_control": {
+          "source": "R17-H145_scaleunit.parquet",
+          "rationale": "built from the same TabFact/FEVEROUS train tables by the same banked serializers - near-duplicate by construction",
+          "control_units": 2465,
+          "result": {
+            "instrument": "provenance_gate.py (R13 ruling 4)",
+            "mode": "jaccard",
+            "n": 8,
+            "jaccard_threshold": 0.3,
+            "thresholds": {
+              "warn": 0.005,
+              "kill": 0.02
+            },
+            "candidate": {
+              "label": "quant_scale_unit_chunks_LIVE",
+              "n_units": 2509,
+              "n_units_scorable": 2509
+            },
+            "arena": {
+              "subsets": {
+                "h145_scaleunit": 2465
+              },
+              "n_units": 2465,
+              "n_units_scorable": 2465
+            },
+            "candidate_vs_arena": {
+              "n_units": 2509,
+              "units_with_hit": 270,
+              "fraction": 0.107613,
+              "per_arena_subset": {
+                "h145_scaleunit": {
+                  "units_with_hit": 270,
+                  "fraction": 0.107613
+                }
+              },
+              "best_jaccard": {
+                "max": 1.0,
+                "p99": 1.0,
+                "mean": 0.0881
+              }
+            },
+            "arena_vs_candidate": {
+              "n_units": 2465,
+              "units_with_hit": 274,
+              "fraction": 0.111156,
+              "per_arena_subset": {
+                "quant_scale_unit_chunks_LIVE": {
+                  "units_with_hit": 274,
+                  "fraction": 0.111156
+                }
+              },
+              "best_jaccard": {
+                "max": 1.0,
+                "p99": 1.0,
+                "mean": 0.0846
+              }
+            },
+            "max_fraction": 0.111156,
+            "verdict": "KILL"
+          },
+          "fires": true,
+          "exact_shared_chunks_any_form": 33
+        },
+        "coverage": {
+          "chunks": {
+            "n_units": 2509,
+            "n_units_too_short_for_8gram": 0,
+            "share_too_short": 0.0,
+            "exact_match_hits_among_short": 0
+          },
+          "claims": {
+            "n_units": 5456,
+            "n_units_too_short_for_8gram": 250,
+            "share_too_short": 0.045821,
+            "exact_match_hits_among_short": 0
+          }
+        }
+      },
+      "bar": "max fraction below 2%; spike 10/10 at 0 baseline hits; a live positive control that fires; short-unit coverage stated",
+      "margin": "max fraction 0.0000 against a 0.0200 KILL - margin 0.0200, and max Jaccard is 0.0000 in both directions on both unit types, so no unit is anywhere near the threshold. Spike 10/10 with 0 baseline hits on chunks and on claims. Live control fires hard: 270 of 2,509 lane chunks reach Jaccard >= 0.3 against R17-H145's chunks at max Jaccard 1.0 (33 exactly shared), gate verdict KILL on the control - the gate can fire on this member's text. Coverage: 0 of 2,509 chunks and 250 of 5,456 claims (4.58%) are too short for an 8-gram instrument; all 250 checked by exact matching, 0 hits."
+    },
+    "C5": {
+      "clause": "leak suite for constructed members",
+      "verdict": "PASS",
+      "instrument": "R18-H150_scaleunit_lane.verify (BANKED, unedited)",
+      "reproduction_caveat": "fresh random.Random(1150); the build's rng state at verify time is unrecoverable, so fold assignment differs from the banked run",
+      "registered_conjunction": {
+        "claim_only_converged_probe": {
+          "value": 0.4257,
+          "bar": "< 0.55",
+          "margin": 0.1243,
+          "banked_build_value": 0.4296
+        },
+        "within_pair_claim_only": {
+          "worst_family": 0.4629,
+          "pooled": 0.4271,
+          "bar": "< 0.60",
+          "margin": 0.1371,
+          "banked_build_worst": 0.5,
+          "per_swap_family": {
+            "km<->mm": {
+              "acc": 0.4293,
+              "pairs": 198,
+              "se_at_chance": 0.0355,
+              "z_vs_chance": -1.99
+            },
+            "gb<->mb": {
+              "acc": 0.3311,
+              "pairs": 148,
+              "se_at_chance": 0.0411,
+              "z_vs_chance": -4.11
+            },
+            "kg<->lb": {
+              "acc": 0.4514,
+              "pairs": 144,
+              "se_at_chance": 0.0417,
+              "z_vs_chance": -1.17
+            },
+            "ghz<->mhz": {
+              "acc": 0.4545,
+              "pairs": 132,
+              "se_at_chance": 0.0435,
+              "z_vs_chance": -1.04
+            },
+            "khz<->mhz": {
+              "acc": 0.4539,
+              "pairs": 152,
+              "se_at_chance": 0.0406,
+              "z_vs_chance": -1.14
+            },
+            "cm<->m": {
+              "acc": 0.4034,
+              "pairs": 238,
+              "se_at_chance": 0.0324,
+              "z_vs_chance": -2.98
+            },
+            "kmh<->mph": {
+              "acc": 0.3718,
+              "pairs": 156,
+              "se_at_chance": 0.04,
+              "z_vs_chance": -3.2
+            },
+            "km2<->sqmi": {
+              "acc": 0.4331,
+              "pairs": 568,
+              "se_at_chance": 0.021,
+              "z_vs_chance": -3.19
+            },
+            "ha<->km2": {
+              "acc": 0.411,
+              "pairs": 146,
+              "se_at_chance": 0.0414,
+              "z_vs_chance": -2.15
+            },
+            "kb<->mb": {
+              "acc": 0.3113,
+              "pairs": 106,
+              "se_at_chance": 0.0486,
+              "z_vs_chance": -3.89
+            },
+            "km<->m": {
+              "acc": 0.4629,
+              "pairs": 782,
+              "se_at_chance": 0.0179,
+              "z_vs_chance": -2.07
+            }
+          },
+          "two_sided_note": 0.1887
+        },
+        "surface_parity": {
+          "auroc": {
+            "claim_char_length": 0.499,
+            "claim_token_count": 0.4998,
+            "claim_numeral_count": 0.5,
+            "claim_chunk_overlap": 0.4999
+          },
+          "bar": "each in [0.45, 0.55]",
+          "worst_deviation": 0.001,
+          "margin": 0.049
+        },
+        "h148_literal_presence": {
+          "positive_leg_rate": 0.0,
+          "negative_leg_rate": 0.0,
+          "auroc": 0.5,
+          "definition": "claim unit phrase, or any token distinguishing it from its twin's unit phrase, readable in the chunk",
+          "bar": "0.0 on both legs (H148 rule: no adjacent-string solution)",
+          "pass": true
+        },
+        "positive_verbatim_substring": {
+          "positive_verbatim_rate": 1.0,
+          "all_rows_verbatim_rate": 1.0,
+          "all_rows_canonical_rate": 0.941155,
+          "bar": "1.0 on the positive leg",
+          "pass": true
+        },
+        "minimal_pair_integrity": {
+          "pairs_checked": 2770,
+          "errors": 0,
+          "bar": "0 errors over the FULL set",
+          "pass": true,
+          "examples": []
+        },
+        "unit_rederivation_audit": {
+          "sampled": 500,
+          "errors": 0,
+          "bar": "0 errors",
+          "pass": true,
+          "examples": []
+        },
+        "dedupe_disjointness": {
+          "duplicate_claim_chunk_label_rows": 0,
+          "documents": 410,
+          "distinct_claims": 5456,
+          "distinct_chunks": 2509,
+          "pairs_per_document_mean": 6.756,
+          "pairs_per_document_max": 32,
+          "evalset_shared_documents": 0,
+          "evalset_shared_chunks": 0,
+          "bar": "0 duplicate rows, 0 eval-set documents",
+          "pass": true
+        },
+        "word_label_marginal_balance": {
+          "per_word": {
+            "cm": {
+              "as_positive": 119,
+              "as_negative": 119,
+              "skew": 0.0
+            },
+            "gb": {
+              "as_positive": 74,
+              "as_negative": 74,
+              "skew": 0.0
+            },
+            "ghz": {
+              "as_positive": 66,
+              "as_negative": 66,
+              "skew": 0.0
+            },
+            "ha": {
+              "as_positive": 73,
+              "as_negative": 73,
+              "skew": 0.0
+            },
+            "kb": {
+              "as_positive": 53,
+              "as_negative": 53,
+              "skew": 0.0
+            },
+            "kg": {
+              "as_positive": 72,
+              "as_negative": 72,
+              "skew": 0.0
+            },
+            "khz": {
+              "as_positive": 76,
+              "as_negative": 76,
+              "skew": 0.0
+            },
+            "km": {
+              "as_positive": 490,
+              "as_negative": 490,
+              "skew": 0.0
+            },
+            "km2": {
+              "as_positive": 357,
+              "as_negative": 357,
+              "skew": 0.0
+            },
+            "kmh": {
+              "as_positive": 78,
+              "as_negative": 78,
+              "skew": 0.0
+            },
+            "lb": {
+              "as_positive": 72,
+              "as_negative": 72,
+              "skew": 0.0
+            },
+            "m": {
+              "as_positive": 510,
+              "as_negative": 510,
+              "skew": 0.0
+            },
+            "mb": {
+              "as_positive": 127,
+              "as_negative": 127,
+              "skew": 0.0
+            },
+            "mhz": {
+              "as_positive": 142,
+              "as_negative": 142,
+              "skew": 0.0
+            },
+            "mm": {
+              "as_positive": 99,
+              "as_negative": 99,
+              "skew": 0.0
+            },
+            "mph": {
+              "as_positive": 78,
+              "as_negative": 78,
+              "skew": 0.0
+            },
+            "sqmi": {
+              "as_positive": 284,
+              "as_negative": 284,
+              "skew": 0.0
+            }
+          },
+          "max_skew": 0.0,
+          "bar": "0.0 by construction (50/50 inside every family)"
+        },
+        "value_surface_direction_parity": {
+          "per_swap_family": {
+            "km2<->sqmi": {
+              "digit_count_auroc": 0.5,
+              "magnitude_auroc": 0.7833,
+              "decimal_auroc": 0.5,
+              "pairs": 568
+            },
+            "khz<->mhz": {
+              "digit_count_auroc": 0.5,
+              "magnitude_auroc": 0.5718,
+              "decimal_auroc": 0.5,
+              "pairs": 152
+            },
+            "kg<->lb": {
+              "digit_count_auroc": 0.5,
+              "magnitude_auroc": 0.4759,
+              "decimal_auroc": 0.5,
+              "pairs": 144
+            },
+            "km<->m": {
+              "digit_count_auroc": 0.5,
+              "magnitude_auroc": 0.5215,
+              "decimal_auroc": 0.5,
+              "pairs": 782
+            },
+            "cm<->m": {
+              "digit_count_auroc": 0.5,
+              "magnitude_auroc": 0.2909,
+              "decimal_auroc": 0.5,
+              "pairs": 238
+            },
+            "km<->mm": {
+              "digit_count_auroc": 0.5,
+              "magnitude_auroc": 0.4544,
+              "decimal_auroc": 0.5,
+              "pairs": 198
+            },
+            "kmh<->mph": {
+              "digit_count_auroc": 0.5,
+              "magnitude_auroc": 0.8629,
+              "decimal_auroc": 0.5,
+              "pairs": 156
+            },
+            "ha<->km2": {
+              "digit_count_auroc": 0.5,
+              "magnitude_auroc": 0.4736,
+              "decimal_auroc": 0.5,
+              "pairs": 146
+            },
+            "kb<->mb": {
+              "digit_count_auroc": 0.5,
+              "magnitude_auroc": 0.5687,
+              "decimal_auroc": 0.5,
+              "pairs": 106
+            },
+            "gb<->mb": {
+              "digit_count_auroc": 0.5,
+              "magnitude_auroc": 0.435,
+              "decimal_auroc": 0.5,
+              "pairs": 148
+            },
+            "ghz<->mhz": {
+              "digit_count_auroc": 0.5,
+              "magnitude_auroc": 0.0869,
+              "decimal_auroc": 0.5,
+              "pairs": 132
+            }
+          },
+          "max_digit_count_deviation": 0.0,
+          "max_decimal_deviation": 0.0,
+          "bar": "digit-count AUROC in [0.45, 0.55] (report-only; enforced by bucket-matched construction)"
+        },
+        "digit_surface_report_only": {
+          "trailing_zero_auroc": 0.5,
+          "digit_count_auroc": 0.5,
+          "leading_digit_auroc": 0.5,
+          "value_magnitude_auroc": 0.5
+        },
+        "all_bars_pass": true
+      },
+      "single_channel_probes": {
+        "question_only": {
+          "status": "NOT-APPLICABLE",
+          "reason": "the member carries no question field; the construction has no question channel to probe"
+        },
+        "evidence_only": {
+          "status": "measured",
+          "value": 0.5,
+          "mechanism": "all 2,509 distinct chunks carry exactly as many label-1 as label-0 rows, so any evidence-only feature is exactly at chance",
+          "confirmed_by_probe": 0.5
+        }
+      },
+      "balance": {
+        "worst_positive_share_deviation": 0.0,
+        "fields_checked": [
+          "direction",
+          "swap_family",
+          "dimension",
+          "unit_carrier",
+          "serial_form",
+          "template_id",
+          "source",
+          "neg_family"
+        ],
+        "note": "every cell of every field is exactly 50% positive"
+      },
+      "attestation_symmetry": {
+        "worst_unit_word_skew": 0.0,
+        "bar": "0.0 - a unit word must not carry a label prior"
+      },
+      "executor_added_probes_reported_separately": {
+        "note": "these join NO registered conjunction",
+        "evidence_only_tfidf": {
+          "value": 0.5,
+          "note": "executor-added; forced to 0.5 by the shared-chunk construction, run as a live confirmation rather than a bar"
+        },
+        "claim_plus_evidence_lexical": {
+          "value": 0.432448,
+          "note": "executor-added; a lexical joint probe. It is NOT a leak bar - a lexical model that can solve the lane would indicate an adjacent-string channel the H148 rule is meant to close",
+          "caveat": "run on UNSTRATIFIED document folds, which carry the documented below-chance artifact (R17-H145 finding b); not interpretable in either direction"
+        }
+      },
+      "executor_defect_recorded": "The executor's first C5 pass reimplemented the probe with unstratified document folds and read within-pair 0.7815 on the km<->m family. That is the artifact the lane's build documented, not a leak: with a linear probe a fold holding `a` pairs of one direction and `b` of the other forces within-pair accuracy to min(a,b)/(a+b). The reading was discarded and the member's own banked `verify()` was run instead. The defective number is recorded here rather than deleted."
+    },
+    "C6": {
+      "clause": "no memorisation channel",
+      "verdict": "PASS",
+      "measured": {
+        "within_pair_field_identity": {
+          "pairs": 2770,
+          "pairs_with_identical_value": {
+            "pair_id": 2770,
+            "claim": 0,
+            "cited_unit": 0,
+            "chunk": 2770,
+            "doc_id": 2770,
+            "source": 2770,
+            "column": 2770,
+            "column_index": 2770,
+            "row_key": 2770,
+            "row_index": 2770,
+            "cited_value": 2770,
+            "correct_unit": 2770,
+            "wrong_unit": 2770,
+            "dimension": 2770,
+            "neg_family": 2770,
+            "swap_family": 2770,
+            "direction": 2770,
+            "unit_carrier": 2770,
+            "distractor_in_chunk": 2770,
+            "surface_parity": 2770,
+            "serial_form": 2770,
+            "template_id": 2770,
+            "tag": 2770
+          },
+          "fields_identical_on_every_pair": [
+            "chunk",
+            "cited_value",
+            "column",
+            "column_index",
+            "correct_unit",
+            "dimension",
+            "direction",
+            "distractor_in_chunk",
+            "doc_id",
+            "neg_family",
+            "pair_id",
+            "row_index",
+            "row_key",
+            "serial_form",
+            "source",
+            "surface_parity",
+            "swap_family",
+            "tag",
+            "template_id",
+            "unit_carrier",
+            "wrong_unit"
+          ],
+          "fields_that_differ": [
+            "cited_unit",
+            "claim"
+          ],
+          "consequence": "any feature keyed on a field identical inside the pair is identical on both legs and cannot separate them"
+        },
+        "mix_association_feature": {
+          "key": "whitespace-collapsed case-folded chunk (the field both legs share)",
+          "feature": "max token containment between the member claim and any claim the rest of the mix associates with that key",
+          "coverage_rows": 44,
+          "coverage_share": 0.007942,
+          "auroc": 0.487603
+        },
+        "mix_rows_excluding_member": 715670,
+        "executor_added_unit_word_prior": {
+          "feature": "P(label=1 | claimed unit word) estimated on the lane itself",
+          "auroc": 0.5,
+          "note": "executor-added; reported separately, joins no registered bar"
+        },
+        "repeated_claim_strings": {
+          "distinct_repeated_claims": 84,
+          "rows_involved": 168,
+          "claims_carrying_both_labels": 0,
+          "claims_on_more_than_one_document": 84,
+          "max_repeat": 2,
+          "interpretation": "a claim string carrying both labels would be a label contradiction inside the member"
+        }
+      },
+      "bar": "report the value; on a clean instrument it is undefined or at chance",
+      "margin": "The feature reads AUROC 0.4876 at 0.79% coverage (44 of 5,540 rows), against R20-H175b's 0.6230 at 98% coverage. It is at chance and nearly uncovered. Structurally it cannot be otherwise: 21 of the member's 23 fields are IDENTICAL on both legs of all 2,770 pairs - only `claim` and `cited_unit` differ - so every feature keyed on the pair's key takes the same value on both legs. The executor-added unit-word prior reads exactly 0.5000. 84 claim strings repeat, all across different documents, and 0 carry both labels."
+    },
+    "C7": {
+      "clause": "declared units and volume",
+      "verdict": "PASS",
+      "measured": {
+        "declared_unit": "rows AND pairs, both stated at registration, build and in the arm's LANES tuple",
+        "registered_rows": 20000,
+        "registered_pairs": 10000,
+        "delivered_rows": 5540,
+        "delivered_pairs": 2770,
+        "rows_share_of_registration": 0.277,
+        "pairs_share_of_registration": 0.277,
+        "rows_per_pair": 2.0,
+        "arm_lane_tuple": {
+          "rows": 5540,
+          "pairs": 2770,
+          "neg_families": {
+            "unit_swap": 5540
+          }
+        },
+        "consistent_across_registration_build_and_report": true
+      },
+      "bar": "state the unit and use it consistently; report both counts always",
+      "margin": "Registration states BOTH units ('~20,000 rows / ~10,000 pairs'); the build reports both (5,540 rows / 2,770 pairs); the arm's LANES tuple carries both and aborts on drift. The shortfall is identical in both units - 27.70% of rows and 27.70% of pairs - so no unit conversion moves the number. The delivered scale was reported at the time as '28% of registered scale' and amendment A1 demoted the scale_unit co-primary on that basis rather than restating the count. This clause is about accounting honesty, not volume, and the accounting is honest."
+    },
+    "C8": {
+      "clause": "provenance, licence and internal structure",
+      "verdict": "FAIL",
+      "measured": {
+        "sources": {
+          "tabfact": {
+            "rows": 4500,
+            "share": 0.812274,
+            "archive": "data/external/datasets/dataset-tabfact.zip",
+            "sidecar": "data/external/datasets/dataset-tabfact.md",
+            "licence": "CC-BY-4.0 (per the tracked sidecar)",
+            "selection_predicate": "the __train.parquet split only, deduped on table_text, admitted through the R17-H144 content-fingerprint eval exclusion"
+          },
+          "feverous": {
+            "rows": 1040,
+            "share": 0.187726,
+            "archive": "NONE - tmp/R14_H133_feverous.parquet, an R14-H133 working artifact",
+            "sidecar": null,
+            "licence": "NOT RECORDED in any tracked artifact",
+            "retrieval_date": "NOT RECORDED",
+            "selection_predicate": "deduped on `evidence`, doc ids `feverous:{i}` from an order-unstable dedup"
+          }
+        },
+        "duplication": {
+          "duplicate_claim_chunk_label_rows": 0,
+          "distinct_claims": 5456,
+          "distinct_chunks": 2509,
+          "distinct_documents": 410,
+          "max_claim_repeat": 2,
+          "claims_appearing_more_than_once": 84,
+          "max_chunk_repeat": 18,
+          "mean_pairs_per_document": 6.756098,
+          "max_pairs_per_document": 32,
+          "mean_rows_per_chunk": 2.208051
+        },
+        "public_repository_check": {
+          "client_or_company_name_in_artifact": false,
+          "basis": "the member's fields carry Wikipedia table content, unit vocabulary and template ids only; no client or company identifier is written into any artifact this task produced"
+        }
+      },
+      "what_passes": "TabFact - 4,500 rows (81.23%): tracked sidecar `data/external/datasets/dataset-tabfact.md`, licence CC-BY-4.0, archive `dataset-tabfact.zip`, selection predicate the `__train.parquet` split deduped on `table_text` and filtered through the R17-H144 content-fingerprint eval exclusion (re-derived exactly: 3,516 tables dropped for eval content, 16,738 admitted). Internal structure reported: 0 duplicate (claim, chunk, label) rows, 5,456 distinct claims, 2,509 distinct chunks, 410 documents, max claim repeat 2, max chunk repeat 18, mean 6.76 pairs/document, max 32. Public-repository check clean - no client or company name in any artifact.",
+      "what_fails": "FEVEROUS - 1,040 rows (18.77%): NO licence recorded in any tracked artifact, NO retrieval date, NO sidecar, NO archive. The source is `tmp/R14_H133_feverous.parquet`, an R14-H133 working file, and the campaign has already ruled on it - R20-H177 coordinator disposition 2 (2026-08-16) accepted FEVEROUS non-admission for Lane B because 'the on-disk file is an R14-H133 working artifact without its own provenance verdict'. That ruling stands unamended and this member carries the same file. The selection predicate is additionally not reproducible: doc ids are `feverous:{i}` indices from an order-unstable dedup that R17-H144 recorded as resolving 0 of 95 sampled ids to their source table on rebuild.",
+      "bar": "source, licence, retrieval date and the exact selection predicate, for the whole member",
+      "margin": "1,040 of 5,540 rows (18.77%) carry none of the four; the clause admits no shortfall",
+      "fixable": "PIPELINE"
+    }
+  },
+  "summary": {
+    "PASS": [
+      "C2",
+      "C4",
+      "C5",
+      "C6",
+      "C7"
+    ],
+    "FAIL": [
+      "C1",
+      "C3",
+      "C8"
+    ],
+    "NOT-APPLICABLE": [],
+    "priority_clause_C1": "FAIL",
+    "fixable": "CORPUS_PROPERTY",
+    "binding_constraint": "C1 is not fixable by a conforming pipeline. C3 and C8 share one fixable cause - the FEVEROUS 1,040 rows - and both clear if those rows are dropped (leaving 4,500 rows / 2,250 pairs) or if FEVEROUS is given a licence sidecar, a retrieval date and a reproducible selection predicate. C1 survives either repair: the token the label turns on is required by the member's own H148 anti-shortcut rule to be lexically absent from the evidence, so the mandated containment instrument reads both legs identically on 94.73% of pairs whatever the source corpus.",
+    "consequence": "The member is 5,540 of the 721,210 R18-H150 flagship mix rows (0.768%) and 5,540 of the 760,618 R20-H174 mix rows (0.728%), so it rides in both banked flagship draws and in every R20-H174 draw including the three now training. C1's failure here is NOT the R20-H175b failure: those negatives were supported claims labelled 0 (66.4% fully attested); these negatives are unsupported - the claimed unit is attested for 96.68% of positives and 9.75% of negatives, and the 9.75% is exactly the deliberate in-chunk distractor stratum. What the measurement establishes is that the contract's C1 instrument cannot certify this member either way, and that the clause as written rejects it. C3 and C8 are real gaps of record, not of construction: 18.77% of the member's rows come from a file the campaign has already ruled has no provenance verdict."
+  },
+  "artifacts": [
+    "experiments/grounding-semantic/contract/quant_scale_unit_contract_report.json",
+    "experiments/grounding-semantic/contract/quant_scale_unit_c1.json",
+    "experiments/grounding-semantic/contract/quant_scale_unit_c2c4.json",
+    "experiments/grounding-semantic/contract/quant_scale_unit_c3c5c6.json",
+    "experiments/grounding-semantic/contract/quant_scale_unit_c5_banked.json",
+    "experiments/grounding-semantic/contract/quant_scale_unit_supp.json",
+    "experiments/grounding-semantic/contract/quant_scale_unit_stem.json",
+    "experiments/grounding-semantic/contract/quant_scale_unit_nearmiss.json",
+    "experiments/grounding-semantic/contract/quant_scale_unit_c1.py",
+    "experiments/grounding-semantic/contract/quant_scale_unit_c2c4.py",
+    "experiments/grounding-semantic/contract/quant_scale_unit_c3c5c6.py",
+    "experiments/grounding-semantic/contract/quant_scale_unit_c5_banked.py",
+    "experiments/grounding-semantic/contract/quant_scale_unit_supp.py",
+    "experiments/grounding-semantic/contract/quant_scale_unit_stem.py",
+    "experiments/grounding-semantic/contract/quant_scale_unit_nearmiss.py",
+    "experiments/grounding-semantic/contract/quant_scale_unit_mixcache.py",
+    "experiments/grounding-semantic/contract/quant_scale_unit_contract_report.py",
+    "logs/contract-quant_scale_unit-mixcache.log",
+    "logs/contract-quant_scale_unit-c2c4.log",
+    "logs/contract-quant_scale_unit-c3c5c6.log",
+    "logs/contract-quant_scale_unit-c5banked.log",
+    "logs/contract-quant_scale_unit-nearmiss.log"
+  ]
+}

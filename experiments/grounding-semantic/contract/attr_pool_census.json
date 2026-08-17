@@ -1,0 +1,148 @@
+{
+  "C4": {
+    "instrument": "provenance_gate.py, R14-H136 ruling-2 form: 8-gram, Jaccard >= 0.3, BIDIRECTIONAL, WARN 0.005 / KILL 0.02, per-arena-subset attribution. Re-run here rather than cited",
+    "evidence_gate": {
+      "unit": "atomic pool passages, deduplicated",
+      "n_units": 25003,
+      "n_units_scorable": 25003,
+      "max_fraction": 0.000231,
+      "verdict": "PASS",
+      "candidate_vs_arena": {
+        "n_units": 25003,
+        "units_with_hit": 1,
+        "fraction": 4e-05,
+        "per_arena_subset": {
+          "covidqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "delucionqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "emanual": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "expertqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "finqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hagrid": {
+            "units_with_hit": 1,
+            "fraction": 4e-05
+          },
+          "hotpotqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "pubmedqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "tatqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "techqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        },
+        "best_jaccard": {
+          "max": 0.3115,
+          "p99": 0.0086,
+          "mean": 0.0004
+        }
+      },
+      "arena_vs_candidate": {
+        "n_units": 8645,
+        "units_with_hit": 2,
+        "fraction": 0.000231,
+        "per_arena_subset": {
+          "attr_pool_evidence": {
+            "units_with_hit": 2,
+            "fraction": 0.000231
+          }
+        },
+        "best_jaccard": {
+          "max": 0.3115,
+          "p99": 0.0095,
+          "mean": 0.0007
+        }
+      },
+      "hit_examples": [
+        {
+          "candidate_unit": 1335,
+          "bucket": "hagrid",
+          "unit": 83,
+          "jaccard": 0.3115
+        }
+      ]
+    },
+    "claim_gate": {
+      "n_units": 9245,
+      "n_units_scorable": 6918,
+      "max_fraction": 0.0,
+      "verdict": "PASS",
+      "best_jaccard": {
+        "max": 0.0676,
+        "p99": 0.0,
+        "mean": 0.0
+      }
+    },
+    "kill_bar": 0.02,
+    "warn_bar": 0.005,
+    "worst_fraction_either_gate": 0.000231,
+    "margin_below_kill": 0.019769,
+    "spike_control": {
+      "injected": 10,
+      "detected_total": 11,
+      "baseline_hits": 1,
+      "passes": true,
+      "candidate_units": 2000
+    },
+    "live_positive_control": {
+      "design": "1,000 VitaminC-derived + 1,000 MiniCheck-derived atomic pool passages from this lane, run against 4,000 VitaminC train evidence sentences and 4,000 MiniCheck documents - the corpora the passages were literally assembled from, hence near-duplicate BY CONSTRUCTION",
+      "candidate_units": 2000,
+      "fires_at_fraction": 0.4315,
+      "per_source_bucket": {
+        "vitaminc_train_evidence": {
+          "units_with_hit": 13,
+          "fraction": 0.0065
+        },
+        "minicheck_docs": {
+          "units_with_hit": 850,
+          "fraction": 0.425
+        }
+      },
+      "best_jaccard": {
+        "max": 1.0,
+        "p99": 1.0,
+        "mean": 0.4074
+      },
+      "bar": "the gate must FIRE - a clean arena number from a gate that cannot fire is not evidence",
+      "pass": false
+    },
+    "live_negative_control": {
+      "design": "2,000 unrelated HaluEval knowledge passages against the same source-corpus index - a saturated instrument would fire here too",
+      "fires_at_fraction": 0.0,
+      "pass": true
+    },
+    "coverage": {
+      "definition": "a unit is unscorable when its normalized token count is below the 8-gram order",
+      "passages_total": 25003,
+      "passages_too_short": 0,
+      "passages_too_short_exact_substring_hits_in_arena": 0,
+      "claims_total": 9245,
+      "claims_too_short": 2327,
+      "claims_too_short_share": 0.251704,
+      "claims_too_short_exact_substring_hits_in_arena": 1,
+      "note": "the banked lane census counted the unscorable units (n_units_scorable 6,918 of 9,245 claims) but ran NO exact matching over them; that residual is closed here"
+    }
+  }
+}

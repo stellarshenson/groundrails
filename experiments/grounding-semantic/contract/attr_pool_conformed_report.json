@@ -1,0 +1,1748 @@
+{
+  "member": "attr_pool_conformed",
+  "kind": "constructed lane - the conforming rebuild of R20-H174 lane L2",
+  "artifact": "experiments/grounding-semantic/R20-H174_lane_L2_conformed.parquet",
+  "manifest": "experiments/grounding-semantic/R20-H174_lane_L2_conformed_manifest.json",
+  "parent_artifact": "experiments/grounding-semantic/R20-H174_lane_L2.parquet",
+  "parent_failed_clauses": [
+    "C2",
+    "C5",
+    "C6",
+    "C8"
+  ],
+  "contract": "docs/experiments/dataset-contract.md",
+  "dann_group": "attr_pool",
+  "rows": 4442,
+  "pairs": 2221,
+  "families": {
+    "truth_removed": 4442
+  },
+  "sources": {
+    "minicheck": "MIT"
+  },
+  "conforming": false,
+  "failed_clauses": [
+    "C5"
+  ],
+  "fixable": "CORPUS_PROPERTY - a clause conflict between C5 and C1, not a defect a pipeline can build away; see C5's binding_constraint and the frontier",
+  "live_dependency": "NONE. The conformed member is not loaded by any run. R20-H174 draws 2, 3 and 4 are training on the PARENT lane now and draw 1 is banked on it; nothing here was written into their path",
+  "what_the_pipeline_changed": {
+    "parent_artifact": "experiments/grounding-semantic/R20-H174_lane_L2.parquet",
+    "parent_failures": [
+      "C2",
+      "C5",
+      "C6",
+      "C8"
+    ],
+    "change_1_source": "VitaminC DROPPED entirely. It is a mix member (DANN group `vitaminc`), so the mix pairs every lane VitaminC claim with the evidence sentence the lane's truth passage is built from - the C6 channel. Dropping it also removes the C8 gap (no VitaminC retrieval date exists in tracked provenance) and the C2 collision (a VitaminC claim)",
+    "change_2_claim_eligibility": "a MiniCheck claim is consumed only if its string appears NOWHERE in the assembled mix (raw and whitespace-collapsed case-folded) - this covers the 605 claims shared with the `frame_reject` lane - and collides with NO evaluation surface on any of the three contract string forms",
+    "change_3_document_eligibility": "a MiniCheck document is consumed only if it collides with no evaluation surface on any of the three forms. A claim or document too short for the C4 8-gram instrument to see is additionally required not to occur as an exact SUBSTRING of any surface text - the parent's coverage check found one such claim, the generic 'He won the gold medal.', inside a hotpotqa arena chunk",
+    "change_4_family": "the `unsupported_claim` family is DROPPED. On MiniCheck alone its within-pair claim-only probe reads 0.6418 in the parent lane and 0.6825 when the probe is retrained on that half, against a C5 bar of < 0.60; the parent passed the bar at 0.5594 only because its VitaminC half read 0.4998 and the two were averaged. Per-route restriction does not rescue it with margin (c2d 0.6872, d2c 0.5678). The surviving family, truth_removed, is the registered source_select teacher and holds the claim byte-identical across the legs, so claim-only probes are tied at exactly 0.5 by construction. Measured in attr_pool_conformed_diag.json",
+    "unchanged": "BM25Okapi top-40, containment guard 0.75, 3-7 distractors, TRUTH_CAP 2 / DIST_CAP 12, PASSAGE_MAX_CHARS 1400, separator '\\n\\n', seed 2174, both family semantics, the mix loader contract",
+    "eligibility_census": {
+      "mix_rows_searched": 739210,
+      "mix_distinct_claims": 538510,
+      "surfaces": {
+        "arena_ragbench_10": {
+          "claims": 0,
+          "evidence": 8645
+        },
+        "gold_full": {
+          "claims": 2699,
+          "evidence": 10228
+        },
+        "eval_B_num_compare": {
+          "claims": 2000,
+          "evidence": 736
+        },
+        "eval_C_num_rolebind": {
+          "claims": 1926,
+          "evidence": 380
+        },
+        "qlane_eval": {
+          "claims": 1001,
+          "evidence": 487
+        },
+        "H143_evalset": {
+          "claims": 1048,
+          "evidence": 547
+        },
+        "H117_heldout_pairs": {
+          "claims": 2000,
+          "evidence": 1933
+        },
+        "vitaminc_holdout_pool_superset": {
+          "claims": 55139,
+          "evidence": 54683
+        }
+      },
+      "minicheck_documents_total": 6020,
+      "minicheck_claim_rows_total": 12434,
+      "claim_rows_rejected": {
+        "in_mix": 3160,
+        "short_claim_occurs_inside_a_surface_text": 5
+      },
+      "documents_rejected": {},
+      "eligible_documents": 6020,
+      "eligible_claim_rows": 9269,
+      "eligible_documents_carrying_a_supported_claim": 2234,
+      "eligible_documents_carrying_BOTH_a_supported_and_an_unsupported_claim": 989,
+      "pair_ceiling_truth_removed_at_TRUTH_CAP_2": 4468,
+      "pair_ceiling_unsupported_claim": 989,
+      "eligible_documents_whose_text_also_appears_in_the_mix": 1828,
+      "eligible_documents_appearing_in_the_mix_at_label_1": 1827,
+      "note": "a document appearing in the mix is NOT excluded - the clause-C6 test keys on the pair's claim, and every claim in the mix is excluded. The document-keyed variant is measured as an executor-added probe in the verifier and reported separately"
+    }
+  },
+  "what_it_cost": {
+    "rows": "4442 against the parent's 21,408 (0.7925 cut)",
+    "pairs": "2221 against the parent's 10,704",
+    "vitaminc_half": "11,998 parent rows dropped - the C6 channel and the C8 retrieval-date gap both lived there",
+    "unsupported_claim_family": "6,898 parent rows dropped - on MiniCheck alone its within-pair claim-only probe reads 0.6418, and 0.6825 retrained, against a C5 bar of < 0.60",
+    "minicheck_claims_already_in_the_mix": "3,160 of 12,434 MiniCheck claim rows rejected at admission because the mix already carries the claim",
+    "short_claims_inside_a_surface": "5 claim rows rejected at admission"
+  },
+  "clause_verdicts": {
+    "C1": {
+      "verdict": "PASS",
+      "measured": "negative leg 0.2184 attested at claim-to-pool containment >= 0.90 against the positive leg's 0.3291; gap 0.1108 against a bar of > 0.10, margin +0.0108. THE MARGIN IS INSIDE ITS OWN SAMPLING SPREAD: 4,000 pair-level bootstrap resamples put the gap at [0.095, 0.127] with 0.90 of resamples clearing the bar - a pass, but one a redraw would fail about one time in ten. Under the clause's LITERAL conjunction (reject only when negatives are >= 90% attested AND within 0.10 of positives) it passes outright: negatives are 0.2184 attested, nowhere near 0.90. Containment AUROC 0.5978 full pool / 0.6928 best single passage. The BEST-SINGLE-PASSAGE reading of the same test reads gap 0.0581 (positives 0.0581 vs negatives 0.0000) and FAILS a gap reading while passing the literal one, because no negative pool carries a single passage attesting its claim at 0.90. Both legs encode SUPPORT: the negative has its supporting passage physically removed and the claim is byte-identical across the legs, so nothing but support distinguishes them",
+      "binding_constraint": null
+    },
+    "C2": {
+      "verdict": "PASS",
+      "measured": "0 shared units in every one of 135 cells - 8 evaluation surfaces x 3 lane granularities (1460 claims, 4442 pooled chunks, 5026 atomic passages) x 2 surface sides x 3 string forms (raw, truncated to chunk_max_chars 1500, whitespace-collapsed case-folded). The parent's single shared unit was a VitaminC claim; this member has no VitaminC row. Beyond the clause's instrument, the sub-8-gram units the C4 census cannot see were exact-substring matched against every surface and read 0 hits (301 of 1460 claims are below that order); the parent read 1 there, the generic 'He won the gold medal.' inside a hotpotqa chunk, and the pipeline now rejects such a claim at admission",
+      "binding_constraint": null
+    },
+    "C3": {
+      "verdict": "PASS",
+      "measured": "the member carves no split of its own - 100% training material. Its only source ships no split to violate, measured from the archive rather than read from a card: the two MiniCheck parquets are synthesis routes (c2d 7076 rows, d2c 7319), neither carries a split column (columns are claim / doc / label), and they share 0 documents and 0 claims with each other. MiniCheck appears on no evaluation surface - C2 measured 0 shared units against all 8 on all three forms - so no held-out partition of it exists. VitaminC's split semantics, the parent's exposure, are NOT APPLICABLE here: the conformed member consumes no VitaminC row",
+      "binding_constraint": null
+    },
+    "C4": {
+      "verdict": "PASS",
+      "measured": "worst directional fraction 0.0 against KILL 0.02 (margin 0.02), below the 0.005 WARN. 5026 atomic pool passages, all scorable, 0 hits; 1460 claims, 1159 scorable, 0 hits, best Jaccard 0.0. Spike control: 10 injected, 10 detected, 0 baseline hits. LIVE positive control - the lane's own passages against the full 6,155-document MiniCheck archive they were assembled from - fires at 0.996 at mean best Jaccard 0.9866, while the negative control on unrelated HaluEval text reads 0.0. Coverage: 0 of 5026 passages and 301 of 1460 claims (0.2062) fall below the 8-gram order; exact matching over them finds 0",
+      "binding_constraint": null
+    },
+    "C5": {
+      "verdict": "FAIL",
+      "measured": "every element of the registered conjunction passes except one channel of surface parity. Claim-only converged probe 0.5 against < 0.55 and within-pair claim-only 0.5 against < 0.60 - both EXACTLY 0.5 rather than approximately, because the surviving family holds the claim byte-identical across the legs, so every claim-side score is tied. Surface parity: claim char length 0.5, claim token count 0.5, chunk char length 0.5033 all inside [0.45, 0.55]; claim-to-chunk containment 0.5978, deviation 0.0978 against an allowed 0.05. That fail is robust to resampling - 4,000 pair bootstraps put the channel at [0.5884, 0.6072], 0.00 of them inside the band. Excluding that channel the worst deviation is 0.0033. Balance: label 2221/2221, pool depth 5.9874 identical on both legs, truth position in the pool 0.4974 +- 0.348; family balance NOT APPLICABLE - the member carries one family. Attestation asymmetry +0.0463. Executor-added, reported separately with no registered bar: the chunk-only word-TF-IDF probe reads AUROC 0.5112 and within-pair 0.4872 - the parent's 0.5758 pool-recognition leak is gone, that one lived in the VitaminC half",
+      "binding_constraint": "CLAUSE CONFLICT between C5 and C1, measured rather than asserted, and not fixable by any row-dropping pipeline under the reading of C1 this contract process has been applying. The frontier sweeps the family of pipelines that keep the pairs whose two legs are attested within epsilon of one another: at epsilon 1.0 (the whole member) the channel reads 0.5978 with a C1 gap of 0.1108; the channel first enters C5's band at epsilon 0.2 (0.5493, keeping 2015 of 2221 pairs) and by then the C1 gap has fallen to 0.065. Feasible points under C1's gap reading: 0 of 11. The two bars measure the SAME two distributions in opposite directions - C1 requires the containment channel to separate the legs, C5 as literally written requires it to sit at chance - and the only distribution shape satisfying both would need the negative leg to be MORE attested than the positive over part of the range, which contradicts C1's stated purpose. NOT built here: that is distribution shaping to satisfy two bars, not a member"
+    },
+    "C6": {
+      "verdict": "PASS",
+      "measured": "the registered test is UNDEFINED, which is what the clause says a clean instrument reads. Coverage is exactly zero: 0 of 4442 lane rows carry a claim appearing anywhere in the 739210-row assembled mix (685,670 clean rows plus the four other loaded lanes), and 0 match one only after case folding. The mean-label oracle therefore covers no pair, and the (claim -> associated text) channel that failed the parent at within-pair 0.9999 has 0 rows to fire on. Executor-added and reported separately, keyed on the POOL DOCUMENT rather than on the pair's claim as the clause's test is: 'the pool contains a passage seen in the mix' reads within-pair 0.5308 and its count form 0.5973, but the supplement shows that is a SIGHTING imbalance and not a label association: all 1677 of the 5026 pool passages found in the mix come from the `frame_reject` lane, which puts both its claims over the same chunk, so every one carries mix mean label exactly 0.5 and a probe on the mean label reads 0.5 exactly. The residual is a document-role imbalance - 0.5142 of truth documents were seen in the mix against 0.3149 of swap documents - carrying no label gradient. Closing it would cost about half the member and is not applied",
+      "binding_constraint": null
+    },
+    "C7": {
+      "verdict": "PASS",
+      "measured": "unit is ROWS, used consistently at registration, build and report, with pairs stated alongside everywhere: 4442 rows / 2221 pairs. The clause bars unit drift and single-unit reporting, and neither occurs. VOLUME, reported in the registered unit and not converted away: the conformed member is 16966 rows smaller than the parent's 21408, a 0.7925 cut, and it sits BELOW the registered band of 20,000-30,000 rows by 15558 rows. That shortfall is the price of C5's claim-only bar (the unsupported_claim family, 6,898 parent rows), C6 (the whole VitaminC half, 11,998 parent rows, plus 3,160 MiniCheck claim rows already in the mix) and C2 (5 further claim rows)",
+      "binding_constraint": null
+    },
+    "C8": {
+      "verdict": "PASS",
+      "measured": "source, licence, retrieval date and exact selection predicate are all present for the member's single source. MiniCheck (lytang/C2D-and-D2C-MiniCheck), MIT re-verified at the Hub 2026-08-13, RETRIEVED 2026-08-13 - recorded in the tracked sidecar data/external/datasets/dataset-minicheck.md, which is the leg the parent failed on for VitaminC and the reason the parent's C8 gap does not exist here. Predicate: both shipped parquets concatenated, documents <= 1,400 chars, then the conforming pipeline's two admission filters; BM25Okapi top-40, distractor rejected at claim containment >= 0.75, 3-7 distractors, TRUTH_CAP 2 / DIST_CAP 12, seed 2174. Duplication in full: 1460 distinct claims, 4442 distinct pooled chunks (one per row), 5026 distinct atomic passages reused 5.3665 times each across 26972 slots, 2221 distinct truth documents, max claim repeat 20, 453 claims appearing more than twice - and 0 of them carrying a single label, because the surviving family puts every claim on both legs, so no claim in the member is memorisable by label. Documents: 2222 as truth, 4475 as pool member, 1734 in both roles and never inside the same pair, max truth uses 1. Cross-lane: 0 claims shared with any other lane of the live mix, by construction. No client or company name in any artifact; gold_full was read from a private submodule for C2 counts only, with no text reproduced",
+      "binding_constraint": null
+    }
+  },
+  "what_the_parent_hid": {
+    "C5_claim_only": "the parent's within-pair claim-only 0.5594 on unsupported_claim is the mean of a MiniCheck half at 0.6418 and a VitaminC half at 0.4998 (1,449 and 2,000 pairs). Retrained on each half alone: MiniCheck 0.6825, VitaminC 0.5142. The bar was cleared by aggregation, not by either half. Measured in attr_pool_conformed_diag.json",
+    "C5_chunk_only": "the parent's executor-added chunk-only within-pair 0.5758 on truth_removed drops to 0.4872 once the VitaminC half is gone - that leak was VitaminC's assembled truth passages, not the pooling construction"
+  },
+  "measured_alternative_not_applied": {
+    "what": "a containment-matched filter keeping the pairs whose legs are attested within 0.2 of one another - 2015 of 2221 pairs, 4030 rows, a 0.0928 further cut",
+    "it_would_pass_C5": "containment channel 0.5493, inside [0.45, 0.55]",
+    "it_would_move_C1": "the attestation gap falls from 0.1108 to 0.065 - still passing C1's LITERAL conjunction (negatives 0.2407 attested, far below 0.90) and failing the gap reading this contract process applied to the parent",
+    "why_not_applied": "choosing between those two readings of C1 is an adjudication, not a measurement. The executor does not relax or reinterpret a clause to make a member pass; the frontier is reported so the ruling can be made on numbers"
+  },
+  "instruments": {
+    "build": "experiments/grounding-semantic/contract/attr_pool_conformed_build.py",
+    "verify": "experiments/grounding-semantic/contract/attr_pool_conformed_verify.py",
+    "diagnostic": "experiments/grounding-semantic/contract/attr_pool_conformed_diag.py",
+    "c6_supplement": "experiments/grounding-semantic/contract/attr_pool_conformed_memo_supp.py",
+    "confidence_intervals": "experiments/grounding-semantic/contract/attr_pool_conformed_ci.py",
+    "assembler": "experiments/grounding-semantic/contract/attr_pool_conformed_assemble.py",
+    "checkpoints": [
+      "attr_pool_conformed_supply.json",
+      "attr_pool_conformed_core.json",
+      "attr_pool_conformed_disjoint.json",
+      "attr_pool_conformed_census.json",
+      "attr_pool_conformed_memo.json",
+      "attr_pool_conformed_memo_supp.json",
+      "attr_pool_conformed_frontier.json",
+      "attr_pool_conformed_ci.json",
+      "attr_pool_conformed_diag.json"
+    ],
+    "logs": [
+      "logs/attr_pool_conformed_supply.log",
+      "logs/attr_pool_conformed_build.log",
+      "logs/attr_pool_conformed_diag.log",
+      "logs/attr_pool_conformed_verify_core.log",
+      "logs/attr_pool_conformed_verify_disjoint.log",
+      "logs/attr_pool_conformed_verify_census.log",
+      "logs/attr_pool_conformed_verify_memo.log",
+      "logs/attr_pool_conformed_verify_frontier.log",
+      "logs/attr_pool_conformed_memo_supp.log"
+    ],
+    "reused_banked": [
+      "provenance_gate.py (R14-H136 ruling-2 form: 8-gram, Jaccard 0.3, bidirectional, KILL 0.02, spike control)",
+      "R20-H174_lane_common.py (containment, auroc, claim_only_probe, within_pair_accuracy, surface_parity, window census)",
+      "R20-H174_lane_L2.py (Retriever, build_pair, verify, build_manifest - the construction is the banked one, called with a restricted corpus)",
+      "R10-H108_lane.public_train + R16-H142_G1_arm.untruncated_evidence (the mix rebuilt through the banked loader, 685,670 rows)",
+      "attr_pool_contract_measure.eval_surfaces (the same 8 evaluation surfaces the parent was measured against)"
+    ],
+    "compute": "CPU only; CUDA_VISIBLE_DEVICES forced empty before every import. No GPU queried or allocated at any point"
+  },
+  "detail": {
+    "C1": {
+      "head_declared": "grounding scalar (`task_head`) - the binary support head the shipped ground() consumes; DANN group `attr_pool`",
+      "label_predicate": "label 1 = the claim's supporting passage is PRESENT in the pooled chunk; label 0 = no passage in the pool supports the claim. truth_removed removes the true passage and holds the claim byte-identical; unsupported_claim holds the pool byte-identical and swaps the claim for a MiniCheck label-0 one. Both encode SUPPORT, not relevance",
+      "corpus_label_inheritance": "MiniCheck ships a binary supported / not-supported label produced by an entailment filter over a generated document; the predicate is support, so the inheritance is commensurable. The conformed member has NO VitaminC rows, so no three-way collapse is involved anywhere in it",
+      "containment_definition": "fraction of the claim's content tokens ([a-z0-9]+, lowercased) present in the evidence - R20-H174_lane_common.containment",
+      "claim_to_full_pool": {
+        "positive_leg": {
+          "n": 2221,
+          "mean": 0.8343,
+          "median": 0.8462,
+          "p10": 0.6667,
+          "p90": 1.0,
+          "frac_ge_0.90": 0.3291,
+          "frac_eq_1.00": 0.2179,
+          "frac_ge_0.75": 0.7848
+        },
+        "negative_leg": {
+          "n": 2221,
+          "mean": 0.788,
+          "median": 0.8,
+          "p10": 0.6,
+          "p90": 1.0,
+          "frac_ge_0.90": 0.2184,
+          "frac_eq_1.00": 0.1427,
+          "frac_ge_0.75": 0.6574
+        }
+      },
+      "claim_to_best_single_passage": {
+        "positive_leg": {
+          "n": 2221,
+          "mean": 0.6959,
+          "median": 0.6923,
+          "p10": 0.5333,
+          "p90": 0.875,
+          "frac_ge_0.90": 0.0581,
+          "frac_eq_1.00": 0.0306,
+          "frac_ge_0.75": 0.3354
+        },
+        "negative_leg": {
+          "n": 2221,
+          "mean": 0.612,
+          "median": 0.625,
+          "p10": 0.5,
+          "p90": 0.7143,
+          "frac_ge_0.90": 0.0,
+          "frac_eq_1.00": 0.0,
+          "frac_ge_0.75": 0.0
+        }
+      },
+      "auroc_containment_full_pool": 0.5978,
+      "auroc_containment_best_passage": 0.6928,
+      "mandatory_bar": {
+        "statement": "a member whose negatives are >= 90% attested at a rate within 0.10 of its positives is REJECTED for the grounding head",
+        "attested_rate_positive_leg": 0.3291,
+        "attested_rate_negative_leg": 0.2184,
+        "gap": 0.1108,
+        "reading_A_gap": {
+          "bar": "gap > 0.10",
+          "margin": 0.0108,
+          "pass": true
+        },
+        "reading_B_literal_conjunction": {
+          "bar": "REJECT iff negative attestation >= 0.90 AND gap <= 0.10",
+          "negative_attestation": 0.2184,
+          "rejected": false,
+          "pass": true
+        },
+        "both_readings_pass": true
+      },
+      "mandatory_bar_best_passage_reading": {
+        "attested_rate_positive_leg": 0.0581,
+        "attested_rate_negative_leg": 0.0,
+        "gap": 0.0581,
+        "pass": false
+      },
+      "per_family": {
+        "truth_removed": {
+          "positive_leg": {
+            "n": 2221,
+            "mean": 0.8343,
+            "median": 0.8462,
+            "p10": 0.6667,
+            "p90": 1.0,
+            "frac_ge_0.90": 0.3291,
+            "frac_eq_1.00": 0.2179,
+            "frac_ge_0.75": 0.7848
+          },
+          "negative_leg": {
+            "n": 2221,
+            "mean": 0.788,
+            "median": 0.8,
+            "p10": 0.6,
+            "p90": 1.0,
+            "frac_ge_0.90": 0.2184,
+            "frac_eq_1.00": 0.1427,
+            "frac_ge_0.75": 0.6574
+          },
+          "gap_frac_ge_0.90": 0.1108,
+          "auroc_containment": 0.5978
+        }
+      },
+      "per_source": {
+        "minicheck": {
+          "rows": 4442,
+          "share": 1.0,
+          "note": "single-source member"
+        }
+      }
+    },
+    "C2": {
+      "instrument": "exact set intersection on three string forms - raw, truncated to CFG.chunk_max_chars=1500, whitespace-collapsed case-folded - at three lane granularities (claim, pooled chunk, atomic pool passage) against both the claim and the evidence side of every surface",
+      "surfaces_covered": [
+        "H117_heldout_pairs",
+        "H143_evalset",
+        "arena_ragbench_10",
+        "eval_B_num_compare",
+        "eval_C_num_rolebind",
+        "gold_full",
+        "qlane_eval",
+        "vitaminc_holdout_pool_superset"
+      ],
+      "cells_measured": 135,
+      "per_surface": {
+        "arena_ragbench_10": {
+          "surface_claims": 0,
+          "surface_evidence": 8645,
+          "lane_claims__vs__surface_evidence__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_evidence__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_evidence__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_evidence__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_evidence__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_evidence__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_evidence__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_evidence__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_evidence__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          }
+        },
+        "gold_full": {
+          "surface_claims": 2699,
+          "surface_evidence": 10228,
+          "lane_claims__vs__surface_claims__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_claims__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_claims__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_evidence__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_evidence__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_evidence__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_claims__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_claims__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_claims__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_evidence__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_evidence__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_evidence__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_claims__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_claims__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_claims__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_evidence__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_evidence__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_evidence__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          }
+        },
+        "eval_B_num_compare": {
+          "surface_claims": 2000,
+          "surface_evidence": 736,
+          "lane_claims__vs__surface_claims__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_claims__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_claims__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_evidence__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_evidence__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_evidence__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_claims__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_claims__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_claims__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_evidence__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_evidence__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_evidence__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_claims__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_claims__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_claims__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_evidence__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_evidence__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_evidence__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          }
+        },
+        "eval_C_num_rolebind": {
+          "surface_claims": 1926,
+          "surface_evidence": 380,
+          "lane_claims__vs__surface_claims__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_claims__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_claims__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_evidence__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_evidence__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_evidence__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_claims__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_claims__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_claims__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_evidence__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_evidence__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_evidence__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_claims__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_claims__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_claims__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_evidence__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_evidence__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_evidence__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          }
+        },
+        "qlane_eval": {
+          "surface_claims": 1001,
+          "surface_evidence": 487,
+          "lane_claims__vs__surface_claims__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_claims__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_claims__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_evidence__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_evidence__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_evidence__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_claims__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_claims__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_claims__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_evidence__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_evidence__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_evidence__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_claims__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_claims__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_claims__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_evidence__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_evidence__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_evidence__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          }
+        },
+        "H143_evalset": {
+          "surface_claims": 1048,
+          "surface_evidence": 547,
+          "lane_claims__vs__surface_claims__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_claims__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_claims__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_evidence__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_evidence__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_evidence__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_claims__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_claims__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_claims__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_evidence__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_evidence__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_evidence__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_claims__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_claims__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_claims__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_evidence__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_evidence__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_evidence__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          }
+        },
+        "H117_heldout_pairs": {
+          "surface_claims": 2000,
+          "surface_evidence": 1933,
+          "lane_claims__vs__surface_claims__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_claims__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_claims__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_evidence__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_evidence__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_evidence__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_claims__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_claims__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_claims__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_evidence__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_evidence__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_evidence__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_claims__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_claims__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_claims__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_evidence__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_evidence__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_evidence__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          }
+        },
+        "vitaminc_holdout_pool_superset": {
+          "surface_claims": 55139,
+          "surface_evidence": 54683,
+          "lane_claims__vs__surface_claims__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_claims__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_claims__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_evidence__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_evidence__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_claims__vs__surface_evidence__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_claims__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_claims__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_claims__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_evidence__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_evidence__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_pooled_chunks__vs__surface_evidence__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_claims__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_claims__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_claims__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_evidence__raw": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_evidence__truncated_1500": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          },
+          "lane_atomic_passages__vs__surface_evidence__wsfold": {
+            "shared_units": 0,
+            "frac_of_lane_side": 0.0,
+            "frac_of_surface_side": 0.0
+          }
+        }
+      },
+      "max_shared_units_any_cell": 0,
+      "bar": "every form reads zero",
+      "pass": true
+    },
+    "C2_intra_mix": {
+      "why": "the parent lane duplicated VitaminC train text that is already a mix member; the conformed member has no VitaminC row at all",
+      "vitaminc_sourced_rows": 0,
+      "lane_claims_also_in_vitaminc_train": 0,
+      "lane_atomic_passages_also_a_vitaminc_train_evidence_string": 0,
+      "note": "intra-mix duplication is not what C2 bars; it is reported because it is the mechanism C6 tests"
+    },
+    "C3": {
+      "member_carves_no_split": "attr_pool_conformed is 100% training material; no held-out partition is taken from it, so it cannot violate a split of its own. The clause is evaluated on the split axis of its SOURCE",
+      "minicheck": {
+        "split_axis_declared": "none - the archive ships the c2d and d2c synthesis routes, not a train/test cut",
+        "split_axis_measured": "no split column exists in either parquet; the two routes are measured against each other directly",
+        "archive_parquets": {
+          "c2d": 7076,
+          "d2c": 7319
+        },
+        "archive_columns": {
+          "c2d": [
+            "claim",
+            "doc",
+            "label"
+          ],
+          "d2c": [
+            "claim",
+            "doc",
+            "label"
+          ]
+        },
+        "documents_shared_between_the_two_routes": 0,
+        "claims_shared_between_the_two_routes": 0,
+        "is_minicheck_an_evaluation_surface": false,
+        "consequence": "MiniCheck appears on no evaluation surface in this campaign (verified in C2: 0 shared units against all 8 surfaces on all three string forms), so no held-out partition of it exists to violate"
+      },
+      "vitaminc": "NOT APPLICABLE - the conformed member consumes no VitaminC row. The parent's VitaminC split measurements (official cut disjoint on unique_id and case_id, NOT on page / claim / evidence / wiki_revision_id) no longer bear on this member"
+    },
+    "C4": {
+      "instrument": "provenance_gate.py, R14-H136 ruling-2 form: 8-gram, Jaccard >= 0.3, BIDIRECTIONAL, WARN 0.005 / KILL 0.02, per-arena-subset attribution. Re-run on the conformed text, not cited",
+      "evidence_gate": {
+        "unit": "atomic pool passages, deduplicated",
+        "n_units": 5026,
+        "n_units_scorable": 5026,
+        "max_fraction": 0.0,
+        "verdict": "PASS",
+        "candidate_vs_arena": {
+          "n_units": 5026,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "per_arena_subset": {
+            "covidqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "delucionqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "emanual": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "expertqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "finqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hagrid": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "hotpotqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "pubmedqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "tatqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            },
+            "techqa": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            }
+          },
+          "best_jaccard": {
+            "max": 0.0052,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "arena_vs_candidate": {
+          "n_units": 8645,
+          "units_with_hit": 0,
+          "fraction": 0.0,
+          "per_arena_subset": {
+            "attr_pool_conformed_evidence": {
+              "units_with_hit": 0,
+              "fraction": 0.0
+            }
+          },
+          "best_jaccard": {
+            "max": 0.0052,
+            "p99": 0.0,
+            "mean": 0.0
+          }
+        },
+        "hit_examples": []
+      },
+      "claim_gate": {
+        "n_units": 1460,
+        "n_units_scorable": 1159,
+        "max_fraction": 0.0,
+        "verdict": "PASS",
+        "best_jaccard": {
+          "max": 0.0,
+          "p99": 0.0,
+          "mean": 0.0
+        }
+      },
+      "kill_bar": 0.02,
+      "warn_bar": 0.005,
+      "worst_fraction_either_gate": 0.0,
+      "margin_below_kill": 0.02,
+      "spike_control": {
+        "injected": 10,
+        "detected_total": 10,
+        "baseline_hits": 0,
+        "passes": true,
+        "candidate_units": 2000
+      },
+      "live_positive_control": {
+        "design": "2,000 atomic pool passages of the conformed lane against the FULL MiniCheck document set (6155 documents) they were assembled from - near-duplicate BY CONSTRUCTION",
+        "fires_at_fraction": 0.996,
+        "best_jaccard": {
+          "max": 1.0,
+          "p99": 1.0,
+          "mean": 0.9866
+        },
+        "bar": "the gate must FIRE - a clean arena number from a gate that cannot fire is not evidence",
+        "pass": true
+      },
+      "live_negative_control": {
+        "design": "2,000 unrelated HaluEval knowledge passages against the same full source index",
+        "fires_at_fraction": 0.0,
+        "bar": "< 0.02",
+        "pass": true
+      },
+      "coverage": {
+        "definition": "a unit is unscorable when its normalized token count is below the 8-gram order; those units are covered by exact matching",
+        "passages_total": 5026,
+        "passages_too_short": 0,
+        "passages_too_short_exact_substring_hits_in_arena": 0,
+        "claims_total": 1460,
+        "claims_too_short": 301,
+        "claims_too_short_share": 0.206164,
+        "claims_too_short_exact_substring_hits_in_arena": 0
+      }
+    },
+    "C5": {
+      "registered_conjunction": {
+        "claim_only_converged_probe": {
+          "value": 0.5,
+          "bar": "< 0.55",
+          "margin": 0.05,
+          "pass": true,
+          "spec": "char_wb 2-5gram TF-IDF, min_df 3, liblinear C=4 tol 1e-7, 5 folds disjoint on doc_id"
+        },
+        "within_pair_claim_only": {
+          "per_family": {
+            "truth_removed": {
+              "acc": 0.5,
+              "pairs": 2221
+            }
+          },
+          "worst": 0.5,
+          "bar": "< 0.60",
+          "margin": 0.1,
+          "pass": true
+        },
+        "surface_parity_every_computable_channel": {
+          "auroc": {
+            "claim_char_length": 0.5,
+            "claim_token_count": 0.5,
+            "chunk_char_length": 0.5033,
+            "claim_chunk_containment": 0.5978
+          },
+          "bar": "each channel in [0.45, 0.55]",
+          "worst_channel": "claim_chunk_containment",
+          "worst_deviation": 0.0978,
+          "pass_all_channels": false,
+          "pass_excluding_containment": true
+        },
+        "balance": {
+          "family_rows": {
+            "truth_removed": 4442
+          },
+          "family_share": {
+            "truth_removed": 1.0
+          },
+          "label_balance": {
+            "label_1": 2221,
+            "label_0": 2221
+          },
+          "pool_depth_positive_mean": 5.9874,
+          "pool_depth_negative_mean": 5.9874,
+          "truth_relative_position_in_pool_mean": 0.4974,
+          "truth_relative_position_in_pool_sd": 0.348,
+          "truth_relative_position_bar": "0.5 +- 0.05 (uniform placement)",
+          "truth_relative_position_pass": true
+        },
+        "attestation_symmetry": {
+          "definition": "positive-leg minus negative-leg mean claim->pool containment",
+          "positive_mean": 0.8343,
+          "negative_mean": 0.788,
+          "delta": 0.0463
+        }
+      },
+      "executor_added_probes_reported_separately": {
+        "chunk_only_tfidf_auroc": {
+          "value": 0.5112,
+          "spec": "word 1-2gram TF-IDF, min_df 3, max_features 200k, liblinear C=4 tol 1e-7, 5 folds disjoint on doc_id. char_wb 2-5gram is intractable on the pooled text; the substitution is declared",
+          "note": "NOT part of the registered conjunction and carrying no bar"
+        },
+        "within_pair_chunk_only": {
+          "truth_removed": {
+            "acc": 0.4872,
+            "pairs": 2221
+          }
+        },
+        "single_channel_at_chance_where_construction_implies": {
+          "unsupported_claim_chunk_only": "byte-identical chunk across the legs - any chunk-only score is tied, within-pair 0.5 exactly",
+          "truth_removed_claim_only": "byte-identical claim across the legs - any claim-only score is tied, within-pair 0.5 exactly",
+          "question_only": "NOT APPLICABLE - the lane carries no question field; the mix loader consumes (claim, chunk) only"
+        }
+      }
+    },
+    "C6": {
+      "shared_fields": "truth_removed pairs share the CLAIM byte-identically (only the pool differs); unsupported_claim pairs share the POOLED CHUNK byte-identically (only the claim differs)",
+      "registered_test": "for each pair, look the claim up in the REST of the assembled mix (685,670 clean rows plus the four other loaded lanes) and score the row by what that association carries. On a clean instrument the value is undefined or at chance (0.5)",
+      "mix_rows_searched": 739210,
+      "lane_rows_whose_claim_appears_elsewhere_in_the_mix": 0,
+      "coverage_overall": 0.0,
+      "lane_claims_matching_a_mix_claim_only_after_case_folding": 0,
+      "mean_label_oracle_within_pair": {
+        "truth_removed": {
+          "pairs": 2221,
+          "within_pair_accuracy_all_pairs": 0.5,
+          "pairs_with_both_claims_in_the_mix": 0,
+          "within_pair_accuracy_on_covered_pairs": null
+        }
+      },
+      "claim_to_associated_text_channel": {
+        "definition": "does the pooled chunk contain, verbatim, a text the mix pairs with THIS exact claim - and at which label. This is the channel that failed the parent at within-pair 0.9999",
+        "lane_rows_with_any_such_association": 0,
+        "rows_where_it_fires": 0,
+        "value": "UNDEFINED - no lane claim appears anywhere in the assembled mix, so the mix associates no text with any of them"
+      },
+      "chance": 0.5,
+      "executor_added_document_keyed_probes_reported_separately": {
+        "definition": "keyed on the POOL DOCUMENT rather than on the pair's claim, which is what the clause's test names. Reported separately and carrying no registered bar",
+        "mix_chunks_indexed": 364499,
+        "probes": {
+          "pool_contains_a_mix_label1_passage": {
+            "auroc_row_level": 0.5308,
+            "within_pair": {
+              "truth_removed": {
+                "acc": 0.5308,
+                "pairs": 2221
+              }
+            },
+            "rows_firing": 0.8255
+          },
+          "count_of_mix_label1_passages_in_pool": {
+            "auroc_row_level": 0.5382,
+            "within_pair": {
+              "truth_removed": {
+                "acc": 0.5973,
+                "pairs": 2221
+              }
+            },
+            "rows_firing": 0.8255
+          }
+        }
+      }
+    },
+    "C6_document_keyed_supplement": {
+      "why": "a document-keyed feature is a MEMORISATION channel only if the mix attaches a label signal to the document. This measures the signal rather than the sighting",
+      "distinct_pool_passages": 5026,
+      "pool_passages_found_in_the_mix": 1677,
+      "share_found": 0.3337,
+      "mix_mean_label_distribution_over_those_passages": {
+        "0.5": 1677
+      },
+      "mix_members_they_come_from": [
+        "frame_reject"
+      ],
+      "probes_on_the_mix_mean_label": {
+        "max_mix_mean_label_over_pool": {
+          "auroc_row_level": 0.5,
+          "within_pair": {
+            "truth_removed": {
+              "acc": 0.5,
+              "pairs": 2221
+            }
+          }
+        },
+        "mean_mix_mean_label_over_pool": {
+          "auroc_row_level": 0.5,
+          "within_pair": {
+            "truth_removed": {
+              "acc": 0.5,
+              "pairs": 2221
+            }
+          }
+        }
+      },
+      "documents_in_the_mix_by_role": {
+        "truth_documents": 2221,
+        "truth_documents_share_in_mix": 0.5142,
+        "swap_documents": 1699,
+        "swap_documents_share_in_mix": 0.3149
+      },
+      "chance": 0.5
+    },
+    "C7": {
+      "declared_unit": "rows",
+      "unit_used_consistently": "rows at registration ('L2 attr_pool ~20-30k rows'), rows at build, rows in this report; pairs reported alongside everywhere",
+      "built_rows": 4442,
+      "built_pairs": 2221,
+      "both_counts_reported": true,
+      "registered_band_rows": [
+        20000,
+        30000
+      ],
+      "in_registered_band": false,
+      "parent_rows": 21408,
+      "parent_pairs": 10704,
+      "volume_cost_rows": 16966,
+      "volume_cost_share": 0.7925,
+      "note": "C7 bars UNIT CONSISTENCY and dual reporting, not volume. The conformed member falls BELOW the registered row band; that shortfall is the price of C6 and C8 conformance and is reported here in the registered unit, not converted away"
+    },
+    "C8": {
+      "sources": {
+        "minicheck": {
+          "dataset": "lytang/C2D-and-D2C-MiniCheck",
+          "archive": "data/external/datasets/dataset-minicheck.zip",
+          "licence": "MIT",
+          "wall": "R19_minicheck_gate.json - GREEN on the R14-H136 8-gram / Jaccard 0.3 wall against all ten walled arena corpora"
+        }
+      },
+      "licence": {
+        "minicheck": "MIT (HF card YAML `license: mit`, re-verified at the Hub 2026-08-13 per the tracked sidecar)"
+      },
+      "retrieval_date": {
+        "minicheck": "2026-08-13 - tracked sidecar data/external/datasets/dataset-minicheck.md: 'fetched 2026-08-13: 14395 rows (c2d: 7076, d2c: 7319)'",
+        "vitaminc": "NOT APPLICABLE - the conformed member contains no VitaminC-sourced row. The parent's C8 failure was the absence of a VitaminC retrieval date in tracked provenance; dropping the source removes the obligation rather than satisfying it"
+      },
+      "selection_predicate": {
+        "minicheck": "BOTH shipped parquets (c2d + d2c) concatenated, filtered to documents <= 1400 chars (PASSAGE_MAX_CHARS); doc_id = index in the sorted deduplicated document list",
+        "eligibility_filters_added_by_the_conforming_pipeline": "(1) the claim string must appear NOWHERE in the assembled mix, on raw or whitespace-collapsed case-folded comparison; (2) neither the claim nor the document may collide with any of the 8 evaluation surfaces on any of the three contract string forms",
+        "construction": "BM25Okapi over the eligible document set, top-40 candidate window, distractor rejected if claim containment >= 0.75, 3-7 distractors (pool depth 4-8), TRUTH_CAP 2 / DIST_CAP 12, seed 2174"
+      },
+      "within_member_duplication": {
+        "rows": 4442,
+        "pairs": 2221,
+        "distinct_claims": 1460,
+        "distinct_pooled_chunks": 4442,
+        "atomic_pool_passage_slots": 26972,
+        "distinct_atomic_pool_passages": 5026,
+        "atomic_passage_reuse_mean": 5.3665,
+        "distinct_truth_documents": 2221,
+        "claim_repeat_max": 20,
+        "claims_appearing_more_than_twice": 453,
+        "of_those_carrying_a_single_label": 0,
+        "rows_carried_by_single_label_repeated_claims": 0,
+        "claims_with_single_label_across_lane": 0,
+        "claims_with_single_label_share": 0.0,
+        "document_role_overlap": {
+          "truth_cap": 2,
+          "distractor_cap": 12,
+          "documents_as_truth": 2222,
+          "documents_as_pool_member": 4475,
+          "documents_in_both_roles": 1734,
+          "note": "a document may appear as truth in one pair and as a distractor in another - never inside the pair whose truth it is, which is enforced by the retriever's exclude set and re-checked by pool_composition_audit",
+          "max_truth_uses": 1,
+          "max_distractor_uses": 12
+        }
+      },
+      "public_repository": {
+        "check": "no client or company name appears in the conformed parquet, its manifest, or this report; the single source is a public corpus (MiniCheck, MIT) and every artifact path is inside the public repository",
+        "note": "gold_full is read from a private submodule for C2 overlap counts only; no text from it is reproduced in any artifact"
+      }
+    },
+    "C5_conflict_frontier": {
+      "question": "is there ANY row-dropping pipeline over this member that puts the claim-to-chunk containment channel inside C5's [0.45, 0.55] while C1's mandatory attestation test still passes?",
+      "family": "keep the pairs whose positive-leg minus negative-leg claim->pool containment is <= epsilon. epsilon = 1.0 is the whole member; epsilon = 0 keeps only pairs whose two legs are attested identically, which forces the channel to exactly 0.5 by construction",
+      "sweep": [
+        {
+          "epsilon": 1.0,
+          "pairs_kept": 2221,
+          "rows_kept": 4442,
+          "share_of_member": 1.0,
+          "containment_auroc": 0.5978,
+          "C5_channel_in_band": false,
+          "attested_positive": 0.3291,
+          "attested_negative": 0.2184,
+          "C1_gap": 0.1108,
+          "C1_reading_A_gap_gt_0.10": true,
+          "C1_reading_B_not_rejected": true,
+          "both_C5_and_C1_A": false,
+          "both_C5_and_C1_B": false
+        },
+        {
+          "epsilon": 0.5,
+          "pairs_kept": 2220,
+          "rows_kept": 4440,
+          "share_of_member": 0.9995,
+          "containment_auroc": 0.5976,
+          "C5_channel_in_band": false,
+          "attested_positive": 0.3293,
+          "attested_negative": 0.2185,
+          "C1_gap": 0.1108,
+          "C1_reading_A_gap_gt_0.10": true,
+          "C1_reading_B_not_rejected": true,
+          "both_C5_and_C1_A": false,
+          "both_C5_and_C1_B": false
+        },
+        {
+          "epsilon": 0.4,
+          "pairs_kept": 2206,
+          "rows_kept": 4412,
+          "share_of_member": 0.9932,
+          "containment_auroc": 0.5933,
+          "C5_channel_in_band": false,
+          "attested_positive": 0.3255,
+          "attested_negative": 0.2199,
+          "C1_gap": 0.1056,
+          "C1_reading_A_gap_gt_0.10": true,
+          "C1_reading_B_not_rejected": true,
+          "both_C5_and_C1_A": false,
+          "both_C5_and_C1_B": false
+        },
+        {
+          "epsilon": 0.3,
+          "pairs_kept": 2155,
+          "rows_kept": 4310,
+          "share_of_member": 0.9703,
+          "containment_auroc": 0.5802,
+          "C5_channel_in_band": false,
+          "attested_positive": 0.3188,
+          "attested_negative": 0.2251,
+          "C1_gap": 0.0937,
+          "C1_reading_A_gap_gt_0.10": false,
+          "C1_reading_B_not_rejected": true,
+          "both_C5_and_C1_A": false,
+          "both_C5_and_C1_B": false
+        },
+        {
+          "epsilon": 0.25,
+          "pairs_kept": 2117,
+          "rows_kept": 4234,
+          "share_of_member": 0.9532,
+          "containment_auroc": 0.5708,
+          "C5_channel_in_band": false,
+          "attested_positive": 0.3118,
+          "attested_negative": 0.2291,
+          "C1_gap": 0.0827,
+          "C1_reading_A_gap_gt_0.10": false,
+          "C1_reading_B_not_rejected": true,
+          "both_C5_and_C1_A": false,
+          "both_C5_and_C1_B": false
+        },
+        {
+          "epsilon": 0.2,
+          "pairs_kept": 2015,
+          "rows_kept": 4030,
+          "share_of_member": 0.9072,
+          "containment_auroc": 0.5493,
+          "C5_channel_in_band": true,
+          "attested_positive": 0.3057,
+          "attested_negative": 0.2407,
+          "C1_gap": 0.065,
+          "C1_reading_A_gap_gt_0.10": false,
+          "C1_reading_B_not_rejected": true,
+          "both_C5_and_C1_A": false,
+          "both_C5_and_C1_B": true
+        },
+        {
+          "epsilon": 0.15,
+          "pairs_kept": 1876,
+          "rows_kept": 3752,
+          "share_of_member": 0.8447,
+          "containment_auroc": 0.5231,
+          "C5_channel_in_band": true,
+          "attested_positive": 0.2953,
+          "attested_negative": 0.2585,
+          "C1_gap": 0.0368,
+          "C1_reading_A_gap_gt_0.10": false,
+          "C1_reading_B_not_rejected": true,
+          "both_C5_and_C1_A": false,
+          "both_C5_and_C1_B": true
+        },
+        {
+          "epsilon": 0.1,
+          "pairs_kept": 1710,
+          "rows_kept": 3420,
+          "share_of_member": 0.7699,
+          "containment_auroc": 0.4949,
+          "C5_channel_in_band": true,
+          "attested_positive": 0.2813,
+          "attested_negative": 0.2836,
+          "C1_gap": 0.0023,
+          "C1_reading_A_gap_gt_0.10": false,
+          "C1_reading_B_not_rejected": true,
+          "both_C5_and_C1_A": false,
+          "both_C5_and_C1_B": true
+        },
+        {
+          "epsilon": 0.05,
+          "pairs_kept": 1544,
+          "rows_kept": 3088,
+          "share_of_member": 0.6952,
+          "containment_auroc": 0.4751,
+          "C5_channel_in_band": true,
+          "attested_positive": 0.2636,
+          "attested_negative": 0.296,
+          "C1_gap": 0.0324,
+          "C1_reading_A_gap_gt_0.10": false,
+          "C1_reading_B_not_rejected": true,
+          "both_C5_and_C1_A": false,
+          "both_C5_and_C1_B": true
+        },
+        {
+          "epsilon": 0.02,
+          "pairs_kept": 1525,
+          "rows_kept": 3050,
+          "share_of_member": 0.6866,
+          "containment_auroc": 0.4735,
+          "C5_channel_in_band": true,
+          "attested_positive": 0.2636,
+          "attested_negative": 0.2984,
+          "C1_gap": 0.0348,
+          "C1_reading_A_gap_gt_0.10": false,
+          "C1_reading_B_not_rejected": true,
+          "both_C5_and_C1_A": false,
+          "both_C5_and_C1_B": true
+        },
+        {
+          "epsilon": 0.0,
+          "pairs_kept": 1525,
+          "rows_kept": 3050,
+          "share_of_member": 0.6866,
+          "containment_auroc": 0.4735,
+          "C5_channel_in_band": true,
+          "attested_positive": 0.2636,
+          "attested_negative": 0.2984,
+          "C1_gap": 0.0348,
+          "C1_reading_A_gap_gt_0.10": false,
+          "C1_reading_B_not_rejected": true,
+          "both_C5_and_C1_A": false,
+          "both_C5_and_C1_B": true
+        }
+      ],
+      "feasible_points_under_C1_reading_A_gap": 0,
+      "feasible_points_under_C1_reading_B_literal": 6,
+      "reading_A": "C1 passes when the attestation gap exceeds 0.10",
+      "reading_B": "C1 rejects only when the negative leg is >= 90% attested AND the gap is <= 0.10 - the literal conjunction of the clause text"
+    },
+    "confidence_intervals": {
+      "resampling": "4000 bootstrap resamples over the 2221 PAIRS (the two legs of a pair are not independent, so the pair is the unit)",
+      "C1_attestation_gap_full_pool": {
+        "point": 0.1108,
+        "bar": "> 0.10 under the gap reading",
+        "mean": 0.1106,
+        "p2.5": 0.095,
+        "p97.5": 0.127,
+        "sd": 0.0081,
+        "share_of_resamples_above_the_bar": 0.9
+      },
+      "C1_attestation_gap_best_single_passage": {
+        "point": 0.0581,
+        "mean": 0.058,
+        "p2.5": 0.0486,
+        "p97.5": 0.068,
+        "sd": 0.005,
+        "share_of_resamples_above_the_bar": 0.0
+      },
+      "C5_containment_channel_auroc": {
+        "point": 0.5978,
+        "ceiling": 0.55,
+        "mean": 0.5978,
+        "p2.5": 0.5884,
+        "p97.5": 0.6072,
+        "sd": 0.0048,
+        "share_of_resamples_inside_the_C5_band": 0.0
+      },
+      "reading": "a bar cleared by less than its own sampling spread is a pass that would not survive a redraw; a bar missed by more than its spread is a fail that would"
+    },
+    "claim_only_diagnostic": {
+      "parent": {
+        "rows": 21408,
+        "claim_only_auroc_all": 0.5281,
+        "within_pair_by_family": {
+          "unsupported_claim": {
+            "acc": 0.5594,
+            "pairs": 3449
+          },
+          "truth_removed": {
+            "acc": 0.5,
+            "pairs": 7255
+          }
+        },
+        "within_pair_by_family_and_source": {
+          "unsupported_claim|minicheck": {
+            "acc": 0.6418,
+            "pairs": 1449
+          },
+          "truth_removed|vitaminc": {
+            "acc": 0.5,
+            "pairs": 3999
+          },
+          "unsupported_claim|vitaminc": {
+            "acc": 0.4998,
+            "pairs": 2000
+          },
+          "truth_removed|minicheck": {
+            "acc": 0.5,
+            "pairs": 3256
+          }
+        },
+        "reading": "the parent's registered within-pair claim-only figure is the per-FAMILY number; splitting it by source shows what the aggregate hides"
+      },
+      "conformed_v1": {
+        "rows": 6222,
+        "claim_only_auroc_all": 0.5335,
+        "within_pair_by_family": {
+          "unsupported_claim": {
+            "acc": 0.6209,
+            "pairs": 889
+          },
+          "truth_removed": {
+            "acc": 0.5,
+            "pairs": 2222
+          }
+        },
+        "within_pair_by_family_and_route": {
+          "truth_removed|d2c": {
+            "acc": 0.5,
+            "pairs": 1363
+          },
+          "unsupported_claim|c2d": {
+            "acc": 0.6542,
+            "pairs": 454
+          },
+          "unsupported_claim|d2c": {
+            "acc": 0.5862,
+            "pairs": 435
+          },
+          "truth_removed|c2d": {
+            "acc": 0.5,
+            "pairs": 859
+          }
+        },
+        "route_rows": {
+          "d2c": 3596,
+          "c2d": 2626
+        }
+      },
+      "route_restricted_rebuild_probe": {
+        "c2d": {
+          "rows": 908,
+          "claim_only_auroc": 0.6512,
+          "within_pair": {
+            "unsupported_claim": {
+              "acc": 0.6872,
+              "pairs": 454
+            }
+          }
+        },
+        "d2c": {
+          "rows": 870,
+          "claim_only_auroc": 0.6079,
+          "within_pair": {
+            "unsupported_claim": {
+              "acc": 0.5678,
+              "pairs": 435
+            }
+          }
+        }
+      },
+      "parent_minicheck_unsupported_claim_alone": {
+        "rows": 2898,
+        "claim_only_auroc": 0.6833,
+        "within_pair": {
+          "unsupported_claim": {
+            "acc": 0.6825,
+            "pairs": 1449
+          }
+        }
+      },
+      "parent_vitaminc_unsupported_claim_alone": {
+        "rows": 4000,
+        "claim_only_auroc": 0.5116,
+        "within_pair": {
+          "unsupported_claim": {
+            "acc": 0.5142,
+            "pairs": 2000
+          }
+        }
+      }
+    }
+  }
+}

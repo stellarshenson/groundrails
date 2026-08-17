@@ -1,0 +1,4315 @@
+{
+  "artifact": "R21-H180_ragtruth_eval",
+  "class": "evaluation surface - held-out source-corpus split (RAGTruth English test), the campaign's second of three evaluation surfaces",
+  "parquet": "experiments/grounding-semantic/R21-H180_ragtruth_eval.parquet",
+  "contract": "docs/experiments/dataset-contract.md, C1-C8 including amendments C-A1 and C-A2",
+  "serving_shape": "flat long form, matching R20-H177_eval_B.parquet: one row per serving unit with claim / chunk / label / pair_id / doc_id / source. The banked read machinery (R20_baseline_legs.flatten + windows) takes it unmodified - the evidence is UNTRUNCATED and its 1,500/750 window bag IS the claim's evidence chunk set. The gold_full shape (claim + explicit chunk list, grouped on a key) is the same long form with a grouping key and is reached from this parquet as [[chunk]] per row, which the arena's decomposed-min reader expands into the identical window bag",
+  "cpu_only": true,
+  "no_model_scored": true,
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates.",
+  "clauses": {
+    "C1": {
+      "head_declared": "grounding scalar (`task_head`) - the single support logit the cascade serves; this surface carries no second head and no question channel",
+      "label_expression": "(hallucination_labels_processed.evident_conflict == 0) AND (hallucination_labels_processed.baseless_info == 0) - byte-identical to the expression `public_train` applies to the ragtruth_en TRAIN member, so the eval scores the same predicate the mix taught",
+      "label_predicate_measured": "support, at RESPONSE granularity. Label 1 iff the response carries ZERO human-annotated hallucination spans of any type; cross-checked on this split - 0 of 1,757 label-1 rows carry a span and 0 of 943 label-0 rows carry none. The predicate matches the grounding head; its UNIT does not match the serving unit, which is a single claim",
+      "label_unit_vs_serving_unit": "RECORDED, not a clause verdict: the label is a property of a whole response (mean 775.9 chars, 128.9 tokens), while `ground()` scores one claim. This surface tests the coarser predicate the mix trained on, not the finer one the system serves",
+      "CA1_CA2_test1_structural": {
+        "test": "does any negative leg's (claim, evidence) pair equal a positive leg's? Identity there means no function of (claim, evidence) can separate the legs",
+        "distinct_claim_evidence_pairs": 2693,
+        "pairs_carrying_both_labels": 0,
+        "rows_in_a_colliding_pair": 0,
+        "fires": false,
+        "live_control_reference": "the withdrawn poisoned R20-H175b_qlane fires on 8,986 of 8,986 pairs (100% of rows)"
+      },
+      "evidence_key_shared_across_labels": {
+        "distinct_evidence_strings": 450,
+        "evidence_strings_carrying_both_labels": 368,
+        "reading": "expected and legal - six responder models answer each context and differ in groundedness. C-A1's structural test keys on the (claim, evidence) PAIR, not on evidence alone"
+      },
+      "CA2_test3_absolute_level": {
+        "negative_leg_frac_ge_0.90": 0.010604,
+        "negative_leg_frac_eq_1.00": 0.0,
+        "finding": "recorded per C-A2 test 3 - a negative leg attested at a high absolute rate is a finding even when test 2 clears"
+      },
+      "instrument": "R20-H174_lane_common.containment - fraction of the claim's content tokens present in the evidence",
+      "primary_presentation": "untruncated_full_evidence (the R18-H150 / R20-H174 flagship presentation, which this eval serves)",
+      "presentations": {
+        "untruncated_full_evidence": {
+          "positive_leg": {
+            "n": 1757,
+            "mean": 0.6963,
+            "median": 0.7193,
+            "p10": 0.4737,
+            "p90": 0.8941,
+            "frac_ge_0.90": 0.092772,
+            "frac_eq_1.00": 0.002277
+          },
+          "negative_leg": {
+            "n": 943,
+            "mean": 0.5298,
+            "median": 0.5,
+            "p10": 0.3691,
+            "p90": 0.7394,
+            "frac_ge_0.90": 0.010604,
+            "frac_eq_1.00": 0.0
+          },
+          "mean_gap_pos_minus_neg": 0.1665,
+          "containment_auroc_vs_label": 0.7807,
+          "CA2_test2_strict_separation": {
+            "neg_rate_ge_0.90": 0.010604,
+            "pos_rate_ge_0.90": 0.092772,
+            "neg_strictly_below_pos": true
+          }
+        },
+        "truncated_1500": {
+          "positive_leg": {
+            "n": 1757,
+            "mean": 0.6077,
+            "median": 0.6133,
+            "p10": 0.374,
+            "p90": 0.8421,
+            "frac_ge_0.90": 0.043825,
+            "frac_eq_1.00": 0.002277
+          },
+          "negative_leg": {
+            "n": 943,
+            "mean": 0.431,
+            "median": 0.4,
+            "p10": 0.2759,
+            "p90": 0.653,
+            "frac_ge_0.90": 0.002121,
+            "frac_eq_1.00": 0.0
+          },
+          "mean_gap_pos_minus_neg": 0.1767,
+          "containment_auroc_vs_label": 0.7806,
+          "CA2_test2_strict_separation": {
+            "neg_rate_ge_0.90": 0.002121,
+            "pos_rate_ge_0.90": 0.043825,
+            "neg_strictly_below_pos": true
+          }
+        },
+        "max_over_windows_1500_750": {
+          "positive_leg": {
+            "n": 1757,
+            "mean": 0.6262,
+            "median": 0.6341,
+            "p10": 0.3961,
+            "p90": 0.8551,
+            "frac_ge_0.90": 0.048378,
+            "frac_eq_1.00": 0.002277
+          },
+          "negative_leg": {
+            "n": 943,
+            "mean": 0.4514,
+            "median": 0.4157,
+            "p10": 0.3103,
+            "p90": 0.6584,
+            "frac_ge_0.90": 0.002121,
+            "frac_eq_1.00": 0.0
+          },
+          "mean_gap_pos_minus_neg": 0.1748,
+          "containment_auroc_vs_label": 0.7862,
+          "CA2_test2_strict_separation": {
+            "neg_rate_ge_0.90": 0.002121,
+            "pos_rate_ge_0.90": 0.048378,
+            "neg_strictly_below_pos": true
+          }
+        }
+      },
+      "confounds": {
+        "claim_tokens": {
+          "positive_mean": 118.33,
+          "negative_mean": 148.26,
+          "auroc_vs_label": 0.3348
+        },
+        "evidence_tokens": {
+          "positive_mean": 390.01,
+          "negative_mean": 430.06,
+          "auroc_vs_label": 0.4166
+        }
+      },
+      "verdict": "PASS",
+      "measured": {
+        "structural_collisions": 0,
+        "neg_rate_ge_0.90": 0.010604,
+        "pos_rate_ge_0.90": 0.092772,
+        "bar": "structural collisions == 0 AND neg rate strictly below pos rate (C-A1 test 1, C-A2 test 2; the `within 0.10` band is struck)"
+      }
+    },
+    "C2": {
+      "forms": [
+        "raw",
+        "truncated_1500",
+        "whitespace_collapsed_casefolded"
+      ],
+      "directions": "both (set intersection is symmetric; both counts reported)",
+      "units": "claims AND evidence",
+      "string_channel": {
+        "per_target": {
+          "training_mix:halueval": {
+            "evidence__raw": {
+              "eval_units": 450,
+              "target_units": 19934,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__truncated": {
+              "eval_units": 450,
+              "target_units": 19932,
+              "eval_in_target": 85,
+              "target_in_eval": 85,
+              "fraction_of_eval": 0.188889,
+              "fraction_of_target": 0.004264
+            },
+            "evidence__whitespace_collapsed_casefolded": {
+              "eval_units": 450,
+              "target_units": 19934,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__raw": {
+              "eval_units": 2674,
+              "target_units": 37662,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__truncated": {
+              "eval_units": 2674,
+              "target_units": 37662,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__whitespace_collapsed_casefolded": {
+              "eval_units": 2674,
+              "target_units": 37649,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            }
+          },
+          "training_mix:psiloqa": {
+            "evidence__raw": {
+              "eval_units": 450,
+              "target_units": 25583,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__truncated": {
+              "eval_units": 450,
+              "target_units": 25583,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__whitespace_collapsed_casefolded": {
+              "eval_units": 450,
+              "target_units": 25583,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__raw": {
+              "eval_units": 2674,
+              "target_units": 61468,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__truncated": {
+              "eval_units": 2674,
+              "target_units": 61468,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__whitespace_collapsed_casefolded": {
+              "eval_units": 2674,
+              "target_units": 61465,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            }
+          },
+          "training_mix:quant_misbind": {
+            "evidence__raw": {
+              "eval_units": 450,
+              "target_units": 12889,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__truncated": {
+              "eval_units": 450,
+              "target_units": 12889,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__whitespace_collapsed_casefolded": {
+              "eval_units": 450,
+              "target_units": 12889,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__raw": {
+              "eval_units": 2674,
+              "target_units": 29699,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__truncated": {
+              "eval_units": 2674,
+              "target_units": 29699,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__whitespace_collapsed_casefolded": {
+              "eval_units": 2674,
+              "target_units": 29697,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            }
+          },
+          "training_mix:quant_scale_unit": {
+            "evidence__raw": {
+              "eval_units": 450,
+              "target_units": 2509,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__truncated": {
+              "eval_units": 450,
+              "target_units": 2509,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__whitespace_collapsed_casefolded": {
+              "eval_units": 450,
+              "target_units": 2509,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__raw": {
+              "eval_units": 2674,
+              "target_units": 5456,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__truncated": {
+              "eval_units": 2674,
+              "target_units": 5456,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__whitespace_collapsed_casefolded": {
+              "eval_units": 2674,
+              "target_units": 5454,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            }
+          },
+          "training_mix:ragtruth_cn": {
+            "evidence__raw": {
+              "eval_units": 450,
+              "target_units": 14155,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__truncated": {
+              "eval_units": 450,
+              "target_units": 14150,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__whitespace_collapsed_casefolded": {
+              "eval_units": 450,
+              "target_units": 14155,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__raw": {
+              "eval_units": 2674,
+              "target_units": 14880,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__truncated": {
+              "eval_units": 2674,
+              "target_units": 14880,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__whitespace_collapsed_casefolded": {
+              "eval_units": 2674,
+              "target_units": 14880,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            }
+          },
+          "training_mix:ragtruth_de": {
+            "evidence__raw": {
+              "eval_units": 450,
+              "target_units": 11540,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__truncated": {
+              "eval_units": 450,
+              "target_units": 10861,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__whitespace_collapsed_casefolded": {
+              "eval_units": 450,
+              "target_units": 11533,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__raw": {
+              "eval_units": 2674,
+              "target_units": 14887,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__truncated": {
+              "eval_units": 2674,
+              "target_units": 14887,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__whitespace_collapsed_casefolded": {
+              "eval_units": 2674,
+              "target_units": 14887,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            }
+          },
+          "training_mix:ragtruth_en": {
+            "evidence__raw": {
+              "eval_units": 450,
+              "target_units": 2514,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__truncated": {
+              "eval_units": 450,
+              "target_units": 2514,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__whitespace_collapsed_casefolded": {
+              "eval_units": 450,
+              "target_units": 2514,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__raw": {
+              "eval_units": 2674,
+              "target_units": 14879,
+              "eval_in_target": 1,
+              "target_in_eval": 1,
+              "fraction_of_eval": 0.000374,
+              "fraction_of_target": 6.7e-05
+            },
+            "claims__truncated": {
+              "eval_units": 2674,
+              "target_units": 14879,
+              "eval_in_target": 1,
+              "target_in_eval": 1,
+              "fraction_of_eval": 0.000374,
+              "fraction_of_target": 6.7e-05
+            },
+            "claims__whitespace_collapsed_casefolded": {
+              "eval_units": 2674,
+              "target_units": 14879,
+              "eval_in_target": 1,
+              "target_in_eval": 1,
+              "fraction_of_eval": 0.000374,
+              "fraction_of_target": 6.7e-05
+            }
+          },
+          "training_mix:ragtruth_es": {
+            "evidence__raw": {
+              "eval_units": 450,
+              "target_units": 14647,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__truncated": {
+              "eval_units": 450,
+              "target_units": 13835,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__whitespace_collapsed_casefolded": {
+              "eval_units": 450,
+              "target_units": 14617,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__raw": {
+              "eval_units": 2674,
+              "target_units": 14879,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__truncated": {
+              "eval_units": 2674,
+              "target_units": 14879,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__whitespace_collapsed_casefolded": {
+              "eval_units": 2674,
+              "target_units": 14879,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            }
+          },
+          "training_mix:ragtruth_fr": {
+            "evidence__raw": {
+              "eval_units": 450,
+              "target_units": 13658,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__truncated": {
+              "eval_units": 450,
+              "target_units": 12355,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__whitespace_collapsed_casefolded": {
+              "eval_units": 450,
+              "target_units": 13630,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__raw": {
+              "eval_units": 2674,
+              "target_units": 14880,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__truncated": {
+              "eval_units": 2674,
+              "target_units": 14880,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__whitespace_collapsed_casefolded": {
+              "eval_units": 2674,
+              "target_units": 14880,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            }
+          },
+          "training_mix:ragtruth_hu": {
+            "evidence__raw": {
+              "eval_units": 450,
+              "target_units": 14371,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__truncated": {
+              "eval_units": 450,
+              "target_units": 14286,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__whitespace_collapsed_casefolded": {
+              "eval_units": 450,
+              "target_units": 14368,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__raw": {
+              "eval_units": 2674,
+              "target_units": 14881,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__truncated": {
+              "eval_units": 2674,
+              "target_units": 14881,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__whitespace_collapsed_casefolded": {
+              "eval_units": 2674,
+              "target_units": 14881,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            }
+          },
+          "training_mix:ragtruth_it": {
+            "evidence__raw": {
+              "eval_units": 450,
+              "target_units": 14808,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__truncated": {
+              "eval_units": 450,
+              "target_units": 14397,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__whitespace_collapsed_casefolded": {
+              "eval_units": 450,
+              "target_units": 14785,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__raw": {
+              "eval_units": 2674,
+              "target_units": 14879,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__truncated": {
+              "eval_units": 2674,
+              "target_units": 14879,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__whitespace_collapsed_casefolded": {
+              "eval_units": 2674,
+              "target_units": 14879,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            }
+          },
+          "training_mix:ragtruth_pl": {
+            "evidence__raw": {
+              "eval_units": 450,
+              "target_units": 14950,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__truncated": {
+              "eval_units": 450,
+              "target_units": 14846,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__whitespace_collapsed_casefolded": {
+              "eval_units": 450,
+              "target_units": 14940,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__raw": {
+              "eval_units": 2674,
+              "target_units": 14881,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__truncated": {
+              "eval_units": 2674,
+              "target_units": 14881,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__whitespace_collapsed_casefolded": {
+              "eval_units": 2674,
+              "target_units": 14881,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            }
+          },
+          "training_mix:tabfact": {
+            "evidence__raw": {
+              "eval_units": 450,
+              "target_units": 13173,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__truncated": {
+              "eval_units": 450,
+              "target_units": 13109,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__whitespace_collapsed_casefolded": {
+              "eval_units": 450,
+              "target_units": 13173,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__raw": {
+              "eval_units": 2674,
+              "target_units": 92304,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__truncated": {
+              "eval_units": 2674,
+              "target_units": 92304,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__whitespace_collapsed_casefolded": {
+              "eval_units": 2674,
+              "target_units": 92304,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            }
+          },
+          "training_mix:vitaminc": {
+            "evidence__raw": {
+              "eval_units": 450,
+              "target_units": 185217,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__truncated": {
+              "eval_units": 450,
+              "target_units": 185200,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__whitespace_collapsed_casefolded": {
+              "eval_units": 450,
+              "target_units": 185124,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__raw": {
+              "eval_units": 2674,
+              "target_units": 175905,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__truncated": {
+              "eval_units": 2674,
+              "target_units": 175905,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__whitespace_collapsed_casefolded": {
+              "eval_units": 2674,
+              "target_units": 175859,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            }
+          },
+          "eval_surface:arena_ragbench_10_subsets": {
+            "evidence__raw": {
+              "eval_units": 450,
+              "target_units": 6784,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__truncated": {
+              "eval_units": 450,
+              "target_units": 6778,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__whitespace_collapsed_casefolded": {
+              "eval_units": 450,
+              "target_units": 6783,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__raw": {
+              "eval_units": 2674,
+              "target_units": 2260,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__truncated": {
+              "eval_units": 2674,
+              "target_units": 2260,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__whitespace_collapsed_casefolded": {
+              "eval_units": 2674,
+              "target_units": 2260,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            }
+          },
+          "eval_surface:gold_full": {
+            "evidence__raw": {
+              "eval_units": 450,
+              "target_units": 10228,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__truncated": {
+              "eval_units": 450,
+              "target_units": 10228,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__whitespace_collapsed_casefolded": {
+              "eval_units": 450,
+              "target_units": 10227,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__raw": {
+              "eval_units": 2674,
+              "target_units": 2699,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__truncated": {
+              "eval_units": 2674,
+              "target_units": 2699,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__whitespace_collapsed_casefolded": {
+              "eval_units": 2674,
+              "target_units": 2699,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            }
+          },
+          "eval_surface:R17-H143_evalset.parquet": {
+            "evidence__raw": {
+              "eval_units": 450,
+              "target_units": 547,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__truncated": {
+              "eval_units": 450,
+              "target_units": 547,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__whitespace_collapsed_casefolded": {
+              "eval_units": 450,
+              "target_units": 547,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__raw": {
+              "eval_units": 2674,
+              "target_units": 1048,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__truncated": {
+              "eval_units": 2674,
+              "target_units": 1048,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__whitespace_collapsed_casefolded": {
+              "eval_units": 2674,
+              "target_units": 1048,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            }
+          },
+          "eval_surface:R20-H177_eval_B.parquet": {
+            "evidence__raw": {
+              "eval_units": 450,
+              "target_units": 736,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__truncated": {
+              "eval_units": 450,
+              "target_units": 736,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__whitespace_collapsed_casefolded": {
+              "eval_units": 450,
+              "target_units": 736,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__raw": {
+              "eval_units": 2674,
+              "target_units": 2000,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__truncated": {
+              "eval_units": 2674,
+              "target_units": 2000,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__whitespace_collapsed_casefolded": {
+              "eval_units": 2674,
+              "target_units": 2000,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            }
+          },
+          "eval_surface:R20-H177_eval_C.parquet": {
+            "evidence__raw": {
+              "eval_units": 450,
+              "target_units": 380,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__truncated": {
+              "eval_units": 450,
+              "target_units": 380,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__whitespace_collapsed_casefolded": {
+              "eval_units": 450,
+              "target_units": 380,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__raw": {
+              "eval_units": 2674,
+              "target_units": 1926,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__truncated": {
+              "eval_units": 2674,
+              "target_units": 1926,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__whitespace_collapsed_casefolded": {
+              "eval_units": 2674,
+              "target_units": 1926,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            }
+          },
+          "eval_surface:R20-H175b_qlane_eval.parquet": {
+            "evidence__raw": {
+              "eval_units": 450,
+              "target_units": 487,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__truncated": {
+              "eval_units": 450,
+              "target_units": 487,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "evidence__whitespace_collapsed_casefolded": {
+              "eval_units": 450,
+              "target_units": 487,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__raw": {
+              "eval_units": 2674,
+              "target_units": 1001,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__truncated": {
+              "eval_units": 2674,
+              "target_units": 1001,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            },
+            "claims__whitespace_collapsed_casefolded": {
+              "eval_units": 2674,
+              "target_units": 1001,
+              "eval_in_target": 0,
+              "target_in_eval": 0,
+              "fraction_of_eval": 0.0,
+              "fraction_of_target": 0.0
+            }
+          }
+        },
+        "total_overlapping_units": 88
+      },
+      "document_channel": {
+        "why": "three separate reads today came out an order of magnitude worse on document identity than on string equality (R20-H177_eval_B: 4.5% by string, 65% by document). This is the document read for this surface",
+        "instrument": "8-gram CONTAINMENT - the fraction of an eval unit's n-grams covered by ONE reference unit. Coverage 1.0 means the eval unit is a sub-document of that reference unit, which neither exact nor whitespace-normalised string matching sees. Max Jaccard against a single reference unit is reported beside it - that is the C4 gate's own quantity",
+        "subpassage_note": "a RAGTruth QA context is several retrieved passages joined on blank lines, so contexts are decomposed on their blank-line junctions and the sub-passages re-tested independently",
+        "reference_sides": [
+          "mix:halueval:evidence",
+          "mix:halueval:claims",
+          "mix:psiloqa:evidence",
+          "mix:psiloqa:claims",
+          "mix:quant_misbind:evidence",
+          "mix:quant_misbind:claims",
+          "mix:quant_scale_unit:evidence",
+          "mix:quant_scale_unit:claims",
+          "mix:ragtruth_cn:evidence",
+          "mix:ragtruth_cn:claims",
+          "mix:ragtruth_de:evidence",
+          "mix:ragtruth_de:claims",
+          "mix:ragtruth_en:evidence",
+          "mix:ragtruth_en:claims",
+          "mix:ragtruth_es:evidence",
+          "mix:ragtruth_es:claims",
+          "mix:ragtruth_fr:evidence",
+          "mix:ragtruth_fr:claims",
+          "mix:ragtruth_hu:evidence",
+          "mix:ragtruth_hu:claims",
+          "mix:ragtruth_it:evidence",
+          "mix:ragtruth_it:claims",
+          "mix:ragtruth_pl:evidence",
+          "mix:ragtruth_pl:claims",
+          "mix:tabfact:evidence",
+          "mix:tabfact:claims",
+          "mix:vitaminc:evidence",
+          "mix:vitaminc:claims",
+          "surface:arena_ragbench_10_subsets:evidence",
+          "surface:arena_ragbench_10_subsets:claims",
+          "surface:gold_full:evidence",
+          "surface:gold_full:claims",
+          "surface:R17-H143_evalset.parquet:evidence",
+          "surface:R17-H143_evalset.parquet:claims",
+          "surface:R20-H177_eval_B.parquet:evidence",
+          "surface:R20-H177_eval_B.parquet:claims",
+          "surface:R20-H177_eval_C.parquet:evidence",
+          "surface:R20-H177_eval_C.parquet:claims",
+          "surface:R20-H175b_qlane_eval.parquet:evidence",
+          "surface:R20-H175b_qlane_eval.parquet:claims"
+        ],
+        "eval_contexts": {
+          "eval_units": 450,
+          "units_scorable_at_8_grams": 450,
+          "max_ngram_coverage_by_a_single_reference_unit": {
+            "n": 450,
+            "mean": 0.2612,
+            "median": 0.0654,
+            "p90": 0.9985,
+            "p99": 0.9992,
+            "max": 0.9994
+          },
+          "coverage_ge_0.90": 100,
+          "coverage_ge_0.70": 100,
+          "coverage_ge_0.50": 100,
+          "coverage_ge_0.30": 102,
+          "top_10_units_by_coverage": [
+            {
+              "index": 411,
+              "coverage": 0.9994,
+              "jaccard": 0.9994,
+              "attributed_to": "mix:halueval:evidence"
+            },
+            {
+              "index": 301,
+              "coverage": 0.9994,
+              "jaccard": 0.9994,
+              "attributed_to": "mix:halueval:evidence"
+            },
+            {
+              "index": 220,
+              "coverage": 0.9993,
+              "jaccard": 0.9993,
+              "attributed_to": "mix:halueval:evidence"
+            },
+            {
+              "index": 281,
+              "coverage": 0.9993,
+              "jaccard": 0.9993,
+              "attributed_to": "mix:halueval:evidence"
+            },
+            {
+              "index": 221,
+              "coverage": 0.9992,
+              "jaccard": 0.9992,
+              "attributed_to": "mix:halueval:evidence"
+            },
+            {
+              "index": 237,
+              "coverage": 0.9992,
+              "jaccard": 0.9992,
+              "attributed_to": "mix:halueval:evidence"
+            },
+            {
+              "index": 222,
+              "coverage": 0.9992,
+              "jaccard": 0.9992,
+              "attributed_to": "mix:halueval:evidence"
+            },
+            {
+              "index": 400,
+              "coverage": 0.9991,
+              "jaccard": 0.9991,
+              "attributed_to": "mix:halueval:evidence"
+            },
+            {
+              "index": 328,
+              "coverage": 0.9991,
+              "jaccard": 0.9991,
+              "attributed_to": "mix:halueval:evidence"
+            },
+            {
+              "index": 321,
+              "coverage": 0.9991,
+              "jaccard": 0.9991,
+              "attributed_to": "mix:halueval:evidence"
+            }
+          ],
+          "max_jaccard_against_a_single_reference_unit": {
+            "n": 450,
+            "mean": 0.2465,
+            "median": 0.0414,
+            "p90": 0.9985,
+            "p99": 0.9992,
+            "max": 0.9994
+          },
+          "units_at_or_above_jaccard_bar": 100,
+          "fraction_at_or_above_jaccard_bar": 0.222222,
+          "worst_unit": {
+            "index": 411,
+            "coverage": 0.9994,
+            "jaccard": 0.9994,
+            "attributed_to": "mix:halueval:evidence"
+          },
+          "attribution_of_units_above_0.30_coverage": {
+            "mix:halueval:evidence": 100,
+            "mix:ragtruth_en:evidence": 2
+          },
+          "reverse_direction_per_reference": {
+            "mix:halueval:claims": {
+              "query_units": 37662,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:halueval:evidence": {
+              "query_units": 19934,
+              "units_reaching_jaccard_bar": 106,
+              "fraction": 0.005318
+            },
+            "mix:psiloqa:claims": {
+              "query_units": 61468,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:psiloqa:evidence": {
+              "query_units": 25583,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:quant_misbind:claims": {
+              "query_units": 29699,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:quant_misbind:evidence": {
+              "query_units": 12889,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:quant_scale_unit:claims": {
+              "query_units": 5456,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:quant_scale_unit:evidence": {
+              "query_units": 2509,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_cn:claims": {
+              "query_units": 14880,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_cn:evidence": {
+              "query_units": 14155,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_de:claims": {
+              "query_units": 14887,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_de:evidence": {
+              "query_units": 11540,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_en:claims": {
+              "query_units": 14879,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_en:evidence": {
+              "query_units": 2514,
+              "units_reaching_jaccard_bar": 3,
+              "fraction": 0.001193
+            },
+            "mix:ragtruth_es:claims": {
+              "query_units": 14879,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_es:evidence": {
+              "query_units": 14647,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_fr:claims": {
+              "query_units": 14880,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_fr:evidence": {
+              "query_units": 13658,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_hu:claims": {
+              "query_units": 14881,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_hu:evidence": {
+              "query_units": 14371,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_it:claims": {
+              "query_units": 14879,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_it:evidence": {
+              "query_units": 14808,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_pl:claims": {
+              "query_units": 14881,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_pl:evidence": {
+              "query_units": 14950,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:tabfact:claims": {
+              "query_units": 92304,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:tabfact:evidence": {
+              "query_units": 13173,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:vitaminc:claims": {
+              "query_units": 175905,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:vitaminc:evidence": {
+              "query_units": 185217,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:R17-H143_evalset.parquet:claims": {
+              "query_units": 1048,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:R17-H143_evalset.parquet:evidence": {
+              "query_units": 547,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:R20-H175b_qlane_eval.parquet:claims": {
+              "query_units": 1001,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:R20-H175b_qlane_eval.parquet:evidence": {
+              "query_units": 487,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:R20-H177_eval_B.parquet:claims": {
+              "query_units": 2000,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:R20-H177_eval_B.parquet:evidence": {
+              "query_units": 736,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:R20-H177_eval_C.parquet:claims": {
+              "query_units": 1926,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:R20-H177_eval_C.parquet:evidence": {
+              "query_units": 380,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:arena_ragbench_10_subsets:claims": {
+              "query_units": 2260,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:arena_ragbench_10_subsets:evidence": {
+              "query_units": 6784,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:gold_full:claims": {
+              "query_units": 2699,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:gold_full:evidence": {
+              "query_units": 10228,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            }
+          },
+          "reverse_direction_worst_fraction": 0.005318
+        },
+        "eval_context_subpassages": {
+          "eval_units": 751,
+          "units_scorable_at_8_grams": 750,
+          "max_ngram_coverage_by_a_single_reference_unit": {
+            "n": 751,
+            "mean": 0.1619,
+            "median": 0.0,
+            "p90": 1.0,
+            "p99": 1.0,
+            "max": 1.0
+          },
+          "coverage_ge_0.90": 102,
+          "coverage_ge_0.70": 105,
+          "coverage_ge_0.50": 106,
+          "coverage_ge_0.30": 106,
+          "top_10_units_by_coverage": [
+            {
+              "index": 78,
+              "coverage": 1.0,
+              "jaccard": 1.0,
+              "attributed_to": "mix:halueval:evidence"
+            },
+            {
+              "index": 79,
+              "coverage": 1.0,
+              "jaccard": 1.0,
+              "attributed_to": "mix:halueval:evidence"
+            },
+            {
+              "index": 75,
+              "coverage": 1.0,
+              "jaccard": 1.0,
+              "attributed_to": "mix:halueval:evidence"
+            },
+            {
+              "index": 102,
+              "coverage": 1.0,
+              "jaccard": 1.0,
+              "attributed_to": "mix:halueval:evidence"
+            },
+            {
+              "index": 94,
+              "coverage": 1.0,
+              "jaccard": 1.0,
+              "attributed_to": "mix:halueval:evidence"
+            },
+            {
+              "index": 92,
+              "coverage": 1.0,
+              "jaccard": 1.0,
+              "attributed_to": "mix:halueval:evidence"
+            },
+            {
+              "index": 90,
+              "coverage": 1.0,
+              "jaccard": 1.0,
+              "attributed_to": "mix:halueval:evidence"
+            },
+            {
+              "index": 85,
+              "coverage": 1.0,
+              "jaccard": 1.0,
+              "attributed_to": "mix:halueval:evidence"
+            },
+            {
+              "index": 105,
+              "coverage": 1.0,
+              "jaccard": 1.0,
+              "attributed_to": "mix:halueval:evidence"
+            },
+            {
+              "index": 104,
+              "coverage": 1.0,
+              "jaccard": 1.0,
+              "attributed_to": "mix:halueval:evidence"
+            }
+          ],
+          "max_jaccard_against_a_single_reference_unit": {
+            "n": 751,
+            "mean": 0.1488,
+            "median": 0.0,
+            "p90": 1.0,
+            "p99": 1.0,
+            "max": 1.0
+          },
+          "units_at_or_above_jaccard_bar": 101,
+          "fraction_at_or_above_jaccard_bar": 0.134487,
+          "worst_unit": {
+            "index": 8,
+            "coverage": 1.0,
+            "jaccard": 1.0,
+            "attributed_to": "mix:halueval:evidence"
+          },
+          "attribution_of_units_above_0.30_coverage": {
+            "mix:halueval:evidence": 100,
+            "mix:ragtruth_en:evidence": 6
+          },
+          "reverse_direction_per_reference": {
+            "mix:halueval:claims": {
+              "query_units": 37662,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:halueval:evidence": {
+              "query_units": 19934,
+              "units_reaching_jaccard_bar": 106,
+              "fraction": 0.005318
+            },
+            "mix:psiloqa:claims": {
+              "query_units": 61468,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:psiloqa:evidence": {
+              "query_units": 25583,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:quant_misbind:claims": {
+              "query_units": 29699,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:quant_misbind:evidence": {
+              "query_units": 12889,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:quant_scale_unit:claims": {
+              "query_units": 5456,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:quant_scale_unit:evidence": {
+              "query_units": 2509,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_cn:claims": {
+              "query_units": 14880,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_cn:evidence": {
+              "query_units": 14155,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_de:claims": {
+              "query_units": 14887,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_de:evidence": {
+              "query_units": 11540,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_en:claims": {
+              "query_units": 14879,
+              "units_reaching_jaccard_bar": 1,
+              "fraction": 6.7e-05
+            },
+            "mix:ragtruth_en:evidence": {
+              "query_units": 2514,
+              "units_reaching_jaccard_bar": 4,
+              "fraction": 0.001591
+            },
+            "mix:ragtruth_es:claims": {
+              "query_units": 14879,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_es:evidence": {
+              "query_units": 14647,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_fr:claims": {
+              "query_units": 14880,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_fr:evidence": {
+              "query_units": 13658,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_hu:claims": {
+              "query_units": 14881,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_hu:evidence": {
+              "query_units": 14371,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_it:claims": {
+              "query_units": 14879,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_it:evidence": {
+              "query_units": 14808,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_pl:claims": {
+              "query_units": 14881,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_pl:evidence": {
+              "query_units": 14950,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:tabfact:claims": {
+              "query_units": 92304,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:tabfact:evidence": {
+              "query_units": 13173,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:vitaminc:claims": {
+              "query_units": 175905,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:vitaminc:evidence": {
+              "query_units": 185217,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:R17-H143_evalset.parquet:claims": {
+              "query_units": 1048,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:R17-H143_evalset.parquet:evidence": {
+              "query_units": 547,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:R20-H175b_qlane_eval.parquet:claims": {
+              "query_units": 1001,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:R20-H175b_qlane_eval.parquet:evidence": {
+              "query_units": 487,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:R20-H177_eval_B.parquet:claims": {
+              "query_units": 2000,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:R20-H177_eval_B.parquet:evidence": {
+              "query_units": 736,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:R20-H177_eval_C.parquet:claims": {
+              "query_units": 1926,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:R20-H177_eval_C.parquet:evidence": {
+              "query_units": 380,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:arena_ragbench_10_subsets:claims": {
+              "query_units": 2260,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:arena_ragbench_10_subsets:evidence": {
+              "query_units": 6784,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:gold_full:claims": {
+              "query_units": 2699,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:gold_full:evidence": {
+              "query_units": 10228,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            }
+          },
+          "reverse_direction_worst_fraction": 0.005318
+        },
+        "eval_claims": {
+          "eval_units": 2674,
+          "units_scorable_at_8_grams": 2673,
+          "max_ngram_coverage_by_a_single_reference_unit": {
+            "n": 2674,
+            "mean": 0.0382,
+            "median": 0.0271,
+            "p90": 0.0833,
+            "p99": 0.2707,
+            "max": 0.7391
+          },
+          "coverage_ge_0.90": 0,
+          "coverage_ge_0.70": 1,
+          "coverage_ge_0.50": 6,
+          "coverage_ge_0.30": 22,
+          "top_10_units_by_coverage": [
+            {
+              "index": 796,
+              "coverage": 0.7391,
+              "jaccard": 0.172,
+              "attributed_to": "mix:halueval:evidence"
+            },
+            {
+              "index": 184,
+              "coverage": 0.5795,
+              "jaccard": 0.0899,
+              "attributed_to": "mix:halueval:evidence"
+            },
+            {
+              "index": 2586,
+              "coverage": 0.5385,
+              "jaccard": 0.1944,
+              "attributed_to": "mix:ragtruth_en:claims"
+            },
+            {
+              "index": 182,
+              "coverage": 0.514,
+              "jaccard": 0.105,
+              "attributed_to": "mix:halueval:evidence"
+            },
+            {
+              "index": 2435,
+              "coverage": 0.5081,
+              "jaccard": 0.1667,
+              "attributed_to": "mix:ragtruth_en:evidence"
+            },
+            {
+              "index": 2384,
+              "coverage": 0.5031,
+              "jaccard": 0.0901,
+              "attributed_to": "mix:halueval:evidence"
+            },
+            {
+              "index": 102,
+              "coverage": 0.4383,
+              "jaccard": 0.169,
+              "attributed_to": "mix:halueval:evidence"
+            },
+            {
+              "index": 985,
+              "coverage": 0.4259,
+              "jaccard": 0.0578,
+              "attributed_to": "mix:halueval:evidence"
+            },
+            {
+              "index": 2287,
+              "coverage": 0.4132,
+              "jaccard": 0.0529,
+              "attributed_to": "mix:halueval:evidence"
+            },
+            {
+              "index": 1803,
+              "coverage": 0.4086,
+              "jaccard": 0.0741,
+              "attributed_to": "mix:halueval:evidence"
+            }
+          ],
+          "max_jaccard_against_a_single_reference_unit": {
+            "n": 2674,
+            "mean": 0.0165,
+            "median": 0.0127,
+            "p90": 0.0381,
+            "p99": 0.0795,
+            "max": 0.1944
+          },
+          "units_at_or_above_jaccard_bar": 0,
+          "fraction_at_or_above_jaccard_bar": 0.0,
+          "worst_unit": {
+            "index": 796,
+            "coverage": 0.7391,
+            "jaccard": 0.172,
+            "attributed_to": "mix:halueval:evidence"
+          },
+          "attribution_of_units_above_0.30_coverage": {
+            "mix:halueval:evidence": 20,
+            "mix:ragtruth_en:evidence": 1,
+            "mix:ragtruth_en:claims": 1
+          },
+          "reverse_direction_per_reference": {
+            "mix:halueval:claims": {
+              "query_units": 37662,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:halueval:evidence": {
+              "query_units": 19934,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:psiloqa:claims": {
+              "query_units": 61468,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:psiloqa:evidence": {
+              "query_units": 25583,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:quant_misbind:claims": {
+              "query_units": 29699,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:quant_misbind:evidence": {
+              "query_units": 12889,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:quant_scale_unit:claims": {
+              "query_units": 5456,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:quant_scale_unit:evidence": {
+              "query_units": 2509,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_cn:claims": {
+              "query_units": 14880,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_cn:evidence": {
+              "query_units": 14155,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_de:claims": {
+              "query_units": 14887,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_de:evidence": {
+              "query_units": 11540,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_en:claims": {
+              "query_units": 14879,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_en:evidence": {
+              "query_units": 2514,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_es:claims": {
+              "query_units": 14879,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_es:evidence": {
+              "query_units": 14647,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_fr:claims": {
+              "query_units": 14880,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_fr:evidence": {
+              "query_units": 13658,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_hu:claims": {
+              "query_units": 14881,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_hu:evidence": {
+              "query_units": 14371,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_it:claims": {
+              "query_units": 14879,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_it:evidence": {
+              "query_units": 14808,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_pl:claims": {
+              "query_units": 14881,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:ragtruth_pl:evidence": {
+              "query_units": 14950,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:tabfact:claims": {
+              "query_units": 92304,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:tabfact:evidence": {
+              "query_units": 13173,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:vitaminc:claims": {
+              "query_units": 175905,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "mix:vitaminc:evidence": {
+              "query_units": 185217,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:R17-H143_evalset.parquet:claims": {
+              "query_units": 1048,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:R17-H143_evalset.parquet:evidence": {
+              "query_units": 547,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:R20-H175b_qlane_eval.parquet:claims": {
+              "query_units": 1001,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:R20-H175b_qlane_eval.parquet:evidence": {
+              "query_units": 487,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:R20-H177_eval_B.parquet:claims": {
+              "query_units": 2000,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:R20-H177_eval_B.parquet:evidence": {
+              "query_units": 736,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:R20-H177_eval_C.parquet:claims": {
+              "query_units": 1926,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:R20-H177_eval_C.parquet:evidence": {
+              "query_units": 380,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:arena_ragbench_10_subsets:claims": {
+              "query_units": 2260,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:arena_ragbench_10_subsets:evidence": {
+              "query_units": 6784,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:gold_full:claims": {
+              "query_units": 2699,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            },
+            "surface:gold_full:evidence": {
+              "query_units": 10228,
+              "units_reaching_jaccard_bar": 0,
+              "fraction": 0.0
+            }
+          },
+          "reverse_direction_worst_fraction": 0.0
+        },
+        "arena_containment_channel": {
+          "why": "the banked arena surface audit found 17 arena documents byte-for-byte inside halueval training chunks - all hotpotqa, 102 of 250 hotpotqa responses exposed at 8-gram containment >= 0.10 - and exact string matching saw none of it. A zero here is only comparable evidence if it is measured on the same channel",
+          "instrument": "arena_surface_verify._max_pair (Jaccard AND containment from one search) and its whole-channel union pool, reused verbatim; arena built by arena_surface_verify.load_arena - the frozen R8-H77 gate, 10 subsets / 2,264 responses",
+          "expectation_stated_before_the_read": "RAGTruth's contexts derive from MS MARCO (QA), CNN/DailyMail (Summary) and Yelp (Data2txt); none has an arena subset, so zero is the expected reading",
+          "thresholds": [
+            0.1,
+            0.25,
+            0.5,
+            0.9,
+            1.0
+          ],
+          "eval_into_arena_documents": {
+            "eval_contexts": {
+              "eval_units": 450,
+              "best_single_arena_unit": {
+                "max_jaccard": 0.006993,
+                "max_containment": 0.010989,
+                "mean_containment": 7.3e-05,
+                "units_at_jaccard_ge_0.30": 0,
+                "units_by_containment_threshold": {
+                  "0.1": 0,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                },
+                "attributed_subsets_above_0.10_containment": {}
+              },
+              "whole_arena_channel_union": {
+                "max_containment": 0.010989,
+                "mean_containment": 7.3e-05,
+                "units_by_containment_threshold": {
+                  "0.1": 0,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              }
+            },
+            "eval_context_subpassages": {
+              "eval_units": 751,
+              "best_single_arena_unit": {
+                "max_jaccard": 0.007009,
+                "max_containment": 0.011029,
+                "mean_containment": 4.4e-05,
+                "units_at_jaccard_ge_0.30": 0,
+                "units_by_containment_threshold": {
+                  "0.1": 0,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                },
+                "attributed_subsets_above_0.10_containment": {}
+              },
+              "whole_arena_channel_union": {
+                "max_containment": 0.011029,
+                "mean_containment": 4.4e-05,
+                "units_by_containment_threshold": {
+                  "0.1": 0,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              }
+            },
+            "eval_claims": {
+              "eval_units": 2674,
+              "best_single_arena_unit": {
+                "max_jaccard": 0.013333,
+                "max_containment": 0.043478,
+                "mean_containment": 6e-05,
+                "units_at_jaccard_ge_0.30": 0,
+                "units_by_containment_threshold": {
+                  "0.1": 0,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                },
+                "attributed_subsets_above_0.10_containment": {}
+              },
+              "whole_arena_channel_union": {
+                "max_containment": 0.043478,
+                "mean_containment": 6e-05,
+                "units_by_containment_threshold": {
+                  "0.1": 0,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              }
+            }
+          },
+          "eval_into_arena_responses": {
+            "eval_contexts": {
+              "eval_units": 450,
+              "best_single_arena_unit": {
+                "max_jaccard": 0.0,
+                "max_containment": 0.0,
+                "mean_containment": 0.0,
+                "units_at_jaccard_ge_0.30": 0,
+                "units_by_containment_threshold": {
+                  "0.1": 0,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                },
+                "attributed_subsets_above_0.10_containment": {}
+              },
+              "whole_arena_channel_union": {
+                "max_containment": 0.0,
+                "mean_containment": 0.0,
+                "units_by_containment_threshold": {
+                  "0.1": 0,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              }
+            },
+            "eval_context_subpassages": {
+              "eval_units": 751,
+              "best_single_arena_unit": {
+                "max_jaccard": 0.0,
+                "max_containment": 0.0,
+                "mean_containment": 0.0,
+                "units_at_jaccard_ge_0.30": 0,
+                "units_by_containment_threshold": {
+                  "0.1": 0,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                },
+                "attributed_subsets_above_0.10_containment": {}
+              },
+              "whole_arena_channel_union": {
+                "max_containment": 0.0,
+                "mean_containment": 0.0,
+                "units_by_containment_threshold": {
+                  "0.1": 0,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              }
+            },
+            "eval_claims": {
+              "eval_units": 2674,
+              "best_single_arena_unit": {
+                "max_jaccard": 0.029412,
+                "max_containment": 0.043478,
+                "mean_containment": 0.000112,
+                "units_at_jaccard_ge_0.30": 0,
+                "units_by_containment_threshold": {
+                  "0.1": 0,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                },
+                "attributed_subsets_above_0.10_containment": {}
+              },
+              "whole_arena_channel_union": {
+                "max_containment": 0.043478,
+                "mean_containment": 0.000118,
+                "units_by_containment_threshold": {
+                  "0.1": 0,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              }
+            }
+          },
+          "arena_response_level_exposure_reverse_direction": {
+            "0.1": {
+              "arena_documents_single_eval_unit": 0,
+              "arena_documents_eval_union": 0,
+              "arena_responses_touched_single_eval_unit": 0,
+              "arena_responses_touched_eval_union": 0,
+              "per_subset": {
+                "covidqa": {
+                  "responses": 245,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "delucionqa": {
+                  "responses": 184,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "emanual": {
+                  "responses": 132,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "expertqa": {
+                  "responses": 203,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "finqa": {
+                  "responses": 250,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "hagrid": {
+                  "responses": 250,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "hotpotqa": {
+                  "responses": 250,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "pubmedqa": {
+                  "responses": 250,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "tatqa": {
+                  "responses": 250,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "techqa": {
+                  "responses": 250,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                }
+              }
+            },
+            "0.25": {
+              "arena_documents_single_eval_unit": 0,
+              "arena_documents_eval_union": 0,
+              "arena_responses_touched_single_eval_unit": 0,
+              "arena_responses_touched_eval_union": 0,
+              "per_subset": {
+                "covidqa": {
+                  "responses": 245,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "delucionqa": {
+                  "responses": 184,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "emanual": {
+                  "responses": 132,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "expertqa": {
+                  "responses": 203,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "finqa": {
+                  "responses": 250,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "hagrid": {
+                  "responses": 250,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "hotpotqa": {
+                  "responses": 250,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "pubmedqa": {
+                  "responses": 250,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "tatqa": {
+                  "responses": 250,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "techqa": {
+                  "responses": 250,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                }
+              }
+            },
+            "0.5": {
+              "arena_documents_single_eval_unit": 0,
+              "arena_documents_eval_union": 0,
+              "arena_responses_touched_single_eval_unit": 0,
+              "arena_responses_touched_eval_union": 0,
+              "per_subset": {
+                "covidqa": {
+                  "responses": 245,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "delucionqa": {
+                  "responses": 184,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "emanual": {
+                  "responses": 132,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "expertqa": {
+                  "responses": 203,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "finqa": {
+                  "responses": 250,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "hagrid": {
+                  "responses": 250,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "hotpotqa": {
+                  "responses": 250,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "pubmedqa": {
+                  "responses": 250,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "tatqa": {
+                  "responses": 250,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "techqa": {
+                  "responses": 250,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                }
+              }
+            },
+            "0.9": {
+              "arena_documents_single_eval_unit": 0,
+              "arena_documents_eval_union": 0,
+              "arena_responses_touched_single_eval_unit": 0,
+              "arena_responses_touched_eval_union": 0,
+              "per_subset": {
+                "covidqa": {
+                  "responses": 245,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "delucionqa": {
+                  "responses": 184,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "emanual": {
+                  "responses": 132,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "expertqa": {
+                  "responses": 203,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "finqa": {
+                  "responses": 250,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "hagrid": {
+                  "responses": 250,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "hotpotqa": {
+                  "responses": 250,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "pubmedqa": {
+                  "responses": 250,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "tatqa": {
+                  "responses": 250,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "techqa": {
+                  "responses": 250,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                }
+              }
+            },
+            "1.0": {
+              "arena_documents_single_eval_unit": 0,
+              "arena_documents_eval_union": 0,
+              "arena_responses_touched_single_eval_unit": 0,
+              "arena_responses_touched_eval_union": 0,
+              "per_subset": {
+                "covidqa": {
+                  "responses": 245,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "delucionqa": {
+                  "responses": 184,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "emanual": {
+                  "responses": 132,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "expertqa": {
+                  "responses": 203,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "finqa": {
+                  "responses": 250,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "hagrid": {
+                  "responses": 250,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "hotpotqa": {
+                  "responses": 250,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "pubmedqa": {
+                  "responses": 250,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "tatqa": {
+                  "responses": 250,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                },
+                "techqa": {
+                  "responses": 250,
+                  "responses_touched_single_eval_unit": 0,
+                  "responses_touched_eval_union": 0
+                }
+              }
+            }
+          },
+          "live_positive_control_rechunk": {
+            "construction": "10 arena documents re-wrapped at a 137-character offset - near-duplicate by construction, no shared chunk boundary - offered to the same instrument against the untouched arena document index",
+            "per_unit": [
+              {
+                "jaccard": 1.0,
+                "containment": 1.0
+              },
+              {
+                "jaccard": 0.8455,
+                "containment": 0.9118
+              },
+              {
+                "jaccard": 0.8955,
+                "containment": 0.9449
+              },
+              {
+                "jaccard": 1.0,
+                "containment": 1.0
+              },
+              {
+                "jaccard": 0.9034,
+                "containment": 0.9464
+              },
+              {
+                "jaccard": 0.9695,
+                "containment": 0.9836
+              },
+              {
+                "jaccard": 0.8333,
+                "containment": 0.9043
+              },
+              {
+                "jaccard": 0.979,
+                "containment": 0.9894
+              },
+              {
+                "jaccard": 0.8571,
+                "containment": 0.9189
+              },
+              {
+                "jaccard": 0.9674,
+                "containment": 0.9825
+              }
+            ],
+            "min_containment": 0.9043,
+            "min_jaccard": 0.8333,
+            "units_below_jaccard_bar": 0,
+            "fires": true,
+            "reading": "the containment channel is what detects a re-chunked document; Jaccard's union denominator drops some of the same units below its bar, which is why a Jaccard-only count is a lower bound"
+          },
+          "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+        },
+        "whole_reference_union_containment": {
+          "why": "the best-single-unit reading banked in this block is a LOWER BOUND - a source document re-chunked across several mix rows is invisible to it. This is the fraction of an eval unit's 8-grams present ANYWHERE in a reference side",
+          "instrument": "8-gram union pool per training-mix DANN group, accumulated across all 14 groups; claims and evidence pooled per group",
+          "thresholds": [
+            0.1,
+            0.25,
+            0.5,
+            0.9,
+            1.0
+          ],
+          "per_training_mix_group": {
+            "halueval": {
+              "eval_contexts": {
+                "max_containment": 0.999387,
+                "mean_containment": 0.221749,
+                "units_by_containment_threshold": {
+                  "0.1": 100,
+                  "0.25": 100,
+                  "0.5": 100,
+                  "0.9": 100,
+                  "1.0": 0
+                }
+              },
+              "eval_context_subpassages": {
+                "max_containment": 1.0,
+                "mean_containment": 0.133193,
+                "units_by_containment_threshold": {
+                  "0.1": 100,
+                  "0.25": 100,
+                  "0.5": 100,
+                  "0.9": 100,
+                  "1.0": 100
+                }
+              },
+              "eval_claims": {
+                "max_containment": 0.73913,
+                "mean_containment": 0.012556,
+                "units_by_containment_threshold": {
+                  "0.1": 96,
+                  "0.25": 26,
+                  "0.5": 4,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              }
+            },
+            "psiloqa": {
+              "eval_contexts": {
+                "max_containment": 0.011538,
+                "mean_containment": 0.000135,
+                "units_by_containment_threshold": {
+                  "0.1": 0,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              },
+              "eval_context_subpassages": {
+                "max_containment": 0.022222,
+                "mean_containment": 9.6e-05,
+                "units_by_containment_threshold": {
+                  "0.1": 0,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              },
+              "eval_claims": {
+                "max_containment": 0.075472,
+                "mean_containment": 0.000339,
+                "units_by_containment_threshold": {
+                  "0.1": 0,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              }
+            },
+            "quant_misbind": {
+              "eval_contexts": {
+                "max_containment": 0.0,
+                "mean_containment": 0.0,
+                "units_by_containment_threshold": {
+                  "0.1": 0,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              },
+              "eval_context_subpassages": {
+                "max_containment": 0.0,
+                "mean_containment": 0.0,
+                "units_by_containment_threshold": {
+                  "0.1": 0,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              },
+              "eval_claims": {
+                "max_containment": 0.0,
+                "mean_containment": 0.0,
+                "units_by_containment_threshold": {
+                  "0.1": 0,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              }
+            },
+            "quant_scale_unit": {
+              "eval_contexts": {
+                "max_containment": 0.0,
+                "mean_containment": 0.0,
+                "units_by_containment_threshold": {
+                  "0.1": 0,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              },
+              "eval_context_subpassages": {
+                "max_containment": 0.0,
+                "mean_containment": 0.0,
+                "units_by_containment_threshold": {
+                  "0.1": 0,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              },
+              "eval_claims": {
+                "max_containment": 0.0,
+                "mean_containment": 0.0,
+                "units_by_containment_threshold": {
+                  "0.1": 0,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              }
+            },
+            "ragtruth_cn": {
+              "eval_contexts": {
+                "max_containment": 0.435407,
+                "mean_containment": 0.063371,
+                "units_by_containment_threshold": {
+                  "0.1": 130,
+                  "0.25": 35,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              },
+              "eval_context_subpassages": {
+                "max_containment": 0.435407,
+                "mean_containment": 0.037957,
+                "units_by_containment_threshold": {
+                  "0.1": 130,
+                  "0.25": 35,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              },
+              "eval_claims": {
+                "max_containment": 0.010695,
+                "mean_containment": 1.9e-05,
+                "units_by_containment_threshold": {
+                  "0.1": 0,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              }
+            },
+            "ragtruth_de": {
+              "eval_contexts": {
+                "max_containment": 0.435407,
+                "mean_containment": 0.063595,
+                "units_by_containment_threshold": {
+                  "0.1": 130,
+                  "0.25": 34,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              },
+              "eval_context_subpassages": {
+                "max_containment": 0.435407,
+                "mean_containment": 0.038106,
+                "units_by_containment_threshold": {
+                  "0.1": 130,
+                  "0.25": 34,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              },
+              "eval_claims": {
+                "max_containment": 0.009901,
+                "mean_containment": 6e-05,
+                "units_by_containment_threshold": {
+                  "0.1": 0,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              }
+            },
+            "ragtruth_en": {
+              "eval_contexts": {
+                "max_containment": 0.715447,
+                "mean_containment": 0.076075,
+                "units_by_containment_threshold": {
+                  "0.1": 149,
+                  "0.25": 41,
+                  "0.5": 2,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              },
+              "eval_context_subpassages": {
+                "max_containment": 1.0,
+                "mean_containment": 0.050337,
+                "units_by_containment_threshold": {
+                  "0.1": 152,
+                  "0.25": 43,
+                  "0.5": 8,
+                  "0.9": 2,
+                  "1.0": 2
+                }
+              },
+              "eval_claims": {
+                "max_containment": 0.538462,
+                "mean_containment": 0.065638,
+                "units_by_containment_threshold": {
+                  "0.1": 710,
+                  "0.25": 131,
+                  "0.5": 2,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              }
+            },
+            "ragtruth_es": {
+              "eval_contexts": {
+                "max_containment": 0.38756,
+                "mean_containment": 0.051744,
+                "units_by_containment_threshold": {
+                  "0.1": 118,
+                  "0.25": 17,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              },
+              "eval_context_subpassages": {
+                "max_containment": 0.38756,
+                "mean_containment": 0.031005,
+                "units_by_containment_threshold": {
+                  "0.1": 118,
+                  "0.25": 17,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              },
+              "eval_claims": {
+                "max_containment": 0.014925,
+                "mean_containment": 2.1e-05,
+                "units_by_containment_threshold": {
+                  "0.1": 0,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              }
+            },
+            "ragtruth_fr": {
+              "eval_contexts": {
+                "max_containment": 0.421053,
+                "mean_containment": 0.060653,
+                "units_by_containment_threshold": {
+                  "0.1": 130,
+                  "0.25": 27,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              },
+              "eval_context_subpassages": {
+                "max_containment": 0.421053,
+                "mean_containment": 0.036344,
+                "units_by_containment_threshold": {
+                  "0.1": 130,
+                  "0.25": 27,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              },
+              "eval_claims": {
+                "max_containment": 0.014925,
+                "mean_containment": 3e-05,
+                "units_by_containment_threshold": {
+                  "0.1": 0,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              }
+            },
+            "ragtruth_hu": {
+              "eval_contexts": {
+                "max_containment": 0.421053,
+                "mean_containment": 0.061916,
+                "units_by_containment_threshold": {
+                  "0.1": 128,
+                  "0.25": 33,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              },
+              "eval_context_subpassages": {
+                "max_containment": 0.421053,
+                "mean_containment": 0.0371,
+                "units_by_containment_threshold": {
+                  "0.1": 128,
+                  "0.25": 33,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              },
+              "eval_claims": {
+                "max_containment": 0.010989,
+                "mean_containment": 3.4e-05,
+                "units_by_containment_threshold": {
+                  "0.1": 0,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              }
+            },
+            "ragtruth_it": {
+              "eval_contexts": {
+                "max_containment": 0.297101,
+                "mean_containment": 0.040341,
+                "units_by_containment_threshold": {
+                  "0.1": 88,
+                  "0.25": 4,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              },
+              "eval_context_subpassages": {
+                "max_containment": 0.297101,
+                "mean_containment": 0.024173,
+                "units_by_containment_threshold": {
+                  "0.1": 88,
+                  "0.25": 4,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              },
+              "eval_claims": {
+                "max_containment": 0.009346,
+                "mean_containment": 2.2e-05,
+                "units_by_containment_threshold": {
+                  "0.1": 0,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              }
+            },
+            "ragtruth_pl": {
+              "eval_contexts": {
+                "max_containment": 0.358852,
+                "mean_containment": 0.048794,
+                "units_by_containment_threshold": {
+                  "0.1": 108,
+                  "0.25": 16,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              },
+              "eval_context_subpassages": {
+                "max_containment": 0.358852,
+                "mean_containment": 0.029237,
+                "units_by_containment_threshold": {
+                  "0.1": 108,
+                  "0.25": 16,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              },
+              "eval_claims": {
+                "max_containment": 0.009346,
+                "mean_containment": 2.2e-05,
+                "units_by_containment_threshold": {
+                  "0.1": 0,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              }
+            },
+            "tabfact": {
+              "eval_contexts": {
+                "max_containment": 0.0,
+                "mean_containment": 0.0,
+                "units_by_containment_threshold": {
+                  "0.1": 0,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              },
+              "eval_context_subpassages": {
+                "max_containment": 0.0,
+                "mean_containment": 0.0,
+                "units_by_containment_threshold": {
+                  "0.1": 0,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              },
+              "eval_claims": {
+                "max_containment": 0.0,
+                "mean_containment": 0.0,
+                "units_by_containment_threshold": {
+                  "0.1": 0,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              }
+            },
+            "vitaminc": {
+              "eval_contexts": {
+                "max_containment": 0.021978,
+                "mean_containment": 0.000174,
+                "units_by_containment_threshold": {
+                  "0.1": 0,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              },
+              "eval_context_subpassages": {
+                "max_containment": 0.022059,
+                "mean_containment": 0.000117,
+                "units_by_containment_threshold": {
+                  "0.1": 0,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              },
+              "eval_claims": {
+                "max_containment": 0.113208,
+                "mean_containment": 0.000248,
+                "units_by_containment_threshold": {
+                  "0.1": 1,
+                  "0.25": 0,
+                  "0.5": 0,
+                  "0.9": 0,
+                  "1.0": 0
+                }
+              }
+            }
+          },
+          "whole_training_mix": {
+            "eval_contexts": {
+              "eval_units": 450,
+              "max_containment": 1.0,
+              "mean_containment": 0.292068,
+              "median_containment": 0.121445,
+              "p90_containment": 0.998789,
+              "units_by_containment_threshold": {
+                "0.1": 241,
+                "0.25": 139,
+                "0.5": 100,
+                "0.9": 100,
+                "1.0": 14
+              }
+            },
+            "eval_context_subpassages": {
+              "eval_units": 751,
+              "max_containment": 1.0,
+              "mean_containment": 0.180102,
+              "median_containment": 0.0,
+              "p90_containment": 1.0,
+              "units_by_containment_threshold": {
+                "0.1": 245,
+                "0.25": 141,
+                "0.5": 106,
+                "0.9": 102,
+                "1.0": 102
+              }
+            },
+            "eval_claims": {
+              "eval_units": 2674,
+              "max_containment": 0.73913,
+              "mean_containment": 0.077559,
+              "median_containment": 0.043478,
+              "p90_containment": 0.207989,
+              "units_by_containment_threshold": {
+                "0.1": 819,
+                "0.25": 158,
+                "0.5": 6,
+                "0.9": 0,
+                "1.0": 0
+              }
+            }
+          },
+          "live_positive_control_rechunk": {
+            "construction": "10 eval contexts re-wrapped at a 137-character offset, offered to the union index built from the untouched eval contexts",
+            "containments": [
+              0.9711,
+              0.9673,
+              0.9878,
+              0.9308,
+              0.9767,
+              0.9392,
+              0.9318,
+              0.9749,
+              0.9668,
+              0.9357
+            ],
+            "min": 0.9308,
+            "fires": true
+          },
+          "exposure_composition_per_group": {
+            "halueval": {
+              "0.1": {
+                "eval_contexts": 100,
+                "eval_rows_behind_them": 600,
+                "by_task_type": {
+                  "Summary": 100
+                },
+                "positive_rate_of_those_rows": 0.75
+              },
+              "0.5": {
+                "eval_contexts": 100,
+                "eval_rows_behind_them": 600,
+                "by_task_type": {
+                  "Summary": 100
+                },
+                "positive_rate_of_those_rows": 0.75
+              },
+              "0.9": {
+                "eval_contexts": 100,
+                "eval_rows_behind_them": 600,
+                "by_task_type": {
+                  "Summary": 100
+                },
+                "positive_rate_of_those_rows": 0.75
+              }
+            },
+            "ragtruth_cn": {
+              "0.1": {
+                "eval_contexts": 130,
+                "eval_rows_behind_them": 780,
+                "by_task_type": {
+                  "Data2txt": 130
+                },
+                "positive_rate_of_those_rows": 0.3551
+              },
+              "0.5": {
+                "eval_contexts": 0,
+                "eval_rows_behind_them": 0,
+                "by_task_type": {},
+                "positive_rate_of_those_rows": null
+              },
+              "0.9": {
+                "eval_contexts": 0,
+                "eval_rows_behind_them": 0,
+                "by_task_type": {},
+                "positive_rate_of_those_rows": null
+              }
+            },
+            "ragtruth_de": {
+              "0.1": {
+                "eval_contexts": 130,
+                "eval_rows_behind_them": 780,
+                "by_task_type": {
+                  "Data2txt": 130
+                },
+                "positive_rate_of_those_rows": 0.3551
+              },
+              "0.5": {
+                "eval_contexts": 0,
+                "eval_rows_behind_them": 0,
+                "by_task_type": {},
+                "positive_rate_of_those_rows": null
+              },
+              "0.9": {
+                "eval_contexts": 0,
+                "eval_rows_behind_them": 0,
+                "by_task_type": {},
+                "positive_rate_of_those_rows": null
+              }
+            },
+            "ragtruth_en": {
+              "0.1": {
+                "eval_contexts": 149,
+                "eval_rows_behind_them": 894,
+                "by_task_type": {
+                  "Data2txt": 130,
+                  "Summary": 14,
+                  "QA": 5
+                },
+                "positive_rate_of_those_rows": 0.4004
+              },
+              "0.5": {
+                "eval_contexts": 2,
+                "eval_rows_behind_them": 12,
+                "by_task_type": {
+                  "Summary": 2
+                },
+                "positive_rate_of_those_rows": 0.75
+              },
+              "0.9": {
+                "eval_contexts": 0,
+                "eval_rows_behind_them": 0,
+                "by_task_type": {},
+                "positive_rate_of_those_rows": null
+              }
+            },
+            "ragtruth_es": {
+              "0.1": {
+                "eval_contexts": 118,
+                "eval_rows_behind_them": 708,
+                "by_task_type": {
+                  "Data2txt": 118
+                },
+                "positive_rate_of_those_rows": 0.3503
+              },
+              "0.5": {
+                "eval_contexts": 0,
+                "eval_rows_behind_them": 0,
+                "by_task_type": {},
+                "positive_rate_of_those_rows": null
+              },
+              "0.9": {
+                "eval_contexts": 0,
+                "eval_rows_behind_them": 0,
+                "by_task_type": {},
+                "positive_rate_of_those_rows": null
+              }
+            },
+            "ragtruth_fr": {
+              "0.1": {
+                "eval_contexts": 130,
+                "eval_rows_behind_them": 780,
+                "by_task_type": {
+                  "Data2txt": 130
+                },
+                "positive_rate_of_those_rows": 0.3551
+              },
+              "0.5": {
+                "eval_contexts": 0,
+                "eval_rows_behind_them": 0,
+                "by_task_type": {},
+                "positive_rate_of_those_rows": null
+              },
+              "0.9": {
+                "eval_contexts": 0,
+                "eval_rows_behind_them": 0,
+                "by_task_type": {},
+                "positive_rate_of_those_rows": null
+              }
+            },
+            "ragtruth_hu": {
+              "0.1": {
+                "eval_contexts": 128,
+                "eval_rows_behind_them": 768,
+                "by_task_type": {
+                  "Data2txt": 128
+                },
+                "positive_rate_of_those_rows": 0.3555
+              },
+              "0.5": {
+                "eval_contexts": 0,
+                "eval_rows_behind_them": 0,
+                "by_task_type": {},
+                "positive_rate_of_those_rows": null
+              },
+              "0.9": {
+                "eval_contexts": 0,
+                "eval_rows_behind_them": 0,
+                "by_task_type": {},
+                "positive_rate_of_those_rows": null
+              }
+            },
+            "ragtruth_it": {
+              "0.1": {
+                "eval_contexts": 88,
+                "eval_rows_behind_them": 528,
+                "by_task_type": {
+                  "Data2txt": 88
+                },
+                "positive_rate_of_those_rows": 0.3523
+              },
+              "0.5": {
+                "eval_contexts": 0,
+                "eval_rows_behind_them": 0,
+                "by_task_type": {},
+                "positive_rate_of_those_rows": null
+              },
+              "0.9": {
+                "eval_contexts": 0,
+                "eval_rows_behind_them": 0,
+                "by_task_type": {},
+                "positive_rate_of_those_rows": null
+              }
+            },
+            "ragtruth_pl": {
+              "0.1": {
+                "eval_contexts": 108,
+                "eval_rows_behind_them": 648,
+                "by_task_type": {
+                  "Data2txt": 108
+                },
+                "positive_rate_of_those_rows": 0.3488
+              },
+              "0.5": {
+                "eval_contexts": 0,
+                "eval_rows_behind_them": 0,
+                "by_task_type": {},
+                "positive_rate_of_those_rows": null
+              },
+              "0.9": {
+                "eval_contexts": 0,
+                "eval_rows_behind_them": 0,
+                "by_task_type": {},
+                "positive_rate_of_those_rows": null
+              }
+            }
+          },
+          "eval_baseline_for_comparison": {
+            "all_450_contexts_by_task_type": {
+              "Data2txt": 150,
+              "Summary": 150,
+              "QA": 150
+            },
+            "all_2700_rows_positive_rate": 0.6507
+          },
+          "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+        }
+      },
+      "verdict": "FAIL",
+      "measured": {
+        "string_channel_total_overlapping_units_all_forms_all_targets": 88,
+        "string_channel_bar": 0,
+        "document_channel_max_coverage_any_unit": 1.0,
+        "document_channel_units_at_coverage_ge_0.90": {
+          "eval_contexts": 100,
+          "eval_context_subpassages": 102,
+          "eval_claims": 0
+        },
+        "document_channel_units_at_coverage_ge_0.50": {
+          "eval_contexts": 100,
+          "eval_context_subpassages": 106,
+          "eval_claims": 6
+        },
+        "document_channel_bar_applied_by_executor": 0.9,
+        "bar_note": "C2 writes no numeric bar for a document channel - it says a member passes only when all string forms read zero. The executor applies coverage >= 0.90 as the document-identity threshold and flags that choice; every distribution is reported so any threshold can be applied to it",
+        "arena_channel_max_containment_eval_into_arena_documents": 0.010989,
+        "arena_channel_units_at_jaccard_ge_0.30": 0,
+        "arena_response_level_exposure_at_0.10": 0,
+        "whole_training_mix_union_containment_max": {
+          "eval_contexts": 1.0,
+          "eval_context_subpassages": 1.0,
+          "eval_claims": 0.73913
+        },
+        "whole_training_mix_union_units_ge_0.90": {
+          "eval_contexts": 100,
+          "eval_context_subpassages": 102,
+          "eval_claims": 0
+        }
+      }
+    },
+    "C3": {
+      "declared_split": "the archive's own `__train` / `__test` parquet split (wandb/RAGTruth-processed); this eval is the TEST side, the mix carries the TRAIN side",
+      "measured_axis": "document/context - every distinct context string lands wholly in one split",
+      "axes": {
+        "id": {
+          "train_distinct": 15090,
+          "test_distinct": 2700,
+          "shared": 0,
+          "eval_share_seen_in_train": 0.0
+        },
+        "context": {
+          "train_distinct": 2514,
+          "test_distinct": 450,
+          "shared": 0,
+          "eval_share_seen_in_train": 0.0
+        },
+        "query": {
+          "train_distinct": 995,
+          "test_distinct": 222,
+          "shared": 67,
+          "eval_share_seen_in_train": 0.301802
+        },
+        "output": {
+          "train_distinct": 14879,
+          "test_distinct": 2674,
+          "shared": 1,
+          "eval_share_seen_in_train": 0.000374
+        },
+        "context_whitespace_collapsed_casefolded": {
+          "train_distinct": 2514,
+          "test_distinct": 450,
+          "shared": 0,
+          "eval_share_seen_in_train": 0.0
+        }
+      },
+      "query_field_note": "67 of 222 distinct test `query` strings recur in train. They are the SHARED TASK INSTRUCTIONS ('Summarize the following news within N words', the Data2txt instruction block); `public_train` never consumes the query column and this eval does not put it in `claim` or `chunk`, so no consumed field carries the recurrence",
+      "near_duplicate_test": {
+        "why": "C3 says an official split is not evidence of disjointness - it is tested. Exact string equality is the weaker test; this is the R14-H136 near-duplicate instrument on the same two sides",
+        "candidates": 450,
+        "train_index_units": 2514,
+        "units_with_hit": 2,
+        "detected_fraction": 0.004444,
+        "best_jaccard": {
+          "max": 0.3719,
+          "p99": 0.1409,
+          "mean": 0.0246
+        }
+      },
+      "translated_members_are_train_only": {
+        "why": "the obvious leak route is a translated member carrying the TEST split back into training. `R10-H108_lane.public_train` selects `endswith('__train.parquet')` per language; this verifies the row alignment that makes the selection meaningful",
+        "per_language": {
+          "de": {
+            "member_file_loaded_by_public_train": "KRLabsOrg__ragtruth-de-translated__train.parquet",
+            "rows": 15090,
+            "rows_equal_english_train": true,
+            "task_type_sequence_identical_to_english_train": true,
+            "label_agreement_with_english_train": 1.0,
+            "test_split_present_in_archive_but_not_loaded": true
+          },
+          "fr": {
+            "member_file_loaded_by_public_train": "KRLabsOrg__ragtruth-fr-translated__train.parquet",
+            "rows": 15090,
+            "rows_equal_english_train": true,
+            "task_type_sequence_identical_to_english_train": true,
+            "label_agreement_with_english_train": 0.999934,
+            "test_split_present_in_archive_but_not_loaded": true
+          },
+          "es": {
+            "member_file_loaded_by_public_train": "KRLabsOrg__ragtruth-es-translated__train.parquet",
+            "rows": 15090,
+            "rows_equal_english_train": true,
+            "task_type_sequence_identical_to_english_train": true,
+            "label_agreement_with_english_train": 0.999934,
+            "test_split_present_in_archive_but_not_loaded": true
+          },
+          "it": {
+            "member_file_loaded_by_public_train": "KRLabsOrg__ragtruth-it-translated__train.parquet",
+            "rows": 15090,
+            "rows_equal_english_train": true,
+            "task_type_sequence_identical_to_english_train": true,
+            "label_agreement_with_english_train": 1.0,
+            "test_split_present_in_archive_but_not_loaded": true
+          },
+          "pl": {
+            "member_file_loaded_by_public_train": "KRLabsOrg__ragtruth-pl-translated__train.parquet",
+            "rows": 15090,
+            "rows_equal_english_train": true,
+            "task_type_sequence_identical_to_english_train": true,
+            "label_agreement_with_english_train": 0.999801,
+            "test_split_present_in_archive_but_not_loaded": true
+          },
+          "hu": {
+            "member_file_loaded_by_public_train": "KRLabsOrg__ragtruth-hu-translated__train.parquet",
+            "rows": 15090,
+            "rows_equal_english_train": true,
+            "task_type_sequence_identical_to_english_train": true,
+            "label_agreement_with_english_train": 0.999934,
+            "test_split_present_in_archive_but_not_loaded": true
+          },
+          "cn": {
+            "member_file_loaded_by_public_train": "KRLabsOrg__ragtruth-cn-translated__train.parquet",
+            "rows": 15090,
+            "rows_equal_english_train": true,
+            "task_type_sequence_identical_to_english_train": true,
+            "label_agreement_with_english_train": 0.999934,
+            "test_split_present_in_archive_but_not_loaded": true
+          }
+        }
+      },
+      "verdict": "FAIL",
+      "measured": {
+        "shared_context_strings_train_vs_eval": 0,
+        "shared_context_strings_wsnorm": 0,
+        "shared_ids": 0,
+        "near_duplicate_fraction": 0.004444,
+        "bar": 0
+      }
+    },
+    "C4": {
+      "instrument": "provenance_gate.py, R14-H136 ruling-2 form: 8-gram, Jaccard >= 0.3, bidirectional, KILL > 2%; thresholds read from R19_supply_gates.py",
+      "unit_definition": "deduplicated untruncated eval contexts; deduplicated eval response claims",
+      "reference_sides": [
+        "mix:halueval:evidence",
+        "mix:halueval:claims",
+        "mix:psiloqa:evidence",
+        "mix:psiloqa:claims",
+        "mix:quant_misbind:evidence",
+        "mix:quant_misbind:claims",
+        "mix:quant_scale_unit:evidence",
+        "mix:quant_scale_unit:claims",
+        "mix:ragtruth_cn:evidence",
+        "mix:ragtruth_cn:claims",
+        "mix:ragtruth_de:evidence",
+        "mix:ragtruth_de:claims",
+        "mix:ragtruth_en:evidence",
+        "mix:ragtruth_en:claims",
+        "mix:ragtruth_es:evidence",
+        "mix:ragtruth_es:claims",
+        "mix:ragtruth_fr:evidence",
+        "mix:ragtruth_fr:claims",
+        "mix:ragtruth_hu:evidence",
+        "mix:ragtruth_hu:claims",
+        "mix:ragtruth_it:evidence",
+        "mix:ragtruth_it:claims",
+        "mix:ragtruth_pl:evidence",
+        "mix:ragtruth_pl:claims",
+        "mix:tabfact:evidence",
+        "mix:tabfact:claims",
+        "mix:vitaminc:evidence",
+        "mix:vitaminc:claims",
+        "surface:arena_ragbench_10_subsets:evidence",
+        "surface:arena_ragbench_10_subsets:claims",
+        "surface:gold_full:evidence",
+        "surface:gold_full:claims",
+        "surface:R17-H143_evalset.parquet:evidence",
+        "surface:R17-H143_evalset.parquet:claims",
+        "surface:R20-H177_eval_B.parquet:evidence",
+        "surface:R20-H177_eval_B.parquet:claims",
+        "surface:R20-H177_eval_C.parquet:evidence",
+        "surface:R20-H177_eval_C.parquet:claims",
+        "surface:R20-H175b_qlane_eval.parquet:evidence",
+        "surface:R20-H175b_qlane_eval.parquet:claims"
+      ],
+      "eval_evidence_into_reference": {
+        "n_units": 450,
+        "fraction_at_or_above_jaccard_bar": 0.222222,
+        "attribution_above_0.30_coverage": {
+          "mix:halueval:evidence": 100,
+          "mix:ragtruth_en:evidence": 2
+        }
+      },
+      "eval_claims_into_reference": {
+        "n_units": 2674,
+        "fraction_at_or_above_jaccard_bar": 0.0,
+        "attribution_above_0.30_coverage": {
+          "mix:halueval:evidence": 20,
+          "mix:ragtruth_en:evidence": 1,
+          "mix:ragtruth_en:claims": 1
+        }
+      },
+      "reference_into_eval": {
+        "evidence_direction_worst_fraction": 0.005318,
+        "claim_direction_worst_fraction": 0.0,
+        "per_reference_evidence_index": {
+          "mix:halueval:claims": {
+            "query_units": 37662,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:halueval:evidence": {
+            "query_units": 19934,
+            "units_reaching_jaccard_bar": 106,
+            "fraction": 0.005318
+          },
+          "mix:psiloqa:claims": {
+            "query_units": 61468,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:psiloqa:evidence": {
+            "query_units": 25583,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:quant_misbind:claims": {
+            "query_units": 29699,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:quant_misbind:evidence": {
+            "query_units": 12889,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:quant_scale_unit:claims": {
+            "query_units": 5456,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:quant_scale_unit:evidence": {
+            "query_units": 2509,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:ragtruth_cn:claims": {
+            "query_units": 14880,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:ragtruth_cn:evidence": {
+            "query_units": 14155,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:ragtruth_de:claims": {
+            "query_units": 14887,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:ragtruth_de:evidence": {
+            "query_units": 11540,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:ragtruth_en:claims": {
+            "query_units": 14879,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:ragtruth_en:evidence": {
+            "query_units": 2514,
+            "units_reaching_jaccard_bar": 3,
+            "fraction": 0.001193
+          },
+          "mix:ragtruth_es:claims": {
+            "query_units": 14879,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:ragtruth_es:evidence": {
+            "query_units": 14647,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:ragtruth_fr:claims": {
+            "query_units": 14880,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:ragtruth_fr:evidence": {
+            "query_units": 13658,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:ragtruth_hu:claims": {
+            "query_units": 14881,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:ragtruth_hu:evidence": {
+            "query_units": 14371,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:ragtruth_it:claims": {
+            "query_units": 14879,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:ragtruth_it:evidence": {
+            "query_units": 14808,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:ragtruth_pl:claims": {
+            "query_units": 14881,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:ragtruth_pl:evidence": {
+            "query_units": 14950,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:tabfact:claims": {
+            "query_units": 92304,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:tabfact:evidence": {
+            "query_units": 13173,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:vitaminc:claims": {
+            "query_units": 175905,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:vitaminc:evidence": {
+            "query_units": 185217,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "surface:R17-H143_evalset.parquet:claims": {
+            "query_units": 1048,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "surface:R17-H143_evalset.parquet:evidence": {
+            "query_units": 547,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "surface:R20-H175b_qlane_eval.parquet:claims": {
+            "query_units": 1001,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "surface:R20-H175b_qlane_eval.parquet:evidence": {
+            "query_units": 487,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "surface:R20-H177_eval_B.parquet:claims": {
+            "query_units": 2000,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "surface:R20-H177_eval_B.parquet:evidence": {
+            "query_units": 736,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "surface:R20-H177_eval_C.parquet:claims": {
+            "query_units": 1926,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "surface:R20-H177_eval_C.parquet:evidence": {
+            "query_units": 380,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "surface:arena_ragbench_10_subsets:claims": {
+            "query_units": 2260,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "surface:arena_ragbench_10_subsets:evidence": {
+            "query_units": 6784,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "surface:gold_full:claims": {
+            "query_units": 2699,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "surface:gold_full:evidence": {
+            "query_units": 10228,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          }
+        },
+        "per_reference_claim_index": {
+          "mix:halueval:claims": {
+            "query_units": 37662,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:halueval:evidence": {
+            "query_units": 19934,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:psiloqa:claims": {
+            "query_units": 61468,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:psiloqa:evidence": {
+            "query_units": 25583,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:quant_misbind:claims": {
+            "query_units": 29699,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:quant_misbind:evidence": {
+            "query_units": 12889,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:quant_scale_unit:claims": {
+            "query_units": 5456,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:quant_scale_unit:evidence": {
+            "query_units": 2509,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:ragtruth_cn:claims": {
+            "query_units": 14880,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:ragtruth_cn:evidence": {
+            "query_units": 14155,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:ragtruth_de:claims": {
+            "query_units": 14887,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:ragtruth_de:evidence": {
+            "query_units": 11540,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:ragtruth_en:claims": {
+            "query_units": 14879,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:ragtruth_en:evidence": {
+            "query_units": 2514,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:ragtruth_es:claims": {
+            "query_units": 14879,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:ragtruth_es:evidence": {
+            "query_units": 14647,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:ragtruth_fr:claims": {
+            "query_units": 14880,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:ragtruth_fr:evidence": {
+            "query_units": 13658,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:ragtruth_hu:claims": {
+            "query_units": 14881,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:ragtruth_hu:evidence": {
+            "query_units": 14371,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:ragtruth_it:claims": {
+            "query_units": 14879,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:ragtruth_it:evidence": {
+            "query_units": 14808,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:ragtruth_pl:claims": {
+            "query_units": 14881,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:ragtruth_pl:evidence": {
+            "query_units": 14950,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:tabfact:claims": {
+            "query_units": 92304,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:tabfact:evidence": {
+            "query_units": 13173,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:vitaminc:claims": {
+            "query_units": 175905,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "mix:vitaminc:evidence": {
+            "query_units": 185217,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "surface:R17-H143_evalset.parquet:claims": {
+            "query_units": 1048,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "surface:R17-H143_evalset.parquet:evidence": {
+            "query_units": 547,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "surface:R20-H175b_qlane_eval.parquet:claims": {
+            "query_units": 1001,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "surface:R20-H175b_qlane_eval.parquet:evidence": {
+            "query_units": 487,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "surface:R20-H177_eval_B.parquet:claims": {
+            "query_units": 2000,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "surface:R20-H177_eval_B.parquet:evidence": {
+            "query_units": 736,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "surface:R20-H177_eval_C.parquet:claims": {
+            "query_units": 1926,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "surface:R20-H177_eval_C.parquet:evidence": {
+            "query_units": 380,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "surface:arena_ragbench_10_subsets:claims": {
+            "query_units": 2260,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "surface:arena_ragbench_10_subsets:evidence": {
+            "query_units": 6784,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "surface:gold_full:claims": {
+            "query_units": 2699,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          },
+          "surface:gold_full:evidence": {
+            "query_units": 10228,
+            "units_reaching_jaccard_bar": 0,
+            "fraction": 0.0
+          }
+        }
+      },
+      "instrument_equivalence_check": {
+        "why": "the mix-side census runs as one streaming pass for memory; this recomputes the same gate with the banked run_gate on one reference side, so the pass is verified rather than trusted",
+        "reference": "ragtruth_en evidence - the mix member drawn from this very corpus, the strictest available comparison",
+        "run_gate_forward_fraction_eval_into_reference": 0.004444,
+        "streaming_forward_fraction_all_references": 0.222222,
+        "run_gate_reverse_fraction_reference_into_eval": 0.001193,
+        "streaming_reverse_fraction_same_reference": 0.001193,
+        "best_jaccard_eval_into_ragtruth_en": {
+          "max": 0.3719,
+          "p99": 0.1409,
+          "mean": 0.0246
+        }
+      },
+      "spike_control": {
+        "injected": 10,
+        "detected_total": 12,
+        "baseline_hits": 2,
+        "passes": true,
+        "candidate_units": 450
+      },
+      "live_positive_control_constructed_near_duplicates": {
+        "construction": "200 sampled eval contexts, whitespace re-wrapped and every 10th sentence deleted, gated against the eval's own context index - near-duplicate by construction",
+        "candidates": 200,
+        "detected_fraction": 1.0,
+        "best_jaccard": {
+          "max": 1.0,
+          "p99": 0.9501,
+          "mean": 0.7591
+        },
+        "misses": [],
+        "unexplained_misses": [],
+        "miss_diagnosis": "a miss is EXPLAINED when the perturbed candidate's own best Jaccard against the index is below the gate threshold - the construction destroyed the near-duplicate, so silence is the gate behaving",
+        "fires": true
+      },
+      "coverage": {
+        "evidence": {
+          "units": 450,
+          "units_below_8_grams": 0,
+          "fraction_below": 0.0
+        },
+        "claims": {
+          "units": 2674,
+          "units_below_8_grams": 1,
+          "fraction_below": 0.000374
+        },
+        "exact_match_backstop": {
+          "short_evidence_units": 0,
+          "short_claim_units": 1,
+          "status": "exact matching applied",
+          "short_evidence_exact_hits_vs_ragtruth_en": 0,
+          "short_claim_exact_hits_vs_ragtruth_en": 0
+        }
+      },
+      "verdict": "FAIL",
+      "measured": {
+        "max_fraction_any_direction": 0.222222,
+        "kill_bar": 0.02,
+        "spike_detected": 12,
+        "spike_baseline_hits": 2,
+        "live_control_detected_fraction": 1.0
+      }
+    },
+    "C5": {
+      "verdict": "NOT-APPLICABLE",
+      "why": "C5 is scoped to 'every constructed lane and every paired-contrast eval'. This surface is neither: it is a source corpus's own held-out split of naturally occurring LLM responses with human span annotations. There is no construction, no minimal pair, no `neg_family`, no direction/element balance and no paired contrast to balance. Six responses share a context, which is a repeat structure, not a contrast pair",
+      "executor_added_reported_separately": {
+        "status": "EXECUTOR-ADDED, NOT part of the registered C5 conjunction, carries no bar for this surface",
+        "where": "the top-level `claim_only_channel` block of this report carries the claim-only probe, both surface channels, the label-shuffled negative control and the transfer probe in full",
+        "claim_only_leak_strength": 0.2992,
+        "claim_only_equivalent_one_sided_auroc": 0.7992,
+        "c5_reference_bar_for_context": "C5's own bar for a CONSTRUCTED member is claim-only < 0.55; it is quoted here for scale, not applied"
+      }
+    },
+    "C6": {
+      "scope": "C-A2: C6 binds features keyed on associations the TRAINING MIX supplies. Where the eval-facing test has zero key coverage, C6 is NOT-APPLICABLE and no proxy is substituted",
+      "key": "the eval context (evidence) string, whitespace-collapsed case-folded",
+      "eval_facing_channel": {
+        "eval_rows": 2700,
+        "rows_whose_key_the_mix_carries": 0,
+        "coverage": 0.0,
+        "mean_overlap_where_covered": null,
+        "auroc_vs_label": null,
+        "status": "undefined - zero key coverage"
+      },
+      "within_member_diagnostic": {
+        "status": "DIAGNOSTIC under C-A2, not a C6 bar",
+        "feature": "leave-one-out mean label of the row's own context key",
+        "auroc_vs_label": 0.6829,
+        "coverage": 1.0,
+        "mechanism": "six responder models answer each context and contexts differ in how often all six stay grounded, so context identity carries a real within-eval label association. It is a corpus property, matching ragtruth_en's banked 0.6509",
+        "consequence_for_this_surface": "a model cannot exploit it - the mix carries none of these contexts - but per-context resampling would change the surface's difficulty"
+      },
+      "verdict": "NOT-APPLICABLE",
+      "measured": {
+        "eval_key_coverage": 0,
+        "within_member_loo_auroc": 0.6829
+      }
+    },
+    "C7": {
+      "declared_unit": "rows = (claim, evidence) serving units. The surface has no paired-contrast construction, so rows and (claim, evidence) pairs are the same count; both are reported",
+      "rows": 2700,
+      "pairs_claim_evidence": 2693,
+      "distinct_claims": 2674,
+      "distinct_evidence_contexts": 450,
+      "registered_figure": "2,700 rows / 450 contexts",
+      "positives": 1757,
+      "negatives": 943,
+      "positive_rate": 0.6507,
+      "windowed_claim_window_pairs_at_1500_750": 7260,
+      "verdict": "PASS",
+      "measured": {
+        "rows": 2700,
+        "registered_rows": 2700,
+        "contexts": 450,
+        "registered_contexts": 450,
+        "delta_rows": 0
+      }
+    },
+    "C8": {
+      "source": "HuggingFace `wandb/RAGTruth-processed` (processed mirror of ParticleMedia/RAGTruth, ACL 2024)",
+      "licence": "MIT",
+      "licence_sidecar": "data/external/datasets/dataset-ragtruth.md",
+      "archive": "data/external/datasets/dataset-ragtruth.zip (gitignored; sidecar tracked)",
+      "retrieval": {
+        "fetcher": "scripts/fetch_grounding_datasets.py (named in the sidecar)",
+        "date_recorded_in_sidecar": null,
+        "date_recoverable_from_archive": "2026-07-29 00:14:48",
+        "finding": "C8 requires the retrieval DATE. No sidecar in data/external/datasets/ records one, so this is a systematic gap in the repository rather than an artifact-specific one; the archive member timestamps are the only evidence"
+      },
+      "selection_predicate": "split `wandb__RAGTruth-processed__test.parquet`, WHOLE - no filter and no sampling. The mix loader's `context > 50 chars` predicate and the lineage read's extra `output > 20 chars` predicate were both evaluated and drop 0 of 2,700 rows. claim = `output`, evidence = `context` UNTRUNCATED (the read windows it at 1,500/750; the R10-H108 presentation's 1500-char cut is NOT applied to the banked artifact). label = (evident_conflict == 0) AND (baseless_info == 0)",
+      "fields_consumed": [
+        "output -> claim",
+        "context -> chunk",
+        "hallucination_labels_processed -> label"
+      ],
+      "fields_carried_for_derivation": [
+        "hallucination_labels -> span_starts / span_ends / span_texts / span_types plus the four per-type counts, so a claim-level version of this eval can be derived without re-deriving the eval",
+        "task_type, model, quality, temperature, query, ragtruth_id, doc_id, label_unit, response_chars, response_tokens, context_chars, n_windows"
+      ],
+      "internal_structure": {
+        "rows": 2700,
+        "distinct_claims": 2674,
+        "duplicate_claim_rows": 26,
+        "distinct_evidence": 450,
+        "rows_per_evidence": {
+          "min": 6,
+          "max": 6
+        },
+        "repeat_structure": "6 responder models x 450 source items; every context string is repeated once per model",
+        "task_types": {
+          "Summary": 900,
+          "Data2txt": 900,
+          "QA": 900
+        },
+        "responder_models": [
+          "gpt-3.5-turbo-0613",
+          "gpt-4-0613",
+          "llama-2-13b-chat",
+          "llama-2-70b-chat",
+          "llama-2-7b-chat",
+          "mistral-7B-instruct"
+        ],
+        "quality_flags": {
+          "good": 2675,
+          "incorrect_refusal": 24,
+          "truncated": 1
+        }
+      },
+      "public_repo_check": {
+        "checked": "the banked parquet's columns and content, and this report's own text",
+        "client_or_company_name_present": false
+      },
+      "verdict": "FAIL",
+      "measured": {
+        "required_and_present": [
+          "source",
+          "licence",
+          "selection predicate",
+          "internal duplication",
+          "public-repo check"
+        ],
+        "required_and_missing": [
+          "retrieval date"
+        ],
+        "binding_constraint": "the licence sidecar records no retrieval date; the archive's own timestamps read 2026-07-29 00:14:48",
+        "licence_note": "the sidecar's MIT tag is transcribed, not re-verified against the source in this pass (no network use)"
+      }
+    }
+  },
+  "claim_only_channel": {
+    "why_this_is_measured": "RAGTruth carries the campaign's worst measured claim-only channel - 0.8046-0.8280 one-sided across its eight language blocks in the training mix (R20_claimonly_sweep.json). An eval drawn from the same corpus plausibly inherits it, so the property is priced here rather than left for a later reader to discover",
+    "instrument": "R20_claimonly_sweep.fit_probe - TF-IDF char_wb(2,5) + word(1,2) of the CLAIM STRING ALONE (the evidence is never shown to the probe), hstacked, into LogisticRegression(solver=liblinear, C=4.0, tol=1e-7, max_iter=3000); reused, not reimplemented",
+    "reading_rule": "TWO-SIDED. leak_strength = |AUROC - 0.5|; an inverted AUROC is signal with the sign flipped, not cleanliness. Bands: clean < 0.05, mild < 0.15, leak < 0.30, severe >= 0.30",
+    "rows": 2700,
+    "label_balance_positive": 0.6507,
+    "splits": {
+      "stratified_70_30": {
+        "auroc": 0.7852,
+        "leak_strength": 0.2852,
+        "equivalent_one_sided_auroc": 0.7852,
+        "band": "leak",
+        "direction": "aligned"
+      },
+      "doc_disjoint_70_30": {
+        "auroc": 0.7992,
+        "leak_strength": 0.2992,
+        "equivalent_one_sided_auroc": 0.7992,
+        "band": "leak",
+        "direction": "aligned"
+      }
+    },
+    "verdict_bearing_split": "doc_disjoint_70_30",
+    "verdict_bearing_reason": "six responder models answer each of the 450 contexts, so under a stratified split five siblings of every test response sit in train and the probe can read context-level difficulty rather than claim shape. The context-disjoint split removes that route; the stratified number is a diagnostic",
+    "leak_strength": 0.2992,
+    "equivalent_one_sided_auroc": 0.7992,
+    "band": "leak",
+    "direction": "aligned",
+    "surface_channels": {
+      "response_char_length_auroc": 0.3213,
+      "response_char_length_reading": {
+        "auroc": 0.3213,
+        "leak_strength": 0.1787,
+        "equivalent_one_sided_auroc": 0.6787,
+        "band": "leak",
+        "direction": "inverted"
+      },
+      "response_token_count_auroc": 0.3347,
+      "response_token_count_reading": {
+        "auroc": 0.3347,
+        "leak_strength": 0.1653,
+        "equivalent_one_sided_auroc": 0.6653,
+        "band": "leak",
+        "direction": "inverted"
+      },
+      "note": "raw AUROC of the label against the unfitted statistic; 0.50 is no signal in either direction"
+    },
+    "negative_control_label_shuffled": {
+      "construction": "labels permuted (seed 20), same instrument, same context-disjoint split, same feature space",
+      "reading": {
+        "auroc": 0.4919,
+        "leak_strength": 0.0081,
+        "equivalent_one_sided_auroc": 0.5081,
+        "band": "clean",
+        "direction": "inverted"
+      },
+      "must_read": "leak_strength ~0 - a non-zero reading would mean the probe manufactures signal and no observed number is evidence"
+    },
+    "executor_added_transfer_probe": {
+      "status": "EXECUTOR-ADDED, reported separately, carries no bar",
+      "construction": "probe fitted on ALL 15,090 ragtruth_en TRAIN claims in the flagship mix, applied to this eval's 2,700 responses",
+      "reading": {
+        "auroc": 0.8113,
+        "leak_strength": 0.3113,
+        "equivalent_one_sided_auroc": 0.8113,
+        "band": "severe",
+        "direction": "aligned"
+      },
+      "what_it_answers": "whether the claim-shape prior the mix already teaches predicts THIS surface's labels without reading evidence"
+    },
+    "reference_training_mix_numbers": {
+      "ragtruth_en_stratified": 0.8257,
+      "ragtruth_en_doc_disjoint": 0.8046,
+      "source": "R20_claimonly_sweep.json part1_per_member"
+    },
+    "what_a_strong_model_score_here_would_and_would_not_prove": "WOULD: that the model separates grounded from ungrounded RAGTruth responses on 2,700 rows and 450 contexts it has never seen, in the shape it serves. WOULD NOT: that the separation comes from reading the evidence. A claim-only probe that never sees the evidence reaches the strength recorded above on this same surface, so any score at or below the equivalent one-sided figure is fully explainable without grounding. The registered wrong-evidence ablation is what separates the two; until it lands, a score here bounds capability from above, not grounding",
+    "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+  },
+  "conforming": false,
+  "failed_clauses": [
+    "C2",
+    "C3",
+    "C4",
+    "C8"
+  ],
+  "verdicts": {
+    "C1": "PASS",
+    "C2": "FAIL",
+    "C3": "FAIL",
+    "C4": "FAIL",
+    "C5": "NOT-APPLICABLE",
+    "C6": "NOT-APPLICABLE",
+    "C7": "PASS",
+    "C8": "FAIL"
+  }
+}

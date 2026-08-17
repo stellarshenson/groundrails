@@ -1,0 +1,295 @@
+{
+  "member": "tabfact_conformed",
+  "build": {
+    "banked_member_rows": 92585,
+    "banked_member_tables": 13182,
+    "banked_member_documents_stems": 12753,
+    "conformed_rows": 86206,
+    "conformed_tables": 12257,
+    "conformed_documents_stems": 11882,
+    "rows_dropped": 6379,
+    "row_cost_share": 0.068899,
+    "documents_dropped": 871,
+    "clean_mix_rows_before": 685670,
+    "clean_mix_rows_after": 679291,
+    "member_share_before": 0.135029,
+    "member_share_after": 0.126906
+  },
+  "C1": {
+    "head_declared": "the grounding scalar (`task_head` of the DANN student) - the same head every other mix member trains",
+    "label_predicate_measured": "TabFact ships a human ENTAILED / REFUTED annotation of the STATEMENT against ITS OWN table (ICLR 2020). The label is a support predicate: 1 = the table entails the statement, 0 = the table refutes it. It is not relevance, not answerability, not question-claim match. The conforming cut removed whole documents and contradictory rows; it changed no label and rewrote no chunk",
+    "predicate_is_support": true,
+    "untruncated_evidence": {
+      "instrument": "R20-H175b_qlane.containment(claim, chunk)",
+      "positive_leg": {
+        "n": 47295,
+        "mean": 0.5186,
+        "median": 0.5385,
+        "p10": 0.2727,
+        "p90": 0.7368,
+        "share_fully_attested_eq_1.0": 0.0013,
+        "share_ge_0.9": 0.0064
+      },
+      "negative_leg": {
+        "n": 38911,
+        "mean": 0.4986,
+        "median": 0.5,
+        "p10": 0.25,
+        "p90": 0.7222,
+        "share_fully_attested_eq_1.0": 0.0011,
+        "share_ge_0.9": 0.0054
+      },
+      "abs_delta_mean": 0.0199,
+      "bar_primary_mean_containment": {
+        "reading": "negatives attested at >= 0.90 mean containment AND |mean_neg - mean_pos| <= 0.10 -> REJECTED",
+        "neg_mean": 0.4986,
+        "pos_mean": 0.5186,
+        "neg_ge_0.90": false,
+        "abs_delta_le_0.10": true,
+        "rejected": false,
+        "margin_to_0.90_bar": 0.4014
+      },
+      "bar_secondary_full_attestation_share": {
+        "neg_share": 0.0011,
+        "pos_share": 0.0013,
+        "rejected": false
+      }
+    },
+    "truncated_evidence_1500": {
+      "instrument": "R20-H175b_qlane.containment(claim, chunk)",
+      "positive_leg": {
+        "n": 47295,
+        "mean": 0.5044,
+        "median": 0.5,
+        "p10": 0.25,
+        "p90": 0.7273,
+        "share_fully_attested_eq_1.0": 0.0011,
+        "share_ge_0.9": 0.0051
+      },
+      "negative_leg": {
+        "n": 38911,
+        "mean": 0.4844,
+        "median": 0.5,
+        "p10": 0.25,
+        "p90": 0.7143,
+        "share_fully_attested_eq_1.0": 0.0006,
+        "share_ge_0.9": 0.0041
+      },
+      "abs_delta_mean": 0.0199,
+      "bar_primary_mean_containment": {
+        "reading": "negatives attested at >= 0.90 mean containment AND |mean_neg - mean_pos| <= 0.10 -> REJECTED",
+        "neg_mean": 0.4844,
+        "pos_mean": 0.5044,
+        "neg_ge_0.90": false,
+        "abs_delta_le_0.10": true,
+        "rejected": false,
+        "margin_to_0.90_bar": 0.4156
+      },
+      "bar_secondary_full_attestation_share": {
+        "neg_share": 0.0006,
+        "pos_share": 0.0011,
+        "rejected": false
+      }
+    },
+    "reference_poisoned_lane_R20_H175b": {
+      "containment_both_legs": 0.9129,
+      "negative_leg_fully_attested_share": 0.664
+    }
+  },
+  "C3": {
+    "archive_split_axis_measured": "unchanged corpus fact: the archive cuts on the table_id STRING, not on the underlying document. Validation and test share 0 and 0 table_id VALUES with train, but TabFact serialises one Wikipedia table under both a `1-` and a `2-` csv id, and after stripping that prefix 91 of 1696 validation ids and 73 of 1695 test ids collide with a train id. The archive's official split is therefore NOT document-disjoint",
+    "archive": {
+      "validation": {
+        "rows": 12851,
+        "distinct_table_id": 1696,
+        "table_id_shared_with_train": 0,
+        "table_id_STEM_shared_with_train": 91,
+        "table_id_stem_share": 0.053783
+      },
+      "test": {
+        "rows": 12839,
+        "distinct_table_id": 1695,
+        "table_id_shared_with_train": 0,
+        "table_id_STEM_shared_with_train": 73,
+        "table_id_stem_share": 0.043119
+      }
+    },
+    "member_uses": "train split ONLY, then cut on the DOCUMENT (table_id stem) so the member does not rely on the archive's split claim",
+    "conformed_member_vs_heldout_splits": {
+      "validation": {
+        "table_id_shared_with_member": 0,
+        "table_id_STEM_shared_with_member": 0,
+        "evidence_raw_in_member_raw": 0,
+        "evidence_truncated_in_member_truncated": 0,
+        "evidence_normalised_in_member_normalised_raw": 0,
+        "evidence_normalised_in_member_normalised_truncated": 0,
+        "statement_rows_carrying_a_member_claim_string": 8
+      },
+      "test": {
+        "table_id_shared_with_member": 0,
+        "table_id_STEM_shared_with_member": 0,
+        "evidence_raw_in_member_raw": 0,
+        "evidence_truncated_in_member_truncated": 0,
+        "evidence_normalised_in_member_normalised_raw": 0,
+        "evidence_normalised_in_member_normalised_truncated": 0,
+        "statement_rows_carrying_a_member_claim_string": 7
+      }
+    },
+    "note": "TabFact validation and test are not scored directly by any banked arm; they matter because the 14 anti-gaming probe sets are built from them. The member's disjointness from them is measured here rather than inherited from the archive's split"
+  },
+  "C6": {
+    "adaptation_stated": "C6 is written for an eval scored against a training mix. `tabfact` is a TRAINING member, so the clause's PRESCRIBED instrument - overlap between the eval claim and whatever the training mix associates with that pair's key - is computable only against a surface that shares the key. Both such surfaces are measured below. (a) and (b) are EXECUTOR-ADDED internal features, reported separately and carrying no clause verdict",
+    "a_table_key_label_leakage_EXECUTOR_ADDED": {
+      "feature": "leave-one-out mean label of the other statements over the same table_id",
+      "auroc": 0.2359,
+      "within_table_label_permutation_auroc": [
+        0.2359,
+        0.2359,
+        0.2359,
+        0.2359,
+        0.2359
+      ],
+      "permutation_mean": 0.2359,
+      "reading": "a within-table permutation preserves each table's label QUOTA and destroys every statement-label association; a reproduced AUROC means the feature carries the quota alone"
+    },
+    "b_nearest_other_claim_label_EXECUTOR_ADDED": {
+      "auroc": 0.2435,
+      "rows_with_a_sibling": 85674,
+      "mean_nearest_sibling_jaccard": 0.5447
+    },
+    "c_prescribed_R20-H177_eval_B_tabfact_half": {
+      "eval_rows": 1300,
+      "rows_with_a_member_claim_over_the_same_document": 0,
+      "coverage": 0.0,
+      "value": "UNDEFINED - the channel is closed: no eval row shares a document with the member, so there is nothing for a feature keyed on the training association to read"
+    },
+    "c_prescribed_R17-H143_evalset_tabfact_half": {
+      "eval_rows": 683,
+      "rows_with_a_member_claim_over_the_same_document": 0,
+      "coverage": 0.0,
+      "value": "UNDEFINED - the channel is closed: no eval row shares a document with the member, so there is nothing for a feature keyed on the training association to read"
+    }
+  },
+  "C7": {
+    "unit_declared": "ROWS. One archive row = one (statement, serialised table) pair, so rows and (claim, evidence) pairs are the same count. TabFact ships no pair id",
+    "rows": 86206,
+    "claim_evidence_pairs": 86206,
+    "distinct_claim_evidence_pairs": 86024,
+    "duplicate_claim_evidence_rows": 182,
+    "distinct_documents_stems": 11882,
+    "distinct_table_id": 12257,
+    "positives": 47295,
+    "negatives": 38911,
+    "positive_share": 0.5486,
+    "volume_cost_vs_banked_member": {
+      "banked_rows": 92585,
+      "conformed_rows": 86206,
+      "rows_dropped": 6379,
+      "row_cost_share": 0.068899,
+      "banked_documents": 12753,
+      "conformed_documents": 11882,
+      "documents_dropped": 871
+    },
+    "share_of_the_clean_mix": {
+      "clean_mix_rows_before": 685670,
+      "clean_mix_rows_after": 679291,
+      "member_share_before": 0.135029,
+      "member_share_after": 0.126906
+    }
+  },
+  "C8": {
+    "source": "wenhuchen/Table-Fact-Checking, GitHub release (https://github.com/wenhuchen/Table-Fact-Checking/archive/refs/heads/master.zip); every HF mirror of `tab_fact` is script-only and datasets 5.x removed script support. Archive member `wenhuchen__Table-Fact-Checking__tabfact__train.parquet`",
+    "licence": "CC-BY-4.0",
+    "retrieval": {
+      "retrieval_date": "2026-07-31",
+      "how_it_was_established": "not read off a card - derived from the artifacts the fetch run itself produced, and recorded here because C8 requires it and no tracked file carried it. Three independent stamps agree to within 22 seconds",
+      "evidence": {
+        "fetch_run_log": {
+          "path": "logs/fetch-tabfact.log (gitignored by `*.log`, present on disk)",
+          "mtime": "2026-07-31 18:10:02",
+          "records_row_counts": "92585 train / 12851 validation / 12839 test",
+          "counts_match_this_archive": true,
+          "why_it_binds": "the log's counts are this archive's measured counts, which ties that run to this file"
+        },
+        "zip_central_directory_stamps": {
+          "wenhuchen__Table-Fact-Checking__tabfact__test.parquet": "2026-07-31 18:10:02",
+          "wenhuchen__Table-Fact-Checking__tabfact__train.parquet": "2026-07-31 18:10:02",
+          "wenhuchen__Table-Fact-Checking__tabfact__validation.parquet": "2026-07-31 18:10:02",
+          "dataset-tabfact.md": "2026-07-31 18:09:40"
+        },
+        "archive_file_mtime": "2026-07-31 18:10:02",
+        "archive_file_ctime": "2026-07-31 18:10:02",
+        "sidecar_first_commit_date": "2026-08-05"
+      }
+    },
+    "selection_predicate": "train split only; filter statement.str.len_chars() > 10; then the document / string / content / contradiction cuts recorded under `cuts`",
+    "chunk_construction": "f'{table_caption}\\n{table_text}'.replace('\\r\\n','\\n').replace('#',' | ')[:chunk_max_chars]",
+    "declared_volume": {
+      "measured_from_the_archive": {
+        "train": 92585,
+        "validation": 12851,
+        "test": 12839
+      },
+      "tracked_sidecar_declares": {
+        "train": 92283,
+        "validation": 12792,
+        "test": 12779
+      },
+      "sidecar_delta": {
+        "train": -302,
+        "validation": -59,
+        "test": -60
+      },
+      "sidecar_agrees": false,
+      "cause": "the sidecar renders the hand-written `size` string of the tabfact spec in scripts/fetch_grounding_datasets.py, not the counts the fetch produced; the fetch log carries the right ones",
+      "corrected_figures_recorded_here": {
+        "train": 92585,
+        "validation": 12851,
+        "test": 12839
+      }
+    },
+    "internal_structure": {
+      "rows": 86206,
+      "distinct_claims": 85996,
+      "rows_on_a_repeated_claim": 414,
+      "claims_carrying_BOTH_labels_anywhere": 4,
+      "claims_carrying_BOTH_labels_on_the_SAME_document": 0,
+      "distinct_evidence_untruncated": 12248,
+      "distinct_evidence_truncated_1500": 12190,
+      "distinct_table_id": 12257,
+      "distinct_documents_stems": 11882,
+      "rows_per_document": {
+        "mean": 7.255,
+        "max": 31
+      },
+      "rows_per_table": {
+        "mean": 7.033,
+        "median": 7,
+        "min": 1,
+        "max": 27
+      },
+      "per_table_positive_share": {
+        "mean": 0.5714,
+        "tables_all_positive": 1663,
+        "tables_all_negative": 302,
+        "tables_mixed": 10292
+      },
+      "evidence_length_chars_untruncated": {
+        "mean": 1114.5,
+        "max": 9330,
+        "rows_over_1500": 19017,
+        "share_over_1500": 0.2206
+      }
+    },
+    "public_repository": "no client or company name appears in this artifact or in any file this verification wrote"
+  },
+  "supplementary_not_a_clause": {
+    "status": "EXECUTOR-ADDED - reported separately; no clause verdict uses it",
+    "probe": "claim-only TF-IDF(1-2gram) + logistic regression, tables disjoint between fit and held-out",
+    "fit_rows": 68758,
+    "heldout_rows": 17448,
+    "heldout_auroc": 0.5985,
+    "first_pass_value_on_the_banked_member": 0.6031
+  },
+  "elapsed_s": 19.0
+}

@@ -1,0 +1,299 @@
+{
+  "member": "tabfact",
+  "clause": "C4 - contamination census with a live positive control",
+  "instrument": "provenance_gate.py, R14-H136 form: 8-gram, Jaccard >= 0.3, bidirectional, WARN 0.005, KILL 0.02",
+  "census": {
+    "evidence_serialised_tables": {
+      "instrument": "provenance_gate.py (R13 ruling 4)",
+      "mode": "jaccard",
+      "n": 8,
+      "jaccard_threshold": 0.3,
+      "thresholds": {
+        "warn": 0.005,
+        "kill": 0.02
+      },
+      "candidate": {
+        "label": "tabfact_evidence_serialised_tables",
+        "n_units": 13173,
+        "n_units_scorable": 13173
+      },
+      "arena": {
+        "subsets": {
+          "covidqa": 980,
+          "delucionqa": 552,
+          "emanual": 396,
+          "expertqa": 759,
+          "finqa": 725,
+          "hagrid": 703,
+          "hotpotqa": 998,
+          "pubmedqa": 1250,
+          "tatqa": 1032,
+          "techqa": 1250
+        },
+        "n_units": 8645,
+        "n_units_scorable": 8555
+      },
+      "candidate_vs_arena": {
+        "n_units": 13173,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "covidqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "delucionqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "emanual": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "expertqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "finqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hagrid": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hotpotqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "pubmedqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "tatqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "techqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        },
+        "best_jaccard": {
+          "max": 0.013,
+          "p99": 0.0,
+          "mean": 0.0
+        }
+      },
+      "arena_vs_candidate": {
+        "n_units": 8645,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "tabfact_evidence_serialised_tables": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        },
+        "best_jaccard": {
+          "max": 0.013,
+          "p99": 0.0,
+          "mean": 0.0
+        }
+      },
+      "max_fraction": 0.0,
+      "verdict": "PASS",
+      "hit_examples": []
+    },
+    "claims_statements": {
+      "instrument": "provenance_gate.py (R13 ruling 4)",
+      "mode": "jaccard",
+      "n": 8,
+      "jaccard_threshold": 0.3,
+      "thresholds": {
+        "warn": 0.005,
+        "kill": 0.02
+      },
+      "candidate": {
+        "label": "tabfact_claims_statements",
+        "n_units": 92304,
+        "n_units_scorable": 86361
+      },
+      "arena": {
+        "subsets": {
+          "covidqa": 980,
+          "delucionqa": 552,
+          "emanual": 396,
+          "expertqa": 759,
+          "finqa": 725,
+          "hagrid": 703,
+          "hotpotqa": 998,
+          "pubmedqa": 1250,
+          "tatqa": 1032,
+          "techqa": 1250
+        },
+        "n_units": 8645,
+        "n_units_scorable": 8555
+      },
+      "candidate_vs_arena": {
+        "n_units": 92304,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "covidqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "delucionqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "emanual": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "expertqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "finqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hagrid": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "hotpotqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "pubmedqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "tatqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          },
+          "techqa": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        },
+        "best_jaccard": {
+          "max": 0.0308,
+          "p99": 0.0,
+          "mean": 0.0
+        }
+      },
+      "arena_vs_candidate": {
+        "n_units": 8645,
+        "units_with_hit": 0,
+        "fraction": 0.0,
+        "per_arena_subset": {
+          "tabfact_claims_statements": {
+            "units_with_hit": 0,
+            "fraction": 0.0
+          }
+        },
+        "best_jaccard": {
+          "max": 0.0308,
+          "p99": 0.0,
+          "mean": 0.0
+        }
+      },
+      "max_fraction": 0.0,
+      "verdict": "PASS",
+      "hit_examples": []
+    }
+  },
+  "coverage": {
+    "evidence_serialised_tables": {
+      "n_units": 13173,
+      "n_units_too_short_for_8gram": 0,
+      "share_too_short": 0.0,
+      "exact_match_residual": {
+        "units": 0,
+        "exact_raw_hits": 0,
+        "exact_normalised_hits": 0
+      }
+    },
+    "claims_statements": {
+      "n_units": 92304,
+      "n_units_too_short_for_8gram": 5943,
+      "share_too_short": 0.064385,
+      "exact_match_residual": {
+        "units": 5943,
+        "exact_raw_hits": 0,
+        "exact_normalised_hits": 0
+      }
+    }
+  },
+  "controls": {
+    "synthetic_spike_on_evidence": {
+      "injected": 10,
+      "detected_total": 10,
+      "baseline_hits": 0,
+      "passes": true,
+      "candidate_units": 13173
+    },
+    "live_positive_control": {
+      "design": "the gold_full audit pattern - TabFact's OWN test+validation serialised tables offered to the IDENTICAL gate with the `tabfact` member as the reference side. Near-duplicates exist by construction (one table, two csv ids), so a gate that cannot fire on this register shows up here",
+      "candidate_units": 3391,
+      "fires": true,
+      "units_with_hit": 166,
+      "fraction": 0.048953,
+      "best_jaccard": {
+        "max": 1.0,
+        "p99": 0.9373,
+        "mean": 0.0636
+      },
+      "reverse_direction": {
+        "units_with_hit": 184,
+        "fraction": 0.013968,
+        "best_jaccard": {
+          "max": 1.0,
+          "p99": 0.8527,
+          "mean": 0.027
+        }
+      },
+      "hit_examples": [
+        {
+          "candidate_unit": 57,
+          "bucket": "tabfact_member",
+          "unit": 199,
+          "jaccard": 0.8983
+        },
+        {
+          "candidate_unit": 198,
+          "bucket": "tabfact_member",
+          "unit": 708,
+          "jaccard": 0.9296
+        },
+        {
+          "candidate_unit": 207,
+          "bucket": "tabfact_member",
+          "unit": 733,
+          "jaccard": 0.9442
+        },
+        {
+          "candidate_unit": 215,
+          "bucket": "tabfact_member",
+          "unit": 755,
+          "jaccard": 0.9333
+        },
+        {
+          "candidate_unit": 316,
+          "bucket": "tabfact_member",
+          "unit": 1141,
+          "jaccard": 1.0
+        }
+      ]
+    }
+  },
+  "max_fraction_any_unit_type": 0.0,
+  "verdict": "PASS",
+  "margin_to_kill_0.02": 0.02,
+  "elapsed_s": 29.5
+}

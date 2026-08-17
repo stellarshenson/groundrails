@@ -1,0 +1,8 @@
+{
+  "checkpoint": "/home/lab/workspace/private/ai-assistants/groundrails/models/R20-H173-soup-S6",
+  "gold_full": {
+    "auc": 0.8603,
+    "f1": 0.7583,
+    "n": 2752
+  }
+}

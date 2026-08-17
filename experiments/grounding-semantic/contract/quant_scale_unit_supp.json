@@ -1,0 +1,131 @@
+{
+  "member": "quant_scale_unit",
+  "repeated_claim_strings": {
+    "distinct_repeated_claims": 84,
+    "rows_involved": 168,
+    "claims_carrying_both_labels": 0,
+    "claims_on_more_than_one_document": 84,
+    "max_repeat": 2,
+    "interpretation": "a claim string carrying both labels would be a label contradiction inside the member"
+  },
+  "tabfact_content_split_leak": {
+    "lane_tabfact_documents": 319,
+    "lane_table_texts_resolved": 319,
+    "lane_tables_byte_identical_to_a_validation_table": 0,
+    "lane_tables_byte_identical_to_a_test_table": 0
+  },
+  "c1_per_swap_family": {
+    "cm<->m": {
+      "pairs": 238,
+      "pos_mean": 0.590169,
+      "neg_mean": 0.590169,
+      "pos_rate_ge_0_90": 0.008403,
+      "neg_rate_ge_0_90": 0.008403,
+      "abs_rate_gap": 0.0,
+      "pos_rate_eq_1": 0.0,
+      "neg_rate_eq_1": 0.0
+    },
+    "gb<->mb": {
+      "pairs": 148,
+      "pos_mean": 0.616413,
+      "neg_mean": 0.616413,
+      "pos_rate_ge_0_90": 0.033784,
+      "neg_rate_ge_0_90": 0.033784,
+      "abs_rate_gap": 0.0,
+      "pos_rate_eq_1": 0.0,
+      "neg_rate_eq_1": 0.0
+    },
+    "ghz<->mhz": {
+      "pairs": 132,
+      "pos_mean": 0.688441,
+      "neg_mean": 0.688441,
+      "pos_rate_ge_0_90": 0.068182,
+      "neg_rate_ge_0_90": 0.068182,
+      "abs_rate_gap": 0.0,
+      "pos_rate_eq_1": 0.0,
+      "neg_rate_eq_1": 0.0
+    },
+    "ha<->km2": {
+      "pairs": 146,
+      "pos_mean": 0.591613,
+      "neg_mean": 0.589462,
+      "pos_rate_ge_0_90": 0.013699,
+      "neg_rate_ge_0_90": 0.0,
+      "abs_rate_gap": 0.013699,
+      "pos_rate_eq_1": 0.0,
+      "neg_rate_eq_1": 0.0
+    },
+    "kb<->mb": {
+      "pairs": 106,
+      "pos_mean": 0.635333,
+      "neg_mean": 0.635333,
+      "pos_rate_ge_0_90": 0.056604,
+      "neg_rate_ge_0_90": 0.056604,
+      "abs_rate_gap": 0.0,
+      "pos_rate_eq_1": 0.0,
+      "neg_rate_eq_1": 0.0
+    },
+    "kg<->lb": {
+      "pairs": 144,
+      "pos_mean": 0.591175,
+      "neg_mean": 0.591175,
+      "pos_rate_ge_0_90": 0.020833,
+      "neg_rate_ge_0_90": 0.020833,
+      "abs_rate_gap": 0.0,
+      "pos_rate_eq_1": 0.0,
+      "neg_rate_eq_1": 0.0
+    },
+    "khz<->mhz": {
+      "pairs": 152,
+      "pos_mean": 0.629302,
+      "neg_mean": 0.629302,
+      "pos_rate_ge_0_90": 0.032895,
+      "neg_rate_ge_0_90": 0.032895,
+      "abs_rate_gap": 0.0,
+      "pos_rate_eq_1": 0.0,
+      "neg_rate_eq_1": 0.0
+    },
+    "km2<->sqmi": {
+      "pairs": 568,
+      "pos_mean": 0.559666,
+      "neg_mean": 0.559666,
+      "pos_rate_ge_0_90": 0.005282,
+      "neg_rate_ge_0_90": 0.005282,
+      "abs_rate_gap": 0.0,
+      "pos_rate_eq_1": 0.0,
+      "neg_rate_eq_1": 0.0
+    },
+    "km<->m": {
+      "pairs": 782,
+      "pos_mean": 0.600558,
+      "neg_mean": 0.600558,
+      "pos_rate_ge_0_90": 0.02046,
+      "neg_rate_ge_0_90": 0.02046,
+      "abs_rate_gap": 0.0,
+      "pos_rate_eq_1": 0.0,
+      "neg_rate_eq_1": 0.0
+    },
+    "km<->mm": {
+      "pairs": 198,
+      "pos_mean": 0.60338,
+      "neg_mean": 0.60338,
+      "pos_rate_ge_0_90": 0.050505,
+      "neg_rate_ge_0_90": 0.050505,
+      "abs_rate_gap": 0.0,
+      "pos_rate_eq_1": 0.0,
+      "neg_rate_eq_1": 0.0
+    },
+    "kmh<->mph": {
+      "pairs": 156,
+      "pos_mean": 0.517012,
+      "neg_mean": 0.517012,
+      "pos_rate_ge_0_90": 0.0,
+      "neg_rate_ge_0_90": 0.0,
+      "abs_rate_gap": 0.0,
+      "pos_rate_eq_1": 0.0,
+      "neg_rate_eq_1": 0.0
+    }
+  },
+  "c1_worst_family_abs_rate_gap": 0.013699,
+  "c1_families_with_gap_above_0_10": []
+}

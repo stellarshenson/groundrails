@@ -1,0 +1,51 @@
+{
+  "C6": {
+    "shared_fields": "truth_removed pairs share the CLAIM byte-identically (only the pool differs); unsupported_claim pairs share the POOLED CHUNK byte-identically (only the claim differs)",
+    "registered_test": "for each pair, look the claim up in the REST of the assembled mix (685,670 clean rows plus the four other loaded lanes) and score the row by what that association carries. On a clean instrument the value is undefined or at chance (0.5)",
+    "mix_rows_searched": 739210,
+    "lane_rows_whose_claim_appears_elsewhere_in_the_mix": 0,
+    "coverage_overall": 0.0,
+    "lane_claims_matching_a_mix_claim_only_after_case_folding": 0,
+    "mean_label_oracle_within_pair": {
+      "truth_removed": {
+        "pairs": 2221,
+        "within_pair_accuracy_all_pairs": 0.5,
+        "pairs_with_both_claims_in_the_mix": 0,
+        "within_pair_accuracy_on_covered_pairs": null
+      }
+    },
+    "claim_to_associated_text_channel": {
+      "definition": "does the pooled chunk contain, verbatim, a text the mix pairs with THIS exact claim - and at which label. This is the channel that failed the parent at within-pair 0.9999",
+      "lane_rows_with_any_such_association": 0,
+      "rows_where_it_fires": 0,
+      "value": "UNDEFINED - no lane claim appears anywhere in the assembled mix, so the mix associates no text with any of them"
+    },
+    "chance": 0.5,
+    "executor_added_document_keyed_probes_reported_separately": {
+      "definition": "keyed on the POOL DOCUMENT rather than on the pair's claim, which is what the clause's test names. Reported separately and carrying no registered bar",
+      "mix_chunks_indexed": 364499,
+      "probes": {
+        "pool_contains_a_mix_label1_passage": {
+          "auroc_row_level": 0.5308,
+          "within_pair": {
+            "truth_removed": {
+              "acc": 0.5308,
+              "pairs": 2221
+            }
+          },
+          "rows_firing": 0.8255
+        },
+        "count_of_mix_label1_passages_in_pool": {
+          "auroc_row_level": 0.5382,
+          "within_pair": {
+            "truth_removed": {
+              "acc": 0.5973,
+              "pairs": 2221
+            }
+          },
+          "rows_firing": 0.8255
+        }
+      }
+    }
+  }
+}

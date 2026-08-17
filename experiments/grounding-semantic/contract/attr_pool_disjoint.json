@@ -1,0 +1,771 @@
+{
+  "C2": {
+    "instrument": "exact set intersection on three string forms - raw, truncated to CFG.chunk_max_chars=1500, whitespace-collapsed case-folded - at three lane granularities (claim, pooled chunk, atomic pool passage) against both the claim and the evidence side of every surface. Exact equality is symmetric, so each cell reports the shared count as a fraction of BOTH directions",
+    "surfaces_covered": [
+      "H117_heldout_pairs",
+      "H143_evalset",
+      "arena_ragbench_10",
+      "eval_B_num_compare",
+      "eval_C_num_rolebind",
+      "gold_full",
+      "qlane_eval",
+      "vitaminc_holdout_pool_superset"
+    ],
+    "per_surface": {
+      "arena_ragbench_10": {
+        "surface_claims": 0,
+        "surface_evidence": 8645,
+        "lane_claims__vs__surface_evidence__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_evidence__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_evidence__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_evidence__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_evidence__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_evidence__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_evidence__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_evidence__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_evidence__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        }
+      },
+      "gold_full": {
+        "surface_claims": 2699,
+        "surface_evidence": 10228,
+        "lane_claims__vs__surface_claims__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_claims__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_claims__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_evidence__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_evidence__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_evidence__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_claims__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_claims__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_claims__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_evidence__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_evidence__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_evidence__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_claims__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_claims__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_claims__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_evidence__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_evidence__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_evidence__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        }
+      },
+      "eval_B_num_compare": {
+        "surface_claims": 2000,
+        "surface_evidence": 736,
+        "lane_claims__vs__surface_claims__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_claims__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_claims__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_evidence__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_evidence__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_evidence__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_claims__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_claims__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_claims__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_evidence__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_evidence__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_evidence__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_claims__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_claims__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_claims__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_evidence__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_evidence__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_evidence__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        }
+      },
+      "eval_C_num_rolebind": {
+        "surface_claims": 1926,
+        "surface_evidence": 380,
+        "lane_claims__vs__surface_claims__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_claims__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_claims__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_evidence__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_evidence__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_evidence__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_claims__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_claims__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_claims__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_evidence__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_evidence__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_evidence__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_claims__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_claims__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_claims__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_evidence__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_evidence__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_evidence__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        }
+      },
+      "qlane_eval": {
+        "surface_claims": 1001,
+        "surface_evidence": 487,
+        "lane_claims__vs__surface_claims__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_claims__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_claims__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_evidence__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_evidence__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_evidence__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_claims__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_claims__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_claims__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_evidence__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_evidence__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_evidence__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_claims__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_claims__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_claims__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_evidence__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_evidence__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_evidence__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        }
+      },
+      "H143_evalset": {
+        "surface_claims": 1048,
+        "surface_evidence": 547,
+        "lane_claims__vs__surface_claims__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_claims__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_claims__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_evidence__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_evidence__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_evidence__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_claims__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_claims__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_claims__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_evidence__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_evidence__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_evidence__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_claims__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_claims__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_claims__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_evidence__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_evidence__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_evidence__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        }
+      },
+      "H117_heldout_pairs": {
+        "surface_claims": 2000,
+        "surface_evidence": 1933,
+        "lane_claims__vs__surface_claims__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_claims__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_claims__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_evidence__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_evidence__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_evidence__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_claims__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_claims__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_claims__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_evidence__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_evidence__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_evidence__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_claims__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_claims__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_claims__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_evidence__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_evidence__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_evidence__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        }
+      },
+      "vitaminc_holdout_pool_superset": {
+        "surface_claims": 55139,
+        "surface_evidence": 54683,
+        "lane_claims__vs__surface_claims__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_claims__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_claims__wsfold": {
+          "shared_units": 1,
+          "frac_of_lane_side": 0.000108,
+          "frac_of_surface_side": 1.8e-05
+        },
+        "lane_claims__vs__surface_evidence__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_evidence__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_claims__vs__surface_evidence__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_claims__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_claims__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_claims__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_evidence__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_evidence__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_pooled_chunks__vs__surface_evidence__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_claims__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_claims__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_claims__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_evidence__raw": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_evidence__truncated_1500": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        },
+        "lane_atomic_passages__vs__surface_evidence__wsfold": {
+          "shared_units": 0,
+          "frac_of_lane_side": 0.0,
+          "frac_of_surface_side": 0.0
+        }
+      }
+    },
+    "max_shared_units_any_cell": 1,
+    "bar": "every form reads zero",
+    "pass": false
+  },
+  "C2_intra_mix_vitaminc": {
+    "why": "the lane is built from the same VitaminC train split that is already a mix member (DANN group `vitaminc`, 370,653 rows), so its text is duplicated inside the mix rather than disjoint from it",
+    "vitaminc_train_rows_in_mix": 370653,
+    "lane_vitaminc_rows": 11998,
+    "lane_vitaminc_distinct_claims": 6894,
+    "lane_claims_also_in_mix_vitaminc": 6894,
+    "lane_claims_also_in_mix_vitaminc_frac": 1.0,
+    "lane_vitaminc_atomic_passages": 19367,
+    "atomic_passages_byte_identical_to_a_mix_evidence_string": 51,
+    "atomic_passages_byte_identical_frac": 0.002633,
+    "note": "this is intra-mix duplication, not an evaluation-surface leak; C2 bars the latter. It is measured because the same claim strings carrying the same labels in two mix members is the memorisation channel C6 tests"
+  },
+  "C3": {
+    "member_is_a_constructed_lane": "attr_pool has no split of its own - 100% of it is training material and no held-out partition is carved from it. The clause is evaluated on the SPLIT AXIS OF ITS SOURCES, which is what determines whether a held-out surface is really held out",
+    "vitaminc": {
+      "split_axis_declared": "official train / validation / test",
+      "split_axis_measured": "the official cut is disjoint on unique_id and case_id and NOT on page, claim, evidence or wiki_revision_id",
+      "heldout_rows_sharing_a_key_with_train": {
+        "unique_id": 0,
+        "case_id": 0,
+        "page": 1214,
+        "claim": 110,
+        "evidence": 221,
+        "wiki_revision_id": 41488
+      },
+      "heldout_pool_rows": 118251,
+      "restricted_to_what_this_lane_consumed": {
+        "heldout_rows_whose_page_the_lane_consumed": 392,
+        "heldout_rows_whose_claim_the_lane_consumed": 0,
+        "heldout_evidence_strings_inside_a_lane_passage_verbatim": 0
+      },
+      "selection_predicate_used_by_the_lane": "train split only"
+    },
+    "minicheck": {
+      "split_axis_declared": "none - the archive ships c2d and d2c synthesis routes, not a train/test cut",
+      "archive_parquets": {
+        "c2d": 7076,
+        "d2c": 7319
+      },
+      "lane_consumption": "BOTH routes read in full; no MiniCheck partition is reserved anywhere in the campaign, and MiniCheck is not an evaluation surface, so no split can be violated",
+      "lane_minicheck_rows": 9410,
+      "lane_minicheck_distinct_truth_docs": 3258
+    }
+  }
+}
