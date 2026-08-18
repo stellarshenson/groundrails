@@ -1,0 +1,69 @@
+{
+  "experiment": "R22-H190 arithmetic-capability probe suite",
+  "condition": "P4",
+  "trunk": "jhu-clsp/mmBERT-base",
+  "seed": 2190,
+  "off_arena": "diagnostic only - no arena read, no promotion path",
+  "n_train": 23872,
+  "n_holdout": 6128,
+  "n_train_docs": 4599,
+  "n_holdout_docs": 1150,
+  "holdout_positive_rate": 0.5,
+  "epochs": 3,
+  "batch": 32,
+  "lr": 1e-05,
+  "n_steps": 2238,
+  "holdout_auroc": 0.49609,
+  "bars": {
+    "learnable_at_or_above": 0.7,
+    "not_learnable_below": 0.55
+  },
+  "verdict": "NOT LEARNABLE",
+  "stratified": {
+    "result_digits": {
+      "2": {
+        "n": 2068,
+        "auroc": 0.49831
+      },
+      "3": {
+        "n": 992,
+        "auroc": 0.49447
+      },
+      "4": {
+        "n": 2404,
+        "auroc": 0.49724
+      },
+      "5": {
+        "n": 460,
+        "auroc": 0.49407
+      },
+      "6": {
+        "n": 180,
+        "auroc": 0.47586
+      },
+      "7": {
+        "n": 24,
+        "auroc": 0.47222
+      }
+    },
+    "neg_family": {
+      "difference": {
+        "n": 2196,
+        "auroc": 0.50019
+      },
+      "percentage": {
+        "n": 2072,
+        "auroc": 0.49873
+      },
+      "product": {
+        "n": 900,
+        "auroc": 0.48794
+      },
+      "sum": {
+        "n": 960,
+        "auroc": 0.48962
+      }
+    }
+  },
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+}

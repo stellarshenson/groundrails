@@ -5498,3 +5498,275 @@ FinDVer-numeric two-draw mean **< 0.52** → the lane does not install the predi
 
 finqa moves at most within the R22-H182 ceiling of **9 of 20** unsupported responses. The 7 requiring the question in the model input are outside this arm entirely, and no result may be attributed to them.
 
+
+### R22-H189 mmBERT LAMBDA-0 ABLATION - REGISTERED, bars fixed before any read (2026-08-17 ~23:20)
+
+Because the domain-adversarial component (DANN) has never been ablated on this campaign's own trunk in 22 rounds, and because R12-H123 measured linear domain-group probes at 0.94-0.997 against a 0.083 chance floor at LAMBDA_MAX 0.02, switching the adversary off entirely will cost less on the non-English hold than the hold's own across-draw noise - i.e. the belief that "the non-English holds exist because the adversary earns them" is unsupported.
+
+**Author-ordered 2026-08-17 ~23:15 ("register and run"), after the standing candidate card was surfaced. This closes the hole confirmed at :3995.**
+
+#### The arm - one variable, and a PAIRED design
+
+`LAMBDA_MAX` 0.02 → 0.0 against `R18-H150_arm_run.py` draw 1, and **nothing else**. The domain head still exists and still trains on its own cross-entropy; only the reversed gradient reaching the trunk is switched off. Mix, seed 1150, schedule, LR, objective, window presentation, MAX_LEN, the 14 DANN groups and the frozen adapter are the flagship's.
+
+**Seed 1150 is deliberate and the permutation fingerprint MUST COLLIDE with `R18-H150-arm-draw1` (`7d13f9ac86a79574`).** A collision is normally a defect - two draws sharing a data ordering are not independent - but this arm is not an independent draw, it is a matched control. The collision is the design. `R20_perm_guard` must not be read as failing here, and this paragraph is the reason on the record.
+
+#### Pre-flight aborts - checked on a CPU census stage before any GPU is spent
+
+- **Init fingerprint MUST equal `a8dfdd7275073adf0057cfb40344c45b`** (trunk+task_head). Group count is unchanged at 14, so RNG consumption is identical and the init must be bit-reproducible. A mismatch means two variables moved and the run is VOID - the H122-A2 seeding trap made into a gate
+- **Permutation fingerprint MUST equal `7d13f9ac86a79574`**
+- **`LAMBDA_MAX` must read exactly 0.0** after the flip, and the adapter must remain frozen (twin integrity guard)
+- **Ablation-fired check** - final domain-head accuracy must sit materially above the 1/14 = 0.0714 chance floor. The flagship's own adversary is already weak, so this confirms the reversed gradient was genuinely removed rather than merely reduced
+
+#### The variance, measured on the six banked flagship draws before the bars were written
+
+| read | k=6 mean | across-draw sd | floor, k=1 vs k=6 at 2 x SE_diff |
+|---|---|---|---|
+| `ragtruth_nonen` | 0.84472 | 0.00512 | **0.01106** |
+| `gold_full` | 0.85862 | 0.00856 | **0.01849** |
+| arena mean | 0.71218 | 0.01090 (frozen pooled, V1) | **0.02355** |
+
+#### PRIMARY - the hold the adversary is credited with
+
+**`ragtruth_nonen`, one draw, against the k=6 mean 0.84472.**
+
+- **LOAD-BEARING** - reads at or below **0.83366** (a drop of at least 0.01106). The adversary earns the non-English hold and the belief stands
+- **BOUNDED SMALL** - reads above 0.83366. This does NOT assert a null; it asserts that the adversary's contribution to the non-English hold is **smaller than 0.011**, and the standing claim that the holds rest on the adversary is withdrawn as unsupported. A k=2 confirmation becomes licensed, not spent
+
+#### SECONDARY - in-domain
+
+`gold_full` against the k=6 mean 0.85862, same ladder at its own floor: at or below **0.84013** the adversary is load-bearing in-domain; above it, its in-domain contribution is bounded under 0.019.
+
+#### REPORTED, never a promotion path
+
+The arena read is taken and reported against the k=6 mean 0.71218 with its **0.02355** floor. **No promotion path exists in either direction at k=1.** A high read licenses a registered k=2 arm; it does not promote, and no serving change follows from this block.
+
+#### The paired reading, reported alongside but not decisive
+
+Seed 1150 matches `R18-H150` draw 1 exactly (`gold_full` 0.8659, `ragtruth_nonen` 0.8443, `ragtruth_en` 0.7967, arena 0.71436), so the paired delta carries less seed variance than the population comparison. It is reported for its extra sensitivity, but the **verdict is taken on the population floors above**, because the residual nondeterminism of a paired run on a different card has not been measured in this campaign and must not be assumed to be zero.
+
+#### Counter-prior on the record
+
+R19-H169 ran this exact ablation on a EuroBERT trunk and **refuted** the coordinator's over-erasure story: with the adversary fully off, `gold_full` read 0.4847 against 0.5070 with it on. That arm establishes nothing about mmBERT (:3806), which is why this one exists - but it is the standing evidence that blaming the adversary for a disappointing number is a mechanism story this campaign has already got wrong once.
+
+### R22-H188 VERDICT: KILLED at the PRIMARY gate - a conforming derivation lane did NOT install the derivation predicate (2026-08-18 00:55, two draws, ~10 GPU-h)
+
+**FinDVer-numeric two-draw mean 0.4834 against a KILL bar of 0.52.** The arm dies off-arena and, by the registration's own clause, **may not make any arena promotion claim whatever the arena reads**.
+
+| read | draw 1 | draw 2 | two-draw mean | flagship | delta | bar | outcome |
+|---|---|---|---|---|---|---|---|
+| **numeric (PRIMARY)** | 0.4871 | 0.4798 | **0.4834** | 0.49585 | **-0.01245** | `>= 0.55` pass, `< 0.52` KILL | **KILL** |
+| `ie` (control) | 0.6534 | 0.6354 | 0.6444 | 0.66095 | -0.01655 | within 0.02 | holds |
+| `knowledge` (control) | 0.5309 | 0.5596 | 0.5453 | 0.58380 | **-0.03850** | within 0.02 | **BREACHED** |
+
+The arm did not merely fail to gain - it reads **below** the flagship on the register it was built for, with both numbers at chance on 850 balanced human-annotated rows over 2024 filings. A second control also breached: `knowledge` fell 0.0385 against a 0.02 band.
+
+#### The arena, reported and barred from any promotion claim
+
+Two-draw mean **0.70233** (0.69684 / 0.70781) against the k=6 flagship 0.71218 - a delta of **-0.00985**, inside the registered 0.01780 difference floor, so **UNRESOLVED**. It is recorded for the ledger and carries nothing: the KILL clause bars promotion independently of this number.
+
+| subset | draw 1 | draw 2 | mean | matched control | delta | G3 spread guard |
+|---|---|---|---|---|---|---|
+| covidqa | 0.7741 | 0.7708 | 0.7725 | 0.7878 | -0.0153 | - |
+| delucionqa | 0.8513 | 0.8837 | 0.8675 | 0.8167 | +0.0508 | 0.0324 / 0.0988 pass |
+| emanual | 0.6628 | 0.6671 | 0.6649 | 0.6977 | -0.0328 | - |
+| expertqa | 0.7278 | 0.7611 | 0.7445 | 0.7728 | -0.0283 | - |
+| **finqa** | 0.5815 | 0.6307 | **0.6061** | 0.6333 | **-0.0272** | 0.0492 / 0.0620 pass |
+| hagrid | 0.5976 | 0.6110 | 0.6043 | 0.6340 | -0.0297 | - |
+| hotpotqa | 0.6763 | 0.6710 | 0.6737 | 0.6668 | +0.0069 | - |
+| pubmedqa | 0.5825 | 0.5752 | 0.5789 | 0.6063 | -0.0274 | - |
+| tatqa | 0.7785 | 0.7733 | 0.7759 | 0.7320 | +0.0439 | 0.0052 / 0.0917 pass |
+| techqa | 0.7360 | 0.7342 | 0.7351 | 0.6840 | +0.0511 | - |
+
+**Table guard G3 passes on all three cells.** **The in-domain floor does NOT hold**: `gold_full` two-draw mean **0.83635** (0.8243 / 0.8484) against the registered `>= 0.84`.
+
+The registered prediction - "finqa moves at most within the R22-H182 ceiling of 9 of 20" - is not violated in magnitude, but the direction is against the arm: the target subset **fell** 0.0272.
+
+#### What this establishes, and it is a genuine negative result
+
+The lane was verified **CONFORMING on all eight dataset-contract clauses** before it trained - the campaign's first constructed lane to be so - and its construction was the exact inverse of finqa's dominant failure: both legs state the same correct operands, and only the computed result differs. **30,000 rows teaching precisely "check this computation" produced no movement on an instrument that measures precisely that.** The R22-H186 supply gap was real and filling it did not install the capability. This is not a data-quality failure, and it is not attributable to lane conformance.
+
+#### Candidate readings - NONE confirmed, and none may be cited as the mechanism
+
+This campaign has recorded a mechanism story it later had to withdraw twice (R19-H168's over-erasure, R20-H174's portfolio gates). The kill is a fact; the reason is not yet measured, and the following are hypotheses only:
+
+- **Scale** - 30,000 rows is 4.0% of a 751,210-row mix, and the lane competes with 685,670 clean rows carrying a different predicate
+- **Register transfer** - the lane is built on TabFact's Wikipedia tables while the instrument is 2024 SEC filings; R14's register-gap audit measured financial vocabulary at 0.13% of the mix against 50.3% of finqa arena rows, a 382x deficit
+- **Representational** - a single scalar support head trained with max-over-windows BCE may not be able to represent "recompute the value and compare", which is a two-place predicate over the claim's own tokens
+- **Read protocol** - the windowed MIL read takes a max over windows, which need not preserve the joint operand-and-result reading a derivation check requires
+
+Separating these is the next question and it is NOT licensed here; the cheapest separator is probably a scale ladder on the existing lane rather than a new corpus.
+
+#### Consequence for the queued HiTab lane - the pre-registered branch fires AGAINST building it
+
+`semantic-dataset-enhancements.md` fixed the branch before this read: "If FinDVer-numeric moves off chance the HiTab lane is justified; if it does not, a bigger lane of the same kind is the wrong response and the reason needs finding first." **It did not move.** The HiTab lane at volume is **NOT justified** and is not built. The author's licence approval of 2026-08-17 ~23:10 stands untouched and is unaffected - it clears the corpus for use, it does not order a build, and the two decisions were kept separate deliberately.
+
+#### Two defects in the measurement chain, both the coordinator's
+
+- **The finqa detail owed by the registration is NOT delivered for draw 2.** Its per-item re-score hit the banked fidelity guard - tatqa recomputed 0.773002 against the banked 0.7733, `|d|` 2.98e-04 against a 1e-4 tolerance - so the guard refused to bank per-item scores, correctly. Draw 1 passed clean (worst `|d|` 4.96e-05) and banked. The leading candidate for the asymmetry is that draw 2's arena read ran on GPU2 while its re-score ran on GPU1, and draw 1's ran on GPU1 for both, making this a cross-card kernel-reduction difference rather than a scoring defect - **candidate only, not measured**. Not re-run: the arm is dead and the detail cannot change a killed verdict
+- **`R22-H188_measure.sh`'s skip guard named artifacts that the underlying script never writes** (`R22-H188_finqa_scores_draw<N>.npz` against the real `R21-H179_arena_scores_<ckpt>.npz`), so the stage could never have been skipped on a relaunch. Harmless here - the stage ran - but it is an idempotence guard that did not guard, and it is recorded as one
+
+### R22-H188 ADDENDUM - both measurement defects fixed, the finqa detail delivered, and it makes the kill WORSE (2026-08-18 ~02:00)
+
+The two defects recorded in the verdict block are closed, and the deliverable they blocked now exists. **The verdict is unchanged: R22-H188 stays KILLED.** The detail sharpens why.
+
+#### Defect 1 - the cross-card fidelity abort is CONFIRMED, by experiment, and NOT a scoring error
+
+The verdict block named a cross-card difference as the leading candidate for draw 2's abort and marked it unmeasured. It is now measured. Draw 2's per-item re-score was re-run on **GPU2, the card that produced its banked arena read**, against the original attempt on GPU1:
+
+| tatqa re-score | banked | recomputed | `abs` delta | verdict |
+|---|---|---|---|---|
+| on GPU1 (cross-card) | 0.7733 | 0.773002 | **2.98e-04** | FAIL |
+| on GPU2 (same card) | 0.7733 | 0.773305 | **5.08e-06** | PASS |
+
+All ten subsets pass on the same card, worst `|d|` 4.89e-05, and the per-item scores banked. The failing record is preserved as `R21-H179_arena_scores_fidelity_h188d2_crosscard_FAIL.json`.
+
+**The guard was right and is not loosened.** It detected that a re-score had been taken on a different card from the read it claims to reproduce - which is exactly what a fidelity control exists to catch. The fix is the card pinning, now in `R22-H188_measure.sh`, not a wider tolerance.
+
+#### The latent property this exposed - recorded, deliberately NOT amended
+
+AUROC is a rank statistic whose smallest possible non-zero change is `1 / (n_pos x n_neg)`. Against the guard's fixed 1e-4 tolerance, **seven of the ten arena subsets cannot survive a single rank flip**:
+
+| subset | pos / neg | one-flip granularity | vs the 1e-4 tolerance |
+|---|---|---|---|
+| emanual | 118 / 14 | 6.053e-04 | one flip aborts |
+| delucionqa | 172 / 12 | 4.845e-04 | one flip aborts |
+| tatqa | 236 / 14 | 3.027e-04 | one flip aborts |
+| hotpotqa | 233 / 17 | 2.525e-04 | one flip aborts |
+| finqa | 230 / 20 | 2.174e-04 | one flip aborts |
+| covidqa | 206 / 39 | 1.245e-04 | one flip aborts |
+| hagrid | 212 / 38 | 1.241e-04 | one flip aborts |
+| expertqa | 95 / 108 | 9.747e-05 | ok |
+| pubmedqa | 173 / 77 | 7.507e-05 | ok |
+| techqa | 141 / 109 | 6.507e-05 | ok |
+
+Draw 2's observed 2.9758e-04 on tatqa is **exactly one rank flip** (0.983 of its 3.027e-04 granularity). So on seven subsets the control is not a tolerance at all - it is a demand for bit-identical recomputation.
+
+**That demand is left standing.** Widening it to admit one flip would have masked the cross-card discrepancy this round, and Round 20's G1 episode is the standing lesson on what a coordinator-loosened guard costs. The obligation moves to the caller instead: **a per-item re-score runs on the card that produced the banked read**, and that rule is now written into the script that does it.
+
+#### Defect 2 - the skip guard
+
+`R22-H188_measure.sh` named `R22-H188_finqa_scores_draw<N>.npz`; the scorer writes `R21-H179_arena_scores_<checkpoint>.npz`. Corrected, with the card pinning added in the same edit.
+
+#### The finqa detail, now delivered - and it inverts on the reachable set
+
+The registration owed a finqa reading against the R22-H182 ceiling: **9 of 20 negatives reachable** by a derivation checker, 7 needing the question (outside any `(claim, evidence)` function), 4 label noise. finqa reads **0.60609** at k=2 against the flagship's k=6 **0.66192**, a delta of **-0.05583**.
+
+| group | n | mean score, flagship k=6 → H188 k=2 | moved DOWN | AUROC-loss contribution |
+|---|---|---|---|---|
+| **reachable 9** | 9 | -2.0516 → **-1.1691** (+0.8824) | **0 of 9** | 0.09812 → **0.15717** (+0.05906) |
+| needs-question 7 | 7 | -0.9480 → -0.5904 (+0.3576) | 2 of 7 | 0.18641 → 0.18859 (+0.00217) |
+| label-noise 4 | 4 | -2.0626 → -1.6013 (+0.4614) | 0 of 4 | 0.05355 → 0.04815 (-0.00540) |
+
+**Every one of the nine items the lane was built to fix moved the WRONG WAY.** These are unsupported responses; a derivation checker should push their support score DOWN. All nine went UP, by 0.88 on average, and their share of finqa's AUROC loss rose from 0.098 to 0.157. Under a fair-coin null the probability of 0 of 9 moving down is **0.00195**.
+
+The lane did not fail to teach the predicate. **It taught the model to be more confident that arithmetically false claims are supported** - on precisely the items whose only defect is a wrong computed result. That is the same shape as R20-H174's Gate A finding, where the lane built to reject bare discourse frames raised one vacuous item's score from +1.41 to +7.51.
+
+This does not select among the four candidate readings in the verdict block, and none of them is adopted here. It does add a fifth that the scale reading must now answer: a lane can move its target set in the wrong direction, in which case more of it is worse, not better - which is a second, independent argument against building the HiTab lane at volume.
+
+### R22-H190 ARITHMETIC-CAPABILITY PROBE SUITE - REGISTERED, bars fixed before any read (2026-08-18 ~02:50)
+
+Because R22-H188 killed a contract-conforming derivation lane at 4.0% of a 721,210-row mix, and because a fixed-depth encoder with a single scalar output has no mechanism for input-dependent carry propagation, **`num_derive` trained in ISOLATION will separate correct from incorrect arithmetic if and only if the architecture can hold the predicate at all** - which distinguishes "unlearnable" from "drowned", the two readings H188 cannot separate.
+
+**Author-ordered 2026-08-18 ~02:45 ("try that ... and several other approaches and see where we land").**
+
+#### Entirely off-arena
+
+No arena read, no blind read, no promotion path, no serving change. Diagnostic only. Nothing here can enter a ladder; a positive result licenses a registered arm, it is not one.
+
+#### The five conditions - all on `R22-H187_num_derive_lane.parquet`, 15,000 pairs
+
+Document-disjoint 80/20 split on `doc_id` across 5,749 documents, identical split for every condition, so the conditions are comparable to each other and no table is seen in both halves.
+
+| id | condition | what it isolates |
+|---|---|---|
+| **P1** | isolation baseline - `(claim, evidence)` pairs, full fine-tune, `Linear(d,1)` head, the flagship's own recipe | can the architecture learn the predicate when nothing competes for capacity |
+| **P2** | trunk FROZEN, head only | is the predicate already present in the pretrained representation, or must it be built |
+| **P3** | direction lane - same operands, claim asserts a RELATION (`exceeds` / `is below`) instead of a computed value | the 4 of 9 finqa items that need comparison, not arithmetic - architecturally the tractable half |
+| **P4** | 2-layer MLP head, otherwise P1 | is the single linear readout the bottleneck rather than the trunk |
+| **P5** | claim ONLY, evidence removed - the operands and the asserted result and nothing else | the purest arithmetic test: every retrieval, binding and distractor confound stripped out |
+
+**P5 is not a leak and must not be read as one.** In this construction the claim restates both operands by design, so the evidence is largely redundant and a claim-only read is a legitimate arithmetic probe rather than a shortcut. The contract's C5 control reads 0.5000 on this lane because a TF-IDF-plus-logistic probe cannot do arithmetic - not because the information is absent. P1 against P5 measures whether the evidence text helps or distracts.
+
+#### Bars, on held-out AUROC, chance 0.5 by construction
+
+- **LEARNABLE** - `>= 0.70`
+- **PARTIAL** - `0.55` to `0.70`
+- **NOT LEARNABLE** - `< 0.55`
+
+#### The decision this suite settles
+
+- **P5 NOT LEARNABLE** → the architecture cannot verify arithmetic even when handed the operands with every confound removed. **The author's standing rule fires: we do not pursue derivation.** H188's four candidate readings collapse to the representational one, and no scale ladder, no HiTab lane and no further supply is justified
+- **P5 LEARNABLE but P1 NOT** → the arithmetic is within reach but the evidence-reading path is not; the failure is binding and retrieval, not computation, and the next question is presentation rather than capability
+- **P1 LEARNABLE** → the predicate is holdable and H188 failed on mixture dynamics; a scale or curriculum arm becomes registrable, and Abacus-style digit-aligned embeddings become a sensible follow-on
+- **P3 LEARNABLE while P1 is not** → the tractable half is real and separable; a comparison-only lane targeting the 4 direction errors is registrable on its own, independent of the arithmetic question
+- **P2 at chance while P1 learns** → the predicate is built by fine-tuning, not surfaced from pretraining, which is the expected result and is recorded either way
+- **P4 materially above P1** → the readout was the bottleneck and the trunk was never the constraint
+
+#### Stratifications, free, computed from P1 and P5 predictions
+
+Held-out AUROC broken out by `result_digits` and by `neg_family` (`sum` 2,250, `product` 2,250, `difference` 5,250, `percentage` 5,250). **A monotone decay with digit count is the signature the depth argument predicts**, and its absence refutes that argument as the mechanism.
+
+### R22-H190 VERDICT: mmBERT CAN COMPARE NUMBERS AT 0.9997 AND CANNOT VERIFY ARITHMETIC AT ALL (2026-08-18 05:00, five conditions, ~1.5 GPU-h)
+
+**The author's standing rule fires. Derivation is abandoned campaign-wide.**
+
+| condition | what it asked | held-out AUROC | verdict |
+|---|---|---|---|
+| **P3 direction** | same operands, is the stated RELATION true | **0.99970** | **LEARNABLE** |
+| P1 isolation | `(claim, evidence)`, is the computed result right | 0.49930 | NOT LEARNABLE |
+| P2 frozen trunk | as P1, head only | 0.49995 | NOT LEARNABLE |
+| P4 deep head | as P1, 2-layer MLP readout | 0.49609 | NOT LEARNABLE |
+| **P5 clean** | operands and asserted result ONLY, every confound stripped | **0.50284** | **NOT LEARNABLE** |
+
+Identical document-disjoint split throughout - 4,599 training documents, 1,150 held out, balanced by construction, no table in both halves.
+
+#### P3 is the positive control and it validates the harness
+
+A model that learns nothing is also what a broken pipeline looks like, so the negative could not be trusted without a task the architecture certainly can learn, run through the same code. **P3 reads 0.99970 on 12,256 held-out rows.** Same trunk, same recipe, same split, same script, same operands - the only change is that the claim asserts `exceeds` / `is below` instead of a computed value. The harness is sound; the four chance readings are real.
+
+**This is a clean dissociation, and it is the round's most useful number.** Handed two figures inside a claim, the model tells which is larger essentially perfectly. Handed the same two figures and a stated result, it cannot tell whether the arithmetic is right, at chance, on every operation and every digit count:
+
+| by `result_digits` | 2 | 3 | 4 | 5 | 6 |
+|---|---|---|---|---|---|
+| P5 AUROC | 0.507 | 0.490 | 0.497 | 0.528 | 0.528 |
+
+| by `neg_family` | difference | percentage | product | sum |
+|---|---|---|---|---|
+| P5 AUROC | 0.494 | 0.501 | 0.515 | 0.520 |
+
+**There is no monotone decay with digit count, because there is nothing to decay from** - two-digit arithmetic fails as completely as six-digit. The registration named that decay as the signature the depth argument predicts; its absence means depth-limited carry propagation is NOT the operative mechanism, and the numbers are simply not being computed at any width. Training loss never left 0.693 = ln(2) in any of the four failing conditions: the model did not overfit and then fail to generalise, it never fit at all.
+
+#### What is settled, and what is not
+
+- **SETTLED** - this trunk does not verify arithmetic, and no presentation, head capacity or mixture change reaches it. P4 shows the readout was never the bottleneck; P5 shows retrieval, binding and distractor text were never the bottleneck either
+- **SETTLED** - R22-H188's four candidate readings collapse to the representational one. Scale is dead: more of an unlearnable task is not learning. The HiTab lane at volume is dead on a second, independent ground, and Abacus-style digit-aligned embeddings are not registrable off this evidence - they change how digits are positioned, not whether a fixed-depth encoder with one scalar output can execute an arithmetic algorithm
+- **NOT SETTLED, and recorded as a limitation** - P2 trained 769 parameters at LR 1e-5, far too slow for a linear probe to converge, so its reading is weak evidence about the pretrained representation and is not leaned on. The decision rests on P1, P4 and P5, each a full fine-tune
+- **OPENED** - the 4 of 20 finqa negatives classed `operands_present_direction_wrong` need comparison, not arithmetic, and P3 shows comparison is learnable to 0.9997 in isolation. A direction-only lane is now the only derivation-adjacent work this evidence supports. **NOT registered here** - it needs its own hypothesis, its own bars, and its own arm
+
+#### The economic residual
+
+The 9 reachable finqa items carry 0.09812 of that subset's AUROC deficit. On this evidence at most 4 of the 9 are addressable, and the remaining 5 - a genuinely wrong computed value over correct operands - are **out of reach of this architecture** and must be treated as a permanent ceiling rather than a target.
+
+### R22-H189 VERDICT: BOUNDED SMALL - the adversary does NOT earn the non-English holds (2026-08-18 05:13, one draw, ~5.5 GPU-h)
+
+**The campaign's first DANN ablation on its own trunk in 22 rounds. The belief that the non-English holds rest on the adversary is WITHDRAWN as unsupported.**
+
+The ablation fired unambiguously: final domain-head accuracy **0.908** against a 1/14 = 0.0714 chance floor, where the same recipe with the adversary on holds it at **0.327** across the paired run. The reversed gradient was removed, not merely reduced.
+
+| read | lambda 0 | k=6 mean | delta vs k=6 | paired draw (seed 1150) | delta vs pair | bar | outcome |
+|---|---|---|---|---|---|---|---|
+| **`ragtruth_nonen` (PRIMARY)** | **0.84360** | 0.84472 | **-0.00112** | 0.8443 | -0.00070 | LOAD-BEARING at or below 0.83366 | **BOUNDED SMALL** |
+| `gold_full` (secondary) | **0.86930** | 0.85862 | **+0.01068** | 0.8659 | +0.00340 | at or below 0.84013 | **BOUNDED SMALL** |
+| `ragtruth_en` | 0.81740 | 0.81420 | +0.00320 | 0.7967 | +0.02070 | reported | - |
+| arena mean | 0.70129 | 0.71218 | -0.01089 | 0.71436 | -0.01307 | floor 0.02355 | **UNRESOLVED** |
+
+**Removing a component that has run for 22 rounds costs nothing detectable on any registered read.** The non-English advantage moves by 0.00112 against its own 0.00512 across-draw noise. In-domain is 0.01068 HIGHER without the adversary. Every one of the seven languages holds: de 0.8493, fr 0.8279, es 0.8410, it 0.8411, pl 0.8407, hu 0.8349, cn 0.8701.
+
+The paired training telemetry says the same from inside: over 36 shared steps past the ramp, task loss differs by **+0.01264, SE 0.00701, t 1.80, 95% CI [-0.00110, +0.02639]** - not distinguishable from zero, on identical batches from a bit-identical initialisation.
+
+#### What this does and does NOT license
+
+- **DOES** - withdraw the standing claim that the non-English holds exist because the adversary earns them. That claim has been carried since Round 8 and is now unsupported. Its contribution to that hold is **bounded under 0.011**
+- **DOES NOT** - remove the adversary from the recipe. This is one draw. The registration fixed no promotion path in either direction, and the arena delta of -0.01089 sits inside its 0.02355 floor, so the arena question is UNRESOLVED, not answered. A k=2 confirmation is now **licensed and unspent**
+- **RECONCILES with R12-H123, and sharpens it** - the adversary suppresses its own discriminator hard (0.908 down to 0.327) while linear probes still recover corpus identity at 0.94-0.997 across the stack. It wins the contest it is in without removing the information. The coordinator's earlier characterisation "it erases nothing" was too strong and is corrected: it erases nothing *from the representation*, while decisively beating *its own head*

@@ -65,9 +65,22 @@ run_unless "$E/R22-H188_findver_read.json" \
   uv run python "$E/R22-H188_findver_read.py"
 
 # finqa detail - owed by the registration, reported against the 9-of-20 ceiling.
+#
+# The skip artifact is the one the SCORER actually writes. R21-H179_arena_scores.py
+# names its per-item dump after the CHECKPOINT, not after this arm, so a guard
+# spelled `R22-H188_finqa_scores_draw<N>.npz` names a file nothing ever creates
+# and can never skip. That was the original spelling and it is the defect.
+#
+# The scorer must run on the SAME CARD that produced the banked arena read for
+# that draw - draw 1 was read on GPU1 and draw 2 on GPU2. The fidelity control
+# compares per-item AUROC against the banked read at a 1e-4 tolerance, and a
+# cross-card re-score drifts past it (measured: draw 2 re-scored on GPU1 gave
+# tatqa |d| 2.98e-04 and aborted; the same draw on GPU2 is the control).
+declare -A READ_GPU=([1]=1 [2]=2)
 for d in 1 2; do
-  run_unless "$E/R22-H188_finqa_scores_draw${d}.npz" \
-    "finqa detail score, draw ${d}" \
+  run_unless "$E/R21-H179_arena_scores_R22-H188-arm-draw${d}.npz" \
+    "finqa detail score, draw ${d} (on GPU${READ_GPU[$d]}, the card that read it)" \
+    env CUDA_VISIBLE_DEVICES="${READ_GPU[$d]}" \
     uv run python "$E/R22-H188_finqa_detail.py" --stage score --draw "$d"
 done
 

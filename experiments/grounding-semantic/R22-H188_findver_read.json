@@ -1,0 +1,165 @@
+{
+  "experiment": "R22-H188 FinDVer PRIMARY read of the derivation-enhanced draws (measurement only, zero training)",
+  "registration": "docs/experiments/semantic-grounding-experiments.md, block 'R22-H188 DERIVATION-ENHANCED MIX' (2026-08-17 ~17:32)",
+  "lane": "experiments/grounding-semantic/R19_findver_lane.parquet",
+  "protocol": "untruncated evidence windowed 1500/750, claim scored vs every window, MAX over windows; claim-level rows so no min-over-sentences stage; frozen trunk + task head (R15_gate_common.load_ckpt/.score)",
+  "n_rows": 2400,
+  "n_pairs": 9569,
+  "mean_windows_per_row": 3.9871,
+  "per_draw": {
+    "h188d1": {
+      "checkpoint": "R22-H188-arm-draw1",
+      "ie": {
+        "auroc": 0.6534,
+        "thr": 0.307711,
+        "macro_f1": 0.6126,
+        "fp": 152,
+        "fn": 177,
+        "n_pos": 425,
+        "n_neg": 425,
+        "fp_rate": 0.3576,
+        "fn_rate": 0.4165,
+        "fp_share_of_errors": 0.462,
+        "halfsplit_macro_f1": 0.6374
+      },
+      "numeric": {
+        "auroc": 0.4871,
+        "thr": 0.294103,
+        "macro_f1": 0.4996,
+        "fp": 200,
+        "fn": 225,
+        "n_pos": 425,
+        "n_neg": 425,
+        "fp_rate": 0.4706,
+        "fn_rate": 0.5294,
+        "fp_share_of_errors": 0.4706,
+        "halfsplit_macro_f1": 0.4912
+      },
+      "knowledge": {
+        "auroc": 0.5309,
+        "thr": 0.196159,
+        "macro_f1": 0.5364,
+        "fp": 129,
+        "fn": 193,
+        "n_pos": 351,
+        "n_neg": 349,
+        "fp_rate": 0.3696,
+        "fn_rate": 0.5499,
+        "fp_share_of_errors": 0.4006,
+        "halfsplit_macro_f1": 0.5116
+      },
+      "overall": {
+        "auroc": 0.5595,
+        "thr": 0.294143,
+        "macro_f1": 0.5425,
+        "fp": 423,
+        "fn": 664,
+        "n_pos": 1201,
+        "n_neg": 1199,
+        "fp_rate": 0.3528,
+        "fn_rate": 0.5529,
+        "fp_share_of_errors": 0.3891,
+        "halfsplit_macro_f1": 0.5542
+      }
+    },
+    "h188d2": {
+      "checkpoint": "R22-H188-arm-draw2",
+      "ie": {
+        "auroc": 0.6354,
+        "thr": 0.244545,
+        "macro_f1": 0.5971,
+        "fp": 212,
+        "fn": 127,
+        "n_pos": 425,
+        "n_neg": 425,
+        "fp_rate": 0.4988,
+        "fn_rate": 0.2988,
+        "fp_share_of_errors": 0.6254,
+        "halfsplit_macro_f1": 0.6118
+      },
+      "numeric": {
+        "auroc": 0.4798,
+        "thr": 0.282305,
+        "macro_f1": 0.4831,
+        "fp": 207,
+        "fn": 232,
+        "n_pos": 425,
+        "n_neg": 425,
+        "fp_rate": 0.4871,
+        "fn_rate": 0.5459,
+        "fp_share_of_errors": 0.4715,
+        "halfsplit_macro_f1": 0.461
+      },
+      "knowledge": {
+        "auroc": 0.5596,
+        "thr": 0.118302,
+        "macro_f1": 0.5485,
+        "fp": 154,
+        "fn": 162,
+        "n_pos": 351,
+        "n_neg": 349,
+        "fp_rate": 0.4413,
+        "fn_rate": 0.4615,
+        "fp_share_of_errors": 0.4873,
+        "halfsplit_macro_f1": 0.5212
+      },
+      "overall": {
+        "auroc": 0.5575,
+        "thr": 0.249683,
+        "macro_f1": 0.5397,
+        "fp": 503,
+        "fn": 600,
+        "n_pos": 1201,
+        "n_neg": 1199,
+        "fp_rate": 0.4195,
+        "fn_rate": 0.4996,
+        "fp_share_of_errors": 0.456,
+        "halfsplit_macro_f1": 0.5508
+      }
+    }
+  },
+  "two_draw_mean": {
+    "ie": {
+      "auroc": 0.6444,
+      "fp": 364,
+      "fn": 304,
+      "fp_share_of_errors": 0.5437
+    },
+    "numeric": {
+      "auroc": 0.4834,
+      "fp": 407,
+      "fn": 457,
+      "fp_share_of_errors": 0.471
+    },
+    "knowledge": {
+      "auroc": 0.5453,
+      "fp": 283,
+      "fn": 355,
+      "fp_share_of_errors": 0.444
+    },
+    "overall": {
+      "auroc": 0.5585,
+      "fp": 926,
+      "fn": 1264,
+      "fp_share_of_errors": 0.4225
+    }
+  },
+  "numeric_vs_nonnumeric_mean": -0.1114,
+  "branch": "CONFIRMED",
+  "branch_note": "numeric < 0.65 and numeric < (ie+knowledge)/2 - 0.05 -> deficit derivation-specific off-arena; FinDVer-numeric banks as the standing non-arena mechanism instrument",
+  "operating_point": "macro-F1-optimal threshold on the 91-quantile grid fitted on the scored set itself (so the FP/FN split covers every row); the R7-H59 half-split macro-F1 is carried as halfsplit_macro_f1 for continuity",
+  "timestamp": "2026-08-17 23:52:15",
+  "read_path": "R20-H176_findver_read.py main(), reused unchanged with only DRAWS and OUT rebound",
+  "banked_branch_scope": "the `branch` / `branch_note` fields are R20-H176's own registered ladder for the FLAGSHIP instrument question; H188's bars (PRIMARY numeric >= 0.55, CONTROL ie/knowledge within 0.02, KILL < 0.52) are adjudicated by the coordinator from the numbers, not by this field",
+  "flagship_two_draw_mean": {
+    "ie": 0.66095,
+    "numeric": 0.49585,
+    "knowledge": 0.5838
+  },
+  "delta_vs_flagship": {
+    "ie": -0.01655,
+    "numeric": -0.01245,
+    "knowledge": -0.0385
+  },
+  "note": "Numbers recorded, not adjudicated - the coordinator adjudicates."
+}

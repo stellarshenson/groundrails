@@ -398,3 +398,22 @@ Spike controls 10/10 detected at 0 baseline hits on all five. Gate coverage 1.0 
 
 **Supply-only clause stands**: none of these five enters a training mix without its own registered hypothesis, its own arm, and bars fixed before the arena is read.
 
+
+### AUTHOR RULING - the HiTab licence is APPROVED (2026-08-17 ~23:10)
+
+The author has approved HiTab under the Computational Use of Data Agreement v1.0. The executor's reading stands as the operative one: clause 2.1 restricts the DATA to Computational Use, clause 5.1 defines that as activities enabling use of the data for analysis by a computer, and clause 2.2 places no restriction on Results - so a model trained on HiTab is unencumbered, and there is no non-commercial or research-only clause to carry. Recorded as an author decision, not an executor reading, and this is what a publication may cite.
+
+- **Scope of the approval** - the licence only; it does not launch a lane and does not waive any gate
+- **Gates already green** - contamination 0.0 max fraction against all ten walled arena subsets, spike control 10/10 detected at 0 baseline hits, licence sidecar present and carrying its token
+- **Usable supply** - 3,136 of 10,672 rows (29.4%) carry an aggregation operator, and all 3,136 also ship an Excel-style `answer_formula` naming the operand cells; the remaining 7,536 are lookup rows the mix already has in surplus
+- **The build stays gated on R22-H188** - unchanged by this ruling. If FinDVer-numeric moves off chance the HiTab lane is justified; if it does not, a larger lane of the same construction is the wrong response and the reason needs finding first
+- **Supply-only clause stands** - no registered hypothesis, no arm, no entry into a training mix
+
+### R22-H188 RESULT - the branch on the HiTab lane fires AGAINST building it (2026-08-18 00:55)
+
+The gate this wave's queued lane was placed behind has reported. **FinDVer-numeric two-draw mean 0.4834 against a 0.52 KILL bar** - the derivation lane did not install the predicate, and the arm is dead off-arena. Full verdict in `semantic-grounding-experiments.md`, block "R22-H188 VERDICT".
+
+- **The HiTab lane at volume is NOT built** - the branch was fixed in this document before the read: a bigger lane of the same construction is the wrong response when the first one does not move the instrument, and the reason needs finding first
+- **The author's licence approval is untouched** - it cleared the corpus for use and never ordered a build; the two decisions were kept separate for exactly this case, and HiTab remains available the moment a lane is justified
+- **The five fetched corpora stay as supply** - gates green, sidecars written, nothing entering a mix without its own registered hypothesis and arm
+- **What the wave did establish, and it holds** - of nineteen corpora examined only EQUATE/AWPNLI carries the signal labeled on both legs, so this capability is built rather than fetched. That finding is independent of H188's outcome
