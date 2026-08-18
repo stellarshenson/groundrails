@@ -1,0 +1,562 @@
+{
+  "arm": "R22 per-subset decomposition of the k=6 flagship arena read",
+  "licence": "MEASUREMENT ONLY - no bar, no gate, no promotion, no kill, and deliberately NO win/loss tally: the pricing convention is unset and selecting one with the numbers visible is an estimator choice after the fact. Reported so the author can set the convention.",
+  "banked_incumbent_convention": "native_truncated_auc",
+  "uniform_mean": {
+    "flagship_k6": 0.71218,
+    "incumbent": 0.67963,
+    "margin": 0.03255
+  },
+  "margin_concentration": {
+    "top2_subsets": [
+      "tatqa",
+      "delucionqa"
+    ],
+    "top2_margin_sum_over_10": 0.03761,
+    "total_margin": 0.03255,
+    "flagship_mean_excluding_top2": 0.68955,
+    "incumbent_mean_excluding_top2": 0.69588,
+    "margin_excluding_top2": -0.00633
+  },
+  "subset_blind_length_baseline": {
+    "definition": "AUROC of a trivial length feature against the arena label, ONE global direction for all ten subsets, uniform mean - the same aggregation the headline uses. Per-subset direction selection would be post-hoc and is not used for this figure.",
+    "per_feature": {
+      "resp_len": {
+        "uniform_mean_raw": 0.42761,
+        "oriented": 0.57239
+      },
+      "mean_sent": {
+        "uniform_mean_raw": 0.53109,
+        "oriented": 0.53109
+      },
+      "n_sent": {
+        "uniform_mean_raw": 0.40302,
+        "oriented": 0.59698
+      },
+      "ev_len": {
+        "uniform_mean_raw": 0.54699,
+        "oriented": 0.54699
+      },
+      "n_docs": {
+        "uniform_mean_raw": 0.50852,
+        "oriented": 0.50852
+      }
+    },
+    "best_feature": "n_sent",
+    "best_value": 0.59698,
+    "share_of_flagship_above_chance_lift": 0.4571
+  },
+  "per_subset": {
+    "covidqa": {
+      "n": 245,
+      "n_positive": 206,
+      "n_negative": 39,
+      "auc_per_draw": {
+        "d1": 0.7685,
+        "d2": 0.7458,
+        "d3": 0.7458,
+        "d4": 0.7646,
+        "d5": 0.7591,
+        "d6": 0.7671
+      },
+      "auc_k6_mean": 0.75851,
+      "sd_5df": 0.01034,
+      "min": 0.7458,
+      "max": 0.7685,
+      "spread": 0.0227,
+      "incumbent": {
+        "native_truncated_auc": 0.7432,
+        "chunked_auc": 0.7425,
+        "harness_auc": 0.7355
+      },
+      "margin_vs_banked_convention": 0.01531,
+      "margin_in_own_sd": 1.48,
+      "faithful_oracle_ceiling": 0.7549,
+      "headroom_to_ceiling": -0.00361,
+      "consensus_rank": {
+        "errors": 21,
+        "fn": 18,
+        "fp": 3,
+        "share_of_deficit": 0.2661
+      },
+      "consensus_threshold": {
+        "errors": 23,
+        "fn": 10,
+        "fp": 13,
+        "share_of_deficit": 0.4156
+      },
+      "rank_granularity": 0.000124,
+      "exposed_verbatim": 0,
+      "exposed_containment": 0,
+      "length_auroc": {
+        "resp_len": 0.4593,
+        "mean_sent": 0.4225,
+        "n_sent": 0.5135,
+        "ev_len": 0.5358,
+        "n_docs": 0.5
+      },
+      "length_best_oriented": 0.5775,
+      "rho_score_vs_n_sent": -0.194
+    },
+    "delucionqa": {
+      "n": 184,
+      "n_positive": 172,
+      "n_negative": 12,
+      "auc_per_draw": {
+        "d1": 0.8009,
+        "d2": 0.7888,
+        "d3": 0.8798,
+        "d4": 0.7718,
+        "d5": 0.892,
+        "d6": 0.827
+      },
+      "auc_k6_mean": 0.82671,
+      "sd_5df": 0.0494,
+      "min": 0.7718,
+      "max": 0.892,
+      "spread": 0.1202,
+      "incumbent": {
+        "native_truncated_auc": 0.7018,
+        "chunked_auc": 0.7016,
+        "harness_auc": 0.7929
+      },
+      "margin_vs_banked_convention": 0.12491,
+      "margin_in_own_sd": 2.53,
+      "faithful_oracle_ceiling": 0.6657,
+      "headroom_to_ceiling": -0.16101,
+      "consensus_rank": {
+        "errors": 5,
+        "fn": 5,
+        "fp": 0,
+        "share_of_deficit": 0.0699
+      },
+      "consensus_threshold": {
+        "errors": 4,
+        "fn": 3,
+        "fp": 1,
+        "share_of_deficit": 0.192
+      },
+      "rank_granularity": 0.000484,
+      "exposed_verbatim": 0,
+      "exposed_containment": 0,
+      "length_auroc": {
+        "resp_len": 0.5039,
+        "mean_sent": 0.3089,
+        "n_sent": 0.5751,
+        "ev_len": 0.6347,
+        "n_docs": 0.5
+      },
+      "length_best_oriented": 0.6911,
+      "rho_score_vs_n_sent": -0.531
+    },
+    "emanual": {
+      "n": 132,
+      "n_positive": 118,
+      "n_negative": 14,
+      "auc_per_draw": {
+        "d1": 0.6973,
+        "d2": 0.6586,
+        "d3": 0.6471,
+        "d4": 0.7143,
+        "d5": 0.612,
+        "d6": 0.7427
+      },
+      "auc_k6_mean": 0.67867,
+      "sd_5df": 0.04808,
+      "min": 0.612,
+      "max": 0.7427,
+      "spread": 0.1307,
+      "incumbent": {
+        "native_truncated_auc": 0.7694,
+        "chunked_auc": 0.77,
+        "harness_auc": 0.5999
+      },
+      "margin_vs_banked_convention": -0.09073,
+      "margin_in_own_sd": -1.89,
+      "faithful_oracle_ceiling": 0.816,
+      "headroom_to_ceiling": 0.13733,
+      "consensus_rank": {
+        "errors": 15,
+        "fn": 13,
+        "fp": 2,
+        "share_of_deficit": 0.2808
+      },
+      "consensus_threshold": {
+        "errors": 9,
+        "fn": 0,
+        "fp": 9,
+        "share_of_deficit": 0.4334
+      },
+      "rank_granularity": 0.000605,
+      "exposed_verbatim": 0,
+      "exposed_containment": 0,
+      "length_auroc": {
+        "resp_len": 0.3744,
+        "mean_sent": 0.7113,
+        "n_sent": 0.319,
+        "ev_len": 0.6774,
+        "n_docs": 0.5
+      },
+      "length_best_oriented": 0.7113,
+      "rho_score_vs_n_sent": -0.451
+    },
+    "expertqa": {
+      "n": 203,
+      "n_positive": 95,
+      "n_negative": 108,
+      "auc_per_draw": {
+        "d1": 0.7969,
+        "d2": 0.7822,
+        "d3": 0.7831,
+        "d4": 0.7399,
+        "d5": 0.7248,
+        "d6": 0.7557
+      },
+      "auc_k6_mean": 0.76374,
+      "sd_5df": 0.02816,
+      "min": 0.7248,
+      "max": 0.7969,
+      "spread": 0.0721,
+      "incumbent": {
+        "native_truncated_auc": 0.8098,
+        "chunked_auc": 0.7932,
+        "harness_auc": 0.6503
+      },
+      "margin_vs_banked_convention": -0.04606,
+      "margin_in_own_sd": -1.64,
+      "faithful_oracle_ceiling": 0.692,
+      "headroom_to_ceiling": -0.07174,
+      "consensus_rank": {
+        "errors": 6,
+        "fn": 3,
+        "fp": 3,
+        "share_of_deficit": 0.0969
+      },
+      "consensus_threshold": {
+        "errors": 19,
+        "fn": 13,
+        "fp": 6,
+        "share_of_deficit": 0.2636
+      },
+      "rank_granularity": 9.7e-05,
+      "exposed_verbatim": 0,
+      "exposed_containment": 0,
+      "length_auroc": {
+        "resp_len": 0.3889,
+        "mean_sent": 0.4886,
+        "n_sent": 0.3888,
+        "ev_len": 0.5094,
+        "n_docs": 0.4677
+      },
+      "length_best_oriented": 0.6112,
+      "rho_score_vs_n_sent": -0.217
+    },
+    "finqa": {
+      "n": 250,
+      "n_positive": 230,
+      "n_negative": 20,
+      "auc_per_draw": {
+        "d1": 0.6515,
+        "d2": 0.7135,
+        "d3": 0.6861,
+        "d4": 0.6687,
+        "d5": 0.6383,
+        "d6": 0.6135
+      },
+      "auc_k6_mean": 0.66192,
+      "sd_5df": 0.0355,
+      "min": 0.6135,
+      "max": 0.7135,
+      "spread": 0.1,
+      "incumbent": {
+        "native_truncated_auc": 0.6137,
+        "chunked_auc": 0.6143,
+        "harness_auc": 0.717
+      },
+      "margin_vs_banked_convention": 0.04822,
+      "margin_in_own_sd": 1.36,
+      "faithful_oracle_ceiling": 0.7348,
+      "headroom_to_ceiling": 0.07288,
+      "consensus_rank": {
+        "errors": 19,
+        "fn": 16,
+        "fp": 3,
+        "share_of_deficit": 0.2589
+      },
+      "consensus_threshold": {
+        "errors": 11,
+        "fn": 3,
+        "fp": 8,
+        "share_of_deficit": 0.3553
+      },
+      "rank_granularity": 0.000217,
+      "exposed_verbatim": 0,
+      "exposed_containment": 0,
+      "length_auroc": {
+        "resp_len": 0.5878,
+        "mean_sent": 0.6958,
+        "n_sent": 0.4336,
+        "ev_len": 0.5132,
+        "n_docs": 0.5
+      },
+      "length_best_oriented": 0.6958,
+      "rho_score_vs_n_sent": -0.337
+    },
+    "hagrid": {
+      "n": 250,
+      "n_positive": 212,
+      "n_negative": 38,
+      "auc_per_draw": {
+        "d1": 0.6423,
+        "d2": 0.6425,
+        "d3": 0.6058,
+        "d4": 0.6424,
+        "d5": 0.6545,
+        "d6": 0.6485
+      },
+      "auc_k6_mean": 0.63932,
+      "sd_5df": 0.01713,
+      "min": 0.6058,
+      "max": 0.6545,
+      "spread": 0.0487,
+      "incumbent": {
+        "native_truncated_auc": 0.7542,
+        "chunked_auc": 0.7547,
+        "harness_auc": 0.5992
+      },
+      "margin_vs_banked_convention": -0.11488,
+      "margin_in_own_sd": -6.71,
+      "faithful_oracle_ceiling": 0.7833,
+      "headroom_to_ceiling": 0.14398,
+      "consensus_rank": {
+        "errors": 37,
+        "fn": 24,
+        "fp": 13,
+        "share_of_deficit": 0.4648
+      },
+      "consensus_threshold": {
+        "errors": 27,
+        "fn": 7,
+        "fp": 20,
+        "share_of_deficit": 0.4888
+      },
+      "rank_granularity": 0.000124,
+      "exposed_verbatim": 0,
+      "exposed_containment": 15,
+      "length_auroc": {
+        "resp_len": 0.3928,
+        "mean_sent": 0.5007,
+        "n_sent": 0.362,
+        "ev_len": 0.5099,
+        "n_docs": 0.5184
+      },
+      "length_best_oriented": 0.638,
+      "rho_score_vs_n_sent": -0.489
+    },
+    "hotpotqa": {
+      "n": 250,
+      "n_positive": 233,
+      "n_negative": 17,
+      "auc_per_draw": {
+        "d1": 0.6766,
+        "d2": 0.6647,
+        "d3": 0.6751,
+        "d4": 0.6756,
+        "d5": 0.6789,
+        "d6": 0.5993
+      },
+      "auc_k6_mean": 0.6617,
+      "sd_5df": 0.03096,
+      "min": 0.5993,
+      "max": 0.6789,
+      "spread": 0.0796,
+      "incumbent": {
+        "native_truncated_auc": 0.6161,
+        "chunked_auc": 0.6173,
+        "harness_auc": 0.5976
+      },
+      "margin_vs_banked_convention": 0.0456,
+      "margin_in_own_sd": 1.47,
+      "faithful_oracle_ceiling": 0.5843,
+      "headroom_to_ceiling": -0.0774,
+      "consensus_rank": {
+        "errors": 19,
+        "fn": 17,
+        "fp": 2,
+        "share_of_deficit": 0.2096
+      },
+      "consensus_threshold": {
+        "errors": 6,
+        "fn": 1,
+        "fp": 5,
+        "share_of_deficit": 0.2735
+      },
+      "rank_granularity": 0.000252,
+      "exposed_verbatim": 16,
+      "exposed_containment": 102,
+      "length_auroc": {
+        "resp_len": 0.5148,
+        "mean_sent": 0.6354,
+        "n_sent": 0.3974,
+        "ev_len": 0.516,
+        "n_docs": 0.4979
+      },
+      "length_best_oriented": 0.6354,
+      "rho_score_vs_n_sent": -0.154
+    },
+    "pubmedqa": {
+      "n": 250,
+      "n_positive": 173,
+      "n_negative": 77,
+      "auc_per_draw": {
+        "d1": 0.5893,
+        "d2": 0.6298,
+        "d3": 0.6164,
+        "d4": 0.6636,
+        "d5": 0.5665,
+        "d6": 0.5759
+      },
+      "auc_k6_mean": 0.6069,
+      "sd_5df": 0.03669,
+      "min": 0.5665,
+      "max": 0.6636,
+      "spread": 0.0971,
+      "incumbent": {
+        "native_truncated_auc": 0.607,
+        "chunked_auc": 0.6065,
+        "harness_auc": 0.5162
+      },
+      "margin_vs_banked_convention": -0.0001,
+      "margin_in_own_sd": -0.0,
+      "faithful_oracle_ceiling": 0.7789,
+      "headroom_to_ceiling": 0.172,
+      "consensus_rank": {
+        "errors": 17,
+        "fn": 11,
+        "fp": 6,
+        "share_of_deficit": 0.1468
+      },
+      "consensus_threshold": {
+        "errors": 18,
+        "fn": 5,
+        "fp": 13,
+        "share_of_deficit": 0.1927
+      },
+      "rank_granularity": 7.5e-05,
+      "exposed_verbatim": 0,
+      "exposed_containment": 0,
+      "length_auroc": {
+        "resp_len": 0.3606,
+        "mean_sent": 0.5126,
+        "n_sent": 0.3653,
+        "ev_len": 0.5866,
+        "n_docs": 0.5
+      },
+      "length_best_oriented": 0.6394,
+      "rho_score_vs_n_sent": -0.263
+    },
+    "tatqa": {
+      "n": 250,
+      "n_positive": 236,
+      "n_negative": 14,
+      "auc_per_draw": {
+        "d1": 0.7842,
+        "d2": 0.8093,
+        "d3": 0.7243,
+        "d4": 0.839,
+        "d5": 0.7255,
+        "d6": 0.7896
+      },
+      "auc_k6_mean": 0.77865,
+      "sd_5df": 0.04585,
+      "min": 0.7243,
+      "max": 0.839,
+      "spread": 0.1147,
+      "incumbent": {
+        "native_truncated_auc": 0.5275,
+        "chunked_auc": 0.5275,
+        "harness_auc": 0.6156
+      },
+      "margin_vs_banked_convention": 0.25115,
+      "margin_in_own_sd": 5.48,
+      "faithful_oracle_ceiling": 0.8823,
+      "headroom_to_ceiling": 0.10365,
+      "consensus_rank": {
+        "errors": 7,
+        "fn": 6,
+        "fp": 1,
+        "share_of_deficit": 0.1617
+      },
+      "consensus_threshold": {
+        "errors": 3,
+        "fn": 1,
+        "fp": 2,
+        "share_of_deficit": 0.1975
+      },
+      "rank_granularity": 0.000303,
+      "exposed_verbatim": 0,
+      "exposed_containment": 0,
+      "length_auroc": {
+        "resp_len": 0.3879,
+        "mean_sent": 0.4961,
+        "n_sent": 0.3584,
+        "ev_len": 0.5521,
+        "n_docs": 0.6012
+      },
+      "length_best_oriented": 0.6416,
+      "rho_score_vs_n_sent": -0.368
+    },
+    "techqa": {
+      "n": 250,
+      "n_positive": 141,
+      "n_negative": 109,
+      "auc_per_draw": {
+        "d1": 0.7361,
+        "d2": 0.7309,
+        "d3": 0.7235,
+        "d4": 0.7566,
+        "d5": 0.7518,
+        "d6": 0.7751
+      },
+      "auc_k6_mean": 0.74567,
+      "sd_5df": 0.0191,
+      "min": 0.7235,
+      "max": 0.7751,
+      "spread": 0.0516,
+      "incumbent": {
+        "native_truncated_auc": 0.6536,
+        "chunked_auc": 0.5927,
+        "harness_auc": 0.6363
+      },
+      "margin_vs_banked_convention": 0.09207,
+      "margin_in_own_sd": 4.82,
+      "faithful_oracle_ceiling": 0.8682,
+      "headroom_to_ceiling": 0.12253,
+      "consensus_rank": {
+        "errors": 14,
+        "fn": 3,
+        "fp": 11,
+        "share_of_deficit": 0.1881
+      },
+      "consensus_threshold": {
+        "errors": 22,
+        "fn": 7,
+        "fp": 15,
+        "share_of_deficit": 0.2626
+      },
+      "rank_granularity": 6.5e-05,
+      "exposed_verbatim": 0,
+      "exposed_containment": 0,
+      "length_auroc": {
+        "resp_len": 0.3057,
+        "mean_sent": 0.539,
+        "n_sent": 0.3171,
+        "ev_len": 0.4348,
+        "n_docs": 0.5
+      },
+      "length_best_oriented": 0.6943,
+      "rho_score_vs_n_sent": -0.592
+    }
+  },
+  "note": "Read off banked artifacts only; nothing re-scored, no GPU. The length columns are a diagnostic motivating a registered test, not a verdict."
+}

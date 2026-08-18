@@ -347,12 +347,86 @@ The deliverable line, graduated on the 2-draw adjudication of 2026-08-13: the cl
 
 - **In-domain holds at k=6 (added 2026-08-17)** - both stay GREEN against their bars but with less room than the 2-draw figures implied: gold_full **0.85862** over the six endpoints (0.8659 / 0.8644 / 0.8682 / 0.8479 / 0.8517 / 0.8536) against a 0.84 bar, a margin of 0.0186 rather than 0.0252; RAGTruth non-EN **0.84472** (0.8443 / 0.8441 / 0.8444 / 0.8463 / 0.8526 / 0.8366) against a 0.82 bar. Source: the six flagship ingredients in `R20-H173_soup_result.json`
 
-- **Incumbent margin (CORRECTED 2026-08-15; RE-PRICED 2026-08-17 at k=6)** - **0.71218 vs lettucedetect-v2 scored under its own vendor convention at 0.67963 = +0.03255** (the superseded 2-draw figure was +0.0359). The per-subset win/loss counts below were computed against the 2-draw pair and its 2-draw seed spreads; they are NOT re-derived here and are marked provisional pending a k=6 re-count. The margin itself is the load-bearing number and is corrected. Prior wording, for the record: 0.71549 vs 0.67963 = **+0.0359**, **4 wins / 3 losses / 3 unresolved** when each subset is priced against its OWN two-draw seed spread (a flat ±0.005 band was used first and is withdrawn - it is 12x tighter than finqa's own 0.0620 spread). The losing subsets are hagrid (−0.1118), emanual (−0.0914) and expertqa (−0.0202 on the 2-draw pair; **−0.0460 at k=6**, 2.3x the published magnitude - expertqa's k=6 mean is 0.76377 against the 2-draw 0.78955. Corrected 2026-08-17; the tally itself stays un-re-derived because its pricing convention is unset and the two candidate conventions disagree, so choosing one now would be an estimator choice made with the numbers visible). **finqa is no longer a LOSS to the incumbent (+0.0688, but only 1.77 SE against its own 0.0620 seed spread - unresolved, not a demonstrated win)**. This retires the COMPARATIVE claim "finqa is the sole subset we lose" as a harness artifact. It does NOT touch the MECHANISM finding: R18-H157 measured derivation errors at 47-57% of finqa's total error mass in-model, which no baseline convention affects, under which the honest count was 8W/1L/1T rather than the 9/10 previously published. Evidence and per-subset table: `semantic-grounding-experiments.md` R19-H171, R19-H171b, and `R19_corrections_census.json`
+- **Incumbent margin (CORRECTED 2026-08-15; RE-PRICED 2026-08-17 at k=6)** - **0.71218 vs lettucedetect-v2 scored under its own vendor convention at 0.67963 = +0.03255** (the superseded 2-draw figure was +0.0359). The per-subset win/loss counts below were computed against the 2-draw pair and its 2-draw seed spreads. **The k=6 per-subset re-count is now supplied in full - see 'Per-subset decomposition of the k=6 flagship (2026-08-18)' below** - but it deliberately declares NO win/loss tally, for the reason given in the next sentence, so the counts here remain provisional and the convention remains an author call. The margin itself is the load-bearing number and is corrected. Prior wording, for the record: 0.71549 vs 0.67963 = **+0.0359**, **4 wins / 3 losses / 3 unresolved** when each subset is priced against its OWN two-draw seed spread (a flat ±0.005 band was used first and is withdrawn - it is 12x tighter than finqa's own 0.0620 spread). The losing subsets are hagrid (−0.1118), emanual (−0.0914) and expertqa (−0.0202 on the 2-draw pair; **−0.0460 at k=6**, 2.3x the published magnitude - expertqa's k=6 mean is 0.76377 against the 2-draw 0.78955. Corrected 2026-08-17; the tally itself stays un-re-derived because its pricing convention is unset and the two candidate conventions disagree, so choosing one now would be an estimator choice made with the numbers visible). **finqa is no longer a LOSS to the incumbent (+0.0688, but only 1.77 SE against its own 0.0620 seed spread - unresolved, not a demonstrated win)**. This retires the COMPARATIVE claim "finqa is the sole subset we lose" as a harness artifact. It does NOT touch the MECHANISM finding: R18-H157 measured derivation errors at 47-57% of finqa's total error mass in-model, which no baseline convention affects, under which the honest count was 8W/1L/1T rather than the 9/10 previously published. Evidence and per-subset table: `semantic-grounding-experiments.md` R19-H171, R19-H171b, and `R19_corrections_census.json`
 - **Selection exposure, recorded as a fact rather than a ruling** - 0.71549 is the highest 2-draw MEAN among promotion-adjudicated arms, selected across a campaign that took **48 blind arena reads** with no multiplicity correction. It is NOT the maximum over those reads: **9 of the 48 score higher**, the largest being 0.72788 (R18-H155 draw 2). The campaign already forbids this selection one level down (R19-H160 refused to promote a soup cell at 0.72150 because "selecting it because it happened to score well is selection on arena statistics"); the same objection at arm granularity is unaddressed and is an open item for the author
 - **Hold pricing, recorded as a measurement** - the anti-gaming hold's re-priced band is ±0.0127 (2 x SE_delta, an item bootstrap) while the flagship's own two draws span **0.0330** on that instrument (0.7817 / 0.7487). The band is 0.38x the spread it must discriminate, so the hold cannot resolve at a single draw under either its original 0.7565 form or the 0.7438 form. Draw 2 sits below the original bar and inside the re-priced one
 - **Draw spread (SUPERSEDED 2026-08-17)** - the 0.00225 two-draw spread read as "ten times tighter than the twin pair's 0.02425" was an n=2 artifact. Six same-recipe draws give a **per-draw sd of 0.00795 on 5 df** and a full spread of 0.02331 (0.70034 to 0.72365). The pair happened to be the tightest adjacent pair in the set
 - **Damage attribution** - the misbind lane's composition damage (H146, truncated regime) is ABSORBED under the protocol on hotpotqa and expertqa (both draws), UNRESOLVED at instrument power on emanual (2-draw at anchor parity; the subset carries 14 negatives)
 - **Target distance (CORRECTED 2026-08-17)** - 0.74 − 0.71218 = **0.02782** at the k=6 mean. The superseded figure against the 2-draw pair was 0.0245
+
+### Per-subset decomposition of the k=6 flagship (2026-08-18)
+
+This discharges the open item flagged above: the per-subset counts published with the flagship were computed against the 2-draw pair and its 2-draw spreads, and were marked provisional pending a k=6 re-count. Every column below is read off banked artifacts - nothing was re-scored, no GPU was touched.
+
+**Measurement only, and deliberately no win/loss tally.** The document already records that the per-subset pricing convention is unset and that the two candidate conventions disagree; choosing one now, with the numbers visible, would be an estimator choice made after the fact. The margin and the subset's own dispersion are both given so the author can set the convention against a complete table. Script `experiments/grounding-semantic/R22_per_subset_decomposition.py`, result `R22_per_subset_decomposition.json`.
+
+**Table A - the six draws, per subset.**
+
+| subset | n | pos/neg | d1 | d2 | d3 | d4 | d5 | d6 | k=6 mean | sd (5 df) | spread |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| hagrid | 250 | 212/38 | 0.6423 | 0.6425 | 0.6058 | 0.6424 | 0.6545 | 0.6485 | **0.63932** | 0.01713 | 0.0487 |
+| emanual | 132 | 118/14 | 0.6973 | 0.6586 | 0.6471 | 0.7143 | 0.6120 | 0.7427 | **0.67867** | 0.04808 | 0.1307 |
+| expertqa | 203 | 95/108 | 0.7969 | 0.7822 | 0.7831 | 0.7399 | 0.7248 | 0.7557 | **0.76374** | 0.02816 | 0.0721 |
+| pubmedqa | 250 | 173/77 | 0.5893 | 0.6298 | 0.6164 | 0.6636 | 0.5665 | 0.5759 | **0.60690** | 0.03669 | 0.0971 |
+| covidqa | 245 | 206/39 | 0.7685 | 0.7458 | 0.7458 | 0.7646 | 0.7591 | 0.7671 | **0.75851** | 0.01034 | 0.0227 |
+| hotpotqa | 250 | 233/17 | 0.6766 | 0.6647 | 0.6751 | 0.6756 | 0.6789 | 0.5993 | **0.66170** | 0.03096 | 0.0796 |
+| finqa | 250 | 230/20 | 0.6515 | 0.7135 | 0.6861 | 0.6687 | 0.6383 | 0.6135 | **0.66192** | 0.03550 | 0.1000 |
+| techqa | 250 | 141/109 | 0.7361 | 0.7309 | 0.7235 | 0.7566 | 0.7518 | 0.7751 | **0.74567** | 0.01910 | 0.0516 |
+| delucionqa | 184 | 172/12 | 0.8009 | 0.7888 | 0.8798 | 0.7718 | 0.8920 | 0.8270 | **0.82671** | 0.04940 | 0.1202 |
+| tatqa | 250 | 236/14 | 0.7842 | 0.8093 | 0.7243 | 0.8390 | 0.7255 | 0.7896 | **0.77865** | 0.04585 | 0.1147 |
+| **uniform mean** | 2264 | 1816/448 | 0.7144 | 0.7166 | 0.7087 | 0.7237 | 0.7003 | 0.7094 | **0.71218** | 0.00795 | 0.02331 |
+
+**Table B - against the incumbent, and against a perfect entailer.**
+
+| subset | k=6 mean | incumbent (banked) | incumbent (vendor chunked) | incumbent (our harness) | margin | margin / own sd | oracle ceiling | headroom |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| hagrid | 0.63932 | 0.7542 | 0.7547 | 0.5992 | **-0.1149** | -6.71 | 0.7833 | +0.1440 |
+| emanual | 0.67867 | 0.7694 | 0.7700 | 0.5999 | **-0.0907** | -1.89 | 0.8160 | +0.1373 |
+| expertqa | 0.76374 | 0.8098 | 0.7932 | 0.6503 | **-0.0461** | -1.64 | 0.6920 | -0.0717 |
+| pubmedqa | 0.60690 | 0.6070 | 0.6065 | 0.5162 | **-0.0001** | -0.00 | 0.7789 | +0.1720 |
+| covidqa | 0.75851 | 0.7432 | 0.7425 | 0.7355 | **+0.0153** | +1.48 | 0.7549 | -0.0036 |
+| hotpotqa | 0.66170 | 0.6161 | 0.6173 | 0.5976 | **+0.0456** | +1.47 | 0.5843 | -0.0774 |
+| finqa | 0.66192 | 0.6137 | 0.6143 | 0.7170 | **+0.0482** | +1.36 | 0.7348 | +0.0729 |
+| techqa | 0.74567 | 0.6536 | 0.5927 | 0.6363 | **+0.0921** | +4.82 | 0.8682 | +0.1225 |
+| delucionqa | 0.82671 | 0.7018 | 0.7016 | 0.7929 | **+0.1249** | +2.53 | 0.6657 | -0.1610 |
+| tatqa | 0.77865 | 0.5275 | 0.5275 | 0.6156 | **+0.2511** | +5.48 | 0.8823 | +0.1037 |
+| **uniform mean** | **0.71218** | **0.67963** | 0.67203 | 0.64605 | **+0.03255** | - | 0.7560 | +0.0439 |
+
+**Table C - error structure and confounds.**
+
+| subset | consensus errors | fn | fp | share of deficit | rank granularity | exposed verbatim | exposed contain. | best length AUROC | rho(score, sentences) |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| hagrid | **37** | 24 | 13 | 0.465 | 0.00012 | 0 | 15 | 0.6380 | -0.489 |
+| covidqa | **21** | 18 | 3 | 0.266 | 0.00012 | 0 | 0 | 0.5775 | -0.194 |
+| finqa | **19** | 16 | 3 | 0.259 | 0.00022 | 0 | 0 | 0.6958 | -0.337 |
+| hotpotqa | **19** | 17 | 2 | 0.210 | 0.00025 | 16 | 102 | 0.6354 | -0.154 |
+| pubmedqa | **17** | 11 | 6 | 0.147 | 0.00007 | 0 | 0 | 0.6394 | -0.263 |
+| emanual | **15** | 13 | 2 | 0.281 | 0.00060 | 0 | 0 | 0.7113 | -0.451 |
+| techqa | **14** | 3 | 11 | 0.188 | 0.00006 | 0 | 0 | 0.6943 | -0.592 |
+| tatqa | **7** | 6 | 1 | 0.162 | 0.00030 | 0 | 0 | 0.6416 | -0.368 |
+| expertqa | **6** | 3 | 3 | 0.097 | 0.00010 | 0 | 0 | 0.6112 | -0.217 |
+| delucionqa | **5** | 5 | 0 | 0.070 | 0.00048 | 0 | 0 | 0.6911 | -0.531 |
+| **total / mean** | **160** | 116 | 44 | 0.214 | - | 16 | 117 | 0.6536 | -0.360 |
+
+Column notes, so each is read for what it is:
+
+- **incumbent (banked)** - `native_truncated_auc`, the vendor's own single-pass convention, which is the 0.67963 the headline margin is taken against; the other two columns are carried so the comparison cannot be re-litigated by convention choice
+- **margin / own sd** - the margin expressed in units of the subset's own k=6 per-draw sd. One-sided: the incumbent is a deterministic single read with no dispersion of its own, so this measures only how large the gap is relative to OUR seed noise. It is a descriptive statistic, not a test
+- **oracle ceiling** - what a PERFECT entailer reaches through the shipped read machinery (sentence splitter, 8-document cap, 1500/750 windows), from `R12_label_ceiling_result.json:o4_windows_strict_auc`; not an abstract 1.0
+- **consensus errors** - items every one of the six draws gets wrong under the threshold-free rank definition, with the share of that subset's AUROC deficit they carry; a high share means the failure is reproducible rather than seed noise
+- **rank granularity** - 1/(n_pos x n_neg), the smallest non-zero AUROC change the subset can express (the fidelity-guard quantity from R22-H188)
+- **best length AUROC** - the best trivial length feature on that subset, direction-corrected per subset. Per-subset orientation is post-hoc and inflates; the honest subset-blind figure is given below
+
+**Five readings, in order of how much they should change what happens next.**
+
+- **The margin is two subsets.** tatqa (+0.2511) and delucionqa (+0.1249) contribute +0.03761 to a total margin of +0.03255. Removing them, the flagship reads 0.68955 against the incumbent's 0.69588 on the other eight - the incumbent is **ahead by 0.00633**. The lead over lettucedetect-v2 is not broad; it is two cells carrying a net-negative remainder
+- **The largest win is against a broken comparator.** The incumbent scores **0.5275 on tatqa**, effectively chance, under both of its own conventions. Our +0.2511 there measures the incumbent's failure at least as much as our capability, and a future incumbent version that merely reaches 0.65 on tatqa would erase most of the headline margin on its own
+- **Four subsets score above what a perfect entailer can reach.** delucionqa sits **+0.1610 above** its faithful-oracle ceiling, hotpotqa +0.0774, expertqa +0.0717, covidqa +0.0036. A grounding model cannot out-ground a perfect grounder through the same read, so on those four the score is being earned by something that is not entailment. delucionqa is one of the two subsets carrying the margin
+- **A trivial length rule recovers 46% of the above-chance lift.** With ONE global direction across all ten subsets and the same uniform-mean aggregation the headline uses, sentence count alone reads **0.59698** (`resp_len` 0.57239, `ev_len` 0.54699, `mean_sent` 0.53109, `n_docs` 0.50852). Against chance that is a lift of 0.09698 where the flagship's is 0.21218. The 6-draw mean score correlates negatively with sentence count on every subset (techqa −0.592, delucionqa −0.531, hagrid −0.489). This is **not** evidence the model is a length counter - the evidence-ablation test settled that, collapsing the mean 0.71218 → 0.54426 when each item's evidence is swapped for another's - and the coupling is partly intrinsic, since the arena label is "no sentence is unsupported" and a longer response has more chances to fail, while the shipped min-over-sentences read has the same shape by construction. What it does establish is that the arena's absolute level overstates how much grounding capability is under measurement, on both sides of the comparison, and it bounds what a better entailer can add. It is a diagnostic that motivates a registered test, not a verdict
+- **hagrid is the one concentrated, reachable failure.** Worst loss to the incumbent (−0.1149), the most consensus errors in the arena (**37**, next is 21), the highest share of deficit carried by them (**46.5%** against a 21.4% mean), and real headroom (+0.1440). Nearly half its deficit is a stable failure every draw reproduces. emanual is the same shape one size down (15 consensus errors, 28.1% of deficit, +0.1373 headroom). pubmedqa has the largest headroom of all (+0.1720) but only 14.7% of its deficit is consensus error, so its failure is **diffuse** and offers a targeted lane nothing to aim at. finqa's +0.0729 headroom is now known unreachable: R22-H182 established the subset is not a grounding test, and R22-H190 established the architecture cannot verify arithmetic at all
+
+**One structural caveat on the two subsets carrying the margin.** The five subsets with fewer than 21 negatives (delucionqa 12, emanual 14, tatqa 14, hotpotqa 17, finqa 20) show a mean across-seed spread of 0.1090; the five with 38 or more show 0.0584 - **1.9x wider on the thin half**. Both margin-carrying subsets are in the thin half (delucionqa spread 0.1202, tatqa 0.1147, against covidqa's 0.0227). The lead rests on the two noisiest cells in the arena.
+
 
 ### Superseded clean configuration (R9-H105, 2026-08-04) - no private data in training
 
@@ -510,9 +584,10 @@ Three of these are first-class results from rounds 7-8, not caveats: the shipped
 - **Tabular and numeric evidence was a coverage gap, and only partly closed** - `finqa` scored 0.3974, below chance, until RAGBench supervision took it to 0.7433; truncation was hypothesised and refuted (512 → 2048 barely moved it, and `techqa`, which carries the longest documents, got worse). The shipped cascade has had no tabular supervision at all and has never been measured on tabular evidence
 - **Overlap residual - the lever has now been pulled** - the earlier reading, that a fine-tuned cross-encoder was the untried next lever, is superseded: it was built (Candidate successor) and it wins in-domain by +0.14 AUC while losing 0.0505 on blind data. The residual is now a blind-generalisation and data-coverage problem, not an untried architecture
 - **Data-bound - the earlier figure understated it** - "~639 source contexts" is superseded by ~39 independent components; the binding constraint is independent evidence, not claim count
+- **The incumbent margin is concentrated in two subsets, and the arena level is length-confounded (2026-08-18)** - tatqa and delucionqa contribute +0.03761 of the +0.03255 total; on the other eight the incumbent leads by 0.00633. The largest component is a comparator failure (incumbent 0.5275 on tatqa, near chance). Separately, a subset-blind sentence-count rule reads 0.59698 on the arena, 46% of the flagship's above-chance lift - partly intrinsic to a label defined as 'no sentence is unsupported', but it bounds how much of the arena number reflects grounding capability on either side. Neither finding moves the recipe or any verdict; both constrain how the margin may be quoted. Full table in the per-subset decomposition section
 - **Scope** - tuned for paraphrased omission/fabrication hallucinations against retrieved-doc evidence; present-but-contradicted negatives are where the lexical track's contradiction signal earns its place (excluded here by design)
 - **Non-English is unmeasured on our own data** - 26-44 claims per language at base rates 0.885-0.973; the only usable non-English measurement comes from RAGTruth's parallel translations, whose labels carry ~1/3 machine-translation noise
-- **`delucionqa` is an open capability gap** - the one blind subset that direct supervision did not fix, still -0.1139 against the incumbent
+- **`delucionqa` - the capability-gap reading is WITHDRAWN 2026-08-18, and replaced by the opposite concern.** The -0.1139 was scored against the incumbent's superseded harness read (0.7929); under the vendor's own convention the incumbent reads 0.7018 and the flagship's k=6 mean is **0.82671, a +0.1249 win**. It is now one of the two subsets carrying the entire incumbent margin. The live concern is the reverse of a capability gap: delucionqa scores **0.1610 ABOVE its faithful-oracle ceiling**, so part of that win is not entailment, and it carries the arena's second-widest across-seed spread (0.1202) on 12 negatives. See the per-subset decomposition
 
 ## FAQ
 
