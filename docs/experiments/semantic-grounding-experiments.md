@@ -5785,9 +5785,84 @@ The SOTA document carried an explicit open item: the per-subset win/loss counts 
 
 - **Margin concentration** - tatqa (+0.2511) and delucionqa (+0.1249) contribute +0.03761 to a total margin of +0.03255. Excluding them the flagship reads 0.68955 against the incumbent's 0.69588: the incumbent leads the other eight by 0.00633
 - **The largest component is a comparator failure** - the incumbent reads 0.5275 on tatqa under both of its own conventions, effectively chance
-- **Four subsets exceed the faithful-oracle ceiling** - delucionqa +0.1610, hotpotqa +0.0774, expertqa +0.0717, covidqa +0.0036 above what a perfect entailer reaches through the shipped read. A grounder cannot out-ground a perfect grounder through the same machinery, so those scores are not being earned by entailment alone
+- **Four subsets exceed the STRICT single-window oracle** - delucionqa +0.1610, hotpotqa +0.0774, expertqa +0.0717, covidqa +0.0036. **SUPERSEDED 2026-08-19 by R23-H192 q5** - the clause "not being earned by entailment alone" is withdrawn as overstated. 0.7560 is the STRICT oracle (single-window support required); the LENIENT oracle reads 0.9444 pooled and 1.0000 on delucionqa and covidqa, and those four subsets hold the largest strict-vs-lenient gaps in the arena. Composing partial support across windows explains the excess without abandoning entailment
 - **Length confound, quantified subset-blind** - one global direction, uniform mean over the ten subsets: `n_sent` 0.59698, `resp_len` 0.57239, `ev_len` 0.54699, `mean_sent` 0.53109, `n_docs` 0.50852. The best trivial feature is 46% of the flagship's above-chance lift (0.09698 of 0.21218). The 6-draw mean score correlates negatively with sentence count on all ten subsets (techqa −0.592, delucionqa −0.531, hagrid −0.489). Read with two constraints: R21-H179Q's evidence-ablation already proved the model reads evidence (0.71218 → 0.54426 under evidence swap), and the coupling is partly intrinsic because the label is "no sentence is unsupported" while the shipped read is a min over sentences. The claim this supports is bounded: the arena's absolute level overstates measured grounding capability on BOTH sides, and a better entailer's headroom is correspondingly smaller. **A registered test is owed before any stronger reading is taken**
 - **hagrid is the concentrated reachable failure** - worst loss (−0.1149), most consensus errors (37 vs a next-highest 21), highest share of deficit carried by them (46.5% vs a 21.4% mean), headroom +0.1440. emanual is the same shape smaller (15, 28.1%, +0.1373). pubmedqa has the largest headroom (+0.1720) but only 14.7% consensus share - a diffuse failure with nothing for a targeted lane to aim at. finqa's +0.0729 is unreachable per R22-H182 (not a grounding test) and R22-H190 (no arithmetic capability at any width)
 - **Thin-negative variance** - the five subsets with under 21 negatives average 0.1090 across-seed spread against 0.0584 for the five with 38 or more, 1.9x wider. Both margin-carrying subsets are in the thin half
 
 **Consequence for the record** - the SOTA `delucionqa` limitation ("open capability gap, still −0.1139 against the incumbent") is WITHDRAWN: it was scored against the incumbent's superseded harness read. Under the vendor convention delucionqa is a +0.1249 win, and the live concern is that it sits 0.1610 above its own oracle ceiling. Corrected in place in the SOTA with a dated marker; this block is the evidence.
+
+---
+
+## R23-P-D WINDOW-LEVEL AGGREGATION HEADROOM - REGISTERED, threshold fixed before any read (2026-08-19 ~10:45)
+
+**Why this is not closed by P-B or P-C.** R9's precursors closed the aggregation question over SENTENCES: P-B killed sentence exclusion by oracle bound, P-C found hard-min the optimal fixed aggregator and stated "every aggregation-softening lever - learned or fixed, gated or global - on top of per-sentence windowed scores" is closed. Both ran on `R9_PC_windowed_dump.json`, whose records carry `sent_scores` only - per-sentence values in which the max over windows had ALREADY been taken. The aggregator INSIDE a sentence, across its windows, has never been measured. `R16-H142_G1_arm.score_sets` takes it as `scatter_reduce(reduce="amax")`, unexamined since R8-H101.
+
+**Why it matters now.** `R12_label_ceiling_result.json` measures two oracles and the campaign has been quoting the wrong one. The ladder: annotation labels alone 1.0000, plus splitter 0.9462, plus the 8-document cap 0.9444, plus windows **lenient** 0.9444, plus windows **strict 0.7560**. Every bit of ceiling loss is the strict single-window requirement - **0.1884** - while the splitter costs 0.0538 and the document cap 0.0018. 1,292 supported sentences have no single window supporting them and 1,234 are supported across multiple documents. The artifact's own words: the strict figure "is not an upper bound on achievable AUC" and this label/aggregation combination "actively PENALISES faithfulness".
+
+**Claim** - because a sentence's support is frequently spread across windows that `amax` cannot combine, and because the lenient oracle recovers 0.1884 of ceiling over the strict one, some fixed window-level aggregator other than max will read at least +0.010 above max on the blind arena mean.
+
+**Threshold, fixed before any read** - NOT FIRED unless some fixed window-level aggregator reads >= max + 0.010 blind mean. This is P-C's own bar, reused verbatim so the two precursors are commensurable.
+
+**Discipline, binding:**
+
+- **This is a HEADROOM measurement, not a selection.** Firing licenses a registered arm with its own bars and a NON-arena selection surface; it promotes nothing and changes no serving path
+- **Subset-level-best is non-registrable** - P-C recorded a +0.0045 subset-best ceiling and refused it as selection on the benchmark; the same refusal applies here and is stated in advance
+- **Fidelity control** - the `max` aggregator MUST reproduce the checkpoint's banked per-subset AUCs before any other aggregator counts. R22-H188 established that a cross-card re-score drifts past a 1e-4 tolerance by one rank flip, so the dump runs on GPU1, the card that produced draw 1's banked read
+- **No training.** Deterministic read on the banked `models/R18-H150-arm-draw1`; ~1 GPU-hour, no promotion path in either direction
+
+**Aggregators measured** (all fixed, all subset-blind, all computable from one dump): max (the incumbent read), mean, top-2 mean, top-3 mean, noisy-OR over sigmoids, log-sum-exp at tau 0.5/1/2, and the count of windows above the operating threshold. Selection among them, if the threshold fires, is a later question decided off-arena.
+
+**Artifacts** - `R23-H193_window_agg_dump.py` (dump), `R23-H193_window_agg_headroom.py` (read), `R23-H193_window_agg_dump.npz`, `R23-H193_window_agg_result.json`, `logs/R23-H193_window_agg.log`.
+
+**R23-P-D - result. NOT FIRED; the window-level aggregator is not a lever either, and the aggregation line is now closed at BOTH levels (2026-08-19 09:32, ~9 GPU-minutes)**
+
+Per-(sentence, window) logits dumped for banked flagship draw 1 on GPU1, 77,171 pairs over 8,277 sentences. **Fidelity control PASS** - the `max` aggregator reproduced the banked per-subset AUCs at worst |d| 5.00e-05 against a 1e-4 tolerance, and its blind mean recomputes 0.71435 against the banked 0.71436.
+
+| window aggregator | blind mean | vs max |
+|---|---|---|
+| top2_mean | 0.71988 | +0.00553 |
+| logsumexp tau 0.5 | 0.71693 | +0.00258 |
+| **max (incumbent read)** | **0.71435** | **+0.00000** |
+| logsumexp tau 1 | 0.71333 | −0.00102 |
+| top3_mean | 0.71270 | −0.00165 |
+| noisy_or | 0.70943 | −0.00492 |
+| logsumexp tau 2 | 0.69625 | −0.01810 |
+| mean | 0.67681 | −0.03754 |
+| count_windows_positive | 0.60230 | −0.11205 |
+
+- **Verdict - NOT FIRED.** The pre-registered bar was max + 0.010; the best non-max aggregator, `top2_mean`, reads **+0.00553**. The bar was set before any read precisely so that a sub-bar positive could not be talked into a lever afterwards, and it is not being talked into one now. **No salvage, no re-pricing, no subset-level selection** - P-C refused its own +0.0045 subset-best ceiling and the same refusal was stated in this registration in advance
+- **What this closes**: together with P-B (sentence exclusion, dead by oracle bound) and P-C (sentence-level softening, headroom +0.0000), the aggregation question is now closed at BOTH levels. P-C's claim to have closed "every aggregation-softening lever" was true only of the sentence level - its dump had already taken the window max - and that gap is now measured rather than assumed
+- **The interpretive point, which matters more than the verdict.** R12's lenient oracle sits 0.1884 above the strict one, so cross-window composition is worth a great deal in principle. No fixed window aggregator captures it: the best of nine recovers 0.00553 of that 0.1884, i.e. **3%**. The lenient oracle decides which windows jointly support a sentence using the TRUE labels; a fixed formula cannot, and the measured result is that the information needed to compose is **not present in the per-window scores themselves**. The composition headroom is therefore a per-pair SCORING-QUALITY problem or a learned-composer problem, not a formula problem - which is where R9 already handed the residual (Modes B/C), and where R16-H140's learned readout was aimed before it was killed on other grounds
+- **Caveat, stated rather than buried** - the aggregator comparison is deterministic given this checkpoint (one dump, one set of scores, no seed noise between rows), but it rests on ONE checkpoint. The ranking is unreplicated across draws and nothing here licenses a claim about aggregator ordering in general
+- **Artifacts** - `R23-H193_window_agg_dump.py`, `R23-H193_window_agg_dump.npz`, `R23-H193_window_agg_result.json`, `logs/R23-H193_window_agg.log`
+
+---
+
+## R23-H194 SENTENCE-LEVEL SCORING QUALITY - MEASUREMENT ONLY, no bar (2026-08-19 ~11:20, CPU)
+
+P-D handed the residual to per-pair scoring quality, R9 handed its residual to the same place (Modes B/C), and R16-H140's readout was aimed there. Three lines converge on a quantity **the campaign has never measured**: the arena has only ever been scored at the RESPONSE level. This measures the layer underneath - given one response sentence and the evidence, how well does the model separate sentences annotators marked supported from those they marked unsupported.
+
+Scores are the shipped per-sentence values (max over that sentence's windows) taken from the P-D dump on banked flagship draw 1; labels are `unsupported_response_sentence_keys`, the field R12 established is populated on all ten subsets. Nothing re-scored, no GPU. **No bar and no pre-registered threshold, deliberately - nothing may be selected on this.**
+
+| subset | sentence AUROC | response AUROC (k=6) | difference | labelled | dropped | unsupported |
+|---|---|---|---|---|---|---|
+| finqa | 0.5276 | 0.6619 | −0.1343 | 265 | 298 | 14 |
+| hagrid | 0.5816 | 0.6393 | −0.0577 | 472 | 65 | 53 |
+| hotpotqa | 0.6315 | 0.6617 | −0.0302 | 285 | 8 | 18 |
+| pubmedqa | 0.6475 | 0.6069 | +0.0406 | 1271 | 43 | 174 |
+| emanual | 0.6828 | 0.6787 | +0.0041 | 731 | 17 | 36 |
+| tatqa | 0.6876 | 0.7786 | −0.0911 | 359 | 109 | 15 |
+| techqa | 0.7470 | 0.7457 | +0.0013 | 1678 | 59 | 585 |
+| expertqa | 0.7815 | 0.7637 | +0.0178 | 1250 | 53 | 453 |
+| delucionqa | 0.7870 | 0.8267 | −0.0397 | 895 | 34 | 17 |
+| covidqa | 0.7976 | 0.7585 | +0.0391 | 375 | 10 | 43 |
+| **uniform mean** | **0.6872** | **0.7122** | **−0.0250** | 7,581 | 696 | 1,408 |
+
+- **The base layer is weak, and it is the binding constraint.** Per-sentence discrimination is **0.6872**. Every aggregation the campaign has tested sits on top of that number, and no aggregation can create discrimination that is not there. This is now measured rather than inferred from three converging residuals
+- **The aggregation is not destroying signal - it is adding some.** Response-level reads **0.0250 ABOVE** sentence-level. The min over sentences is not a lossy compression of good per-sentence judgement; it is a partly compensating operator, consistent with R22's finding that the min correlates with response length and that the arena label ("no sentence is unsupported") is itself length-coupled
+- **hagrid is near chance at the base layer too** - 0.5816 on 472 labelled sentences with 53 unsupported. R23-H192 found no length-free signal on hagrid at the response level; the sentence level says the same thing one layer down, so that hole is a scoring failure and not an aggregation artifact. finqa at 0.5276 is consistent with R22-H182 (not a grounding test) and R22-H190 (no arithmetic capability)
+- **Coverage, and where it is thin** - 7,581 of 8,277 sentences carry a label (91.6%); sentences mapping to no annotation are DROPPED, never guessed. Two subsets are thin enough to weaken their own row: **finqa drops 298 of 563 (53%)** and **tatqa drops 109 of 468 (23%)**, so those two sentence-level figures rest on possibly biased remainders and should not be leaned on. The other eight drop under 12%
+- **Caveats** - one checkpoint, unreplicated across draws; and the sentence label is annotator support, a stricter and different target from the response label the arena scores, so the two columns are related but not the same quantity measured twice
+- **Consequence for the campaign** - the route to a materially higher arena number runs through per-(sentence, evidence) judgement quality, not through the read, the aggregation, or a targeted subset lane. P-B, P-C and P-D have now closed the formula routes at every level, and this is the number they all hand off to
+- **Artifacts** - `R23-H194_sentence_quality.py`, `R23-H194_sentence_quality.json`

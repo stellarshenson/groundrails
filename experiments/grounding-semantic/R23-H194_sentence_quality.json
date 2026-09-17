@@ -1,0 +1,127 @@
+{
+  "arm": "R23-H194 sentence-level scoring quality",
+  "licence": "MEASUREMENT ONLY - no bar, no gate, no promotion, no kill, and no pre-registered threshold, because nothing may be selected on it. Any lever this motivates needs its own registration and a non-arena selection surface.",
+  "source": {
+    "scores": "R23-H193_window_agg_dump.npz (banked flagship draw 1, max over each sentence's windows - the shipped per-sentence score)",
+    "labels": "unsupported_response_sentence_keys, the field R12 established is populated on all ten subsets"
+  },
+  "coverage": {
+    "sentences": 8277,
+    "unmapped": 696,
+    "supported": 6173,
+    "unsupported": 1408,
+    "labelled_share": 0.9159
+  },
+  "uniform_mean": {
+    "sentence_auroc": 0.68717,
+    "response_auroc_k6": 0.71218,
+    "difference": -0.02501
+  },
+  "per_subset": {
+    "covidqa": {
+      "sentences_scored": 385,
+      "sentences_labelled": 375,
+      "sentences_unmapped_dropped": 10,
+      "supported": 332,
+      "unsupported": 43,
+      "sentence_auroc": 0.79756,
+      "response_auroc_k6": 0.75851,
+      "sentence_minus_response": 0.03905
+    },
+    "delucionqa": {
+      "sentences_scored": 929,
+      "sentences_labelled": 895,
+      "sentences_unmapped_dropped": 34,
+      "supported": 878,
+      "unsupported": 17,
+      "sentence_auroc": 0.78702,
+      "response_auroc_k6": 0.82671,
+      "sentence_minus_response": -0.03969
+    },
+    "emanual": {
+      "sentences_scored": 748,
+      "sentences_labelled": 731,
+      "sentences_unmapped_dropped": 17,
+      "supported": 695,
+      "unsupported": 36,
+      "sentence_auroc": 0.68281,
+      "response_auroc_k6": 0.67867,
+      "sentence_minus_response": 0.00414
+    },
+    "expertqa": {
+      "sentences_scored": 1303,
+      "sentences_labelled": 1250,
+      "sentences_unmapped_dropped": 53,
+      "supported": 797,
+      "unsupported": 453,
+      "sentence_auroc": 0.7815,
+      "response_auroc_k6": 0.76374,
+      "sentence_minus_response": 0.01776
+    },
+    "finqa": {
+      "sentences_scored": 563,
+      "sentences_labelled": 265,
+      "sentences_unmapped_dropped": 298,
+      "supported": 251,
+      "unsupported": 14,
+      "sentence_auroc": 0.5276,
+      "response_auroc_k6": 0.66192,
+      "sentence_minus_response": -0.13432
+    },
+    "hagrid": {
+      "sentences_scored": 537,
+      "sentences_labelled": 472,
+      "sentences_unmapped_dropped": 65,
+      "supported": 419,
+      "unsupported": 53,
+      "sentence_auroc": 0.58162,
+      "response_auroc_k6": 0.63932,
+      "sentence_minus_response": -0.0577
+    },
+    "hotpotqa": {
+      "sentences_scored": 293,
+      "sentences_labelled": 285,
+      "sentences_unmapped_dropped": 8,
+      "supported": 267,
+      "unsupported": 18,
+      "sentence_auroc": 0.6315,
+      "response_auroc_k6": 0.6617,
+      "sentence_minus_response": -0.0302
+    },
+    "pubmedqa": {
+      "sentences_scored": 1314,
+      "sentences_labelled": 1271,
+      "sentences_unmapped_dropped": 43,
+      "supported": 1097,
+      "unsupported": 174,
+      "sentence_auroc": 0.64747,
+      "response_auroc_k6": 0.6069,
+      "sentence_minus_response": 0.04057
+    },
+    "tatqa": {
+      "sentences_scored": 468,
+      "sentences_labelled": 359,
+      "sentences_unmapped_dropped": 109,
+      "supported": 344,
+      "unsupported": 15,
+      "sentence_auroc": 0.6876,
+      "response_auroc_k6": 0.77865,
+      "sentence_minus_response": -0.09105
+    },
+    "techqa": {
+      "sentences_scored": 1737,
+      "sentences_labelled": 1678,
+      "sentences_unmapped_dropped": 59,
+      "supported": 1093,
+      "unsupported": 585,
+      "sentence_auroc": 0.74701,
+      "response_auroc_k6": 0.74567,
+      "sentence_minus_response": 0.00134
+    }
+  },
+  "caveats": [
+    "one checkpoint (banked flagship draw 1) - unreplicated across draws",
+    "sentences mapping to no annotation are DROPPED, not guessed; the dropped count is reported per subset and is not small on every subset",
+    "the sentence label is annotator support, which is a different and stricter target than the response label the arena scores"
+  ]
+}

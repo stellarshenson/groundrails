@@ -1,0 +1,267 @@
+{
+  "arm": "R23-H193 / precursor P-D - window-level aggregation headroom",
+  "licence": "MEASUREMENT ONLY. A fired threshold licenses a REGISTERED arm with its own bars and a NON-arena selection surface; it promotes nothing and changes no serving path. Subset-level-best selection is non-registrable, stated in advance, per P-C's own refusal of its +0.0045 subset-best ceiling.",
+  "checkpoint": "R18-H150-arm-draw1",
+  "read_gpu": "1",
+  "threshold": 0.01,
+  "threshold_provenance": "P-C's bar, reused verbatim so the two precursors compare",
+  "fidelity_control": {
+    "tolerance": 0.0001,
+    "worst_abs_delta": 5e-05,
+    "pass": true,
+    "per_subset": {
+      "covidqa": {
+        "banked": 0.7685,
+        "recomputed": 0.76848,
+        "abs_delta": 2e-05,
+        "pass": true
+      },
+      "delucionqa": {
+        "banked": 0.8009,
+        "recomputed": 0.80087,
+        "abs_delta": 3e-05,
+        "pass": true
+      },
+      "emanual": {
+        "banked": 0.6973,
+        "recomputed": 0.69734,
+        "abs_delta": 4e-05,
+        "pass": true
+      },
+      "expertqa": {
+        "banked": 0.7969,
+        "recomputed": 0.79688,
+        "abs_delta": 2e-05,
+        "pass": true
+      },
+      "finqa": {
+        "banked": 0.6515,
+        "recomputed": 0.65152,
+        "abs_delta": 2e-05,
+        "pass": true
+      },
+      "hagrid": {
+        "banked": 0.6423,
+        "recomputed": 0.64225,
+        "abs_delta": 5e-05,
+        "pass": true
+      },
+      "hotpotqa": {
+        "banked": 0.6766,
+        "recomputed": 0.6766,
+        "abs_delta": 0.0,
+        "pass": true
+      },
+      "pubmedqa": {
+        "banked": 0.5893,
+        "recomputed": 0.5893,
+        "abs_delta": 0.0,
+        "pass": true
+      },
+      "tatqa": {
+        "banked": 0.7842,
+        "recomputed": 0.7842,
+        "abs_delta": 0.0,
+        "pass": true
+      },
+      "techqa": {
+        "banked": 0.7361,
+        "recomputed": 0.73609,
+        "abs_delta": 1e-05,
+        "pass": true
+      }
+    }
+  },
+  "baseline_max_mean": 0.71435,
+  "ladder": [
+    {
+      "aggregator": "top2_mean",
+      "mean": 0.71988,
+      "delta_vs_max": 0.00553
+    },
+    {
+      "aggregator": "logsumexp_tau0.5",
+      "mean": 0.71693,
+      "delta_vs_max": 0.00258
+    },
+    {
+      "aggregator": "max",
+      "mean": 0.71435,
+      "delta_vs_max": 0.0
+    },
+    {
+      "aggregator": "logsumexp_tau1",
+      "mean": 0.71333,
+      "delta_vs_max": -0.00102
+    },
+    {
+      "aggregator": "top3_mean",
+      "mean": 0.7127,
+      "delta_vs_max": -0.00165
+    },
+    {
+      "aggregator": "noisy_or",
+      "mean": 0.70943,
+      "delta_vs_max": -0.00492
+    },
+    {
+      "aggregator": "logsumexp_tau2",
+      "mean": 0.69625,
+      "delta_vs_max": -0.0181
+    },
+    {
+      "aggregator": "mean",
+      "mean": 0.67681,
+      "delta_vs_max": -0.03754
+    },
+    {
+      "aggregator": "count_windows_positive",
+      "mean": 0.6023,
+      "delta_vs_max": -0.11205
+    }
+  ],
+  "per_aggregator": {
+    "max": {
+      "per_subset": {
+        "covidqa": 0.76848,
+        "delucionqa": 0.80087,
+        "emanual": 0.69734,
+        "expertqa": 0.79688,
+        "finqa": 0.65152,
+        "hagrid": 0.64225,
+        "hotpotqa": 0.6766,
+        "pubmedqa": 0.5893,
+        "tatqa": 0.7842,
+        "techqa": 0.73609
+      },
+      "mean": 0.71435
+    },
+    "mean": {
+      "per_subset": {
+        "covidqa": 0.73986,
+        "delucionqa": 0.77568,
+        "emanual": 0.64104,
+        "expertqa": 0.69776,
+        "finqa": 0.71043,
+        "hagrid": 0.6461,
+        "hotpotqa": 0.67432,
+        "pubmedqa": 0.59365,
+        "tatqa": 0.6934,
+        "techqa": 0.59581
+      },
+      "mean": 0.67681
+    },
+    "top2_mean": {
+      "per_subset": {
+        "covidqa": 0.78218,
+        "delucionqa": 0.81928,
+        "emanual": 0.69613,
+        "expertqa": 0.77749,
+        "finqa": 0.71413,
+        "hagrid": 0.64325,
+        "hotpotqa": 0.69023,
+        "pubmedqa": 0.5998,
+        "tatqa": 0.76513,
+        "techqa": 0.71117
+      },
+      "mean": 0.71988
+    },
+    "top3_mean": {
+      "per_subset": {
+        "covidqa": 0.76102,
+        "delucionqa": 0.80669,
+        "emanual": 0.68099,
+        "expertqa": 0.75224,
+        "finqa": 0.72674,
+        "hagrid": 0.64374,
+        "hotpotqa": 0.67685,
+        "pubmedqa": 0.60724,
+        "tatqa": 0.77452,
+        "techqa": 0.69699
+      },
+      "mean": 0.7127
+    },
+    "noisy_or": {
+      "per_subset": {
+        "covidqa": 0.78056,
+        "delucionqa": 0.81831,
+        "emanual": 0.72276,
+        "expertqa": 0.72729,
+        "finqa": 0.69826,
+        "hagrid": 0.64623,
+        "hotpotqa": 0.68796,
+        "pubmedqa": 0.60641,
+        "tatqa": 0.79116,
+        "techqa": 0.61539
+      },
+      "mean": 0.70943
+    },
+    "logsumexp_tau0.5": {
+      "per_subset": {
+        "covidqa": 0.77496,
+        "delucionqa": 0.8062,
+        "emanual": 0.71005,
+        "expertqa": 0.78343,
+        "finqa": 0.68043,
+        "hagrid": 0.64176,
+        "hotpotqa": 0.68468,
+        "pubmedqa": 0.60093,
+        "tatqa": 0.79237,
+        "techqa": 0.69445
+      },
+      "mean": 0.71693
+    },
+    "logsumexp_tau1": {
+      "per_subset": {
+        "covidqa": 0.77844,
+        "delucionqa": 0.81589,
+        "emanual": 0.72518,
+        "expertqa": 0.73733,
+        "finqa": 0.69804,
+        "hagrid": 0.6435,
+        "hotpotqa": 0.68821,
+        "pubmedqa": 0.60641,
+        "tatqa": 0.79631,
+        "techqa": 0.64402
+      },
+      "mean": 0.71333
+    },
+    "logsumexp_tau2": {
+      "per_subset": {
+        "covidqa": 0.77757,
+        "delucionqa": 0.82703,
+        "emanual": 0.73245,
+        "expertqa": 0.64181,
+        "finqa": 0.6937,
+        "hagrid": 0.64014,
+        "hotpotqa": 0.69326,
+        "pubmedqa": 0.60544,
+        "tatqa": 0.79328,
+        "techqa": 0.55781
+      },
+      "mean": 0.69625
+    },
+    "count_windows_positive": {
+      "per_subset": {
+        "covidqa": 0.72859,
+        "delucionqa": 0.61047,
+        "emanual": 0.6247,
+        "expertqa": 0.63333,
+        "finqa": 0.54109,
+        "hagrid": 0.55834,
+        "hotpotqa": 0.57296,
+        "pubmedqa": 0.5,
+        "tatqa": 0.61985,
+        "techqa": 0.63368
+      },
+      "mean": 0.6023
+    }
+  },
+  "best_non_max": [
+    "top2_mean",
+    0.71988,
+    0.005529999999999924
+  ],
+  "verdict": "NOT FIRED",
+  "reading": "best non-max aggregator top2_mean reads 0.71988, +0.00553 against max. Threshold 0.01 NOT FIRED."
+}

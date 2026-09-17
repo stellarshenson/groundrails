@@ -1,0 +1,462 @@
+{
+  "arm": "R23-H192 hagrid autopsy, stage 1",
+  "licence": "MEASUREMENT ONLY - no bar, no gate, no promotion, no kill, no arm. The arena is an analysis surface: nothing here may select a serving transform, an aggregation or a lane. Any lever this motivates must be registered with its own bars and selected on a NON-arena surface.",
+  "q1_hagrid_error_composition": {
+    "consensus_errors": 37,
+    "false_negatives": 24,
+    "false_positives": 13,
+    "deficit": 0.36068,
+    "fp_side_mass_from_consensus_fp": 0.24957,
+    "fn_side_mass_from_consensus_fn": 0.08571,
+    "mass_note": "each mis-ranked pair is counted once on EACH side, so each side's total IS the deficit by construction - the two sides must never be summed",
+    "vacuous_frames": {
+      "items": [
+        49,
+        86,
+        188,
+        196,
+        226
+      ],
+      "n": 5,
+      "labels": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "scores": [
+        1.35,
+        1.66,
+        1.9,
+        1.6,
+        1.06
+      ],
+      "deficit_mass": 0.0878,
+      "share_of_negative_side_mass": 0.2434,
+      "prior_record": "R20-H174 registered hagrid's misrank mass as 21.2% frame-only artifacts and built L1 frame_reject (8,000 rows) against it; the arm FELL to 0.6166 and the gate read 0.1962 against a <5% bar. This measurement REPRODUCES the prior figure - it is confirmation of an already-attacked-and-failed target, NOT a new one"
+    },
+    "profiles": [
+      {
+        "class": "consensus false negative",
+        "n": 24,
+        "mean_sentences": 3.38,
+        "mean_chars": 462.0,
+        "mean_score": -4.42
+      },
+      {
+        "class": "consensus false positive",
+        "n": 13,
+        "mean_sentences": 2.15,
+        "mean_chars": 249.0,
+        "mean_score": 2.107
+      },
+      {
+        "class": "other positive",
+        "n": 188,
+        "mean_sentences": 1.77,
+        "mean_chars": 210.0,
+        "mean_score": 0.411
+      },
+      {
+        "class": "other negative",
+        "n": 25,
+        "mean_sentences": 3.84,
+        "mean_chars": 474.0,
+        "mean_score": -3.484
+      }
+    ]
+  },
+  "q2_length_control": {
+    "why": "the shipped read is a MIN over sentences, monotonically length-decreasing by construction, and a subset-blind sentence-count rule already reads 0.59698 on the arena (R22 per-subset decomposition)",
+    "estimators": {
+      "linear_control": "residual of the 6-draw score regressed on sentence count",
+      "within_stratum": "AUROC over only those (pos, neg) pairs sharing a sentence count, capped at 6; assumption-free but uses 23-60% of pairs and is noisier"
+    },
+    "reporting_rule": "only the AGREEMENT of the two estimators is reported as a finding; where they disagree on a subset's value, no value is quoted for that subset",
+    "near_chance_threshold": 0.62,
+    "per_subset": {
+      "covidqa": {
+        "auroc_raw": 0.7664,
+        "auroc_length_only": 0.4865,
+        "auroc_linear_control": 0.7669,
+        "auroc_within_stratum": 0.7832,
+        "stratum_pairs_used": 3657,
+        "stratum_pairs_available": 8034,
+        "stratum_pair_coverage": 0.455,
+        "incumbent": 0.7432,
+        "margin": 0.0232,
+        "both_controls_near_chance": false,
+        "one_control_near_chance": false
+      },
+      "delucionqa": {
+        "auroc_raw": 0.8503,
+        "auroc_length_only": 0.4249,
+        "auroc_linear_control": 0.8891,
+        "auroc_within_stratum": 0.8962,
+        "stratum_pairs_used": 472,
+        "stratum_pairs_available": 2064,
+        "stratum_pair_coverage": 0.229,
+        "incumbent": 0.7018,
+        "margin": 0.1485,
+        "both_controls_near_chance": false,
+        "one_control_near_chance": false
+      },
+      "emanual": {
+        "auroc_raw": 0.684,
+        "auroc_length_only": 0.681,
+        "auroc_linear_control": 0.6223,
+        "auroc_within_stratum": 0.5773,
+        "stratum_pairs_used": 634,
+        "stratum_pairs_available": 1652,
+        "stratum_pair_coverage": 0.384,
+        "incumbent": 0.7694,
+        "margin": -0.0854,
+        "both_controls_near_chance": false,
+        "one_control_near_chance": true
+      },
+      "expertqa": {
+        "auroc_raw": 0.7891,
+        "auroc_length_only": 0.6112,
+        "auroc_linear_control": 0.7608,
+        "auroc_within_stratum": 0.779,
+        "stratum_pairs_used": 3394,
+        "stratum_pairs_available": 10260,
+        "stratum_pair_coverage": 0.331,
+        "incumbent": 0.8098,
+        "margin": -0.0207,
+        "both_controls_near_chance": false,
+        "one_control_near_chance": false
+      },
+      "finqa": {
+        "auroc_raw": 0.6867,
+        "auroc_length_only": 0.5664,
+        "auroc_linear_control": 0.668,
+        "auroc_within_stratum": 0.7205,
+        "stratum_pairs_used": 1095,
+        "stratum_pairs_available": 4600,
+        "stratum_pair_coverage": 0.238,
+        "incumbent": 0.6137,
+        "margin": 0.073,
+        "both_controls_near_chance": false,
+        "one_control_near_chance": false
+      },
+      "hagrid": {
+        "auroc_raw": 0.6462,
+        "auroc_length_only": 0.638,
+        "auroc_linear_control": 0.5554,
+        "auroc_within_stratum": 0.5838,
+        "stratum_pairs_used": 2292,
+        "stratum_pairs_available": 8056,
+        "stratum_pair_coverage": 0.285,
+        "incumbent": 0.7542,
+        "margin": -0.108,
+        "both_controls_near_chance": true,
+        "one_control_near_chance": false
+      },
+      "hotpotqa": {
+        "auroc_raw": 0.6776,
+        "auroc_length_only": 0.6026,
+        "auroc_linear_control": 0.6476,
+        "auroc_within_stratum": 0.6849,
+        "stratum_pairs_used": 2374,
+        "stratum_pairs_available": 3961,
+        "stratum_pair_coverage": 0.599,
+        "incumbent": 0.6161,
+        "margin": 0.0615,
+        "both_controls_near_chance": false,
+        "one_control_near_chance": false
+      },
+      "pubmedqa": {
+        "auroc_raw": 0.6304,
+        "auroc_length_only": 0.6347,
+        "auroc_linear_control": 0.5942,
+        "auroc_within_stratum": 0.5668,
+        "stratum_pairs_used": 3608,
+        "stratum_pairs_available": 13321,
+        "stratum_pair_coverage": 0.271,
+        "incumbent": 0.607,
+        "margin": 0.0234,
+        "both_controls_near_chance": true,
+        "one_control_near_chance": false
+      },
+      "tatqa": {
+        "auroc_raw": 0.7906,
+        "auroc_length_only": 0.6416,
+        "auroc_linear_control": 0.6979,
+        "auroc_within_stratum": 0.7429,
+        "stratum_pairs_used": 918,
+        "stratum_pairs_available": 3304,
+        "stratum_pair_coverage": 0.278,
+        "incumbent": 0.5275,
+        "margin": 0.2631,
+        "both_controls_near_chance": false,
+        "one_control_near_chance": false
+      },
+      "techqa": {
+        "auroc_raw": 0.7706,
+        "auroc_length_only": 0.6829,
+        "auroc_linear_control": 0.6546,
+        "auroc_within_stratum": 0.7963,
+        "stratum_pairs_used": 6004,
+        "stratum_pairs_available": 15369,
+        "stratum_pair_coverage": 0.391,
+        "incumbent": 0.6536,
+        "margin": 0.117,
+        "both_controls_near_chance": false,
+        "one_control_near_chance": false
+      }
+    },
+    "no_length_free_signal": [
+      "hagrid",
+      "pubmedqa"
+    ],
+    "borderline_one_control_only": [
+      "emanual"
+    ],
+    "estimator_note": "auroc_raw here is the AUROC of the SIX-DRAW MEAN SCORE - a pooled read. The campaign's banked headline is the MEAN OF THE SIX PER-DRAW AUROCs. They are different estimators and differ by up to ~0.025 per subset (hagrid 0.6462 pooled vs 0.63932 banked), so the `margin` column here is NOT the banked margin and must not be quoted as one. The pooled read is used because the length controls need one score per item, not six AUROCs.",
+    "subsets_not_beating_incumbent": [
+      "emanual",
+      "expertqa",
+      "hagrid"
+    ],
+    "finding": "Both controls drive the SAME three subsets near chance: hagrid, pubmedqa. Three of the four subsets that do not beat the incumbent are exactly those three. The fourth, expertqa, keeps strong length-free signal under both controls and is therefore a DIFFERENT failure - a genuine loss to a better model, not an absent signal."
+  },
+  "q3_structural_separation": {
+    "probed_subsets": [
+      "emanual",
+      "hagrid",
+      "pubmedqa"
+    ],
+    "features": {
+      "covidqa": {
+        "documents": 4.0,
+        "evidence_chars": 2321.04,
+        "chars_per_doc": 580.26,
+        "windows_scored": 4.0,
+        "response_chars": 245.78,
+        "sentences": 1.57,
+        "evidence_over_response": 14.14,
+        "positive_rate": 0.84
+      },
+      "delucionqa": {
+        "documents": 3.0,
+        "evidence_chars": 4488.02,
+        "chars_per_doc": 1496.01,
+        "windows_scored": 5.35,
+        "response_chars": 652.28,
+        "sentences": 5.05,
+        "evidence_over_response": 13.9,
+        "positive_rate": 0.93
+      },
+      "emanual": {
+        "documents": 3.0,
+        "evidence_chars": 2905.23,
+        "chars_per_doc": 968.41,
+        "windows_scored": 4.02,
+        "response_chars": 644.64,
+        "sentences": 5.67,
+        "evidence_over_response": 7.66,
+        "positive_rate": 0.89
+      },
+      "expertqa": {
+        "documents": 3.74,
+        "evidence_chars": 9344.43,
+        "chars_per_doc": 3000.58,
+        "windows_scored": 11.5,
+        "response_chars": 1088.66,
+        "sentences": 6.42,
+        "evidence_over_response": 15.12,
+        "positive_rate": 0.47
+      },
+      "finqa": {
+        "documents": 2.9,
+        "evidence_chars": 3903.11,
+        "chars_per_doc": 1349.96,
+        "windows_scored": 5.27,
+        "response_chars": 447.18,
+        "sentences": 2.25,
+        "evidence_over_response": 14.09,
+        "positive_rate": 0.92
+      },
+      "hagrid": {
+        "documents": 2.81,
+        "evidence_chars": 2008.08,
+        "chars_per_doc": 693.26,
+        "windows_scored": 2.98,
+        "response_chars": 262.58,
+        "sentences": 2.15,
+        "evidence_over_response": 15.62,
+        "positive_rate": 0.85
+      },
+      "hotpotqa": {
+        "documents": 3.99,
+        "evidence_chars": 1944.96,
+        "chars_per_doc": 486.93,
+        "windows_scored": 4.02,
+        "response_chars": 119.24,
+        "sentences": 1.17,
+        "evidence_over_response": 19.99,
+        "positive_rate": 0.93
+      },
+      "pubmedqa": {
+        "documents": 5.0,
+        "evidence_chars": 1862.64,
+        "chars_per_doc": 372.53,
+        "windows_scored": 5.0,
+        "response_chars": 906.04,
+        "sentences": 5.26,
+        "evidence_over_response": 2.66,
+        "positive_rate": 0.69
+      },
+      "tatqa": {
+        "documents": 4.13,
+        "evidence_chars": 1650.37,
+        "chars_per_doc": 409.67,
+        "windows_scored": 4.16,
+        "response_chars": 304.36,
+        "sentences": 1.87,
+        "evidence_over_response": 10.35,
+        "positive_rate": 0.94
+      },
+      "techqa": {
+        "documents": 5.0,
+        "evidence_chars": 18653.22,
+        "chars_per_doc": 3730.64,
+        "windows_scored": 22.5,
+        "response_chars": 1081.43,
+        "sentences": 6.95,
+        "evidence_over_response": 27.33,
+        "positive_rate": 0.56
+      }
+    },
+    "ranks": {
+      "documents": {
+        "hagrid": 1,
+        "finqa": 2,
+        "delucionqa": 3,
+        "emanual": 4,
+        "expertqa": 5,
+        "hotpotqa": 6,
+        "covidqa": 7,
+        "tatqa": 8,
+        "pubmedqa": 9,
+        "techqa": 10
+      },
+      "evidence_chars": {
+        "tatqa": 1,
+        "pubmedqa": 2,
+        "hotpotqa": 3,
+        "hagrid": 4,
+        "covidqa": 5,
+        "emanual": 6,
+        "finqa": 7,
+        "delucionqa": 8,
+        "expertqa": 9,
+        "techqa": 10
+      },
+      "chars_per_doc": {
+        "pubmedqa": 1,
+        "tatqa": 2,
+        "hotpotqa": 3,
+        "covidqa": 4,
+        "hagrid": 5,
+        "emanual": 6,
+        "finqa": 7,
+        "delucionqa": 8,
+        "expertqa": 9,
+        "techqa": 10
+      },
+      "windows_scored": {
+        "hagrid": 1,
+        "covidqa": 2,
+        "emanual": 3,
+        "hotpotqa": 4,
+        "tatqa": 5,
+        "pubmedqa": 6,
+        "finqa": 7,
+        "delucionqa": 8,
+        "expertqa": 9,
+        "techqa": 10
+      },
+      "response_chars": {
+        "hotpotqa": 1,
+        "covidqa": 2,
+        "hagrid": 3,
+        "tatqa": 4,
+        "finqa": 5,
+        "emanual": 6,
+        "delucionqa": 7,
+        "pubmedqa": 8,
+        "techqa": 9,
+        "expertqa": 10
+      },
+      "sentences": {
+        "hotpotqa": 1,
+        "covidqa": 2,
+        "tatqa": 3,
+        "hagrid": 4,
+        "finqa": 5,
+        "delucionqa": 6,
+        "pubmedqa": 7,
+        "emanual": 8,
+        "expertqa": 9,
+        "techqa": 10
+      },
+      "evidence_over_response": {
+        "pubmedqa": 1,
+        "emanual": 2,
+        "tatqa": 3,
+        "delucionqa": 4,
+        "finqa": 5,
+        "covidqa": 6,
+        "expertqa": 7,
+        "hagrid": 8,
+        "hotpotqa": 9,
+        "techqa": 10
+      },
+      "positive_rate": {
+        "expertqa": 1,
+        "techqa": 2,
+        "pubmedqa": 3,
+        "covidqa": 4,
+        "hagrid": 5,
+        "emanual": 6,
+        "finqa": 7,
+        "hotpotqa": 8,
+        "delucionqa": 9,
+        "tatqa": 10
+      }
+    },
+    "features_isolating_the_weak_set": [],
+    "test": "a feature isolates the set only if it places all three at one extreme of the ten (ranks 1-3 or 8-10). 2 of the 120 possible triples qualify, so a chance hit is p=0.017 per feature and ~0.13 over the eight - the test is not weak",
+    "result": "NEGATIVE - no feature isolates them; their ranks scatter across the range on every property measured. A mean-based comparison APPEARS to separate them on evidence volume, but that is an artifact of two outliers (techqa 18,653 and expertqa 9,344 evidence chars) inflating the comparison group, and it does not survive the rank test. The weakness is not a shape property, so there is no structural handle for a lane to grip."
+  },
+  "q4_headroom_accounting": {
+    "flagship_k6": 0.71218,
+    "faithful_oracle_ceiling_mean": 0.75604,
+    "target": 0.74,
+    "target_as_share_of_ceiling": 0.9788,
+    "current_as_share_of_ceiling": 0.942,
+    "total_positive_headroom": 0.07524,
+    "needed_for_target": 0.02782,
+    "share_of_all_headroom_needed": 0.3698,
+    "headroom_per_subset": {
+      "pubmedqa": 0.172,
+      "hagrid": 0.144,
+      "emanual": 0.1373,
+      "techqa": 0.1225,
+      "tatqa": 0.1037,
+      "finqa": 0.0729,
+      "covidqa": 0.0,
+      "delucionqa": 0.0,
+      "expertqa": 0.0,
+      "hotpotqa": 0.0
+    },
+    "headroom_in_the_weak_subsets": 0.04533,
+    "weak_share_of_all_headroom": 0.6025,
+    "finqa_headroom_unreachable": 0.00729,
+    "finding": "The 0.74 target sits at 97.9% of the faithful-oracle ceiling - what a PERFECT entailer reaches through the shipped read. Today we are at 94.2%. Reaching it requires capturing 37% of ALL remaining faithful headroom in the arena, perfectly, with zero regression anywhere. 60% of that headroom sits in the three subsets Q2 shows have no length-free signal, and a further 10% is finqa's, which R22-H190 proved unreachable by this architecture."
+  },
+  "reading": "hagrid's problem is not the frame class R20-H174 attacked and it is not a 5-item defect: once length is controlled, the model retains almost no signal on hagrid at all. That reframes hagrid, pubmedqa and emanual as ONE problem - a register where the grounder does not work - rather than three separate coverage gaps, and it explains why an 8,000-row targeted lane could not move it."
+}
