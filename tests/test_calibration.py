@@ -457,16 +457,26 @@ class TestVitaminCComposite:
         # judged-supported-but-actually-refuted cell from 1 to 0. That is the
         # most dangerous error class in a grounding system and it is now empty;
         # contradiction recall rose 13/15 -> 14/15.
+        #
+        # Re-pinned 2026-09-25 for DEF-NUMBER-22: a unitless claim value the
+        # source states is no longer contradicted. 3 of 45 items moved, all
+        # through the spurious date pair ("19", "18") - "before March 19" against
+        # "As of 18 March" - which "COVID-19" in the source now states. One
+        # SUPPORTS item and one NEI item leave contradicted. One REFUTES item
+        # ("... under 212,000 COVID-19 cases before March 19, 2020") was
+        # contradicted only through that pair and is now grounded, so the
+        # judged-supported-but-actually-refuted cell goes 0 -> 1 and contradiction
+        # recall falls 14/15 -> 13/15.
         expected = {
-            ("grounded", "grounded"): 7,
-            ("grounded", "contradicted"): 3,
+            ("grounded", "grounded"): 8,
+            ("grounded", "contradicted"): 2,
             ("grounded", "unconfirmed"): 5,
-            ("contradicted", "grounded"): 0,
-            ("contradicted", "contradicted"): 14,
+            ("contradicted", "grounded"): 1,
+            ("contradicted", "contradicted"): 13,
             ("contradicted", "unconfirmed"): 1,
             ("unconfirmed", "grounded"): 3,
-            ("unconfirmed", "contradicted"): 8,
-            ("unconfirmed", "unconfirmed"): 4,
+            ("unconfirmed", "contradicted"): 7,
+            ("unconfirmed", "unconfirmed"): 5,
         }
         assert {k: conf[k] for k in expected} == expected
         # contradiction recall - the headline NLI win this test guards.

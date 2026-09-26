@@ -59,8 +59,15 @@ class ExtractedClaim:
 # Sentence-end regex. Splits on ``. ! ?`` followed by whitespace and a
 # capital-letter or digit start. Tolerates common abbreviations by
 # requiring a capital/digit after the whitespace (a sentence rarely
-# continues with lowercase).
-_SENT_SPLIT_RE = re.compile(r"(?<=[.!?])\s+(?=[A-Z0-9])")
+# continues with lowercase). One closing quote or bracket may sit between the
+# terminator and the space (``...12%." The``), and one opening quote may sit
+# before the capital - without that the boundary was invisible and two
+# assertions were grounded as one unit (DEF-CLAIM-28). An opening bracket is not
+# accepted: after an abbreviation the guard does not list (``4 p.m. (EST) with
+# ...``) it split the sentence and the part without a verb was dropped.
+_SENT_SPLIT_RE = re.compile(
+    r"(?:(?<=[.!?])|(?<=[.!?][\"'\u201d\u2019)\]]))\s+(?=[\"'\u201c\u2018]?[A-Z0-9])"
+)
 
 # Abbreviations whose trailing period is NOT a sentence end. Checked against
 # the text immediately before a candidate split point so citations like
@@ -239,18 +246,31 @@ def _looks_like_claim(candidate: str) -> bool:
 #
 # The rules below are deliberately narrow. A false positive here is the
 # DANGEROUS direction (a real claim skipped by the cascade), so each rule was
-# tuned to zero false positives against the 24 claims on that set which a human
-# verified as groundable or which the lexical tier actually confirmed. Recall
-# is 16/27 (59%) - the residue (evaluative and commercial judgements such as
-# "it is the single most consequential question in the engagement") needs
-# semantics the deterministic tier does not have, and is left alone.
+# tuned to zero false positives against the claims on that set which a human
+# verified as groundable or which the lexical tier confirmed, AND against the
+# 63,054 claims of the public VitaminC dev split - every one written about its
+# evidence, so any firing there is a false positive. A rule is kept only if it
+# cannot describe a sourced fact in principle: superlatives ("the single most"),
+# contrastive reframes ("X, not Y"), approximate costs and property lists all
+# occur in factual text, so the evaluative, estimate and design shapes of
+# authored prose stay in scope (DEF-CLAIM-23) - they need semantics the
+# deterministic tier does not have.
 
 # 1. Hypothetical. A conditional or a leading disjunction asserts a branch, not
 #    a fact. Both anchored at sentence start: an EMBEDDED "either ... or" is a
 #    real claim's internal disjunction ("at 50-100 m either a long focal length
-#    is specified or the GSD target moves"), not a hypothetical.
-_COND_OPENER_RE = re.compile(r"^\s*(?:if|unless)\b", re.IGNORECASE)
-_EITHER_OPENER_RE = re.compile(r"^\s*either\b.*?\bor\b", re.IGNORECASE | re.DOTALL)
+#    is specified or the GSD target moves"), not a hypothetical. A source states
+#    conditionals too ("If a person is infected, the CDC recommends ...") and
+#    disjunctions of names ("Either A or B voices the courier"), so the rule
+#    needs the author's own modal in the consequent ("..., the proposal must
+#    ...") and a disjunction of CLAUSES ("either X happened, or Y"); the looser
+#    form fired on 12 VitaminC claims (DEF-CLAIM-29).
+_COND_MODAL_RE = re.compile(
+    r"^\s*(?:if|unless)\b[^,]*,\s*(?:[\w'-]+\s+){0,6}?"
+    r"(?:would|could|might|must|should|may|cannot|can't)\b",
+    re.IGNORECASE,
+)
+_EITHER_CLAUSES_RE = re.compile(r"^\s*either\b[^,]*,\s*or\b", re.IGNORECASE)
 
 # 2. Document self-reference. The sentence describes this document's own
 #    structure or artefacts rather than the world the sources describe.
@@ -291,7 +311,7 @@ def out_of_scope(claim: str) -> str | None:
     # sits inside the EUR 50-80k envelope, between zero and EUR 40k of
     # engineering remains") - keep it in scope.
     if not any(ch.isdigit() for ch in claim) and (
-        _COND_OPENER_RE.match(claim) or _EITHER_OPENER_RE.match(claim)
+        _COND_MODAL_RE.match(claim) or _EITHER_CLAUSES_RE.match(claim)
     ):
         return "hypothetical"
     if _SELF_REF_RE.search(claim) or _SELF_PATH_RE.search(claim):
@@ -301,7 +321,46 @@ def out_of_scope(claim: str) -> str | None:
     return None
 
 
+# --- language guard --------------------------------------------------------
+#
+# ``_looks_like_claim`` recognises a claim by English copulas and English verb
+# endings, and ``_WORD_RE`` counts ASCII words, so a document in any other language
+# loses almost every sentence here: a Polish document kept 5 of 54 sentences, and
+# the 5 passed only on English endings inside Polish words (DEF-CLAIM-26). The
+# multilingual bridge (``lexical_mt``) translates claims during grounding, which
+# runs after extraction, so it cannot recover a sentence dropped here. The guard
+# names the problem instead of returning a near-empty claim list in silence.
+
+# Prose sample handed to the detector - the same cap ``ground`` uses for evidence.
+_LANG_SAMPLE_CHARS = 2000
+
+
+def warn_if_not_english(sentences: list[str]) -> str | None:
+    """Warn when the document prose is confidently not English.
+
+    Returns the detected ISO 639-1 code when it warned, else ``None``. Detection is
+    the confidence-gated lingua read (:func:`groundrails.lexical.detect_lang_confident`),
+    so short or ambiguous English reads ``und`` and never warns.
+    """
+    from groundrails.lexical import detect_lang_confident
+
+    lang = detect_lang_confident(" ".join(sentences)[:_LANG_SAMPLE_CHARS])
+    if lang in ("en", "und"):
+        return None
+    from loguru import logger
+
+    logger.warning(
+        f"document language is '{lang}', not English. The claim extractor reads "
+        "English only and drops most sentences in other languages; claims from this "
+        "document require the multilingual bridge, which the extractor does not use"
+    )
+    return lang
+
+
 _HEADING_RE = re.compile(r"^\s*(#{1,6})\s+(.*)$")
+
+# An HTML comment is an author's note, never an assertion of the document.
+_HTML_COMMENT_RE = re.compile(r"<!--.*?-->", re.DOTALL)
 
 
 def _split_document(text: str) -> list[tuple[int, str]]:
@@ -316,6 +375,9 @@ def _split_document(text: str) -> list[tuple[int, str]]:
     skipped until the next heading. Reference entries are pointers to
     other documents, not assertions of this one.
     """
+    # Comments are removed before anything else (DEF-CLAIM-27). Each is replaced by
+    # the newlines it spanned, so every later line keeps its line number.
+    text = _HTML_COMMENT_RE.sub(lambda m: "\n" * m.group(0).count("\n"), text)
     out: list[tuple[int, str]] = []
     paragraph_lines: list[tuple[int, str]] = []
     in_non_claim_section = False
@@ -384,6 +446,11 @@ def _split_document(text: str) -> list[tuple[int, str]]:
             continue
         if in_non_claim_section:
             continue
+        # A list item is its own unit: a bullet with no closing full stop must not
+        # run into the next bullet as one compound claim (DEF-CLAIM-24). Indented
+        # continuation lines of the same item carry no marker and still join it.
+        if _LIST_PREFIX_RE.match(raw_line.lstrip().lstrip(">").lstrip()):
+            flush()
         stripped = _strip_markdown_noise(raw_line)
         if not stripped:
             flush()
@@ -419,8 +486,10 @@ def extract_claims(document_text: str) -> list[ExtractedClaim]:
     Heuristic: split into sentences, drop fragments that lack verb-shaped
     content, assign stable IDs in order of appearance. Each claim carries its
     char span in the document (relocated whitespace-flexibly; ``-1`` if unfound).
+    Warns when the document is not English - see :func:`warn_if_not_english`.
     """
     sentences = _split_document(document_text)
+    warn_if_not_english([s for _, s in sentences])
     candidates: list[tuple[int, str]] = [
         (line_no, s) for line_no, s in sentences if _looks_like_claim(s)
     ]

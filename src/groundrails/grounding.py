@@ -33,7 +33,7 @@ Location semantics:
 
 from __future__ import annotations
 
-from collections.abc import Sequence
+from collections.abc import Mapping, Sequence
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
 import logging
@@ -282,6 +282,33 @@ def _exact_match(claim: str, source: str) -> tuple[int, int] | None:
     if m:
         return (m.start(), m.end())
     return None
+
+
+def _normalize_sources(
+    sources: Sequence[SourceInput] | Mapping[str, str],
+) -> Sequence[SourceInput]:
+    """Turn the public ``sources`` argument into the sequence every scorer iterates.
+
+    A ``{path: text}`` mapping becomes ``[(path, text), ...]`` in insertion order.
+    Iterating a mapping yields its KEYS, so without this every claim was scored
+    against the filenames and the evidence was discarded (DEF-GROUND-21). A bare
+    ``str`` is rejected for the same reason as in :func:`_unpack_sources`. Any other
+    input is returned unchanged.
+    """
+    if isinstance(sources, str):
+        raise TypeError(
+            "sources must be a sequence of source texts, (path, text) tuples or a "
+            "{path: text} mapping, not a single str - wrap it as [text] or [(path, text)]"
+        )
+    if isinstance(sources, Mapping):
+        pairs = list(sources.items())
+        bad = [k for k, v in pairs if not isinstance(k, str) or not isinstance(v, str)]
+        if bad:
+            raise TypeError(
+                f"a sources mapping must map str path to str text; bad entries: {bad[:3]!r}"
+            )
+        return pairs
+    return sources
 
 
 def _unpack_sources(sources: Sequence[SourceInput]) -> list[tuple[int, str, str]]:
@@ -929,7 +956,7 @@ class UnsupportedLanguageError(ValueError):
 
 def ground(
     claim: str,
-    sources: Sequence[SourceInput],
+    sources: Sequence[SourceInput] | Mapping[str, str],
     *,
     fuzzy_threshold: float | None = None,
     bm25_threshold: float | None = None,
@@ -954,7 +981,8 @@ def ground(
 
     Args:
         claim: verbatim claim text to locate
-        sources: iterable of raw source text or ``(path, text)`` pairs
+        sources: iterable of raw source text or ``(path, text)`` pairs, or a
+            ``{path: text}`` mapping
         fuzzy_threshold: Levenshtein partial-ratio in [0,1] required to
             classify the best fuzzy alignment as ``"fuzzy"``
         bm25_threshold: token-recall in [0,1] required to classify the best
@@ -983,6 +1011,7 @@ def ground(
     from groundrails import settings as _gr_settings
 
     _gr_settings.require_ready()
+    sources = _normalize_sources(sources)
     cfg = (config if config is not None else load_config()).overlay(
         fuzzy_threshold=fuzzy_threshold,
         bm25_threshold=bm25_threshold,
@@ -1731,7 +1760,7 @@ def _populate_match_metadata(
 
 def ground_batch(
     claims: Sequence[str],
-    sources: Sequence[SourceInput],
+    sources: Sequence[SourceInput] | Mapping[str, str],
     *,
     fuzzy_threshold: float | None = None,
     bm25_threshold: float | None = None,
@@ -1774,6 +1803,7 @@ def ground_batch(
     from groundrails import settings as _gr_settings
 
     _gr_settings.require_ready()
+    sources = _normalize_sources(sources)
     cfg = (config if config is not None else load_config()).overlay(
         fuzzy_threshold=fuzzy_threshold,
         bm25_threshold=bm25_threshold,
@@ -2083,5 +2113,6 @@ def grounding_document(claims, sources, **kwargs) -> dict:
     Extra keyword arguments pass through to :func:`ground_batch`."""
     texts = [c if isinstance(c, str) else c.claim for c in claims]
     objs = [None if isinstance(c, str) else c for c in claims]
+    sources = _normalize_sources(sources)
     matches = ground_batch(texts, sources, **kwargs)
     return build_grounding_document(matches, claims=objs, sources=sources)

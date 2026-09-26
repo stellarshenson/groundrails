@@ -9,8 +9,9 @@ collision, DEF-6 mid-word fuzzy evidence spans - plus the BM25 corpus cache
 """
 
 from groundrails import ground
+from groundrails.consistency import check_consistency
 from groundrails.entity_check import extract_numbers, find_numeric_mismatches
-from groundrails.extract import _looks_like_claim, extract_claims
+from groundrails.extract import _looks_like_claim, extract_claims, warn_if_not_english
 from groundrails.grounding import _BM25_CACHE, _snap_to_word_bounds
 
 
@@ -892,3 +893,373 @@ class TestExactWindowSnap:
         assert m.match_type == "exact"  # verbatim confirm, not contradicted
         # snap preserves "1042 nodes" -> genuine conflict beside the claim's 42
         assert m.verification_needed is True
+
+
+# ---------------------------------------------------------------------------
+# DEF-CLAIM-26: non-English document gives almost no claims and no warning
+# ---------------------------------------------------------------------------
+
+
+class TestNonEnglishWarning:
+    """The claim filter is English-only; a non-English document must be named, not
+    returned as a near-empty claim list in silence."""
+
+    PL = (
+        "Rada miasta przyjęła budżet na przyszły rok. Wydatki na transport publiczny "
+        "wzrosły o dwanaście procent. Nowa linia tramwajowa zostanie otwarta w marcu."
+    )
+    EN = (
+        "The city council approved the budget for next year. Spending on public "
+        "transport rose by twelve percent. The new tram line will open in March."
+    )
+
+    @staticmethod
+    def _warnings(doc: str) -> list[str]:
+        from loguru import logger
+
+        msgs: list[str] = []
+        sink = logger.add(lambda m: msgs.append(m.record["message"]), level="WARNING")
+        try:
+            extract_claims(doc)
+        finally:
+            logger.remove(sink)
+        return msgs
+
+    def test_polish_document_warns(self):
+        assert warn_if_not_english([self.PL]) == "pl"
+
+    def test_english_document_is_silent(self):
+        assert warn_if_not_english([self.EN]) is None
+
+    def test_short_text_is_silent(self):
+        # too short for a confident read -> 'und', never a warning
+        assert warn_if_not_english(["Wydatki wzrosły."]) is None
+
+    def test_extract_claims_emits_the_warning(self):
+        msgs = self._warnings(self.PL)
+        assert len(msgs) == 1
+        assert "'pl', not English" in msgs[0]
+        assert "multilingual bridge" in msgs[0]
+
+    def test_extract_claims_on_english_emits_nothing(self):
+        assert self._warnings(self.EN) == []
+
+    def test_markdown_noise_is_not_read_as_the_language(self):
+        # headings and table rows are stripped before detection, so an English
+        # heading over Polish prose still reads as Polish
+        doc = "# Budget summary\n\n| year | total |\n\n" + self.PL
+        msgs = self._warnings(doc)
+        assert len(msgs) == 1 and "'pl'" in msgs[0]
+
+
+# ---------------------------------------------------------------------------
+# DEF-GROUND-21: dict sources ground every claim against the filenames
+# ---------------------------------------------------------------------------
+
+
+class TestMappingSources:
+    """A ``{path: text}`` mapping is read as named sources, never as its keys."""
+
+    TEXT = "The dam is 271.5 m tall and was completed in 1889."
+    CLAIM = "The dam is 271.5 m tall"
+
+    def test_mapping_grounds_against_the_text(self):
+        m = ground(self.CLAIM, {"paper.md": self.TEXT})
+        assert m.grounded
+        assert m.match_type == "exact"
+
+    def test_mapping_matches_the_tuple_form(self):
+        by_map = ground(self.CLAIM, {"paper.md": self.TEXT})
+        by_pairs = ground(self.CLAIM, [("paper.md", self.TEXT)])
+        assert by_map.match_type == by_pairs.match_type
+        assert by_map.combined_score == by_pairs.combined_score
+        assert by_map.exact_location.source_path == "paper.md"
+        assert by_map.exact_location == by_pairs.exact_location
+
+    def test_filename_is_not_evidence(self):
+        # before the fix the only "source" was the string "paper.md"
+        m = ground("paper.md", {"paper.md": "Unrelated cooking text about soup."})
+        assert not m.grounded
+
+    def test_batch_accepts_mapping(self):
+        from groundrails import ground_batch
+
+        ms = ground_batch([self.CLAIM, "The dam was completed in 1889."], {"paper.md": self.TEXT})
+        assert [m.grounded for m in ms] == [True, True]
+
+    def test_grounding_document_lists_mapping_paths(self):
+        from groundrails.grounding import grounding_document
+
+        doc = grounding_document([self.CLAIM], {"a.md": self.TEXT, "b.md": "Other text."})
+        assert doc["sources"] == ["a.md", "b.md"]
+        assert doc["summary"]["grounded"] == 1
+
+    def test_non_str_mapping_value_raises(self):
+        import pathlib
+
+        import pytest
+
+        with pytest.raises(TypeError):
+            ground(self.CLAIM, {"paper.md": pathlib.Path("paper.md")})
+
+
+# ---------------------------------------------------------------------------
+# DEF-SELF-17: numeric ranges split into divergent values
+# ---------------------------------------------------------------------------
+
+
+class TestRangesAreOneValue:
+    """A range, time or date is one value to the consistency check, never two."""
+
+    @staticmethod
+    def _findings(doc: str):
+        from groundrails.consistency import _find_numeric_findings
+
+        return [(f.category, f.occurrences) for f in _find_numeric_findings(doc)]
+
+    def test_each_range_shape_is_silent(self):
+        # one shape per line, none of them an inconsistency
+        for line in (
+            "Children aged 5-12 years attend.",
+            "Children aged 5–12 years attend.",
+            "Children aged 5 to 12 years attend.",
+            "Children aged between 5 and 12 years attend.",
+            "Delivery runs 06:00-09:00 window daily.",
+            "Survey at 3-5 cm accuracy is enough.",
+            "Growth was 20-30% in the pilot.",
+            "Filed on 2024-09-25 in court.",
+            "Filed on 06.07.2026 in court.",
+            "Shift starts 06:00 window.",
+        ):
+            assert self._findings(line) == [], line
+
+    def test_range_is_rendered_whole(self):
+        from groundrails.consistency import _line_numbers
+
+        assert _line_numbers("Children aged 5-12 years attend.") == [("5-12", "", "years")]
+        assert _line_numbers("Survey at 3-5 cm accuracy.") == [("3-5", "cm", "accuracy")]
+        assert _line_numbers("Runs 06:00-09:00 window.") == [("06:00-09:00", "", "window")]
+
+    def test_differing_ranges_still_diverge(self):
+        found = self._findings("Children aged 5-12 years.\nChildren aged 6-12 years.")
+        assert found == [("years", [(1, "5-12 years"), (2, "6-12 years")])]
+
+    def test_plain_numbers_still_diverge(self):
+        found = self._findings("We have 42 users.\nWe have 50 users.")
+        assert found == [("users", [(1, "42 users"), (2, "50 users")])]
+
+    def test_signed_number_is_not_a_range(self):
+        from groundrails.consistency import _line_numbers
+
+        assert _line_numbers("Revenue fell -36% of a SD.") == [("-36", "%", "sd")]
+
+    def test_extract_numbers_output_unchanged(self):
+        # the grounding tier reads extract_numbers; only the consistency check merges
+        assert extract_numbers("Children aged 5-12 years attend.") == [
+            ("5", "", "years"),
+            ("12", "", "years"),
+        ]
+
+
+# ---------------------------------------------------------------------------
+# DEF-CLAIM-24: extractor welds separate bullets into one compound claim
+# ---------------------------------------------------------------------------
+
+
+class TestListItemBoundary:
+    """Each list item is its own unit; a bullet never runs into the next one."""
+
+    TWO = ["Revenue grew 40% in 2024", "The team plans a new office in Berlin"]
+
+    def test_dash_bullets_split(self):
+        doc = "- Revenue grew 40% in 2024\n- The team plans a new office in Berlin"
+        assert [c.claim for c in extract_claims(doc)] == self.TWO
+
+    def test_numbered_items_split(self):
+        doc = "1. Revenue grew 40% in 2024\n2. The team plans a new office in Berlin"
+        assert [c.claim for c in extract_claims(doc)] == self.TWO
+
+    def test_blockquoted_bullets_split(self):
+        doc = "> - Revenue grew 40% in 2024\n> - The team plans a new office in Berlin"
+        assert [c.claim for c in extract_claims(doc)] == self.TWO
+
+    def test_continuation_line_joins_its_bullet(self):
+        doc = (
+            "- Revenue grew 40% in 2024 and the margin\n"
+            "  rose to 12% over the year\n"
+            "- The team plans a new office in Berlin"
+        )
+        claims = extract_claims(doc)
+        assert [c.claim for c in claims] == [
+            "Revenue grew 40% in 2024 and the margin rose to 12% over the year",
+            "The team plans a new office in Berlin",
+        ]
+        assert [c.line_number for c in claims] == [1, 3]
+
+    def test_wrapped_prose_paragraph_still_joins(self):
+        doc = "Revenue grew 40% in 2024 and the margin\nrose to 12% over the year."
+        assert len(extract_claims(doc)) == 1
+
+
+# ---------------------------------------------------------------------------
+# DEF-CLAIM-27: HTML comment text extracted as claim text
+# DEF-CLAIM-28: no sentence break after a closing quote or bracket
+# ---------------------------------------------------------------------------
+
+
+class TestCommentsAndClosingQuotes:
+    def test_comment_line_is_not_joined_to_the_claim(self):
+        doc = "The pump was replaced in 2021.\n<!-- TODO: the reviewer has not checked the invoice -->"
+        assert [c.claim for c in extract_claims(doc)] == ["The pump was replaced in 2021."]
+
+    def test_inline_comment_is_removed(self):
+        doc = "The pump was replaced in 2021. <!-- revised by finance --> The motor was kept for spares."
+        assert [c.claim for c in extract_claims(doc)] == [
+            "The pump was replaced in 2021.",
+            "The motor was kept for spares.",
+        ]
+
+    def test_multiline_comment_keeps_line_numbers(self):
+        doc = "Intro.\n<!-- a\nmultiline\ncomment -->\nThe motor was kept for spare parts."
+        claims = extract_claims(doc)
+        assert [(c.line_number, c.claim) for c in claims] == [
+            (5, "The motor was kept for spare parts.")
+        ]
+
+    def test_split_after_closing_quote(self):
+        doc = 'The report states "revenue grew by 12%." The board approved the budget in March.'
+        assert [c.claim for c in extract_claims(doc)] == [
+            'The report states "revenue grew by 12%."',
+            "The board approved the budget in March.",
+        ]
+
+    def test_split_after_curly_quote_and_bracket(self):
+        curly = "The CEO said growth “was strong.” Margins fell in the fourth quarter."
+        assert len(extract_claims(curly)) == 2
+        bracket = "The pump failed (see the audit.) The motor was kept for spare parts."
+        assert len(extract_claims(bracket)) == 2
+
+    def test_split_before_opening_quote(self):
+        doc = 'Sales rose in March. "The outlook is good," the board said.'
+        assert len(extract_claims(doc)) == 2
+
+    def test_no_split_before_bracket_after_abbreviation(self):
+        doc = "The market closed at 4 p.m. (EST) with the S&P 500 index up 2.4% on the day."
+        assert [c.claim for c in extract_claims(doc)] == [doc]
+
+    def test_citation_initial_still_whole(self):
+        doc = "The panel design follows Buchanan, C. (1991) with three waves of interviews."
+        assert len(extract_claims(doc)) == 1
+
+
+# ---------------------------------------------------------------------------
+# DEF-NUMBER-22: CONTRADICTED returned on a claim the source states verbatim
+# ---------------------------------------------------------------------------
+
+
+class TestVerbatimNumbersNotContradicted:
+    """A value the source states is never a contradiction of that source."""
+
+    LIST = (
+        "Test performance: recall 80.45 percent, precision 80.31 percent, "
+        "F-measure 79.16 percent, crack IoU 66.76 percent."
+    )
+
+    def test_percentage_list_restated_verbatim(self):
+        # the following-word rule keys 80.45 on "precision"; the same-unit guard
+        # still sees 80.31 stated by the passage
+        claim = "The benchmark reaches 80.45% recall and 80.31% precision at 66.76% crack IoU."
+        assert find_numeric_mismatches(claim, self.LIST) == []
+
+    def test_verbatim_claim_is_not_contradicted_end_to_end(self):
+        claim = "The benchmark reaches 80.45% recall and 80.31% precision at 66.76% crack IoU."
+        assert ground(claim, [self.LIST]).match_type != "contradicted"
+
+    def test_unitless_value_stated_by_the_source(self):
+        # "trucks 12": the following-word rule keys 12 on "cars"
+        source = "Fleet inventory: vans 40, trucks 12, cars 7."
+        assert ground("The fleet has 12 trucks.", [source]).match_type != "contradicted"
+
+    def test_unitless_list_restated_verbatim(self):
+        claim = "The benchmark reaches 80.45 recall and 80.31 precision."
+        source = "Test performance: recall 80.45, precision 80.31, F-measure 79.16, crack IoU 66.76."
+        assert find_numeric_mismatches(claim, source) == []
+
+    def test_range_endpoint_is_not_an_exact_value(self):
+        claim = "Realistic accuracy is 1.5-3 cm absolute with surveyed targets."
+        source = "The data directly contradicts a 1 cm absolute claim."
+        assert find_numeric_mismatches(claim, source) == []
+
+    def test_rounded_restatement_agrees(self):
+        assert find_numeric_mismatches("Crack IoU was 66.76%.", "Crack IoU was 67%.") == []
+
+    def test_real_conflicts_still_fire(self):
+        assert find_numeric_mismatches("The cluster has 42 nodes.", "The cluster has 50 nodes.") == [
+            ("42", "50")
+        ]
+        assert find_numeric_mismatches("Crack IoU was 66.7%.", "Crack IoU was 62%.") == [
+            ("66.7", "62")
+        ]
+
+
+# ---------------------------------------------------------------------------
+# DEF-NUMBER-30: citation marker read as a stated value
+# ---------------------------------------------------------------------------
+
+
+class TestCitationMarkersAreNotValues:
+    """``[1]`` is a reference number, never a value the claim states."""
+
+    SOURCE = "Costs rose 12% in 2023."
+
+    def test_trailing_marker_is_not_contradicted(self):
+        assert ground("Costs rose 12% in 2023 [1].", [self.SOURCE]).match_type != "contradicted"
+
+    def test_marker_forms(self):
+        for claim in (
+            "Costs rose 12% [1] in 2023.",
+            "Costs rose 12% in 2023 [2, 3].",
+            "Costs rose 12% in 2023 [4-6].",
+        ):
+            assert find_numeric_mismatches(claim, self.SOURCE) == [], claim
+
+    def test_bracketed_value_the_source_states_is_not_contradicted(self):
+        assert (
+            find_numeric_mismatches(
+                "Revenue grew 12% in 2023.",
+                "Revenue grew 12% in [2023](https://ex.com/r), after a flat 2022.",
+            )
+            == []
+        )
+        assert (
+            find_numeric_mismatches(
+                "The trial enrolled 120 patients.",
+                "The trial enrolled [120] patients, down from 150 patients planned.",
+            )
+            == []
+        )
+
+    def test_real_conflict_beside_a_marker_still_fires(self):
+        assert find_numeric_mismatches("Costs rose 12% in 2023 [1].", "Costs rose 15% in 2023.") == [
+            ("12", "15")
+        ]
+
+
+# ---------------------------------------------------------------------------
+# DEF-SELF-31: check_consistency reads citation markers as values
+# ---------------------------------------------------------------------------
+
+
+class TestConsistencyIgnoresCitationMarkers:
+    """``[1]`` and ``[2]`` are reference numbers, not values that disagree."""
+
+    def test_repeated_value_with_markers_is_consistent(self):
+        doc = "The cluster has 42 nodes [1].\nThe cluster still has 42 nodes [2].\n"
+        assert check_consistency(doc) == []
+
+    def test_real_divergence_beside_markers_still_reported(self):
+        doc = "The cluster has 42 nodes [3].\nThe cluster has 50 nodes [4].\n"
+        findings = check_consistency(doc)
+        assert [(f.category, f.occurrences) for f in findings] == [
+            ("nodes", [(1, "42 nodes"), (2, "50 nodes")])
+        ]

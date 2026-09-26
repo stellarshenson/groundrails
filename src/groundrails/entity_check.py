@@ -115,6 +115,79 @@ _COMPARATIVE_RE = re.compile(
     re.IGNORECASE,
 )
 
+# A bracketed citation marker ("[1]", "[2, 3]", "[4-6]") is a reference number,
+# not a stated value. Read as one, "rose 12% in 2023 [1]" contradicted a source
+# stating 12% - "1" against "12" under the same key (DEF-NUMBER-30).
+_CITATION_RE = re.compile(r"\[\d+(?:\s*[,\u2013-]\s*\d+)*\]")
+
+
+# One value written with a separator inside it: a date ("2024-09-25",
+# "06.07.2026"), a range ("5-12 years", "20-30%", "5 to 12", "between 5 and 12")
+# or a clock time ("06:00"). ``extract_numbers`` yields every digit run
+# separately, so without this a document quoting a range reports its two
+# endpoints as a divergence (DEF-SELF-17), and the grounding tier compared a
+# range endpoint as an exact value (DEF-NUMBER-22). Dates are tried first so a
+# range never takes two components of one.
+_VALUE = r"\d{1,2}:\d{2}(?::\d{2})?|\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+(?:\.\d+)?"
+_COMPOUND_RE = re.compile(
+    rf"""
+    (?<![\w.:])(?<!\d-)(?<!\d\u2013)
+    (?:
+        (?P<d>\d{{4}}-\d{{1,2}}-\d{{1,2}}|\d{{1,2}}[./]\d{{1,2}}[./]\d{{4}})
+        |
+        between\s+(?P<ba>{_VALUE})\s+and\s+(?P<bb>{_VALUE})
+        |
+        (?P<a>{_VALUE})\s*(?:-|\u2013|\u2014|\bto\b)\s*(?P<b>{_VALUE})
+        |
+        (?P<t>\d{{1,2}}:\d{{2}}(?::\d{{2}})?)
+    )
+    (?![\w:]*\d)(?!\s*[-\u2013]\s*\d)
+    """,
+    re.VERBOSE | re.IGNORECASE,
+)
+
+
+def _compound_value(m: re.Match) -> str:
+    """The rendered value of one ``_COMPOUND_RE`` match: the date, ``a-b`` or the time."""
+    if m.group("d") or m.group("t"):
+        return m.group("d") or m.group("t")
+    a, b = (m.group("ba"), m.group("bb")) if m.group("ba") else (m.group("a"), m.group("b"))
+    return f"{a}-{b}"
+
+
+_DIGITS_RE = re.compile(r"\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+(?:\.\d+)?")
+
+
+def _compound_part_values(text: str) -> set[str]:
+    """Normalised values of every number inside a date, range or clock time.
+
+    Such a number is one end or one field of a larger value, never an exact
+    quantity on its own, so it cannot pin a contradiction (DEF-NUMBER-22).
+    """
+    return {
+        _normalise_value(d)
+        for m in _COMPOUND_RE.finditer(text)
+        for d in _DIGITS_RE.findall(m.group(0))
+    }
+
+
+def _decimals(value: str) -> int:
+    return len(value.split(".", 1)[1]) if "." in value else 0
+
+
+def _agree_at_coarser_precision(a: str, b: str) -> bool:
+    """True when ``a`` and ``b`` are the same quantity at the coarser of their two
+    precisions: a source that rounds 66.76 to 67 restates the value, it does not
+    contradict it (DEF-NUMBER-22)."""
+    from decimal import ROUND_HALF_UP, Decimal, InvalidOperation
+
+    try:
+        da, db = Decimal(a), Decimal(b)
+    except InvalidOperation:
+        return a == b
+    q = Decimal(1).scaleb(-min(_decimals(a), _decimals(b)))
+    return da.quantize(q, rounding=ROUND_HALF_UP) == db.quantize(q, rounding=ROUND_HALF_UP)
+
 
 def _comparative_values(text: str) -> set[str]:
     """Normalised values that appear with a comparative/approximate quantifier."""
@@ -154,7 +227,16 @@ def extract_numbers(text: str) -> list[tuple[str, str, str]]:
     ``("100", "%", "sums")``). ``context_word`` is lowercased; ``value``
     and ``unit`` preserve normalisation.
     """
-    out: list[tuple[str, str, str]] = []
+    return [(v, u, c) for v, u, c, _ in _numbers_with_spans(text)]
+
+
+def _numbers_with_spans(text: str) -> list[tuple[str, str, str, int]]:
+    """:func:`extract_numbers` plus each number's start offset in ``text``.
+
+    Same numbers, same order; the offset lets a caller tell which numbers sit
+    inside a larger span (the consistency check merges a range's endpoints).
+    """
+    out: list[tuple[str, str, str, int]] = []
     if not text:
         return out
     for m in _NUMBER_RE.finditer(text):
@@ -198,15 +280,15 @@ def extract_numbers(text: str) -> list[tuple[str, str, str]]:
         # Filter noise: single-digit years-like tokens without unit or context are uninformative
         if not unit and not context_word and len(value) <= 1:
             continue
-        out.append((value, unit, context_word))
+        out.append((value, unit, context_word, m.start()))
 
     # Also pick up standalone 4-digit years for date-style contradictions
     for m in _YEAR_RE.finditer(text):
         year = m.group(0)
         # Skip if already captured as a numeric (would be duplicate) by checking overlap
-        already = any(v == year for v, _, _ in out)
+        already = any(v == year for v, _, _, _ in out)
         if not already:
-            out.append((year, "", "year"))
+            out.append((year, "", "year", m.start()))
     return out
 
 
@@ -371,6 +453,9 @@ def find_numeric_mismatches(claim: str, passage: str) -> list[tuple[str, str]]:
     contradicted. The overlap check also skips when any claim value
     already appears among the passage values for the same key.
     """
+    claim = _CITATION_RE.sub(" ", claim)
+    stated = {(v, u) for v, u, _ in extract_numbers(passage)}
+    passage = _CITATION_RE.sub(" ", passage)
     claim_nums = extract_numbers(claim)
     if not claim_nums:
         return []
@@ -405,11 +490,20 @@ def find_numeric_mismatches(claim: str, passage: str) -> list[tuple[str, str]]:
                 claim_by_key.setdefault(key, []).append(cv)
                 break
 
-    # Comparative/approximate values on either side are bounds, not exact
-    # numbers - they cannot form an exact contradiction.
-    claim_comp = _comparative_values(claim)
-    pass_comp = _comparative_values(passage)
+    # Comparative/approximate values and the parts of a range, date or time on
+    # either side are bounds, not exact numbers - they cannot form an exact
+    # contradiction.
+    claim_comp = _comparative_values(claim) | _compound_part_values(claim)
+    pass_comp = _comparative_values(passage) | _compound_part_values(passage)
 
+    # A claim value the passage states with the same unit, or with no unit on
+    # either side, is restated, whatever context word each side resolved: in
+    # "recall 80.45 percent, precision 80.31 percent" the following-word rule
+    # keys 80.45 on "precision", so a keyed comparison alone reported a verbatim
+    # claim as contradicted (DEF-NUMBER-22). The stated set reads the passage
+    # before citation markers are removed, so a value the source prints inside
+    # brackets (a markdown link text, an editorial bracket) still counts as stated.
+    claim_units = {v: u for v, u, _ in claim_nums}
     mismatches: list[tuple[str, str]] = []
     for key, claim_values in claim_by_key.items():
         # Specificity gate: multi-value lists aren't contradicted by partial
@@ -420,11 +514,14 @@ def find_numeric_mismatches(claim: str, passage: str) -> list[tuple[str, str]]:
         if not passage_values:
             continue
         cv = claim_values[0]
+        if any(u == claim_units[cv] and _agree_at_coarser_precision(cv, v) for v, u in stated):
+            continue
         # Comparative claim value (e.g. "over 5000") is a bound, not exact.
         if cv in claim_comp:
             continue
-        # Overlap check: any claim value in passage_values means supported.
-        if cv in passage_values:
+        # Overlap check: any claim value in passage_values means supported, and
+        # so does a passage value that states it at a coarser precision.
+        if any(_agree_at_coarser_precision(cv, pv) for pv in passage_values):
             continue
         # Contradict only against an EXACT passage value that differs; a
         # comparative passage value ("more than 512") doesn't pin a contradiction.

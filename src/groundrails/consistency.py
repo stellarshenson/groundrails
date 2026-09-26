@@ -15,7 +15,7 @@ Two check kinds:
       ``dev, staging, prod`` on line 119 - both 3-sets of environment
       names but different members).
 
-Reuses ``extract_numbers`` and ``extract_entities`` from
+Reuses ``extract_numbers`` (via its span variant) and ``extract_entities`` from
 :mod:`entity_check`; no new regex algorithms are added here.
 
 Output is a list of :class:`ConsistencyFinding` with the category,
@@ -29,8 +29,11 @@ from pathlib import Path
 import re
 
 from groundrails.entity_check import (
+    _CITATION_RE,
+    _COMPOUND_RE,
+    _compound_value,
+    _numbers_with_spans,
     extract_entities,
-    extract_numbers,
 )
 
 
@@ -47,6 +50,32 @@ class ConsistencyFinding:
 # --- numeric consistency --------------------------------------------------
 
 
+def _line_numbers(line_text: str) -> list[tuple[str, str, str]]:
+    """``(value, unit, context)`` per number on one line, a range or time as ONE value.
+
+    Every number that starts inside a date, range or time is merged into it; the
+    merged value takes the unit and context of the RIGHTMOST number inside it
+    ("3-5 cm accuracy" keys on ``cm`` / ``accuracy``, as "5 cm accuracy" does).
+    A citation marker ("[1]") is blanked to spaces of the same length first, so it
+    is not read as a value and every offset still matches (DEF-SELF-31).
+    """
+    line_text = _CITATION_RE.sub(lambda m: " " * len(m.group()), line_text)
+    compounds = [
+        (m.start(), m.end(), _compound_value(m)) for m in _COMPOUND_RE.finditer(line_text)
+    ]
+    merged: dict[int, tuple[int, str, str]] = {}
+    found: list[tuple[int, str, str, str]] = []
+    for value, unit, ctx, start in _numbers_with_spans(line_text):
+        idx = next((i for i, (s, e, _) in enumerate(compounds) if s <= start < e), None)
+        if idx is None:
+            found.append((start, value, unit, ctx))
+        elif idx not in merged or start > merged[idx][0]:
+            merged[idx] = (start, unit, ctx)
+    for idx, (_, unit, ctx) in merged.items():
+        found.append((compounds[idx][0], compounds[idx][2], unit, ctx))
+    return [(v, u, c) for _, v, u, c in sorted(found, key=lambda f: f[0])]
+
+
 def _group_numbers_by_key(
     text: str,
 ) -> dict[tuple[str, str], list[tuple[int, str]]]:
@@ -60,7 +89,7 @@ def _group_numbers_by_key(
     """
     grouped: dict[tuple[str, str], list[tuple[int, str]]] = {}
     for line_no, line_text in enumerate(text.splitlines(), start=1):
-        for value, unit, ctx in extract_numbers(line_text):
+        for value, unit, ctx in _line_numbers(line_text):
             if not unit and not ctx:
                 continue  # bare numbers carry no comparable category
             key = (unit, ctx)

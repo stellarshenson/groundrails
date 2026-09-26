@@ -31,9 +31,10 @@ class TestOutOfScopeClassification:
     @pytest.mark.parametrize(
         ("claim", "reason"),
         [
-            # hypothetical - asserts a branch, not a fact
+            # hypothetical - asserts a branch, not a fact; the consequent carries
+            # the author's own modal
             (
-                "If those outputs were never operationalised, that is a strong angle.",
+                "If those outputs were never operationalised, the offer should be rescoped.",
                 "hypothetical",
             ),
             ("Unless the archive was digitised, the prognosis track cannot start.", "hypothetical"),
@@ -59,7 +60,7 @@ class TestOutOfScopeClassification:
             ),
         ],
     )
-    def test_flags_the_three_classes(self, claim, reason):
+    def test_flags_the_out_of_scope_classes(self, claim, reason):
         assert out_of_scope(claim) == reason
 
     @pytest.mark.parametrize(
@@ -77,6 +78,21 @@ class TestOutOfScopeClassification:
             "The study reports a 3D RMSE of 7.9 cm at a standoff of 70 m.",
             "Crack IoU reached 66.76% while background IoU reached 99.76%.",
             "Uneven illumination degrades crack segmentation on concrete surfaces.",
+            # Source-stated conditionals and name disjunctions (public VitaminC dev
+            # claims the looser hypothetical rule skipped - DEF-CLAIM-29).
+            "If a person is infected with coronavirus, then the U.S. CDC recommends "
+            "that the infected individual stay at home.",
+            "If a team from the UAE wins the AFC Champions League, the runners-up of "
+            "the League will be invited in place of Al-Jazira.",
+            "Either Yuri Lowenthal or Laura Bailey voices the courier in Fallout: New Vegas.",
+            # A question mark inside a quoted title does not end the sentence.
+            "The film \"Who Framed Roger Rabbit?\" was released by Touchstone Pictures in 1988.",
+            # A sourced research question, and a quoted title ending the sentence.
+            "The central question of the study is whether aspirin lowers stroke risk in adults "
+            "over 70.",
+            'Haddaway released the 1993 single "What Is Love?"',
+            # A citation-marker paragraph the splitter keeps as one unit, ending in a question.
+            "Costs rose 12% in 2023. [1] Demand fell 8% in 2023. [2] Will the trend continue into 2024?",
         ],
     )
     def test_keeps_real_claims_in_scope(self, claim):
@@ -152,3 +168,18 @@ class TestCascadeSkippedForOutOfScope:
                 joint_verdict=joint.JointVerdict.from_config(joint.load_semantic_block()),
             )
         assert scored == [claim]
+
+
+class TestKnownLimitations:
+    """Measured trade-offs, pinned so a change to them is a decision, not drift."""
+
+    def test_conditional_without_a_modal_stays_in_scope(self):
+        # An authorial conditional whose consequent carries no modal cannot be told
+        # from a source-stated rule ("If a person is infected, the CDC recommends
+        # ..."), so it stays in scope; the looser rule fired on 12 VitaminC claims
+        assert out_of_scope("If those outputs were never operationalised, that is a strong angle.") is None
+
+    def test_evaluative_judgement_stays_in_scope(self):
+        # DEF-CLAIM-23: superlatives occur in factual text ("the single largest
+        # donor"), so an evaluative judgement is not classified at the regex tier
+        assert out_of_scope("It is the single most consequential question in the engagement.") is None
