@@ -1,0 +1,568 @@
+diff --git a/src/groundrails/consistency.py b/src/groundrails/consistency.py
+index 3778ad7..22a7d33 100644
+--- a/src/groundrails/consistency.py
++++ b/src/groundrails/consistency.py
+@@ -28,13 +28,7 @@ from dataclasses import dataclass, field
+ from pathlib import Path
+ import re
+ 
+-from groundrails.entity_check import (
+-    _CITATION_RE,
+-    _COMPOUND_RE,
+-    _compound_value,
+-    _numbers_with_spans,
+-    extract_entities,
+-)
++from groundrails.entity_check import _CITATION_RE, _merged_numbers, extract_entities
+ 
+ 
+ @dataclass
+@@ -51,29 +45,14 @@ class ConsistencyFinding:
+ 
+ 
+ def _line_numbers(line_text: str) -> list[tuple[str, str, str]]:
+-    """``(value, unit, context)`` per number on one line, a range or time as ONE value.
++    """``(value, unit, context)`` per number on one line, a range or time as ONE value
++    (see :func:`groundrails.entity_check._merged_numbers`).
+ 
+-    Every number that starts inside a date, range or time is merged into it; the
+-    merged value takes the unit and context of the RIGHTMOST number inside it
+-    ("3-5 cm accuracy" keys on ``cm`` / ``accuracy``, as "5 cm accuracy" does).
+     A citation marker ("[1]") is blanked to spaces of the same length first, so it
+     is not read as a value and every offset still matches (DEF-SELF-31).
+     """
+     line_text = _CITATION_RE.sub(lambda m: " " * len(m.group()), line_text)
+-    compounds = [
+-        (m.start(), m.end(), _compound_value(m)) for m in _COMPOUND_RE.finditer(line_text)
+-    ]
+-    merged: dict[int, tuple[int, str, str]] = {}
+-    found: list[tuple[int, str, str, str]] = []
+-    for value, unit, ctx, start in _numbers_with_spans(line_text):
+-        idx = next((i for i, (s, e, _) in enumerate(compounds) if s <= start < e), None)
+-        if idx is None:
+-            found.append((start, value, unit, ctx))
+-        elif idx not in merged or start > merged[idx][0]:
+-            merged[idx] = (start, unit, ctx)
+-    for idx, (_, unit, ctx) in merged.items():
+-        found.append((compounds[idx][0], compounds[idx][2], unit, ctx))
+-    return [(v, u, c) for _, v, u, c in sorted(found, key=lambda f: f[0])]
++    return [(v, u, c) for v, u, c, _ in _merged_numbers(line_text)]
+ 
+ 
+ def _group_numbers_by_key(
+diff --git a/src/groundrails/entity_check.py b/src/groundrails/entity_check.py
+index 86a41d8..e7d9b9e 100644
+--- a/src/groundrails/entity_check.py
++++ b/src/groundrails/entity_check.py
+@@ -111,14 +111,31 @@ _COMPARATIVE_RE = re.compile(
+     r"(?:more than|greater than|over|above|at least|at most|no more than|no fewer than|"
+     r"less than|fewer than|under|below|up to|nearly|almost|about|approximately|around|"
+     r"roughly|>=|<=|>|<|≥|≤|~)\s*"
++    # a currency sign or code may stand between the quantifier and the number:
++    # "over $ 3 million" is a bound as much as "over 3 million" (DEF-NUMBER-46)
++    r"(?:(?:US\s*)?[$€£¥]|USD|EUR|GBP)?\s*"
+     r"(\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+(?:\.\d+)?)",
+     re.IGNORECASE,
+ )
++# A date after "before" / "after" is a bound as well: "before March 19, 2020" is
++# not contradicted by "as of 18 March 2020" (DEF-NUMBER-42). Dates only - "after 5
++# years" is a duration and stays exact.
++_MONTH = r"(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?"
++_DATE_BOUND_RE = re.compile(
++    rf"\b(?:before|after|prior\s+to|earlier\s+than|later\s+than)\s+(?:the\s+)?"
++    rf"(?P<date>{_MONTH}\s+\d{{1,2}}(?:\s*,\s*\d{{4}})?|\d{{1,2}}\s+{_MONTH}(?:\s+\d{{4}})?"
++    rf"|{_MONTH}\s+\d{{4}}|(?:1[5-9]|20)\d{{2}})\b",
++    re.IGNORECASE,
++)
+ 
+ # A bracketed citation marker ("[1]", "[2, 3]", "[4-6]") is a reference number,
+ # not a stated value. Read as one, "rose 12% in 2023 [1]" contradicted a source
+ # stating 12% - "1" against "12" under the same key (DEF-NUMBER-30).
+ _CITATION_RE = re.compile(r"\[\d+(?:\s*[,\u2013-]\s*\d+)*\]")
++# A marker glued to the character before it ("15 reactors.[12]", "2023[1]") is a
++# citation by its position alone; a spaced bracket can be a link text or an editorial
++# bracket around a real value ("in [2023](...)", "enrolled [120] patients").
++_GLUED_CITATION_RE = re.compile(r"(?<=\S)" + _CITATION_RE.pattern)
+ 
+ 
+ # One value written with a separator inside it: a date ("2024-09-25",
+@@ -128,7 +145,7 @@ _CITATION_RE = re.compile(r"\[\d+(?:\s*[,\u2013-]\s*\d+)*\]")
+ # endpoints as a divergence (DEF-SELF-17), and the grounding tier compared a
+ # range endpoint as an exact value (DEF-NUMBER-22). Dates are tried first so a
+ # range never takes two components of one.
+-_VALUE = r"\d{1,2}:\d{2}(?::\d{2})?|\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+(?:\.\d+)?"
++_VALUE = r"-?(?:\d{1,2}:\d{2}(?::\d{2})?|\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+(?:\.\d+)?)"
+ _COMPOUND_RE = re.compile(
+     rf"""
+     (?<![\w.:])(?<!\d-)(?<!\d\u2013)
+@@ -137,7 +154,7 @@ _COMPOUND_RE = re.compile(
+         |
+         between\s+(?P<ba>{_VALUE})\s+and\s+(?P<bb>{_VALUE})
+         |
+-        (?P<a>{_VALUE})\s*(?:-|\u2013|\u2014|\bto\b)\s*(?P<b>{_VALUE})
++        (?P<a>{_VALUE})(?P<sep>\s*(?:-|\u2013|\u2014|\bto\b)\s*)(?P<b>{_VALUE})
+         |
+         (?P<t>\d{{1,2}}:\d{{2}}(?::\d{{2}})?)
+     )
+@@ -147,12 +164,35 @@ _COMPOUND_RE = re.compile(
+ )
+ 
+ 
+-def _compound_value(m: re.Match) -> str:
+-    """The rendered value of one ``_COMPOUND_RE`` match: the date, ``a-b`` or the time."""
+-    if m.group("d") or m.group("t"):
+-        return m.group("d") or m.group("t")
+-    a, b = (m.group("ba"), m.group("bb")) if m.group("ba") else (m.group("a"), m.group("b"))
+-    return f"{a}-{b}"
++def _as_float(value: str) -> float | None:
++    try:
++        return float(value.replace(",", ""))
++    except ValueError:
++        return None  # a clock time
++
++
++def _compounds(text: str) -> list[tuple[re.Match, str, str]]:
++    """``(match, rendered value, kind)`` for every date, range or clock time in ``text``.
++
++    ``kind`` is ``"range"`` for ``a-b``, ``a to b`` and ``between a and b``, else
++    ``"date"`` or ``"time"``. A range's ends keep their sign ("-5 to 10" is ``-5-10``)
++    and are normalised ("1,000-2,000" is ``1000-2000``). A SPACED dash with the larger
++    number first ("2023 - 40%") separates two values instead of joining a range - a
++    range is written low to high (DEF-NUMBER-34).
++    """
++    out = []
++    for m in _COMPOUND_RE.finditer(text):
++        if m.group("d") or m.group("t"):
++            out.append((m, m.group("d") or m.group("t"), "date" if m.group("d") else "time"))
++            continue
++        a, b = (m.group("ba"), m.group("bb")) if m.group("ba") else (m.group("a"), m.group("b"))
++        sep = m.group("sep") or ""
++        spaced_dash = sep.strip() in ("-", "\u2013", "\u2014") and sep != sep.strip()
++        fa, fb = _as_float(a), _as_float(b)
++        if spaced_dash and fa is not None and fb is not None and fa > fb:
++            continue
++        out.append((m, f"{_normalise_value(a)}-{_normalise_value(b)}", "range"))
++    return out
+ 
+ 
+ _DIGITS_RE = re.compile(r"\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+(?:\.\d+)?")
+@@ -162,13 +202,58 @@ def _compound_part_values(text: str) -> set[str]:
+     """Normalised values of every number inside a date, range or clock time.
+ 
+     Such a number is one end or one field of a larger value, never an exact
+-    quantity on its own, so it cannot pin a contradiction (DEF-NUMBER-22).
++    quantity on its own, so it cannot pin a contradiction (DEF-NUMBER-22). A
++    signed range end is listed with its sign too, as the claim reads it.
+     """
+-    return {
+-        _normalise_value(d)
+-        for m in _COMPOUND_RE.finditer(text)
+-        for d in _DIGITS_RE.findall(m.group(0))
+-    }
++    parts: set[str] = set()
++    for m, _, kind in _compounds(text):
++        parts.update(_normalise_value(d) for d in _DIGITS_RE.findall(m.group(0)))
++        if kind == "range":
++            ends = (
++                (m.group("ba"), m.group("bb")) if m.group("ba") else (m.group("a"), m.group("b"))
++            )
++            parts.update(_normalise_value(e) for e in ends if e.startswith("-"))
++    return parts
++
++
++def _merged_numbers(text: str) -> list[tuple[str, str, str, str]]:
++    """``(value, unit, context, kind)`` per number, a date, range or time as ONE value.
++
++    Every number that starts inside a date, range or time is merged into it; the
++    merged value takes the unit and context of the RIGHTMOST number inside it
++    ("3-5 cm accuracy" keys on ``cm`` / ``accuracy``, as "5 cm accuracy" does).
++    ``kind`` is the compound kind from :func:`_compounds`, empty for a plain number.
++    """
++    compounds = [(m.start(), m.end(), value, kind) for m, value, kind in _compounds(text)]
++    merged: dict[int, tuple[int, str, str]] = {}
++    found: list[tuple[int, str, str, str, str]] = []
++    for value, unit, ctx, start in _numbers_with_spans(text):
++        idx = next((i for i, (s, e, _, _) in enumerate(compounds) if s <= start < e), None)
++        if idx is None:
++            found.append((start, value, unit, ctx, ""))
++        elif idx not in merged or start > merged[idx][0]:
++            merged[idx] = (start, unit, ctx)
++    for idx, (_, unit, ctx) in merged.items():
++        s, _, value, kind = compounds[idx]
++        found.append((s, value, unit, ctx, kind))
++    return [(v, u, c, k) for _, v, u, c, k in sorted(found, key=lambda f: f[0])]
++
++
++def _stated_values(passage: str) -> set[tuple[str, str, str]]:
++    """``(value, unit, context)`` for every number ``passage`` prints, read before
++    citation markers are removed. A marker glued to the character before it is
++    skipped: it is a citation, so "15 reactors.[12]" does not state 12 (DEF-NUMBER-33)."""
++    text = _GLUED_CITATION_RE.sub(lambda m: " " * len(m.group()), passage)
++    return set(extract_numbers(text))
++
++
++def _year_span_key(value: str) -> str:
++    """A range value with a span of years put in order: "2011-2010", as a table
++    header prints it, is the same period as "from 2010 to 2011" (DEF-NUMBER-44)."""
++    ends = value.split("-")
++    if len(ends) == 2 and all(_YEAR_RE.fullmatch(e) for e in ends):
++        return "-".join(sorted(ends))
++    return value
+ 
+ 
+ def _decimals(value: str) -> int:
+@@ -186,12 +271,36 @@ def _agree_at_coarser_precision(a: str, b: str) -> bool:
+     except InvalidOperation:
+         return a == b
+     q = Decimal(1).scaleb(-min(_decimals(a), _decimals(b)))
+-    return da.quantize(q, rounding=ROUND_HALF_UP) == db.quantize(q, rounding=ROUND_HALF_UP)
++    try:
++        return da.quantize(q, rounding=ROUND_HALF_UP) == db.quantize(q, rounding=ROUND_HALF_UP)
++    except InvalidOperation:
++        # quantize raises past the 28-digit context precision (a build number or a
++        # hash in a source): such a value agrees only when it is equal (DEF-NUMBER-43)
++        return da == db
++
++
++def _same_quantity_agrees(a: str, b: str) -> bool:
++    """:func:`_agree_at_coarser_precision` for two values of ONE quantity (same unit
++    and context word), where a rounding also stays within 5% of the larger value:
++    "mortality fell 0.5%" is not restated by "mortality fell 1%" (DEF-NUMBER-32)."""
++    from decimal import Decimal, InvalidOperation
++
++    if not _agree_at_coarser_precision(a, b):
++        return False
++    try:
++        da, db = Decimal(a), Decimal(b)
++    except InvalidOperation:
++        return a == b
++    return abs(da - db) <= Decimal("0.05") * max(abs(da), abs(db))
+ 
+ 
+ def _comparative_values(text: str) -> set[str]:
+     """Normalised values that appear with a comparative/approximate quantifier."""
+-    return {_normalise_value(m.group(1)) for m in _COMPARATIVE_RE.finditer(text)}
++    return {_normalise_value(m.group(1)) for m in _COMPARATIVE_RE.finditer(text)} | {
++        _normalise_value(d)
++        for m in _DATE_BOUND_RE.finditer(text)
++        for d in _DIGITS_RE.findall(m.group("date"))
++    }
+ 
+ 
+ def _normalise_value(raw: str) -> str:
+@@ -454,7 +563,7 @@ def find_numeric_mismatches(claim: str, passage: str) -> list[tuple[str, str]]:
+     already appears among the passage values for the same key.
+     """
+     claim = _CITATION_RE.sub(" ", claim)
+-    stated = {(v, u) for v, u, _ in extract_numbers(passage)}
++    stated = _stated_values(passage)
+     passage = _CITATION_RE.sub(" ", passage)
+     claim_nums = extract_numbers(claim)
+     if not claim_nums:
+@@ -503,7 +612,9 @@ def find_numeric_mismatches(claim: str, passage: str) -> list[tuple[str, str]]:
+     # claim as contradicted (DEF-NUMBER-22). The stated set reads the passage
+     # before citation markers are removed, so a value the source prints inside
+     # brackets (a markdown link text, an editorial bracket) still counts as stated.
+-    claim_units = {v: u for v, u, _ in claim_nums}
++    # A value under the claim's own context word is the same quantity, so there a
++    # coarser precision must also be a close one (DEF-NUMBER-32).
++    claim_keys = {v: (u, c) for v, u, c in claim_nums}
+     mismatches: list[tuple[str, str]] = []
+     for key, claim_values in claim_by_key.items():
+         # Specificity gate: multi-value lists aren't contradicted by partial
+@@ -514,14 +625,19 @@ def find_numeric_mismatches(claim: str, passage: str) -> list[tuple[str, str]]:
+         if not passage_values:
+             continue
+         cv = claim_values[0]
+-        if any(u == claim_units[cv] and _agree_at_coarser_precision(cv, v) for v, u in stated):
++        cu, cc = claim_keys[cv]
++        if any(
++            u == cu
++            and (_same_quantity_agrees(cv, v) if c == cc else _agree_at_coarser_precision(cv, v))
++            for v, u, c in stated
++        ):
+             continue
+         # Comparative claim value (e.g. "over 5000") is a bound, not exact.
+         if cv in claim_comp:
+             continue
+         # Overlap check: any claim value in passage_values means supported, and
+-        # so does a passage value that states it at a coarser precision.
+-        if any(_agree_at_coarser_precision(cv, pv) for pv in passage_values):
++        # so does a passage value that states it at a coarser, close precision.
++        if any(_same_quantity_agrees(cv, pv) for pv in passage_values):
+             continue
+         # Contradict only against an EXACT passage value that differs; a
+         # comparative passage value ("more than 512") doesn't pin a contradiction.
+@@ -529,6 +645,27 @@ def find_numeric_mismatches(claim: str, passage: str) -> list[tuple[str, str]]:
+         if pv is None:
+             continue
+         mismatches.append((cv, pv))
++
++    # Both ends of a range are range parts, so none of them can differ above: a
++    # range is compared whole instead, against the passage ranges under the same
++    # (unit, context) key. "fell from 200 to 150 ms" against "fell from 200 to 120
++    # ms" is a conflict (DEF-NUMBER-34); a range the passage states anywhere is not.
++    claim_ranges: dict[tuple[str, str], list[str]] = {}
++    for v, u, c, kind in _merged_numbers(claim):
++        if kind == "range":
++            claim_ranges.setdefault((u, c), []).append(v)
++    pass_ranges: dict[tuple[str, str], list[str]] = {}
++    for v, u, c, kind in _merged_numbers(passage):
++        if kind == "range":
++            pass_ranges.setdefault((u, c), []).append(v)
++    stated_ranges = {_year_span_key(v) for values in pass_ranges.values() for v in values}
++    for key, values in claim_ranges.items():
++        if (
++            len(values) == 1
++            and _year_span_key(values[0]) not in stated_ranges
++            and key in pass_ranges
++        ):
++            mismatches.append((values[0], pass_ranges[key][0]))
+     return mismatches
+ 
+ 
+diff --git a/src/groundrails/extract.py b/src/groundrails/extract.py
+index 226d34f..52f93cb 100644
+--- a/src/groundrails/extract.py
++++ b/src/groundrails/extract.py
+@@ -37,6 +37,8 @@ from dataclasses import dataclass
+ from pathlib import Path
+ import re
+ 
++from groundrails.entity_check import _CITATION_RE
++
+ 
+ @dataclass
+ class ExtractedClaim:
+@@ -60,13 +62,14 @@ class ExtractedClaim:
+ # capital-letter or digit start. Tolerates common abbreviations by
+ # requiring a capital/digit after the whitespace (a sentence rarely
+ # continues with lowercase). One closing quote or bracket may sit between the
+-# terminator and the space (``...12%." The``), and one opening quote may sit
+-# before the capital - without that the boundary was invisible and two
+-# assertions were grounded as one unit (DEF-CLAIM-28). An opening bracket is not
+-# accepted: after an abbreviation the guard does not list (``4 p.m. (EST) with
+-# ...``) it split the sentence and the part without a verb was dropped.
++# terminator and the space (``...12%." The``), and one opening quote or
++# parenthesis may sit before the capital - without that the boundary was
++# invisible and two assertions were grounded as one unit (DEF-CLAIM-28,
++# DEF-CLAIM-41). Citation markers after the terminator (``... 2023. [1] Demand``)
++# stay with the sentence they cite; ``tail`` is the part kept on the left.
+ _SENT_SPLIT_RE = re.compile(
+-    r"(?:(?<=[.!?])|(?<=[.!?][\"'\u201d\u2019)\]]))\s+(?=[\"'\u201c\u2018]?[A-Z0-9])"
++    r"(?<=[.!?])(?P<tail>[\"'\u201d\u2019)\]]?(?:[ \t]*" + _CITATION_RE.pattern + r")*)"
++    r"\s+(?=[\"'\u201c\u2018(]?[A-Z0-9])"
+ )
+ 
+ # Abbreviations whose trailing period is NOT a sentence end. Checked against
+@@ -94,6 +97,17 @@ _INITIAL_BEFORE_RE = re.compile(r",\s*[A-Z]\.$")
+ # sentence ("...were B, C. 400 families enrolled...") still splits.
+ _CITATION_AFTER_RE = re.compile(r"\(?(?:1[5-9]|20)\d{2}(?!\d)")
+ 
++# A period that may be an abbreviation's although ``_ABBREV_BEFORE_RE`` does not
++# list it: dotted letters ("U.S.", "p.m."), a title, company or month
++# abbreviation, or an initial after a capitalised word ("Thomas K."). Such a
++# boundary still splits; it only lets a side without a verb rejoin.
++_ABBREV_SHAPE_RE = re.compile(
++    r"(?:\b[A-Za-z]\.){2,}$"
++    r"|\b(?:Gen|Gov|Lt|Col|Sgt|Capt|Cmdr|Adm|Maj|Cpl|Pvt|Spc|Rep|Sen|Rev|Hon|Corp|Inc|Ltd|Co|Bros"
++    r"|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)\.$"
++    r"|\b[A-Z][a-z]+\s[A-Z]\.$"
++)
++
+ # Longest guard string is "approx." after a comma-initial; a bounded look-back
+ # window keeps the per-boundary check O(1) instead of re-scanning the whole
+ # prefix (O(n^2) on reference-heavy documents).
+@@ -111,8 +125,16 @@ def _split_sentences(text: str) -> list[str]:
+     the boundary, so a real sentence ending in a single capital ("... vitamin
+     D." / "... were B, C.") still splits; bare ``etc.`` is likewise NOT
+     guarded - it legitimately ends sentences far more often than citations.
++
++    A boundary after an abbreviation no list covers (``4 p.m. EST with ...``,
++    ``the U.S. "Growth" segment``) leaves a side without a verb, and dropping that
++    side cut the sentence in two (DEF-CLAIM-39, DEF-CLAIM-40). So a part that fails
++    :func:`_looks_like_claim` is joined back across a boundary whose period may be
++    an abbreviation's (``_ABBREV_SHAPE_RE``) - to the part before it, else to the
++    part after it.
+     """
+     parts: list[str] = []
++    doubtful: list[bool] = []  # doubtful[i]: the boundary after parts[i]
+     cursor = 0
+     for m in _SENT_SPLIT_RE.finditer(text):
+         window = text[max(0, m.start() - _ABBREV_WINDOW) : m.start()]
+@@ -124,10 +146,28 @@ def _split_sentences(text: str) -> list[str]:
+             # comma-initial boundaries cluster exactly on reference-heavy
+             # documents, the O(n^2) case _ABBREV_WINDOW exists to prevent.
+             continue
+-        parts.append(text[cursor : m.start()])
++        shaped = bool(_ABBREV_SHAPE_RE.search(window))
++        if shaped and text.startswith("(", m.end()):
++            continue  # "Inc. (PPG) formed ...": a bracket after an abbreviation is not a new sentence
++        parts.append(text[cursor : m.end("tail")])
++        doubtful.append(shaped)
+         cursor = m.end()
+     parts.append(text[cursor:])
+-    return parts
++    joined: list[str] = []
++    carried = False  # parts[i] already holds the part before it
++    for i, part in enumerate(parts):
++        if _looks_like_claim(part.strip()):
++            joined.append(part)
++            carried = False
++        elif i > 0 and doubtful[i - 1] and not carried:
++            joined[-1] = f"{joined[-1]} {part}"
++        elif i < len(doubtful) and doubtful[i]:
++            parts[i + 1] = f"{part} {parts[i + 1]}"
++            carried = True
++        else:
++            joined.append(part)
++            carried = False
++    return joined
+ 
+ 
+ # Section headings whose content is bibliographic/navigational, not
+@@ -146,8 +186,9 @@ _NON_CLAIM_SECTION_RE = re.compile(
+ # inside a ```` block (or a ~~~ line inside ```) is content, not a toggle.
+ _FENCE_RE = re.compile(r"^\s*(`{3,}|~{3,})")
+ 
+-# Markdown bullet/number prefixes stripped before length check
+-_LIST_PREFIX_RE = re.compile(r"^\s*(?:[-*+]|\d+[.)])\s+")
++# Markdown bullet/number prefixes stripped before length check; a single letter
++# ("A.", "b)") or a roman numeral ("IV.") marks an outline item as well (DEF-CLAIM-45)
++_LIST_PREFIX_RE = re.compile(r"^\s*(?:[-*+]|\d+[.)]|[A-Za-z][.)]|[IVX]+\.)\s+")
+ 
+ # Crude "has verb-like content" check: at least one copula or a word
+ # ending in -s/-ed/-ing. Used to drop pure noun-phrase headers like
+@@ -256,20 +297,16 @@ def _looks_like_claim(candidate: str) -> bool:
+ # authored prose stay in scope (DEF-CLAIM-23) - they need semantics the
+ # deterministic tier does not have.
+ 
+-# 1. Hypothetical. A conditional or a leading disjunction asserts a branch, not
+-#    a fact. Both anchored at sentence start: an EMBEDDED "either ... or" is a
+-#    real claim's internal disjunction ("at 50-100 m either a long focal length
+-#    is specified or the GSD target moves"), not a hypothetical. A source states
+-#    conditionals too ("If a person is infected, the CDC recommends ...") and
+-#    disjunctions of names ("Either A or B voices the courier"), so the rule
+-#    needs the author's own modal in the consequent ("..., the proposal must
+-#    ...") and a disjunction of CLAUSES ("either X happened, or Y"); the looser
+-#    form fired on 12 VitaminC claims (DEF-CLAIM-29).
+-_COND_MODAL_RE = re.compile(
+-    r"^\s*(?:if|unless)\b[^,]*,\s*(?:[\w'-]+\s+){0,6}?"
+-    r"(?:would|could|might|must|should|may|cannot|can't)\b",
+-    re.IGNORECASE,
+-)
++# 1. Hypothetical. A leading disjunction of CLAUSES ("either X happened, or Y")
++#    asserts a branch, not a fact. Anchored at sentence start: an EMBEDDED
++#    "either ... or" is a real claim's internal disjunction ("at 50-100 m either a
++#    long focal length is specified or the GSD target moves"), and a disjunction
++#    of names ("Either A or B voices the courier") is a sourced fact. A
++#    conditional is NOT classified, even with a modal in the consequent: sources
++#    state rules and guidance that way ("If you develop an infection, you may need
++#    IV antibiotics"), and on public RAG answers the modal-conditional rule fired
++#    at the same rate as on their sources, where every firing is wrong
++#    (DEF-CLAIM-29, DEF-CLAIM-36).
+ _EITHER_CLAUSES_RE = re.compile(r"^\s*either\b[^,]*,\s*or\b", re.IGNORECASE)
+ 
+ # 2. Document self-reference. The sentence describes this document's own
+@@ -307,12 +344,8 @@ def out_of_scope(claim: str) -> str | None:
+     is uninformative, so it should not be counted as a grounding failure and
+     should not pay for a semantic-cascade escalation that cannot succeed.
+     """
+-    # A conditional carrying a DIGIT has a checkable consequent ("If hardware
+-    # sits inside the EUR 50-80k envelope, between zero and EUR 40k of
+-    # engineering remains") - keep it in scope.
+-    if not any(ch.isdigit() for ch in claim) and (
+-        _COND_MODAL_RE.match(claim) or _EITHER_CLAUSES_RE.match(claim)
+-    ):
++    # A disjunction carrying a DIGIT has a checkable branch - keep it in scope.
++    if not any(ch.isdigit() for ch in claim) and _EITHER_CLAUSES_RE.match(claim):
+         return "hypothetical"
+     if _SELF_REF_RE.search(claim) or _SELF_PATH_RE.search(claim):
+         return "self-reference"
+@@ -359,8 +392,19 @@ def warn_if_not_english(sentences: list[str]) -> str | None:
+ 
+ _HEADING_RE = re.compile(r"^\s*(#{1,6})\s+(.*)$")
+ 
+-# An HTML comment is an author's note, never an assertion of the document.
+-_HTML_COMMENT_RE = re.compile(r"<!--.*?-->", re.DOTALL)
++# An HTML comment is an author's note, never an assertion of the document. It is
++# removed only outside code: one scan matches fenced blocks, inline code spans and
++# comments, and whichever starts first wins, as in CommonMark. A literal ``<!--``
++# inside code no longer opens a comment that runs to a later ``-->`` (DEF-CLAIM-35),
++# and a comment whose body holds a backtick is still one comment (DEF-CLAIM-27). The
++# fence arm mirrors ``_FENCE_RE`` and the closer rule in ``_split_document``; an
++# inline span does not cross a blank line.
++_COMMENT_OR_CODE_RE = re.compile(
++    r"^[ \t]*(?P<fence>(?P<fc>[`~])(?P=fc){2,}).*?(?:\n[ \t]*(?P=fence)(?P=fc)*[ \t]*$|\Z)"
++    r"|(?<!`)(?P<tick>`+)(?!`)(?:(?!\n[ \t]*\n).)*?(?<!`)(?P=tick)(?!`)"
++    r"|(?P<comment><!--.*?-->)",
++    re.DOTALL | re.MULTILINE,
++)
+ 
+ 
+ def _split_document(text: str) -> list[tuple[int, str]]:
+@@ -377,7 +421,9 @@ def _split_document(text: str) -> list[tuple[int, str]]:
+     """
+     # Comments are removed before anything else (DEF-CLAIM-27). Each is replaced by
+     # the newlines it spanned, so every later line keeps its line number.
+-    text = _HTML_COMMENT_RE.sub(lambda m: "\n" * m.group(0).count("\n"), text)
++    text = _COMMENT_OR_CODE_RE.sub(
++        lambda m: "\n" * m.group(0).count("\n") if m.group("comment") else m.group(0), text
++    )
+     out: list[tuple[int, str]] = []
+     paragraph_lines: list[tuple[int, str]] = []
+     in_non_claim_section = False
+@@ -449,7 +495,7 @@ def _split_document(text: str) -> list[tuple[int, str]]:
+         # A list item is its own unit: a bullet with no closing full stop must not
+         # run into the next bullet as one compound claim (DEF-CLAIM-24). Indented
+         # continuation lines of the same item carry no marker and still join it.
+-        if _LIST_PREFIX_RE.match(raw_line.lstrip().lstrip(">").lstrip()):
++        if _LIST_PREFIX_RE.match(raw_line.lstrip().lstrip("> ")):
+             flush()
+         stripped = _strip_markdown_noise(raw_line)
+         if not stripped:
+diff --git a/src/groundrails/lexical.py b/src/groundrails/lexical.py
+index f36b46f..db2c7ec 100644
+--- a/src/groundrails/lexical.py
++++ b/src/groundrails/lexical.py
+@@ -424,6 +424,10 @@ def _lingua_lang(text: str, min_len: int = 25) -> str:
+     return iso
+ 
+ 
++# English confidence among the spoken languages above which a Latin read is English.
++_LATIN_ENGLISH_MIN = 0.2
++
++
+ def detect_lang_confident(text: str, min_len: int = 25, min_conf: float = 0.65) -> str:
+     """Detected ISO code only when lingua is confident (>= ``min_conf``), else 'und'.
+ 
+@@ -433,6 +437,12 @@ def detect_lang_confident(text: str, min_len: int = 25, min_conf: float = 0.65)
+     cell") as Latin at confidence < 0.55, whereas genuine non-English sentences
+     score >= 0.9. Returns 'und' when too short, the detector is absent, or the top
+     language's confidence is below ``min_conf``.
++
++    A Latin read is checked once more against the spoken languages only: lingua
++    reads English clinical prose ("Metformin reduces hepatic gluconeogenesis ...")
++    as Latin at confidence 1.0, and without Latin in the running the same text is
++    English. Non-English text read as Latin keeps an English confidence under
++    ``_LATIN_ENGLISH_MIN`` there, so it still reads ``la`` (DEF-CLAIM-37).
+     """
+     if len(text.strip()) < min_len:
+         return "und"
+@@ -445,6 +455,16 @@ def detect_lang_confident(text: str, min_len: int = 25, min_conf: float = 0.65)
+         return "und"
+     if det.compute_language_confidence(text, lg) < min_conf:
+         return "und"
++    if lg.name == "LATIN":
++        from lingua import Language, LanguageDetectorBuilder
++
++        if "spoken" not in _LINGUA:
++            _LINGUA["spoken"] = LanguageDetectorBuilder.from_all_spoken_languages().build()
++        if (
++            _LINGUA["spoken"].compute_language_confidence(text, Language.ENGLISH)
++            >= _LATIN_ENGLISH_MIN
++        ):
++            return "en"
+     return lg.iso_code_639_1.name.lower()
+ 
+ 

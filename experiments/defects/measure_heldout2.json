@@ -1,0 +1,316 @@
+{
+ "mode": "test",
+ "numeric": {
+  "corpora": {
+   "attributionbench-AttrScore-GenSearch": {
+    "pairs": 194,
+    "committed": 24,
+    "committed_labelled": 20
+   },
+   "attributionbench-AttributedQA": {
+    "pairs": 845,
+    "committed": 86,
+    "committed_labelled": 81
+   },
+   "attributionbench-BEGIN": {
+    "pairs": 140,
+    "committed": 0,
+    "committed_labelled": 0
+   },
+   "attributionbench-LFQA": {
+    "pairs": 322,
+    "committed": 11,
+    "committed_labelled": 8
+   },
+   "attributionbench-Stanford-GenSearch": {
+    "pairs": 2802,
+    "committed": 74,
+    "committed_labelled": 52
+   }
+  },
+  "rules": {
+   "DEF-NUMBER-32 same-quantity rounding": {
+    "verdict": "INCONCLUSIVE",
+    "failed_on": [],
+    "per_corpus": {},
+    "samples": []
+   },
+   "DEF-NUMBER-44 year span in either order": {
+    "verdict": "INCONCLUSIVE",
+    "failed_on": [],
+    "per_corpus": {},
+    "samples": []
+   },
+   "DEF-NUMBER-46 currency comparative": {
+    "verdict": "INCONCLUSIVE",
+    "failed_on": [],
+    "per_corpus": {
+     "attributionbench-AttrScore-GenSearch": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 2,
+      "lost_labelled": 2,
+      "P": 0.8333333333333334
+     },
+     "attributionbench-AttributedQA": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 1,
+      "lost_labelled": 1,
+      "P": 0.9418604651162791
+     },
+     "attributionbench-Stanford-GenSearch": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 1,
+      "lost_labelled": 0,
+      "P": 0.7027027027027027
+     }
+    },
+    "samples": [
+     {
+      "corpus": "attributionbench-AttrScore-GenSearch",
+      "kind": "lost",
+      "labelled": true,
+      "claim": "According to the US-China Tax Treaty Article 20, a resident of China who goes to the USA for the purpose of education, training or obtaining technical experience shall be exempt from tax in the United States on payments received from abroad"
+     },
+     {
+      "corpus": "attributionbench-Stanford-GenSearch",
+      "kind": "lost",
+      "labelled": false,
+      "claim": "The movie was a box office success, earning over $1 billion."
+     },
+     {
+      "corpus": "attributionbench-AttributedQA",
+      "kind": "lost",
+      "labelled": true,
+      "claim": "The United States is in debt to China for $1.26 trillion."
+     },
+     {
+      "corpus": "attributionbench-AttrScore-GenSearch",
+      "kind": "lost",
+      "labelled": true,
+      "claim": "According to Indeed.com, the average salary for a software engineer working at Amazon in the United States is approximately $131,930 per year"
+     }
+    ]
+   }
+  }
+ },
+ "judged": {
+  "documents": 24974,
+  "rules": {
+   "DEF-CLAIM-39/40 rejoin gate": {
+    "changed_units": 499,
+    "judge_sample": [
+     {
+      "corpus": "drop",
+      "claim": "Census), 0.69%  Native American (U.S.Census), and 0.14% Pacific Islander (U.S. Census)."
+     },
+     {
+      "corpus": "attributionbench",
+      "claim": "Numerous Hawaii statehood bills passed either the U.S. House or Senate in 1947, 1950, 1951 and 1953."
+     },
+     {
+      "corpus": "drop",
+      "claim": "J.T. Kearns (for whom the village was named) staked a claim in 1907, which became the Chesterfield Gold Mines (1938-1952)."
+     },
+     {
+      "corpus": "drop",
+      "claim": "The university also ranked in the top 100 in the world for the social sciences in the CWTS Leiden Ranking 2016 and in the top 150 in the world for Social Sciences ARWU 2016 and 90th best in the world for Psychological Sciences in the U.S. News & World Report."
+     },
+     {
+      "corpus": "drop",
+      "claim": "In 1918, the castle became the seat of the president of the new Czechoslovak Republic, T.G. Masaryk."
+     },
+     {
+      "corpus": "attributionbench",
+      "claim": "The U.S. Energy Information Administration (EIA) projects that U.S. renewable energy consumption will continue to increase through 2050, which could help reduce energy imports and fossil fuel use, the largest source of U.S. carbon dioxide emissions."
+     },
+     {
+      "corpus": "attributionbench",
+      "claim": "Each state has its own criminal code, and Congress has also codified federal criminal law in Title 18 of the U.S. Code."
+     },
+     {
+      "corpus": "fava",
+      "claim": "A.C. Cesena is an Italian football club based in Cesena, Emilia-Romagna."
+     },
+     {
+      "corpus": "drop",
+      "claim": "Hank Baskett came up with a 57-yard completion, followed by a 4-yard touchdown reception by L.J. Smith to make it 13-10."
+     },
+     {
+      "corpus": "drop",
+      "claim": "The Seahawks would respond with QB Matt Hasselbeck's 23-yard TD pass to WR D.J. Hackett."
+     },
+     {
+      "corpus": "attributionbench",
+      "claim": "Ben J. Wattenberg came up with the term 'baby boomer.'"
+     },
+     {
+      "corpus": "fava",
+      "claim": "A.F.C. Blackpool is a football club based in Blackpool, Lancashire, England."
+     },
+     {
+      "corpus": "drop",
+      "claim": "The best all-around hitter on the team proved to be D.J. Boston."
+     },
+     {
+      "corpus": "drop",
+      "claim": "For others who go through the traditional application process, selectivity is deemed \"more selective\" according to the Carnegie Foundation for the Advancement of Teaching and by U.S. News & World Report."
+     },
+     {
+      "corpus": "attributionbench",
+      "claim": "William H. Harrison was the oldest president at the time of his inauguration, at 68."
+     },
+     {
+      "corpus": "fava",
+      "claim": "A.C. Chievo Verona is an Italian professional football club based in Verona, Veneto, Italy."
+     },
+     {
+      "corpus": "drop",
+      "claim": "The last contingent of U.S. Marines departed on August 15, 1934 after a formal transfer of authority to the Garde."
+     },
+     {
+      "corpus": "attributionbench",
+      "claim": "C.J. McCollum holds the second-highest record with 50 points, which he scored in 39 minutes against the Washington Wizards on February 14, 2022."
+     },
+     {
+      "corpus": "drop",
+      "claim": "But with the onset of the Great Depression and Augusto C. Sandino's Nicaraguan guerrilla troops fighting back against U.S. troops, it became too costly for the U.S. government and a withdrawal was ordered in 1933."
+     },
+     {
+      "corpus": "drop",
+      "claim": "Maj. Gen. Robert W. Grow assumed command of the Division at Camp Cooke, California in May 1943 and commanded the division through the war until July 30, 1945."
+     }
+    ]
+   },
+   "DEF-CLAIM-41 parenthesis split": {
+    "changed_units": 81,
+    "judge_sample": [
+     {
+      "corpus": "drop",
+      "claim": "(The 2009–10 Philadelphia Flyers season and the 2013–14 Los Angeles Kings season would later accomplish the feat)."
+     },
+     {
+      "corpus": "drop",
+      "claim": "(Kicker Caleb Sturgis missed the extra point.)"
+     },
+     {
+      "corpus": "drop",
+      "claim": "(With a successful 2-point conversion as Rivers found WR Legedu Naanee)."
+     },
+     {
+      "corpus": "drop",
+      "claim": "(With the 2-point conversion successful as Ryan passed to White) This was followed by Turner plunging into the end zone on a 3-yard TD run."
+     },
+     {
+      "corpus": "drop",
+      "claim": "Pavilions participating at a World Expo can also be large, sometimes 5,000 to 10,000 square metres in size, mini city blocks in themselves and sometimes more than several stories in height."
+     },
+     {
+      "corpus": "drop",
+      "claim": "(During the same election, voters in five other states also strongly approved increases in the minimum wage.)"
+     },
+     {
+      "corpus": "drop",
+      "claim": "(Mundy was not flagged for the illegal hit by the replacement referees, but would be fined by the NFL a few days later.)"
+     },
+     {
+      "corpus": "drop",
+      "claim": "The clip quickly became a highlight of sports shows and popular online."
+     },
+     {
+      "corpus": "drop",
+      "claim": "The proposition strongly passed every single county in Missouri with 78.99% voting in favor."
+     },
+     {
+      "corpus": "drop",
+      "claim": "(The 2002 Seahawks did it in 52 seconds while the 1998 Falcons in 49 seconds.)"
+     },
+     {
+      "corpus": "drop",
+      "claim": "(That is slightly more than maximum capacity of the flagship Zuikaku."
+     },
+     {
+      "corpus": "drop",
+      "claim": "(The announced attendance of 53,231 was inflated."
+     },
+     {
+      "corpus": "drop",
+      "claim": "Coming off their divisional home win over the Bengals, head coach John Harbaugh and the Ravens stayed at home for a Week 12 interconference duel with the San Francisco 49ers and their head coach (John's brother) Jim Harbaugh, on Thanksgiving."
+     },
+     {
+      "corpus": "drop",
+      "claim": "As part of his 5-catch effort in the game, Troy Brown became the Patriots' all-time leader in receptions."
+     },
+     {
+      "corpus": "drop",
+      "claim": "(The number of people aged 65 and over increased by 22 percent between the 2006 and 2013 censuses.)"
+     },
+     {
+      "corpus": "drop",
+      "claim": "(It was the longest run from scrimmage for the Browns so far during the season.)"
+     },
+     {
+      "corpus": "drop",
+      "claim": "The Falcons pulled away in the fourth quarter with Ryan throwing an 11-yard TD pass to White."
+     },
+     {
+      "corpus": "drop",
+      "claim": "(The game was jokingly nicknamed \"The Harbaugh Bowl.\") Baltimore delivered the game's opening punch in the first quarter with a 39-yard field goal from kicker Billy Cundiff, but the 49ers answered with kicker David Akers getting a 45-yard field goal."
+     },
+     {
+      "corpus": "drop",
+      "claim": "As part of his 6-catch effort, Kevin Faulk eclipsed the Patriots' franchise running back reception record."
+     },
+     {
+      "corpus": "drop",
+      "claim": "The Seahawks increased their lead when Mare made a 23-yard field goal, but the Chargers replied and tied the game when Rivers found TE Antonio Gates on a 12-yard TD pass."
+     }
+    ]
+   },
+   "DEF-CLAIM-45 outline items": {
+    "changed_units": 0,
+    "judge_sample": []
+   }
+  }
+ },
+ "language": {
+  "verdict": "PASS",
+  "non_english_stopped_warning": [],
+  "english": {
+   "attributionbench|documents": 18406,
+   "attributionbench|committed_warned": 51,
+   "attributionbench|now_warns": 37,
+   "drop|documents": 6108,
+   "drop|committed_warned": 13,
+   "drop|now_warns": 9,
+   "fava|documents": 460,
+   "fava|committed_warned": 1,
+   "fava|now_warns": 1
+  },
+  "non_english": {
+   "pl|documents": 2000,
+   "pl|committed_warned": 1999,
+   "pl|now_warns": 1999,
+   "de|documents": 2000,
+   "de|committed_warned": 2000,
+   "de|now_warns": 2000,
+   "es|documents": 2000,
+   "es|committed_warned": 2000,
+   "es|now_warns": 2000,
+   "fr|documents": 2000,
+   "fr|committed_warned": 2000,
+   "fr|now_warns": 2000,
+   "it|documents": 2000,
+   "it|committed_warned": 2000,
+   "it|now_warns": 2000,
+   "hu|documents": 2000,
+   "hu|committed_warned": 2000,
+   "hu|now_warns": 2000,
+   "cn|documents": 2000,
+   "cn|committed_warned": 1998,
+   "cn|now_warns": 1998
+  }
+ }
+}

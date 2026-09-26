@@ -8,9 +8,10 @@ tier, escalates into the OpenVINO cascade (the shipped escalation band is
 
 The dangerous direction is a FALSE POSITIVE - a real claim silently skipped by the
 cascade - so the keep-in-scope cases below carry the weight. They are drawn from the
-labelled prose set, where the rules score 16/27 recall on human ``not_groundable``
+labelled prose set, where the rules score 15/27 recall on human ``not_groundable``
 labels at zero false positives against the 24 claims a human verified as groundable
-or the lexical tier actually confirmed.
+or the lexical tier actually confirmed (16/27 before the modal-conditional rule was
+removed - DEF-CLAIM-36).
 """
 
 import pytest
@@ -31,13 +32,7 @@ class TestOutOfScopeClassification:
     @pytest.mark.parametrize(
         ("claim", "reason"),
         [
-            # hypothetical - asserts a branch, not a fact; the consequent carries
-            # the author's own modal
-            (
-                "If those outputs were never operationalised, the offer should be rescoped.",
-                "hypothetical",
-            ),
-            ("Unless the archive was digitised, the prognosis track cannot start.", "hypothetical"),
+            # hypothetical - a disjunction of clauses asserts a branch, not a fact
             (
                 "Either the outputs never reached the operations team, or they were "
                 "not operationalised.",
@@ -85,6 +80,9 @@ class TestOutOfScopeClassification:
             "If a team from the UAE wins the AFC Champions League, the runners-up of "
             "the League will be invited in place of Al-Jazira.",
             "Either Yuri Lowenthal or Laura Bailey voices the courier in Fallout: New Vegas.",
+            # Source rules and guidance carry a modal in the consequent (DEF-CLAIM-36).
+            "If a tenant fails to pay rent, the landlord may begin eviction proceedings.",
+            "If you develop an infection, you may need IV antibiotics.",
             # A question mark inside a quoted title does not end the sentence.
             "The film \"Who Framed Roger Rabbit?\" was released by Touchstone Pictures in 1988.",
             # A sourced research question, and a quoted title ending the sentence.
@@ -173,11 +171,12 @@ class TestCascadeSkippedForOutOfScope:
 class TestKnownLimitations:
     """Measured trade-offs, pinned so a change to them is a decision, not drift."""
 
-    def test_conditional_without_a_modal_stays_in_scope(self):
-        # An authorial conditional whose consequent carries no modal cannot be told
-        # from a source-stated rule ("If a person is infected, the CDC recommends
-        # ..."), so it stays in scope; the looser rule fired on 12 VitaminC claims
+    def test_authorial_conditional_stays_in_scope(self):
+        # An authorial conditional cannot be told from a source-stated rule ("If a
+        # person is infected, the CDC recommends ..."), with or without a modal in the
+        # consequent, so it stays in scope (DEF-CLAIM-29, DEF-CLAIM-36)
         assert out_of_scope("If those outputs were never operationalised, that is a strong angle.") is None
+        assert out_of_scope("Unless the archive was digitised, the prognosis track cannot start.") is None
 
     def test_evaluative_judgement_stays_in_scope(self):
         # DEF-CLAIM-23: superlatives occur in factual text ("the single largest

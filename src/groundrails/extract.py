@@ -37,6 +37,8 @@ from dataclasses import dataclass
 from pathlib import Path
 import re
 
+from groundrails.entity_check import _CITATION_RE
+
 
 @dataclass
 class ExtractedClaim:
@@ -62,11 +64,16 @@ class ExtractedClaim:
 # continues with lowercase). One closing quote or bracket may sit between the
 # terminator and the space (``...12%." The``), and one opening quote may sit
 # before the capital - without that the boundary was invisible and two
-# assertions were grounded as one unit (DEF-CLAIM-28). An opening bracket is not
-# accepted: after an abbreviation the guard does not list (``4 p.m. (EST) with
-# ...``) it split the sentence and the part without a verb was dropped.
+# assertions were grounded as one unit (DEF-CLAIM-28). Citation markers after
+# the terminator (``... 2023. [1] Demand``) stay with the sentence they cite
+# (DEF-CLAIM-41); ``tail`` is the part kept on the left. An opening bracket is
+# not accepted: after an abbreviation the guard does not list (``4 p.m. (EST)
+# with ...``) it split the sentence and the part without a verb was dropped.
 _SENT_SPLIT_RE = re.compile(
-    r"(?:(?<=[.!?])|(?<=[.!?][\"'\u201d\u2019)\]]))\s+(?=[\"'\u201c\u2018]?[A-Z0-9])"
+    r"(?:(?<=[.!?])|(?<=[.!?][\"'\u201d\u2019)\]]))(?P<tail>(?:[ \t]*"
+    + _CITATION_RE.pattern
+    + r")*)"
+    r"\s+(?=[\"'\u201c\u2018]?[A-Z0-9])"
 )
 
 # Abbreviations whose trailing period is NOT a sentence end. Checked against
@@ -124,7 +131,7 @@ def _split_sentences(text: str) -> list[str]:
             # comma-initial boundaries cluster exactly on reference-heavy
             # documents, the O(n^2) case _ABBREV_WINDOW exists to prevent.
             continue
-        parts.append(text[cursor : m.start()])
+        parts.append(text[cursor : m.end("tail")])
         cursor = m.end()
     parts.append(text[cursor:])
     return parts
@@ -256,20 +263,16 @@ def _looks_like_claim(candidate: str) -> bool:
 # authored prose stay in scope (DEF-CLAIM-23) - they need semantics the
 # deterministic tier does not have.
 
-# 1. Hypothetical. A conditional or a leading disjunction asserts a branch, not
-#    a fact. Both anchored at sentence start: an EMBEDDED "either ... or" is a
-#    real claim's internal disjunction ("at 50-100 m either a long focal length
-#    is specified or the GSD target moves"), not a hypothetical. A source states
-#    conditionals too ("If a person is infected, the CDC recommends ...") and
-#    disjunctions of names ("Either A or B voices the courier"), so the rule
-#    needs the author's own modal in the consequent ("..., the proposal must
-#    ...") and a disjunction of CLAUSES ("either X happened, or Y"); the looser
-#    form fired on 12 VitaminC claims (DEF-CLAIM-29).
-_COND_MODAL_RE = re.compile(
-    r"^\s*(?:if|unless)\b[^,]*,\s*(?:[\w'-]+\s+){0,6}?"
-    r"(?:would|could|might|must|should|may|cannot|can't)\b",
-    re.IGNORECASE,
-)
+# 1. Hypothetical. A leading disjunction of CLAUSES ("either X happened, or Y")
+#    asserts a branch, not a fact. Anchored at sentence start: an EMBEDDED
+#    "either ... or" is a real claim's internal disjunction ("at 50-100 m either a
+#    long focal length is specified or the GSD target moves"), and a disjunction
+#    of names ("Either A or B voices the courier") is a sourced fact. A
+#    conditional is NOT classified, even with a modal in the consequent: sources
+#    state rules and guidance that way ("If you develop an infection, you may need
+#    IV antibiotics"), and on public RAG answers the modal-conditional rule fired
+#    at the same rate as on their sources, where every firing is wrong
+#    (DEF-CLAIM-29, DEF-CLAIM-36).
 _EITHER_CLAUSES_RE = re.compile(r"^\s*either\b[^,]*,\s*or\b", re.IGNORECASE)
 
 # 2. Document self-reference. The sentence describes this document's own
@@ -307,12 +310,8 @@ def out_of_scope(claim: str) -> str | None:
     is uninformative, so it should not be counted as a grounding failure and
     should not pay for a semantic-cascade escalation that cannot succeed.
     """
-    # A conditional carrying a DIGIT has a checkable consequent ("If hardware
-    # sits inside the EUR 50-80k envelope, between zero and EUR 40k of
-    # engineering remains") - keep it in scope.
-    if not any(ch.isdigit() for ch in claim) and (
-        _COND_MODAL_RE.match(claim) or _EITHER_CLAUSES_RE.match(claim)
-    ):
+    # A disjunction carrying a DIGIT has a checkable branch - keep it in scope.
+    if not any(ch.isdigit() for ch in claim) and _EITHER_CLAUSES_RE.match(claim):
         return "hypothetical"
     if _SELF_REF_RE.search(claim) or _SELF_PATH_RE.search(claim):
         return "self-reference"
@@ -359,8 +358,20 @@ def warn_if_not_english(sentences: list[str]) -> str | None:
 
 _HEADING_RE = re.compile(r"^\s*(#{1,6})\s+(.*)$")
 
-# An HTML comment is an author's note, never an assertion of the document.
-_HTML_COMMENT_RE = re.compile(r"<!--.*?-->", re.DOTALL)
+# An HTML comment is an author's note, never an assertion of the document. It is
+# removed only outside code: one scan matches fenced blocks, inline code spans and
+# comments, and whichever starts first wins. A literal ``<!--``
+# inside code no longer opens a comment that runs to a later ``-->`` (DEF-CLAIM-35),
+# and a comment whose body holds a backtick is still one comment (DEF-CLAIM-27). The
+# fence arm mirrors ``_FENCE_RE`` and the closer rule in ``_split_document``. An
+# inline span does not cross a blank line or a fence line, because CommonMark reads
+# fenced blocks before inline spans. Both accept CRLF line ends.
+_COMMENT_OR_CODE_RE = re.compile(
+    r"^[ \t]*(?P<fence>(?P<fc>[`~])(?P=fc){2,}).*?(?:\n[ \t]*(?P=fence)(?P=fc)*[ \t]*\r?$|\Z)"
+    r"|(?<!`)(?P<tick>`+)(?!`)(?:(?!\n[ \t]*(?:\r?\n|`{3}|~{3})).)*?(?<!`)(?P=tick)(?!`)"
+    r"|(?P<comment><!--.*?-->)",
+    re.DOTALL | re.MULTILINE,
+)
 
 
 def _split_document(text: str) -> list[tuple[int, str]]:
@@ -377,7 +388,9 @@ def _split_document(text: str) -> list[tuple[int, str]]:
     """
     # Comments are removed before anything else (DEF-CLAIM-27). Each is replaced by
     # the newlines it spanned, so every later line keeps its line number.
-    text = _HTML_COMMENT_RE.sub(lambda m: "\n" * m.group(0).count("\n"), text)
+    text = _COMMENT_OR_CODE_RE.sub(
+        lambda m: "\n" * m.group(0).count("\n") if m.group("comment") else m.group(0), text
+    )
     out: list[tuple[int, str]] = []
     paragraph_lines: list[tuple[int, str]] = []
     in_non_claim_section = False
@@ -449,7 +462,7 @@ def _split_document(text: str) -> list[tuple[int, str]]:
         # A list item is its own unit: a bullet with no closing full stop must not
         # run into the next bullet as one compound claim (DEF-CLAIM-24). Indented
         # continuation lines of the same item carry no marker and still join it.
-        if _LIST_PREFIX_RE.match(raw_line.lstrip().lstrip(">").lstrip()):
+        if _LIST_PREFIX_RE.match(raw_line.lstrip().lstrip("> ")):
             flush()
         stripped = _strip_markdown_noise(raw_line)
         if not stripped:

@@ -104,7 +104,8 @@ splitting a document into sentences and keeping the ones that are claims; `src/g
   - log: 2026-09-25T02:32:48Z @kj added
   - log: 2026-09-25T02:32:48Z @kj closed: fixed: `_COND_MODAL_RE` needs a modal (would, could, might, must, should, may, cannot) in the consequent; `_EITHER_CLAUSES_RE` needs clause branches (`, or`); 2 of 5 authorial conditionals on the private set are no longer caught, pinned in `TestKnownLimitations`
   - log: 2026-09-26T14:00:23Z @kj edited evidence "false positives 0 on the private prose negatives and 0 on the 63,054 VitaminC dev claims (was 12); `test_out_of_scope_claims.py` 28 green, 7 fail on the HEAD extractor" -> "false positives 0 on the private prose negatives; 0 of the 63,054 VitaminC dev claims fire (was 12), but those 12 shaped the rule, so this is not held-out precision evidence; `test_out_of_scope_claims.py` 28 green, 7 fail on the HEAD extractor"
-- [ ] `DEF-CLAIM-35` **HTML comment strip runs through inline code** - MAJOR; comments are removed before code spans are recognised, so a literal `<!--` in inline code and any later `-->` delete everything between them: a 4-claim document yields 1 claim; `src/groundrails/extract.py`
+- [x] `DEF-CLAIM-35` **HTML comment strip runs through inline code** - MAJOR; comments are removed before code spans are recognised, so a literal `<!--` in inline code and any later `-->` delete everything between them: a 4-claim document yields 1 claim; `src/groundrails/extract.py`
+  - evidence: comments are removed only outside fenced blocks and inline code, in one scan where the first match wins; an inline span stops at a blank line or a fence line; 5 comment tests in `TestCommentsOutsideCodeOnly`; offline suite 497 passed, 1 skipped
   - test-tags: UNIT
   - related: DEF-CLAIM-27
   - repro: document with `<!--` in inline code, two claim paragraphs, then `-->` in inline code -> 1 claim instead of 4
@@ -112,7 +113,12 @@ splitting a document into sentences and keeping the ones that are claims; `src/g
   - log: 2026-09-26T14:00:08Z @kj added
   - log: 2026-09-26T14:00:22Z @kj reported: adversarial review round 1 (F12); deferred: a `[^`]` body reopens DEF-CLAIM-27 for comments containing a backtick; the full fix strips comments only outside code spans and fences
   - log: 2026-09-26T14:00:31Z @kj edited test-tags added "UNIT"
-- [ ] `DEF-CLAIM-36` **sourced conditional with a modal marked hypothetical** - MAJOR; `out_of_scope` returns `hypothetical` for sourced legal and clinical rules such as `If a tenant fails to pay rent, the landlord may begin eviction proceedings.`, so the claim skips the semantic cascade; present at HEAD d671df2, narrowed by DEF-CLAIM-29; `src/groundrails/extract.py`
+  - log: 2026-09-26T16:03:06Z @kj closed
+  - log: 2026-09-26T18:17:16Z @kj review round 1 (F9): the fence closer and the blank-line guard now accept CRLF line ends, so a comment after a fenced block in CRLF text is removed; `test_comment_after_a_fence_in_crlf_text_is_removed`
+  - log: 2026-09-26T18:57:32Z @kj review round 9: the inline-code arm crossed a fence line, so a later comment stayed in claim text (regression against HEAD); the arm now also stops at a fence line; `test_inline_code_span_does_not_cross_a_fence_line`
+  - log: 2026-09-26T19:17:50Z @kj edited evidence "comments are removed only outside fenced blocks and inline code, in one scan where the first match wins as in CommonMark; 3 tests in `TestCommentsOutsideCodeOnly`; offline suite 494 passed, 1 skipped" -> "comments are removed only outside fenced blocks and inline code, in one scan where the first match wins; an inline span stops at a blank line or a fence line; 5 comment tests in `TestCommentsOutsideCodeOnly`; offline suite 497 passed, 1 skipped"
+- [x] `DEF-CLAIM-36` **sourced conditional with a modal marked hypothetical** - MAJOR; `out_of_scope` returns `hypothetical` for sourced legal and clinical rules such as `If a tenant fails to pay rent, the landlord may begin eviction proceedings.`, so the claim skips the semantic cascade; present at HEAD d671df2, narrowed by DEF-CLAIM-29; `src/groundrails/extract.py`
+  - evidence: modal-conditional rule removed; held-out (`experiments/defects/HELDOUT.md`): the rule fired on 0.067% of 346,742 source sentences and 0.055% of 59,721 answer sentences; private prose set out-of-scope 16 to 15 of 77, recall 15/27 at 0 false positives; offline suite 497 passed, 1 skipped
   - test-tags: UNIT
   - related: DEF-CLAIM-29
   - repro: `out_of_scope("If a tenant fails to pay rent, the landlord may begin eviction proceedings.")` -> `hypothetical`
@@ -120,14 +126,27 @@ splitting a document into sentences and keeping the ones that are claims; `src/g
   - log: 2026-09-26T14:00:08Z @kj added
   - log: 2026-09-26T14:00:22Z @kj reported: adversarial review round 1 (F5); deferred until measured on a held-out set of source-style conditionals (statutes, clinical guidance)
   - log: 2026-09-26T14:00:31Z @kj edited test-tags added "UNIT"
-- [ ] `DEF-CLAIM-37` **non-English warning on English medical prose** - MINOR; lingua reads some English clinical prose as Latin at confidence 1.0, so `warn_if_not_english` logs a false multilingual-bridge warning; claim output is unchanged; `src/groundrails/extract.py`
+  - log: 2026-09-26T16:03:06Z @kj closed
+  - log: 2026-09-26T19:17:50Z @kj edited evidence "modal-conditional rule removed; held-out (`experiments/defects/HELDOUT.md`): the rule fired on 0.067% of 346,742 source sentences and 0.055% of 59,721 answer sentences; private prose set out-of-scope 16 to 15 of 77, recall 15/27 at 0 false positives; offline suite 494 passed" -> "modal-conditional rule removed; held-out (`experiments/defects/HELDOUT.md`): the rule fired on 0.067% of 346,742 source sentences and 0.055% of 59,721 answer sentences; private prose set out-of-scope 16 to 15 of 77, recall 15/27 at 0 false positives; offline suite 497 passed, 1 skipped"; reason: suite count updated after the code settled; the held-out numbers are unchanged
+- [-] `DEF-CLAIM-37` **non-English warning on English medical prose** - MINOR; lingua reads some English clinical prose as Latin at confidence 1.0, so `warn_if_not_english` logs a false multilingual-bridge warning; claim output is unchanged; `src/groundrails/extract.py`
   - test-tags: UNIT
   - related: DEF-CLAIM-26
   - repro: `warn_if_not_english(["Metformin reduces hepatic gluconeogenesis.", "Sulfonylureas stimulate insulin secretion from pancreatic beta cells.", "Hypoglycaemia is the principal adverse effect."])` -> `la`
   - log: 2026-09-26T14:00:08Z @kj added
   - log: 2026-09-26T14:00:22Z @kj reported: adversarial review round 1 (F6); deferred until the false-warning rate on an English corpus is measured
   - log: 2026-09-26T14:00:31Z @kj edited test-tags added "UNIT"
-- [ ] `DEF-CLAIM-38` **bullets in a nested blockquote weld into one claim** - MINOR; the list-item break strips one `>` only, so `> > - a` keeps `> - a`, `_LIST_PREFIX_RE` misses it and two bullets become one claim; `src/groundrails/extract.py`
+  - log: 2026-09-26T16:03:14Z @kj attempted: read the top language other than Latin - all 23 English Latin reads in held-out data stopped warning, but so did 11 non-English PsiloQA answers read as Latin (sv, es, it, eu); failed the pre-registered held-out check, reverted; see `experiments/defects/HELDOUT.md`
+  - log: 2026-09-26T17:03:05Z @kj closed
+  - log: 2026-09-26T18:17:15Z @kj regressed as DEF-CLAIM-37-1
+  - log: 2026-09-26T18:21:38Z @kj rejected: closure withdrawn: the fix was reverted before commit, see DEF-CLAIM-37-1; a failure mode of the heuristic, not a software bug (author ruling 2026-09-26)
+- [-] `DEF-CLAIM-37-1` **non-English warning on English medical prose** - MINOR; lingua reads some English clinical prose as Latin at confidence 1.0, so `warn_if_not_english` logs a false multilingual-bridge warning; claim output is unchanged; `src/groundrails/extract.py`
+  - test-tags: UNIT
+  - repro: `warn_if_not_english(["Metformin reduces hepatic gluconeogenesis.", "Sulfonylureas stimulate insulin secretion from pancreatic beta cells.", "Hypoglycaemia is the principal adverse effect."])` -> `la`
+  - log: 2026-09-26T18:17:15Z @kj regression of DEF-CLAIM-37: fix reverted before commit in the reduction to the validated core (author ruling 2026-09-26): no out-of-sample support; attempts in `experiments/defects/HELDOUT.md` and `HELDOUT2.md`
+  - log: 2026-09-26T18:17:15Z @kj edited repro added "`warn_if_not_english(["Metformin reduces hepatic gluconeogenesis.", "Sulfonylureas stimulate insulin secretion from pancreatic beta cells.", "Hypoglycaemia is the principal adverse effect."])` -> `la`"; test-tags added "UNIT"
+  - log: 2026-09-26T18:21:19Z @kj rejected: rejected: a failure mode of the heuristic, not a software bug - an accuracy miss is measured as a rate, not patched rule by rule (author ruling 2026-09-26); attempts in `experiments/defects/HELDOUT.md` and `HELDOUT2.md`
+- [x] `DEF-CLAIM-38` **bullets in a nested blockquote weld into one claim** - MINOR; the list-item break strips one `>` only, so `> > - a` keeps `> - a`, `_LIST_PREFIX_RE` misses it and two bullets become one claim; `src/groundrails/extract.py`
+  - evidence: the list-item break strips every leading `>` and space, as `_strip_markdown_noise` does; `test_bullets_in_a_nested_blockquote_stay_apart`; offline suite 497 passed, 1 skipped
   - test-tags: UNIT
   - related: DEF-CLAIM-24
   - repro: `extract_claims` on two `> > -` bullets -> 1 claim
@@ -135,27 +154,77 @@ splitting a document into sentences and keeping the ones that are claims; `src/g
   - log: 2026-09-26T14:00:08Z @kj added
   - log: 2026-09-26T14:00:22Z @kj reported: adversarial review round 1 (F7); recorded fix: `.lstrip("> ")` at the list-item break in `_split_document`
   - log: 2026-09-26T14:00:31Z @kj edited test-tags added "UNIT"
-- [ ] `DEF-CLAIM-39` **opening quote after an unlisted abbreviation cuts the sentence** - MAJOR; the DEF-CLAIM-28 opening-quote lookahead splits after an abbreviation `_ABBREV_BEFORE_RE` does not list, and the side shorter than 20 characters or without a verb is dropped: the claim below keeps only `The fund returned 8% in the U.S.`, which grounds exact against a source stating 1% abroad; `src/groundrails/extract.py`
+  - log: 2026-09-26T16:03:06Z @kj closed
+  - log: 2026-09-26T19:17:50Z @kj edited evidence "the list-item break strips every leading `>` and space, as `_strip_markdown_noise` does; `test_bullets_in_a_nested_blockquote_stay_apart`; offline suite 494 passed, 1 skipped" -> "the list-item break strips every leading `>` and space, as `_strip_markdown_noise` does; `test_bullets_in_a_nested_blockquote_stay_apart`; offline suite 497 passed, 1 skipped"
+- [-] `DEF-CLAIM-39` **opening quote after an unlisted abbreviation cuts the sentence** - MAJOR; the DEF-CLAIM-28 opening-quote lookahead splits after an abbreviation `_ABBREV_BEFORE_RE` does not list, and the side shorter than 20 characters or without a verb is dropped: the claim below keeps only `The fund returned 8% in the U.S.`, which grounds exact against a source stating 1% abroad; `src/groundrails/extract.py`
   - test-tags: UNIT
   - related: DEF-CLAIM-28
   - repro: `extract_claims` on `The fund returned 8% in the U.S. "Growth" segment and 3% abroad.` -> only the first part
   - log: 2026-09-26T14:00:08Z @kj added; reason: the text names the rule, the drop condition and the verdict it produces
   - log: 2026-09-26T14:00:22Z @kj reported: adversarial review round 3 (R3-Q); deferred: removing the opening-quote arm welds reported speech onto the sentence before; count both shapes in answer documents first
   - log: 2026-09-26T14:00:31Z @kj edited test-tags added "UNIT"
-- [ ] `DEF-CLAIM-40` **unlisted abbreviation before a capital ends the sentence** - MAJOR; an abbreviation `_ABBREV_BEFORE_RE` does not list (p.m., a.m., Corp., Inc., Ltd., U.S.) followed by a capital is read as a sentence end, and the side without a verb is dropped; present at HEAD d671df2; `src/groundrails/extract.py`
+  - log: 2026-09-26T16:03:14Z @kj attempted: rejoin a side without a verb across a boundary after an abbreviation-shaped token (`U.S.`, `Corp.`); held-out judged sample: 14 of 20 repairs against 16 required - outline labels, `Yes.` and one join to the wrong sentence; reverted; see `experiments/defects/HELDOUT.md`
+  - log: 2026-09-26T17:03:05Z @kj closed
+  - log: 2026-09-26T18:17:15Z @kj regressed as DEF-CLAIM-39-1
+  - log: 2026-09-26T18:21:49Z @kj rejected: closure withdrawn: the fix was reverted before commit, see DEF-CLAIM-39-1; a failure mode of the heuristic, not a software bug (author ruling 2026-09-26)
+- [-] `DEF-CLAIM-39-1` **opening quote after an unlisted abbreviation cuts the sentence** - MAJOR; the DEF-CLAIM-28 opening-quote lookahead splits after an abbreviation `_ABBREV_BEFORE_RE` does not list, and the side shorter than 20 characters or without a verb is dropped: the claim below keeps only `The fund returned 8% in the U.S.`, which grounds exact against a source stating 1% abroad; `src/groundrails/extract.py`
+  - test-tags: UNIT
+  - repro: `extract_claims("The fund returned 8% in the U.S. \"Growth\" segment and 3% abroad.")` -> `["The fund returned 8% in the U.S."]`
+  - log: 2026-09-26T18:17:15Z @kj regression of DEF-CLAIM-39: fix reverted before commit in the reduction to the validated core (author ruling 2026-09-26): no out-of-sample support; attempts in `experiments/defects/HELDOUT.md` and `HELDOUT2.md`
+  - log: 2026-09-26T18:17:15Z @kj edited repro added "`extract_claims("The fund returned 8% in the U.S. \"Growth\" segment and 3% abroad.")` -> `["The fund returned 8% in the U.S."]`"; test-tags added "UNIT"
+  - log: 2026-09-26T18:21:19Z @kj rejected: rejected: a failure mode of the heuristic, not a software bug - an accuracy miss is measured as a rate, not patched rule by rule (author ruling 2026-09-26); attempts in `experiments/defects/HELDOUT.md` and `HELDOUT2.md`
+- [-] `DEF-CLAIM-40` **unlisted abbreviation before a capital ends the sentence** - MAJOR; an abbreviation `_ABBREV_BEFORE_RE` does not list (p.m., a.m., Corp., Inc., Ltd., U.S.) followed by a capital is read as a sentence end, and the side without a verb is dropped; present at HEAD d671df2; `src/groundrails/extract.py`
   - test-tags: UNIT
   - related: DEF-CLAIM-39
   - repro: `extract_claims("The market closed at 4 p.m. EST with the S&P 500 index up 2.4% on the day.")` -> `["The market closed at 4 p.m."]`
   - log: 2026-09-26T14:00:09Z @kj added
   - log: 2026-09-26T14:00:22Z @kj reported: adversarial review round 3 (R3-ROOT); deferred: an abbreviation rule is a new mechanism; measure how often the shape occurs first
   - log: 2026-09-26T14:00:31Z @kj edited test-tags added "UNIT"
-- [ ] `DEF-CLAIM-41` **sentence opening with a bracket welds to the one before** - MEDIUM; the splitter does not break before `(` or `[` after a full stop, so citation-marker and `(n)` enumeration paragraphs become one claim unit; one contradicted sentence gives the whole unit CONTRADICTED; HEAD behaviour, kept in DEF-CLAIM-28 round 3; `src/groundrails/extract.py`
+  - log: 2026-09-26T16:03:14Z @kj attempted: rejoin a side without a verb across a boundary after an abbreviation-shaped token (`U.S.`, `Corp.`); held-out judged sample: 14 of 20 repairs against 16 required - outline labels, `Yes.` and one join to the wrong sentence; reverted; see `experiments/defects/HELDOUT.md`
+  - log: 2026-09-26T17:03:05Z @kj closed
+  - log: 2026-09-26T18:17:15Z @kj regressed as DEF-CLAIM-40-1
+  - log: 2026-09-26T18:21:49Z @kj rejected: closure withdrawn: the fix was reverted before commit, see DEF-CLAIM-40-1; a failure mode of the heuristic, not a software bug (author ruling 2026-09-26)
+- [-] `DEF-CLAIM-40-1` **unlisted abbreviation before a capital ends the sentence** - MAJOR; an abbreviation `_ABBREV_BEFORE_RE` does not list (p.m., a.m., Corp., Inc., Ltd., U.S.) followed by a capital is read as a sentence end, and the side without a verb is dropped; present at HEAD d671df2; `src/groundrails/extract.py`
+  - test-tags: UNIT
+  - repro: `extract_claims("The market closed at 4 p.m. EST with the S&P 500 index up 2.4% on the day.")` -> `["The market closed at 4 p.m."]`
+  - log: 2026-09-26T18:17:15Z @kj regression of DEF-CLAIM-40: fix reverted before commit in the reduction to the validated core (author ruling 2026-09-26): no out-of-sample support; attempts in `experiments/defects/HELDOUT.md` and `HELDOUT2.md`
+  - log: 2026-09-26T18:17:15Z @kj edited repro added "`extract_claims("The market closed at 4 p.m. EST with the S&P 500 index up 2.4% on the day.")` -> `["The market closed at 4 p.m."]`"; test-tags added "UNIT"
+  - log: 2026-09-26T18:21:19Z @kj rejected: rejected: a failure mode of the heuristic, not a software bug - an accuracy miss is measured as a rate, not patched rule by rule (author ruling 2026-09-26); attempts in `experiments/defects/HELDOUT.md` and `HELDOUT2.md`
+- [x] `DEF-CLAIM-41` **sentence opening with a bracket welds to the one before** - MEDIUM; the splitter does not break before `(` or `[` after a full stop, so citation-marker and `(n)` enumeration paragraphs become one claim unit; one contradicted sentence gives the whole unit CONTRADICTED; HEAD behaviour, kept in DEF-CLAIM-28 round 3; `src/groundrails/extract.py`
+  - evidence: fixed in part: citation markers after a full stop stay with the sentence they cite (`TestCitationMarkerBoundaries`); the `(` shape is a heuristic failure mode, rejected in DEF-CLAIM-41-1; offline suite 497 passed, 1 skipped
   - test-tags: UNIT
   - related: DEF-CLAIM-28
   - repro: `extract_claims("Costs rose 12% in 2023. (Demand fell 8% in 2023.) Prices held steady in March.")` -> first two sentences in one claim
   - log: 2026-09-26T14:00:09Z @kj added
   - log: 2026-09-26T14:00:22Z @kj reported: adversarial review round 4 (R4-1); deferred: breaking before a bracket drops the subject after unlisted abbreviations (`Sales in the U.S. [1] rose 5%`); count both boundary shapes first
   - log: 2026-09-26T14:00:31Z @kj edited test-tags added "UNIT"
+  - log: 2026-09-26T16:03:14Z @kj fixed in part: citation markers after a full stop stay with the sentence they cite (`TestCitationMarkerBoundaries`); a sentence opening with `(` still welds - accepting `(` needs the DEF-CLAIM-39 repair, which failed its held-out check
+  - log: 2026-09-26T17:03:05Z @kj closed
+  - log: 2026-09-26T17:58:12Z @kj regressed as DEF-CLAIM-41-1
+  - log: 2026-09-26T18:21:54Z @kj edited evidence "an opening parenthesis may start a sentence except after an abbreviation-shaped token; citation markers stay with the sentence they cite; fresh test judged 20 of 20 correct of 81 changed units; `test_sentence_in_brackets_is_its_own_claim`; offline suite 508 passed" -> "fixed in part: citation markers after a full stop stay with the sentence they cite (`TestCitationMarkerBoundaries`); the `(` shape is a heuristic failure mode, rejected in DEF-CLAIM-41-1; offline suite 489 passed"
+  - log: 2026-09-26T18:57:32Z @kj review round 9: moving the closing bracket or quote into the kept tail shifted the abbreviation window, so `(approx.) The` and `"No." The` stopped splitting (regression against HEAD); the tail now holds citation markers only; `test_abbreviation_before_a_closing_bracket_or_quote_still_splits`
+  - log: 2026-09-26T19:17:50Z @kj edited evidence "fixed in part: citation markers after a full stop stay with the sentence they cite (`TestCitationMarkerBoundaries`); the `(` shape is a heuristic failure mode, rejected in DEF-CLAIM-41-1; offline suite 489 passed" -> "fixed in part: citation markers after a full stop stay with the sentence they cite (`TestCitationMarkerBoundaries`); the `(` shape is a heuristic failure mode, rejected in DEF-CLAIM-41-1; offline suite 497 passed, 1 skipped"
+- [-] `DEF-CLAIM-41-1` **sentence opening with a bracket welds to the one before** - MEDIUM; the splitter does not break before `(` or `[` after a full stop, so citation-marker and `(n)` enumeration paragraphs become one claim unit; one contradicted sentence gives the whole unit CONTRADICTED; HEAD behaviour, kept in DEF-CLAIM-28 round 3; `src/groundrails/extract.py`
+  - test-tags: UNIT
+  - repro: `extract_claims("Costs rose 12% in 2023. (Demand fell 8% in 2023.) Prices held steady in March.")` -> first two sentences in one claim
+  - log: 2026-09-26T17:58:12Z @kj regression of DEF-CLAIM-41: review round 1 (F3): the parenthesis boundary cut "Ph.D. (Stanford)" and "1,280 ft. (390 m)" sentences, reverted; a sentence opening with `(` welds again, citation markers stay fixed
+  - log: 2026-09-26T17:58:21Z @kj edited repro added "`extract_claims("Costs rose 12% in 2023. (Demand fell 8% in 2023.) Prices held steady in March.")` -> first two sentences in one claim"; test-tags added "UNIT"
+  - log: 2026-09-26T18:21:19Z @kj rejected: rejected: a failure mode of the heuristic, not a software bug - an accuracy miss is measured as a rate, not patched rule by rule (author ruling 2026-09-26); attempts in `experiments/defects/HELDOUT.md` and `HELDOUT2.md`
+- [-] `DEF-CLAIM-45` **lettered or roman outline items weld into one unit** - MINOR; an outline line opening with a letter or roman numeral (`A.`, `b)`, `IV.`) is not read as a list item, so consecutive items join one paragraph and the next item label lands on the previous claim; `src/groundrails/extract.py`
+  - repro: `extract_claims("A. The committee approved the budget in March\nB. The board rejected the merger in May")` -> first claim ends `in March B.`
+  - test-tags: UNIT
+  - root-cause: 2026-09-26T16:19:30Z @kj `_LIST_PREFIX_RE` covers `-`, `*`, `+` and `1.` or `1)` only
+  - log: 2026-09-26T16:19:30Z @kj added
+  - log: 2026-09-26T17:03:05Z @kj closed
+  - log: 2026-09-26T17:58:12Z @kj regressed as DEF-CLAIM-45-1
+  - log: 2026-09-26T18:21:49Z @kj rejected: closure withdrawn: the fix was reverted before commit, see DEF-CLAIM-45-1; a failure mode of the heuristic, not a software bug (author ruling 2026-09-26)
+- [-] `DEF-CLAIM-45-1` **lettered or roman outline items weld into one unit** - MINOR; an outline line opening with a letter or roman numeral (`A.`, `b)`, `IV.`) is not read as a list item, so consecutive items join one paragraph and the next item label lands on the previous claim; `src/groundrails/extract.py`
+  - test-tags: UNIT
+  - repro: `extract_claims("A. The committee approved the budget in March\nB. The board rejected the merger in May")` -> first claim ends `in March B.`
+  - log: 2026-09-26T17:58:12Z @kj regression of DEF-CLAIM-45: review round 1 (F4): the dotted-letter and roman arms stripped "E. coli" to "coli", reverted; only `a)` labels are list items, `A.` and `IV.` outline lines weld again
+  - log: 2026-09-26T17:58:21Z @kj edited repro added "`extract_claims("A. The committee approved the budget in March\nB. The board rejected the merger in May")` -> first claim ends `in March B.`"; test-tags added "UNIT"
+  - log: 2026-09-26T18:17:16Z @kj the `a)` arm reverted in the reduction too: no outline line occurred in the fresh test documents
+  - log: 2026-09-26T18:21:19Z @kj rejected: rejected: a failure mode of the heuristic, not a software bug - an accuracy miss is measured as a rate, not patched rule by rule (author ruling 2026-09-26); attempts in `experiments/defects/HELDOUT.md` and `HELDOUT2.md`
 
 ## Grounding verdicts `GROUND`
 
@@ -274,7 +343,7 @@ comparing the numbers in a claim with the numbers in its evidence
   - log: 2026-09-25T04:20:56Z @kj closed: closed: fixed: `find_numeric_mismatches` removes `[n]`, `[n, m]` and `[n-m]` markers from claim and passage before extracting numbers; `extract_numbers` unchanged; known limitation: an integer interval written `[0, 1]` is also removed
   - log: 2026-09-25T04:35:58Z @kj edited evidence "`TestCitationMarkersAreNotValues` 3 green, all 3 fail without the fix; VitaminC dev numeric conflicts unchanged (no markers in its 63,054 rows); offline suite 475 passed" -> "`TestCitationMarkersAreNotValues` 4 green, each fails on the code before its change; VitaminC dev numeric conflicts unchanged (no markers in its 63,054 rows); offline suite 476 passed"
   - log: 2026-09-25T04:35:58Z @kj amended in adversarial review round 5: the stated-value set reads the passage before markers are removed; removing them from the passage had deleted values the source states (`[120] patients, down from 150` gave contradicted (120, 150)); known limitation: a claim value equal to a number inside a bracketed marker in the compared passage, with the same unit or no unit on either side, is read as stated, so its conflict is missed (12 reactors against 15 reactors [12]); an integer interval [0, 1] in a claim is still removed; check_consistency still reads markers (DEF-SELF-31); reason: the line replaces the known-limitation text of the close
-- [ ] `DEF-NUMBER-32` **wrong value within rounding distance agrees** - MAJOR; `_agree_at_coarser_precision` rounds the finer value to the coarser precision, so a claim within half a unit of the source last digit is not contradicted: 0.5% vs 1%, 1.4% vs 1%, 2.5M vs 3M; introduced with DEF-NUMBER-22; `src/groundrails/entity_check.py`
+- [-] `DEF-NUMBER-32` **wrong value within rounding distance agrees** - MAJOR; `_agree_at_coarser_precision` rounds the finer value to the coarser precision, so a claim within half a unit of the source last digit is not contradicted: 0.5% vs 1%, 1.4% vs 1%, 2.5M vs 3M; introduced with DEF-NUMBER-22; `src/groundrails/entity_check.py`
   - test-tags: UNIT
   - related: DEF-NUMBER-22
   - repro: `find_numeric_mismatches("The drug cut mortality by 0.5% in the trial.", "The drug cut mortality by 1% in the trial.")` -> `[]`
@@ -282,7 +351,17 @@ comparing the numbers in a claim with the numbers in its evidence
   - log: 2026-09-26T14:00:08Z @kj added
   - log: 2026-09-26T14:00:22Z @kj reported: adversarial review round 1 (F2); deferred until measured: answer-vs-source numeric perturbations split by direction and relative size, plus the 3 private DEF-NUMBER-22 cases
   - log: 2026-09-26T14:00:31Z @kj edited test-tags added "UNIT"
-- [ ] `DEF-NUMBER-33` **stated-value guard ignores which noun a number belongs to** - MAJOR; a claim value found anywhere in the compared passage, same unit or no unit on either side, is never contradicted: `42 nodes` against `12 nodes and 42 racks` is fuzzy; `12 reactors` against glued `15 reactors.[12]` is fuzzy, contradicted at HEAD d671df2; the verification flag is raised; `src/groundrails/entity_check.py`
+  - log: 2026-09-26T16:03:14Z @kj attempted: a two-significant-digit rule, then a 5% relative rule, both chosen on in-sample data; held-out VitaminC: the 5% rule added 10 contradictions, 2 REFUTES (20% against 46.7%); failed, reverted; see `experiments/defects/HELDOUT.md`
+  - log: 2026-09-26T17:03:05Z @kj closed
+  - log: 2026-09-26T18:17:15Z @kj regressed as DEF-NUMBER-32-1
+  - log: 2026-09-26T18:21:49Z @kj rejected: closure withdrawn: the fix was reverted before commit, see DEF-NUMBER-32-1; a failure mode of the heuristic, not a software bug (author ruling 2026-09-26)
+- [-] `DEF-NUMBER-32-1` **wrong value within rounding distance agrees** - MAJOR; `_agree_at_coarser_precision` rounds the finer value to the coarser precision, so a claim within half a unit of the source last digit is not contradicted: 0.5% vs 1%, 1.4% vs 1%, 2.5M vs 3M; introduced with DEF-NUMBER-22; `src/groundrails/entity_check.py`
+  - test-tags: UNIT
+  - repro: `find_numeric_mismatches("The drug cut mortality by 0.5% in the trial.", "The drug cut mortality by 1% in the trial.")` -> `[]`
+  - log: 2026-09-26T18:17:15Z @kj regression of DEF-NUMBER-32: fix reverted before commit in the reduction to the validated core (author ruling 2026-09-26): no out-of-sample support; attempts in `experiments/defects/HELDOUT.md` and `HELDOUT2.md`
+  - log: 2026-09-26T18:17:15Z @kj edited repro added "`find_numeric_mismatches("The drug cut mortality by 0.5% in the trial.", "The drug cut mortality by 1% in the trial.")` -> `[]`"; test-tags added "UNIT"
+  - log: 2026-09-26T18:21:19Z @kj rejected: rejected: a failure mode of the heuristic, not a software bug - an accuracy miss is measured as a rate, not patched rule by rule (author ruling 2026-09-26); attempts in `experiments/defects/HELDOUT.md` and `HELDOUT2.md`
+- [-] `DEF-NUMBER-33` **stated-value guard ignores which noun a number belongs to** - MAJOR; a claim value found anywhere in the compared passage, same unit or no unit on either side, is never contradicted: `42 nodes` against `12 nodes and 42 racks` is fuzzy; `12 reactors` against glued `15 reactors.[12]` is fuzzy, contradicted at HEAD d671df2; the verification flag is raised; `src/groundrails/entity_check.py`
   - test-tags: UNIT
   - related: DEF-NUMBER-22
   - repro: `ground("The cluster has 42 nodes.", ["The cluster has 12 nodes and 42 racks."]).match_type` -> `fuzzy`
@@ -290,7 +369,10 @@ comparing the numbers in a claim with the numbers in its evidence
   - log: 2026-09-26T14:00:08Z @kj added; reason: the text carries both reproduced shapes and the HEAD comparison
   - log: 2026-09-26T14:00:22Z @kj reported: adversarial review rounds 2 and 6 (R2-1, R6-1); deferred until measured on passages shaped like the fuzzy window and BM25 chunk, including `.[n]` marker text; removing the guard brings back a false CONTRADICTED on `trucks 12`
   - log: 2026-09-26T14:00:31Z @kj edited test-tags added "UNIT"
-- [ ] `DEF-NUMBER-34` **range pattern reads a change or a spaced hyphen as a range** - MINOR; `_COMPOUND_RE` reads `from 200 to 150` and `2023 - 40%` as ranges: `fell from 200 to 150 ms` against `from 200 to 120 ms` is not contradicted (it was at HEAD); `check_consistency` reports `2023-40 % growth` against `40 % growth`; the sign of `-5 to 10` is lost; `src/groundrails/entity_check.py`
+  - log: 2026-09-26T16:03:14Z @kj fixed in part: a citation marker glued to the character before it is not a stated value (`test_glued_citation_marker_is_not_stated`; held-out inconclusive); the 42-nodes shape stays open: three noun-binding guards added 276, 124 and 22 in-sample contradictions at 11%, 10% and 0% labelled
+  - log: 2026-09-26T18:17:16Z @kj glued-citation half reverted in the reduction: its held-out result was inconclusive; the whole defect stays open
+  - log: 2026-09-26T18:21:19Z @kj rejected: rejected: a failure mode of the heuristic, not a software bug - an accuracy miss is measured as a rate, not patched rule by rule (author ruling 2026-09-26); attempts in `experiments/defects/HELDOUT.md` and `HELDOUT2.md`
+- [-] `DEF-NUMBER-34` **range pattern reads a change or a spaced hyphen as a range** - MINOR; `_COMPOUND_RE` reads `from 200 to 150` and `2023 - 40%` as ranges: `fell from 200 to 150 ms` against `from 200 to 120 ms` is not contradicted (it was at HEAD); `check_consistency` reports `2023-40 % growth` against `40 % growth`; the sign of `-5 to 10` is lost; `src/groundrails/entity_check.py`
   - test-tags: UNIT
   - related: DEF-SELF-17
   - repro: `find_numeric_mismatches("Latency fell from 200 to 150 ms.", "Latency fell from 200 to 120 ms.")` -> `[]`
@@ -298,6 +380,87 @@ comparing the numbers in a claim with the numbers in its evidence
   - log: 2026-09-26T14:00:08Z @kj added; reason: the text carries three reproduced shapes of one pattern
   - log: 2026-09-26T14:00:22Z @kj reported: adversarial review rounds 1 and 7 (F13, R7-1); deferred: a `(?<!from\s)` guard splits `ranged from 5 to 12` again; measure the conflicts each range rule loses first
   - log: 2026-09-26T14:00:31Z @kj edited test-tags added "UNIT"
+  - log: 2026-09-26T16:03:06Z @kj closed
+  - log: 2026-09-26T16:03:06Z @kj attempted: year spans left out of the whole-range comparison - the held-out check showed it removes mostly real conflicts (PsiloQA 35 of 37 labelled), reverted
+  - log: 2026-09-26T18:17:15Z @kj regressed as DEF-NUMBER-34-1
+  - log: 2026-09-26T18:21:49Z @kj rejected: closure withdrawn: the fix was reverted before commit, see DEF-NUMBER-34-1; a failure mode of the heuristic, not a software bug (author ruling 2026-09-26)
+  - log: 2026-09-26T18:38:41Z @kj re-sorted under the bug-versus-rule ruling (2026-09-26): the lost minus sign is a bug, filed as DEF-NUMBER-48; reading a change or a dash as a range stays a failure mode
+- [-] `DEF-NUMBER-34-1` **range pattern reads a change or a spaced hyphen as a range** - MINOR; `_COMPOUND_RE` reads `from 200 to 150` and `2023 - 40%` as ranges: `fell from 200 to 150 ms` against `from 200 to 120 ms` is not contradicted (it was at HEAD); `check_consistency` reports `2023-40 % growth` against `40 % growth`; the sign of `-5 to 10` is lost; `src/groundrails/entity_check.py`
+  - test-tags: UNIT
+  - repro: `find_numeric_mismatches("Latency fell from 200 to 150 ms.", "Latency fell from 200 to 120 ms.")` -> `[]`
+  - log: 2026-09-26T18:17:15Z @kj regression of DEF-NUMBER-34: fix reverted before commit in the reduction to the validated core (author ruling 2026-09-26): no out-of-sample support; attempts in `experiments/defects/HELDOUT.md` and `HELDOUT2.md`
+  - log: 2026-09-26T18:17:16Z @kj edited repro added "`find_numeric_mismatches("Latency fell from 200 to 150 ms.", "Latency fell from 200 to 120 ms.")` -> `[]`"; test-tags added "UNIT"
+  - log: 2026-09-26T18:21:19Z @kj rejected: rejected: a failure mode of the heuristic, not a software bug - an accuracy miss is measured as a rate, not patched rule by rule (author ruling 2026-09-26); attempts in `experiments/defects/HELDOUT.md` and `HELDOUT2.md`
+- [x] `DEF-NUMBER-42` **date after before or after compared as an exact value** - MAJOR; a date bounded by `before` or `after` is compared as an exact value: `before March 19, 2020` against `As of 18 March 2020` is CONTRADICTED on (19, 18); the VitaminC composite pin carries it on 3 of 45 items, hidden only because `COVID-19` in the source stated 19; `src/groundrails/entity_check.py`
+  - evidence: a date after before, after, prior to, earlier than or later than is a bound; held-out VitaminC, measured with the prefix month pattern later narrowed to month names: 1,122 contradictions removed, 30.5% REFUTES against 46.7% for the committed check; VitaminC composite pin unchanged; `test_date_after_before_is_a_bound`; offline suite 497 passed, 1 skipped
+  - repro: `find_numeric_mismatches("More than 169 countries had reported cases before March 19, 2020.", "As of 18 March 2020, cases have been reported in at least 170 countries.")` -> `[("19", "18")]`
+  - test-tags: UNIT
+  - root-cause: 2026-09-26T14:59:57Z @kj `_COMPARATIVE_RE` lists quantity bounds (over, under, about) but no date bounds, so the day after `before` is read as an exact value
+  - log: 2026-09-26T14:59:57Z @kj added
+  - log: 2026-09-26T16:03:06Z @kj closed
+  - log: 2026-09-26T18:57:32Z @kj review round 9: the month pattern read any word with a month prefix as a month (`after declining 12%` became a bound, regression against HEAD); it now accepts month names only; `test_word_starting_with_a_month_prefix_is_not_a_date`
+  - log: 2026-09-26T19:17:50Z @kj edited evidence "a date after before, after, prior to, earlier than or later than is a bound; held-out VitaminC: 1,122 contradictions removed, 30.5% REFUTES against 46.7% for the committed check; VitaminC composite pin unchanged; `test_date_after_before_is_a_bound`; offline suite 494 passed" -> "a date after before, after, prior to, earlier than or later than is a bound; held-out VitaminC, measured with the prefix month pattern later narrowed to month names: 1,122 contradictions removed, 30.5% REFUTES against 46.7% for the committed check; VitaminC composite pin unchanged; `test_date_after_before_is_a_bound`; offline suite 497 passed, 1 skipped"; reason: suite count updated and the measured month pattern named
+- [x] `DEF-NUMBER-43` **rounding check raises on a number past 28 digits** - CRITICAL; `_agree_at_coarser_precision` calls `Decimal.quantize`, which raises `decimal.InvalidOperation` past 28 digits; a source number of 29 or more digits (a build id, a hash) makes `ground` raise; set iteration order decides whether it fires, so one input passes or fails per process; `src/groundrails/entity_check.py`
+  - evidence: a `quantize` failure falls back to exact equality; `test_value_past_28_digits_does_not_raise` and `test_equal_value_past_28_digits_agrees`; the committed code raised in an in-sample RAGBench run whose record is not kept; offline suite 497 passed, 1 skipped
+  - repro: `PYTHONHASHSEED=0` `find_numeric_mismatches("The cluster runs 25 nodes.", "Build 12345678901234567890123456789012 runs on the cluster of 30 nodes.")` -> `InvalidOperation`
+  - test-tags: UNIT
+  - root-cause: 2026-09-26T14:59:57Z @kj the default decimal context has 28-digit precision and `quantize` traps `InvalidOperation` when the result needs more digits
+  - log: 2026-09-26T14:59:57Z @kj added
+  - log: 2026-09-26T16:03:06Z @kj closed
+  - log: 2026-09-26T19:17:50Z @kj edited evidence "a `quantize` failure falls back to exact equality; `test_value_past_28_digits_does_not_raise` and `test_equal_value_past_28_digits_agrees`; the committed code raised on 10 in-sample RAGBench pairs in one run; offline suite 494 passed" -> "a `quantize` failure falls back to exact equality; `test_value_past_28_digits_does_not_raise` and `test_equal_value_past_28_digits_agrees`; the committed code raised in an in-sample RAGBench run whose record is not kept; offline suite 497 passed, 1 skipped"
+- [x] `DEF-NUMBER-44` **reversed year span read as a different range** - MAJOR; the whole-range comparison from DEF-NUMBER-34 reads a year span printed later year first, as finance tables label columns (`2003-2002`), as a different range from `from 2002 to 2003`: 43 in-sample CONTRADICTED on RAGBench finqa and tatqa, 1 of them labelled; `src/groundrails/entity_check.py`
+  - evidence: cannot occur: the whole-range comparison that produced it was reverted with the DEF-NUMBER-34 attempt; the repro gives `[]`; offline suite 497 passed, 1 skipped
+  - related: DEF-NUMBER-34
+  - repro: `find_numeric_mismatches("Net revenue changed by 12% from 2010 to 2011.", "Net revenue changed by 12% in 2011-2010.")` -> `[("2010-2011", "2011-2010")]`
+  - test-tags: UNIT
+  - root-cause: 2026-09-26T16:11:20Z @kj ranges are compared as ordered strings, and a column header prints the later year first
+  - log: 2026-09-26T16:11:20Z @kj added
+  - log: 2026-09-26T16:11:32Z @kj edited repro "`find_numeric_mismatches("Net revenue rose from 2002 to 2003 by 12%.", "Change 2003-2002: net revenue rose 12%.")` -> `[("2002-2003", "2003-2002")]`" -> "`find_numeric_mismatches("Net revenue changed by 12% from 2010 to 2011.", "Net revenue changed by 12% in 2011-2010.")` -> `[("2010-2011", "2011-2010")]`"; reason: the filed repro returned no mismatch: its two sides keyed on different words
+  - log: 2026-09-26T17:03:05Z @kj closed
+  - log: 2026-09-26T18:17:16Z @kj the whole-range comparison that produced this shape was reverted with the DEF-NUMBER-34 attempt; the repro now gives `[]`, so the defect cannot occur
+  - log: 2026-09-26T18:21:54Z @kj edited evidence "a span of years compares the same in either order; design data: 41 finance contradictions removed, 1 labelled; fresh test inconclusive (no changed pair); `test_reversed_year_span_is_the_same_period`; offline suite 508 passed" -> "cannot occur: the whole-range comparison that produced it was reverted with the DEF-NUMBER-34 attempt; the repro gives `[]`; offline suite 489 passed"
+  - log: 2026-09-26T19:17:50Z @kj edited evidence "cannot occur: the whole-range comparison that produced it was reverted with the DEF-NUMBER-34 attempt; the repro gives `[]`; offline suite 489 passed" -> "cannot occur: the whole-range comparison that produced it was reverted with the DEF-NUMBER-34 attempt; the repro gives `[]`; offline suite 497 passed, 1 skipped"
+- [-] `DEF-NUMBER-46` **comparative with a currency sign read as an exact value** - MAJOR; a currency sign or code between a comparative and its number (`over $5 million`, `more than €2.5 million`) hides the bound, so the value is compared as exact: `over $5 million` against `$7 million` is CONTRADICTED; `src/groundrails/entity_check.py`
+  - repro: `find_numeric_mismatches("The film made over $5 million on its first day.", "The film made $7 million on its first day.")` -> `[("5", "7")]`
+  - test-tags: UNIT
+  - root-cause: 2026-09-26T16:32:31Z @kj `_COMPARATIVE_RE` expects the number directly after the quantifier
+  - log: 2026-09-26T16:32:31Z @kj added
+  - log: 2026-09-26T17:03:05Z @kj closed
+  - log: 2026-09-26T18:17:15Z @kj regressed as DEF-NUMBER-46-1
+  - log: 2026-09-26T18:21:49Z @kj rejected: closure withdrawn: the fix was reverted before commit, see DEF-NUMBER-46-1; a failure mode of the heuristic, not a software bug (author ruling 2026-09-26)
+  - log: 2026-09-26T18:38:41Z @kj re-sorted under the bug-versus-rule ruling (2026-09-26): the missing word boundary is a bug, filed as DEF-NUMBER-47; no part of the number grammar reads a currency sign before a number, so reading one is a new rule and stays rejected
+- [-] `DEF-NUMBER-46-1` **comparative with a currency sign read as an exact value** - MAJOR; a currency sign or code between a comparative and its number (`over $5 million`, `more than €2.5 million`) hides the bound, so the value is compared as exact: `over $5 million` against `$7 million` is CONTRADICTED; `src/groundrails/entity_check.py`
+  - test-tags: UNIT
+  - repro: `find_numeric_mismatches("The film made over $5 million on its first day.", "The film made $7 million on its first day.")` -> `[("5", "7")]`
+  - log: 2026-09-26T18:17:15Z @kj regression of DEF-NUMBER-46: fix reverted before commit in the reduction to the validated core (author ruling 2026-09-26): no out-of-sample support; attempts in `experiments/defects/HELDOUT.md` and `HELDOUT2.md`
+  - log: 2026-09-26T18:17:16Z @kj edited repro added "`find_numeric_mismatches("The film made over $5 million on its first day.", "The film made $7 million on its first day.")` -> `[("5", "7")]`"; test-tags added "UNIT"
+  - log: 2026-09-26T18:21:19Z @kj rejected: rejected: a failure mode of the heuristic, not a software bug - an accuracy miss is measured as a rate, not patched rule by rule (author ruling 2026-09-26); attempts in `experiments/defects/HELDOUT.md` and `HELDOUT2.md`
+- [x] `DEF-NUMBER-47` **comparative quantifier matches inside another word** - MAJOR; `_COMPARATIVE_RE` has no word boundary before its word quantifiers, so `over` matches inside `cover` and `turnover`, `up to` inside `setup to`, `under` inside `Thunder`; the number after it is read as a bound and a wrong value is not contradicted; present at HEAD 65451f1; `src/groundrails/entity_check.py`
+  - evidence: word quantifiers need a word boundary; `test_quantifier_inside_another_word_is_not_a_bound` fails on the old regex, `test_quantifier_word_is_still_a_bound` guards real bounds; offline suite 497 passed, 1 skipped
+  - related: DEF-NUMBER-46
+  - repro: `find_numeric_mismatches("The insurance plans cover 5 million people.", "The insurance plans cover 7 million people.")` -> `[]`
+  - test-tags: UNIT
+  - root-cause: 2026-09-26T18:36:17Z @kj the quantifier alternation in `_COMPARATIVE_RE` starts without `\b`
+  - log: 2026-09-26T18:36:17Z @kj added; reason: the text names the regex, three reproduced shapes and the verdict
+  - log: 2026-09-26T18:57:32Z @kj closed
+- [x] `DEF-NUMBER-48` **range end loses its sign** - MINOR; `_COMPOUND_RE` reads a range end without its minus sign while `_NUMBER_RE` keeps it, so `-5 to 10 degrees` becomes `-5` plus `5-10` and `between -5 and 10` is not read as a range; a document stating the same range twice gets a numeric divergence finding; `src/groundrails/entity_check.py`
+  - evidence: a range end keeps its minus sign under the `_NUMBER_RE` rule; `test_signed_range_stated_twice_is_consistent` and `test_range_sign_difference_is_reported` fail on the old regex; not after a colon with no space (`range:-5 to 10 degrees`): the `(?<![\w.:])` guard at the start of `_COMPOUND_RE`, which keeps clock times whole, rejects the match, so that shape still reads `-5` plus `5-10`, as at HEAD 65451f1; offline suite 497 passed, 1 skipped
+  - related: DEF-NUMBER-34
+  - repro: `check_consistency("The operating range is -5 to 10 degrees.\n\nThe operating range is -5 to 10 degrees.\n")` -> one finding
+  - test-tags: UNIT
+  - root-cause: 2026-09-26T18:36:17Z @kj `_COMPOUND_RE` range ends are `_VALUE`, which has no sign
+  - log: 2026-09-26T18:36:17Z @kj added; reason: the text names both regexes, two shapes and the finding
+  - log: 2026-09-26T18:57:32Z @kj closed
+  - log: 2026-09-26T19:17:50Z @kj edited evidence "a range end keeps its minus sign under the `_NUMBER_RE` rule; `test_signed_range_stated_twice_is_consistent` and `test_range_sign_difference_is_reported` fail on the old regex; offline suite 497 passed, 1 skipped" -> "a range end keeps its minus sign under the `_NUMBER_RE` rule; `test_signed_range_stated_twice_is_consistent` and `test_range_sign_difference_is_reported` fail on the old regex; not after a colon with no space (`range:-5 to 10 degrees`): the `(?<![\w.:])` guard at the start of `_COMPOUND_RE`, which keeps clock times whole, rejects the match, so that shape still reads `-5` plus `5-10`, as at HEAD 65451f1; offline suite 497 passed, 1 skipped"; reason: the added clause names the shape still unfixed and the guard that causes it
+- [x] `DEF-NUMBER-49` **decimal past the float range raises** - MINOR; `_normalise_value` turns a decimal above the float range (about 1.8e308) into float infinity and `int()` raises OverflowError, so `find_numeric_mismatches` raises instead of returning; present at HEAD 65451f1; `src/groundrails/entity_check.py`
+  - evidence: `_normalise_value` catches OverflowError and keeps the raw value; `test_value_past_308_integer_digits_does_not_raise` fails on the old code; offline suite 497 passed, 1 skipped
+  - related: DEF-NUMBER-43
+  - repro: `find_numeric_mismatches("The cluster runs " + "1" * 310 + ".5 nodes.", "The cluster runs 30 nodes.")` -> OverflowError
+  - test-tags: UNIT
+  - root-cause: 2026-09-26T18:54:40Z @kj `_normalise_value` catches ValueError only
+  - log: 2026-09-26T18:54:40Z @kj added
+  - log: 2026-09-26T18:57:32Z @kj closed
+  - log: 2026-09-26T19:17:50Z @kj edited title "decimal past 308 integer digits raises" -> "decimal past the float range raises"; text "`_normalise_value` turns a decimal with 309 or more integer digits into float infinity and `int()` raises OverflowError, so `find_numeric_mismatches` raises instead of returning; present at HEAD 65451f1; `src/groundrails/entity_check.py`" -> "`_normalise_value` turns a decimal above the float range (about 1.8e308) into float infinity and `int()` raises OverflowError, so `find_numeric_mismatches` raises instead of returning; present at HEAD 65451f1; `src/groundrails/entity_check.py`"
 
 ## Semantic tier degradation `SEMA`
 

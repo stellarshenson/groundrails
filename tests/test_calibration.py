@@ -466,7 +466,8 @@ class TestVitaminCComposite:
         # ("... under 212,000 COVID-19 cases before March 19, 2020") was
         # contradicted only through that pair and is now grounded, so the
         # judged-supported-but-actually-refuted cell goes 0 -> 1 and contradiction
-        # recall falls 14/15 -> 13/15.
+        # recall falls 14/15 -> 13/15. Since DEF-NUMBER-42 the same 3 items no longer
+        # depend on "COVID-19": the date after "before" is a bound, not an exact value.
         expected = {
             ("grounded", "grounded"): 8,
             ("grounded", "contradicted"): 2,

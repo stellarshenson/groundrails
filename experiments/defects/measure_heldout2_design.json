@@ -1,0 +1,779 @@
+{
+ "mode": "design",
+ "numeric": {
+  "corpora": {
+   "halueval-dialogue": {
+    "pairs": 3057,
+    "committed": 331,
+    "committed_labelled": 255
+   },
+   "halueval-qa": {
+    "pairs": 4167,
+    "committed": 466,
+    "committed_labelled": 466
+   },
+   "halueval-summarization": {
+    "pairs": 17304,
+    "committed": 437,
+    "committed_labelled": 233
+   },
+   "minicheck": {
+    "pairs": 4496,
+    "committed": 253,
+    "committed_labelled": 165
+   },
+   "psiloqa-en": {
+    "pairs": 974,
+    "committed": 220,
+    "committed_labelled": 198
+   },
+   "ragbench-covidqa": {
+    "pairs": 125,
+    "committed": 2,
+    "committed_labelled": 1
+   },
+   "ragbench-delucionqa": {
+    "pairs": 437,
+    "committed": 0,
+    "committed_labelled": 0
+   },
+   "ragbench-emanual": {
+    "pairs": 347,
+    "committed": 0,
+    "committed_labelled": 0
+   },
+   "ragbench-expertqa": {
+    "pairs": 264,
+    "committed": 5,
+    "committed_labelled": 4
+   },
+   "ragbench-finqa": {
+    "pairs": 11028,
+    "committed": 993,
+    "committed_labelled": 29
+   },
+   "ragbench-hagrid": {
+    "pairs": 1454,
+    "committed": 44,
+    "committed_labelled": 23
+   },
+   "ragbench-hotpotqa": {
+    "pairs": 157,
+    "committed": 2,
+    "committed_labelled": 1
+   },
+   "ragbench-pubmedqa": {
+    "pairs": 5760,
+    "committed": 75,
+    "committed_labelled": 4
+   },
+   "ragbench-tatqa": {
+    "pairs": 10117,
+    "committed": 625,
+    "committed_labelled": 16
+   },
+   "ragbench-techqa": {
+    "pairs": 1448,
+    "committed": 26,
+    "committed_labelled": 14
+   },
+   "ragtruth": {
+    "pairs": 28554,
+    "committed": 168,
+    "committed_labelled": 70
+   },
+   "vitaminc": {
+    "pairs": 30907,
+    "committed": 3723,
+    "committed_labelled": 1739
+   }
+  },
+  "rules": {
+   "DEF-NUMBER-32 same-quantity rounding": {
+    "verdict": "INCONCLUSIVE",
+    "failed_on": [],
+    "per_corpus": {
+     "halueval-summarization": {
+      "gained": 4,
+      "gained_labelled": 3,
+      "lost": 0,
+      "lost_labelled": 0,
+      "P": 0.5331807780320366
+     },
+     "ragbench-finqa": {
+      "gained": 6,
+      "gained_labelled": 0,
+      "lost": 0,
+      "lost_labelled": 0,
+      "P": 0.02920443101711984
+     },
+     "ragbench-pubmedqa": {
+      "gained": 1,
+      "gained_labelled": 0,
+      "lost": 0,
+      "lost_labelled": 0,
+      "P": 0.05333333333333334
+     },
+     "ragbench-tatqa": {
+      "gained": 1,
+      "gained_labelled": 0,
+      "lost": 0,
+      "lost_labelled": 0,
+      "P": 0.0256
+     },
+     "vitaminc": {
+      "gained": 2,
+      "gained_labelled": 0,
+      "lost": 0,
+      "lost_labelled": 0,
+      "P": 0.46709642761214076
+     }
+    },
+    "samples": [
+     {
+      "corpus": "halueval-summarization",
+      "kind": "gained",
+      "labelled": true,
+      "claim": "Alan Turing's handwritten notebook from 1942 was recently sold for a sum of £1.2 million at an auction in New York City."
+     },
+     {
+      "corpus": "ragbench-pubmedqa",
+      "kind": "gained",
+      "labelled": false,
+      "claim": "Based on the provided context, the key findings regarding the use of procollagen propeptides as serum markers for atrial fibrosis are: 1."
+     },
+     {
+      "corpus": "halueval-summarization",
+      "kind": "gained",
+      "labelled": true,
+      "claim": "Geoff Harris, the owner of the Melbourne mansion located in Port Melbourne, sold his home for a whopping $6 million."
+     },
+     {
+      "corpus": "ragbench-finqa",
+      "kind": "gained",
+      "labelled": false,
+      "claim": "The ending balance at March 31, 2008 for unrecognized tax benefits, in millions, would be $0.168 million."
+     },
+     {
+      "corpus": "ragbench-finqa",
+      "kind": "gained",
+      "labelled": false,
+      "claim": "Therefore, assuming the same level of settlements as in fiscal 2007, the ending balance of unrecognized tax benefits as of March 31, 2008 would be $0.168 million."
+     },
+     {
+      "corpus": "vitaminc",
+      "kind": "gained",
+      "labelled": false,
+      "claim": "The second aftershock of the 22 March earthquake in Croatia had a magnitude of 5.0 on the Richter scale , and the third had a magnitude of 3.7 ."
+     },
+     {
+      "corpus": "ragbench-tatqa",
+      "kind": "gained",
+      "labelled": false,
+      "claim": "Adding these two amounts together, the total net derivative losses allocated to Foodservice in the fiscal years 2018 and 2019 is $(0.7) million."
+     },
+     {
+      "corpus": "ragbench-finqa",
+      "kind": "gained",
+      "labelled": false,
+      "claim": "The reconciliation shows the ending balance of unrecognized tax benefits, excluding accrued interest, as of March 31, 2008 was $0.168 million."
+     },
+     {
+      "corpus": "ragbench-finqa",
+      "kind": "gained",
+      "labelled": false,
+      "claim": "The beginning balance of unrecognized tax benefits as of April 1, 2007 was $0.224 million. 2."
+     },
+     {
+      "corpus": "halueval-summarization",
+      "kind": "gained",
+      "labelled": true,
+      "claim": "Meanwhile, Tiger Woods is expected to make a comeback at 3.30pm on day two."
+     },
+     {
+      "corpus": "ragbench-finqa",
+      "kind": "gained",
+      "labelled": false,
+      "claim": "So the average construction-in-progress impairment from 2004 to 2006 was $2.63 million."
+     },
+     {
+      "corpus": "vitaminc",
+      "kind": "gained",
+      "labelled": false,
+      "claim": "By the end of 2014 , Artpop almost reached 3 million sold copies ."
+     },
+     {
+      "corpus": "halueval-summarization",
+      "kind": "gained",
+      "labelled": false,
+      "claim": "Former golf world No 1 Tiger Woods is set to feature at 3.30pm."
+     },
+     {
+      "corpus": "ragbench-finqa",
+      "kind": "gained",
+      "labelled": false,
+      "claim": "Based on the information provided in the context, the ending balance of unrecognized tax benefits as of March 31, 2008 would be $0.168 million."
+     }
+    ]
+   },
+   "DEF-NUMBER-44 year span in either order": {
+    "verdict": "PASS",
+    "failed_on": [],
+    "per_corpus": {
+     "ragbench-finqa": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 39,
+      "lost_labelled": 1,
+      "P": 0.02920443101711984
+     },
+     "ragbench-tatqa": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 2,
+      "lost_labelled": 0,
+      "P": 0.0256
+     }
+    },
+    "samples": [
+     {
+      "corpus": "ragbench-finqa",
+      "kind": "lost",
+      "labelled": false,
+      "claim": "So the percentage change in net revenue from 2010 to 2011 is a decrease of 2.91%."
+     },
+     {
+      "corpus": "ragbench-finqa",
+      "kind": "lost",
+      "labelled": false,
+      "claim": "So the net revenue decreased by 0.33% between 2016 and 2017."
+     },
+     {
+      "corpus": "ragbench-finqa",
+      "kind": "lost",
+      "labelled": false,
+      "claim": "Therefore, the decrease in net income is approximately 44% of the decrease in net revenue from 2003 to 2004."
+     },
+     {
+      "corpus": "ragbench-finqa",
+      "kind": "lost",
+      "labelled": false,
+      "claim": "Based on the information provided in the financial discussion and analysis, the increase in operation and maintenance expenses from 2002 to 2003 was as follows:"
+     },
+     {
+      "corpus": "ragbench-finqa",
+      "kind": "lost",
+      "labelled": false,
+      "claim": "The growth rate in net revenue from 2014 to 2015 is:"
+     },
+     {
+      "corpus": "ragbench-finqa",
+      "kind": "lost",
+      "labelled": false,
+      "claim": "Total change in net revenue from 2014 to 2015:"
+     },
+     {
+      "corpus": "ragbench-finqa",
+      "kind": "lost",
+      "labelled": false,
+      "claim": "Therefore, the growth rate of net revenue from 2014 to 2015 was 1.64%."
+     },
+     {
+      "corpus": "ragbench-finqa",
+      "kind": "lost",
+      "labelled": false,
+      "claim": "Calculate the decrease in net revenue from 2003 to 2004. 2."
+     },
+     {
+      "corpus": "ragbench-finqa",
+      "kind": "lost",
+      "labelled": false,
+      "claim": "Calculate the total change in net revenue from 2014 to 2015. 2."
+     },
+     {
+      "corpus": "ragbench-finqa",
+      "kind": "lost",
+      "labelled": false,
+      "claim": "Decrease in net income from 2003 to 2004:"
+     },
+     {
+      "corpus": "ragbench-finqa",
+      "kind": "lost",
+      "labelled": false,
+      "claim": "The total increase in operation and maintenance expenses from 2002 to 2003 was therefore $7.1 million + $4.4 million = $11.5 million."
+     },
+     {
+      "corpus": "ragbench-finqa",
+      "kind": "lost",
+      "labelled": false,
+      "claim": "The change in net revenue from 2010 to 2011 is:"
+     },
+     {
+      "corpus": "ragbench-finqa",
+      "kind": "lost",
+      "labelled": false,
+      "claim": "The net revenue decreased by 0.3% between 2016 and 2017 ($705.4 million to $703.1 million)."
+     },
+     {
+      "corpus": "ragbench-finqa",
+      "kind": "lost",
+      "labelled": false,
+      "claim": "The total decrease in net revenue from 2011 to 2012 was $191 million."
+     },
+     {
+      "corpus": "ragbench-finqa",
+      "kind": "lost",
+      "labelled": false,
+      "claim": "The average net revenue between 2016 and 2017 was $704.25 million (($705.4 + $703.1) / 2)"
+     },
+     {
+      "corpus": "ragbench-finqa",
+      "kind": "lost",
+      "labelled": false,
+      "claim": "The nuclear realized price changes account for 9% of the decrease in net revenue from 2011 to 2012."
+     },
+     {
+      "corpus": "ragbench-tatqa",
+      "kind": "lost",
+      "labelled": false,
+      "claim": "Therefore, the ratio of integration incentives expense in 2019 to 2018 is approximately 1.576."
+     },
+     {
+      "corpus": "ragbench-finqa",
+      "kind": "lost",
+      "labelled": false,
+      "claim": "Therefore, the percentage change in net revenue from 2010 to 2011 is approximately 2.91%."
+     },
+     {
+      "corpus": "ragbench-finqa",
+      "kind": "lost",
+      "labelled": false,
+      "claim": "Therefore, the percent change in net revenue from 2014 to 2015 was an increase of 1.6%."
+     },
+     {
+      "corpus": "ragbench-finqa",
+      "kind": "lost",
+      "labelled": false,
+      "claim": "Therefore, the percent change in net revenue from 2014 to 2015 was 1.64%."
+     }
+    ]
+   },
+   "DEF-NUMBER-46 currency comparative": {
+    "verdict": "FAIL",
+    "failed_on": [
+     "halueval-summarization lost"
+    ],
+    "per_corpus": {
+     "halueval-qa": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 2,
+      "lost_labelled": 2,
+      "P": 1.0
+     },
+     "halueval-summarization": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 46,
+      "lost_labelled": 32,
+      "P": 0.5331807780320366
+     },
+     "minicheck": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 2,
+      "lost_labelled": 2,
+      "P": 0.6521739130434783
+     },
+     "ragbench-expertqa": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 1,
+      "lost_labelled": 1,
+      "P": 0.8
+     },
+     "ragbench-finqa": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 21,
+      "lost_labelled": 0,
+      "P": 0.02920443101711984
+     },
+     "ragbench-tatqa": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 13,
+      "lost_labelled": 0,
+      "P": 0.0256
+     },
+     "ragtruth": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 3,
+      "lost_labelled": 0,
+      "P": 0.4166666666666667
+     },
+     "vitaminc": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 1130,
+      "lost_labelled": 461,
+      "P": 0.46709642761214076
+     }
+    },
+    "samples": [
+     {
+      "corpus": "vitaminc",
+      "kind": "lost",
+      "labelled": false,
+      "claim": "The Predator grossed less than $ 123.5 million worldwide ."
+     },
+     {
+      "corpus": "vitaminc",
+      "kind": "lost",
+      "labelled": true,
+      "claim": "The Predator grossed less than $ 95.5 million worldwide ."
+     },
+     {
+      "corpus": "vitaminc",
+      "kind": "lost",
+      "labelled": false,
+      "claim": "The movie Resident Evil : The Final Chapter has grossed less than $ 81 million worldwide ."
+     },
+     {
+      "corpus": "vitaminc",
+      "kind": "lost",
+      "labelled": true,
+      "claim": "Night School earned a worldwide total of less than $ 101.5 million ."
+     },
+     {
+      "corpus": "vitaminc",
+      "kind": "lost",
+      "labelled": false,
+      "claim": "The Kid Who Would Be King is likely to lose the studio over $ 45 million ."
+     },
+     {
+      "corpus": "vitaminc",
+      "kind": "lost",
+      "labelled": false,
+      "claim": "Red Sparrow has grossed a worldwide total of more than $ 125 million ."
+     },
+     {
+      "corpus": "vitaminc",
+      "kind": "lost",
+      "labelled": false,
+      "claim": "The Predator grossed more than $ 115 million worldwide ."
+     },
+     {
+      "corpus": "vitaminc",
+      "kind": "lost",
+      "labelled": false,
+      "claim": "Night School made a total global profit of less than $ 35 million ."
+     },
+     {
+      "corpus": "vitaminc",
+      "kind": "lost",
+      "labelled": true,
+      "claim": "The film Ouija : Origin of Evil has grossed a worldwide total of more than $ 100 million ."
+     },
+     {
+      "corpus": "vitaminc",
+      "kind": "lost",
+      "labelled": true,
+      "claim": "The Predator made less than $ 155 million worldwide ."
+     },
+     {
+      "corpus": "halueval-summarization",
+      "kind": "lost",
+      "labelled": true,
+      "claim": "E.ON has been fined over £7 million for failing to protect its customers' rights and overcharging them."
+     },
+     {
+      "corpus": "vitaminc",
+      "kind": "lost",
+      "labelled": true,
+      "claim": "Terminator 2 grossed under $ 520 million globally ."
+     },
+     {
+      "corpus": "vitaminc",
+      "kind": "lost",
+      "labelled": false,
+      "claim": "The Bucket List movie earned less than $ 175.35 million worldwide ."
+     },
+     {
+      "corpus": "vitaminc",
+      "kind": "lost",
+      "labelled": true,
+      "claim": "The Equalizer 2 had a total worldwide gross of more than $ 125.3 million ."
+     },
+     {
+      "corpus": "vitaminc",
+      "kind": "lost",
+      "labelled": false,
+      "claim": "Night School made a total global profit of less than $ 84.5 million ."
+     },
+     {
+      "corpus": "vitaminc",
+      "kind": "lost",
+      "labelled": false,
+      "claim": "The Equalizer 2 had a total worldwide gross of more than $ 125.3 million ."
+     },
+     {
+      "corpus": "vitaminc",
+      "kind": "lost",
+      "labelled": true,
+      "claim": "Ayoze joined Newcastle United for less than €2.5 million fee ."
+     },
+     {
+      "corpus": "vitaminc",
+      "kind": "lost",
+      "labelled": false,
+      "claim": "Night School earned a worldwide total of more than $ 102.7 million after January 1 , 2019 ."
+     },
+     {
+      "corpus": "vitaminc",
+      "kind": "lost",
+      "labelled": false,
+      "claim": "The film Rambo : Last Blood earned more than $ 86 million globally ."
+     },
+     {
+      "corpus": "vitaminc",
+      "kind": "lost",
+      "labelled": false,
+      "claim": "The Equalizer 2 has grossed more than $ 145.5 million worldwide ."
+     }
+    ]
+   }
+  }
+ },
+ "judged": {
+  "documents": 15605,
+  "rules": {
+   "DEF-CLAIM-39/40 rejoin gate": {
+    "changed_units": 168,
+    "judge_sample": [
+     {
+      "corpus": "halueval-summarization",
+      "claim": "Police say they repeatedly instructed J.B. Silverthorn of Orchard Park, New York, not to drive home from Grand Island Town Court on Monday night."
+     },
+     {
+      "corpus": "halueval-summarization",
+      "claim": "Superior Court Judge M. Marc Kelly handed Kevin Jonas Rojano-Nieto a 10-year sentence."
+     },
+     {
+      "corpus": "halueval-general",
+      "claim": "Kernighan and Dennis M. Ritchie"
+     },
+     {
+      "corpus": "halueval-summarization",
+      "claim": "The U.N. Secretary-General Ban Ki-moon has called the destruction of the Nimrud ruins 'a war crime'"
+     },
+     {
+      "corpus": "halueval-summarization",
+      "claim": "Geraldine M Schultz, 67, and Jacklyn K. Klosa, 69, were killed inside one of the homes by the storm."
+     },
+     {
+      "corpus": "halueval-summarization",
+      "claim": "Thomas K. Jenkins, 49, was arrested last month by deputies with the Prince George's County Sheriff's Office, authorities said."
+     },
+     {
+      "corpus": "halueval-summarization",
+      "claim": "Attack occurred Wednesday at Alverta B. Gray Schultz Middle School in Hempstead, New York."
+     },
+     {
+      "corpus": "halueval-summarization",
+      "claim": "California Gov. Jerry Brown ordered state officials Wednesday to impose mandatory water restrictions for the first time in history."
+     },
+     {
+      "corpus": "halueval-summarization",
+      "claim": "The U.S. Census Bureau published 2014 childlessness rates on Tuesday."
+     },
+     {
+      "corpus": "halueval-summarization",
+      "claim": "The Rev. Robert H. Schuller died early Thursday at a care facility in Artesia, daughter Carol Schuller Milner said."
+     },
+     {
+      "corpus": "psiloqa-en",
+      "claim": "The 2020 Wyoming presidential election was won by Republican candidate Donald J. Trump."
+     },
+     {
+      "corpus": "halueval-summarization",
+      "claim": "U.S. Navy is developing an unmanned drone ship to track enemy submarines to limit their tactical capacity for surprise."
+     },
+     {
+      "corpus": "halueval-summarization",
+      "claim": "William D. Kelley, 50, was also rescued by the Coast Guard and has improved from critical to serious condition."
+     },
+     {
+      "corpus": "halueval-summarization",
+      "claim": "U.N. Security Council favors Houthi arms embargo."
+     },
+     {
+      "corpus": "halueval-summarization",
+      "claim": "Zala will go with her when she starts playing in the U.S. WNBA in May."
+     },
+     {
+      "corpus": "halueval-summarization",
+      "claim": "Delaware family becomes ill at the Sirenusa resort in the U.S. Virgin Islands."
+     },
+     {
+      "corpus": "psiloqa-en",
+      "claim": "Henry R. Low was born on March 17, 1880."
+     },
+     {
+      "corpus": "halueval-summarization",
+      "claim": "Mr Stack is a former college student and U.S. Army National Guardsman."
+     },
+     {
+      "corpus": "halueval-summarization",
+      "claim": "Former Staff Sgt. Charlie Linville, 29, from Boise, Idaho, was an explosives expert serving in Afghanistan in 2011 when he was seriously wounded."
+     },
+     {
+      "corpus": "psiloqa-en",
+      "claim": "The president and CEO of PSA Airlines was Robert W. Baird."
+     }
+    ]
+   },
+   "DEF-CLAIM-41 parenthesis split": {
+    "changed_units": 3,
+    "judge_sample": [
+     {
+      "corpus": "halueval-general",
+      "claim": "(Where are you from?)"
+     },
+     {
+      "corpus": "halueval-general",
+      "claim": "Je ne comprends pas."
+     },
+     {
+      "corpus": "halueval-general",
+      "claim": "(My name is _______.)"
+     }
+    ]
+   },
+   "DEF-CLAIM-45 outline items": {
+    "changed_units": 108,
+    "judge_sample": [
+     {
+      "corpus": "halueval-general",
+      "claim": "High Technology Telecommunications Protocol"
+     },
+     {
+      "corpus": "halueval-general",
+      "claim": "Understanding of Algorithms and Data Structures"
+     },
+     {
+      "corpus": "halueval-general",
+      "claim": "Explain her situation of feeling stifled by societal expectations"
+     },
+     {
+      "corpus": "halueval-general",
+      "claim": "While i < size(left):"
+     },
+     {
+      "corpus": "halueval-general",
+      "claim": "The Evolution of Computers"
+     },
+     {
+      "corpus": "halueval-general",
+      "claim": "Community involvement in sustainability efforts"
+     },
+     {
+      "corpus": "halueval-general",
+      "claim": "Cost savings for households and businesses"
+     },
+     {
+      "corpus": "halueval-general",
+      "claim": "A type of computer virus"
+     },
+     {
+      "corpus": "halueval-general",
+      "claim": "Display images on the monitor"
+     },
+     {
+      "corpus": "halueval-general",
+      "claim": "What is the average lifespan of a hippopotamus?"
+     },
+     {
+      "corpus": "halueval-general",
+      "claim": "Summary of main points"
+     },
+     {
+      "corpus": "halueval-general",
+      "claim": "Economic benefits of recycling"
+     },
+     {
+      "corpus": "halueval-general",
+      "claim": "NLP is a medical treatment for language disorders."
+     },
+     {
+      "corpus": "halueval-general",
+      "claim": "While the list of integers is not empty:"
+     },
+     {
+      "corpus": "halueval-general",
+      "claim": "Why this book is important to me"
+     },
+     {
+      "corpus": "halueval-general",
+      "claim": "Social benefits of recycling"
+     },
+     {
+      "corpus": "halueval-general",
+      "claim": "If it is, add the pair (i, d) to the dictionary."
+     },
+     {
+      "corpus": "halueval-general",
+      "claim": "Advancements in healthcare, education, and business"
+     },
+     {
+      "corpus": "halueval-general",
+      "claim": "Skills Required for Software Engineering"
+     },
+     {
+      "corpus": "halueval-general",
+      "claim": "Competition and Resource Partitioning"
+     }
+    ]
+   }
+  }
+ },
+ "language": {
+  "verdict": "PASS",
+  "non_english_stopped_warning": [],
+  "english": {
+   "halueval-general|documents": 4507,
+   "halueval-general|committed_warned": 36,
+   "halueval-general|now_warns": 25,
+   "halueval-summarization|documents": 10000,
+   "halueval-summarization|committed_warned": 12,
+   "halueval-summarization|now_warns": 11,
+   "psiloqa-en|documents": 1098,
+   "psiloqa-en|committed_warned": 12,
+   "psiloqa-en|now_warns": 6
+  },
+  "non_english": {
+   "pl|documents": 500,
+   "pl|committed_warned": 500,
+   "pl|now_warns": 500,
+   "de|documents": 500,
+   "de|committed_warned": 500,
+   "de|now_warns": 500,
+   "es|documents": 500,
+   "es|committed_warned": 498,
+   "es|now_warns": 498,
+   "fr|documents": 500,
+   "fr|committed_warned": 498,
+   "fr|now_warns": 498,
+   "it|documents": 500,
+   "it|committed_warned": 498,
+   "it|now_warns": 498,
+   "hu|documents": 500,
+   "hu|committed_warned": 500,
+   "hu|now_warns": 500,
+   "cn|documents": 500,
+   "cn|committed_warned": 500,
+   "cn|now_warns": 500
+  }
+ }
+}

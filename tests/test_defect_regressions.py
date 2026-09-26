@@ -1263,3 +1263,142 @@ class TestConsistencyIgnoresCitationMarkers:
         assert [(f.category, f.occurrences) for f in findings] == [
             ("nodes", [(1, "42 nodes"), (2, "50 nodes")])
         ]
+
+
+# ---------------------------------------------------------------------------
+# DEF-CLAIM-35: HTML comment strip runs through inline code
+# DEF-CLAIM-38: bullets in a nested blockquote weld into one claim
+# ---------------------------------------------------------------------------
+
+
+class TestCommentsOutsideCodeOnly:
+    def test_literal_comment_markers_in_code_keep_the_claims_between(self):
+        doc = (
+            "Open a note with `<!--` in the template.\n\n"
+            "The cluster runs 12 nodes in production.\n\n"
+            "The team shipped 3 releases in March.\n\n"
+            "Close the note with `-->` in the template."
+        )
+        claims = [c.claim for c in extract_claims(doc)]
+        assert "The cluster runs 12 nodes in production." in claims
+        assert "The team shipped 3 releases in March." in claims
+
+    def test_comment_holding_a_backtick_is_still_removed(self):
+        doc = "The pump was replaced in 2021.\n<!-- check `invoice_7` later -->\nThe motor was kept for spares."
+        assert [c.claim for c in extract_claims(doc)] == [
+            "The pump was replaced in 2021.",
+            "The motor was kept for spares.",
+        ]
+
+    def test_comment_opener_inside_a_fence_opens_nothing(self):
+        doc = "```\n\n<!--\n```\nThe cluster runs 12 nodes in production.\n\n-->"
+        assert "The cluster runs 12 nodes in production." in [c.claim for c in extract_claims(doc)]
+
+    def test_inline_code_span_does_not_cross_a_fence_line(self):
+        doc = (
+            "Press the ` key to open the console and type the command.\n```\necho `date`\n```\n"
+            "The cluster runs 12 nodes after the upgrade. <!-- draft: the index holds 40 GB -->\n"
+        )
+        assert not any("<!--" in c.claim for c in extract_claims(doc))
+
+    def test_comment_after_a_fence_in_crlf_text_is_removed(self):
+        doc = (
+            "The index grew to 40 GB last year.\r\n\r\n```\r\nx = 1\r\n```\r\n"
+            "<!-- revenue was 900 in the draft -->\r\nThe cluster runs 12 nodes in production.\r\n"
+        )
+        assert [c.claim for c in extract_claims(doc)] == [
+            "The index grew to 40 GB last year.",
+            "The cluster runs 12 nodes in production.",
+        ]
+
+    def test_bullets_in_a_nested_blockquote_stay_apart(self):
+        doc = "> > - The cluster runs 12 nodes in production\n> > - The team shipped 3 releases in March"
+        assert [c.claim for c in extract_claims(doc)] == [
+            "The cluster runs 12 nodes in production",
+            "The team shipped 3 releases in March",
+        ]
+
+
+# ---------------------------------------------------------------------------
+# DEF-CLAIM-41: citation-marker paragraphs weld into one claim unit
+# ---------------------------------------------------------------------------
+
+
+class TestCitationMarkerBoundaries:
+    def test_citation_marker_stays_with_the_sentence_it_cites(self):
+        doc = "Costs rose 12% in 2023. [1] Demand fell 8% in 2023.[2] Prices held steady in March."
+        assert [c.claim for c in extract_claims(doc)] == [
+            "Costs rose 12% in 2023. [1]",
+            "Demand fell 8% in 2023.[2]",
+            "Prices held steady in March.",
+        ]
+
+    def test_marker_after_abbreviation_mid_sentence_does_not_split(self):
+        doc = "Sales in the U.S. [1] rose 5% in 2023 on strong demand."
+        assert [c.claim for c in extract_claims(doc)] == [doc]
+
+    def test_abbreviation_before_a_closing_bracket_or_quote_still_splits(self):
+        doc = "The first load weighed 40 tonnes (approx.) The second load weighed 55 tonnes."
+        assert len(extract_claims(doc)) == 2
+        doc = 'She answered "No." The board then voted to approve 12 new sites.'
+        assert "The board then voted to approve 12 new sites." in [c.claim for c in extract_claims(doc)]
+
+
+# ---------------------------------------------------------------------------
+# DEF-NUMBER-42: a date after "before" / "after" compared as an exact value
+# DEF-NUMBER-43: rounding check raises on a number past 28 digits
+# DEF-NUMBER-49: a decimal past the float range raises
+# ---------------------------------------------------------------------------
+
+
+class TestDateBoundsAndLongNumbers:
+    def test_date_after_before_is_a_bound(self):
+        claim = "More than 169 countries had reported cases before March 19, 2020."
+        source = "As of 18 March 2020, cases have been reported in at least 170 countries."
+        assert find_numeric_mismatches(claim, source) == []
+
+    def test_word_starting_with_a_month_prefix_is_not_a_date(self):
+        assert find_numeric_mismatches(
+            "Revenue recovered after declining 12% in 2020.", "Revenue recovered after declining 18% in 2020."
+        ) == [("12", "18")]
+
+    def test_value_past_308_integer_digits_does_not_raise(self):
+        value = "1" * 310 + ".5"
+        assert find_numeric_mismatches(f"The cluster runs {value} nodes.", "The cluster runs 30 nodes.") != []
+
+    def test_duration_after_after_stays_exact(self):
+        assert find_numeric_mismatches(
+            "The pump failed after 5 years of service.", "The pump failed after 7 years of service."
+        ) == [("5", "7")]
+
+    def test_value_past_28_digits_does_not_raise(self):
+        source = "The cluster runs 12345678901234567890123456789012 nodes, not 30 nodes."
+        assert find_numeric_mismatches("The cluster runs 25 nodes.", source) != []
+
+    def test_equal_value_past_28_digits_agrees(self):
+        value = "12345678901234567890123456789012"
+        assert find_numeric_mismatches(f"Build {value} runs on 30 nodes.", f"Build {value} runs on 30 nodes.") == []
+
+
+class TestQuantifierWordsAndSignedRanges:
+    def test_quantifier_inside_another_word_is_not_a_bound(self):
+        for claim, source, pair in (
+            ("The plans cover 5 million people.", "The plans cover 7 million people.", ("5", "7")),
+            ("We scaled the setup to 5 nodes.", "We scaled the setup to 8 nodes.", ("5", "8")),
+            ("The Thunder 12 players signed.", "The Thunder 15 players signed.", ("12", "15")),
+        ):
+            assert find_numeric_mismatches(claim, source) == [pair], claim
+
+    def test_quantifier_word_is_still_a_bound(self):
+        assert find_numeric_mismatches("The plans cover over 5 million people.", "The plans cover 7 million people.") == []
+
+    def test_signed_range_stated_twice_is_consistent(self):
+        for doc in (
+            "The operating range is -5 to 10 degrees.\n\nThe operating range is -5 to 10 degrees.\n",
+            "It ranges between -5 and 10 degrees.\n\nIt ranges between -5 and 10 degrees.\n",
+        ):
+            assert check_consistency(doc) == [], doc
+
+    def test_range_sign_difference_is_reported(self):
+        doc = "The operating range is -5 to 10 degrees.\n\nThe operating range is 5 to 10 degrees.\n"
+        assert [f.occurrences for f in check_consistency(doc)] == [[(1, "-5-10 degrees"), (3, "5-10 degrees")]]

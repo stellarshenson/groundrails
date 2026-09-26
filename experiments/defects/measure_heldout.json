@@ -1,0 +1,732 @@
+{
+ "numeric": {
+  "corpora": {
+   "halueval-dialogue": {
+    "pairs": 3057,
+    "labelled": 1705,
+    "committed": 331,
+    "committed_labelled": 255,
+    "full": 331,
+    "full_labelled": 255,
+    "committed_raised": 0
+   },
+   "halueval-qa": {
+    "pairs": 4167,
+    "labelled": 2483,
+    "committed": 466,
+    "committed_labelled": 466,
+    "full": 466,
+    "full_labelled": 466,
+    "committed_raised": 0
+   },
+   "halueval-summarization": {
+    "pairs": 17307,
+    "labelled": 7053,
+    "committed": 438,
+    "committed_labelled": 233,
+    "full": 460,
+    "full_labelled": 248,
+    "committed_raised": 0
+   },
+   "minicheck": {
+    "pairs": 4496,
+    "labelled": 2588,
+    "committed": 253,
+    "committed_labelled": 165,
+    "full": 250,
+    "full_labelled": 165,
+    "committed_raised": 0
+   },
+   "psiloqa-en": {
+    "pairs": 974,
+    "labelled": 856,
+    "committed": 220,
+    "committed_labelled": 198,
+    "full": 221,
+    "full_labelled": 198,
+    "committed_raised": 0
+   },
+   "vitaminc": {
+    "pairs": 30907,
+    "labelled": 10969,
+    "committed": 3723,
+    "committed_labelled": 1739,
+    "full": 2643,
+    "full_labelled": 1425,
+    "committed_raised": 0
+   }
+  },
+  "rules": {
+   "DEF-NUMBER-42 date bound": {
+    "verdict": "PASS",
+    "failed_on": [],
+    "per_corpus": {
+     "halueval-dialogue": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 0,
+      "lost_labelled": 0,
+      "P": 0.770392749244713
+     },
+     "halueval-qa": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 4,
+      "lost_labelled": 4,
+      "P": 1.0
+     },
+     "halueval-summarization": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 0,
+      "lost_labelled": 0,
+      "P": 0.5319634703196348
+     },
+     "minicheck": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 3,
+      "lost_labelled": 0,
+      "P": 0.6521739130434783
+     },
+     "psiloqa-en": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 0,
+      "lost_labelled": 0,
+      "P": 0.9
+     },
+     "vitaminc": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 1122,
+      "lost_labelled": 342,
+      "P": 0.46709642761214076
+     }
+    },
+    "samples": {
+     "gained": [],
+     "lost": [
+      {
+       "corpus": "vitaminc",
+       "labelled": false,
+       "claim": "BBC2 started broadcasting regularly before April 21 , 1964 ."
+      },
+      {
+       "corpus": "vitaminc",
+       "labelled": false,
+       "claim": "Exeter City F.C 's current first-team squad was updated before 12 July 2017 ."
+      },
+      {
+       "corpus": "vitaminc",
+       "labelled": false,
+       "claim": "After 2008 , according to the demographics of Europe , the population was more than 735 million ."
+      },
+      {
+       "corpus": "vitaminc",
+       "labelled": true,
+       "claim": "Alhaji Alhassan Dantata died after 1953 ."
+      },
+      {
+       "corpus": "vitaminc",
+       "labelled": true,
+       "claim": "Raven Software was founded before 1990 ."
+      },
+      {
+       "corpus": "vitaminc",
+       "labelled": false,
+       "claim": "Mega Man was released in the US before 2004 ."
+      },
+      {
+       "corpus": "vitaminc",
+       "labelled": false,
+       "claim": "Kerry Kennedy used the last name Cuomo before 1991 ."
+      },
+      {
+       "corpus": "vitaminc",
+       "labelled": false,
+       "claim": "The NASCAR team reassumed the Chip Ganassi Racing name after 2013 and Ganassi revealed that Earnhardt was never truly involved with the team ."
+      },
+      {
+       "corpus": "vitaminc",
+       "labelled": false,
+       "claim": "Zoya Akhtar was born after 1973 ."
+      },
+      {
+       "corpus": "vitaminc",
+       "labelled": false,
+       "claim": "Leningrad K.G.B . arrested Joseph Brodsky before 1965 ."
+      },
+      {
+       "corpus": "vitaminc",
+       "labelled": false,
+       "claim": "Adrian Lewis was born before 1987 ."
+      },
+      {
+       "corpus": "vitaminc",
+       "labelled": false,
+       "claim": "Rewind , Replay , Rebound 's `` Last Day Under the Sun '' , a single , was released after 10 June 2019 ."
+      }
+     ]
+    }
+   },
+   "DEF-NUMBER-32 5% rounding": {
+    "verdict": "FAIL",
+    "failed_on": [
+     "vitaminc gains"
+    ],
+    "per_corpus": {
+     "halueval-dialogue": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 0,
+      "lost_labelled": 0,
+      "P": 0.770392749244713
+     },
+     "halueval-qa": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 0,
+      "lost_labelled": 0,
+      "P": 1.0
+     },
+     "halueval-summarization": {
+      "gained": 8,
+      "gained_labelled": 5,
+      "lost": 0,
+      "lost_labelled": 0,
+      "P": 0.5319634703196348
+     },
+     "minicheck": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 0,
+      "lost_labelled": 0,
+      "P": 0.6521739130434783
+     },
+     "psiloqa-en": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 0,
+      "lost_labelled": 0,
+      "P": 0.9
+     },
+     "vitaminc": {
+      "gained": 10,
+      "gained_labelled": 2,
+      "lost": 0,
+      "lost_labelled": 0,
+      "P": 0.46709642761214076
+     }
+    },
+    "samples": {
+     "gained": [
+      {
+       "corpus": "halueval-summarization",
+       "labelled": false,
+       "claim": "Former golf world No 1 Tiger Woods is set to feature at 3.30pm."
+      },
+      {
+       "corpus": "halueval-summarization",
+       "labelled": true,
+       "claim": "Meanwhile, Tiger Woods is expected to make a comeback at 3.30pm on day two."
+      },
+      {
+       "corpus": "vitaminc",
+       "labelled": false,
+       "claim": "Wahlberg earned more than $ 1.8 million , and Williams more than two thousand dollars for the reshoots of All the Money in the World ."
+      },
+      {
+       "corpus": "vitaminc",
+       "labelled": false,
+       "claim": "Ayoze joined Newcastle United for more than €2.5 million fee ."
+      },
+      {
+       "corpus": "vitaminc",
+       "labelled": false,
+       "claim": "Due to the impact of the 2019-20 coronavirus pandemic on cinema , the Chinese film industry had lost over US $ 1.5 billion by March 2020 ."
+      },
+      {
+       "corpus": "vitaminc",
+       "labelled": false,
+       "claim": "Due to the impact of the 2019-20 coronavirus pandemic on cinema , the Chinese film industry had lost over US $ 1.5 billion by March 2020 ."
+      },
+      {
+       "corpus": "vitaminc",
+       "labelled": false,
+       "claim": "The second aftershock of the 22 March earthquake in Croatia had a magnitude of 5.0 on the Richter scale , and the third had a magnitude of 3.7 ."
+      },
+      {
+       "corpus": "halueval-summarization",
+       "labelled": true,
+       "claim": "Geoff Harris, the owner of the Melbourne mansion located in Port Melbourne, sold his home for a whopping $6 million."
+      },
+      {
+       "corpus": "halueval-summarization",
+       "labelled": false,
+       "claim": "Leanna Norris admitted killing her  daughter Loh Grenada, 2, in June 2013."
+      },
+      {
+       "corpus": "vitaminc",
+       "labelled": false,
+       "claim": "Verizon Communications bought Yahoo ! for more than $ 4 billion ."
+      },
+      {
+       "corpus": "vitaminc",
+       "labelled": true,
+       "claim": "Ayoze joined Newcastle United for less than €2.5 million fee ."
+      },
+      {
+       "corpus": "halueval-summarization",
+       "labelled": true,
+       "claim": "V. Stiviano has lost over $2 million in a lawsuit filed against her by Donald Sterling's wife, who accused her of stealing from the former Clippers owner."
+      }
+     ],
+     "lost": []
+    }
+   },
+   "DEF-NUMBER-34 whole-range comparison": {
+    "verdict": "PASS",
+    "failed_on": [],
+    "per_corpus": {
+     "halueval-dialogue": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 0,
+      "lost_labelled": 0,
+      "P": 0.770392749244713
+     },
+     "halueval-qa": {
+      "gained": 3,
+      "gained_labelled": 3,
+      "lost": 0,
+      "lost_labelled": 0,
+      "P": 1.0
+     },
+     "halueval-summarization": {
+      "gained": 14,
+      "gained_labelled": 10,
+      "lost": 0,
+      "lost_labelled": 0,
+      "P": 0.5319634703196348
+     },
+     "minicheck": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 0,
+      "lost_labelled": 0,
+      "P": 0.6521739130434783
+     },
+     "psiloqa-en": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 0,
+      "lost_labelled": 0,
+      "P": 0.9
+     },
+     "vitaminc": {
+      "gained": 32,
+      "gained_labelled": 26,
+      "lost": 0,
+      "lost_labelled": 0,
+      "P": 0.46709642761214076
+     }
+    },
+    "samples": {
+     "gained": [
+      {
+       "corpus": "vitaminc",
+       "labelled": false,
+       "claim": "Because part of the game is to be played between 2-10 February 2020 , Wuhan is being observed as it is set to host the upcoming 2020 AFC Women 's Olympic Qualifying Tournament ."
+      },
+      {
+       "corpus": "vitaminc",
+       "labelled": true,
+       "claim": "World War II was the deadliest conflict in human history , marked by 70 to 85 million fatalities ."
+      },
+      {
+       "corpus": "vitaminc",
+       "labelled": true,
+       "claim": "The club Fleetwood Town F.C has played more than seven times with Blackpool as of the start of the 2019–20 season ."
+      },
+      {
+       "corpus": "vitaminc",
+       "labelled": true,
+       "claim": "The New England Patriots finished the 2007 regular season with a 14-3 record ."
+      },
+      {
+       "corpus": "halueval-qa",
+       "labelled": true,
+       "claim": "The Oxford English Dictionary specifies the period of 1200 to 1550 for the language that the Findern Manuscript was written in."
+      },
+      {
+       "corpus": "vitaminc",
+       "labelled": true,
+       "claim": "The Faroe Islands were part of the Hereditary Kingdom of Norway between 1035 and 1817 ."
+      },
+      {
+       "corpus": "vitaminc",
+       "labelled": false,
+       "claim": "Because part of the game is to be played between 2-10 February 2020 , Wuhan is being observed as it is set to host the upcoming 2020 AFC Women 's Olympic Qualifying Tournament ."
+      },
+      {
+       "corpus": "vitaminc",
+       "labelled": true,
+       "claim": "Egg white coagulates between 149 and 158°F ."
+      },
+      {
+       "corpus": "vitaminc",
+       "labelled": true,
+       "claim": "The Faroe Islands were part of the Hereditary Kingdom of Norway between 1035 and 1814 ."
+      },
+      {
+       "corpus": "vitaminc",
+       "labelled": true,
+       "claim": "The coronavirus incubation period ranges from 2 to 14 days ."
+      },
+      {
+       "corpus": "halueval-summarization",
+       "labelled": false,
+       "claim": "Herrera netted a brace in Manchester United's 3-1 win over Aston Villa."
+      },
+      {
+       "corpus": "vitaminc",
+       "labelled": true,
+       "claim": "Howrah Junction Railways Station platform 1-16 are located in the old complex ."
+      }
+     ],
+     "lost": []
+    }
+   },
+   "DEF-NUMBER-34 year-span exclusion": {
+    "verdict": "FAIL",
+    "failed_on": [
+     "psiloqa-en losses",
+     "vitaminc losses"
+    ],
+    "per_corpus": {
+     "halueval-dialogue": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 0,
+      "lost_labelled": 0,
+      "P": 0.770392749244713
+     },
+     "halueval-qa": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 9,
+      "lost_labelled": 9,
+      "P": 1.0
+     },
+     "halueval-summarization": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 4,
+      "lost_labelled": 2,
+      "P": 0.5319634703196348
+     },
+     "minicheck": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 0,
+      "lost_labelled": 0,
+      "P": 0.6521739130434783
+     },
+     "psiloqa-en": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 37,
+      "lost_labelled": 35,
+      "P": 0.9
+     },
+     "vitaminc": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 17,
+      "lost_labelled": 15,
+      "P": 0.46709642761214076
+     }
+    },
+    "samples": {
+     "gained": [],
+     "lost": [
+      {
+       "corpus": "psiloqa-en",
+       "labelled": true,
+       "claim": "The Meekatharra to Wiluna railway was operational from 1879 to 1980."
+      },
+      {
+       "corpus": "psiloqa-en",
+       "labelled": true,
+       "claim": "The NSB El 14 locomotives were built between 1956 and 1960."
+      },
+      {
+       "corpus": "vitaminc",
+       "labelled": true,
+       "claim": "James Jones missed the playoffs once in 2007-2008 ."
+      },
+      {
+       "corpus": "psiloqa-en",
+       "labelled": true,
+       "claim": "Early career: Callistratus was a member of the Russian Orthodox Church from 1720 to 1730."
+      },
+      {
+       "corpus": "psiloqa-en",
+       "labelled": true,
+       "claim": "The Inspector series consists of cartoons produced in the years 1965 to 1992."
+      },
+      {
+       "corpus": "psiloqa-en",
+       "labelled": true,
+       "claim": "Early career: Callistratus was a member of the Russian Orthodox Church from 1720 to 1730."
+      },
+      {
+       "corpus": "psiloqa-en",
+       "labelled": true,
+       "claim": "Johnson, who served as its representative from 1937 to 1949."
+      },
+      {
+       "corpus": "halueval-qa",
+       "labelled": true,
+       "claim": "The line of cars that the Ferrari TR were closely related to was only built between 1953 to 1961."
+      },
+      {
+       "corpus": "psiloqa-en",
+       "labelled": true,
+       "claim": "Torino FC competed in the top division of Italian football for the 84th time during the 2016-2017 season."
+      },
+      {
+       "corpus": "psiloqa-en",
+       "labelled": true,
+       "claim": "The Avalanche played in the MISL from 1974 to 1978."
+      },
+      {
+       "corpus": "psiloqa-en",
+       "labelled": true,
+       "claim": "President of the Council for Coordinating National Reconstruction (1950-1952)"
+      },
+      {
+       "corpus": "halueval-qa",
+       "labelled": true,
+       "claim": "The player acquired by the Milwaukee Bucks from the Charlotte Bobcats in the offseason before the 2004-2005 NBA season was Finnish."
+      }
+     ]
+    }
+   },
+   "DEF-NUMBER-33 glued citation marker": {
+    "verdict": "INCONCLUSIVE",
+    "failed_on": [],
+    "per_corpus": {
+     "halueval-dialogue": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 0,
+      "lost_labelled": 0,
+      "P": 0.770392749244713
+     },
+     "halueval-qa": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 0,
+      "lost_labelled": 0,
+      "P": 1.0
+     },
+     "halueval-summarization": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 0,
+      "lost_labelled": 0,
+      "P": 0.5319634703196348
+     },
+     "minicheck": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 0,
+      "lost_labelled": 0,
+      "P": 0.6521739130434783
+     },
+     "psiloqa-en": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 0,
+      "lost_labelled": 0,
+      "P": 0.9
+     },
+     "vitaminc": {
+      "gained": 0,
+      "gained_labelled": 0,
+      "lost": 0,
+      "lost_labelled": 0,
+      "P": 0.46709642761214076
+     }
+    },
+    "samples": {
+     "gained": [],
+     "lost": []
+    }
+   }
+  }
+ },
+ "rejoin_gate": {
+  "counts": {
+   "documents": 15605,
+   "gated_changed": 222,
+   "ungated_changed": 1084,
+   "gated_rejoined_claims": 310
+  },
+  "judge_sample": [
+   {
+    "corpus": "halueval-summarization",
+    "claim": "Lt. Col. Anthony Shaffer said  Bowe Bergdahl 'had Afghan contacts and he was actually trying to offer himself up with the Taliban' The former military intelligence officer said he had been told the information by two senior sources who knew about a 2009 Naval Criminal Investigative Service investigation into Bergdahl's activities."
+   },
+   {
+    "corpus": "halueval-summarization",
+    "claim": "GoFundMe told Daily Mail Online 'that after review, the campaign set up for Officer Slager was removed due to a violation of terms & conditions' Fundraising site Indiegogo allowed the 'Michael T. Slager Support Fund' to raise $393 of a $5,000 goal at 11am on Thursday."
+   },
+   {
+    "corpus": "halueval-general",
+    "claim": "Third Stanza A. \"Scattered across eternity\" B. Explanation of \"eternity\" C."
+   },
+   {
+    "corpus": "halueval-summarization",
+    "claim": "U.N. Security Council favors Houthi arms embargo."
+   },
+   {
+    "corpus": "halueval-summarization",
+    "claim": "Yes. But it's the perfect place to fight [them] off,' she said."
+   },
+   {
+    "corpus": "halueval-summarization",
+    "claim": "Thomas K. Jenkins, 49, was arrested last month by deputies with the Prince George's County Sheriff's Office, authorities said."
+   },
+   {
+    "corpus": "halueval-summarization",
+    "claim": "Silvonek's 20-year-old boyfriend, Army Spc. Caleb Barnes, is accused of stabbing teen's mother in the neck March 15."
+   },
+   {
+    "corpus": "halueval-summarization",
+    "claim": "Officer Michael Slager pulls over Scott at 9:33 a.m. Saturday."
+   },
+   {
+    "corpus": "halueval-summarization",
+    "claim": "Confederate Gen. Robert E. Lee surrendered to Union Lt. Gen. Ulysses S. Grant on April 9, 1865."
+   },
+   {
+    "corpus": "halueval-summarization",
+    "claim": "Marin Cilic defeated 6-4 6-4 by Victor Estrella in the Barcelona Open. The U.S."
+   },
+   {
+    "corpus": "psiloqa-en",
+    "claim": "Joseph W. Summers was an American author primarily known for his science fiction and fantasy works."
+   },
+   {
+    "corpus": "halueval-general",
+    "claim": "Testing and debugging D. Maintenance and Support"
+   },
+   {
+    "corpus": "halueval-summarization",
+    "claim": "Leonard H. Thomas served on HMS Ulster Queen during Arctic Convoys."
+   },
+   {
+    "corpus": "halueval-general",
+    "claim": "Importance of recycling C. Thesis statement"
+   },
+   {
+    "corpus": "halueval-summarization",
+    "claim": "The bill is now before Gov. David Ige, whose signature would make it law."
+   },
+   {
+    "corpus": "halueval-general",
+    "claim": "Conclusion A. Summary of main points B."
+   },
+   {
+    "corpus": "halueval-summarization",
+    "claim": "Georgia Gov. Nathan Deal signs a medical marijuana bill."
+   },
+   {
+    "corpus": "psiloqa-en",
+    "claim": "The A. R. Bowman Memorial Museum offers a variety of exhibits and collections to visitors interested in local history."
+   },
+   {
+    "corpus": "psiloqa-en",
+    "claim": "American Industrial Partners (AIP) was founded in 1989 by Carl J. Poppel and John A. Krolik."
+   },
+   {
+    "corpus": "halueval-general",
+    "claim": "B. Thesis statement - Briefly state the importance of renewable energy and the main points that will be covered in the presentation."
+   }
+  ]
+ },
+ "language": {
+  "verdict": "FAIL",
+  "english_documents": 15605,
+  "english_read_as_latin_before": 23,
+  "still_warning": [],
+  "non_english_answers": 1799,
+  "non_english_changed": [
+   {
+    "lang": "es",
+    "committed": "la",
+    "now": "und"
+   },
+   {
+    "lang": "eu",
+    "committed": "la",
+    "now": "und"
+   },
+   {
+    "lang": "it",
+    "committed": "la",
+    "now": "und"
+   },
+   {
+    "lang": "sv",
+    "committed": "la",
+    "now": "und"
+   },
+   {
+    "lang": "sv",
+    "committed": "la",
+    "now": "und"
+   },
+   {
+    "lang": "sv",
+    "committed": "la",
+    "now": "und"
+   },
+   {
+    "lang": "sv",
+    "committed": "la",
+    "now": "und"
+   },
+   {
+    "lang": "sv",
+    "committed": "la",
+    "now": "und"
+   },
+   {
+    "lang": "sv",
+    "committed": "la",
+    "now": "und"
+   },
+   {
+    "lang": "sv",
+    "committed": "la",
+    "now": "und"
+   },
+   {
+    "lang": "eu",
+    "committed": "la",
+    "now": "und"
+   }
+  ]
+ },
+ "modal_conditional": {
+  "verdict": "PASS",
+  "source_sentences": 346742,
+  "source_firings": 233,
+  "answer_sentences": 59721,
+  "answer_firings": 33
+ }
+}

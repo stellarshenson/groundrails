@@ -1,0 +1,1271 @@
+{
+ "base_ref": "HEAD",
+ "extraction": {
+  "documents": 28659,
+  "documents_changed": 587,
+  "claims_only_committed": 1348,
+  "claims_only_working_tree": 1425,
+  "samples": [
+   {
+    "source": "ragtruth",
+    "committed": [
+     "Measure the top of your chimney and take note of its size to determine the size of the cap you will need to purchase. (Passage 2)",
+     "Make sure the cap fits snugly but does not require a perfect fit. (Passage 1)",
+     "Use a 3/16 masonry bit and Tapcon masonry anchors to secure the cap to the chimney. (Passage 3)",
+     "Alternatively, you can invest in a stainless steel cap, which will provide additional benefits such as protection against birds and other animals. (Passage 1)",
+     "Keep in mind that the cap should overhang the chimney by 2 inches on all sides, so measure the top of the chimney and add 2 inches to determine the size of the cap you need. (Passage 2)"
+    ],
+    "working_tree": [
+     "Measure the top of your chimney and take note of its size to determine the size of the cap you will need to purchase.",
+     "Make sure the cap fits snugly but does not require a perfect fit.",
+     "Use a 3/16 masonry bit and Tapcon masonry anchors to secure the cap to the chimney.",
+     "Alternatively, you can invest in a stainless steel cap, which will provide additional benefits such as protection against birds and other animals.",
+     "Keep in mind that the cap should overhang the chimney by 2 inches on all sides, so measure the top of the chimney and add 2 inches to determine the size of the cap you need."
+    ]
+   },
+   {
+    "source": "ragtruth",
+    "committed": [
+     "Recycling helps reduce energy consumption and conserves natural resources. (Passage 1, Fact 1)",
+     "Recycling is part of the waste disposal hierarchy, along with reduction and reuse. (Passage 1, Fact 2)",
+     "Aluminum cans are the most recycled item, with over 75% of all aluminum produced globally being recycled. (Passage 1, Fact 4)",
+     "Recycling one ton of newspaper saves 15 trees, 4100 kWh of energy, and reduces greenhouse gas emissions by 96%. (Passage 2, Point 3)",
+     "Recycling one ton of cardboard saves 9 cubic yards of landfill space. (Passage 2, Point 4)",
+     "The number of landfills in operation in the US has decreased significantly since 1978. (Passage 2, Point 3)",
+     "Glass takes over 1,000,000 years to decompose in a landfill. (Passage 3, Point 2)",
+     "Plastic can take up to 700 years to decompose in a landfill. (Passage 3, Point 3)"
+    ],
+    "working_tree": [
+     "Recycling helps reduce energy consumption and conserves natural resources.",
+     "Recycling is part of the waste disposal hierarchy, along with reduction and reuse.",
+     "Aluminum cans are the most recycled item, with over 75% of all aluminum produced globally being recycled.",
+     "Recycling one ton of newspaper saves 15 trees, 4100 kWh of energy, and reduces greenhouse gas emissions by 96%.",
+     "Recycling one ton of cardboard saves 9 cubic yards of landfill space.",
+     "The number of landfills in operation in the US has decreased significantly since 1978.",
+     "Glass takes over 1,000,000 years to decompose in a landfill.",
+     "Plastic can take up to 700 years to decompose in a landfill."
+    ]
+   },
+   {
+    "source": "ragtruth",
+    "committed": [
+     "Remove damp paper towel in a couple of days. (Passage 1)",
+     "Always store granulated sugar in an airtight container. (Passage 2)",
+     "Pack the sugar into the smallest container possible so that there is hardly any air space between the sugar and the lid. (Passage 3)"
+    ],
+    "working_tree": [
+     "Remove damp paper towel in a couple of days.",
+     "Always store granulated sugar in an airtight container.",
+     "Pack the sugar into the smallest container possible so that there is hardly any air space between the sugar and the lid."
+    ]
+   },
+   {
+    "source": "ragtruth",
+    "committed": [
+     "Start by sowing the seeds indoors in a greenhouse in early spring, about 4-6 weeks before the last frost date. (Passage 1)",
+     "Harvest the green onions when the plants are at least 6 inches tall and 1/2 inch to 1 inch in diameter, about 30 days after planting sets or 40 to 50 days from planting seed. (Passage 3)"
+    ],
+    "working_tree": [
+     "Start by sowing the seeds indoors in a greenhouse in early spring, about 4-6 weeks before the last frost date.",
+     "Harvest the green onions when the plants are at least 6 inches tall and 1/2 inch to 1 inch in diameter, about 30 days after planting sets or 40 to 50 days from planting seed."
+    ]
+   },
+   {
+    "source": "ragbench-hagrid",
+    "committed": [
+     "Butler's first novel was \"Patternmaster\" ."
+    ],
+    "working_tree": [
+     "Octavia E. Butler's first novel was \"Patternmaster\" ."
+    ]
+   },
+   {
+    "source": "ragbench-hagrid",
+    "committed": [
+     "Specifically, South Korea has become a leader in electronics, automobiles, shipbuilding, steel, and petrochemicals, as well as a global leader in consumer electronics, mobile broadband, and smartphones. (Context  and )"
+    ],
+    "working_tree": [
+     "Specifically, South Korea has become a leader in electronics, automobiles, shipbuilding, steel, and petrochemicals, as well as a global leader in consumer electronics, mobile broadband, and smartphones."
+    ]
+   },
+   {
+    "source": "ragtruth",
+    "committed": [
+     "Acknowledge and understand your loss: It is essential to acknowledge the death of your loved one and understand the impact it has on your life. (Passage 3)",
+     "Experience your pain: Allow yourself to feel the pain of your loss and give yourself time to process your emotions. (Passage 2)",
+     "Move adaptively into a new life: While it's important to honor your loss, it's also crucial to move forward and build a new life without your loved one. (Passage 3)",
+     "Take time to mourn: Grieving is a necessary process, and it's important to take the time you need to mourn the loss of your loved one. (Passage 2)",
+     "Have a healthy perspective on what your grief resolution will and will not mean for you: Understanding what your grief resolution will and will not entail can help you navigate the healing process. (Passage 3)"
+    ],
+    "working_tree": [
+     "Acknowledge and understand your loss: It is essential to acknowledge the death of your loved one and understand the impact it has on your life.",
+     "Experience your pain: Allow yourself to feel the pain of your loss and give yourself time to process your emotions.",
+     "Move adaptively into a new life: While it's important to honor your loss, it's also crucial to move forward and build a new life without your loved one.",
+     "Take time to mourn: Grieving is a necessary process, and it's important to take the time you need to mourn the loss of your loved one.",
+     "Have a healthy perspective on what your grief resolution will and will not mean for you: Understanding what your grief resolution will and will not entail can help you navigate the healing process."
+    ]
+   },
+   {
+    "source": "ragtruth",
+    "committed": [
+     "The Roth IRA income limits are as follows: $116,000 for singles ($183,000 for married) for full contributions, and $131,000 ($193,000 for married) for partial contributions. (Passage 1)",
+     "These contributions are not counted towards income, and all gains are tax-deferred. (Passage 2)",
+     "Since January 1, 2006, employers can amend their 401(k) plan documents to allow employees to elect Roth IRA-type tax treatment for a portion or all of their retirement plan contributions. (Passage 3)"
+    ],
+    "working_tree": [
+     "The Roth IRA income limits are as follows: $116,000 for singles ($183,000 for married) for full contributions, and $131,000 ($193,000 for married) for partial contributions.",
+     "These contributions are not counted towards income, and all gains are tax-deferred.",
+     "Since January 1, 2006, employers can amend their 401(k) plan documents to allow employees to elect Roth IRA-type tax treatment for a portion or all of their retirement plan contributions."
+    ]
+   },
+   {
+    "source": "ragbench-finqa",
+    "committed": [
+     "Smith Corp. and the S&P Small Cap 600 Index for the five-year period ended 12/31/10, I need to look up the values for each at the end of that period (12/31/10).",
+     "From the data provided: A.O.",
+     "Smith Corp. and the S&P Small Cap 600 Index for the five-year period ended 12/31/10 was 55.0."
+    ],
+    "working_tree": [
+     "To find the difference in the cumulative total return for A.O. Smith Corp. and the S&P Small Cap 600 Index for the five-year period ended 12/31/10, I need to look up the values for each at the end of that period (12/31/10).",
+     "From the data provided: A.O. Smith Corp. cumulative total return on 12/31/10: 178.8 S&P Small Cap 600 Index cumulative total return on 12/31/10: 123.8",
+     "So the difference in the cumulative total return for A.O. Smith Corp. and the S&P Small Cap 600 Index for the five-year period ended 12/31/10 was 55.0."
+    ]
+   },
+   {
+    "source": "ragtruth",
+    "committed": [
+     "Set your page size to 800 pixels wide by 300 pixels high or 10 inches wide by 3.7 inches tall for the Facebook cover photo. (Passage 1)",
+     "Use the same logo and graphics used on all your promotional materials to maintain cohesion. (Passage 2)",
+     "Click on an application like \"Comments and Graphics\" or \"Free Graphics\" to find and install a graphic creation tool. (Passage 3)"
+    ],
+    "working_tree": [
+     "Set your page size to 800 pixels wide by 300 pixels high or 10 inches wide by 3.7 inches tall for the Facebook cover photo.",
+     "Use the same logo and graphics used on all your promotional materials to maintain cohesion.",
+     "Click on an application like \"Comments and Graphics\" or \"Free Graphics\" to find and install a graphic creation tool."
+    ]
+   },
+   {
+    "source": "ragtruth",
+    "committed": [
+     "Melissa Jordon, 26, disappeared after going on a date with Onnie B."
+    ],
+    "working_tree": [
+     "Melissa Jordon, 26, disappeared after going on a date with Onnie B. Nesbitt, 36, in Milan, Tennessee in 1995."
+    ]
+   },
+   {
+    "source": "ragbench-hagrid",
+    "committed": [
+     "The arch-nemesis of G.I."
+    ],
+    "working_tree": [
+     "The arch-nemesis of G.I. Joe is Cobra ."
+    ]
+   },
+   {
+    "source": "ragtruth",
+    "committed": [
+     "Jamal Bryant echoed these sentiments, saying that the term is offensive and does not accurately describe the frustrated children involved in the unrest."
+    ],
+    "working_tree": [
+     "Rev. Jamal Bryant echoed these sentiments, saying that the term is offensive and does not accurately describe the frustrated children involved in the unrest."
+    ]
+   },
+   {
+    "source": "ragtruth",
+    "committed": [
+     "If the person is in immediate danger, encourage them to see a mental health professional or doctor immediately, or call 911 or take them to the emergency room. (Passage 1)",
+     "Depression is a treatable illness, and recovery times are often less than 3 months. (Passage 2)",
+     "It is better to anger a friend than lose the actual human being. (Passage 3)"
+    ],
+    "working_tree": [
+     "If the person is in immediate danger, encourage them to see a mental health professional or doctor immediately, or call 911 or take them to the emergency room.",
+     "Depression is a treatable illness, and recovery times are often less than 3 months.",
+     "It is better to anger a friend than lose the actual human being."
+    ]
+   },
+   {
+    "source": "ragtruth",
+    "committed": [
+     "Jamal Bryant and Baltimore City Councilman Carl Stokes have both spoken out against the use of the term \"thug\" and instead suggested alternative words such as \"n-----\" and \"criminals\"."
+    ],
+    "working_tree": [
+     "The Rev. Jamal Bryant and Baltimore City Councilman Carl Stokes have both spoken out against the use of the term \"thug\" and instead suggested alternative words such as \"n-----\" and \"criminals\"."
+    ]
+   },
+   {
+    "source": "ragtruth",
+    "committed": [
+     "Hedlund is also involved in other projects like \"Billy Lynn's Long Halftime Walk\" and Warner Bros.'"
+    ],
+    "working_tree": [
+     "Hedlund is also involved in other projects like \"Billy Lynn's Long Halftime Walk\" and Warner Bros.' \"Pan.\""
+    ]
+   },
+   {
+    "source": "ragtruth",
+    "committed": [
+     "Whole grains: Quinoa, brown rice, and whole wheat/oats are good for eye health due to their low glycemic index and content of vitamins, minerals, and antioxidants such as vitamin E, zinc, and niacin. (Passage 1)",
+     "Fatty fish such as salmon, tuna, and mackerel are good sources of these acids. (Passage 1)",
+     "However, excessive consumption of egg yolks can lead to high fat intake, so moderation is key. (Passage 3)",
+     "Nuts: Almost all kinds of nuts are beneficial for eye health, providing essential proteins, vitamins, and minerals. (Passage 3)"
+    ],
+    "working_tree": [
+     "Whole grains: Quinoa, brown rice, and whole wheat/oats are good for eye health due to their low glycemic index and content of vitamins, minerals, and antioxidants such as vitamin E, zinc, and niacin.",
+     "Fatty fish such as salmon, tuna, and mackerel are good sources of these acids.",
+     "However, excessive consumption of egg yolks can lead to high fat intake, so moderation is key.",
+     "Nuts: Almost all kinds of nuts are beneficial for eye health, providing essential proteins, vitamins, and minerals."
+    ]
+   },
+   {
+    "source": "ragbench-pubmedqa",
+    "committed": [
+     "The study examined whether women with genitopelvic pain/penetration disorder (GPPPD) show: a.",
+     "Heightened attention for pain and sex b.",
+     "The researchers also explored whether the stronger persistence of coital avoidance in vaginismus vs. dyspareunia might be explained by: a.",
+     "A stronger attentional bias b."
+    ],
+    "working_tree": [
+     "The study examined whether women with genitopelvic pain/penetration disorder (GPPPD) show:",
+     "Heightened attention for pain and sex",
+     "The researchers also explored whether the stronger persistence of coital avoidance in vaginismus vs. dyspareunia might be explained by:",
+     "A stronger attentional bias"
+    ]
+   },
+   {
+    "source": "ragtruth",
+    "committed": [
+     "The news was that President Franklin D.",
+     "In summary, the Chicago Daily News was preparing for its evening edition when the news of President Franklin D."
+    ],
+    "working_tree": [
+     "The news was that President Franklin D. Roosevelt had died.",
+     "In summary, the Chicago Daily News was preparing for its evening edition when the news of President Franklin D. Roosevelt's death broke."
+    ]
+   },
+   {
+    "source": "ragtruth",
+    "committed": [
+     "Add raw sesame seeds to any side dish to add crunch and flavor. (Passage 1)",
+     "Toast sesame seeds over the stovetop by heating them over medium-low heat, stirring occasionally, for two to three minutes or until they turn brown, glisten, and occasionally pop or jump. (Passage 2)",
+     "Use sesame seeds as a topping for salads, adding a nutty flavor and crunchy texture. (Passage 1)",
+     "Make sesame milk by grinding the seeds into a fine powder and mixing them with water or other liquids. (Passage 2)",
+     "Roast sesame seeds and use them as a topping for salads or other dishes. (Passage 1)",
+     "Use sesame oil in cooking for added flavor and health benefits. (Passage 1)",
+     "Make a light salad dressing using tahini, a sesame seed paste. (Passage 2)",
+     "Add sesame seeds to baked goods, such as breads and muffins, for added flavor and nutrition. (Passage 1)",
+     "Use sesame seeds as a garnish for soups and other dishes. (Passage 1)",
+     "Experiment with different types of sesame seeds, such as white, yellow, black, and red, to find the one that best suits your taste preferences. (Passage 3)"
+    ],
+    "working_tree": [
+     "Add raw sesame seeds to any side dish to add crunch and flavor.",
+     "Toast sesame seeds over the stovetop by heating them over medium-low heat, stirring occasionally, for two to three minutes or until they turn brown, glisten, and occasionally pop or jump.",
+     "Use sesame seeds as a topping for salads, adding a nutty flavor and crunchy texture.",
+     "Make sesame milk by grinding the seeds into a fine powder and mixing them with water or other liquids.",
+     "Roast sesame seeds and use them as a topping for salads or other dishes.",
+     "Use sesame oil in cooking for added flavor and health benefits.",
+     "Make a light salad dressing using tahini, a sesame seed paste.",
+     "Add sesame seeds to baked goods, such as breads and muffins, for added flavor and nutrition.",
+     "Use sesame seeds as a garnish for soups and other dishes.",
+     "Experiment with different types of sesame seeds, such as white, yellow, black, and red, to find the one that best suits your taste preferences."
+    ]
+   },
+   {
+    "source": "ragtruth",
+    "committed": [
+     "Allen Batschelet, who is in charge of U.S."
+    ],
+    "working_tree": [
+     "Maj. Gen. Allen Batschelet, who is in charge of U.S."
+    ]
+   },
+   {
+    "source": "ragtruth",
+    "committed": [
+     "The article provides examples of previous campaigns that overplayed to women and failed, including those of Sen."
+    ],
+    "working_tree": [
+     "The article provides examples of previous campaigns that overplayed to women and failed, including those of Sen. Mark Udall in Colorado, Martha Robertson in New York, and Sen. Mary Landrieu in Louisiana."
+    ]
+   },
+   {
+    "source": "ragtruth",
+    "committed": [
+     "It can withstand prolonged slipping without suffering mechanical damage, although it may heat up. (Passage 1)",
+     "It allows the driver to use the clutch and gears with less skill and fatigue than with an all-mechanical linkage. (Passage 1)",
+     "It can transmit power from the input shaft to the output shaft at a desired torque and speed, while allowing for smooth engagement and disengagement of the clutch. (Passage 2)",
+     "It can decouple the engine flywheel from the transmission shaft, allowing for smoother and more efficient power transfer. (Passage 3)"
+    ],
+    "working_tree": [
+     "It can withstand prolonged slipping without suffering mechanical damage, although it may heat up.",
+     "It allows the driver to use the clutch and gears with less skill and fatigue than with an all-mechanical linkage.",
+     "It can transmit power from the input shaft to the output shaft at a desired torque and speed, while allowing for smooth engagement and disengagement of the clutch.",
+     "It can decouple the engine flywheel from the transmission shaft, allowing for smoother and more efficient power transfer."
+    ]
+   },
+   {
+    "source": "ragbench-finqa",
+    "committed": [
+     "Total shareholders' equity decreased by $2,749 million from 2012 to 2013. (Decrease from $75,716 million in 2012 to $78,467 million in 2013)"
+    ],
+    "working_tree": [
+     "Total shareholders' equity decreased by $2,749 million from 2012 to 2013."
+    ]
+   },
+   {
+    "source": "ragbench-tatqa",
+    "committed": [],
+    "working_tree": [
+     "The total compensation for Richard S. Hill is $255,987.",
+     "The total compensation for Christopher A. Seams is $231,987."
+    ]
+   }
+  ]
+ },
+ "hypothetical": {
+  "ragtruth-answers": {
+   "claims": 124124,
+   "hypothetical": 0,
+   "samples": []
+  },
+  "ragbench-responses": {
+   "claims": 39867,
+   "hypothetical": 0,
+   "samples": []
+  },
+  "ragtruth-sources": {
+   "claims": 52244,
+   "hypothetical": 0,
+   "samples": []
+  },
+  "ragbench-sources": {
+   "claims": 142272,
+   "hypothetical": 1,
+   "samples": [
+    "Either choose a stream on publicly owned land, or ask the private owner’s permission before doing any panning."
+   ]
+  }
+ },
+ "language": {
+  "ragtruth-answers": {
+   "n": 17790,
+   "committed": {
+    "en": 17767,
+    "und": 19,
+    "la": 2
+   },
+   "working_tree": {
+    "en": 17767,
+    "und": 21
+   }
+  },
+  "ragbench-covidqa-documents": {
+   "n": 246,
+   "committed": {
+    "en": 244,
+    "la": 2
+   },
+   "working_tree": {
+    "en": 244,
+    "und": 2
+   }
+  },
+  "ragbench-delucionqa-documents": {
+   "n": 184,
+   "committed": {
+    "en": 184
+   },
+   "working_tree": {
+    "en": 184
+   }
+  },
+  "ragbench-emanual-documents": {
+   "n": 132,
+   "committed": {
+    "en": 132
+   },
+   "working_tree": {
+    "en": 132
+   }
+  },
+  "ragbench-expertqa-documents": {
+   "n": 203,
+   "committed": {
+    "en": 203
+   },
+   "working_tree": {
+    "en": 203
+   }
+  },
+  "ragbench-finqa-documents": {
+   "n": 2294,
+   "committed": {
+    "en": 2284,
+    "tl": 8,
+    "und": 2
+   },
+   "working_tree": {
+    "en": 2284,
+    "tl": 8,
+    "und": 2
+   }
+  },
+  "ragbench-hagrid-documents": {
+   "n": 1318,
+   "committed": {
+    "en": 1315,
+    "es": 1,
+    "bs": 2
+   },
+   "working_tree": {
+    "en": 1315,
+    "es": 1,
+    "bs": 2
+   }
+  },
+  "ragbench-hotpotqa-documents": {
+   "n": 390,
+   "committed": {
+    "en": 390
+   },
+   "working_tree": {
+    "en": 390
+   }
+  },
+  "ragbench-pubmedqa-documents": {
+   "n": 2450,
+   "committed": {
+    "en": 2450
+   },
+   "working_tree": {
+    "en": 2450
+   }
+  },
+  "ragbench-tatqa-documents": {
+   "n": 3338,
+   "committed": {
+    "en": 3338
+   },
+   "working_tree": {
+    "en": 3338
+   }
+  },
+  "ragbench-techqa-documents": {
+   "n": 314,
+   "committed": {
+    "en": 314
+   },
+   "working_tree": {
+    "en": 314
+   }
+  },
+  "ragtruth-pl": {
+   "n": 500,
+   "committed": {
+    "pl": 500
+   },
+   "working_tree": {
+    "pl": 500
+   }
+  },
+  "ragtruth-de": {
+   "n": 500,
+   "committed": {
+    "de": 500
+   },
+   "working_tree": {
+    "de": 500
+   }
+  },
+  "ragtruth-es": {
+   "n": 500,
+   "committed": {
+    "es": 498,
+    "und": 2
+   },
+   "working_tree": {
+    "es": 498,
+    "und": 2
+   }
+  },
+  "ragtruth-fr": {
+   "n": 500,
+   "committed": {
+    "fr": 498,
+    "und": 2
+   },
+   "working_tree": {
+    "fr": 498,
+    "und": 2
+   }
+  },
+  "ragtruth-it": {
+   "n": 500,
+   "committed": {
+    "it": 498,
+    "und": 2
+   },
+   "working_tree": {
+    "it": 498,
+    "und": 2
+   }
+  },
+  "ragtruth-hu": {
+   "n": 500,
+   "committed": {
+    "hu": 500
+   },
+   "working_tree": {
+    "hu": 500
+   }
+  },
+  "ragtruth-cn": {
+   "n": 500,
+   "committed": {
+    "zh": 497,
+    "ja": 2,
+    "hi": 1
+   },
+   "working_tree": {
+    "zh": 497,
+    "ja": 2,
+    "hi": 1
+   }
+  }
+ },
+ "numeric": {
+  "per_corpus": {
+   "ragtruth": {
+    "pairs": 28554,
+    "labelled": 3427,
+    "committed_contradicted_unlabelled": 98,
+    "working_tree_contradicted_unlabelled": 132,
+    "committed_contradicted_labelled": 70,
+    "working_tree_contradicted_labelled": 121
+   },
+   "ragbench-covidqa": {
+    "pairs": 125,
+    "labelled": 19,
+    "committed_contradicted_unlabelled": 1,
+    "working_tree_contradicted_unlabelled": 1,
+    "committed_contradicted_labelled": 1,
+    "working_tree_contradicted_labelled": 2
+   },
+   "ragbench-delucionqa": {
+    "pairs": 437,
+    "labelled": 8,
+    "committed_contradicted_unlabelled": 0,
+    "working_tree_contradicted_unlabelled": 0,
+    "committed_contradicted_labelled": 0,
+    "working_tree_contradicted_labelled": 0
+   },
+   "ragbench-emanual": {
+    "pairs": 347,
+    "labelled": 20,
+    "committed_contradicted_unlabelled": 0,
+    "working_tree_contradicted_unlabelled": 0,
+    "committed_contradicted_labelled": 0,
+    "working_tree_contradicted_labelled": 0
+   },
+   "ragbench-expertqa": {
+    "pairs": 264,
+    "labelled": 105,
+    "committed_contradicted_unlabelled": 1,
+    "working_tree_contradicted_unlabelled": 1,
+    "committed_contradicted_labelled": 4,
+    "working_tree_contradicted_labelled": 3
+   },
+   "ragbench-finqa": {
+    "pairs": 11028,
+    "labelled": 208,
+    "committed_contradicted_unlabelled": 964,
+    "working_tree_contradicted_unlabelled": 973,
+    "committed_contradicted_labelled": 29,
+    "working_tree_contradicted_labelled": 29
+   },
+   "ragbench-hagrid": {
+    "pairs": 1454,
+    "labelled": 139,
+    "committed_contradicted_unlabelled": 21,
+    "working_tree_contradicted_unlabelled": 24,
+    "committed_contradicted_labelled": 23,
+    "working_tree_contradicted_labelled": 24
+   },
+   "ragbench-hotpotqa": {
+    "pairs": 157,
+    "labelled": 13,
+    "committed_contradicted_labelled": 1,
+    "working_tree_contradicted_labelled": 1,
+    "committed_contradicted_unlabelled": 1,
+    "working_tree_contradicted_unlabelled": 1
+   },
+   "ragbench-pubmedqa": {
+    "pairs": 5760,
+    "labelled": 520,
+    "committed_contradicted_unlabelled": 71,
+    "working_tree_contradicted_unlabelled": 84,
+    "committed_contradicted_labelled": 4,
+    "working_tree_contradicted_labelled": 4
+   },
+   "ragbench-tatqa": {
+    "pairs": 10117,
+    "labelled": 127,
+    "committed_contradicted_unlabelled": 609,
+    "working_tree_contradicted_unlabelled": 602,
+    "committed_contradicted_labelled": 16,
+    "working_tree_contradicted_labelled": 16
+   },
+   "ragbench-techqa": {
+    "pairs": 1448,
+    "labelled": 444,
+    "committed_contradicted_unlabelled": 12,
+    "working_tree_contradicted_unlabelled": 13,
+    "committed_contradicted_labelled": 14,
+    "working_tree_contradicted_labelled": 18
+   }
+  },
+  "gained": 148,
+  "gained_labelled": 58,
+  "lost": 39,
+  "lost_labelled": 2,
+  "gained_samples": [
+   {
+    "corpus": "ragbench-finqa",
+    "labelled": false,
+    "claim": "Therefore, the percentage increase in total expense from 2017 to 2018 is 940%.",
+    "mismatches": [
+     [
+      "2017-2018",
+      "2016-2017"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragbench-finqa",
+    "labelled": false,
+    "claim": "Based on the information provided in the context, the ending balance of unrecognized tax benefits as of March 31, 2008 would be $0.168 million.",
+    "mismatches": [
+     [
+      "0.168",
+      "0.3"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragtruth",
+    "labelled": false,
+    "claim": "The Alamogordo Tigers football team closed out their season with a 27-0 win over Organ Mountain, finishing with a 5-5 record and 2-3 in district. highlights included A'Veion Valdez's 44-yard TD run and Elijah Montoya's 1-yard TD run.",
+    "mismatches": [
+     [
+      "2-3",
+      "13-5"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragtruth",
+    "labelled": true,
+    "claim": "Flip the chicken thighs over and cook for an additional 2-4 minutes or until the internal temperature reaches 165°F.",
+    "mismatches": [
+     [
+      "2-4",
+      "8-12"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragbench-pubmedqa",
+    "labelled": false,
+    "claim": "   - Unadjusted mortality was higher in men than in women (odds ratio 1.49, 95% CI 1.15-1.92).",
+    "mismatches": [
+     [
+      "1.15-1.92",
+      "0.8-1.38"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragbench-pubmedqa",
+    "labelled": false,
+    "claim": "Based on the given context, it can be inferred that inequities in sociodemographic and health-related indicators in Bangladesh have persisted between 1993-2007.",
+    "mismatches": [
+     [
+      "1993-2007",
+      "1996-1997"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragbench-finqa",
+    "labelled": false,
+    "claim": "So the ratio of interest and penalties associated with uncertain tax positions in 2013 to 2012 was 3.63.",
+    "mismatches": [
+     [
+      "2013-2012",
+      "2001-2004"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragtruth",
+    "labelled": true,
+    "claim": "Sear the filet mignon for 2-3 minutes on each side, or until a nice brown crust forms.",
+    "mismatches": [
+     [
+      "2-3",
+      "10-12"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragbench-hagrid",
+    "labelled": false,
+    "claim": "It spent five consecutive seasons as the number one rated show on television, from 1985 to 1989.",
+    "mismatches": [
+     [
+      "1985-1989",
+      "1984-1992"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragbench-finqa",
+    "labelled": false,
+    "claim": "There was no change in the unrecognized tax benefits between 2017 and 2018.",
+    "mismatches": [
+     [
+      "2017-2018",
+      "2015-2018"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragtruth",
+    "labelled": true,
+    "claim": "Since a 2 lb turkey breast weighs 2 pounds, it will take approximately 40-50 minutes to cook.",
+    "mismatches": [
+     [
+      "40-50",
+      "4-5"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragbench-pubmedqa",
+    "labelled": false,
+    "claim": "Based on the provided context, the key findings regarding the use of procollagen propeptides as serum markers for atrial fibrosis are: 1.",
+    "mismatches": [
+     [
+      "1",
+      "0.79"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragtruth",
+    "labelled": true,
+    "claim": "Microwave Polish sausage for 1-2 minutes per side, covered with a paper towel.",
+    "mismatches": [
+     [
+      "1-2",
+      "8-10"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragtruth",
+    "labelled": true,
+    "claim": "Once the filet mignon has browned on both sides, transfer it to the oven and bake for 8-10 minutes depending on desired doneness.",
+    "mismatches": [
+     [
+      "8-10",
+      "10-12"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragbench-pubmedqa",
+    "labelled": false,
+    "claim": "In summary, the information provided does not contain any evidence regarding changes in patterns of concurrent drug use among young Australians aged 18-29 between 2007 and 2010.",
+    "mismatches": [
+     [
+      "2007-2010",
+      "2004-2012"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragtruth",
+    "labelled": true,
+    "claim": "Cook the noodles in boiling salted water for 2-3 minutes or until they are al dente.",
+    "mismatches": [
+     [
+      "2-3",
+      "50-60"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragtruth",
+    "labelled": true,
+    "claim": "Passage 1 states that giant sequoias can grow relatively slowly compared to other redwood species, with growth rates of around 1-2 feet per year.",
+    "mismatches": [
+     [
+      "1-2",
+      "3-5"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragtruth",
+    "labelled": false,
+    "claim": "Reduce the heat and let the lobsters simmer for 8-10 minutes, or until the meat is opaque and cooked through.",
+    "mismatches": [
+     [
+      "8-10",
+      "5-10"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragtruth",
+    "labelled": true,
+    "claim": "Place the filet mignon in the skillet and sear for 2-3 minutes on each side, or until a nice crust forms.",
+    "mismatches": [
+     [
+      "2-3",
+      "10-12"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragtruth",
+    "labelled": true,
+    "claim": "Cook the pasta in a large pot of boiling, salted water until al dente, about 3-5 minutes.",
+    "mismatches": [
+     [
+      "3-5",
+      "50-60"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragtruth",
+    "labelled": true,
+    "claim": "They may need an additional 2-3 minutes depending on the size of the hash browns.",
+    "mismatches": [
+     [
+      "2-3",
+      "4-5"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragbench-finqa",
+    "labelled": false,
+    "claim": "So the average construction-in-progress impairment from 2004 to 2006 was $2.63 million.",
+    "mismatches": [
+     [
+      "2.63",
+      "5.6"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragbench-finqa",
+    "labelled": false,
+    "claim": "The beginning balance of unrecognized tax benefits as of April 1, 2007 was $0.224 million. 2.",
+    "mismatches": [
+     [
+      "0.224",
+      "0.3"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragtruth",
+    "labelled": false,
+    "claim": "It gets an average of 12 inches of rain and 24-33.8 inches of snow per year.",
+    "mismatches": [
+     [
+      "24-33.8",
+      "160-180"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragtruth",
+    "labelled": false,
+    "claim": "Transfer the brussels sprouts to a baking sheet lined with aluminum foil and roast for about 20-45 minutes, stirring occasionally for even browning.",
+    "mismatches": [
+     [
+      "20-45",
+      "30-45"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragtruth",
+    "labelled": false,
+    "claim": "Meet the age requirement of being between 23 and 37 years old (Passage 3)",
+    "mismatches": [
+     [
+      "23-37",
+      "4-5"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragtruth",
+    "labelled": false,
+    "claim": "Bake the crab cakes for 20-40 minutes, or until they are done.",
+    "mismatches": [
+     [
+      "20-40",
+      "20-30"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragtruth",
+    "labelled": true,
+    "claim": "In the third quarter, McGroarty scored again with a 26-yard run, putting Mahanoy Area ahead 13-12.",
+    "mismatches": [
+     [
+      "13-12",
+      "14-13"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragtruth",
+    "labelled": true,
+    "claim": "This will take approximately 20 minutes for a total grilling time of 45-50 minutes.",
+    "mismatches": [
+     [
+      "45-50",
+      "5-6"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragbench-tatqa",
+    "labelled": false,
+    "claim": "Therefore, the average of total Amortization of intangibles between 2017 to 2019 is $9,678.",
+    "mismatches": [
+     [
+      "2017-2019",
+      "2018-2019"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragtruth",
+    "labelled": false,
+    "claim": "Move the steak to the medium-low heat zone and continue grilling for an additional 3 to 5 minutes, depending on your desired level of doneness.",
+    "mismatches": [
+     [
+      "3-5",
+      "10-12"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragtruth",
+    "labelled": true,
+    "claim": "Transfer the pan to the preheated oven and cook for an additional 8-12 minutes, or until the internal temperature reaches your desired level of doneness (145°F for medium rare, 160°F for medium).",
+    "mismatches": [
+     [
+      "8-12",
+      "10-12"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragtruth",
+    "labelled": false,
+    "claim": "The winter months (December to February) are mild, with temperatures ranging from 12 to 14 degrees Celsius.",
+    "mismatches": [
+     [
+      "12-14",
+      "18-20"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragtruth",
+    "labelled": true,
+    "claim": "Roast in the oven at 400°F (200°C) for 10-15 minutes, or until cauliflower rice is tender and lightly browned.",
+    "mismatches": [
+     [
+      "10-15",
+      "5-8"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragtruth",
+    "labelled": false,
+    "claim": "Bake the crab cakes for 20-40 minutes, or until they are done.",
+    "mismatches": [
+     [
+      "20-40",
+      "20-30"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragtruth",
+    "labelled": false,
+    "claim": "To get the smell of smoke out of your microwave, you can heat a bowl of water in the microwave for about 2-5 minutes until it boils.",
+    "mismatches": [
+     [
+      "2-5",
+      "10-15"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragtruth",
+    "labelled": true,
+    "claim": "Since a 2 lb turkey breast weighs half of the 5 lb turkey breast, it will take approximately 10-12.5 minutes to cook.",
+    "mismatches": [
+     [
+      "10-12.5",
+      "4-5"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragbench-finqa",
+    "labelled": false,
+    "claim": "Therefore, assuming the same level of settlements as in fiscal 2007, the ending balance of unrecognized tax benefits as of March 31, 2008 would be $0.168 million.",
+    "mismatches": [
+     [
+      "0.168",
+      "0.3"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragbench-techqa",
+    "labelled": true,
+    "claim": "   - CVE-2017-16997",
+    "mismatches": [
+     [
+      "2017-16997",
+      "2017-12418"
+     ]
+    ]
+   },
+   {
+    "corpus": "ragtruth",
+    "labelled": true,
+    "claim": "Transfer the skillet to the preheated oven and cook the salmon for 5-7 minutes for medium-rare, or 9 minutes for fully cooked through.",
+    "mismatches": [
+     [
+      "5-7",
+      "15-20"
+     ]
+    ]
+   }
+  ],
+  "lost_samples": [
+   {
+    "corpus": "ragbench-finqa",
+    "labelled": false,
+    "claim": "(1824 + 250 + 319) / 3 = $797.67 million"
+   },
+   {
+    "corpus": "ragbench-tatqa",
+    "labelled": false,
+    "claim": "Therefore, the average net loss in 2018 and 2019 is approximately $52.829 million."
+   },
+   {
+    "corpus": "ragtruth",
+    "labelled": false,
+    "claim": "The largest seizure involved a tractor-trailer transporting jalapenos from Mexico, found to be carrying 1,205.48 pounds of methamphetamine worth $10.7m."
+   },
+   {
+    "corpus": "ragbench-finqa",
+    "labelled": false,
+    "claim": "Based on the information provided, the total exposure to government-related derivatives (including sovereign governments, regional governments, and not-for-profit organizations) is $3,085 million."
+   },
+   {
+    "corpus": "ragbench-tatqa",
+    "labelled": false,
+    "claim": "So the high price was greater than $40.00 in the first and second quarters of 2019."
+   },
+   {
+    "corpus": "ragbench-tatqa",
+    "labelled": false,
+    "claim": "So the difference in restructuring expenses between 2019 and 2018 was a decrease of $145 million."
+   },
+   {
+    "corpus": "ragbench-finqa",
+    "labelled": false,
+    "claim": "Summing these three amounts and dividing by 3 gives the average of $797.67 million."
+   },
+   {
+    "corpus": "ragbench-finqa",
+    "labelled": false,
+    "claim": "So the cash portion represents 34.0% of the total purchase price."
+   },
+   {
+    "corpus": "ragbench-tatqa",
+    "labelled": false,
+    "claim": "Therefore, the average restructuring expenses in 2018 and 2019 were $515.5 million."
+   },
+   {
+    "corpus": "ragbench-finqa",
+    "labelled": false,
+    "claim": "Based on the information provided in the \"Purchase Price\" section, the cash portion of the consideration paid for the merger was $2,094,800, which represents 34% of the total estimated purchase price of $6,156,900."
+   },
+   {
+    "corpus": "ragbench-finqa",
+    "labelled": false,
+    "claim": "So, the company's market capitalization on February 17, 2017, as reported on the NYSE, was approximately $46.22 billion."
+   },
+   {
+    "corpus": "ragbench-finqa",
+    "labelled": false,
+    "claim": "Based on the information provided in the \"Purchase Price\" section, the cash portion of the consideration was $2,094,800, which represents 34.0% of the total estimated purchase price of $6,156,900."
+   },
+   {
+    "corpus": "ragbench-finqa",
+    "labelled": false,
+    "claim": "The average net sales for the three years ending in 2011 were approximately $7,990.4 million. Calculation:"
+   },
+   {
+    "corpus": "ragbench-tatqa",
+    "labelled": false,
+    "claim": "So the difference in revenue earned from Customer A and Customer B in 2019 is $6.4 million."
+   },
+   {
+    "corpus": "ragbench-expertqa",
+    "labelled": true,
+    "claim": "Meanwhile, the manufacturing sector of the UK, often interconnected with supply chain operations, generated around £191 billion in GVA in 2021, contributing about 9% of the total national GVA ."
+   },
+   {
+    "corpus": "ragbench-finqa",
+    "labelled": false,
+    "claim": "Therefore, the average amortization expense between 2015 and 2017 was approximately $81.67 million."
+   },
+   {
+    "corpus": "ragbench-tatqa",
+    "labelled": false,
+    "claim": "Therefore, the average restructuring expenses in 2018 and 2019 was $515.5 million."
+   },
+   {
+    "corpus": "ragtruth",
+    "labelled": false,
+    "claim": "Law enforcement agents seized nearly $195,000 in cash from Nikogosyan's residence as evidence of his involvement."
+   },
+   {
+    "corpus": "ragbench-tatqa",
+    "labelled": false,
+    "claim": "row in the revenue table and count the number of years where the value is greater than $1,000 million."
+   },
+   {
+    "corpus": "ragbench-finqa",
+    "labelled": false,
+    "claim": "Therefore, the average of total other income from 2016-2018 is approximately $90.67 million."
+   },
+   {
+    "corpus": "ragbench-finqa",
+    "labelled": false,
+    "claim": "So the total operating expenses for MFC in 2016 were approximately $5,590 million."
+   },
+   {
+    "corpus": "ragbench-finqa",
+    "labelled": false,
+    "claim": "Therefore, the total assets at year ended December 31, 2011 were approximately $275.45 billion."
+   },
+   {
+    "corpus": "ragbench-finqa",
+    "labelled": false,
+    "claim": "So the amount of sales that went to international markets in 2017 was approximately $792.495 million."
+   },
+   {
+    "corpus": "ragbench-finqa",
+    "labelled": false,
+    "claim": "So the total rent expense for fiscal years 2010 to 2012 was approximately $6.5 million."
+   },
+   {
+    "corpus": "ragbench-tatqa",
+    "labelled": false,
+    "claim": "Net financed service contracts exceeded $2,000 million in both of the years mentioned in the context."
+   },
+   {
+    "corpus": "ragtruth",
+    "labelled": true,
+    "claim": "The sisters contracted typhus, which was rampant in the camp, and are believed to have died before February 7, 2022."
+   },
+   {
+    "corpus": "ragbench-finqa",
+    "labelled": false,
+    "claim": "The average amount of liabilities in millions for 2008 across the three categories (credit card, automobile, and mortgage) was $257 million. Calculation:"
+   },
+   {
+    "corpus": "ragbench-finqa",
+    "labelled": false,
+    "claim": "The average segment net sales from 2005 to 2007 was approximately $5,722.33 million. Calculation:"
+   },
+   {
+    "corpus": "ragbench-finqa",
+    "labelled": false,
+    "claim": "Therefore, the annual interest cost savings by the company redeeming the 8.75% second priority senior secured notes is approximately $61.39 million."
+   },
+   {
+    "corpus": "ragbench-finqa",
+    "labelled": false,
+    "claim": "$849 million / $5,424 million = 0.1565 or 15.65%"
+   },
+   {
+    "corpus": "ragbench-finqa",
+    "labelled": false,
+    "claim": "Approximately $448.5 million for fixed price contracts."
+   },
+   {
+    "corpus": "ragbench-finqa",
+    "labelled": false,
+    "claim": "According to the information provided, in December 2012, the company repurchased 102,400 shares of its common stock at an average price of $74.83 per share, for a total of approximately $7.7 million (102,400 shares x $74.83 per share)."
+   },
+   {
+    "corpus": "ragbench-tatqa",
+    "labelled": false,
+    "claim": "(588 + 443) / 2 = 1031 / 2 = $515.5 million"
+   },
+   {
+    "corpus": "ragbench-tatqa",
+    "labelled": false,
+    "claim": "Therefore, the net financed service contracts exceeded $2,000 million for 2 years."
+   },
+   {
+    "corpus": "ragbench-tatqa",
+    "labelled": false,
+    "claim": "Therefore, the average of cash from Financing activities is approximately $9,755.5 million."
+   },
+   {
+    "corpus": "ragbench-tatqa",
+    "labelled": false,
+    "claim": "Therefore, the total amount spent on restructuring expenses across 2018 and 2019 was $1,031 million."
+   },
+   {
+    "corpus": "ragbench-finqa",
+    "labelled": false,
+    "claim": "Therefore, the average net sales for MFC in millions between 2014 and 2016 is approximately $6823.33 million."
+   },
+   {
+    "corpus": "ragbench-tatqa",
+    "labelled": false,
+    "claim": "         = $515.5 million"
+   },
+   {
+    "corpus": "ragtruth",
+    "labelled": false,
+    "claim": "Wang, who had travelled 29,200km, had earlier turned down offers for a new bike, vowing to walk if he couldn't be reunited with his \"old lover\"."
+   }
+  ]
+ }
+}

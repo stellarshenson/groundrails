@@ -106,12 +106,23 @@ _YEAR_RE = re.compile(r"\b(1[5-9]\d{2}|20\d{2})\b")
 # by one of these is a bound or estimate, not an exact value, so it must NOT be
 # treated as an exact contradiction (e.g. claim "over 5000" vs evidence "512" is
 # under-determined, not a contradiction). Without this the numeric guard floods
-# false contradictions on real comparative/threshold claims.
+# false contradictions on real comparative/threshold claims. The word quantifiers
+# start at a word boundary: "over" inside "cover" is not a quantifier (DEF-NUMBER-47).
 _COMPARATIVE_RE = re.compile(
-    r"(?:more than|greater than|over|above|at least|at most|no more than|no fewer than|"
+    r"(?:\b(?:more than|greater than|over|above|at least|at most|no more than|no fewer than|"
     r"less than|fewer than|under|below|up to|nearly|almost|about|approximately|around|"
-    r"roughly|>=|<=|>|<|≥|≤|~)\s*"
+    r"roughly)|>=|<=|>|<|≥|≤|~)\s*"
     r"(\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+(?:\.\d+)?)",
+    re.IGNORECASE,
+)
+# A date after "before" / "after" is a bound as well: "before March 19, 2020" is
+# not contradicted by "as of 18 March 2020" (DEF-NUMBER-42). Dates only - "after 5
+# years" is a duration and stays exact.
+_MONTH = r"(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|june?|july?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\b\.?"
+_DATE_BOUND_RE = re.compile(
+    rf"\b(?:before|after|prior\s+to|earlier\s+than|later\s+than)\s+(?:the\s+)?"
+    rf"(?P<date>{_MONTH}\s+\d{{1,2}}(?:\s*,\s*\d{{4}})?|\d{{1,2}}\s+{_MONTH}(?:\s+\d{{4}})?"
+    rf"|{_MONTH}\s+\d{{4}}|(?:1[5-9]|20)\d{{2}})\b",
     re.IGNORECASE,
 )
 
@@ -127,17 +138,19 @@ _CITATION_RE = re.compile(r"\[\d+(?:\s*[,\u2013-]\s*\d+)*\]")
 # separately, so without this a document quoting a range reports its two
 # endpoints as a divergence (DEF-SELF-17), and the grounding tier compared a
 # range endpoint as an exact value (DEF-NUMBER-22). Dates are tried first so a
-# range never takes two components of one.
+# range never takes two components of one. A range end keeps its minus sign under
+# the rule ``_NUMBER_RE`` uses, or "-5 to 10" read as -5 plus 5-10 (DEF-NUMBER-48).
 _VALUE = r"\d{1,2}:\d{2}(?::\d{2})?|\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+(?:\.\d+)?"
+_END = rf"(?:(?<![\w.,)])-)?(?:{_VALUE})"
 _COMPOUND_RE = re.compile(
     rf"""
     (?<![\w.:])(?<!\d-)(?<!\d\u2013)
     (?:
         (?P<d>\d{{4}}-\d{{1,2}}-\d{{1,2}}|\d{{1,2}}[./]\d{{1,2}}[./]\d{{4}})
         |
-        between\s+(?P<ba>{_VALUE})\s+and\s+(?P<bb>{_VALUE})
+        between\s+(?P<ba>{_END})\s+and\s+(?P<bb>{_END})
         |
-        (?P<a>{_VALUE})\s*(?:-|\u2013|\u2014|\bto\b)\s*(?P<b>{_VALUE})
+        (?P<a>{_END})\s*(?:-|\u2013|\u2014|\bto\b)\s*(?P<b>{_END})
         |
         (?P<t>\d{{1,2}}:\d{{2}}(?::\d{{2}})?)
     )
@@ -186,12 +199,21 @@ def _agree_at_coarser_precision(a: str, b: str) -> bool:
     except InvalidOperation:
         return a == b
     q = Decimal(1).scaleb(-min(_decimals(a), _decimals(b)))
-    return da.quantize(q, rounding=ROUND_HALF_UP) == db.quantize(q, rounding=ROUND_HALF_UP)
+    try:
+        return da.quantize(q, rounding=ROUND_HALF_UP) == db.quantize(q, rounding=ROUND_HALF_UP)
+    except InvalidOperation:
+        # quantize raises past the 28-digit context precision (a build number or a
+        # hash in a source): such a value agrees only when it is equal (DEF-NUMBER-43)
+        return da == db
 
 
 def _comparative_values(text: str) -> set[str]:
     """Normalised values that appear with a comparative/approximate quantifier."""
-    return {_normalise_value(m.group(1)) for m in _COMPARATIVE_RE.finditer(text)}
+    return {_normalise_value(m.group(1)) for m in _COMPARATIVE_RE.finditer(text)} | {
+        _normalise_value(d)
+        for m in _DATE_BOUND_RE.finditer(text)
+        for d in _DIGITS_RE.findall(m.group("date"))
+    }
 
 
 def _normalise_value(raw: str) -> str:
@@ -203,7 +225,8 @@ def _normalise_value(raw: str) -> str:
             if f == int(f):
                 return str(int(f))
             return f"{f:g}"
-        except ValueError:
+        except (ValueError, OverflowError):
+            # OverflowError: float() gives infinity above the float range, about 1.8e308 (DEF-NUMBER-49)
             return v
     return v
 
